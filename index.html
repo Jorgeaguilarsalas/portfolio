@@ -1,10 +1,669 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Jorge Aguilar — Portfolio (Coming soon)</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jorge Aguilar — Operations & GTM Leader · Berlin</title>
+<meta name="description" content="Operations and GTM leader bridging mobility marketplaces and B2B SaaS. Five years scaling supply networks across Wolt, Bolt, Bliq. Berlin, EMEA, trilingual.">
+
+<meta property="og:title" content="Jorge Aguilar — Operations & GTM Leader">
+<meta property="og:description" content="Operations and GTM leader bridging mobility marketplaces and B2B SaaS. Berlin · EMEA · Trilingual.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --bg-soft: #F2F1EB;
+    --ink: #0E1A1F;
+    --ink-soft: #3D4A50;
+    --ink-mute: #7A8388;
+    --rule: #DCDAD0;
+    --teal: #0F4F4A;
+    --teal-soft: #1A6F68;
+    --teal-pale: #E4EEEC;
+    --coral: #E0633E;
+    --coral-soft: #EE8460;
+    --max-w: 1180px;
+    --gutter: clamp(22px, 4vw, 64px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400; line-height: 1.55; font-size: 17px;
+    overflow-x: hidden;
+  }
+  @media (max-width: 640px) { body { font-size: 16px; } }
+  ::selection { background: var(--teal); color: var(--bg); }
+  a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* NAV */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250, 250, 247, 0.85);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  .nav.scrolled { border-bottom-color: var(--rule); }
+  .nav .inner { display: flex; justify-content: space-between; align-items: center; padding: 18px var(--gutter); max-width: var(--max-w); margin: 0 auto; }
+  .nav-brand { font-family: 'Instrument Serif', Georgia, serif; font-size: 22px; font-weight: 400; letter-spacing: -0.005em; color: var(--ink); }
+  .nav-brand .accent { color: var(--coral); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a { font-size: 14px; color: var(--ink-soft); font-weight: 500; }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta { background: var(--ink); color: var(--bg); padding: 10px 20px; border-radius: 100px; font-size: 13px; font-weight: 500; transition: background 0.25s ease, transform 0.2s ease; }
+  .nav-cta:hover { background: var(--teal); color: var(--bg) !important; transform: translateY(-1px); }
+  @media (max-width: 720px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+  /* HERO */
+  .hero { padding: clamp(60px, 10vh, 110px) 0 clamp(70px, 12vh, 130px); position: relative; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; top: -10%; right: -20%; width: 80%; height: 100%; background: radial-gradient(ellipse at center, rgba(15, 79, 74, 0.06) 0%, transparent 60%); pointer-events: none; z-index: 0; }
+  .hero .inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(40px, 6vw, 80px); align-items: center; }
+  @media (max-width: 900px) { .hero .inner { grid-template-columns: 1fr; gap: 48px; } .hero-photo-wrap { order: -1; max-width: 280px; margin: 0 auto; } }
+  .hero-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); display: inline-flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .hero-eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--teal); }
+  .hero-eyebrow .pulse { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--coral); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.85); } }
+  h1.hero-name { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(48px, 7.5vw, 92px); line-height: 0.98; letter-spacing: -0.025em; margin-bottom: 24px; }
+  h1.hero-name .first { display: block; color: var(--ink); }
+  h1.hero-name .last { display: block; color: var(--teal); font-style: italic; }
+  .hero-tagline { font-size: clamp(19px, 1.7vw, 23px); color: var(--ink-soft); line-height: 1.45; max-width: 30ch; margin-bottom: 32px; font-weight: 400; }
+  .hero-tagline strong { color: var(--ink); font-weight: 600; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+  .tag { background: var(--teal-pale); color: var(--teal); padding: 7px 14px; border-radius: 100px; font-size: 13px; font-weight: 500; }
+  .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--ink); color: var(--bg); padding: 14px 26px; border-radius: 100px; font-size: 15px; font-weight: 500; display: inline-flex; align-items: center; gap: 10px; transition: background 0.25s ease, transform 0.2s ease; }
+  .btn-primary:hover { background: var(--teal); transform: translateY(-1px); }
+  .btn-primary .arrow { transition: transform 0.2s ease; }
+  .btn-primary:hover .arrow { transform: translateX(3px); }
+  .btn-secondary { color: var(--ink); padding: 14px 0 14px 4px; font-size: 15px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; border-bottom: 1.5px solid var(--ink); border-radius: 0; }
+  .btn-secondary:hover { color: var(--coral); border-bottom-color: var(--coral); }
+
+  /* Photo */
+  .hero-photo-wrap { position: relative; aspect-ratio: 4/5; max-width: 380px; justify-self: end; }
+  .hero-photo-wrap::before { content: ""; position: absolute; top: 24px; left: 24px; right: -16px; bottom: -16px; background: var(--teal); border-radius: 14px; z-index: 0; }
+  .hero-photo-wrap::after { content: ""; position: absolute; top: -10px; left: -10px; width: 80px; height: 80px; border: 2px solid var(--coral); border-radius: 14px; z-index: 0; }
+  .hero-photo { position: relative; width: 100%; height: 100%; object-fit: cover; border-radius: 14px; z-index: 1; display: block; }
+  .hero-photo-fallback { position: relative; width: 100%; height: 100%; background: linear-gradient(135deg, var(--teal-pale) 0%, var(--bg-soft) 100%); border-radius: 14px; z-index: 1; display: flex; align-items: center; justify-content: center; color: var(--teal); font-family: 'Instrument Serif', Georgia, serif; font-size: 80px; font-style: italic; }
+
+  /* SECTION SCAFFOLD */
+  section.block { padding: clamp(70px, 11vh, 120px) 0; position: relative; }
+  section.alt { background: var(--bg-soft); }
+  .section-head { display: grid; grid-template-columns: 200px 1fr; gap: 48px; margin-bottom: 56px; align-items: baseline; }
+  @media (max-width: 800px) { .section-head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 40px; } }
+  .section-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-mute); letter-spacing: 0.16em; text-transform: uppercase; padding-top: 8px; }
+  .section-num .dot { color: var(--coral); }
+  h2.section-title { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(32px, 4.2vw, 52px); line-height: 1.08; letter-spacing: -0.018em; max-width: 22ch; color: var(--ink); }
+  h2.section-title em { color: var(--teal); font-style: italic; }
+
+  /* SNAPSHOT */
+  .snapshot-body { display: grid; grid-template-columns: 200px 1fr; gap: 48px; }
+  @media (max-width: 800px) { .snapshot-body { grid-template-columns: 1fr; gap: 24px; } }
+  .snapshot-prose { font-size: clamp(18px, 1.4vw, 21px); line-height: 1.6; color: var(--ink-soft); max-width: 60ch; }
+  .snapshot-prose p + p { margin-top: 1.1em; }
+  .snapshot-prose strong { color: var(--ink); font-weight: 600; }
+
+  /* EXPERIENCE */
+  .exp-category { margin-bottom: 56px; }
+  .exp-category:last-child { margin-bottom: 0; }
+  .exp-cat-label { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--coral); margin-bottom: 28px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
+  .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 48px; padding: 36px 0; border-bottom: 1px solid var(--rule); transition: padding-left 0.3s ease; }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-item:hover { padding-left: 8px; }
+  @media (max-width: 800px) { .exp-item { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; } }
+  .exp-meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-mute); padding-top: 4px; }
+  .exp-meta .company { display: block; font-family: 'Inter Tight', sans-serif; font-size: 15px; color: var(--ink); font-weight: 600; margin-bottom: 4px; }
+  .exp-meta .location { display: block; font-size: 11.5px; color: var(--ink-mute); margin-top: 4px; }
+  .exp-content h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(20px, 1.9vw, 26px); line-height: 1.2; letter-spacing: -0.012em; margin-bottom: 12px; color: var(--ink); }
+  .exp-context { color: var(--ink-soft); font-size: 15px; line-height: 1.55; margin-bottom: 16px; max-width: 65ch; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .exp-bullets li { display: flex; gap: 12px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; }
+  .exp-bullets li::before { content: "—"; color: var(--coral); font-weight: 500; flex-shrink: 0; }
+  .exp-bullets strong { color: var(--ink); font-weight: 600; }
+  .exp-bullets .metric { background: var(--teal-pale); color: var(--teal); padding: 1px 6px; border-radius: 4px; font-weight: 600; font-size: 14px; }
+
+  /* APPROACH */
+  .approach-intro { font-size: 19px; line-height: 1.55; color: var(--ink-soft); max-width: 64ch; margin-bottom: 56px; margin-left: 248px; }
+  @media (max-width: 800px) { .approach-intro { margin-left: 0; } }
+  .approach-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
+  @media (max-width: 800px) { .approach-grid { grid-template-columns: 1fr; } }
+  .approach-item { background: var(--bg-soft); padding: 32px 30px; transition: background 0.3s ease; position: relative; }
+  .approach-item:hover { background: var(--bg); }
+  .approach-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--coral); letter-spacing: 0.1em; font-weight: 600; margin-bottom: 12px; display: block; }
+  .approach-item h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 10px; }
+  .approach-item p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* WORK */
+  .work-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
+  .work-card { background: var(--bg); border: 1px solid var(--rule); border-radius: 18px; padding: 44px; transition: transform 0.3s ease, border-color 0.3s ease; position: relative; overflow: hidden; }
+  .work-card:hover { transform: translateY(-2px); border-color: var(--teal-soft); }
+  .work-card.feature { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .work-card.feature .work-body, .work-card.feature .work-note { color: rgba(250, 250, 247, 0.7); }
+  .work-card.feature h3 { color: var(--bg); }
+  .work-card.feature .work-meta { color: var(--coral-soft); }
+  .work-card.feature ul li { color: rgba(250, 250, 247, 0.85); }
+  .work-card.feature ul li strong { color: var(--bg); }
+  .work-card.feature::before { content: ""; position: absolute; top: 0; right: 0; width: 220px; height: 220px; background: radial-gradient(circle at top right, rgba(224, 99, 62, 0.18) 0%, transparent 70%); pointer-events: none; }
+  .work-meta { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--coral); margin-bottom: 18px; }
+  .work-card h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.2; letter-spacing: -0.012em; margin-bottom: 18px; color: var(--ink); max-width: 26ch; }
+  .work-body { color: var(--ink-soft); font-size: 15.5px; line-height: 1.6; margin-bottom: 20px; max-width: 70ch; }
+  .work-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+  .work-card ul li { display: flex; gap: 12px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; max-width: 75ch; }
+  .work-card ul li::before { content: "▸"; color: var(--coral); flex-shrink: 0; }
+  .work-card ul li strong { color: var(--ink); font-weight: 600; }
+  .work-note { font-size: 13.5px; color: var(--ink-mute); font-style: italic; line-height: 1.55; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: 200px 1fr; gap: 48px; }
+  @media (max-width: 800px) { .skills-grid { grid-template-columns: 1fr; } }
+  .skills-list { display: flex; flex-direction: column; gap: 32px; }
+  .skills-row { display: grid; grid-template-columns: 180px 1fr; gap: 32px; padding-bottom: 28px; border-bottom: 1px solid var(--rule); }
+  .skills-row:last-child { border-bottom: none; padding-bottom: 0; }
+  @media (max-width: 700px) { .skills-row { grid-template-columns: 1fr; gap: 8px; } }
+  .skills-cat { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); padding-top: 4px; }
+  .skills-items { color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+  .skills-items strong { color: var(--ink); font-weight: 500; }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: 200px 1fr; gap: 48px; }
+  @media (max-width: 800px) { .edu-grid { grid-template-columns: 1fr; } }
+  .edu-list { display: flex; flex-direction: column; }
+  .edu-item { padding: 22px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 140px 1fr; gap: 32px; }
+  .edu-item:last-child { border-bottom: none; }
+  @media (max-width: 700px) { .edu-item { grid-template-columns: 1fr; gap: 6px; } }
+  .edu-year { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--ink-mute); padding-top: 4px; }
+  .edu-body .school { font-weight: 600; color: var(--ink); font-size: 15.5px; margin-bottom: 2px; }
+  .edu-body .degree { font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; }
+  .edu-body .degree em { color: var(--ink-mute); font-style: normal; }
+
+  /* CONTACT */
+  .contact { background: var(--ink); color: var(--bg); padding: clamp(80px, 14vh, 140px) 0; position: relative; overflow: hidden; }
+  .contact::before { content: ""; position: absolute; top: -30%; right: -10%; width: 50%; height: 100%; background: radial-gradient(ellipse at center, rgba(224, 99, 62, 0.18) 0%, transparent 65%); pointer-events: none; }
+  .contact::after { content: ""; position: absolute; bottom: -40%; left: -10%; width: 50%; height: 100%; background: radial-gradient(ellipse at center, rgba(15, 79, 74, 0.4) 0%, transparent 60%); pointer-events: none; }
+  .contact .inner { position: relative; z-index: 1; }
+  .contact .hero-eyebrow { color: var(--coral-soft); }
+  .contact .hero-eyebrow::before { background: var(--coral-soft); }
+  .contact h2 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(40px, 6vw, 76px); line-height: 1.0; letter-spacing: -0.025em; color: var(--bg); margin-bottom: 36px; max-width: 16ch; }
+  .contact h2 em { color: var(--coral-soft); font-style: italic; }
+  .contact-sub { font-size: 19px; color: rgba(250, 250, 247, 0.72); max-width: 56ch; line-height: 1.55; margin-bottom: 48px; }
+  .contact-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 64px; }
+  .contact-actions .btn-primary { background: var(--bg); color: var(--ink); }
+  .contact-actions .btn-primary:hover { background: var(--coral); color: var(--bg); }
+  .contact-actions .btn-secondary { color: rgba(250, 250, 247, 0.85); border-bottom-color: rgba(250, 250, 247, 0.4); }
+  .contact-actions .btn-secondary:hover { color: var(--coral-soft); border-bottom-color: var(--coral-soft); }
+  .contact-details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-top: 44px; border-top: 1px solid rgba(250, 250, 247, 0.15); }
+  @media (max-width: 720px) { .contact-details { grid-template-columns: 1fr; gap: 24px; } }
+  .contact-detail .key { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250, 250, 247, 0.55); display: block; margin-bottom: 10px; }
+  .contact-detail .val { font-size: 15.5px; color: var(--bg); }
+  .contact-detail .val a:hover { color: var(--coral-soft); }
+
+  /* FOOTER */
+  footer { background: var(--ink); color: rgba(250, 250, 247, 0.5); padding: 28px 0; border-top: 1px solid rgba(250, 250, 247, 0.1); font-size: 12.5px; }
+  footer .inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } .hero-eyebrow .pulse { animation: none; } }
+</style>
 </head>
 <body>
-<h1>Jorge Aguilar</h1>
-<p>Portfolio under construction. Deployment pipeline live.</p>
+
+<header class="nav" id="nav">
+  <div class="inner">
+    <a href="#top" class="nav-brand">Jorge<span class="accent">.</span>Aguilar</a>
+    <nav class="nav-links">
+      <a href="#snapshot">Snapshot</a>
+      <a href="#experience">Experience</a>
+      <a href="#approach">Approach</a>
+      <a href="#work">Work</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container inner">
+      <div>
+        <div class="hero-eyebrow reveal"><span class="pulse"></span> Open to senior roles · Berlin · EMEA</div>
+        <h1 class="hero-name reveal">
+          <span class="first">Jorge Luis</span>
+          <span class="last">Aguilar Salas</span>
+        </h1>
+        <p class="hero-tagline reveal"><strong>Operations & GTM leader</strong> bridging mobility marketplaces and B2B SaaS.</p>
+        <div class="hero-tags reveal">
+          <span class="tag">Supply Operations</span>
+          <span class="tag">Partnerships & GTM</span>
+          <span class="tag">Analytics & Applied ML</span>
+          <span class="tag">Compliance Frameworks</span>
+        </div>
+        <div class="hero-actions reveal">
+          <a href="#contact" class="btn-primary">Get in touch <span class="arrow">→</span></a>
+          <a href="#experience" class="btn-secondary">See my work</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap reveal">
+        <img src="photo.jpg" alt="Jorge Aguilar — portrait" class="hero-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="hero-photo-fallback" style="display:none;">JA</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="snapshot">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-num">01 <span class="dot">·</span> Snapshot</div>
+        <h2 class="section-title">Five years building the operational layer that makes <em>marketplaces work</em>.</h2>
+      </div>
+      <div class="snapshot-body reveal">
+        <div></div>
+        <div class="snapshot-prose">
+          <p>Berlin-based operations leader with five years scaling supply networks and partnership channels across mobility marketplaces — <strong>Wolt, Bolt, Bliq</strong> — and freelance strategy work for early-stage fleet SaaS via Salas UG. Focused on the operational layer that makes marketplaces and B2B SaaS go-to-market actually work: onboarding flows, partner accountability frameworks, compliance design, and the analytical discipline to know which lever moves which KPI.</p>
+          <p>Working across <strong>English, German, and Spanish</strong> in EMEA, leaning on Python, SQL, Streamlit, and applied ML when the operating problem becomes an analytical one. Currently open to senior operations, GTM, business development, or strategy roles — mobility, B2B SaaS, or any sector where operational rigor is the competitive advantage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-num">02 <span class="dot">·</span> Experience</div>
+        <h2 class="section-title">Operations across <em>mobility marketplaces</em>, SaaS, and B2B.</h2>
+      </div>
+
+      <div class="exp-category">
+        <div class="exp-cat-label reveal">Operations leadership · Mobility marketplaces & SaaS</div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            05.2025 — Present
+            <span class="company">Salas UG · Self-employed</span>
+            <span class="location">Berlin, Germany</span>
+          </div>
+          <div class="exp-content">
+            <h3>FleetTech & Mobility Strategy Consultant — GTM, Compliance & Growth in Europe</h3>
+            <p class="exp-context">Independent operator advising mobility and logistics ventures on fleet compliance, operational design, and go-to-market execution across DACH. Current engagement: Nexio Fleet.</p>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            05.2025 — Present
+            <span class="company">Nexio Fleet · Freelance</span>
+            <span class="location">Berlin, Germany</span>
+          </div>
+          <div class="exp-content">
+            <h3>Strategy & Operations Lead — Fleet Compliance & SaaS</h3>
+            <p class="exp-context">Led compliance system design and translated regulatory requirements into product workflows during Nexio Fleet's early-stage development. Urban-fleet SaaS serving Berlin and Brandenburg.</p>
+            <ul class="exp-bullets">
+              <li>Built compliance reporting framework covering <span class="metric">90–150 drivers</span> across 3 fleet operators</li>
+              <li>Reduced manual reporting time by <span class="metric">60–70%</span> via Python CSV-ingestion automation</li>
+              <li>Established audit-ready driver and vehicle-level tracking aligned with LABO requirements</li>
+              <li>Translated regulatory requirements into product specs for the Driver App and Fleet Dashboard</li>
+              <li>Contributed to tiered compliance pricing strategy and grant positioning up to <span class="metric">€50,000</span> (IBB GründungsBONUS Plus)</li>
+              <li>Stack: Firebase (Auth, Firestore), Python, CSV pipelines, Uber & Bolt data integration. Reference letter on file from CEO Aleksander Boski.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            07.2024 — 07.2025
+            <span class="company">Bliq · Full-time</span>
+            <span class="location">Berlin, Germany</span>
+          </div>
+          <div class="exp-content">
+            <h3>Supply Operations Manager</h3>
+            <p class="exp-context">B2B mobility marketplace connecting fleet partners and drivers across Germany. Owned supply-side scale-up, key account management, and pricing optimization.</p>
+            <ul class="exp-bullets">
+              <li>Scaled supply network <span class="metric">2.6× partners</span> and <span class="metric">4.7× drivers</span> in 12 months</li>
+              <li>Lifted partner retention from <span class="metric">&lt;50% to &gt;80%</span> via incentive redesign and onboarding overhaul</li>
+              <li>Piloted a program driving <span class="metric">4.7× ride growth</span> and <span class="metric">€3M ARR</span> contribution</li>
+              <li>Optimized pricing through market research; localized product features via user research</li>
+              <li>Trained junior Key Account Managers; led bilingual (DE/EN) partner negotiations</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            06.2023 — 06.2024
+            <span class="company">Bolt · Full-time</span>
+            <span class="location">Berlin, Germany</span>
+          </div>
+          <div class="exp-content">
+            <h3>Operations Specialist</h3>
+            <p class="exp-context">Ride-hailing operations for Southern Germany. Driver acquisition, activation, and 3PL supply management.</p>
+            <ul class="exp-bullets">
+              <li><strong>Doubled driver activation rate in 6 weeks</strong> through onboarding process redesign</li>
+              <li>Materially reduced cancellation rate via 3PL accountability framework</li>
+              <li>Owned 3PL supply management for Munich and the wider South Germany region</li>
+              <li>Designed bonus and incentive programs to balance supply and demand peaks</li>
+              <li>Built monitoring dashboards for driver performance and city operations metrics</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            10.2020 — 02.2023
+            <span class="company">Wolt</span>
+            <span class="location">Berlin, Germany</span>
+          </div>
+          <div class="exp-content">
+            <h3>Sustainability Operations Associate · Courier Partner</h3>
+            <p class="exp-context">Q-commerce and food delivery operations. Courier onboarding, fleet sustainability, and process optimization. Started part-time as a courier partner before joining the operations team.</p>
+            <ul class="exp-bullets">
+              <li>Contributed to <span class="metric">~30% logistics cost reduction</span> across courier operations</li>
+              <li>Led gear recycling and circular-economy initiatives (project management)</li>
+              <li>Optimized courier onboarding and bike-check workflows</li>
+              <li>Bottom-up operational understanding from courier role before joining ops team</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-category">
+        <div class="exp-cat-label reveal">Earlier experience · Operations across industries</div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            09.2021 — 12.2021
+            <span class="company">Engagement Global gGmbH</span>
+            <span class="location">Berlin · Internship</span>
+          </div>
+          <div class="exp-content">
+            <h3>Digital Sustainability Consultant</h3>
+            <p class="exp-context">NGO project supporting the certification of a Participatory Guarantee System for Organic Agriculture for small businesses in Mexico. Adapted IFOAM Organics International standards, built digital documentation frameworks, and handled data across organic and conventional production datasets.</p>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            05.2017 — 08.2017
+            <span class="company">Someone Somewhere</span>
+            <span class="location">Mexico City · Internship</span>
+          </div>
+          <div class="exp-content">
+            <h3>Market Research Analyst</h3>
+            <p class="exp-context">Fair-trade Mexican clothing brand. Conducted market research and competitive benchmarking to support US-market expansion.</p>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            02.2012 — 07.2017
+            <span class="company">AlcorteMex</span>
+            <span class="location">Mexico City · Full-time</span>
+          </div>
+          <div class="exp-content">
+            <h3>Shop Manager</h3>
+            <p class="exp-context">Family business in frozen and fresh food distribution. Leadership across accounting, sales, procurement, and marketing. Negotiated regional B2B contracts; inventory and supplier management.</p>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            11.2016 — 04.2017
+            <span class="company">SHCP (Mexican Ministry of Finance)</span>
+            <span class="location">Mexico City · Apprenticeship</span>
+          </div>
+          <div class="exp-content">
+            <h3>Administrative Assistant</h3>
+            <p class="exp-context">Mexican federal Ministry of Finance. Administrative support and stakeholder coordination within tax administration.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="approach">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-num">03 <span class="dot">·</span> My approach</div>
+        <h2 class="section-title">Seven principles I bring to <em>marketplace operations</em> and B2B SaaS.</h2>
+      </div>
+      <p class="approach-intro reveal">Earned through operating across mobility platforms, sharpened through analytical work. These are the principles that anchor how I diagnose, plan, and execute.</p>
+      <div class="approach-grid">
+        <div class="approach-item reveal">
+          <span class="approach-num">01</span>
+          <h3>Diagnose before levering</h3>
+          <p>Most operating problems aren't modeling problems — they're framing or instrumentation problems. The work that creates value is naming what's actually broken before applying a fix.</p>
+        </div>
+        <div class="approach-item reveal">
+          <span class="approach-num">02</span>
+          <h3>Quality is multi-dimensional</h3>
+          <p>Define "good" across pillars — safety, reliability, peace of mind. Measure with operational telemetry first, customer ratings second. Premium customers value their time more than rating prompts.</p>
+        </div>
+        <div class="approach-item reveal">
+          <span class="approach-num">03</span>
+          <h3>Grow with discipline</h3>
+          <p>Markets earn growth by passing explicit gates — readiness, concentration, rejection-rate, supply depth. Filter-passing is necessary, not sufficient.</p>
+        </div>
+        <div class="approach-item reveal">
+          <span class="approach-num">04</span>
+          <h3>Translate diagnosis into roadmaps</h3>
+          <p>Insight without execution is academic. The strongest planning artifacts name assumptions, structural floors, and explicit decision points where the plan pivots or doubles down.</p>
+        </div>
+        <div class="approach-item reveal">
+          <span class="approach-num">05</span>
+          <h3>Sequence risk before levers fire</h3>
+          <p>What you defer matters as much as what you do. Remediate fragile markets before scaling them; design for downside, not just upside.</p>
+        </div>
+        <div class="approach-item reveal">
+          <span class="approach-num">06</span>
+          <h3>ML for probabilistic problems; rules for policy</h3>
+          <p>Trying to use ML for tier classification adds complexity without value. Trying to use rules for prediction misses the probabilistic structure. The split is first-principles, not stylistic.</p>
+        </div>
+        <div class="approach-item reveal" style="grid-column: 1 / -1;">
+          <span class="approach-num">07</span>
+          <h3>Partner accountability is conversation infrastructure</h3>
+          <p>Tiered scorecards turn partner performance into structured commercial conversations — Tier A standard terms, Tier C 90-day improvement plan with named targets. The framework is the conversation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-num">04 <span class="dot">·</span> Selected work</div>
+        <h2 class="section-title">Working tools and frameworks — <em>not decks alone</em>.</h2>
+      </div>
+      <div class="work-grid">
+
+        <div class="work-card feature reveal">
+          <div class="work-meta">Self-directed · 2026 · Premium mobility sector</div>
+          <h3>Marketplace Strategy & Analytics — European Premium Mobility</h3>
+          <p class="work-body">A self-directed analytical project applying my framework to a multi-city premium ride marketplace. Demonstrates how I approach growth strategy, partnership accountability, and quality economics at marketplace scale.</p>
+          <ul>
+            <li><strong>BD strategy across regions.</strong> Growth-market selection through explicit filter gates — partnership-channel markets (airline-driven, Southern Europe) and direct-customer markets (Western Europe). Channel-diversified by design so a partnership renegotiation doesn't compound across the portfolio.</li>
+            <li><strong>Customer-facing analytical dashboards.</strong> Interactive dashboards built in Python, Streamlit, and Plotly — operational telemetry, partner performance, segment economics, and quality-vs-margin views.</li>
+            <li><strong>Partnership segmentation & supplier scorecard.</strong> Tiered classification across the supply base, each tier mapped to a structured commercial conversation — standard terms, monitoring, improvement plan, or deactivation timeline.</li>
+            <li><strong>Quality Contribution Index.</strong> Penalty-adjusted contribution metric translating quality failures into a per-ride P&L number. Bridges quality discipline and finance — prevents quality-vs-margin trade-offs from drifting silently during scale-up.</li>
+          </ul>
+          <p class="work-note">Full project detail available on request.</p>
+        </div>
+
+        <div class="work-card reveal">
+          <div class="work-meta">2025 — Present · Freelance via Salas UG</div>
+          <h3>Nexio Fleet — Strategy & Operations Engagement</h3>
+          <p class="work-body">Compliance system design and operational architecture for an early-stage fleet-compliance SaaS in Berlin and Brandenburg. Reporting framework covering 90–150 drivers, 60–70% reduction in manual reporting time, audit-ready data tracking aligned with LABO and Berlin Mobilitätsgesetz, and product specs for Driver App and Fleet Dashboard.</p>
+          <p class="work-note">Reference letter on file from Aleksander Boski, CEO of Nexio Fleet GmbH.</p>
+        </div>
+
+        <div class="work-card reveal">
+          <div class="work-meta">2026 · Personal framework</div>
+          <h3>Marketplace Operations Capabilities Framework</h3>
+          <p class="work-body">Personal framework codifying seven capabilities required to lead marketplace operations at the senior level — diagnostics, quality management, growth strategy, planning, risk sequencing, data and AI enablement, and partner management. Each capability anchored to JD translation, evidence, and worked examples.</p>
+          <p class="work-note">Downloadable PDF available on request.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="skills">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-num">05 <span class="dot">·</span> Skills & tools</div>
+        <h2 class="section-title"><em>What I work with</em>, across operations and analytics.</h2>
+      </div>
+      <div class="skills-grid">
+        <div></div>
+        <div class="skills-list">
+          <div class="skills-row reveal">
+            <div class="skills-cat">Operations & Strategy</div>
+            <div class="skills-items"><strong>Supply operations</strong> · Partner and key account management · Onboarding and activation · Compliance design · Go-to-market execution · Cross-functional alignment · Process automation · Stakeholder management</div>
+          </div>
+          <div class="skills-row reveal">
+            <div class="skills-cat">Analytics & Engineering</div>
+            <div class="skills-items"><strong>Python</strong> (pandas, numpy) · <strong>SQL</strong> · Streamlit · Plotly · R (R-Studio) · Firebase (Auth, Firestore) · CSV pipeline automation · Applied ML</div>
+          </div>
+          <div class="skills-row reveal">
+            <div class="skills-cat">Tooling</div>
+            <div class="skills-items">Asana · Miro · Notion · Pipedrive · Salesforce · Clevertap · Mailchimp · Slack · MS Teams · Tableau · Figma · Canva · Framer · MS Office · Google Workspace · Git</div>
+          </div>
+          <div class="skills-row reveal">
+            <div class="skills-cat">Languages</div>
+            <div class="skills-items"><strong>Spanish</strong> (native) · <strong>German</strong> (C1) · <strong>English</strong> (C1)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="education">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="section-num">06 <span class="dot">·</span> Education</div>
+        <h2 class="section-title">Operations education, <em>analytical depth</em>, continuous certification.</h2>
+      </div>
+      <div class="edu-grid">
+        <div></div>
+        <div class="edu-list">
+          <div class="edu-item reveal">
+            <div class="edu-year">01.2026 — 03.2026</div>
+            <div class="edu-body">
+              <div class="school">Ironhack · Berlin</div>
+              <div class="degree">Diploma, DevOps & Cloud Computing — <em>CI/CD pipelines, Terraform, Docker, Kubernetes, AWS, Azure, monitoring, cloud governance</em></div>
+            </div>
+          </div>
+          <div class="edu-item reveal">
+            <div class="edu-year">03.2023 — 06.2023</div>
+            <div class="edu-body">
+              <div class="school">Ironhack · Berlin</div>
+              <div class="degree">Diploma, Data Analytics Bootcamp — <em>Python, MySQL, Tableau, statistical analysis, Pandas, data visualization, applied ML</em></div>
+            </div>
+          </div>
+          <div class="edu-item reveal">
+            <div class="edu-year">2019 — 2021</div>
+            <div class="edu-body">
+              <div class="school">Rhine-Waal University (HSRW) · Kleve</div>
+              <div class="degree">M.A. Sustainability Studies — Grade 1.7. <em>Master thesis: The Contribution of Steward-Owned Companies to the SDGs.</em></div>
+            </div>
+          </div>
+          <div class="edu-item reveal">
+            <div class="edu-year">2012 — 2015</div>
+            <div class="edu-body">
+              <div class="school">Universidad La Salle · Mexico City</div>
+              <div class="degree">Bachelor, International Business — <em>Promedio meritorio (Mexican honors distinction; German equivalent: 1.2)</em></div>
+            </div>
+          </div>
+          <div class="edu-item reveal">
+            <div class="edu-year">2014 & 2016</div>
+            <div class="edu-body">
+              <div class="school">Hochschule Bremen</div>
+              <div class="degree">Erasmus Semester & Summer School, Economics and Management — <em>Grade 1.2</em></div>
+            </div>
+          </div>
+          <div class="edu-item reveal">
+            <div class="edu-year">2015</div>
+            <div class="edu-body">
+              <div class="school">UC Berkeley</div>
+              <div class="degree">TrepCamp Entrepreneurship Program</div>
+            </div>
+          </div>
+          <div class="edu-item reveal">
+            <div class="edu-year">2023</div>
+            <div class="edu-body">
+              <div class="school">Certifications</div>
+              <div class="degree">Google Data Analytics (Coursera · 3 modules) · Google Foundations of Project Management (Coursera) · Corporate ESG and Sustainability (Udemy)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container inner">
+      <div class="hero-eyebrow reveal">Get in touch</div>
+      <h2 class="reveal">Open to senior roles. <em>Let's talk.</em></h2>
+      <p class="contact-sub reveal">Currently open to senior Operations, GTM, Business Development, or Strategy roles — full-time in Berlin or remote-EMEA. If you're building something where operational rigor is the competitive advantage, let's have a conversation.</p>
+      <div class="contact-actions reveal">
+        <a href="mailto:aguilarjorge@outlook.com" class="btn-primary">aguilarjorge@outlook.com <span class="arrow">→</span></a>
+        <a href="https://www.linkedin.com/in/jorge-aguilar-ops/" class="btn-secondary" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
+      <div class="contact-details">
+        <div class="contact-detail">
+          <span class="key">Direct</span>
+          <span class="val"><a href="mailto:aguilarjorge@outlook.com">aguilarjorge@outlook.com</a></span>
+        </div>
+        <div class="contact-detail">
+          <span class="key">LinkedIn</span>
+          <span class="val"><a href="https://www.linkedin.com/in/jorge-aguilar-ops/" target="_blank" rel="noopener">/in/jorge-aguilar-ops</a></span>
+        </div>
+        <div class="contact-detail">
+          <span class="key">Location</span>
+          <span class="val">Berlin · Working across EMEA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container inner">
+    <span>© 2026 Jorge Aguilar · Berlin</span>
+    <span><a href="https://www.linkedin.com/in/jorge-aguilar-ops/" target="_blank" rel="noopener">LinkedIn</a></span>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 8) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => io.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('visible'));
+  }
+</script>
+
 </body>
 </html>
