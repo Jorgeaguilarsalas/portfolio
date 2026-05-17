@@ -45,14 +45,7 @@
   .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
 
   /* NAV */
-  .nav {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(250, 250, 247, 0.85);
-    backdrop-filter: saturate(180%) blur(14px);
-    -webkit-backdrop-filter: saturate(180%) blur(14px);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s ease;
-  }
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(250, 250, 247, 0.85); backdrop-filter: saturate(180%) blur(14px); -webkit-backdrop-filter: saturate(180%) blur(14px); border-bottom: 1px solid transparent; transition: border-color 0.3s ease; }
   .nav.scrolled { border-bottom-color: var(--rule); }
   .nav .inner { display: flex; justify-content: space-between; align-items: center; padding: 18px var(--gutter); max-width: var(--max-w); margin: 0 auto; }
   .nav-brand { font-family: 'Instrument Serif', Georgia, serif; font-size: 22px; font-weight: 400; letter-spacing: -0.005em; color: var(--ink); }
@@ -88,10 +81,11 @@
   .btn-secondary { color: var(--ink); padding: 14px 0 14px 4px; font-size: 15px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; border-bottom: 1.5px solid var(--ink); border-radius: 0; }
   .btn-secondary:hover { color: var(--coral); border-bottom-color: var(--coral); }
 
-  /* Photo */
-  .hero-photo-wrap { position: relative; aspect-ratio: 4/5; max-width: 380px; justify-self: end; }
-  .hero-photo-wrap::before { content: ""; position: absolute; top: 24px; left: 24px; width: calc(100% + 16px); height: calc(100% + 16px); background: var(--teal); border-radius: 14px; z-index: 0; }
-  .hero-photo-wrap::after { content: ""; position: absolute; top: 6px; left: -22px; width: 2px; height: 56px; background: var(--teal); z-index: 0; box-shadow: 8px 0 0 var(--teal); }
+  /* Photo — clean treatment, soft teal shadow */
+  .hero-photo-wrap { position: relative; aspect-ratio: 4/5; max-width: 380px; justify-self: end; border-radius: 14px; overflow: hidden; box-shadow: 0 20px 50px -20px rgba(15, 79, 74, 0.35), 0 4px 12px -2px rgba(14, 26, 31, 0.08); }
+  .hero-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-photo-fallback { width: 100%; height: 100%; background: linear-gradient(135deg, var(--teal-pale) 0%, var(--bg-soft) 100%); display: flex; align-items: center; justify-content: center; color: var(--teal); font-family: 'Instrument Serif', Georgia, serif; font-size: 80px; font-style: italic; }
+
   /* SECTION SCAFFOLD */
   section.block { padding: clamp(70px, 11vh, 120px) 0; position: relative; }
   section.alt { background: var(--bg-soft); }
@@ -500,7 +494,6 @@
           <p class="work-body">Compliance system design and operational architecture for an early-stage fleet-compliance SaaS in Berlin and Brandenburg. Reporting framework covering 90–150 drivers, 60–70% reduction in manual reporting time, audit-ready data tracking aligned with LABO and Berlin Mobilitätsgesetz, and product specs for Driver App and Fleet Dashboard.</p>
           <p class="work-note">Reference letter on file from Aleksander Boski, CEO of Nexio Fleet GmbH.</p>
         </div>
-
 
       </div>
     </div>
