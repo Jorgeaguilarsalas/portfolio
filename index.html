@@ -91,10 +91,7 @@
   /* Photo */
   .hero-photo-wrap { position: relative; aspect-ratio: 4/5; max-width: 380px; justify-self: end; }
   .hero-photo-wrap::before { content: ""; position: absolute; top: 24px; left: 24px; right: -16px; bottom: -16px; background: var(--teal); border-radius: 14px; z-index: 0; }
-  .hero-photo-wrap::after { content: ""; position: absolute; top: -10px; left: -10px; width: 80px; height: 80px; border: 2px solid var(--coral); border-radius: 14px; z-index: 0; }
-  .hero-photo { position: relative; width: 100%; height: 100%; object-fit: cover; border-radius: 14px; z-index: 1; display: block; }
-  .hero-photo-fallback { position: relative; width: 100%; height: 100%; background: linear-gradient(135deg, var(--teal-pale) 0%, var(--bg-soft) 100%); border-radius: 14px; z-index: 1; display: flex; align-items: center; justify-content: center; color: var(--teal); font-family: 'Instrument Serif', Georgia, serif; font-size: 80px; font-style: italic; }
-
+  .hero-photo-wrap::after { content: ""; position: absolute; top: 6px; left: -22px; width: 2px; height: 56px; background: var(--teal); z-index: 0; box-shadow: 8px 0 0 var(--teal); }
   /* SECTION SCAFFOLD */
   section.block { padding: clamp(70px, 11vh, 120px) 0; position: relative; }
   section.alt { background: var(--bg-soft); }
