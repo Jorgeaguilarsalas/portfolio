@@ -205,6 +205,12 @@
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } .hero-eyebrow .pulse { animation: none; } }
+
+  .btn-copy { background: transparent; border: 1.5px solid rgba(250, 250, 247, 0.4); color: rgba(250, 250, 247, 0.85); padding: 14px 22px; border-radius: 100px; font-family: 'Inter Tight', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
+  .btn-copy:hover { border-color: var(--coral-soft); color: var(--coral-soft); }
+  .btn-copy .copy-done { display: none; }
+  .btn-copy.copied .copy-label { display: none; }
+  .btn-copy.copied .copy-done { display: inline; color: var(--coral-soft); }
 </style>
 </head>
 <body>
@@ -598,13 +604,14 @@
       <h2 class="reveal">Open to senior roles. <em>Let's talk.</em></h2>
       <p class="contact-sub reveal">Currently open to senior Operations, GTM, Business Development, or Strategy roles — full-time in Berlin or remote-EMEA. If you're building something where operational rigor is the competitive advantage, let's have a conversation.</p>
       <div class="contact-actions reveal">
-        <a href="mailto:aguilarjorge@outlook.com" class="btn-primary">aguilarjorge@outlook.com <span class="arrow">→</span></a>
+        <a href="mailto:aguilarjorge@outlook.com?subject=Conversation%20about%20a%20role" class="btn-primary">aguilarjorge@outlook.com <span class="arrow">→</span></a>
+        <button type="button" class="btn-copy" data-copy="aguilarjorge@outlook.com" aria-label="Copy email address"><span class="copy-label">Copy</span><span class="copy-done">Copied</span></button>
         <a href="https://www.linkedin.com/in/jorge-aguilar-ops/" class="btn-secondary" target="_blank" rel="noopener">Connect on LinkedIn</a>
       </div>
       <div class="contact-details">
         <div class="contact-detail">
           <span class="key">Direct</span>
-          <span class="val"><a href="mailto:aguilarjorge@outlook.com">aguilarjorge@outlook.com</a></span>
+          <span class="val"><a href="mailto:aguilarjorge@outlook.com?subject=Conversation%20about%20a%20role">aguilarjorge@outlook.com</a></span>
         </div>
         <div class="contact-detail">
           <span class="key">LinkedIn</span>
@@ -647,6 +654,17 @@
   } else {
     reveals.forEach(el => el.classList.add('visible'));
   }
+
+  document.querySelectorAll('.btn-copy').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copy;
+      try { await navigator.clipboard.writeText(text); } catch(e) {
+        const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      }
+      btn.classList.add('copied');
+      setTimeout(() => btn.classList.remove('copied'), 2000);
+    });
+  });
 </script>
 
 </body>
