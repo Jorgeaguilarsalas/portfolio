@@ -192,6 +192,10 @@
   .work-link { color: var(--teal); font-weight: 600; font-size: 15.5px; border-bottom: 1.5px solid var(--teal-pale); padding-bottom: 2px; display: inline-flex; align-items: center; gap: 6px; transition: border-color 0.2s ease; }
   @media (hover: hover) { .work-link:hover { border-bottom-color: var(--teal); } }
 
+
+  .work-card.feature .work-link, .work-link-on-dark { color: var(--coral-soft); border-bottom-color: rgba(238, 132, 96, 0.3); }
+  @media (hover: hover) { .work-card.feature .work-link:hover, .work-link-on-dark:hover { border-bottom-color: var(--coral-soft); } }
+
   /* SKILLS */
   .skills-list { display: flex; flex-direction: column; gap: 32px; max-width: 880px; }
   .skills-row { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 28px; border-bottom: 1px solid var(--rule); }
@@ -298,7 +302,7 @@
       <div class="snapshot-prose reveal">
         <p>I am a Berlin-based operations leader with five years scaling <em>supply networks and partnership channels</em> across mobility marketplaces — Wolt, Bolt, Bliq — and freelance strategy work for early-stage fleet SaaS via Salas UG.</p>
         <p>My focus is the operational layer that makes marketplaces and B2B SaaS go-to-market actually work: onboarding flows, partner accountability frameworks, compliance design, and the analytical discipline to know which lever moves which KPI.</p>
-        <p>I work across <em>English, German, and Spanish</em> in EMEA, leaning on Python, SQL, Streamlit, and applied ML when the operating problem becomes an analytical one. Currently open to senior operations, GTM, business development, or strategy roles.</p>
+        <p>I work across <em>English, German, and Spanish</em> in EMEA, leaning on Python, SQL, Streamlit, and applied ML when the operating problem becomes an analytical one. Currently open to senior operations, GTM, business development, or strategy roles. I lead with <em>emotional stability, clarity, and ownership</em> &mdash; staying calm under pressure, naming what matters, and taking responsibility for outcomes.</p>
       </div>
     </div>
   </section>
@@ -528,8 +532,19 @@
         <h2 class="section-title">Working tools and frameworks — <em>not decks alone</em>.</h2>
       </div>
       <div class="work-grid">
-
         <div class="work-card feature reveal">
+          <div class="work-meta">2026 &middot; Self-directed &middot; Interactive demonstration</div>
+          <h3>Marketplace Operations &mdash; Live Demo Dashboard</h3>
+          <p class="work-body">A working interactive dashboard demonstrating four operating principles through synthetic data. Visitors can sort the partner scorecard, filter by tier, adjust quality-penalty assumptions, and walk a four-tab analytical narrative. Built to be transferable across marketplace operations, fleet management, and key account contexts.</p>
+          <ul>
+            <li><strong>Tech.</strong> Python &middot; pandas &middot; Streamlit &middot; Plotly</li>
+            <li><strong>Data.</strong> Public-safe synthetic data (25,000 records, 11 cities, 80 partners)</li>
+          </ul>
+          <p><a href="https://marketplace-ops-demo-port.streamlit.app/" target="_blank" rel="noopener" class="work-link work-link-on-dark">Open the live dashboard <span aria-hidden="true">&#8599;</span></a></p>
+        </div>
+
+
+        <div class="work-card reveal">
           <div class="work-meta">Self-directed · 2026 · Premium mobility sector</div>
           <h3>Marketplace Strategy & Analytics — European Premium Mobility</h3>
           <p class="work-body">A self-directed analytical project applying my framework to a multi-city premium ride marketplace. Demonstrates how I approach growth strategy, partnership accountability, and quality economics at marketplace scale.</p>
