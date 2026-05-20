@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leadership Framework — Jorge Aguilar</title>
+<meta name="description" content="A leadership framework adopted from Leila Hormozi and applied across operations and team leadership work.">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0B1416;
+    --bg-soft: #131F22;
+    --bg-card: #1A282C;
+    --bg-card-hover: #213136;
+    --ink: #F0EBE0;
+    --ink-soft: #B8B0A3;
+    --ink-mute: #847C70;
+    --rule: #2A3A3F;
+    --teal: #6BBBB0;
+    --teal-soft: #8BCDC2;
+    --coral: #E89074;
+    --coral-soft: #F0A88C;
+    --max-w: 920px;
+    --gutter: clamp(22px, 4vw, 64px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400; line-height: 1.6; font-size: 18px;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse at 15% 8%, rgba(107, 187, 176, 0.06) 0%, transparent 45%),
+      radial-gradient(ellipse at 85% 90%, rgba(232, 144, 116, 0.05) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+  @media (max-width: 640px) { body { font-size: 16px; } }
+  ::selection { background: var(--teal); color: var(--bg); }
+  a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* NAV */
+  .nav { padding: 28px var(--gutter); border-bottom: 1px solid var(--rule); }
+  .nav .inner { display: flex; justify-content: space-between; align-items: center; max-width: var(--max-w); margin: 0 auto; }
+  .back-link { font-size: 14px; color: var(--ink-soft); font-weight: 500; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s ease; }
+  @media (hover: hover) { .back-link:hover { color: var(--teal); } }
+  .back-link .arrow { transition: transform 0.2s ease; display: inline-block; }
+  @media (hover: hover) { .back-link:hover .arrow { transform: translateX(-3px); } }
+  .nav-brand { font-family: 'Instrument Serif', Georgia, serif; font-size: 18px; color: var(--ink-soft); }
+
+  /* HERO */
+  .hero { padding: clamp(80px, 14vh, 140px) 0 clamp(56px, 9vh, 90px); text-align: left; }
+  .hero-eyebrow { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); display: inline-flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .hero-eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--teal); }
+  h1 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(40px, 6.5vw, 80px); line-height: 1.0; letter-spacing: -0.025em; margin-bottom: 32px; color: var(--ink); }
+  h1 em { color: var(--teal); font-style: italic; }
+  .hero-lede { font-size: clamp(19px, 1.7vw, 22px); color: var(--ink-soft); line-height: 1.55; max-width: 56ch; margin-bottom: 20px; }
+  .hero-attribution { font-size: 15px; color: var(--ink-mute); font-style: italic; max-width: 56ch; line-height: 1.55; }
+  .hero-attribution a { color: var(--coral); border-bottom: 1px solid rgba(232, 144, 116, 0.35); padding-bottom: 1px; transition: border-color 0.2s ease; }
+  @media (hover: hover) { .hero-attribution a:hover { border-bottom-color: var(--coral); } }
+
+  /* STATEMENT BLOCK */
+  .statement { padding: clamp(48px, 8vh, 80px) 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: clamp(56px, 9vh, 90px); }
+  .statement-label { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--coral); margin-bottom: 24px; }
+  .statement-prose { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.35; letter-spacing: -0.01em; color: var(--ink); max-width: 26ch; }
+  .statement-prose { max-width: 38ch; }
+  .statement-prose em { color: var(--teal-soft); font-style: italic; }
+
+  /* PILLARS INTRO */
+  .pillars-intro { margin-bottom: 48px; }
+  .pillars-intro h2 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.1; letter-spacing: -0.018em; color: var(--ink); max-width: 22ch; margin-bottom: 20px; }
+  .pillars-intro h2 em { color: var(--teal); font-style: italic; }
+  .pillars-intro p { color: var(--ink-soft); font-size: 17px; line-height: 1.6; max-width: 56ch; }
+
+  /* PILLARS */
+  .pillars { display: flex; flex-direction: column; gap: 16px; margin-bottom: clamp(80px, 12vh, 130px); }
+  .pillar { background: var(--bg-card); border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; transition: border-color 0.3s ease, background 0.3s ease; }
+  @media (hover: hover) { .pillar:hover { border-color: rgba(107, 187, 176, 0.4); } }
+  .pillar.open { border-color: var(--teal); background: var(--bg-card-hover); }
+
+  .pillar-trigger { display: grid; grid-template-columns: 60px 1fr 36px; gap: 24px; align-items: center; padding: 28px 32px; cursor: pointer; user-select: none; background: transparent; border: none; width: 100%; text-align: left; color: inherit; font: inherit; }
+  @media (max-width: 640px) { .pillar-trigger { grid-template-columns: 44px 1fr 28px; gap: 18px; padding: 22px 24px; } }
+
+  .pillar-num { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: clamp(32px, 3.6vw, 44px); color: var(--coral); line-height: 1; font-weight: 400; }
+  .pillar-title { display: flex; flex-direction: column; gap: 6px; }
+  .pillar-name { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(22px, 2.2vw, 28px); letter-spacing: -0.012em; line-height: 1.2; color: var(--ink); }
+  .pillar-tagline { font-size: 14.5px; color: var(--ink-mute); line-height: 1.4; font-style: italic; }
+  .pillar-toggle { width: 36px; height: 36px; border-radius: 100px; border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; transition: all 0.25s ease; flex-shrink: 0; }
+  .pillar.open .pillar-toggle { background: var(--teal); border-color: var(--teal); }
+  .pillar-toggle svg { width: 14px; height: 14px; stroke: var(--ink-soft); stroke-width: 2; fill: none; transition: stroke 0.25s ease, transform 0.3s ease; }
+  .pillar.open .pillar-toggle svg { stroke: var(--bg); transform: rotate(180deg); }
+
+  .pillar-body { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+  .pillar.open .pillar-body { max-height: 1200px; }
+  .pillar-body-inner { padding: 8px 32px 36px; display: grid; grid-template-columns: 60px 1fr; gap: 24px; }
+  @media (max-width: 640px) { .pillar-body-inner { grid-template-columns: 1fr; padding: 8px 24px 28px; gap: 16px; } }
+
+  .pillar-body-content { color: var(--ink-soft); font-size: 16px; line-height: 1.65; }
+  .pillar-body-content p { margin-bottom: 20px; }
+  .pillar-body-content .why { color: var(--ink); font-size: 17px; line-height: 1.55; font-weight: 400; }
+  .pillar-body-content .how-label { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; margin-top: 24px; }
+  .pillar-body-content ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+  .pillar-body-content ul li { display: flex; gap: 12px; }
+  .pillar-body-content ul li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--coral); flex-shrink: 0; margin-top: 10px; }
+  .pillar-body-content .applied { background: rgba(107, 187, 176, 0.08); border-left: 2px solid var(--teal); padding: 18px 22px; border-radius: 4px; margin-top: 8px; }
+  .pillar-body-content .applied-label { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 10px; }
+  .pillar-body-content .applied-text { color: var(--ink); font-size: 15.5px; line-height: 1.6; font-style: italic; }
+
+  /* FOOTER CTA */
+  .footer-cta { padding: clamp(60px, 10vh, 100px) 0; border-top: 1px solid var(--rule); text-align: left; }
+  .footer-cta h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.15; letter-spacing: -0.018em; margin-bottom: 20px; color: var(--ink); max-width: 22ch; }
+  .footer-cta h3 em { color: var(--coral-soft); font-style: italic; }
+  .footer-cta p { color: var(--ink-soft); font-size: 17px; line-height: 1.6; max-width: 56ch; margin-bottom: 32px; }
+  .btn-back { background: var(--teal); color: var(--bg); padding: 14px 26px; border-radius: 100px; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; transition: background 0.25s ease, transform 0.2s ease; }
+  @media (hover: hover) { .btn-back:hover { background: var(--teal-soft); transform: translateY(-1px); } }
+  .btn-back .arrow { transition: transform 0.2s ease; }
+  @media (hover: hover) { .btn-back:hover .arrow { transform: translateX(3px); } }
+
+  /* FOOTER */
+  footer { padding: 28px var(--gutter); border-top: 1px solid var(--rule); color: var(--ink-mute); font-size: 12.5px; }
+  footer .inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; max-width: var(--max-w); margin: 0 auto; }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+    .pillar-body { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="inner">
+    <a href="/" class="back-link"><span class="arrow">←</span> Back to portfolio</a>
+    <span class="nav-brand">Jorge<span style="color: var(--coral);">.</span>Aguilar</span>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow reveal">Leadership Framework</div>
+      <h1 class="reveal">The five pillars that <em>shape</em> how I lead.</h1>
+      <p class="hero-lede reveal">Emotional regulation. Sincere candor. Unimpeachable character. Clarity. Ownership. A framework I have adopted and apply across operations, partnership management, and cross-functional work.</p>
+      <p class="hero-attribution reveal">Framework adopted from <a href="https://www.leilahormozi.com/" target="_blank" rel="noopener">Leila Hormozi</a> — the operating partner and CEO whose body of work on leadership most closely matches how I think about leading people through ambiguity.</p>
+    </div>
+  </section>
+
+  <section class="statement">
+    <div class="container">
+      <div class="statement-label reveal">Leadership Statement</div>
+      <p class="statement-prose reveal">In fast-moving operational contexts, leadership means <em>staying calm under pressure</em>, simplifying complexity, and helping teams execute with confidence.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="pillars-intro reveal">
+        <h2>Five pillars, <em>expanded</em>.</h2>
+        <p>Click any pillar to read the principle in full, the behaviours I commit to, and how I apply it in my work.</p>
+      </div>
+
+      <div class="pillars">
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false">
+            <span class="pillar-num">01</span>
+            <span class="pillar-title">
+              <span class="pillar-name">Emotional Regulation</span>
+              <span class="pillar-tagline">Leadership under pressure starts with self-control.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body">
+            <div class="pillar-body-inner">
+              <div></div>
+              <div class="pillar-body-content">
+                <p class="why">A leader sets the emotional tone for the team. If the leader panics, the team becomes unstable. If the leader stays grounded, the team can think clearly and perform.</p>
+                <div class="how-label">How I apply it</div>
+                <ul>
+                  <li>Stay calm during uncertainty</li>
+                  <li>Pause before reacting</li>
+                  <li>Use a neutral tone in conflict</li>
+                  <li>Approach problems with curiosity, not judgment</li>
+                  <li>Be the stabilizing force when others are overwhelmed</li>
+                </ul>
+                <div class="applied">
+                  <span class="applied-label">In practice</span>
+                  <p class="applied-text">I lead with emotional stability, especially in high-pressure operational environments. My role is to create calm, focus, and confidence so teams can make better decisions under uncertainty.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false">
+            <span class="pillar-num">02</span>
+            <span class="pillar-title">
+              <span class="pillar-name">Sincere Candor</span>
+              <span class="pillar-tagline">Clear feedback builds trust faster than hidden expectations.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body">
+            <div class="pillar-body-inner">
+              <div></div>
+              <div class="pillar-body-content">
+                <p class="why">Strong leaders do not avoid difficult conversations. They give honest, specific, private feedback that helps people improve.</p>
+                <div class="how-label">How I apply it</div>
+                <ul>
+                  <li>Say expectations clearly upfront</li>
+                  <li>Give feedback early, not after resentment builds</li>
+                  <li>Critique behavior, not identity</li>
+                  <li>Avoid insults, blame, or personal attacks</li>
+                  <li>Make sure people always know where they stand</li>
+                </ul>
+                <div class="applied">
+                  <span class="applied-label">In practice</span>
+                  <p class="applied-text">I believe in sincere candor — direct, respectful, and actionable communication. I aim to remove ambiguity so teams understand expectations, performance gaps, and the next step forward.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false">
+            <span class="pillar-num">03</span>
+            <span class="pillar-title">
+              <span class="pillar-name">Unimpeachable Character</span>
+              <span class="pillar-tagline">Trustworthiness matters more than appearing perfect.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body">
+            <div class="pillar-body-inner">
+              <div></div>
+              <div class="pillar-body-content">
+                <p class="why">People follow leaders whose behavior is predictable, honest, and consistent. A leader should not emotionally dump on the team, but should be transparent enough that people understand context.</p>
+                <div class="how-label">How I apply it</div>
+                <ul>
+                  <li>Be honest without venting downward</li>
+                  <li>Take responsibility for my behavior</li>
+                  <li>Communicate context when it affects the team</li>
+                  <li>Ask: would I trust myself as a leader?</li>
+                  <li>Build psychological safety through consistency</li>
+                </ul>
+                <div class="applied">
+                  <span class="applied-label">In practice</span>
+                  <p class="applied-text">I lead with integrity, transparency, and consistency. My goal is to be a leader whose decisions and behavior people can trust, even in difficult moments.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false">
+            <span class="pillar-num">04</span>
+            <span class="pillar-title">
+              <span class="pillar-name">Clarity</span>
+              <span class="pillar-tagline">A leader turns complexity into action.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body">
+            <div class="pillar-body-inner">
+              <div></div>
+              <div class="pillar-body-content">
+                <p class="why">Good leadership means taking messy problems and translating them into clear decisions, priorities, and next steps.</p>
+                <div class="how-label">How I apply it</div>
+                <ul>
+                  <li>Simplify complex problems</li>
+                  <li>Avoid unnecessary jargon</li>
+                  <li>Define the problem before solving it</li>
+                  <li>Clarify what success looks like</li>
+                  <li>Give teams 1–3 clear priorities</li>
+                </ul>
+                <div class="applied">
+                  <span class="applied-label">In practice</span>
+                  <p class="applied-text">I specialize in translating complex operational challenges into clear priorities, execution plans, and measurable outcomes. I help teams know exactly what matters, what to do next, and how success will be measured.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false">
+            <span class="pillar-num">05</span>
+            <span class="pillar-title">
+              <span class="pillar-name">Ownership</span>
+              <span class="pillar-tagline">Leaders solve problems, even when they did not create them.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body">
+            <div class="pillar-body-inner">
+              <div></div>
+              <div class="pillar-body-content">
+                <p class="why">Ownership means taking responsibility for the outcome, not only for your assigned tasks. High-performing teams decentralize responsibility instead of waiting for permission.</p>
+                <div class="how-label">How I apply it</div>
+                <ul>
+                  <li>Focus on solutions, not blame</li>
+                  <li>Take responsibility for outcomes</li>
+                  <li>Solve problems outside my formal scope when needed</li>
+                  <li>Encourage teams to act like owners</li>
+                  <li>Treat every problem as a chance to build capability</li>
+                </ul>
+                <div class="applied">
+                  <span class="applied-label">In practice</span>
+                  <p class="applied-text">I operate with strong ownership. I do not wait for perfect conditions or perfect responsibility boundaries. When a problem affects the mission, I focus on solving it and creating value for the team.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="footer-cta">
+    <div class="container">
+      <h3 class="reveal">See how these principles show up in the <em>operational work</em>.</h3>
+      <p class="reveal">The leadership framework anchors the way I approach the day-to-day operating choices on the portfolio — diagnostics, partner conversations, planning, and analytical decisions.</p>
+      <a href="/" class="btn-back reveal">Back to portfolio <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="inner">
+    <span>© 2026 Jorge Aguilar · Berlin</span>
+    <span>Framework adopted from Leila Hormozi</span>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.pillar-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const pillar = trigger.closest('.pillar');
+      const isOpen = pillar.classList.contains('open');
+      pillar.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', !isOpen);
+    });
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => io.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('visible'));
+  }
+</script>
+
+</body>
+</html>
