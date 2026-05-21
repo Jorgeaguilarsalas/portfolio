@@ -56,7 +56,7 @@
   .nav-links { display: flex; gap: 28px; align-items: center; }
   .nav-links a { font-size: 14px; color: var(--ink-soft); font-weight: 500; }
   .nav-links a:hover { color: var(--teal); }
-  .nav-cta { background: var(--ink); color: #FFFFFF; padding: 10px 20px; border-radius: 100px; font-size: 13px; font-weight: 500; transition: background 0.25s ease, transform 0.2s ease; }
+  .nav-cta { background: var(--ink); color: #FFFFFF !important; padding: 10px 20px; border-radius: 100px; font-size: 13px; font-weight: 600; transition: background 0.25s ease, transform 0.2s ease; }
   .nav-cta:hover { background: var(--teal); color: #FFFFFF !important; transform: translateY(-1px); }
   @media (max-width: 720px) { .nav-links a:not(.nav-cta) { display: none; } }
 
@@ -74,6 +74,9 @@
   .nav-drawer a { font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; color: var(--ink); padding: 4px 0; border-bottom: 1px solid var(--rule); }
   .nav-drawer .close-drawer { position: absolute; top: 24px; right: 24px; background: transparent; border: none; cursor: pointer; padding: 8px; }
   .nav-drawer .close-drawer svg { width: 22px; height: 22px; stroke: var(--ink); stroke-width: 2; fill: none; }
+
+  .nav-drawer .drawer-cta { background: var(--ink); color: #FFFFFF; padding: 14px 22px; border-radius: 100px; font-family: 'Inter Tight', sans-serif; font-size: 15px; font-weight: 500; text-align: center; border-bottom: none; margin-top: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+
   .nav-scrim { position: fixed; inset: 0; background: rgba(14, 26, 31, 0.4); opacity: 0; pointer-events: none; transition: opacity 0.35s ease; z-index: 59; }
   .nav-scrim.open { opacity: 1; pointer-events: auto; }
   body.drawer-open { overflow: hidden; }
@@ -160,8 +163,8 @@
 
   .exp-context { color: var(--ink-soft); font-size: 16px; line-height: 1.55; margin-bottom: 16px; max-width: 65ch; }
 .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .exp-bullets li { display: flex; gap: 14px; color: var(--ink-soft); font-size: 15px; line-height: 1.55; align-items: baseline; }
-  .exp-bullets li::before { content: "—"; color: var(--coral); font-weight: 500; flex-shrink: 0; }
+  .exp-bullets li { display: grid; grid-template-columns: 16px 1fr; gap: 14px; color: var(--ink-soft); font-size: 15px; line-height: 1.55; }
+  .exp-bullets li::before { content: "—"; color: var(--coral); font-weight: 500; }
   .exp-bullets strong { color: var(--ink); font-weight: 600; }
   .exp-bullets .metric { background: var(--teal-pale); color: var(--teal); padding: 1px 6px; border-radius: 4px; font-weight: 600; font-size: 14.5px; }
 
@@ -200,15 +203,17 @@
   .work-card h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.2; letter-spacing: -0.012em; margin-bottom: 18px; color: var(--ink); max-width: 26ch; }
   .work-body { color: var(--ink-soft); font-size: 16px; line-height: 1.6; margin-bottom: 20px; max-width: 70ch; }
   .work-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
-  .work-card ul li { display: grid; grid-template-columns: 14px 1fr; gap: 14px; color: var(--ink-soft); font-size: 15px; line-height: 1.55; align-items: baseline; }
-  .work-card ul li::before { content: "▸"; color: var(--coral); grid-column: 1; }
-  .work-card.feature ul li::before { color: var(--coral-soft); }
-  .work-card ul li .li-label { display: block; font-weight: 600; color: var(--ink); margin-bottom: 4px; grid-column: 2; }
-  .work-card ul li .li-text { grid-column: 2; display: block; }
+  .work-card ul { list-style: none; display: flex; flex-direction: column; gap: 0; }
+  .work-card ul li { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding: 18px 0; border-bottom: 1px solid var(--rule); color: var(--ink-soft); font-size: 15px; line-height: 1.6; }
+  .work-card ul li:last-child { border-bottom: none; }
+  .work-card ul li::before { content: none; }
+  .work-card ul li .li-label { display: block; font-weight: 600; color: var(--ink); font-size: 14px; letter-spacing: 0.005em; }
+  .work-card ul li .li-text { display: block; }
+  .work-card.feature ul li { border-bottom-color: rgba(250, 250, 247, 0.12); }
   .work-card.feature ul li .li-label { color: var(--bg); }
   @media (max-width: 720px) {
-    .work-card ul li { grid-template-columns: 10px 1fr; gap: 10px; font-size: 14.5px; }
-    .work-card ul li .li-label { font-size: 14.5px; }
+    .work-card ul li { grid-template-columns: 1fr; gap: 8px; padding: 16px 0; font-size: 14.5px; }
+    .work-card ul li .li-label { font-size: 13.5px; }
   }
   .work-card ul li strong { color: var(--ink); font-weight: 600; }
   .work-note { font-size: 14px; color: var(--ink-mute); font-style: italic; line-height: 1.55; }
@@ -313,7 +318,7 @@
   <a href="#experience" data-nav-link>Experience</a>
   <a href="#approach" data-nav-link>Approach</a>
   <a href="#work" data-nav-link>Work</a>
-  <a href="#contact" data-nav-link>Get in touch</a>
+  <a href="#contact" data-nav-link class="drawer-cta">Get in touch &rarr;</a>
 </aside>
 
 <main id="top">
