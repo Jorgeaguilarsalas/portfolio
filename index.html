@@ -162,7 +162,6 @@
 .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .exp-bullets li { display: flex; gap: 14px; color: var(--ink-soft); font-size: 15px; line-height: 1.55; align-items: baseline; }
   .exp-bullets li::before { content: "—"; color: var(--coral); font-weight: 500; flex-shrink: 0; }
-  .exp-bullets li > * { flex: 1; min-width: 0; }
   .exp-bullets strong { color: var(--ink); font-weight: 600; }
   .exp-bullets .metric { background: var(--teal-pale); color: var(--teal); padding: 1px 6px; border-radius: 4px; font-weight: 600; font-size: 14.5px; }
 
@@ -201,12 +200,16 @@
   .work-card h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.2; letter-spacing: -0.012em; margin-bottom: 18px; color: var(--ink); max-width: 26ch; }
   .work-body { color: var(--ink-soft); font-size: 16px; line-height: 1.6; margin-bottom: 20px; max-width: 70ch; }
   .work-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
-  .work-card ul li { display: flex; gap: 12px; color: var(--ink-soft); font-size: 15px; line-height: 1.55; max-width: 75ch; align-items: baseline; }
-  .work-card ul li::before { content: "▸"; color: var(--coral); flex-shrink: 0; }
+  .work-card ul li { display: grid; grid-template-columns: 14px 1fr; gap: 14px; color: var(--ink-soft); font-size: 15px; line-height: 1.55; align-items: baseline; }
+  .work-card ul li::before { content: "▸"; color: var(--coral); grid-column: 1; }
   .work-card.feature ul li::before { color: var(--coral-soft); }
-  .work-card ul li > span.bullet-text { flex: 1; min-width: 0; }
-  .work-card ul li strong { display: inline; font-weight: 600; color: var(--ink); }
-  .work-card.feature ul li strong { color: var(--bg); }
+  .work-card ul li .li-label { display: block; font-weight: 600; color: var(--ink); margin-bottom: 4px; grid-column: 2; }
+  .work-card ul li .li-text { grid-column: 2; display: block; }
+  .work-card.feature ul li .li-label { color: var(--bg); }
+  @media (max-width: 720px) {
+    .work-card ul li { grid-template-columns: 10px 1fr; gap: 10px; font-size: 14.5px; }
+    .work-card ul li .li-label { font-size: 14.5px; }
+  }
   .work-card ul li strong { color: var(--ink); font-weight: 600; }
   .work-note { font-size: 14px; color: var(--ink-mute); font-style: italic; line-height: 1.55; }
 
@@ -438,7 +441,7 @@
             </div>
             <p class="exp-context">Ride-hailing operations for Southern Germany. Driver acquisition, activation, and 3PL supply management.</p>
             <ul class="exp-bullets">
-              <li><strong>Doubled driver activation rate in 6 weeks</strong> through onboarding process redesign</li>
+              <li>Doubled driver activation rate in 6 weeks through <strong>onboarding process redesign</strong></li>
               <li>Reduced cancellation rate via 3PL accountability framework</li>
               <li>Owned 3PL supply management for Munich and the wider South Germany region</li>
               <li>Designed bonus and incentive programs to balance supply and demand peaks</li>
@@ -583,8 +586,8 @@
           <h3>Marketplace Operations &mdash; Live Demo Dashboard</h3>
           <p class="work-body">A working interactive dashboard demonstrating four operating principles through synthetic data. Visitors can sort the partner scorecard, filter by tier, adjust quality-penalty assumptions, and walk a four-tab analytical narrative. Built to be transferable across marketplace operations, fleet management, and key account contexts.</p>
           <ul>
-            <li><strong>Tech.</strong> Python &middot; pandas &middot; Streamlit &middot; Plotly</li>
-            <li><strong>Data.</strong> Public-safe synthetic data (25,000 records, 11 cities, 80 partners)</li>
+            <li><span class="li-label">Tech.</span><span class="li-text">Python &middot; pandas &middot; Streamlit &middot; Plotly</span></li>
+            <li><span class="li-label">Data.</span><span class="li-text">Public-safe synthetic data (25,000 records, 11 cities, 80 partners)</span></li>
           </ul>
           <p><a href="https://marketplace-ops-demo-port.streamlit.app/" target="_blank" rel="noopener" class="work-link work-link-on-dark">Open the live dashboard <span aria-hidden="true">&#8599;</span></a></p>
         </div>
@@ -595,10 +598,10 @@
           <h3>Marketplace Strategy & Analytics — European Premium Mobility</h3>
           <p class="work-body">A self-directed analytical project applying my framework to a multi-city premium ride marketplace. Demonstrates how I approach growth strategy, partnership accountability, and quality economics at marketplace scale.</p>
           <ul>
-            <li><strong>BD strategy across regions.</strong> Growth-market selection through explicit filter gates — partnership-channel markets (airline-driven, Southern Europe) and direct-customer markets (Western Europe). Channel-diversified by design so a partnership renegotiation doesn't compound across the portfolio.</li>
-            <li><strong>Customer-facing analytical dashboards.</strong> Interactive dashboards built in Python, Streamlit, and Plotly — operational telemetry, partner performance, segment economics, and quality-vs-margin views.</li>
-            <li><strong>Partnership segmentation & supplier scorecard.</strong> Tiered classification across the supply base, each tier mapped to a structured commercial conversation — standard terms, monitoring, improvement plan, or deactivation timeline.</li>
-            <li><strong>Quality Contribution Index.</strong> Penalty-adjusted contribution metric translating quality failures into a per-ride P&L number. Bridges quality discipline and finance — prevents quality-vs-margin trade-offs from drifting silently during scale-up.</li>
+            <li><span class="li-label">BD strategy across regions.</span><span class="li-text">Growth-market selection through explicit filter gates — partnership-channel markets (airline-driven, Southern Europe) and direct-customer markets (Western Europe). Channel-diversified by design so a partnership renegotiation doesn't compound across the portfolio.</span></li>
+            <li><span class="li-label">Customer-facing analytical dashboards.</span><span class="li-text">Interactive dashboards built in Python, Streamlit, and Plotly — operational telemetry, partner performance, segment economics, and quality-vs-margin views.</span></li>
+            <li><span class="li-label">Partnership segmentation & supplier scorecard.</span><span class="li-text">Tiered classification across the supply base, each tier mapped to a structured commercial conversation — standard terms, monitoring, improvement plan, or deactivation timeline.</span></li>
+            <li><span class="li-label">Quality Contribution Index.</span><span class="li-text">Penalty-adjusted contribution metric translating quality failures into a per-ride P&L number. Bridges quality discipline and finance — prevents quality-vs-margin trade-offs from drifting silently during scale-up.</span></li>
           </ul>
           <p class="work-note">Full project detail available on request.</p>
         </div>
