@@ -163,8 +163,8 @@
 
   .exp-context { color: var(--ink-soft); font-size: 16px; line-height: 1.55; margin-bottom: 16px; max-width: 65ch; }
 .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .exp-bullets li { display: grid; grid-template-columns: 16px 1fr; gap: 14px; color: var(--ink-soft); font-size: 15px; line-height: 1.55; }
-  .exp-bullets li::before { content: "—"; color: var(--coral); font-weight: 500; }
+  .exp-bullets li { position: relative; padding-left: 22px; color: var(--ink-soft); font-size: 15px; line-height: 1.55; }
+  .exp-bullets li::before { content: "—"; color: var(--coral); font-weight: 500; position: absolute; left: 0; top: 0; }
   .exp-bullets strong { color: var(--ink); font-weight: 600; }
   .exp-bullets .metric { background: var(--teal-pale); color: var(--teal); padding: 1px 6px; border-radius: 4px; font-weight: 600; font-size: 14.5px; }
 
