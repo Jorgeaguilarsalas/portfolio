@@ -56,6 +56,11 @@
   .nav-links { display: flex; gap: 28px; align-items: center; }
   .nav-links a { font-size: 14px; color: var(--ink-soft); font-weight: 500; }
   .nav-links a:hover { color: var(--teal); }
+
+  .nav-download { font-size: 14px; color: var(--ink-soft); font-weight: 500; border: 1px solid var(--rule); padding: 8px 14px; border-radius: 100px; transition: border-color 0.2s ease, color 0.2s ease; display: inline-flex; align-items: center; gap: 6px; }
+  @media (hover: hover) { .nav-download:hover { border-color: var(--teal); color: var(--teal); } }
+  @media (max-width: 720px) { .nav-links .nav-download { display: none; } }
+
   .nav-cta { background: var(--ink); color: #FFFFFF !important; padding: 10px 20px; border-radius: 100px; font-size: 13px; font-weight: 600; transition: background 0.25s ease, transform 0.2s ease; }
   .nav-cta:hover { background: var(--teal); color: #FFFFFF !important; transform: translateY(-1px); }
   @media (max-width: 720px) { .nav-links a:not(.nav-cta) { display: none; } }
@@ -67,7 +72,12 @@
     .nav-links { display: none; }
     .nav-burger { display: flex; align-items: center; justify-content: center; order: 3; }
     .nav .inner { gap: 12px; }
-    .nav-cta { padding: 9px 16px; font-size: 12.5px; order: 2; }
+  
+  .nav-download { font-size: 14px; color: var(--ink-soft); font-weight: 500; border: 1px solid var(--rule); padding: 8px 14px; border-radius: 100px; transition: border-color 0.2s ease, color 0.2s ease; display: inline-flex; align-items: center; gap: 6px; }
+  @media (hover: hover) { .nav-download:hover { border-color: var(--teal); color: var(--teal); } }
+  @media (max-width: 720px) { .nav-links .nav-download { display: none; } }
+
+  .nav-cta { padding: 9px 16px; font-size: 12.5px; order: 2; }
   }
   .nav-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 80%; max-width: 320px; background: var(--bg); padding: 80px 32px 32px; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); z-index: 60; box-shadow: -20px 0 40px -20px rgba(14, 26, 31, 0.15); display: flex; flex-direction: column; gap: 24px; }
   .nav-drawer.open { transform: translateX(0); }
@@ -189,6 +199,19 @@
   @media (hover: hover) { .approach-proof a:hover { border-bottom-color: var(--teal); } }
 
   /* WORK */
+
+  .dashboard-thumb-link { position: relative; display: block; margin: -44px -44px 32px -44px; overflow: hidden; border-radius: 18px 18px 0 0; aspect-ratio: 16/9; background: var(--bg-soft); }
+  .dashboard-thumb { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; transition: transform 0.4s ease, opacity 0.3s ease; opacity: 0.92; }
+  @media (hover: hover) {
+    .dashboard-thumb-link:hover .dashboard-thumb { transform: scale(1.02); opacity: 1; }
+    .dashboard-thumb-link:hover .dashboard-thumb-cta { opacity: 1; transform: translateY(0); }
+  }
+  .dashboard-thumb-cta { position: absolute; bottom: 16px; right: 16px; background: var(--ink); color: #FFFFFF; padding: 9px 16px; border-radius: 100px; font-size: 13px; font-weight: 600; letter-spacing: 0.01em; opacity: 0.92; transform: translateY(0); transition: opacity 0.3s ease, transform 0.3s ease; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(14, 26, 31, 0.25); }
+  @media (max-width: 720px) {
+    .dashboard-thumb-link { margin: -28px -28px 24px -28px; aspect-ratio: 4/3; }
+    .dashboard-thumb-cta { font-size: 12px; padding: 7px 13px; bottom: 12px; right: 12px; }
+  }
+
   .work-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
   .work-card { background: var(--bg); border: 1px solid var(--rule); border-radius: 18px; padding: 44px; transition: transform 0.3s ease, border-color 0.3s ease; position: relative; overflow: hidden; }
   @media (hover: hover) { .work-card:hover { transform: translateY(-2px); border-color: var(--teal-soft); } }
@@ -254,6 +277,15 @@
   .edu-item:last-child .school { margin-bottom: 8px; }
   .edu-item:last-child .degree { line-height: 1.7; }
 
+
+  .edu-cert-row { padding-top: 28px !important; padding-bottom: 28px !important; }
+  .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 24px; margin-top: 12px; margin-bottom: 16px; }
+  @media (max-width: 700px) { .cert-grid { grid-template-columns: 1fr; gap: 8px; } }
+  .cert-item { display: flex; align-items: baseline; gap: 10px; font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; }
+  .cert-check { color: var(--teal); font-weight: 700; font-size: 14px; flex-shrink: 0; }
+  .cert-view-link { display: inline-flex; align-items: center; gap: 6px; color: var(--teal); font-weight: 600; font-size: 14px; border-bottom: 1.5px solid var(--teal-pale); padding-bottom: 1px; transition: border-color 0.2s ease; }
+  @media (hover: hover) { .cert-view-link:hover { border-bottom-color: var(--teal); } }
+
   /* CONTACT */
   .contact { background: var(--ink); color: var(--bg); padding: clamp(80px, 14vh, 140px) 0; position: relative; overflow: hidden; }
   .contact::before { content: ""; position: absolute; top: -30%; right: -10%; width: 50%; height: 100%; background: radial-gradient(ellipse at center, rgba(224, 99, 62, 0.18) 0%, transparent 65%); pointer-events: none; }
@@ -301,6 +333,7 @@
       <a href="#experience">Experience</a>
       <a href="#approach">Approach</a>
       <a href="#work">Work</a>
+      <a href="Jorge_Aguilar_CV.pdf" download class="nav-download">Download CV <span aria-hidden="true">&darr;</span></a>
       <a href="#contact" class="nav-cta">Get in touch</a>
     </nav>
     <a href="#contact" class="nav-cta" style="display:none;" id="navCtaMobile">Get in touch</a>
@@ -318,6 +351,7 @@
   <a href="#experience" data-nav-link>Experience</a>
   <a href="#approach" data-nav-link>Approach</a>
   <a href="#work" data-nav-link>Work</a>
+  <a href="Jorge_Aguilar_CV.pdf" download data-nav-link>Download CV &darr;</a>
   <a href="#contact" data-nav-link class="drawer-cta">Get in touch &rarr;</a>
 </aside>
 
@@ -587,6 +621,10 @@
       </div>
       <div class="work-grid">
         <div class="work-card feature reveal">
+          <a href="https://marketplace-ops-demo-port.streamlit.app/" target="_blank" rel="noopener" class="dashboard-thumb-link">
+            <img src="dashboard-preview.png" alt="Marketplace Operations dashboard — per-partner drill-down view" class="dashboard-thumb">
+            <span class="dashboard-thumb-cta">Open live dashboard <span aria-hidden="true">&#8599;</span></span>
+          </a>
           <div class="work-meta">2026 &middot; Self-directed &middot; Interactive demonstration</div>
           <h3>Marketplace Operations &mdash; Live Demo Dashboard</h3>
           <p class="work-body">A working interactive dashboard demonstrating four operating principles through synthetic data. Visitors can sort the partner scorecard, filter by tier, adjust quality-penalty assumptions, and walk a four-tab analytical narrative. Built to be transferable across marketplace operations, fleet management, and key account contexts.</p>
