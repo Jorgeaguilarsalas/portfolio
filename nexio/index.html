@@ -123,11 +123,18 @@
     border-radius:14px;padding:22px;
   }
   .figbox svg{display:block;width:100%;height:auto}
-  /* Mobile: los diagramas son mas anchos que la pantalla y scrollean dentro
-     de .figscroll. El fade en el borde derecho avisa que el diagrama sigue.
-     Vive en .figbox (estatico) y no en el contenedor que scrollea, porque un
-     hijo absoluto de un scroller se ancla al area scrolleable, no al borde visible. */
-  @media (max-width:900px){
+  /* El fade en el borde derecho avisa que el diagrama sigue mas alla del corte.
+     Vive en .figbox (estatico) y no en .figscroll, porque un hijo absoluto de un
+     scroller se ancla al area scrolleable, no al borde visible.
+     Se muestra solo en los rangos donde la columna es mas angosta que el diagrama
+     mas ancho (min-width 660px + 44 de padding = 704px). Con una columna la
+     columna mide viewport-146; con el rail de 320px mide viewport-594:
+       - hasta 849px: mobile, la columna no llega a 704px
+       - 981px a 1297px: entra el rail y la columna se desploma a 406px,
+         cortando hasta 298px del diagrama
+     Entre 850 y 980px (columna 704-834px) y arriba de 1298px (columna 704+)
+     los diagramas entran completos y el fade sobraria. */
+  @media (max-width:849px), (min-width:981px) and (max-width:1297px){
     .figbox::after{
       content:"";position:absolute;top:0;right:0;bottom:0;width:46px;
       border-radius:0 13px 13px 0;pointer-events:none;
