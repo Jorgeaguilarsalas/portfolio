@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexio Fleet Case Study — Jorge Aguilar</title>
+<meta name="description" content="Building compliance-native product for Berlin PHV fleets — a case study on operator brain, product judgment, and technical execution at Nexio Fleet.">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0B1416;
+    --bg-soft: #131F22;
+    --bg-card: #1A282C;
+    --bg-card-hover: #213136;
+    --ink: #F0EBE0;
+    --ink-soft: #B8B0A3;
+    --ink-mute: #847C70;
+    --rule: #2A3A3F;
+    --teal: #6BBBB0;
+    --teal-soft: #8BCDC2;
+    --coral: #E89074;
+    --coral-soft: #F0A88C;
+    --max-w: 920px;
+    --gutter: clamp(22px, 4vw, 64px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400; line-height: 1.6; font-size: 18px;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse at 15% 8%, rgba(107, 187, 176, 0.06) 0%, transparent 45%),
+      radial-gradient(ellipse at 85% 90%, rgba(232, 144, 116, 0.05) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+  @media (max-width: 640px) { body { font-size: 16px; } }
+  ::selection { background: var(--teal); color: var(--bg); }
+  a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* NAV */
+  .nav { padding: 28px var(--gutter); border-bottom: 1px solid var(--rule); }
+  .nav .inner { display: flex; justify-content: space-between; align-items: center; max-width: var(--max-w); margin: 0 auto; }
+  .back-link { font-size: 14px; color: var(--ink-soft); font-weight: 500; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s ease; }
+  @media (hover: hover) { .back-link:hover { color: var(--teal); } }
+  .back-link .arrow { transition: transform 0.2s ease; display: inline-block; }
+  @media (hover: hover) { .back-link:hover .arrow { transform: translateX(-3px); } }
+  .nav-brand { font-family: 'Instrument Serif', Georgia, serif; font-size: 18px; color: var(--ink-soft); }
+
+  /* HERO */
+  .hero { padding: clamp(80px, 14vh, 140px) 0 clamp(56px, 9vh, 90px); text-align: left; }
+  .hero-eyebrow { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); display: inline-flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .hero-eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--teal); }
+  h1 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(40px, 6.5vw, 72px); line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 32px; color: var(--ink); }
+  h1 em { color: var(--teal); font-style: italic; }
+  .hero-lede { font-size: clamp(19px, 1.7vw, 22px); color: var(--ink-soft); line-height: 1.55; max-width: 56ch; margin-bottom: 20px; }
+  .hero-attribution { font-size: 15px; color: var(--ink-mute); font-style: italic; max-width: 56ch; line-height: 1.55; }
+
+  /* META BAR */
+  .meta-bar { display: flex; flex-wrap: wrap; gap: 32px; padding: 24px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: clamp(56px, 9vh, 90px); }
+  .meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .meta-label { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--coral); }
+  .meta-value { font-size: 15px; color: var(--ink-soft); }
+
+  /* SECTIONS */
+  section { padding: clamp(48px, 8vh, 80px) 0; border-top: 1px solid var(--rule); }
+  section:first-of-type { border-top: none; padding-top: 0; }
+  .section-label { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--coral); margin-bottom: 24px; display: inline-flex; align-items: center; gap: 12px; }
+  .section-label::before { content: ""; width: 28px; height: 1px; background: var(--coral); }
+  h2 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.15; letter-spacing: -0.018em; color: var(--ink); max-width: 26ch; margin-bottom: 32px; }
+  h2 em { color: var(--teal); font-style: italic; }
+  h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(22px, 2.2vw, 26px); line-height: 1.2; letter-spacing: -0.012em; color: var(--ink); margin-bottom: 16px; margin-top: 40px; }
+  h3:first-child { margin-top: 0; }
+  h3 em { color: var(--teal-soft); font-style: italic; }
+  p { color: var(--ink-soft); font-size: 17px; line-height: 1.7; max-width: 62ch; margin-bottom: 20px; }
+  p:last-child { margin-bottom: 0; }
+  p em { color: var(--teal-soft); font-style: italic; }
+  p strong { color: var(--ink); font-weight: 500; }
+
+  /* PILLARS (decisions/moments) */
+  .pillars { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
+  .pillar { background: var(--bg-card); border: 1px solid var(--rule); border-radius: 14px; padding: 32px; transition: border-color 0.3s ease; }
+  @media (hover: hover) { .pillar:hover { border-color: rgba(107, 187, 176, 0.4); } }
+  @media (max-width: 640px) { .pillar { padding: 24px; } }
+  .pillar-num { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: 28px; color: var(--coral); line-height: 1; margin-bottom: 12px; display: block; }
+  .pillar-name { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; letter-spacing: -0.012em; line-height: 1.25; color: var(--ink); margin-bottom: 12px; }
+  .pillar-body { font-size: 16px; color: var(--ink-soft); line-height: 1.65; }
+  .pillar-body p { font-size: 16px; margin-bottom: 14px; }
+  .pillar-body p:last-child { margin-bottom: 0; }
+
+  /* OUTCOMES GRID */
+  .outcomes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 32px; }
+  @media (max-width: 640px) { .outcomes { grid-template-columns: 1fr; } }
+  .outcome { background: var(--bg-card); border: 1px solid var(--rule); border-radius: 12px; padding: 28px; }
+  .outcome-number { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: clamp(32px, 4vw, 44px); color: var(--teal); line-height: 1; margin-bottom: 10px; display: block; }
+  .outcome-label { font-size: 15px; color: var(--ink-soft); line-height: 1.5; }
+
+  /* SYSTEM DIAGRAM */
+  .diagram { background: var(--bg-card); border: 1px solid var(--rule); border-radius: 12px; padding: 32px; margin-top: 32px; }
+  .diagram-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+  .diagram-row:last-child { margin-bottom: 0; }
+  .diagram-node { flex: 1 1 auto; min-width: 140px; padding: 16px 20px; background: var(--bg-soft); border: 1px solid var(--rule); border-radius: 8px; text-align: center; }
+  .diagram-node-label { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--coral); margin-bottom: 6px; }
+  .diagram-node-value { font-size: 15px; color: var(--ink); font-family: 'Instrument Serif', Georgia, serif; font-style: italic; }
+  .diagram-arrow { color: var(--teal); font-size: 20px; font-weight: 300; flex: 0 0 auto; }
+  @media (max-width: 640px) { .diagram-arrow { transform: rotate(90deg); } }
+  .diagram-caption { font-size: 14px; color: var(--ink-mute); font-style: italic; margin-top: 20px; text-align: center; }
+
+  /* TOOLS */
+  .tools { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+  .tool { padding: 8px 16px; background: var(--bg-card); border: 1px solid var(--rule); border-radius: 100px; font-size: 14px; color: var(--ink-soft); }
+
+  /* REFLECTION */
+  .reflection-body p { font-size: 17px; }
+
+  /* FOOTER CTA */
+  .footer-cta { padding: clamp(56px, 9vh, 90px) 0; border-top: 1px solid var(--rule); text-align: left; }
+  .footer-cta h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(24px, 2.6vw, 32px); color: var(--ink); margin-bottom: 20px; max-width: 30ch; }
+  .footer-cta p { max-width: 56ch; margin-bottom: 24px; }
+  .footer-cta a { color: var(--coral); border-bottom: 1px solid rgba(232, 144, 116, 0.35); padding-bottom: 2px; font-size: 16px; transition: border-color 0.2s ease; }
+  @media (hover: hover) { .footer-cta a:hover { border-bottom-color: var(--coral); } }
+  .footer-cta .reference { font-size: 14px; color: var(--ink-mute); font-style: italic; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--rule); }
+
+  /* SITE FOOTER */
+  footer.site { padding: 32px var(--gutter); border-top: 1px solid var(--rule); }
+  footer.site .inner { display: flex; justify-content: space-between; align-items: center; max-width: var(--max-w); margin: 0 auto; flex-wrap: wrap; gap: 16px; }
+  footer.site .brand { font-family: 'Instrument Serif', Georgia, serif; font-size: 16px; color: var(--ink-soft); }
+  footer.site .copyright { font-size: 13px; color: var(--ink-mute); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="inner">
+    <a href="/" class="back-link"><span class="arrow">&larr;</span> Portfolio</a>
+    <span class="nav-brand">Jorge Aguilar</span>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-eyebrow">Case Study &middot; Berlin &middot; 2025 &ndash; Present</div>
+    <h1>Building <em>compliance-native</em> product for Berlin PHV fleets.</h1>
+    <p class="hero-lede">Strategy &amp; Operations Lead at Nexio Fleet &mdash; translating regulatory requirements into product specs, operational workflows, and data automation for urban fleet operators in Berlin and Brandenburg.</p>
+    <p class="hero-attribution">Freelance engagement via Salas UG. Working alongside the CEO and a small engineering team.</p>
+  </div>
+
+  <div class="meta-bar">
+    <div class="meta-item">
+      <span class="meta-label">Role</span>
+      <span class="meta-value">Strategy &amp; Operations Lead</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Stage</span>
+      <span class="meta-value">Early-stage, pre-revenue</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Sector</span>
+      <span class="meta-value">Fleet compliance SaaS</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Region</span>
+      <span class="meta-value">Berlin &amp; Brandenburg (PHV)</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-label">Context</div>
+    <h2>The <em>regulatory gap</em> beneath Berlin's fleet operators.</h2>
+    <p>Fleet operators running PHV vehicles under Germany's PBefG framework and Berlin's LABO reporting requirements face an operational contradiction: the regulation demands audit-ready records of driver activity, working hours, breaks, mileage, and shift integrity &mdash; but the tools available to operators are still spreadsheets, WhatsApp threads, and end-of-week reconstructions.</p>
+    <p>The result is a compliance workflow that is <em>reactive rather than continuous</em>. Reports are assembled from memory. Working-time violations surface after the fact. Audits become emergencies. And every operator we spoke with had built their own workaround &mdash; each slightly different, each fragile.</p>
+    <p>Nexio Fleet's thesis was that this gap is not a UX problem or a reporting problem. It is a product problem: the operator needs a system that captures compliance data as a byproduct of running the fleet, not as a separate reporting exercise. My role was to translate that thesis into a product operators would actually use.</p>
+  </section>
+
+  <section>
+    <div class="section-label">Role &amp; Scope</div>
+    <h2>What I owned, and what I <em>didn't</em>.</h2>
+    <p>I joined Nexio as Strategy &amp; Operations Lead through a freelance engagement via Salas UG. The scope: end-to-end design of the compliance and operational systems, product specifications for the Driver App and Fleet Dashboard, and the data pipelines that integrate with third-party platform data (Uber, Bolt).</p>
+    <p><strong>What I owned:</strong> the compliance framework and its schema, the product specs handed to engineering, the workflows connecting fleet operators to drivers to the platform, the QA process across iOS, Android, and web, and the feedback loops that turned field observations into prioritised product iteration.</p>
+    <p><strong>What I contributed to alongside the CEO:</strong> tiered compliance pricing, competitive research, fleet partnerships, early go-to-market positioning, and public-funding positioning (IBB Gr&uuml;ndungsBONUS Plus, Forschungszulage eligibility). The CEO owned overall company strategy; I was actively involved across product, operations, and the business layer &mdash; the boundary was engineering execution itself and specific parts of the API integration work, which sat with the engineering team.</p>
+    <p><strong>What was not mine:</strong> engineering execution and parts of the API integration work. Naming that boundary matters &mdash; it is what makes the rest of this case study credible.</p>
+  </section>
+
+  <section>
+    <div class="section-label">Discovery</div>
+    <h2>How <em>regulation became specs</em>.</h2>
+    <p>The starting material was abstract: paragraphs of PBefG and LABO text describing what regulators expect operators to prove. The finishing material had to be concrete: fields in a database, screens in an app, buttons a driver would tap in the middle of a shift.</p>
+    <p>The bridge between the two was field discovery. I ran structured conversations with fleet operators and drivers to understand how compliance actually gets done today &mdash; not how the regulation reads on paper, but how the operator survives the audit.</p>
+
+    <h3>The <em>shifts &amp; breaks</em> moment.</h3>
+    <p>Our initial spec for the working-hours module was straightforward: track when a shift starts and ends, log the total. Compliance-adjacent, not compliance-native.</p>
+    <p>Piloting with operators surfaced the real problem. The operator does not care about start and end times in isolation &mdash; they care about what happened <em>inside</em> the shift. Where the breaks fell. Whether the driver actually took them. Whether the pattern of the shift matched what regulation requires or drifted into violation territory.</p>
+    <p>The spec changed. We integrated a break-management and summaries layer into the shifts module &mdash; giving operators an overview of driver break patterns and shift integrity rather than a raw log. And we added configurability inside the shift itself, so operators could handle real-world operational exceptions without compromising the audit trail or data integrity.</p>
+    <p>The lesson was one about product philosophy more than about a specific feature. When a regulated operation meets a rigid schema, the operator will either abandon the tool or corrupt the data around it. The product has to reflect operational reality &mdash; with traceability &mdash; not enforce an idealised model that reality does not fit.</p>
+  </section>
+
+  <section>
+    <div class="section-label">Prioritisation</div>
+    <h2>What we <em>said no to</em>, and why.</h2>
+    <p>A pre-revenue product with a small engineering team lives or dies by what it leaves out. Three decisions shaped the MVP more than anything we built.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-num">01</span>
+        <div class="pillar-name">Scope discipline: compliance first, adjacent modules later.</div>
+        <div class="pillar-body">
+          <p>Early proposals included driver billing, administrative extras, and operational modules that would have made the product broader. I pushed to leave them out of the MVP. They were adjacent to fleet management, not compliance-critical, and they would not have supported the initial regulatory validation the product had to earn.</p>
+          <p>The decision was not about saying no; it was about protecting the one thing the product had to be excellent at &mdash; audit-ready compliance &mdash; before extending into surrounding functionality.</p>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <span class="pillar-num">02</span>
+        <div class="pillar-name">Stability before new features.</div>
+        <div class="pillar-body">
+          <p>Once the compliance layer was live with pilot operators, the temptation was to keep shipping. I held the roadmap on shift-synchronisation and data-integrity issues before adding functionality on top.</p>
+          <p>Compliance data has to be right or it is worse than not having it &mdash; a wrong number in an audit trail is a liability, not an asset. Stabilising the foundation before extending was the only defensible sequence.</p>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <span class="pillar-num">03</span>
+        <div class="pillar-name">Automation over manual approvals.</div>
+        <div class="pillar-body">
+          <p>Several workflows could have been shipped faster with manual fleet-owner approvals at every step &mdash; a familiar early-stage pattern. I designed for automated detection of exceptions and integrity issues instead, even where it meant slower initial shipping.</p>
+          <p>Manual approvals at every step do not scale past the pilot cohort. Automating the detection layer meant the product could grow with new operators without proportionally growing operator overhead.</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: 32px;">Each of these was iterative delivery in practice: ship the minimum functional version that resolves the core problem, postpone enhancements until real usage produces signal. Feature completeness is a trap in a pre-revenue product; product risk management &mdash; validating value before adding complexity &mdash; is the discipline that keeps a small team alive.</p>
+  </section>
+
+  <section>
+    <div class="section-label">Systems shipped</div>
+    <h2>The <em>architecture</em>, in one view.</h2>
+    <p>The system is a compliance-first stack. Platform data from the marketplaces flows into a normalisation layer, gets structured against the operator's fleet and driver records, and surfaces as audit-ready reporting on one side and live operational visibility on the other.</p>
+
+    <div class="diagram">
+      <div class="diagram-row">
+        <div class="diagram-node">
+          <div class="diagram-node-label">Input</div>
+          <div class="diagram-node-value">Uber &amp; Bolt CSV</div>
+        </div>
+        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-node">
+          <div class="diagram-node-label">Processing</div>
+          <div class="diagram-node-value">Python pipeline</div>
+        </div>
+        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-node">
+          <div class="diagram-node-label">Storage</div>
+          <div class="diagram-node-value">Firestore</div>
+        </div>
+      </div>
+      <div class="diagram-row">
+        <div class="diagram-node">
+          <div class="diagram-node-label">Interface</div>
+          <div class="diagram-node-value">Fleet Dashboard</div>
+        </div>
+        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-node">
+          <div class="diagram-node-label">Interface</div>
+          <div class="diagram-node-value">Driver App</div>
+        </div>
+        <div class="diagram-arrow">&rarr;</div>
+        <div class="diagram-node">
+          <div class="diagram-node-label">Output</div>
+          <div class="diagram-node-value">Compliance</div>
+        </div>
+      </div>
+      <div class="diagram-caption">CSV ingestion, transformation, and normalisation feed the operator-facing dashboard and the driver-facing app; both converge on audit-ready compliance output.</div>
+    </div>
+
+    <h3>Driver App.</h3>
+    <p>Real-time shift tracking, break logging, and incident reporting. Designed so drivers spend as little time as possible interacting with it &mdash; compliance is captured as a byproduct of driving, not as a separate task.</p>
+
+    <h3>Fleet Dashboard.</h3>
+    <p>Centralised monitoring across drivers, vehicles, and shifts. Automated alerts for compliance violations. One-click generation of audit-ready reports aligned with LABO requirements.</p>
+
+    <h3>Data pipelines.</h3>
+    <p>Python-based CSV ingestion, transformation, and reporting automation. Integration with Uber and Bolt operational data feeds into Nexio's internal driver, vehicle, shift, and reporting architecture &mdash; giving the operator one canonical view across previously siloed platforms.</p>
+  </section>
+
+  <section>
+    <div class="section-label">Outcomes</div>
+    <h2>What we <em>can measure</em> so far.</h2>
+    <p>The product is in active pilot with a growing operator cohort. What follows are the operational outcomes to date &mdash; audit-ready compliance now covers over eight hundred drivers across the platform.</p>
+
+    <div class="outcomes">
+      <div class="outcome">
+        <span class="outcome-number">800+</span>
+        <div class="outcome-label">Drivers actively monitored under the compliance framework across the operator cohort.</div>
+      </div>
+      <div class="outcome">
+        <span class="outcome-number">8</span>
+        <div class="outcome-label">Fleet operators onboarded to the Nexio compliance platform in Berlin and Brandenburg.</div>
+      </div>
+      <div class="outcome">
+        <span class="outcome-number">60&ndash;70%</span>
+        <div class="outcome-label">Estimated reduction in manual reporting effort through Python-based automation.</div>
+      </div>
+      <div class="outcome">
+        <span class="outcome-number">&euro;50k</span>
+        <div class="outcome-label">IBB Gr&uuml;ndungsBONUS Plus positioning supported; Forschungszulage eligibility evaluated.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Cross-functional execution</div>
+    <h2>Where product meets <em>operations, sales, and the business model</em>.</h2>
+    <p>In a small early-stage team, the boundary between product and business is porous &mdash; and it should be. My work outside the pure product surface shaped what the product ultimately had to be.</p>
+    <p>I contributed to the design of the <strong>tiered compliance pricing</strong> alongside the CEO &mdash; matching operator size and complexity to differentiated packages, informed directly by what the pilot cohort was willing to pay for and what they saw as table-stakes.</p>
+    <p><strong>Competitive research</strong> mapped adjacent players in fleet management and compliance tooling, sharpening where Nexio's compliance-first positioning was defensible and where it overlapped with generalist tooling.</p>
+    <p><strong>Fleet partnerships and early GTM positioning</strong> came out of the same conversations that drove product discovery. When you are in the field with the pilot cohort every week, the sales pipeline and the product roadmap are the same conversation viewed from two angles.</p>
+    <p><strong>Feedback loops</strong> between operations and product development were what kept these two conversations in sync. Field observations converted into prioritised product improvements every sprint &mdash; not as an ad-hoc backchannel, but as a structured cadence.</p>
+  </section>
+
+  <section>
+    <div class="section-label">Reflection</div>
+    <h2>What I would do <em>differently</em>.</h2>
+
+    <div class="reflection-body">
+      <h3>Tighter MVP scope from day one.</h3>
+      <p>Rather than planning several modules in parallel, I would centre the first version on a single core flow &mdash; ideally compliance reporting end-to-end &mdash; and validate it in the field before broadening. The variation between operators was larger than we assumed, and a narrower first cut would have surfaced that variation faster.</p>
+
+      <h3>Product-management discipline earlier.</h3>
+      <p>Clear prioritisation, sprint planning, and prototype reviews should have been in place from the first week. Establishing the cadence retroactively meant we absorbed rework we could have avoided. In future engagements the operational discipline of product management is not a phase-two problem &mdash; it is the day-one foundation.</p>
+
+      <h3>A structured QA environment before piloting.</h3>
+      <p>Onboarding drivers as testers via TestFlight surfaced a lesson that is easy to underestimate: the success of a pilot depends as much on the distribution and onboarding experience as on the software itself. Activating iOS testers required a chain of steps &mdash; Apple ID linkage, TestFlight installation, invitation acceptance, build access &mdash; and each step generated friction and support demand from users whose primary job is driving, not device configuration. A dedicated QA environment with a smoother tester onboarding process would have accelerated learning and produced cleaner signal from the pilot.</p>
+
+      <p style="margin-top: 24px;">These lessons now guide how I approach product development: <em>focus, structure, and preparation for scale from the first week</em>.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Tools &amp; environment</div>
+    <h2>The <em>stack</em>.</h2>
+    <div class="tools">
+      <span class="tool">Firebase (Auth, Firestore)</span>
+      <span class="tool">Python</span>
+      <span class="tool">CSV pipeline automation</span>
+      <span class="tool">Uber &amp; Bolt platform data</span>
+      <span class="tool">iOS / TestFlight</span>
+      <span class="tool">Android</span>
+      <span class="tool">Web (Fleet Dashboard)</span>
+      <span class="tool">Product QA</span>
+      <span class="tool">LABO / PBefG regulatory frame</span>
+      <span class="tool">Berlin &amp; Brandenburg PHV environment</span>
+    </div>
+  </section>
+
+  <div class="footer-cta">
+    <h3>Interested in the operator brain behind this work?</h3>
+    <p>The Nexio engagement sits inside a broader operations and product practice covering marketplace supply, partner growth, compliance systems, and applied automation. If your team is building at the intersection of regulated operations and product, let's talk.</p>
+    <p><a href="/#contact">Get in touch &rarr;</a></p>
+    <div class="reference"><a href="/Referenzschreiben_Jorge_Aguilar_Salas_Nexio_Fleet.pdf" target="_blank" rel="noopener" style="color:var(--coral);border-bottom:1px solid rgba(232,144,116,0.35);padding-bottom:2px;">Reference letter available</a> — from Aleksander Boski, CEO of Nexio Fleet GmbH.</div>
+  </div>
+
+</div>
+
+<footer class="site">
+  <div class="inner">
+    <span class="brand">Jorge Aguilar</span>
+    <span class="copyright">&copy; 2026 &middot; Berlin</span>
+  </div>
+</footer>
+
+</body>
+</html>
