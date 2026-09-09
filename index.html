@@ -588,6 +588,20 @@
           <p class="work-note">Reference letter on file from Aleksander Boski, CEO and co-founder of Nexio Fleet GmbH.</p>
         </div>
 
+        <div class="work-card feature reveal">
+          <div class="work-meta">2025 — Present · Solo architect and engineer · Featured case study</div>
+          <h3>Alcorte Alemán — Running a 50-year-old butcher shop through WhatsApp.</h3>
+          <p class="work-body">An AI order-management system for a family butcher shop in Mexico City, designed around a single constraint: the operator never opens a dashboard. WhatsApp is not a channel bolted onto the product — it is the entire product surface, for customers placing orders and for the owner configuring the system. Built end to end on WhatsApp Business API, Meta webhooks, Vercel (Next.js), Anthropic Claude, and Supabase (Postgres + RLS).</p>
+          <ul>
+            <li><strong>Constraint-driven architecture.</strong> &ldquo;No dashboard&rdquo; treated as the specification rather than a limitation to work around — WhatsApp as the entire product surface for customers and operator alike.</li>
+            <li><strong>Production integration.</strong> Meta WhatsApp Business API, Vercel, Supabase RLS, and a Claude agentic loop with tool calling, wired end to end and validated against live data.</li>
+            <li><strong>Security as structure.</strong> Phone-number identity resolution, permission gating filtered by context and re-validated per tool, and audit trails written by the write path — never by the model.</li>
+            <li><strong>Scale.</strong> <strong>120+ products in catalogue across 1000+ customers</strong>, with row-level security keyed on vendor_id so the schema is multi-tenant from day one.</li>
+          </ul>
+          <p><a href="/alcorte/" class="work-link">Open the Alcorte case study <span>↗</span></a></p>
+          <p class="work-note">Private repository, 2FA-enforced. Reference details on request.</p>
+        </div>
+
         <div class="work-card reveal">
           <div class="work-meta">Self-directed · 2026 · Premium mobility sector</div>
           <h3>Marketplace Strategy & Analytics — European Premium Mobility</h3>

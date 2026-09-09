@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alcorte Alemán Case Study — Jorge Aguilar</title>
+<meta name="description" content="An AI order-management system for a 50-year-old family butcher shop in Mexico City, designed around one constraint: the operator will never open a dashboard.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<style>
+  :root{
+    --bg:#0B0B0D;
+    --surface:#0F0F12;
+    --surface-2:#141417;
+    --fg:#F7F7F8;
+    --muted:#B4B4BB;
+    --border:#303036;
+    --accent:#B8FF3D;
+    --accent-fg:#09090B;
+    --warn:#F5B23D;
+    --crit:#EF4444;
+    --radius:1.75rem;
+    --radius-sm:1.125rem;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --sans:"Inter",system-ui,-apple-system,sans-serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* NAV */
+  .nav{padding:24px 32px;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:10;backdrop-filter:blur(8px);background:rgba(11,11,13,0.85);}
+  .nav-inner{max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+  .back-link{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:color .2s ease;}
+  .back-link:hover{color:var(--accent);}
+  .nav-brand{font-family:var(--sans);font-weight:800;font-size:14px;color:var(--fg);letter-spacing:-.01em;}
+  @media (max-width:640px){.nav{padding:18px 20px;}}
+
+  .wrap{max-width:1320px;margin:0 auto;padding:64px 32px 88px}
+
+  .layout{display:grid;grid-template-columns:320px minmax(0,1fr);gap:64px;align-items:start}
+  .rail{position:sticky;top:96px;display:flex;flex-direction:column;gap:24px}
+
+  .rule{width:80px;height:4px;background:var(--accent);border-radius:2px}
+
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);margin:0;
+  }
+  .eyebrow.on{color:var(--accent)}
+
+  h1{
+    font-size:clamp(46px,5.4vw,80px);font-weight:900;line-height:.9;
+    letter-spacing:-.03em;text-transform:uppercase;margin:0;text-wrap:balance;
+  }
+  .rail p{color:var(--muted);font-size:15.5px;line-height:1.65;margin:0;max-width:34ch}
+
+  .stack{display:flex;flex-direction:column;gap:24px;min-width:0}
+
+  .card{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius);padding:40px;min-width:0;
+  }
+  .card > * + *{margin-top:24px}
+  .card > h3{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:0}
+
+  .head{display:flex;flex-direction:column;gap:6px}
+  .head h2{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:0}
+  .head .role{font-size:16.5px;font-weight:500;margin:0}
+  .head .place{font-size:15px;color:var(--muted);margin:0}
+
+  .metrics{display:flex;flex-wrap:wrap;gap:12px}
+  .metric{
+    display:flex;align-items:baseline;gap:10px;
+    border:1px solid var(--border);border-radius:999px;padding:9px 18px 9px 16px;
+  }
+  .metric b{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent)}
+  .metric span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+  .status{
+    display:inline-flex;align-items:center;gap:10px;margin:0;
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);
+  }
+  .status .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+
+  .lede{font-size:17px;line-height:1.7;color:var(--muted);margin:0;max-width:68ch}
+  .lede strong{color:var(--fg);font-weight:600}
+
+  .sub{
+    background:var(--surface-2);border:1px solid var(--border);
+    border-radius:var(--radius-sm);padding:30px;min-width:0;
+  }
+  .sub > * + *{margin-top:16px}
+  .sub h3{font-size:21px;font-weight:700;letter-spacing:-.01em;margin:0}
+
+  .impact{color:var(--accent);font-size:16.5px;font-weight:600;line-height:1.5;margin:0;max-width:62ch}
+  .body{font-size:15.5px;line-height:1.7;color:var(--muted);margin:0;max-width:70ch}
+  .body strong{color:var(--fg);font-weight:600}
+  .body em{color:var(--fg);font-style:italic}
+
+  .list{margin:0;padding-left:20px;color:var(--muted);font-size:15px;line-height:1.75;max-width:72ch}
+  .list li + li{margin-top:9px}
+  .list strong{color:var(--fg);font-weight:600}
+  .list em{color:var(--fg);font-style:italic}
+
+  code{
+    font-family:var(--mono);font-size:.9em;color:var(--fg);
+    background:rgba(255,255,255,.055);border:1px solid var(--border);
+    border-radius:5px;padding:1px 5px;
+    overflow-wrap:anywhere;
+  }
+
+  figure{margin:0;display:flex;flex-direction:column;gap:12px}
+  .figbox{
+    position:relative;border-radius:14px;
+    background:#0A0A0C;border:1px solid var(--border);
+  }
+  .figscroll{
+    overflow-x:auto;overscroll-behavior-x:contain;
+    border-radius:14px;padding:22px;
+  }
+  .figbox svg{display:block;width:100%;height:auto}
+  /* El fade en el borde derecho avisa que el diagrama sigue mas alla del corte.
+     Vive en .figbox (estatico) y no en .figscroll, porque un hijo absoluto de un
+     scroller se ancla al area scrolleable, no al borde visible.
+     El diagrama mide 520px de min-width + 44 de padding = 564px. Aqui la figura
+     es hija directa de .card (en /nexio/ va dentro de un .sub anidado), asi que
+     la columna es mas ancha y los umbrales NO son los de aquel archivo:
+       una columna -> columna = viewport-100, entra a partir de 664px
+       con el rail -> columna = viewport-532, entra a partir de 1096px
+     De ahi los dos rangos donde el diagrama se corta. */
+  @media (max-width:663px), (min-width:981px) and (max-width:1095px){
+    .figbox::after{
+      content:"";position:absolute;top:0;right:0;bottom:0;width:46px;
+      border-radius:0 13px 13px 0;pointer-events:none;
+      background:linear-gradient(to left,#0A0A0C 18%,rgba(10,10,12,0) 100%);
+    }
+  }
+  figcaption{
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    color:var(--muted);line-height:1.6;
+  }
+
+  .callout{
+    border-left:3px solid var(--accent);padding:4px 0 4px 20px;
+    font-size:15.5px;line-height:1.65;color:var(--fg);max-width:64ch;
+  }
+  .callout span{color:var(--muted)}
+
+  .callout.big{
+    font-size:19px;line-height:1.5;font-weight:600;
+    padding:10px 0 10px 24px;border-left-width:4px;max-width:60ch;
+  }
+
+  /* AT A GLANCE + ROADMAP — key/value grid */
+  .kv{display:grid;grid-template-columns:170px minmax(0,1fr);margin:0}
+  .kv.narrow{grid-template-columns:140px minmax(0,1fr)}
+  .kv dt{
+    font-family:var(--mono);font-size:11px;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--accent);
+    padding:15px 16px 15px 0;border-top:1px solid var(--border);
+  }
+  .kv dd{
+    margin:0;font-size:15px;line-height:1.65;color:var(--muted);
+    padding:15px 0;border-top:1px solid var(--border);
+  }
+  .kv dd strong{color:var(--fg);font-weight:600}
+  .kv dd em{color:var(--fg);font-style:italic}
+  .kv > :nth-child(1),.kv > :nth-child(2){border-top:none;padding-top:0}
+  @media (max-width:640px){
+    .kv,.kv.narrow{grid-template-columns:minmax(0,1fr)}
+    .kv dt{padding:15px 0 4px;border-top:1px solid var(--border)}
+    .kv dd{padding:0 0 15px;border-top:none}
+    .kv > :nth-child(2){padding-top:0}
+  }
+
+  /* DESIGN PRINCIPLES — mismo patron que Approach en el home */
+  .principles{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+    background:var(--border);border:1px solid var(--border);
+    border-radius:var(--radius-sm);overflow:hidden;
+  }
+  .principle{background:var(--surface-2);padding:26px 24px}
+  .principle:last-child{grid-column:1/-1}
+  .pnum{
+    font-family:var(--mono);font-size:11px;color:var(--accent);
+    letter-spacing:.14em;font-weight:600;margin:0 0 11px;display:block;
+  }
+  .principle h4{font-size:17.5px;font-weight:700;letter-spacing:-.01em;color:var(--fg);margin:0 0 9px}
+  .principle p{font-size:14.5px;color:var(--muted);line-height:1.65;margin:0}
+  .principle p strong{color:var(--fg);font-weight:600}
+  @media (max-width:800px){.principles{grid-template-columns:minmax(0,1fr)}}
+
+  /* PERMISSION TIERS */
+  .tiers{
+    display:grid;grid-template-columns:180px minmax(0,1fr);gap:1px;
+    background:var(--border);border:1px solid var(--border);
+    border-radius:var(--radius-sm);overflow:hidden;
+  }
+  .tiers > div{background:var(--surface-2);padding:18px 20px;display:flex;align-items:center}
+  .tier-name{
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--accent);
+  }
+  .tier-tools{flex-wrap:wrap;gap:8px}
+  .tier-tools code{background:rgba(184,255,61,.07);border-color:rgba(184,255,61,.22);font-size:11.5px}
+  @media (max-width:640px){.tiers{grid-template-columns:minmax(0,1fr)}}
+
+  /* ESCALATION CHAIN */
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0;padding:0;list-style:none}
+  .chain li{
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);border:1px solid var(--border);border-radius:999px;
+    padding:8px 15px;background:var(--surface-2);
+  }
+  .chain li.locked{color:var(--accent);border-color:rgba(184,255,61,.35)}
+  .chain li.sep{border:none;background:none;padding:0 2px;color:var(--accent)}
+
+  /* ONBOARDING COLOUR CODES */
+  .swatches{display:flex;flex-direction:column;gap:13px;margin:0;padding:0;list-style:none}
+  .swatches li{
+    display:flex;gap:14px;align-items:flex-start;
+    font-size:15px;line-height:1.65;color:var(--muted);max-width:70ch;
+  }
+  .swatches li::before{content:"";width:13px;height:13px;border-radius:4px;flex:none;margin-top:5px}
+  .swatches .green::before{background:var(--accent)}
+  .swatches .amber::before{background:var(--warn)}
+  .swatches .grey::before{background:#5A5A63}
+  .swatches strong{color:var(--fg);font-weight:600}
+
+  /* CLOSING POINTS */
+  .points{display:flex;flex-direction:column;gap:22px}
+  .point h4{font-size:17px;font-weight:700;color:var(--fg);margin:0 0 7px;letter-spacing:-.01em}
+  .point p{font-size:15px;line-height:1.7;color:var(--muted);margin:0;max-width:72ch}
+  .point p strong{color:var(--fg);font-weight:600}
+
+  /* Site footer */
+  .site-footer{padding:32px;border-top:1px solid var(--border);margin-top:64px;}
+  .site-footer-inner{max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .site-footer p{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0;}
+
+  a{color:var(--accent)}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  @media (max-width:980px){
+    .wrap{padding:48px 20px 64px}
+    .layout{grid-template-columns:minmax(0,1fr);gap:40px}
+    .rail{position:static}
+    .card{padding:28px}
+    .card > h3{font-size:22px}
+    .sub{padding:22px}
+    .principle{padding:22px 20px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="back-link"><span>&larr;</span> Portfolio</a>
+    <span class="nav-brand">Jorge Aguilar</span>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="layout">
+
+    <aside class="rail">
+      <div class="rule"></div>
+      <h1>Alcorte<br>Alem&aacute;n</h1>
+      <p>An AI order-management system for a fifty-year-old family butcher shop in Mexico City, designed around a single constraint: the operator will never open a dashboard.</p>
+      <p class="eyebrow">Case study &middot; Product &amp; engineering</p>
+    </aside>
+
+    <div class="stack">
+
+      <!-- ============ HEADER CARD ============ -->
+      <section class="card">
+        <p class="eyebrow on">Case study &middot; Product &amp; engineering</p>
+        <div class="head">
+          <h2>Alcorte Alem&aacute;n</h2>
+          <p class="role">Running a 50-year-old butcher shop through WhatsApp</p>
+          <p class="place">Solo architect and engineer &middot; Product definition, system design, implementation, operator onboarding</p>
+        </div>
+
+        <div class="metrics">
+          <div class="metric"><b>120+</b><span>Products in catalogue</span></div>
+          <div class="metric"><b>1000+</b><span>Customers</span></div>
+          <div class="metric"><b>50+</b><span>Years in operation</span></div>
+        </div>
+
+        <p class="status"><span class="dot"></span> Phase 0 closed, Phase A1 in progress</p>
+
+        <p class="lede"><strong>An AI order-management system designed around one constraint: the operator will never open a dashboard.</strong></p>
+      </section>
+
+      <!-- ============ AT A GLANCE ============ -->
+      <section class="card">
+        <h3>At a glance</h3>
+        <dl class="kv">
+          <dt>Client</dt>
+          <dd>Alcorte Alem&aacute;n &mdash; family butcher shop, Mexico City, 50+ years in operation</dd>
+
+          <dt>Role</dt>
+          <dd>Solo architect and engineer &mdash; product definition, system design, implementation, operator onboarding</dd>
+
+          <dt>Scale</dt>
+          <dd>120+ products in catalogue, 1000+ customers</dd>
+
+          <dt>Problem</dt>
+          <dd>Digitize order intake and daily operations without asking a lifelong operator to change how he works</dd>
+
+          <dt>Approach</dt>
+          <dd>WhatsApp as the <em>entire</em> interface &mdash; for customers <em>and</em> for the business owner</dd>
+
+          <dt>Stack</dt>
+          <dd>WhatsApp Business API &rarr; Meta webhooks &rarr; Vercel (Next.js) &rarr; Anthropic Claude &rarr; Supabase (Postgres + RLS)</dd>
+
+          <dt>Status</dt>
+          <dd>Phase 0 closed, Phase A1 in progress. End-to-end pipeline live in production; operator toolset validated against real data</dd>
+
+          <dt>Repository</dt>
+          <dd>Private, 2FA-enforced. Production on Vercel</dd>
+        </dl>
+      </section>
+
+      <!-- ============ THE PROBLEM ============ -->
+      <section class="card">
+        <h3>The problem</h3>
+        <p class="body">Most small-business software fails the same way: it assumes the owner will learn a new interface. The shop's owner-operator has run this butcher shop for over fifty years. He knows his products, his margins, his regulars, and his suppliers better than any system could. What he does not have is an hour a day to spend learning an admin panel &mdash; and roughly one hour a day is the honest ceiling for how much time he can spend interacting with any system at all.</p>
+        <p class="body">The shop takes a modest volume of daily orders, mostly from home cooks with occasional restaurant clients. Orders arrive by phone and by WhatsApp message. Nothing is logged. Prices live in the owner's head and on handwritten sheets. Delivery timing is estimated by feel. It works &mdash; until it doesn't scale, or until the one person holding the knowledge is unavailable.</p>
+        <p class="body">The obvious solution is a web dashboard with an order queue and a product catalogue. <strong>The obvious solution would have been abandoned in a week.</strong></p>
+      </section>
+
+      <!-- ============ THE REFRAME ============ -->
+      <section class="card">
+        <h3>The reframe</h3>
+        <p class="body">I inverted the requirement. Instead of &ldquo;build an admin panel and teach the owner to use it,&rdquo; the brief became:</p>
+
+        <p class="callout big">If the owner-operator ever has to open a browser to run his business, the project has failed.</p>
+
+        <p class="body">WhatsApp is not a channel bolted onto the product. It <em>is</em> the product surface &mdash; for customers placing orders and for the owner configuring the system. Changing a price, marking a cut as sold out, and asking for the day's summary all happen in the same chat app he already keeps open all day.</p>
+        <p class="body"><strong>This single constraint drove every architectural decision that follows.</strong></p>
+      </section>
+
+      <!-- ============ DESIGN PRINCIPLES ============ -->
+      <section class="card">
+        <h3>Design principles</h3>
+        <p class="body">These were fixed before a line of code was written, and every subsequent decision was tested against them.</p>
+
+        <div class="principles">
+          <div class="principle">
+            <span class="pnum">01</span>
+            <h4>WhatsApp-first configuration</h4>
+            <p>Every system setting must be modifiable by the operator through a chat message. This is backed by a <code>vendor_settings</code> table rather than environment variables or hardcoded config &mdash; if a value can change, it must be changeable from a phone.</p>
+          </div>
+
+          <div class="principle">
+            <span class="pnum">02</span>
+            <h4>Operational language, never strategic jargon</h4>
+            <p>The system speaks to the owner-operator the way a good employee would: concrete, day-to-day framing. Never &ldquo;conversion rate,&rdquo; &ldquo;ROI,&rdquo; or &ldquo;NPS.&rdquo; &ldquo;Seventeen orders today, three still to deliver&rdquo; is a sentence he can act on. &ldquo;Fulfilment rate 82%&rdquo; is not.</p>
+          </div>
+
+          <div class="principle">
+            <span class="pnum">03</span>
+            <h4>Never invent business facts</h4>
+            <p>The bot must not state a price, a delivery zone, or a piece of shop history it cannot source from the database. This is enforced as a hard system-prompt constraint, not a soft guideline &mdash; <strong>a plausible-sounding wrong price is worse than no answer</strong>, because it becomes a promise the shop has to honour.</p>
+          </div>
+
+          <div class="principle">
+            <span class="pnum">04</span>
+            <h4>Manual-first automation</h4>
+            <p>Nothing runs unsupervised until the data proves it should. Auto-mode unlocks only after high-confidence signal accumulates; every automatable step ships first as a button someone presses.</p>
+          </div>
+
+          <div class="principle">
+            <span class="pnum">05</span>
+            <h4>Synchronize preparation with arrival</h4>
+            <p>Meat prepared too early degrades; prepared too late holds up the driver. Timing calculations are realistic rather than optimistic, and paired with proactive communication when they slip.</p>
+          </div>
+
+          <div class="principle">
+            <span class="pnum">06</span>
+            <h4>Passive learning from escalations</h4>
+            <p>Every time the system hands a conversation to a human, that exchange becomes retrievable knowledge (RAG) rather than a discarded failure. The system improves as a by-product of being used, without a labelling workflow anyone has to maintain.</p>
+          </div>
+
+          <div class="principle">
+            <span class="pnum">07</span>
+            <h4>Build the accounting architecture early, implement it late</h4>
+            <p>Mexican tax invoicing (CFDI) is a solved-in-theory, painful-in-practice problem, and the decision on self-issuance vs. an external accountant isn't mine to make. So the schema accommodates it; the feature waits.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ARCHITECTURE ============ -->
+      <section class="card">
+        <h3>Architecture</h3>
+
+        <figure>
+          <div class="figbox">
+            <div class="figscroll">
+              <svg viewBox="0 0 720 530" role="img" aria-label="Request path: a customer or operator sends a WhatsApp message, Meta's WhatsApp Business API delivers it to a stateless Vercel handler, which runs an agentic loop on Anthropic Claude and reads and writes Supabase Postgres under row-level security keyed on vendor_id. Core tables are products, operators, vendor_settings, price_history and customers." style="min-width:520px">
+                <defs>
+                  <marker id="al-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <polygon points="0,0 10,5 0,10" fill="#B4B4BB"/>
+                  </marker>
+                  <marker id="al-arrow-on" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <polygon points="0,0 10,5 0,10" fill="#B8FF3D"/>
+                  </marker>
+                </defs>
+
+                <!-- Espina vertical alineada a la izquierda: en movil se ve primero -->
+                <rect x="20" y="20" width="300" height="64" rx="14" fill="#121215" stroke="#303036"/>
+                <text x="170" y="48" text-anchor="middle" font-family="Inter,sans-serif" font-size="14.5" font-weight="600" fill="#F7F7F8">Customer / Operator</text>
+                <text x="170" y="68" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" letter-spacing="1.2" fill="#8A8A93">WHATSAPP</text>
+
+                <path d="M170,84 V120" fill="none" stroke="#4A4A52" stroke-width="1.3" marker-end="url(#al-arrow)"/>
+                <text x="184" y="108" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8A8A93">message</text>
+
+                <rect x="20" y="124" width="300" height="64" rx="14" fill="#121215" stroke="#303036"/>
+                <text x="170" y="162" text-anchor="middle" font-family="Inter,sans-serif" font-size="14.5" font-weight="600" fill="#F7F7F8">Meta WhatsApp Business API</text>
+
+                <path d="M170,188 V224" fill="none" stroke="#4A4A52" stroke-width="1.3" marker-end="url(#al-arrow)"/>
+                <text x="184" y="212" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8A8A93">webhook</text>
+
+                <rect x="20" y="228" width="300" height="72" rx="14" fill="#121215" stroke="#303036"/>
+                <text x="170" y="258" text-anchor="middle" font-family="Inter,sans-serif" font-size="14.5" font-weight="600" fill="#F7F7F8">Vercel (Next.js)</text>
+                <text x="170" y="280" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8A8A93">stateless &#183; no server to keep alive</text>
+
+                <!-- Ramificacion -->
+                <path d="M170,300 V330" fill="none" stroke="#4A4A52" stroke-width="1.3"/>
+                <path d="M170,330 H565" fill="none" stroke="#4A4A52" stroke-width="1.3"/>
+                <path d="M170,330 V366" fill="none" stroke="#4A4A52" stroke-width="1.3" marker-end="url(#al-arrow)"/>
+                <path d="M565,330 V366" fill="none" stroke="#4A4A52" stroke-width="1.3" marker-end="url(#al-arrow)"/>
+
+                <rect x="20" y="370" width="300" height="86" rx="14" fill="#121215" stroke="#303036"/>
+                <text x="170" y="404" text-anchor="middle" font-family="Inter,sans-serif" font-size="14.5" font-weight="600" fill="#F7F7F8">Anthropic Claude</text>
+                <text x="170" y="428" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8A8A93">agentic loop &#183; tool calling</text>
+
+                <rect x="430" y="370" width="270" height="140" rx="14" fill="#121215" stroke="#303036"/>
+                <text x="565" y="404" text-anchor="middle" font-family="Inter,sans-serif" font-size="14.5" font-weight="600" fill="#F7F7F8">Supabase (Postgres)</text>
+                <text x="565" y="428" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" letter-spacing="0.6" fill="#B8FF3D">RLS por vendor_id</text>
+                <path d="M450,446 H680" fill="none" stroke="#303036" stroke-width="1"/>
+                <text x="565" y="472" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10.5" fill="#B4B4BB">products &#183; operators &#183; vendor_settings</text>
+                <text x="565" y="492" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10.5" fill="#B4B4BB">price_history &#183; customers</text>
+
+                <path d="M324,424 H426" fill="none" stroke="#B8FF3D" stroke-width="1.3" marker-start="url(#al-arrow-on)" marker-end="url(#al-arrow-on)"/>
+                <text x="375" y="410" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" letter-spacing="1" fill="#B8FF3D">TOOL CALLS</text>
+              </svg>
+            </div>
+          </div>
+          <figcaption>Fig. 1 &mdash; Request path from a WhatsApp message to a tool-backed answer. Row-level security is keyed on <code>vendor_id</code> through a <code>get_vendor_id()</code> helper, so the schema is multi-tenant from day one. Rebuilt for this case study.</figcaption>
+        </figure>
+
+        <div class="sub">
+          <h3>Why this shape</h3>
+          <p class="body">The webhook handler is stateless and deployed on Vercel, so there is no server for a one-person team to keep alive. State lives in Supabase with row-level security keyed on <code>vendor_id</code> &mdash; the architecture is multi-tenant from day one even while serving a single shop, because <strong>retrofitting tenancy is a rewrite and anticipating it is a <code>WHERE</code> clause.</strong></p>
+        </div>
+
+        <div class="sub">
+          <h3>The agentic layer</h3>
+          <p class="body">Rather than a rigid intent classifier, message handling runs a full agentic loop: the model receives the message plus a <code>UserContext</code>, and decides which tools to call. This matters because real messages from a butcher are not well-formed commands. &ldquo;El sirloin s&uacute;belo a 320&rdquo; and &ldquo;ya no hay arrachera&rdquo; are both configuration changes, expressed as speech.</p>
+        </div>
+      </section>
+
+      <!-- ============ IDENTITY AND PERMISSIONS ============ -->
+      <section class="card">
+        <h3>Identity and permissions</h3>
+        <p class="body">The system distinguishes customers from operators by looking up the inbound phone number against an <code>operators</code> table, producing a <code>UserContext</code> that flows through the request. Six tools are exposed, split by permission tier:</p>
+
+        <div class="tiers">
+          <div class="tier-name">Public</div>
+          <div class="tier-tools">
+            <code>get_product</code>
+            <code>search_products</code>
+            <code>list_products_summary</code>
+          </div>
+
+          <div class="tier-name">Operator-only</div>
+          <div class="tier-tools">
+            <code>update_product_price</code>
+            <code>set_product_availability</code>
+            <code>get_today_summary</code>
+          </div>
+        </div>
+
+        <p class="body">Permission gating is defense-in-depth: the tool set offered to the model is filtered by context <em>and</em> each privileged tool re-validates the caller before executing. <strong>Relying on the prompt alone to keep a customer from changing prices is not a security model &mdash; it's a hope.</strong> A message from an unknown number cannot reach a write path even if the model is talked into trying.</p>
+
+        <p class="body">Every price change writes to <code>price_history</code> with <code>changed_via: "whatsapp_tool"</code>, so a chat-driven edit is as auditable as one made through any other interface.</p>
+      </section>
+
+      <!-- ============ THE ESCALATION CHAIN ============ -->
+      <section class="card">
+        <h3>The escalation chain</h3>
+        <p class="body">Operational reality is that the bot will not handle everything, and the failure mode of an AI assistant with no exit is a frustrated customer.</p>
+
+        <ul class="chain">
+          <li>Owner-operator</li>
+          <li class="sep">&rarr;</li>
+          <li>Shift supervisor</li>
+          <li class="sep">&rarr;</li>
+          <li>Additional staff</li>
+          <li class="sep">&rarr;</li>
+          <li class="locked">dev_backup &middot; non-removable</li>
+        </ul>
+
+        <p class="body">Escalation runs <strong>owner-operator &rarr; shift supervisor &rarr; additional staff &rarr; me as a non-removable <code>dev_backup</code>.</strong> The chain is configurable by the operator, with one exception: the final link cannot be removed.</p>
+
+        <p class="callout">A system that can be configured into a state where nobody is listening <span>is a system that will eventually be configured that way.</span></p>
+      </section>
+
+      <!-- ============ WHAT SHIPPED ============ -->
+      <section class="card">
+        <h3>What shipped</h3>
+
+        <div class="sub">
+          <h3>Phase 0 &mdash; foundations (closed)</h3>
+          <ul class="list">
+            <li><code>vendor_settings</code> table with ten defaults, delivered as migration <code>001_vendor_settings.sql</code>, following the existing RLS pattern rather than introducing a second one.</li>
+            <li>Meta WhatsApp Business API integration with a permanent System User token scoped to <code>whatsapp_business_messaging</code> and <code>whatsapp_business_management</code>.</li>
+            <li>End-to-end pipeline confirmed in production: WhatsApp &rarr; Meta &rarr; Vercel &rarr; Claude &rarr; WhatsApp.</li>
+          </ul>
+        </div>
+
+        <div class="sub">
+          <h3>Phase A1 &mdash; operator toolset (in progress)</h3>
+          <ul class="list">
+            <li>Six agentic tools with the full loop, <code>UserContext</code> identity resolution, and permission gating described above.</li>
+            <li>Three validation tests, all passing against real infrastructure rather than mocks:
+              <ol class="list" style="margin-top:9px">
+                <li>Operator identification by phone lookup</li>
+                <li>Live product price query against Supabase</li>
+                <li>Price modification with a confirmed audit trail in <code>price_history</code></li>
+              </ol>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ OPERATOR ONBOARDING ARTIFACT ============ -->
+      <section class="card">
+        <h3>Operator onboarding artifact</h3>
+        <p class="body">Getting fifty years of undocumented business knowledge into a database is <strong>an interview problem, not an engineering one</strong>. I produced five structured PDF interview documents for the owner-operator using a three-colour coding system:</p>
+
+        <ul class="swatches">
+          <li class="green"><span><strong>Green</strong> &mdash; draft answers I had pre-filled, for him to confirm or correct</span></li>
+          <li class="amber"><span><strong>Amber</strong> &mdash; business-specific data only he knows, blank by design</span></li>
+          <li class="grey"><span><strong>Grey</strong> &mdash; internal pricing data deliberately excluded from the bot's knowledge base</span></li>
+        </ul>
+
+        <p class="body">Pre-filling the green fields turned a blank-page task into a review task. Marking the grey fields explicitly meant the boundary between &ldquo;the bot may say this&rdquo; and &ldquo;this is internal&rdquo; was a decision made once, on paper, rather than re-litigated in every prompt revision.</p>
+      </section>
+
+      <!-- ============ ENGINEERING PROBLEMS ============ -->
+      <section class="card">
+        <h3>Engineering problems worth describing</h3>
+
+        <div class="sub">
+          <h3>A single invisible character took down authentication</h3>
+          <p class="body">The API integration failed with authentication errors while the credential was, by inspection, correct. The cause was a non-printing Unicode character (U+2028 class) introduced by copy-paste into the environment variable. It survived every visual check because it is, definitionally, invisible. Fix: sanitize credentials before passing them to any SDK constructor &mdash; <code>.replace(/[^\x21-\x7E]/g, '')</code> &mdash; and treat environment-variable hygiene as a first-class concern rather than a configuration afterthought. The general lesson: <strong>when a credential is &ldquo;obviously correct&rdquo; and still fails, stop reading it and start inspecting its bytes.</strong></p>
+        </div>
+
+        <div class="sub">
+          <h3>Temporary tokens are a trap you set for yourself</h3>
+          <p class="body">The second blocking bug was an expired WhatsApp API token &mdash; the default artifact of following a getting-started guide. A permanent System User token with explicitly assigned assets and permissions has to be configured deliberately, and the cost of not doing it is <strong>a system that works in development and dies silently in production, weeks later, at the worst moment.</strong></p>
+        </div>
+
+        <div class="sub">
+          <h3>Postgres array filtering has exactly one correct shape here</h3>
+          <p class="body">Product aliases are stored as <code>text[]</code> (a cut of meat has many names, and customers use all of them). Filtering requires <code>aliases.cs.{value}</code> inside a <em>single</em> <code>.or()</code> call &mdash; chaining two <code>.or()</code> calls produces a query that looks right and returns wrong results. Related schema decisions that shaped the tools: <code>base_unit</code> is a <code>unit_type</code> enum, soft deletes use <code>deleted_at</code>, and availability changes must write both <code>availability_updated_at</code> and <code>availability_updated_by</code> to preserve audit integrity.</p>
+        </div>
+
+        <div class="sub">
+          <h3>Guardrails belong in the system prompt, not the knowledge base</h3>
+          <p class="body">Two constraints were deliberately promoted from &ldquo;content&rdquo; to &ldquo;hard rule&rdquo;: no medical or dietary-health advice, ever; and credit/<code>fiado</code> decisions are a structured business rule tied to <code>customers.credit_limit_cents</code>, not something the bot recites from free text. A butcher shop extending informal credit is a real, load-bearing business relationship. Getting it wrong costs money and trust, so it is enforced in code and schema rather than in language the model is asked to remember.</p>
+        </div>
+      </section>
+
+      <!-- ============ HOW THE WORK WAS ORGANISED ============ -->
+      <section class="card">
+        <h3>How the work was organised</h3>
+        <p class="body">The project runs across three deliberately separated channels, because mixing them degrades all three:</p>
+
+        <ul class="list">
+          <li><strong>Architecture channel</strong> &mdash; strategy, phase definition, and open design decisions. Slow, written, decisions recorded.</li>
+          <li><strong>Debug channel</strong> &mdash; bug diagnosis, screenshot interpretation, code-level fixes. Fast, disposable.</li>
+          <li><strong>Local execution</strong> &mdash; Claude Code against the repository.</li>
+        </ul>
+
+        <p class="body">Planning sessions precede construction and phases are formally defined before implementation begins. Work moves as reviewable, approval-gated steps with screenshot verification checkpoints, not as unreviewed batches of code.</p>
+      </section>
+
+      <!-- ============ ROADMAP ============ -->
+      <section class="card">
+        <h3>Roadmap</h3>
+
+        <dl class="kv narrow">
+          <dt>A2.1</dt>
+          <dd>Customer-facing bot</dd>
+
+          <dt>A2.2</dt>
+          <dd>Intelligence and observability &mdash; funnel analysis, conversation logging</dd>
+
+          <dt>A3</dt>
+          <dd>Costs, margins, statistics</dd>
+
+          <dt>Operaci&oacute;n</dt>
+          <dd>Live daily operation with the configurable escalation chain</dd>
+
+          <dt>Decisi&oacute;n</dt>
+          <dd>Strategic checkpoint after 3&ndash;6 months of real data, presented in operational framing</dd>
+
+          <dt>Log&iacute;stica</dt>
+          <dd>External delivery integration (Uber Direct, iVoy, Rappi Cargo) behind a Provider abstraction, manual-first via dashboard buttons</dd>
+
+          <dt>B</dt>
+          <dd>Voice AI &mdash; Vapi.ai as primary, ElevenLabs under evaluation. The owner-operator has agreed to record his voice for cloning</dd>
+
+          <dt>C</dt>
+          <dd>Full e-commerce</dd>
+
+          <dt>D</dt>
+          <dd>Accounting &mdash; pending the accountant's decision on CFDI self-issuance</dd>
+        </dl>
+
+        <p class="body">The <strong>Decisi&oacute;n</strong> phase is the one I would point to as the design tell. There is a checkpoint, months out, where the accumulated data gets reviewed and the roadmap can change direction &mdash; and the materials for that review are specified <em>now</em> as operationally framed, because a strategy deck full of funnel charts would be a document the person it's for cannot use.</p>
+      </section>
+
+      <!-- ============ WHAT THIS DEMONSTRATES ============ -->
+      <section class="card">
+        <h3>What this project demonstrates</h3>
+
+        <div class="points">
+          <div class="point">
+            <h4>Constraint-driven architecture</h4>
+            <p>&ldquo;No dashboard&rdquo; is not a limitation to work around; it is the specification. Taking it seriously produced a cleaner system than the version that would have hedged with a web admin panel nobody opens.</p>
+          </div>
+
+          <div class="point">
+            <h4>Production integration discipline</h4>
+            <p>WhatsApp Business API, Meta's token model, Vercel, Supabase RLS, and a tool-calling model, wired end to end and validated against live data &mdash; including the unglamorous failures (invisible characters, expiring tokens) that separate a demo from something that runs on a Tuesday morning.</p>
+          </div>
+
+          <div class="point">
+            <h4>Security as structure, not instruction</h4>
+            <p>Permissions are enforced by context filtering and per-tool validation. Audit trails are written by the write path. <strong>The model is never the last line of defense.</strong></p>
+          </div>
+
+          <div class="point">
+            <h4>Designing for a non-technical operator, seriously</h4>
+            <p>Colour-coded interview PDFs, operational vocabulary, a non-removable escalation backstop, and an explicit decision to defer accounting until the accountant weighs in. The hard part of this project was never the tool-calling loop.</p>
+          </div>
+
+          <div class="point">
+            <h4>Building for a business that already works</h4>
+            <p>A fifty-year-old shop does not need to be disrupted. It needs the parts that live in one person's head to become durable, without changing how that person works. That is a narrower and more interesting problem than greenfield.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>Jorge Aguilar &middot; Berlin</p>
+    <p>&copy; 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
