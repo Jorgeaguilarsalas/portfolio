@@ -3,463 +3,492 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jorge Aguilar — Operations & GTM Leader · Berlin</title>
-<meta name="description" content="Operations and GTM leader bridging mobility marketplaces and B2B SaaS. Five years scaling supply networks across Wolt, Bolt, Bliq. Berlin, EMEA, trilingual.">
+<title>Jorge Aguilar — Strategy, Operations & Product · Berlin</title>
+<meta name="description" content="Strategy, operations and product for mobility, logistics, and compliance-critical SaaS. 5+ years at Wolt, Bolt, Bliq, Nexio Fleet. Berlin, EMEA, trilingual.">
 
-<meta property="og:title" content="Jorge Aguilar — Operations & GTM Leader">
-<meta property="og:description" content="Operations and GTM leader bridging mobility marketplaces and B2B SaaS. Berlin · EMEA · Trilingual.">
+<meta property="og:title" content="Jorge Aguilar — Strategy, Operations & Product">
+<meta property="og:description" content="Strategy, operations and product at the intersection of mobility and compliance SaaS. Berlin · EMEA · Trilingual.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
 
 <style>
-  :root {
-    --bg: #FAFAF7;
-    --bg-soft: #F2F1EB;
-    --ink: #0E1A1F;
-    --ink-soft: #3D4A50;
-    --ink-mute: #7A8388;
-    --rule: #DCDAD0;
-    --teal: #0F4F4A;
-    --teal-soft: #1A6F68;
-    --teal-pale: #E4EEEC;
-    --coral: #E0633E;
-    --coral-soft: #EE8460;
-    --max-w: 1180px;
-    --gutter: clamp(22px, 4vw, 64px);
+  :root{
+    --bg:#0B0B0D;
+    --surface:#0F0F12;
+    --surface-2:#141417;
+    --fg:#F7F7F8;
+    --muted:#B4B4BB;
+    --border:#303036;
+    --accent:#B8FF3D;
+    --accent-fg:#09090B;
+    --warn:#F5B23D;
+    --crit:#EF4444;
+    --radius:1.75rem;
+    --radius-sm:1.125rem;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --sans:"Inter",system-ui,-apple-system,sans-serif;
+    --max-w:1320px;
+    --gutter:32px;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body {
-    background: var(--bg); color: var(--ink);
-    font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 400; line-height: 1.55; font-size: 18px;
-    overflow-x: hidden;
-  }
-  @media (max-width: 640px) { body { font-size: 16px; } }
-  ::selection { background: var(--teal); color: var(--bg); }
-  a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
-  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
 
-  /* Utility — small caps label (replaces former JetBrains Mono usage) */
-  .label-sm { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+  body{
+    background:var(--bg);color:var(--fg);
+    font-family:var(--sans);font-weight:400;line-height:1.55;font-size:16px;
+    overflow-x:hidden;
+  }
+  @media (max-width:640px){body{font-size:15px;}}
+  ::selection{background:var(--accent);color:var(--accent-fg);}
+  a{color:inherit;text-decoration:none;transition:color .2s ease;}
+  .container{max-width:var(--max-w);margin:0 auto;padding:0 var(--gutter);}
+  @media (max-width:640px){:root{--gutter:20px;}}
 
   /* NAV */
-  .nav { position: sticky; top: 0; z-index: 50; background: rgba(250, 250, 247, 0.85); backdrop-filter: saturate(180%) blur(14px); -webkit-backdrop-filter: saturate(180%) blur(14px); border-bottom: 1px solid transparent; transition: border-color 0.3s ease; }
-  .nav.scrolled { border-bottom-color: var(--rule); }
-  .nav .inner { display: flex; justify-content: space-between; align-items: center; padding: 18px var(--gutter); max-width: var(--max-w); margin: 0 auto; }
-  .nav-brand { font-family: 'Instrument Serif', Georgia, serif; font-size: 22px; font-weight: 400; letter-spacing: -0.005em; color: var(--ink); }
-  .nav-brand .accent { color: var(--coral); }
-  .nav-links { display: flex; gap: 28px; align-items: center; }
-  .nav-links a { font-size: 14px; color: var(--ink-soft); font-weight: 500; }
-  .nav-links a:hover { color: var(--teal); }
-
-  .nav-download { font-size: 14px; color: var(--ink-soft); font-weight: 500; border: 1px solid var(--rule); padding: 8px 14px; border-radius: 100px; transition: border-color 0.2s ease, color 0.2s ease; display: inline-flex; align-items: center; gap: 6px; }
-  @media (hover: hover) { .nav-download:hover { border-color: var(--teal); color: var(--teal); } }
-  @media (max-width: 720px) { .nav-links .nav-download { display: none; } }
-
-  .nav-cta { background: var(--ink); color: #FFFFFF !important; padding: 10px 20px; border-radius: 100px; font-size: 13px; font-weight: 600; transition: background 0.25s ease, transform 0.2s ease; }
-  .nav-cta:hover { background: var(--teal); color: #FFFFFF !important; transform: translateY(-1px); }
-  @media (max-width: 720px) { .nav-links a:not(.nav-cta) { display: none; } }
-
-
-  .nav-burger { display: none; background: transparent; border: none; padding: 8px; cursor: pointer; }
-  .nav-burger svg { width: 22px; height: 22px; stroke: var(--ink); stroke-width: 2; fill: none; }
-  @media (max-width: 720px) {
-    .nav-links { display: none; }
-    .nav-burger { display: flex; align-items: center; justify-content: center; order: 3; }
-    .nav .inner { gap: 12px; }
-  
-  .nav-download { font-size: 14px; color: var(--ink-soft); font-weight: 500; border: 1px solid var(--rule); padding: 8px 14px; border-radius: 100px; transition: border-color 0.2s ease, color 0.2s ease; display: inline-flex; align-items: center; gap: 6px; }
-  @media (hover: hover) { .nav-download:hover { border-color: var(--teal); color: var(--teal); } }
-  @media (max-width: 720px) { .nav-links .nav-download { display: none; } }
-
-  .nav-cta { padding: 9px 16px; font-size: 12.5px; order: 2; }
-  }
-  .nav-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 80%; max-width: 320px; background: var(--bg); padding: 80px 32px 32px; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); z-index: 60; box-shadow: -20px 0 40px -20px rgba(14, 26, 31, 0.15); display: flex; flex-direction: column; gap: 24px; }
-  .nav-drawer.open { transform: translateX(0); }
-  .nav-drawer a { font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; color: var(--ink); padding: 4px 0; border-bottom: 1px solid var(--rule); }
-  .nav-drawer .close-drawer { position: absolute; top: 24px; right: 24px; background: transparent; border: none; cursor: pointer; padding: 8px; }
-  .nav-drawer .close-drawer svg { width: 22px; height: 22px; stroke: var(--ink); stroke-width: 2; fill: none; }
-
-  .nav-drawer .drawer-cta { background: var(--ink); color: #FFFFFF; padding: 14px 22px; border-radius: 100px; font-family: 'Inter Tight', sans-serif; font-size: 15px; font-weight: 500; text-align: center; border-bottom: none; margin-top: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
-
-  .nav-scrim { position: fixed; inset: 0; background: rgba(14, 26, 31, 0.4); opacity: 0; pointer-events: none; transition: opacity 0.35s ease; z-index: 59; }
-  .nav-scrim.open { opacity: 1; pointer-events: auto; }
-  body.drawer-open { overflow: hidden; }
-
-
-  @media (max-width: 720px) { #navCtaMobile { display: inline-flex !important; } }
+  .nav{padding:20px var(--gutter);border-bottom:1px solid var(--border);background:rgba(11,11,13,0.85);backdrop-filter:blur(8px);position:sticky;top:0;z-index:20;}
+  .nav-inner{max-width:var(--max-w);margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+  .nav-brand{font-family:var(--sans);font-weight:800;font-size:15px;letter-spacing:-.01em;color:var(--fg);}
+  .nav-brand .dot{color:var(--accent);}
+  .nav-links{display:flex;gap:28px;align-items:center;}
+  .nav-links a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+  .nav-links a:hover{color:var(--accent);}
+  .nav-cta{background:var(--accent);color:var(--accent-fg)!important;padding:10px 18px;border-radius:999px;font-family:var(--sans)!important;font-weight:600!important;font-size:12.5px!important;letter-spacing:normal!important;text-transform:none!important;}
+  .nav-cta:hover{color:var(--accent-fg)!important;transform:translateX(3px);}
+  .nav-download{padding:8px 16px;border:1px solid var(--border);border-radius:999px;font-family:var(--sans)!important;font-weight:500!important;font-size:12.5px!important;letter-spacing:normal!important;text-transform:none!important;color:var(--fg)!important;}
+  .nav-download:hover{border-color:var(--accent);color:var(--accent)!important;}
+  @media (max-width:900px){.nav-links{gap:14px;} .nav-links a:not(.nav-cta):not(.nav-download){display:none;}}
 
   /* HERO */
-  .hero { padding: clamp(60px, 10vh, 110px) 0 clamp(70px, 12vh, 130px); position: relative; overflow: hidden; }
-  .hero::before { content: ""; position: absolute; top: -10%; right: -20%; width: 80%; height: 100%; background: radial-gradient(ellipse at center, rgba(15, 79, 74, 0.06) 0%, transparent 60%); pointer-events: none; z-index: 0; }
-  .hero .inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(40px, 6vw, 80px); align-items: center; }
-  @media (max-width: 900px) { .hero .inner { grid-template-columns: 1fr; gap: 48px; } .hero-photo-wrap { order: -1; max-width: 280px; margin: 0 auto; } }
-  .hero-eyebrow { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); display: inline-flex; align-items: center; gap: 12px; margin-bottom: 28px; }
-  .hero-eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--teal); }
-  .hero-eyebrow .pulse { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--coral); animation: pulse 2s ease-in-out infinite; }
-  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.85); } }
-  h1.hero-name { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(48px, 7.5vw, 92px); line-height: 0.98; letter-spacing: -0.025em; margin-bottom: 24px; }
-  h1.hero-name .first { display: block; color: var(--ink); }
-  h1.hero-name .last { display: block; color: var(--teal); font-style: italic; }
-  .hero-tagline { font-size: clamp(19px, 1.7vw, 24px); color: var(--ink-soft); line-height: 1.45; max-width: 30ch; margin-bottom: 32px; font-weight: 400; }
-  .hero-tagline strong { color: var(--ink); font-weight: 600; }
-  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
-  .tag { background: var(--teal-pale); color: var(--teal); padding: 7px 14px; border-radius: 100px; font-size: 13px; font-weight: 500; }
-  .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
-  .btn-primary { background: var(--ink); color: var(--bg); padding: 14px 26px; border-radius: 100px; font-size: 15px; font-weight: 500; display: inline-flex; align-items: center; gap: 10px; transition: background 0.25s ease, transform 0.2s ease; }
-  @media (hover: hover) { .btn-primary:hover { background: var(--teal); transform: translateY(-1px); } .btn-primary:hover .arrow { transform: translateX(3px); } }
-  .btn-primary .arrow { transition: transform 0.2s ease; }
-  .btn-secondary { color: var(--ink); padding: 14px 0 14px 4px; font-size: 15px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; border-bottom: 1.5px solid var(--ink); border-radius: 0; }
-  @media (hover: hover) { .btn-secondary:hover { color: var(--coral); border-bottom-color: var(--coral); } }
+  .hero{padding:80px 0 60px;border-bottom:1px solid var(--border);}
+  .hero-inner{display:block;}
+  .hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;}
+  .hero-eyebrow .pulse{width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 0 rgba(184,255,61,0.6);animation:pulse 2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(184,255,61,0.6);}70%{box-shadow:0 0 0 12px rgba(184,255,61,0);}100%{box-shadow:0 0 0 0 rgba(184,255,61,0);}}
+  .hero-name{font-size:clamp(48px,7vw,88px);font-weight:900;line-height:.9;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:28px;}
+  .hero-name .last{color:var(--muted);display:block;}
+  .hero-tagline{font-size:clamp(18px,1.8vw,22px);color:var(--muted);line-height:1.55;max-width:56ch;margin-bottom:28px;}
+  .hero-tagline strong{color:var(--fg);font-weight:600;}
+  .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;}
+  .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(184,255,61,.10);border:1px solid rgba(184,255,61,.24);border-radius:999px;padding:6px 14px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn-primary{background:var(--accent);color:var(--accent-fg);padding:14px 24px;border-radius:999px;font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:8px;transition:transform .2s ease;}
+  .btn-primary:hover{transform:translateX(3px);}
+  .btn-secondary{padding:14px 24px;border:1px solid var(--border);border-radius:999px;font-weight:500;font-size:14px;color:var(--fg);transition:border-color .2s ease, color .2s ease;}
+  .btn-secondary:hover{border-color:var(--accent);color:var(--accent);}
 
-  /* Photo — clean treatment, soft teal shadow */
-  .hero-photo-wrap { position: relative; aspect-ratio: 4/5; max-width: 380px; justify-self: end; border-radius: 14px; overflow: hidden; box-shadow: 0 20px 50px -20px rgba(15, 79, 74, 0.35), 0 4px 12px -2px rgba(14, 26, 31, 0.08); }
-  .hero-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .hero-photo-fallback { width: 100%; height: 100%; background: linear-gradient(135deg, var(--teal-pale) 0%, var(--bg-soft) 100%); display: flex; align-items: center; justify-content: center; color: var(--teal); font-family: 'Instrument Serif', Georgia, serif; font-size: 80px; font-style: italic; }
+  /* PHOTO — circular, discreet, alongside About */
+  .about-photo-wrap{
+    background:var(--surface);
+    border-radius:50%;
+    overflow:hidden;
+    aspect-ratio:1/1;
+    position:relative;
+    box-shadow:0 0 0 1px var(--border);
+    transition:box-shadow .4s ease;
+    width:100%;
+    max-width:260px;
+  }
+  .about-photo-wrap::before{
+    content:"";
+    position:absolute;
+    inset:-3px;
+    border-radius:50%;
+    background:conic-gradient(from 0deg, transparent 0%, var(--accent) 25%, transparent 50%, transparent 100%);
+    opacity:0.25;
+    animation:rotate 8s linear infinite;
+    z-index:0;
+  }
+  .about-photo-wrap::after{
+    content:"";
+    position:absolute;
+    inset:2px;
+    border-radius:50%;
+    background:var(--bg);
+    z-index:1;
+  }
+  @keyframes rotate{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+  }
+  .about-photo{
+    width:calc(100% - 4px);
+    height:calc(100% - 4px);
+    position:absolute;
+    top:2px;
+    left:2px;
+    object-fit:cover;
+    display:block;
+    border-radius:50%;
+    filter:grayscale(100%) contrast(1.1) brightness(0.95);
+    transition:filter .6s ease, transform .8s ease;
+    z-index:2;
+  }
+  .about-photo-wrap:hover .about-photo{
+    filter:grayscale(0%) contrast(1) brightness(1);
+    transform:scale(1.03);
+  }
+  .about-photo-wrap:hover{box-shadow:0 0 0 1px var(--accent);}
+  .about-photo-wrap:hover::before{opacity:0.6;animation-duration:4s;}
+  .about-photo-fallback{
+    width:100%;height:100%;
+    display:none;align-items:center;justify-content:center;
+    font-family:var(--sans);font-size:56px;font-weight:900;
+    color:var(--accent);background:var(--surface);
+    border-radius:50%;
+    position:relative;z-index:2;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .about-photo-wrap::before{animation:none;}
+    .about-photo{transition:none;}
+  }
 
-  /* SECTION SCAFFOLD */
-  section.block { padding: clamp(70px, 11vh, 120px) 0; position: relative; }
-  section.alt { background: var(--bg-soft); }
-  .section-head { margin-bottom: 56px; }
-  @media (max-width: 800px) { .section-head { margin-bottom: 40px; } }
-  h2.section-title { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(34px, 4.4vw, 56px); line-height: 1.05; letter-spacing: -0.018em; max-width: 22ch; color: var(--ink); }
-  h2.section-title em { color: var(--teal); font-style: italic; }
+  /* HERO METRICS */
+  .hero-metrics{padding:64px 0;border-bottom:1px solid var(--border);}
+  .metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  @media (max-width:900px){.metrics-grid{grid-template-columns:repeat(2,1fr);gap:32px 24px;}}
+  @media (max-width:500px){.metrics-grid{grid-template-columns:1fr;gap:28px;}}
+  .metric-big{display:flex;flex-direction:column;gap:10px;}
+  .metric-big .context{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+  .metric-big .value{font-family:var(--sans);font-weight:900;font-size:clamp(48px,6vw,80px);line-height:.95;letter-spacing:-.03em;color:var(--accent);}
+  .metric-big .label{font-size:14px;color:var(--muted);line-height:1.5;max-width:24ch;}
 
-  /* SNAPSHOT — no heading, just prose */
-  #snapshot { padding-top: clamp(70px, 11vh, 120px); padding-bottom: clamp(70px, 11vh, 120px); }
-  .snapshot-prose { font-size: clamp(20px, 1.6vw, 24px); line-height: 1.55; color: var(--ink-soft); max-width: 26ch; font-family: 'Instrument Serif', Georgia, serif; }
-  .snapshot-prose p { font-size: clamp(20px, 1.55vw, 26px); line-height: 1.45; }
-  .snapshot-prose p + p { margin-top: 0.9em; }
-  .snapshot-prose strong { color: var(--ink); font-weight: 400; font-style: italic; }
-  .snapshot-prose em { font-style: italic; color: var(--teal); }
-  /* override: snapshot needs wider max for paragraphs but display feels editorial */
-  .snapshot-prose { max-width: 56ch; }
+  /* SECTIONS */
+  .section{padding:80px 0;border-bottom:1px solid var(--border);}
+  .section-label{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:10px;margin-bottom:24px;}
+  .section-label::before{content:"";width:24px;height:2px;background:var(--accent);border-radius:2px;}
+  h2{font-size:clamp(32px,4vw,52px);font-weight:900;line-height:1;letter-spacing:-.025em;text-transform:uppercase;margin-bottom:28px;max-width:20ch;}
+  h2 em{font-style:normal;color:var(--muted);}
+  .section-lede{font-size:17px;color:var(--muted);line-height:1.65;max-width:65ch;margin-bottom:0;}
+  .section-lede em{font-style:italic;color:var(--fg);}
+  .snapshot-prose p{font-size:17px;color:var(--muted);line-height:1.7;max-width:70ch;margin-bottom:20px;}
+  .snapshot-prose p:last-child{margin-bottom:0;}
+  .snapshot-prose em{font-style:italic;color:var(--fg);}
+
+  /* ABOUT with photo */
+  .about-layout{display:grid;grid-template-columns:260px 1fr;gap:64px;align-items:center;}
+  @media (max-width:1024px){.about-layout{grid-template-columns:220px 1fr;gap:48px;}}
+  @media (max-width:800px){.about-layout{grid-template-columns:1fr;gap:32px;justify-items:center;text-align:left;} .about-photo-wrap{max-width:200px;} .snapshot-prose{max-width:100%;}}
 
   /* EXPERIENCE */
-  .exp-category { margin-bottom: 72px; }
-  .exp-category:last-child { margin-bottom: 0; }
-  .exp-cat-label { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(24px, 2.4vw, 30px); color: var(--ink); letter-spacing: -0.01em; margin-bottom: 32px; padding-bottom: 18px; border-bottom: 1px solid var(--rule); line-height: 1.15; }
-  .exp-cat-label em { color: var(--teal); font-style: italic; }
-
-  .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 48px; padding: 36px 0; border-bottom: 1px solid var(--rule); transition: padding-left 0.3s ease; }
-  .exp-item:last-child { border-bottom: none; }
-  @media (hover: hover) { .exp-item:hover { padding-left: 8px; } }
-  @media (max-width: 800px) { .exp-item { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; } }
-
-  .exp-meta { font-family: 'Inter Tight', sans-serif; font-size: 13px; color: var(--ink-mute); padding-top: 4px; font-weight: 500; letter-spacing: 0.02em; }
-  .exp-meta .company { display: block; font-family: 'Inter Tight', sans-serif; font-size: 16px; color: var(--ink); font-weight: 600; margin-bottom: 4px; letter-spacing: -0.005em; }
-  .exp-meta .location { display: block; font-size: 12px; color: var(--ink-mute); margin-top: 6px; font-weight: 400; }
-
-  .exp-content h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(22px, 2vw, 28px); line-height: 1.2; letter-spacing: -0.012em; margin-bottom: 18px; color: var(--ink); }
-
-  /* Metric strip — horizontal band above major-role context */
-  .metric-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--ink); border-radius: 12px; padding: 18px 22px; margin-bottom: 24px; }
-  .metric-strip.three { grid-template-columns: repeat(3, 1fr); }
-  @media (max-width: 700px) {
-    .metric-strip, .metric-strip.three { grid-template-columns: repeat(2, 1fr); gap: 12px 8px; }
-  }
-  .metric-cell { display: flex; flex-direction: column; padding: 6px 8px; border-right: 1px solid rgba(250, 250, 247, 0.1); }
-  .metric-cell:last-child { border-right: none; }
-  @media (max-width: 700px) {
-    .metric-cell:nth-child(2n) { border-right: none; }
-  }
-  .metric-cell .num { font-family: 'Instrument Serif', Georgia, serif; font-size: clamp(22px, 2.2vw, 28px); color: var(--coral-soft); line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 4px; font-style: italic; }
-  .metric-cell .lbl { font-size: 11.5px; color: rgba(250, 250, 247, 0.6); line-height: 1.3; font-weight: 500; letter-spacing: 0.01em; }
-
-  .exp-context { color: var(--ink-soft); font-size: 16px; line-height: 1.55; margin-bottom: 16px; max-width: 65ch; }
-.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .exp-bullets li { position: relative; padding-left: 22px; color: var(--ink-soft); font-size: 15px; line-height: 1.55; }
-  .exp-bullets li::before { content: "—"; color: var(--coral); font-weight: 500; position: absolute; left: 0; top: 0; }
-  .exp-bullets strong { color: var(--ink); font-weight: 600; }
-  .exp-bullets .metric { background: var(--teal-pale); color: var(--teal); padding: 1px 6px; border-radius: 4px; font-weight: 600; font-size: 14.5px; }
+  .exp-category{margin-bottom:56px;}
+  .exp-category:last-child{margin-bottom:0;}
+  .exp-cat-label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+  .exp-cat-label em{font-style:italic;color:var(--accent);}
+  .exp-item{padding:32px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:200px 1fr;gap:40px;}
+  .exp-item:last-child{border-bottom:none;}
+  @media (max-width:800px){.exp-item{grid-template-columns:1fr;gap:16px;}}
+  .exp-meta{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted);display:flex;flex-direction:column;gap:4px;}
+  .exp-meta .company{font-family:var(--sans);font-size:13.5px;color:var(--fg);font-weight:600;text-transform:none;letter-spacing:normal;margin-top:2px;}
+  .exp-meta .location{font-size:11.5px;color:var(--muted);text-transform:none;letter-spacing:normal;}
+  .exp-content h3{font-size:22px;font-weight:800;letter-spacing:-.01em;margin-bottom:16px;color:var(--fg);}
+  .metric-strip{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px 22px;margin-bottom:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+  @media (max-width:700px){.metric-strip{grid-template-columns:repeat(2,1fr);gap:16px 8px;}}
+  .metric-cell{display:flex;flex-direction:column;padding:0 8px;border-right:1px solid var(--border);}
+  .metric-cell:last-child{border-right:none;}
+  @media (max-width:700px){.metric-cell:nth-child(2n){border-right:none;}}
+  .metric-cell .num{font-weight:900;font-size:24px;color:var(--accent);line-height:1;margin-bottom:4px;letter-spacing:-.02em;}
+  .metric-cell .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.4;}
+  .exp-context{color:var(--muted);font-size:15.5px;line-height:1.65;margin-bottom:16px;max-width:65ch;}
+  .exp-bullets{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .exp-bullets li{display:flex;gap:14px;color:var(--muted);font-size:14.5px;line-height:1.65;}
+  .exp-bullets li::before{content:"—";color:var(--accent);font-weight:500;flex-shrink:0;}
+  .exp-bullets strong{color:var(--fg);font-weight:600;}
+  .exp-bullets .metric{color:var(--accent);font-weight:600;}
+  .exp-bullets a{color:var(--accent);border-bottom:1px solid rgba(184,255,61,0.3);}
+  .exp-bullets a:hover{border-bottom-color:var(--accent);}
 
   /* APPROACH */
-  .approach-intro { font-size: 19px; line-height: 1.55; color: var(--ink-soft); max-width: 64ch; margin-bottom: 56px; }
-  .approach-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
-  @media (max-width: 800px) { .approach-grid { grid-template-columns: 1fr; } }
-  .approach-item { background: var(--bg-soft); padding: 32px 30px; transition: background 0.3s ease; position: relative; }
-  @media (hover: hover) { .approach-item:hover { background: var(--bg); } }
-  .approach-num { font-family: 'Inter Tight', sans-serif; font-size: 12px; color: var(--coral); letter-spacing: 0.1em; font-weight: 600; margin-bottom: 12px; display: block; }
-  .approach-item h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 23px; line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 10px; }
-  .approach-item p { font-size: 15px; color: var(--ink-soft); line-height: 1.55; }
+  .approach-intro{font-size:17px;color:var(--muted);line-height:1.65;max-width:64ch;margin-bottom:48px;}
+  .approach-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;}
+  @media (max-width:800px){.approach-grid{grid-template-columns:1fr;}}
+  .approach-item{background:var(--surface);padding:32px 30px;transition:background .3s ease;}
+  .approach-item:hover{background:var(--surface-2);}
+  .approach-num{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.14em;font-weight:600;margin-bottom:12px;display:block;}
+  .approach-item h3{font-size:20px;font-weight:700;letter-spacing:-.01em;color:var(--fg);margin-bottom:10px;}
+  .approach-item p{font-size:14.5px;color:var(--muted);line-height:1.6;}
 
-
-  .approach-proof { margin-top: 36px; font-size: 16px; color: var(--ink-soft); line-height: 1.55; max-width: 64ch; }
-  .approach-proof a { color: var(--teal); font-weight: 600; border-bottom: 1.5px solid var(--teal-pale); padding-bottom: 1px; transition: border-color 0.2s ease; }
-  @media (hover: hover) { .approach-proof a:hover { border-bottom-color: var(--teal); } }
-
-
-  .approach-proof { margin-top: 36px; font-size: 16px; color: var(--ink-soft); line-height: 1.55; max-width: 64ch; }
-  .approach-proof a { color: var(--teal); font-weight: 600; border-bottom: 1.5px solid var(--teal-pale); padding-bottom: 1px; transition: border-color 0.2s ease; }
-  @media (hover: hover) { .approach-proof a:hover { border-bottom-color: var(--teal); } }
+  /* Approach CTA — dashboard link */
+  .approach-cta{margin-top:40px;padding:32px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);display:flex;flex-direction:column;gap:14px;align-items:flex-start;}
+  .approach-cta p{font-size:15.5px;color:var(--muted);margin:0;}
+  .approach-link{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--accent-fg);padding:14px 22px;border-radius:999px;font-weight:600;font-size:14px;text-decoration:none;font-family:var(--sans);transition:transform .2s ease;}
+  .approach-link:hover{transform:translateX(3px);color:var(--accent-fg);}
 
   /* WORK */
-
-  .dashboard-thumb-link { position: relative; display: block; margin: -44px -44px 32px -44px; overflow: hidden; border-radius: 18px 18px 0 0; aspect-ratio: 16/9; background: var(--bg-soft); }
-  .dashboard-thumb { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; transition: transform 0.4s ease, opacity 0.3s ease; opacity: 0.92; }
-  @media (hover: hover) {
-    .dashboard-thumb-link:hover .dashboard-thumb { transform: scale(1.02); opacity: 1; }
-    .dashboard-thumb-link:hover .dashboard-thumb-cta { opacity: 1; transform: translateY(0); }
-  }
-  .dashboard-thumb-cta { position: absolute; bottom: 16px; right: 16px; background: var(--ink); color: #FFFFFF; padding: 9px 16px; border-radius: 100px; font-size: 13px; font-weight: 600; letter-spacing: 0.01em; opacity: 0.92; transform: translateY(0); transition: opacity 0.3s ease, transform 0.3s ease; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(14, 26, 31, 0.25); }
-  @media (max-width: 720px) {
-    .dashboard-thumb-link { margin: -28px -28px 24px -28px; aspect-ratio: 4/3; }
-    .dashboard-thumb-cta { font-size: 12px; padding: 7px 13px; bottom: 12px; right: 12px; }
-  }
-
-  .work-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
-  .work-card { background: var(--bg); border: 1px solid var(--rule); border-radius: 18px; padding: 44px; transition: transform 0.3s ease, border-color 0.3s ease; position: relative; overflow: hidden; }
-  @media (hover: hover) { .work-card:hover { transform: translateY(-2px); border-color: var(--teal-soft); } }
-  .work-card.feature { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-  .work-card.feature .work-body, .work-card.feature .work-note { color: rgba(250, 250, 247, 0.7); }
-  .work-card.feature h3 { color: var(--bg); }
-  .work-card.feature .work-meta { color: var(--coral-soft); }
-  .work-card.feature ul li { color: rgba(250, 250, 247, 0.85); }
-  .work-card.feature ul li strong { color: var(--bg); }
-  .work-card.feature::before { content: ""; position: absolute; top: 0; right: 0; width: 220px; height: 220px; background: radial-gradient(circle at top right, rgba(224, 99, 62, 0.18) 0%, transparent 70%); pointer-events: none; }
-  .work-meta { font-family: 'Inter Tight', sans-serif; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--coral); margin-bottom: 18px; font-weight: 600; }
-  .work-card h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.2; letter-spacing: -0.012em; margin-bottom: 18px; color: var(--ink); max-width: 26ch; }
-  .work-body { color: var(--ink-soft); font-size: 16px; line-height: 1.6; margin-bottom: 20px; max-width: 70ch; }
-  .work-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
-  .work-card ul { list-style: none; display: flex; flex-direction: column; gap: 0; }
-  .work-card ul li { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding: 18px 0; border-bottom: 1px solid var(--rule); color: var(--ink-soft); font-size: 15px; line-height: 1.6; }
-  .work-card ul li:last-child { border-bottom: none; }
-  .work-card ul li::before { content: none; }
-  .work-card ul li .li-label { display: block; font-weight: 600; color: var(--ink); font-size: 14px; letter-spacing: 0.005em; }
-  .work-card ul li .li-text { display: block; }
-  .work-card.feature ul li { border-bottom-color: rgba(250, 250, 247, 0.12); }
-  .work-card.feature ul li .li-label { color: var(--bg); }
-  @media (max-width: 720px) {
-    .work-card ul li { grid-template-columns: 1fr; gap: 8px; padding: 16px 0; font-size: 14.5px; }
-    .work-card ul li .li-label { font-size: 13.5px; }
-  }
-  .work-card ul li strong { color: var(--ink); font-weight: 600; }
-  .work-note { font-size: 14px; color: var(--ink-mute); font-style: italic; line-height: 1.55; }
-
-
-  .work-link { color: var(--teal); font-weight: 600; font-size: 15.5px; border-bottom: 1.5px solid var(--teal-pale); padding-bottom: 2px; display: inline-flex; align-items: center; gap: 6px; transition: border-color 0.2s ease; }
-  @media (hover: hover) { .work-link:hover { border-bottom-color: var(--teal); } }
-
-
-  .work-link { color: var(--teal); font-weight: 600; font-size: 15.5px; border-bottom: 1.5px solid var(--teal-pale); padding-bottom: 2px; display: inline-flex; align-items: center; gap: 6px; transition: border-color 0.2s ease; }
-  @media (hover: hover) { .work-link:hover { border-bottom-color: var(--teal); } }
-
-
-  .work-card.feature .work-link, .work-link-on-dark { color: var(--coral-soft); border-bottom-color: rgba(238, 132, 96, 0.3); }
-  @media (hover: hover) { .work-card.feature .work-link:hover, .work-link-on-dark:hover { border-bottom-color: var(--coral-soft); } }
+  .work-grid{display:flex;flex-direction:column;gap:24px;}
+  .work-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:40px;transition:border-color .3s ease, transform .3s ease;}
+  .work-card:hover{border-color:rgba(184,255,61,0.35);transform:translateY(-2px);}
+  .work-card.feature{background:var(--surface-2);border-color:var(--border);}
+  .work-card.feature::before{content:"";position:absolute;top:0;right:0;width:220px;height:220px;background:radial-gradient(circle at top right, rgba(184,255,61,0.08) 0%, transparent 70%);pointer-events:none;}
+  .work-meta{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+  .work-card h3{font-size:clamp(24px,2.4vw,32px);font-weight:800;letter-spacing:-.02em;margin-bottom:18px;color:var(--fg);max-width:26ch;line-height:1.15;}
+  .work-body{color:var(--muted);font-size:15.5px;line-height:1.65;margin-bottom:20px;max-width:70ch;}
+  .work-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+  .work-card ul li{display:flex;gap:12px;color:var(--muted);font-size:14.5px;line-height:1.6;max-width:75ch;}
+  .work-card ul li::before{content:"▸";color:var(--accent);flex-shrink:0;font-size:12px;padding-top:2px;}
+  .work-card ul li strong{color:var(--fg);font-weight:600;}
+  .work-link{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:600;font-size:15px;border-bottom:1px solid rgba(184,255,61,0.3);padding-bottom:2px;}
+  .work-link:hover{border-bottom-color:var(--accent);}
+  .work-note{font-size:13px;color:var(--muted);font-style:italic;line-height:1.55;margin-top:12px;}
 
   /* SKILLS */
-  .skills-list { display: flex; flex-direction: column; gap: 32px; max-width: 880px; }
-  .skills-row { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding-bottom: 28px; border-bottom: 1px solid var(--rule); }
-  .skills-row:last-child { border-bottom: none; padding-bottom: 0; }
-  @media (max-width: 700px) { .skills-row { grid-template-columns: 1fr; gap: 8px; } }
-  .skills-cat { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); padding-top: 4px; }
-  .skills-items { color: var(--ink-soft); font-size: 16px; line-height: 1.65; }
-  .skills-items strong { color: var(--ink); font-weight: 500; }
+  .skills-list{display:flex;flex-direction:column;gap:0;max-width:900px;}
+  .skills-row{display:grid;grid-template-columns:220px 1fr;gap:32px;padding:24px 0;border-bottom:1px solid var(--border);}
+  .skills-row:last-child{border-bottom:none;}
+  @media (max-width:700px){.skills-row{grid-template-columns:1fr;gap:8px;}}
+  .skills-cat{font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);padding-top:4px;}
+  .skills-items{color:var(--muted);font-size:15px;line-height:1.7;}
+  .skills-items strong{color:var(--fg);font-weight:600;}
 
   /* EDUCATION */
-  .edu-list { display: flex; flex-direction: column; max-width: 880px; }
-  .edu-item { padding: 22px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 160px 1fr; gap: 32px; }
-  .edu-item:last-child { border-bottom: none; }
-  @media (max-width: 700px) { .edu-item { grid-template-columns: 1fr; gap: 6px; } }
-  .edu-year { font-family: 'Inter Tight', sans-serif; font-size: 13px; color: var(--ink-mute); padding-top: 4px; font-weight: 500; }
-  .edu-body .school { font-weight: 600; color: var(--ink); font-size: 16px; margin-bottom: 2px; }
-  .edu-body .degree { font-size: 15px; color: var(--ink-soft); line-height: 1.5; }
-  .edu-body .degree em { color: var(--ink-mute); font-style: normal; }
-
-
-  .edu-item:has(.degree:first-letter) + .edu-item:last-child { padding-top: 32px; padding-bottom: 32px; margin-top: 8px; border-top: 1px solid var(--rule); }
-  .edu-item:last-child .school { margin-bottom: 8px; }
-  .edu-item:last-child .degree { line-height: 1.7; }
-
-
-  .edu-cert-row { padding-top: 28px !important; padding-bottom: 28px !important; }
-  .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 24px; margin-top: 12px; margin-bottom: 16px; }
-  @media (max-width: 700px) { .cert-grid { grid-template-columns: 1fr; gap: 8px; } }
-  .cert-item { display: flex; align-items: baseline; gap: 10px; font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; }
-  .cert-check { color: var(--teal); font-weight: 700; font-size: 14px; flex-shrink: 0; }
-  .cert-view-link { display: inline-flex; align-items: center; gap: 6px; color: var(--teal); font-weight: 600; font-size: 14px; border-bottom: 1.5px solid var(--teal-pale); padding-bottom: 1px; transition: border-color 0.2s ease; }
-  @media (hover: hover) { .cert-view-link:hover { border-bottom-color: var(--teal); } }
+  .edu-list{display:flex;flex-direction:column;max-width:900px;}
+  .edu-item{padding:22px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:160px 1fr;gap:32px;}
+  .edu-item:last-child{border-bottom:none;}
+  @media (max-width:700px){.edu-item{grid-template-columns:1fr;gap:6px;}}
+  .edu-year{font-family:var(--mono);font-size:11.5px;color:var(--muted);padding-top:4px;letter-spacing:.06em;}
+  .edu-body .school{font-weight:700;color:var(--fg);font-size:15.5px;margin-bottom:4px;}
+  .edu-body .degree{font-size:14.5px;color:var(--muted);line-height:1.55;}
+  .edu-body .degree em{font-style:italic;color:var(--fg);}
 
   /* CONTACT */
-  .contact { background: var(--ink); color: var(--bg); padding: clamp(80px, 14vh, 140px) 0; position: relative; overflow: hidden; }
-  .contact::before { content: ""; position: absolute; top: -30%; right: -10%; width: 50%; height: 100%; background: radial-gradient(ellipse at center, rgba(224, 99, 62, 0.18) 0%, transparent 65%); pointer-events: none; }
-  .contact::after { content: ""; position: absolute; bottom: -40%; left: -10%; width: 50%; height: 100%; background: radial-gradient(ellipse at center, rgba(15, 79, 74, 0.4) 0%, transparent 60%); pointer-events: none; }
-  .contact .inner { position: relative; z-index: 1; }
-  .contact .hero-eyebrow { color: var(--coral-soft); }
-  .contact .hero-eyebrow::before { background: var(--coral-soft); }
-  .contact h2 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(40px, 6vw, 76px); line-height: 1.0; letter-spacing: -0.025em; color: var(--bg); margin-bottom: 36px; max-width: 16ch; }
-  .contact h2 em { color: var(--coral-soft); font-style: italic; }
-  .contact-sub { font-size: 19px; color: rgba(250, 250, 247, 0.72); max-width: 56ch; line-height: 1.55; margin-bottom: 48px; }
-  .contact-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 64px; align-items: center; }
-  .contact-actions .btn-primary { background: var(--bg); color: var(--ink); }
-  @media (hover: hover) { .contact-actions .btn-primary:hover { background: var(--coral); color: var(--bg); } }
-  .contact-actions .btn-secondary { color: rgba(250, 250, 247, 0.85); border-bottom-color: rgba(250, 250, 247, 0.4); }
-  @media (hover: hover) { .contact-actions .btn-secondary:hover { color: var(--coral-soft); border-bottom-color: var(--coral-soft); } }
-  .btn-copy { background: transparent; border: 1.5px solid rgba(250, 250, 247, 0.4); color: rgba(250, 250, 247, 0.85); padding: 14px 22px; border-radius: 100px; font-family: 'Inter Tight', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; }
-  @media (hover: hover) { .btn-copy:hover { border-color: var(--coral-soft); color: var(--coral-soft); } }
-  .btn-copy .copy-done { display: none; }
-  .btn-copy.copied .copy-label { display: none; }
-  .btn-copy.copied .copy-done { display: inline; color: var(--coral-soft); }
-  .contact-details { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; padding-top: 44px; border-top: 1px solid rgba(250, 250, 247, 0.15); }
-  @media (max-width: 720px) { .contact-details { grid-template-columns: 1fr; gap: 24px; } }
-  .contact-detail .key { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(250, 250, 247, 0.55); display: block; margin-bottom: 10px; }
-  .contact-detail .val { font-size: 16px; color: var(--bg); }
-  @media (hover: hover) { .contact-detail .val a:hover { color: var(--coral-soft); } }
+  .contact{background:var(--surface);padding:100px 0;border-bottom:none;position:relative;overflow:hidden;}
+  .contact::before{content:"";position:absolute;top:-30%;right:-10%;width:50%;height:100%;background:radial-gradient(ellipse at center, rgba(184,255,61,0.08) 0%, transparent 65%);pointer-events:none;}
+  .contact .inner{position:relative;z-index:1;}
+  .contact h2{color:var(--fg);}
+  .contact-sub{font-size:18px;color:var(--muted);max-width:56ch;line-height:1.6;margin-bottom:44px;}
+  .contact-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:56px;align-items:center;}
+  .btn-copy{background:transparent;border:1px solid var(--border);color:var(--fg);padding:14px 22px;border-radius:999px;font-family:var(--sans);font-size:14px;font-weight:500;cursor:pointer;transition:all .2s ease;}
+  .btn-copy:hover{border-color:var(--accent);color:var(--accent);}
+  .btn-copy .copy-done{display:none;}
+  .btn-copy.copied .copy-label{display:none;}
+  .btn-copy.copied .copy-done{display:inline;color:var(--accent);}
+  .contact-details{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding-top:40px;border-top:1px solid var(--border);}
+  @media (max-width:900px){.contact-details{grid-template-columns:repeat(2,1fr);gap:24px;}}
+  @media (max-width:600px){.contact-details{grid-template-columns:1fr;gap:24px;}}
+  .contact-detail .key{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px;}
+  .contact-detail .val{font-size:15px;color:var(--fg);}
+  .contact-detail .val a:hover{color:var(--accent);}
 
   /* FOOTER */
-  footer { background: var(--ink); color: rgba(250, 250, 247, 0.5); padding: 28px 0; border-top: 1px solid rgba(250, 250, 247, 0.1); font-size: 13px; }
-  footer .inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-  @media (hover: hover) { footer a:hover { color: var(--coral-soft); } }
+  footer{background:var(--bg);color:var(--muted);padding:32px 0;border-top:1px solid var(--border);font-size:12px;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;}
+  footer .inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  footer a:hover{color:var(--accent);}
 
   /* REVEAL */
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } .hero-eyebrow .pulse { animation: none; } }
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none;} html{scroll-behavior:auto;} .hero-eyebrow .pulse{animation:none;}}
 </style>
 </head>
 <body>
 
 <header class="nav" id="nav">
-  <div class="inner">
-    <a href="#top" class="nav-brand">Jorge<span class="accent">.</span>Aguilar</a>
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">Jorge<span class="dot">.</span>Aguilar</a>
     <nav class="nav-links">
       <a href="#snapshot">About</a>
-      <a href="#experience">Experience</a>
       <a href="#approach">Approach</a>
+      <a href="#experience">Experience</a>
       <a href="#work">Work</a>
-      <a href="Jorge_Aguilar_CV.pdf" download class="nav-download">Download CV <span aria-hidden="true">&darr;</span></a>
+      <a href="Jorge_Aguilar_CV.pdf" download class="nav-download">Download CV ↓</a>
       <a href="#contact" class="nav-cta">Get in touch</a>
     </nav>
-    <a href="#contact" class="nav-cta" style="display:none;" id="navCtaMobile">Get in touch</a>
-    <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
-      <svg viewBox="0 0 24 24"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
-    </button>
   </div>
 </header>
-<div class="nav-scrim" id="navScrim" aria-hidden="true"></div>
-<aside class="nav-drawer" id="navDrawer" aria-hidden="true" role="dialog" aria-label="Site navigation">
-  <button class="close-drawer" id="navClose" aria-label="Close menu">
-    <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
-  </button>
-  <a href="#snapshot" data-nav-link>About</a>
-  <a href="#experience" data-nav-link>Experience</a>
-  <a href="#approach" data-nav-link>Approach</a>
-  <a href="#work" data-nav-link>Work</a>
-  <a href="Jorge_Aguilar_CV.pdf" download data-nav-link>Download CV &darr;</a>
-  <a href="#contact" data-nav-link class="drawer-cta">Get in touch &rarr;</a>
-</aside>
 
 <main id="top">
 
+  <!-- HERO -->
   <section class="hero">
-    <div class="container inner">
+    <div class="container hero-inner">
       <div>
-        <div class="hero-eyebrow reveal">Working across · Berlin · EMEA</div>
+        <div class="hero-eyebrow reveal"><span class="pulse"></span> Open to senior roles · Berlin · EMEA</div>
         <h1 class="hero-name reveal">
-          <span class="first">Jorge Luis</span>
-          <span class="last">Aguilar Salas</span>
+          <span>Jorge Aguilar</span>
         </h1>
-        <p class="hero-tagline reveal"><strong>Operations & GTM leader</strong> bridging mobility marketplaces and B2B SaaS.</p>
+        <p class="hero-tagline reveal"><strong>Strategy, Operations & Product</strong> at the intersection of mobility, logistics, and compliance-critical SaaS.</p>
         <div class="hero-tags reveal">
+          <span class="tag">Product Ownership</span>
           <span class="tag">Supply Operations</span>
-          <span class="tag">Partnerships & GTM</span>
-          <span class="tag">Analytics & Applied ML</span>
-          <span class="tag">Compliance Frameworks</span>
+          <span class="tag">Account & Partner Management</span>
+          <span class="tag">Compliance Systems</span>
+          <span class="tag">Automation & Analytics</span>
         </div>
         <div class="hero-actions reveal">
-          <a href="#contact" class="btn-primary">Get in touch <span class="arrow">→</span></a>
+          <a href="#contact" class="btn-primary">Get in touch <span>→</span></a>
           <a href="#experience" class="btn-secondary">See my work</a>
         </div>
       </div>
-      <div class="hero-photo-wrap reveal">
-        <img src="photo.jpg" alt="Jorge Aguilar — portrait" class="hero-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="hero-photo-fallback" style="display:none;">JA</div>
+    </div>
+  </section>
+
+  <!-- HERO METRICS -->
+  <section class="hero-metrics reveal">
+    <div class="container">
+      <div class="metrics-grid">
+        <div class="metric-big">
+          <span class="context">Product · Nexio</span>
+          <span class="value">800+</span>
+          <span class="label">Active drivers under compliance framework, across 8 fleet operators.</span>
+        </div>
+        <div class="metric-big">
+          <span class="context">Automation · Nexio</span>
+          <span class="value">60–70%</span>
+          <span class="label">Manual reporting effort reduced through Python-based automation.</span>
+        </div>
+        <div class="metric-big">
+          <span class="context">Commercial · Bliq</span>
+          <span class="value">€3M</span>
+          <span class="label">ARR generated from cross-functional pilot in four months.</span>
+        </div>
+        <div class="metric-big">
+          <span class="context">Supply growth · Bliq</span>
+          <span class="value">4.7×</span>
+          <span class="label">Driver base scaled in twelve months across Germany.</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Snapshot — no heading, first-person prose -->
-  <section class="block alt" id="snapshot">
+  <!-- SNAPSHOT -->
+  <section class="section" id="snapshot">
     <div class="container">
-      <div class="snapshot-prose reveal">
-        <p>I started riding a Wolt bike around Berlin five years ago, learning the courier role <em>from the inside</em> before joining the operations team. Since then I have scaled <em>supply networks and partnership channels</em> across mobility marketplaces — Wolt, Bolt, Bliq — and now run freelance strategy work for early-stage fleet SaaS via Salas UG.</p>
-        <p>My focus is the operational layer that makes marketplaces and B2B SaaS go-to-market actually work: onboarding flows, partner accountability frameworks, compliance design, and the analytical discipline to know which lever moves which KPI.</p>
-        <p>I work across <em>English, German, and Spanish</em> in EMEA, leaning on Python, SQL, Streamlit, and applied ML when the operating problem becomes an analytical one. Currently open to senior operations, GTM, business development, or strategy roles. I lead with <em>emotional stability, clarity, and ownership</em> &mdash; staying calm under pressure, naming what matters, and taking responsibility for outcomes.</p>
+      <div class="section-label reveal">About</div>
+      <div class="about-layout">
+        <div class="about-photo-wrap reveal">
+          <img src="photo.jpg" alt="Jorge Aguilar — portrait" class="about-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="about-photo-fallback">JA</div>
+        </div>
+        <div class="snapshot-prose reveal">
+          <p>I am a Berlin-based operator and product-oriented strategist with five years scaling <em>supply networks, partnership channels, and compliance-critical product</em> across mobility marketplaces — Wolt, Bolt, Bliq — and the compliance SaaS I currently co-lead at <em>Nexio Fleet</em> as co-founder.</p>
+          <p>My work sits where operations, product, and go-to-market meet: I translate regulation and operational reality into product specifications, run discovery with real fleet operators and drivers, prioritise the roadmap of what ships, and instrument the systems that make the outcome measurable. At Nexio, the framework I helped build now underpins compliance for <em>800+ active drivers across 8 fleet operators</em>.</p>
+          <p>I work across <em>English, German, and Spanish</em> in EMEA, leaning on Python, SQL, Firebase, and applied automation when the operating problem becomes a data problem. Currently open to senior product ownership, strategy & operations, account management, or GTM roles.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="block" id="experience">
+  <!-- APPROACH -->
+  <section class="section" id="approach">
     <div class="container">
-      <div class="section-head reveal">
-        <h2 class="section-title">Operations across <em>mobility marketplaces</em>, SaaS, and B2B.</h2>
+      <div class="section-label reveal">Approach</div>
+      <h2 class="reveal">Seven principles I bring to <em>marketplace operations and B2B SaaS</em>.</h2>
+      <p class="approach-intro reveal">Earned through operating across mobility platforms, sharpened through analytical work. These are the principles that anchor how I diagnose, plan, and execute.</p>
+
+      <div class="approach-grid reveal">
+        <div class="approach-item">
+          <span class="approach-num">01</span>
+          <h3>Diagnose before levering</h3>
+          <p>Most operating problems aren't modeling problems &mdash; they're framing or instrumentation problems. The work that creates value is naming what's actually broken before applying a fix.</p>
+        </div>
+        <div class="approach-item">
+          <span class="approach-num">02</span>
+          <h3>Quality is multi-dimensional</h3>
+          <p>Define "good" across pillars &mdash; safety, reliability, peace of mind. Measure with operational telemetry first, customer ratings second. Premium customers value their time more than rating prompts.</p>
+        </div>
+        <div class="approach-item">
+          <span class="approach-num">03</span>
+          <h3>Grow with discipline</h3>
+          <p>Markets earn growth by passing explicit gates &mdash; readiness, concentration, rejection-rate, supply depth. Filter-passing is necessary, not sufficient.</p>
+        </div>
+        <div class="approach-item">
+          <span class="approach-num">04</span>
+          <h3>Translate diagnosis into roadmaps</h3>
+          <p>Insight without execution is academic. The strongest planning artifacts name assumptions, structural floors, and explicit decision points where the plan pivots or doubles down.</p>
+        </div>
+        <div class="approach-item">
+          <span class="approach-num">05</span>
+          <h3>Sequence risk before levers fire</h3>
+          <p>What you defer matters as much as what you do. Remediate fragile markets before scaling them; design for downside, not just upside.</p>
+        </div>
+        <div class="approach-item">
+          <span class="approach-num">06</span>
+          <h3>ML for probabilistic problems; rules for policy</h3>
+          <p>Trying to use ML for tier classification adds complexity without value. Trying to use rules for prediction misses the probabilistic structure. The split is first-principles, not stylistic.</p>
+        </div>
+        <div class="approach-item" style="grid-column:1/-1;">
+          <span class="approach-num">07</span>
+          <h3>Partner accountability is conversation infrastructure</h3>
+          <p>Tiered scorecards turn partner performance into structured commercial conversations &mdash; Tier A standard terms, Tier C 90-day improvement plan with named targets. The framework is the conversation.</p>
+        </div>
       </div>
+
+      <div class="approach-cta reveal">
+        <p>These principles are demonstrated in a live interactive dashboard.</p>
+        <a href="https://marketplace-ops-demo-port.streamlit.app/" target="_blank" rel="noopener" class="approach-link">marketplace-ops-demo-port.streamlit.app <span>↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-label reveal">Experience</div>
+      <h2 class="reveal">Operations across <em>mobility marketplaces</em>, SaaS, and B2B.</h2>
 
       <div class="exp-category">
-        <div class="exp-cat-label reveal">Operations leadership — <em>mobility marketplaces & SaaS</em></div>
+        <div class="exp-cat-label reveal">Product, operations & strategy leadership</div>
 
         <div class="exp-item reveal">
           <div class="exp-meta">
-            05.2025 — Present
-            <span class="company">Salas UG · Self-employed</span>
+            2025 — Present
+            <span class="company">Nexio Fleet GmbH</span>
             <span class="location">Berlin, Germany</span>
           </div>
           <div class="exp-content">
-            <h3>FleetTech & Mobility Strategy Consultant — GTM, Compliance & Growth in Europe</h3>
-            <p class="exp-context">Independent operator advising mobility and logistics ventures on fleet compliance, operational design, and go-to-market execution across DACH. Current engagement: Nexio Fleet.</p>
-          </div>
-        </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-meta">
-            05.2025 — Present
-            <span class="company">Nexio Fleet · Freelance</span>
-            <span class="location">Berlin, Germany</span>
-          </div>
-          <div class="exp-content">
-            <h3>Strategy & Operations Lead — Fleet Compliance & SaaS</h3>
-            <div class="metric-strip three">
-              <div class="metric-cell"><span class="num">90–150</span><span class="lbl">Drivers under compliance framework</span></div>
-              <div class="metric-cell"><span class="num">60–70%</span><span class="lbl">Manual reporting time reduced</span></div>
-              <div class="metric-cell"><span class="num">€50k</span><span class="lbl">Grant positioning (IBB Gründungs-BONUS Plus)</span></div>
+            <h3>Co-founder · Strategy, Operations & Product</h3>
+            <div class="metric-strip">
+              <div class="metric-cell"><span class="num">800+</span><span class="lbl">Active drivers</span></div>
+              <div class="metric-cell"><span class="num">8</span><span class="lbl">Fleet operators</span></div>
+              <div class="metric-cell"><span class="num">60–70%</span><span class="lbl">Reporting reduced</span></div>
+              <div class="metric-cell"><span class="num">€50k</span><span class="lbl">IBB grant</span></div>
             </div>
-            <p class="exp-context">Led compliance system design and translated regulatory requirements into product workflows during Nexio Fleet's early-stage development. Urban-fleet SaaS serving Berlin and Brandenburg.</p>
+            <p class="exp-context">Co-founder and product/operations lead of Nexio Fleet — a compliance-native SaaS for regulated ride-hailing operators in Berlin and Brandenburg. Translating LABO and PBefG requirements into product specifications, running discovery with fleet operators and drivers, and building the systems that make compliance measurable.</p>
             <ul class="exp-bullets">
-              <li>Built compliance reporting framework covering 3 fleet operators</li>
-              <li>Established audit-ready driver and vehicle-level tracking aligned with LABO requirements</li>
-              <li>Translated regulatory requirements into product specs for the Driver App and Fleet Dashboard</li>
-              <li>Contributed to tiered compliance pricing strategy</li>
-              <li>Stack: Firebase (Auth, Firestore), Python, CSV pipelines, Uber & Bolt data integration. Reference letter on file from CEO Aleksander Boski.</li>
+              <li><strong>Product:</strong> Wrote specifications for the Driver App and Fleet Dashboard; ran real-world testing across iOS, Android, and web; established structured feedback loops between operations and engineering</li>
+              <li><strong>Compliance at scale:</strong> Framework now serves <span class="metric">800+ drivers</span> across <span class="metric">8 fleet operators</span>, aligned with LABO reporting</li>
+              <li><strong>Automation:</strong> Reduced manual reporting by 60–70% via Python-based pipelines integrating platform data with Nexio's internal architecture</li>
+              <li><strong>Commercial:</strong> Contributed to tiered compliance pricing, competitive positioning, fleet partnerships, and BPW Berlin-Brandenburg entry</li>
+              <li>Stack: Firebase (Auth, Firestore), Python, FastAPI, CSV pipelines, Uber & Bolt platform data, iOS/TestFlight, Android, Product QA. Reference letter from CEO Aleksander Boski. <a href="/nexio/">Read the full case study →</a></li>
             </ul>
           </div>
         </div>
 
         <div class="exp-item reveal">
           <div class="exp-meta">
+            07.2025 — Present
+            <span class="company">Salas UG · Self-employed</span>
+            <span class="location">Berlin, Germany</span>
+          </div>
+          <div class="exp-content">
+            <h3>FleetTech & Mobility Strategy Consultant</h3>
+            <p class="exp-context">Independent operator advising mobility and logistics ventures on fleet compliance, operational design, and go-to-market execution across DACH. Current engagement: Nexio Fleet.</p>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
             07.2024 — 07.2025
-            <span class="company">Bliq · Full-time</span>
+            <span class="company">Bliq</span>
             <span class="location">Berlin, Germany</span>
           </div>
           <div class="exp-content">
             <h3>Supply Operations Manager</h3>
             <div class="metric-strip">
-              <div class="metric-cell"><span class="num">2.6×</span><span class="lbl">Partner network growth</span></div>
-              <div class="metric-cell"><span class="num">4.7×</span><span class="lbl">Driver network growth</span></div>
-              <div class="metric-cell"><span class="num">&lt;50% → 80%+</span><span class="lbl">Partner retention</span></div>
-              <div class="metric-cell"><span class="num">€3M</span><span class="lbl">ARR contribution from pilot</span></div>
+              <div class="metric-cell"><span class="num">2.6×</span><span class="lbl">Partner growth</span></div>
+              <div class="metric-cell"><span class="num">4.7×</span><span class="lbl">Driver growth</span></div>
+              <div class="metric-cell"><span class="num">80%+</span><span class="lbl">Retention</span></div>
+              <div class="metric-cell"><span class="num">€3M</span><span class="lbl">ARR pilot</span></div>
             </div>
-            <p class="exp-context">B2B mobility marketplace connecting fleet partners and drivers across Germany. Owned supply-side scale-up, key account management, and pricing optimization.</p>
+            <p class="exp-context">B2B mobility marketplace connecting fleet partners and drivers across Germany. Owned supply-side scale-up, key account management, and pricing optimisation.</p>
             <ul class="exp-bullets">
               <li>Scaled supply network through partner acquisition and onboarding redesign in 12 months</li>
-              <li>Lifted partner retention via incentive redesign</li>
-              <li>Piloted a program driving 4.7× ride growth</li>
-              <li>Optimized pricing through market research; localized product features via user research</li>
+              <li>Lifted partner retention from <span class="metric">&lt;50% → 80%+</span> via incentive redesign</li>
+              <li>Piloted a program driving <span class="metric">4.7× ride growth</span></li>
+              <li>Optimised pricing through market research; localised product features via user research</li>
               <li>Trained junior Key Account Managers; led bilingual (DE/EN) partner negotiations</li>
             </ul>
           </div>
@@ -468,23 +497,23 @@
         <div class="exp-item reveal">
           <div class="exp-meta">
             06.2023 — 06.2024
-            <span class="company">Bolt · Full-time</span>
-            <span class="location">Berlin, Germany</span>
+            <span class="company">Bolt</span>
+            <span class="location">South Germany</span>
           </div>
           <div class="exp-content">
             <h3>Operations Specialist</h3>
-            <div class="metric-strip three">
-              <div class="metric-cell"><span class="num">2×</span><span class="lbl">Driver activation rate in 6 weeks</span></div>
-              <div class="metric-cell"><span class="num">South DE</span><span class="lbl">3PL supply ownership (Munich+)</span></div>
-              <div class="metric-cell"><span class="num">↓ Cancel</span><span class="lbl">Materially reduced cancellation rate</span></div>
+            <div class="metric-strip">
+              <div class="metric-cell"><span class="num">25% → 58%</span><span class="lbl">Activation</span></div>
+              <div class="metric-cell"><span class="num">–18%</span><span class="lbl">Cancellations</span></div>
+              <div class="metric-cell"><span class="num">6 weeks</span><span class="lbl">Turnaround</span></div>
+              <div class="metric-cell"><span class="num">Multi-city</span><span class="lbl">Coverage</span></div>
             </div>
-            <p class="exp-context">Ride-hailing operations for Southern Germany. Driver acquisition, activation, and 3PL supply management.</p>
+            <p class="exp-context">Managed fleet and supply operations across South Germany — vehicle deployment, 3PL coordination, rebalancing, and process optimisation.</p>
             <ul class="exp-bullets">
-              <li><strong>Doubled driver activation rate in 6 weeks</strong> through onboarding process redesign</li>
-              <li>Reduced cancellation rate via 3PL accountability framework</li>
-              <li>Owned 3PL supply management for Munich and the wider South Germany region</li>
-              <li>Designed bonus and incentive programs to balance supply and demand peaks</li>
-              <li>Built monitoring dashboards for driver performance and city operations metrics</li>
+              <li>Improved activation rate from <span class="metric">25% → 58%</span> in 6 weeks</li>
+              <li>Reduced cancellations by <span class="metric">18%</span> through process optimisation</li>
+              <li>Built performance dashboards (Amplitude, Looker) for daily operational decision-making</li>
+              <li>Strong technical affinity for fleet management systems and multi-stakeholder service applications</li>
             </ul>
           </div>
         </div>
@@ -493,190 +522,89 @@
           <div class="exp-meta">
             10.2020 — 02.2023
             <span class="company">Wolt</span>
-            <span class="location">Berlin, Germany</span>
+            <span class="location">Berlin & Germany</span>
           </div>
           <div class="exp-content">
-            <h3>Sustainability Operations Associate · Courier Partner</h3>
-            <div class="metric-strip three">
-              <div class="metric-cell"><span class="num">~30%</span><span class="lbl">Logistics cost reduction</span></div>
-              <div class="metric-cell"><span class="num">Circular</span><span class="lbl">Gear recycling programme led</span></div>
-              <div class="metric-cell"><span class="num">2.5 yr</span><span class="lbl">Operations tenure</span></div>
+            <h3>Sustainability Operations Associate</h3>
+            <div class="metric-strip">
+              <div class="metric-cell"><span class="num">6+</span><span class="lbl">German cities</span></div>
+              <div class="metric-cell"><span class="num">~30%</span><span class="lbl">Cost reduction</span></div>
+              <div class="metric-cell"><span class="num">First</span><span class="lbl">National program</span></div>
+              <div class="metric-cell"><span class="num">Ground-up</span><span class="lbl">Perspective</span></div>
             </div>
-            <p class="exp-context">Q-commerce and food delivery operations. Courier onboarding, fleet sustainability, and process optimization. Started part-time as a courier partner before joining the operations team.</p>
+            <p class="exp-context">Led Germany's first national courier equipment programme in coordination with global HQ (Denmark). Coordinated across 6+ cities.</p>
             <ul class="exp-bullets">
-              <li>Contributed to logistics cost reduction across courier operations</li>
-              <li>Led gear recycling and circular-economy initiatives (project management)</li>
-              <li>Optimized courier onboarding and bike-check workflows</li>
-              <li>Bottom-up operational understanding from courier role before joining ops team</li>
+              <li>Delivered <span class="metric">~30% logistics cost reduction</span> through process standardisation and supplier management</li>
+              <li>Started as courier partner in Berlin before transitioning into operations leadership</li>
+              <li>Unique ground-level perspective that informed supply-side strategy and partner experience design</li>
             </ul>
           </div>
         </div>
-      </div>
 
-      <div class="exp-category">
-        <div class="exp-cat-label reveal">Earlier experience — <em>operations across industries</em></div>
-
-        <div class="exp-item reveal">
-          <div class="exp-meta">
-            09.2021 — 12.2021
-            <span class="company">Engagement Global gGmbH</span>
-            <span class="location">Berlin · Internship</span>
-          </div>
-          <div class="exp-content">
-            <h3>Digital Sustainability Consultant</h3>
-            <p class="exp-context">NGO project supporting the certification of a Participatory Guarantee System for Organic Agriculture for small businesses in Mexico. Adapted IFOAM Organics International standards, built digital documentation frameworks, and handled data across organic and conventional production datasets.</p>
-          </div>
-        </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-meta">
-            05.2017 — 08.2017
-            <span class="company">Someone Somewhere</span>
-            <span class="location">Mexico City · Internship</span>
-          </div>
-          <div class="exp-content">
-            <h3>Market Research Analyst</h3>
-            <p class="exp-context">Fair-trade Mexican clothing brand. Conducted market research and competitive benchmarking to support US-market expansion.</p>
-          </div>
-        </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-meta">
-            02.2012 — 07.2017
-            <span class="company">AlcorteMex</span>
-            <span class="location">Mexico City · Full-time</span>
-          </div>
-          <div class="exp-content">
-            <h3>Shop Manager</h3>
-            <p class="exp-context">Family business in frozen and fresh food distribution. Leadership across accounting, sales, procurement, and marketing. Negotiated regional B2B contracts; inventory and supplier management.</p>
-          </div>
-        </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-meta">
-            11.2016 — 04.2017
-            <span class="company">SHCP (Mexican Ministry of Finance)</span>
-            <span class="location">Mexico City · Apprenticeship</span>
-          </div>
-          <div class="exp-content">
-            <h3>Administrative Assistant</h3>
-            <p class="exp-context">Mexican federal Ministry of Finance. Administrative support and stakeholder coordination within tax administration.</p>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-  <section class="block alt" id="approach">
+  <!-- WORK -->
+  <section class="section" id="work">
     <div class="container">
-      <div class="section-head reveal">
-        <h2 class="section-title">Seven principles I bring to <em>marketplace operations</em> and B2B SaaS.</h2>
-      </div>
-      <p class="approach-intro reveal">Earned through operating across mobility platforms, sharpened through analytical work. These are the principles that anchor how I diagnose, plan, and execute.</p>
-      <div class="approach-grid">
-        <div class="approach-item reveal">
-          <span class="approach-num">01</span>
-          <h3>Diagnose before levering</h3>
-          <p>Most operating problems aren't modeling problems — they're framing or instrumentation problems. The work that creates value is naming what's actually broken before applying a fix.</p>
-        </div>
-        <div class="approach-item reveal">
-          <span class="approach-num">02</span>
-          <h3>Quality is multi-dimensional</h3>
-          <p>Define "good" across pillars — safety, reliability, peace of mind. Measure with operational telemetry first, customer ratings second. Premium customers value their time more than rating prompts.</p>
-        </div>
-        <div class="approach-item reveal">
-          <span class="approach-num">03</span>
-          <h3>Grow with discipline</h3>
-          <p>Markets earn growth by passing explicit gates — readiness, concentration, rejection-rate, supply depth. Filter-passing is necessary, not sufficient.</p>
-        </div>
-        <div class="approach-item reveal">
-          <span class="approach-num">04</span>
-          <h3>Translate diagnosis into roadmaps</h3>
-          <p>Insight without execution is academic. The strongest planning artifacts name assumptions, structural floors, and explicit decision points where the plan pivots or doubles down.</p>
-        </div>
-        <div class="approach-item reveal">
-          <span class="approach-num">05</span>
-          <h3>Sequence risk before levers fire</h3>
-          <p>What you defer matters as much as what you do. Remediate fragile markets before scaling them; design for downside, not just upside.</p>
-        </div>
-        <div class="approach-item reveal">
-          <span class="approach-num">06</span>
-          <h3>ML for probabilistic problems; rules for policy</h3>
-          <p>Trying to use ML for tier classification adds complexity without value. Trying to use rules for prediction misses the probabilistic structure. The split is first-principles, not stylistic.</p>
-        </div>
-        <div class="approach-item reveal" style="grid-column: 1 / -1;">
-          <span class="approach-num">07</span>
-          <h3>Partner accountability is conversation infrastructure</h3>
-          <p>Tiered scorecards turn partner performance into structured commercial conversations — Tier A standard terms, Tier C 90-day improvement plan with named targets. The framework is the conversation.</p>
-        </div>
-      </div>
-      <p class="approach-proof reveal">These principles are demonstrated in a live interactive dashboard &mdash; <a href="https://marketplace-ops-demo-port.streamlit.app/" target="_blank" rel="noopener">marketplace-ops-demo-port.streamlit.app <span aria-hidden="true">&#8599;</span></a></p>
-    </div>
-  </section>
+      <div class="section-label reveal">Selected work</div>
+      <h2 class="reveal">Case studies and <em>self-directed projects</em>.</h2>
 
-  <section class="block" id="work">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2 class="section-title">Working tools and frameworks — <em>not decks alone</em>.</h2>
-      </div>
       <div class="work-grid">
-        <div class="work-card feature reveal">
-          <a href="https://marketplace-ops-demo-port.streamlit.app/" target="_blank" rel="noopener" class="dashboard-thumb-link">
-            <img src="dashboard-preview.png" alt="Marketplace Operations dashboard — per-partner drill-down view" class="dashboard-thumb">
-            <span class="dashboard-thumb-cta">Open live dashboard <span aria-hidden="true">&#8599;</span></span>
-          </a>
-          <div class="work-meta">2026 &middot; Self-directed &middot; Interactive demonstration</div>
-          <h3>Marketplace Operations &mdash; Live Demo Dashboard</h3>
-          <p class="work-body">A working interactive dashboard demonstrating four operating principles through synthetic data. Visitors can sort the partner scorecard, filter by tier, adjust quality-penalty assumptions, and walk a four-tab analytical narrative. Built to be transferable across marketplace operations, fleet management, and key account contexts.</p>
-          <ul>
-            <li><span class="li-label">Tech.</span><span class="li-text">Python &middot; pandas &middot; Streamlit &middot; Plotly</span></li>
-            <li><span class="li-label">Data.</span><span class="li-text">Public-safe synthetic data (25,000 records, 11 cities, 80 partners)</span></li>
-          </ul>
-          <p><a href="https://marketplace-ops-demo-port.streamlit.app/" target="_blank" rel="noopener" class="work-link work-link-on-dark">Open the live dashboard <span aria-hidden="true">&#8599;</span></a></p>
-        </div>
 
+        <div class="work-card feature reveal">
+          <div class="work-meta">2025 — Present · Co-founder · Featured case study</div>
+          <h3>Nexio Fleet — Building compliance-native product for Berlin PHV fleets.</h3>
+          <p class="work-body">Strategy, operations and product at an early-stage compliance SaaS. Translated regulatory frameworks (LABO, PBefG) into product specifications, ran field discovery with fleet operators and drivers, prioritised the roadmap, and built the systems that make compliance measurable.</p>
+          <ul>
+            <li><strong>Product ownership.</strong> Wrote product specs for the Driver App and Fleet Dashboard; owned QA across iOS, Android, and web; established structured feedback loops between operations and engineering.</li>
+            <li><strong>Compliance at scale.</strong> Framework now underpins compliance for <strong>800+ active drivers across 8 fleet operators</strong> in Berlin and Brandenburg, aligned with LABO reporting requirements.</li>
+            <li><strong>Automation.</strong> Reduced manual reporting effort by 60–70% via Python pipelines integrating Uber and Bolt platform data with Nexio's internal architecture.</li>
+            <li><strong>Cross-functional.</strong> Contributed to tiered compliance pricing, fleet partnerships, competitive research, and early GTM positioning alongside the CEO.</li>
+          </ul>
+          <p><a href="/nexio/" class="work-link">Open the Nexio case study <span>↗</span></a></p>
+          <p class="work-note">Reference letter on file from Aleksander Boski, CEO and co-founder of Nexio Fleet GmbH.</p>
+        </div>
 
         <div class="work-card reveal">
           <div class="work-meta">Self-directed · 2026 · Premium mobility sector</div>
           <h3>Marketplace Strategy & Analytics — European Premium Mobility</h3>
           <p class="work-body">A self-directed analytical project applying my framework to a multi-city premium ride marketplace. Demonstrates how I approach growth strategy, partnership accountability, and quality economics at marketplace scale.</p>
           <ul>
-            <li><span class="li-label">BD strategy across regions.</span><span class="li-text">Growth-market selection through explicit filter gates — partnership-channel markets (airline-driven, Southern Europe) and direct-customer markets (Western Europe). Channel-diversified by design so a partnership renegotiation doesn't compound across the portfolio.</span></li>
-            <li><span class="li-label">Customer-facing analytical dashboards.</span><span class="li-text">Interactive dashboards built in Python, Streamlit, and Plotly — operational telemetry, partner performance, segment economics, and quality-vs-margin views.</span></li>
-            <li><span class="li-label">Partnership segmentation & supplier scorecard.</span><span class="li-text">Tiered classification across the supply base, each tier mapped to a structured commercial conversation — standard terms, monitoring, improvement plan, or deactivation timeline.</span></li>
-            <li><span class="li-label">Quality Contribution Index.</span><span class="li-text">Penalty-adjusted contribution metric translating quality failures into a per-ride P&L number. Bridges quality discipline and finance — prevents quality-vs-margin trade-offs from drifting silently during scale-up.</span></li>
+            <li><strong>BD strategy across regions.</strong> Growth-market selection through explicit filter gates — partnership-channel markets (airline-driven, Southern Europe) and direct-customer markets (Western Europe).</li>
+            <li><strong>Customer-facing analytical dashboards.</strong> Interactive dashboards built in Python, Streamlit, and Plotly — operational telemetry, partner performance, segment economics, and quality-vs-margin views.</li>
+            <li><strong>Partnership segmentation & supplier scorecard.</strong> Tiered classification across the supply base, each tier mapped to a structured commercial conversation.</li>
+            <li><strong>Quality Contribution Index.</strong> Penalty-adjusted contribution metric translating quality failures into a per-ride P&L number.</li>
           </ul>
           <p class="work-note">Full project detail available on request.</p>
         </div>
 
-        <div class="work-card reveal">
-          <div class="work-meta">2025 — Present · Freelance via Salas UG</div>
-          <h3>Nexio Fleet — Strategy & Operations Engagement</h3>
-          <p class="work-body">Compliance system design and operational architecture for an early-stage fleet-compliance SaaS in Berlin and Brandenburg. Reporting framework covering 90–150 drivers, 60–70% reduction in manual reporting time, audit-ready data tracking aligned with LABO and Berlin Mobilitätsgesetz, and product specs for Driver App and Fleet Dashboard.</p>
-          <p class="work-note">Reference letter on file from Aleksander Boski, CEO of Nexio Fleet GmbH.</p>
-          <p><a href="/nexio/" class="work-link">Open the Nexio case study <span aria-hidden="true">&#8599;</span></a></p>
-        </div>
       </div>
     </div>
   </section>
 
-  <section class="block alt" id="skills">
+  <!-- SKILLS -->
+  <section class="section" id="skills">
     <div class="container">
-      <div class="section-head reveal">
-        <h2 class="section-title"><em>What I work with</em>, across operations and analytics.</h2>
-      </div>
+      <div class="section-label reveal">Capabilities</div>
+      <h2 class="reveal">What I work with, <em>across product, operations, and analytics</em>.</h2>
       <div class="skills-list">
+        <div class="skills-row reveal">
+          <div class="skills-cat">Product</div>
+          <div class="skills-items"><strong>Product specifications</strong> · Product discovery with users and operators · Roadmap prioritisation · Cross-functional feedback loops · QA across iOS, Android, and web · Product Ops · Compliance-critical product</div>
+        </div>
         <div class="skills-row reveal">
           <div class="skills-cat">Operations & Strategy</div>
           <div class="skills-items"><strong>Supply operations</strong> · Partner and key account management · Onboarding and activation · Compliance design · Go-to-market execution · Cross-functional alignment · Process automation · Stakeholder management</div>
         </div>
         <div class="skills-row reveal">
           <div class="skills-cat">Analytics & Engineering</div>
-          <div class="skills-items"><strong>Python</strong> (pandas, numpy) · <strong>SQL</strong> · Streamlit · Plotly · R (R-Studio) · Firebase (Auth, Firestore) · CSV pipeline automation · Applied ML</div>
+          <div class="skills-items"><strong>Python</strong> (pandas, numpy) · <strong>SQL</strong> · Streamlit · Plotly · Firebase (Auth, Firestore) · FastAPI · CSV pipeline automation · Applied ML</div>
         </div>
         <div class="skills-row reveal">
           <div class="skills-cat">Tooling</div>
-          <div class="skills-items">Asana · Miro · Notion · Pipedrive · Salesforce · Clevertap · Mailchimp · Slack · MS Teams · Tableau · Figma · Canva · Framer · MS Office · Google Workspace · Git</div>
+          <div class="skills-items">Asana · Miro · Notion · Pipedrive · Salesforce · Slack · Tableau · Figma · Framer · MS Office · Google Workspace · Git · TestFlight</div>
         </div>
         <div class="skills-row reveal">
           <div class="skills-cat">Languages</div>
@@ -686,75 +614,55 @@
     </div>
   </section>
 
-  <section class="block" id="education">
+  <!-- EDUCATION -->
+  <section class="section" id="education">
     <div class="container">
-      <div class="section-head reveal">
-        <h2 class="section-title">Operations education, <em>analytical depth</em>, continuous certification.</h2>
-      </div>
+      <div class="section-label reveal">Education</div>
+      <h2 class="reveal">Operations education, <em>analytical depth</em>, continuous certification.</h2>
       <div class="edu-list">
+        <div class="edu-item reveal">
+          <div class="edu-year">2025 — Present</div>
+          <div class="edu-body">
+            <div class="school">Berlin Professional School · HWR Berlin</div>
+            <div class="degree">MSc Business Management — <em>Digital Business Management</em></div>
+          </div>
+        </div>
         <div class="edu-item reveal">
           <div class="edu-year">01.2026 — 03.2026</div>
           <div class="edu-body">
             <div class="school">Ironhack · Berlin</div>
-            <div class="degree">Diploma, DevOps & Cloud Computing — <em>CI/CD pipelines, Terraform, Docker, Kubernetes, AWS, Azure, monitoring, cloud governance</em></div>
-          </div>
-        </div>
-        <div class="edu-item reveal">
-          <div class="edu-year">03.2023 — 06.2023</div>
-          <div class="edu-body">
-            <div class="school">Ironhack · Berlin</div>
-            <div class="degree">Diploma, Data Analytics Bootcamp — <em>Python, MySQL, Tableau, statistical analysis, Pandas, data visualization, applied ML</em></div>
+            <div class="degree">Diploma, DevOps & Cloud Computing — <em>CI/CD pipelines, Terraform, Docker, Kubernetes, AWS, Azure</em></div>
           </div>
         </div>
         <div class="edu-item reveal">
           <div class="edu-year">2019 — 2021</div>
           <div class="edu-body">
-            <div class="school">Rhine-Waal University (HSRW) · Kleve</div>
-            <div class="degree">M.A. Sustainability Studies — Grade 1.7. <em>Master thesis: The Contribution of Steward-Owned Companies to the SDGs.</em></div>
+            <div class="school">Rhine-Waal University · Kleve</div>
+            <div class="degree">M.A. Sustainable Development Management — <em>Grade 1.7</em></div>
           </div>
         </div>
         <div class="edu-item reveal">
-          <div class="edu-year">2012 — 2015</div>
+          <div class="edu-year">2011 — 2015</div>
           <div class="edu-body">
-            <div class="school">Universidad La Salle · Mexico City</div>
-            <div class="degree">Bachelor, International Business — <em>Promedio meritorio (Mexican honors distinction; German equivalent: 1.2)</em></div>
-          </div>
-        </div>
-        <div class="edu-item reveal">
-          <div class="edu-year">2014 & 2016</div>
-          <div class="edu-body">
-            <div class="school">Hochschule Bremen</div>
-            <div class="degree">Erasmus Semester & Summer School, Economics and Management — <em>Grade 1.2</em></div>
-          </div>
-        </div>
-        <div class="edu-item reveal">
-          <div class="edu-year">2015</div>
-          <div class="edu-body">
-            <div class="school">UC Berkeley</div>
-            <div class="degree">TrepCamp Entrepreneurship Program</div>
-          </div>
-        </div>
-        <div class="edu-item reveal">
-          <div class="edu-year">2023</div>
-          <div class="edu-body">
-            <div class="school">Certifications</div>
-            <div class="degree">Google Data Analytics (Coursera · 3 modules) · Google Foundations of Project Management (Coursera) · Corporate ESG and Sustainability (Udemy) &middot; <a href="https://drive.google.com/file/d/17s7xCyrMM8qRZtqPk7gZReJvZa7iSguF/view?usp=sharing" target="_blank" rel="noopener" style="color: var(--teal); font-weight: 600; border-bottom: 1.5px solid var(--teal-pale); padding-bottom: 1px;">View all certificates <span aria-hidden="true">&#8599;</span></a></div>
+            <div class="school">La Salle University · Mexico City</div>
+            <div class="degree">B.Sc. International Business — <em>Erasmus exchange at Hochschule Bremen</em></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="contact" id="contact">
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
     <div class="container inner">
-      <div class="hero-eyebrow reveal">Get in touch</div>
-      <h2 class="reveal">Building something <em>interesting?</em></h2>
-      <p class="contact-sub reveal">Currently open to senior Operations, GTM, Business Development, or Strategy roles — full-time in Berlin or remote-EMEA. If you're building something where operational rigor is the competitive advantage, let's have a conversation.</p>
+      <div class="section-label reveal">Get in touch</div>
+      <h2 class="reveal">Building something <em>interesting</em>?</h2>
+      <p class="contact-sub reveal">Currently open to senior Product Ownership, Operations, GTM, Business Development, or Strategy roles &mdash; full-time in Berlin or remote-EMEA. If you're building something where operational rigor is the competitive advantage, let's have a conversation.</p>
       <div class="contact-actions reveal">
-        <a href="mailto:aguilarjorge@outlook.com?subject=Conversation%20about%20a%20role" class="btn-primary">aguilarjorge@outlook.com <span class="arrow">→</span></a>
-        <button type="button" class="btn-copy" data-copy="aguilarjorge@outlook.com" aria-label="Copy email address"><span class="copy-label">Copy</span><span class="copy-done">Copied</span></button>
-        <a href="https://www.linkedin.com/in/jorge-aguilar-ops/" class="btn-secondary" target="_blank" rel="noopener">Connect on LinkedIn</a>
-        <a href="https://calendly.com/aguilarjorge-fhpf/30min" class="btn-secondary" target="_blank" rel="noopener">Book a 30-min call</a>
+        <a href="mailto:aguilarjorge@outlook.com?subject=Conversation%20about%20a%20role" class="btn-primary">aguilarjorge@outlook.com <span>→</span></a>
+        <button class="btn-copy" onclick="copyEmail(this)"><span class="copy-label">Copy</span><span class="copy-done">✓ Copied</span></button>
+        <a href="https://www.linkedin.com/in/jorge-aguilar-ops/" target="_blank" rel="noopener" class="btn-secondary">Connect on LinkedIn</a>
+        <a href="https://calendly.com/aguilarjorge-fhpf/30min" target="_blank" rel="noopener" class="btn-secondary">Book a 30-min call</a>
       </div>
       <div class="contact-details">
         <div class="contact-detail">
@@ -765,17 +673,21 @@
           <span class="key">LinkedIn</span>
           <span class="val"><a href="https://www.linkedin.com/in/jorge-aguilar-ops/" target="_blank" rel="noopener">/in/jorge-aguilar-ops</a></span>
         </div>
-                <div class="contact-detail">
+        <div class="contact-detail">
           <span class="key">Schedule</span>
-          <span class="val"><a href="https://calendly.com/aguilarjorge-fhpf/30min" target="_blank" rel="noopener">Book 30 min <span aria-hidden="true">&#8599;</span></a></span>
+          <span class="val"><a href="https://calendly.com/aguilarjorge-fhpf/30min" target="_blank" rel="noopener">Book 30 min <span>↗</span></a></span>
         </div>
         <div class="contact-detail">
           <span class="key">Credentials</span>
-          <span class="val"><a href="https://drive.google.com/file/d/17s7xCyrMM8qRZtqPk7gZReJvZa7iSguF/view?usp=sharing" target="_blank" rel="noopener">View certificates <span aria-hidden="true">&#8599;</span></a></span>
+          <span class="val"><a href="https://drive.google.com/file/d/17s7xCyrMM8qRZtqPk7gZReJvZa7iSguF/view?usp=sharing" target="_blank" rel="noopener">View certificates <span>↗</span></a></span>
         </div>
         <div class="contact-detail">
           <span class="key">Location</span>
-          <span class="val">Berlin · Working across EMEA</span>
+          <span class="val">Berlin &middot; Working across EMEA</span>
+        </div>
+        <div class="contact-detail">
+          <span class="key">Languages</span>
+          <span class="val">EN &middot; DE (C1) &middot; ES (native)</span>
         </div>
       </div>
     </div>
@@ -785,66 +697,29 @@
 
 <footer>
   <div class="container inner">
-    <span>© 2026 Jorge Aguilar · Berlin</span>
-    <span><a href="https://www.linkedin.com/in/jorge-aguilar-ops/" target="_blank" rel="noopener">LinkedIn</a></span>
+    <span>&copy; 2026 Jorge Aguilar</span>
+    <span>Berlin · EMEA</span>
   </div>
 </footer>
 
 <script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 8) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  });
-  const reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => io.observe(el));
-  } else {
-    reveals.forEach(el => el.classList.add('visible'));
-  }
-  document.querySelectorAll('.btn-copy').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const text = btn.dataset.copy;
-      try { await navigator.clipboard.writeText(text); } catch(e) {
-        const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+  // Reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Copy email
+  function copyEmail(btn) {
+    navigator.clipboard.writeText('aguilarjorge@outlook.com').then(() => {
       btn.classList.add('copied');
       setTimeout(() => btn.classList.remove('copied'), 2000);
     });
-  });
-
-  const navBurger = document.getElementById('navBurger');
-  const navDrawer = document.getElementById('navDrawer');
-  const navScrim = document.getElementById('navScrim');
-  const navClose = document.getElementById('navClose');
-  function openDrawer() {
-    navDrawer.classList.add('open');
-    navScrim.classList.add('open');
-    document.body.classList.add('drawer-open');
-    navBurger.setAttribute('aria-expanded', 'true');
-    navDrawer.setAttribute('aria-hidden', 'false');
-  }
-  function closeDrawer() {
-    navDrawer.classList.remove('open');
-    navScrim.classList.remove('open');
-    document.body.classList.remove('drawer-open');
-    navBurger.setAttribute('aria-expanded', 'false');
-    navDrawer.setAttribute('aria-hidden', 'true');
-  }
-  if (navBurger && navDrawer) {
-    navBurger.addEventListener('click', openDrawer);
-    navClose.addEventListener('click', closeDrawer);
-    navScrim.addEventListener('click', closeDrawer);
-    navDrawer.querySelectorAll('[data-nav-link]').forEach(a => a.addEventListener('click', closeDrawer));
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
   }
 </script>
 
