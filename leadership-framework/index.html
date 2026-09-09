@@ -1,192 +1,309 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Leadership Framework — Jorge Aguilar</title>
-<meta name="description" content="A leadership framework adopted from Leila Hormozi and applied across operations and team leadership work.">
-<meta name="robots" content="noindex, nofollow">
-
+<meta name="description" content="The five pillars that shape how I lead: emotional regulation, sincere candor, unimpeachable character, clarity, and ownership. A framework grounded in Leila Hormozi's work on leadership.">
+<meta property="og:title" content="Leadership Framework — Jorge Aguilar">
+<meta property="og:description" content="Five pillars that shape how I lead teams through ambiguity across operations, product, and partnerships.">
+<meta property="og:type" content="article">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
 <style>
-  :root {
-    --bg: #0B1416;
-    --bg-soft: #131F22;
-    --bg-card: #1A282C;
-    --bg-card-hover: #213136;
-    --ink: #F0EBE0;
-    --ink-soft: #B8B0A3;
-    --ink-mute: #847C70;
-    --rule: #2A3A3F;
-    --teal: #6BBBB0;
-    --teal-soft: #8BCDC2;
-    --coral: #E89074;
-    --coral-soft: #F0A88C;
-    --max-w: 920px;
-    --gutter: clamp(22px, 4vw, 64px);
+  :root{
+    --bg:#0B0B0D;
+    --surface:#0F0F12;
+    --surface-2:#141417;
+    --fg:#F7F7F8;
+    --muted:#B4B4BB;
+    --border:#303036;
+    --accent:#B8FF3D;
+    --accent-fg:#09090B;
+    --radius:1.75rem;
+    --radius-sm:1.125rem;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --sans:"Inter",system-ui,-apple-system,sans-serif;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body {
-    background: var(--bg); color: var(--ink);
-    font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 400; line-height: 1.6; font-size: 18px;
-    overflow-x: hidden;
-    background-image:
-      radial-gradient(ellipse at 15% 8%, rgba(107, 187, 176, 0.06) 0%, transparent 45%),
-      radial-gradient(ellipse at 85% 90%, rgba(232, 144, 116, 0.05) 0%, transparent 50%);
-    min-height: 100vh;
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
-  @media (max-width: 640px) { body { font-size: 16px; } }
-  ::selection { background: var(--teal); color: var(--bg); }
-  a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
-  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
+
+  ::selection{background:var(--accent);color:var(--accent-fg)}
+  a{color:var(--accent);text-decoration:none}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
   /* NAV */
-  .nav { padding: 28px var(--gutter); border-bottom: 1px solid var(--rule); }
-  .nav .inner { display: flex; justify-content: space-between; align-items: center; max-width: var(--max-w); margin: 0 auto; }
-  .back-link { font-size: 14px; color: var(--ink-soft); font-weight: 500; display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s ease; }
-  @media (hover: hover) { .back-link:hover { color: var(--teal); } }
-  .back-link .arrow { transition: transform 0.2s ease; display: inline-block; }
-  @media (hover: hover) { .back-link:hover .arrow { transform: translateX(-3px); } }
-  .nav-brand { font-family: 'Instrument Serif', Georgia, serif; font-size: 18px; color: var(--ink-soft); }
+  .nav{
+    padding:20px 32px;border-bottom:1px solid var(--border);
+    background:rgba(11,11,13,0.85);backdrop-filter:blur(8px);
+    position:sticky;top:0;z-index:20;
+  }
+  .nav-inner{max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .back-link{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);display:inline-flex;align-items:center;gap:10px;
+    white-space:nowrap;transition:color .2s ease;
+  }
+  .back-link:hover{color:var(--accent)}
+  .nav-actions{display:flex;align-items:center;gap:14px}
+  .nav-actions a{white-space:nowrap}
+  .nav-download{
+    padding:8px 16px;border:1px solid var(--border);border-radius:999px;
+    font-weight:500;font-size:12.5px;color:var(--fg);
+    transition:border-color .2s ease,color .2s ease;
+  }
+  .nav-download:hover{border-color:var(--accent);color:var(--accent)}
+  .nav-cta{
+    background:var(--accent);color:var(--accent-fg);
+    padding:10px 18px;border-radius:999px;font-weight:600;font-size:12.5px;
+    transition:transform .2s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px);color:var(--accent-fg)}
+  @media (max-width:560px){
+    .nav{padding:14px 20px}
+    .nav-actions{gap:10px}
+    .nav-dl-long{display:none}
+    .nav-download{padding:8px 13px;font-size:12px}
+    .nav-cta{padding:9px 15px;font-size:12px}
+  }
 
-  /* HERO */
-  .hero { padding: clamp(80px, 14vh, 140px) 0 clamp(56px, 9vh, 90px); text-align: left; }
-  .hero-eyebrow { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); display: inline-flex; align-items: center; gap: 12px; margin-bottom: 28px; }
-  .hero-eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--teal); }
-  h1 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(40px, 6.5vw, 80px); line-height: 1.0; letter-spacing: -0.025em; margin-bottom: 32px; color: var(--ink); }
-  h1 em { color: var(--teal); font-style: italic; }
-  .hero-lede { font-size: clamp(19px, 1.7vw, 22px); color: var(--ink-soft); line-height: 1.55; max-width: 56ch; margin-bottom: 20px; }
-  .hero-attribution { font-size: 15px; color: var(--ink-mute); font-style: italic; max-width: 56ch; line-height: 1.55; }
-  .hero-attribution a { color: var(--coral); border-bottom: 1px solid rgba(232, 144, 116, 0.35); padding-bottom: 1px; transition: border-color 0.2s ease; }
-  @media (hover: hover) { .hero-attribution a:hover { border-bottom-color: var(--coral); } }
+  .wrap{max-width:1320px;margin:0 auto;padding:72px 32px 88px}
+  .col{max-width:900px}
 
-  /* STATEMENT BLOCK */
-  .statement { padding: clamp(48px, 8vh, 80px) 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: clamp(56px, 9vh, 90px); }
-  .statement-label { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--coral); margin-bottom: 24px; }
-  .statement-prose { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.35; letter-spacing: -0.01em; color: var(--ink); max-width: 26ch; }
-  .statement-prose { max-width: 38ch; }
-  .statement-prose em { color: var(--teal-soft); font-style: italic; }
+  .rule{width:80px;height:4px;background:var(--accent);border-radius:2px;margin-bottom:28px}
 
-  /* PILLARS INTRO */
-  .pillars-intro { margin-bottom: 48px; }
-  .pillars-intro h2 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.1; letter-spacing: -0.018em; color: var(--ink); max-width: 22ch; margin-bottom: 20px; }
-  .pillars-intro h2 em { color: var(--teal); font-style: italic; }
-  .pillars-intro p { color: var(--ink-soft); font-size: 17px; line-height: 1.6; max-width: 56ch; }
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 24px;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:24px;height:2px;background:var(--accent);border-radius:2px}
+
+  h1{
+    font-size:clamp(40px,6vw,76px);font-weight:900;line-height:.95;
+    letter-spacing:-.03em;text-transform:uppercase;margin:0 0 28px;
+    max-width:17ch;text-wrap:balance;
+  }
+
+  .lede{font-size:clamp(17px,1.7vw,20px);line-height:1.65;color:var(--muted);margin:0 0 20px;max-width:62ch}
+  .lede strong{color:var(--fg);font-weight:600}
+  .attribution{font-size:15px;line-height:1.65;color:var(--muted);margin:0;max-width:62ch}
+  .attribution a{border-bottom:1px solid rgba(184,255,61,.3);padding-bottom:1px;transition:border-color .2s ease}
+  .attribution a:hover{border-bottom-color:var(--accent)}
+
+  /* misma medida que el hero para que la columna quede alineada de arriba a abajo */
+  .stack{display:flex;flex-direction:column;gap:24px;margin-top:56px;min-width:0;max-width:900px}
+
+  .card{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius);padding:40px;min-width:0;
+    display:flex;flex-direction:column;gap:24px;
+  }
+
+  /* LEADERSHIP STATEMENT */
+  .statement{
+    background:var(--surface-2);position:relative;overflow:hidden;
+  }
+  .statement::before{
+    content:"";position:absolute;top:0;right:0;width:240px;height:240px;
+    background:radial-gradient(circle at top right,rgba(184,255,61,.08) 0%,transparent 70%);
+    pointer-events:none;
+  }
+  .statement > *{position:relative}
+  .statement-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);margin:0;
+  }
+  .statement-prose{
+    font-size:clamp(22px,2.6vw,32px);font-weight:700;line-height:1.3;
+    letter-spacing:-.02em;color:var(--fg);margin:0;max-width:28ch;
+  }
+  .statement-prose em{font-style:normal;color:var(--accent)}
 
   /* PILLARS */
-  .pillars { display: flex; flex-direction: column; gap: 16px; margin-bottom: clamp(80px, 12vh, 130px); }
-  .pillar { background: var(--bg-card); border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; transition: border-color 0.3s ease, background 0.3s ease; }
-  @media (hover: hover) { .pillar:hover { border-color: rgba(107, 187, 176, 0.4); } }
-  .pillar.open { border-color: var(--teal); background: var(--bg-card-hover); }
+  .section-head h2{
+    font-size:clamp(30px,3.6vw,46px);font-weight:900;line-height:1;
+    letter-spacing:-.025em;text-transform:uppercase;margin:0 0 20px;max-width:20ch;
+  }
+  .section-head h2 em{font-style:normal;color:var(--muted)}
+  .section-head p{font-size:16.5px;line-height:1.65;color:var(--muted);margin:0;max-width:60ch}
 
-  .pillar-trigger { display: grid; grid-template-columns: 60px 1fr 36px; gap: 24px; align-items: center; padding: 28px 32px; cursor: pointer; user-select: none; background: transparent; border: none; width: 100%; text-align: left; color: inherit; font: inherit; }
-  @media (max-width: 640px) { .pillar-trigger { grid-template-columns: 44px 1fr 28px; gap: 18px; padding: 22px 24px; } }
+  .pillars{display:flex;flex-direction:column;gap:16px}
 
-  .pillar-num { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: clamp(32px, 3.6vw, 44px); color: var(--coral); line-height: 1; font-weight: 400; }
-  .pillar-title { display: flex; flex-direction: column; gap: 6px; }
-  .pillar-name { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(22px, 2.2vw, 28px); letter-spacing: -0.012em; line-height: 1.2; color: var(--ink); }
-  .pillar-tagline { font-size: 14.5px; color: var(--ink-mute); line-height: 1.4; font-style: italic; }
-  .pillar-toggle { width: 36px; height: 36px; border-radius: 100px; border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; transition: all 0.25s ease; flex-shrink: 0; }
-  .pillar.open .pillar-toggle { background: var(--teal); border-color: var(--teal); }
-  .pillar-toggle svg { width: 14px; height: 14px; stroke: var(--ink-soft); stroke-width: 2; fill: none; transition: stroke 0.25s ease, transform 0.3s ease; }
-  .pillar.open .pillar-toggle svg { stroke: var(--bg); transform: rotate(180deg); }
+  .pillar{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius);overflow:hidden;
+    transition:border-color .3s ease;
+  }
+  .pillar:hover{border-color:rgba(184,255,61,.28)}
+  .pillar.open{border-color:rgba(184,255,61,.35)}
 
-  .pillar-body { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-  .pillar.open .pillar-body { max-height: 1200px; }
-  .pillar-body-inner { padding: 8px 32px 36px; display: grid; grid-template-columns: 60px 1fr; gap: 24px; }
-  @media (max-width: 640px) { .pillar-body-inner { grid-template-columns: 1fr; padding: 8px 24px 28px; gap: 16px; } }
+  .pillar-trigger{
+    width:100%;display:grid;grid-template-columns:auto minmax(0,1fr) auto;
+    align-items:center;gap:20px;
+    background:none;border:0;cursor:pointer;text-align:left;
+    padding:30px 36px;font-family:var(--sans);color:inherit;
+  }
+  .pillar-num{
+    font-family:var(--mono);font-size:11px;font-weight:600;
+    letter-spacing:.14em;color:var(--accent);
+  }
+  .pillar-name{
+    display:block;font-size:21px;font-weight:700;
+    letter-spacing:-.01em;color:var(--fg);margin-bottom:5px;
+  }
+  .pillar-tagline{display:block;font-size:14.5px;line-height:1.5;color:var(--muted)}
+  .pillar-toggle{
+    width:34px;height:34px;border:1px solid var(--border);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex:none;
+    transition:transform .3s ease,border-color .3s ease;
+  }
+  .pillar-toggle svg{width:15px;height:15px;fill:none;stroke:var(--muted);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .pillar.open .pillar-toggle{transform:rotate(180deg);border-color:var(--accent)}
+  .pillar.open .pillar-toggle svg{stroke:var(--accent)}
 
-  .pillar-body-content { color: var(--ink-soft); font-size: 16px; line-height: 1.65; }
-  .pillar-body-content p { margin-bottom: 20px; }
-  .pillar-body-content .why { color: var(--ink); font-size: 17px; line-height: 1.55; font-weight: 400; }
-  .pillar-body-content .how-label { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; margin-top: 24px; }
-  .pillar-body-content ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
-  .pillar-body-content ul li { display: flex; gap: 12px; }
-  .pillar-body-content ul li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--coral); flex-shrink: 0; margin-top: 10px; }
-  .pillar-body-content .applied { background: rgba(107, 187, 176, 0.08); border-left: 2px solid var(--teal); padding: 18px 22px; border-radius: 4px; margin-top: 8px; }
-  .pillar-body-content .applied-label { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 10px; }
-  .pillar-body-content .applied-text { color: var(--ink); font-size: 15.5px; line-height: 1.6; font-style: italic; }
+  /* Expand/collapse sin alturas fijas: 0fr -> 1fr anima la fila del grid */
+  .pillar-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+  .pillar.open .pillar-body{grid-template-rows:1fr}
+  .pillar-body > .inner{overflow:hidden}
+  .pillar-content{
+    padding:0 36px 34px;max-width:74ch;
+    display:flex;flex-direction:column;gap:20px;
+  }
 
-  /* FOOTER CTA */
-  .footer-cta { padding: clamp(60px, 10vh, 100px) 0; border-top: 1px solid var(--rule); text-align: left; }
-  .footer-cta h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.15; letter-spacing: -0.018em; margin-bottom: 20px; color: var(--ink); max-width: 22ch; }
-  .footer-cta h3 em { color: var(--coral-soft); font-style: italic; }
-  .footer-cta p { color: var(--ink-soft); font-size: 17px; line-height: 1.6; max-width: 56ch; margin-bottom: 32px; }
-  .btn-back { background: var(--teal); color: var(--bg); padding: 14px 26px; border-radius: 100px; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; transition: background 0.25s ease, transform 0.2s ease; }
-  @media (hover: hover) { .btn-back:hover { background: var(--teal-soft); transform: translateY(-1px); } }
-  .btn-back .arrow { transition: transform 0.2s ease; }
-  @media (hover: hover) { .btn-back:hover .arrow { transform: translateX(3px); } }
+  .why{font-size:15.5px;line-height:1.7;color:var(--muted);margin:0}
+  .how-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin:0;
+  }
+  .pillar-content ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+  .pillar-content li{
+    position:relative;padding-left:24px;
+    font-size:15px;line-height:1.6;color:var(--muted);
+  }
+  .pillar-content li::before{content:"—";position:absolute;left:0;top:0;color:var(--accent)}
 
-  /* FOOTER */
-  footer { padding: 28px var(--gutter); border-top: 1px solid var(--rule); color: var(--ink-mute); font-size: 12.5px; }
-  footer .inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; max-width: var(--max-w); margin: 0 auto; }
+  .applied{
+    background:var(--surface-2);border:1px solid var(--border);
+    border-radius:var(--radius-sm);padding:24px 26px;
+  }
+  .applied-label{
+    display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:10px;
+  }
+  .applied-text{font-size:15.5px;line-height:1.7;color:var(--fg);margin:0}
+
+  /* CLOSING CTA */
+  .footer-cta h3{
+    font-size:clamp(22px,2.4vw,30px);font-weight:800;line-height:1.2;
+    letter-spacing:-.02em;margin:0;max-width:24ch;
+  }
+  .footer-cta h3 em{font-style:normal;color:var(--accent)}
+  .footer-cta p{font-size:15.5px;line-height:1.7;color:var(--muted);margin:0;max-width:68ch}
+  .btn-back{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--accent);color:var(--accent-fg);
+    padding:14px 22px;border-radius:999px;font-weight:600;font-size:14px;
+    align-self:flex-start;transition:transform .2s ease;
+  }
+  .btn-back:hover{transform:translateY(-2px);color:var(--accent-fg)}
+  .footer-cta{gap:18px;align-items:flex-start}
+
+  /* SITE FOOTER */
+  .site-footer{padding:32px;border-top:1px solid var(--border);margin-top:64px}
+  .site-footer-inner{
+    max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;
+    align-items:center;flex-wrap:wrap;gap:16px;
+  }
+  .site-footer p{
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);margin:0;
+  }
 
   /* REVEAL */
-  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
-    html { scroll-behavior: auto; }
-    .pillar-body { transition: none; }
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .pillar-body{transition:none}
+    .pillar-toggle{transition:none}
+  }
+
+  @media (max-width:980px){
+    .wrap{padding:48px 20px 64px}
+    .card{padding:28px}
+    .pillar-trigger{padding:24px 24px;gap:14px}
+    .pillar-content{padding:0 24px 26px}
+    .stack{margin-top:40px}
+  }
+  @media (max-width:560px){
+    .pillar-trigger{grid-template-columns:auto minmax(0,1fr);row-gap:12px}
+    .pillar-toggle{grid-column:1/-1;justify-self:end}
   }
 </style>
 </head>
 <body>
 
-<header class="nav">
-  <div class="inner">
-    <a href="/" class="back-link"><span class="arrow">←</span> Back to portfolio</a>
-    <span class="nav-brand">Jorge<span style="color: var(--coral);">.</span>Aguilar</span>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="back-link"><span>&larr;</span> Portfolio</a>
+    <div class="nav-actions">
+      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download"><span class="nav-dl-long">Download </span>CV &darr;</a>
+      <a href="/#contact" class="nav-cta">Get in touch</a>
+    </div>
   </div>
-</header>
+</nav>
 
-<main>
+<main class="wrap">
 
-  <section class="hero">
-    <div class="container">
-      <div class="hero-eyebrow reveal">Leadership Framework</div>
-      <h1 class="reveal">The five pillars that <em>shape</em> how I lead.</h1>
-      <p class="hero-lede reveal">Emotional regulation. Sincere candor. Unimpeachable character. Clarity. Ownership. A framework I have adopted and apply across operations, partnership management, and cross-functional work.</p>
-      <p class="hero-attribution reveal">Framework adopted from <a href="https://www.leilahormozi.com/" target="_blank" rel="noopener">Leila Hormozi</a> — the operating partner and CEO whose body of work on leadership most closely matches how I think about leading people through ambiguity.</p>
-    </div>
-  </section>
+  <header class="col">
+    <div class="rule reveal"></div>
+    <p class="eyebrow reveal">Leadership framework</p>
+    <h1 class="reveal">The five pillars that shape how I lead</h1>
+    <p class="lede reveal">Framework grounded in Leila Hormozi's work on leadership, adapted through my experience across operations, partnerships, and cross-functional teams.</p>
+    <p class="attribution reveal">Adapted from the work of <a href="https://www.leilahormozi.com/" target="_blank" rel="noopener">Leila Hormozi</a> &mdash; the operating partner and CEO whose body of work on leadership most closely matches how I think about leading people through ambiguity.</p>
+  </header>
 
-  <section class="statement">
-    <div class="container">
-      <div class="statement-label reveal">Leadership Statement</div>
-      <p class="statement-prose reveal">In fast-moving operational contexts, leadership means <em>staying calm under pressure</em>, simplifying complexity, and helping teams execute with confidence.</p>
-    </div>
-  </section>
+  <div class="stack">
 
-  <section>
-    <div class="container">
-      <div class="pillars-intro reveal">
+    <section class="card statement reveal">
+      <p class="statement-label">Leadership statement</p>
+      <p class="statement-prose">In fast-moving operational contexts, leadership means <em>staying calm under pressure</em>, simplifying complexity, and helping teams execute with confidence.</p>
+    </section>
+
+    <section class="card">
+      <div class="section-head reveal">
         <h2>Five pillars, <em>expanded</em>.</h2>
-        <p>Click any pillar to read the principle in full, the behaviours I commit to, and how I apply it in my work.</p>
+        <p>Open any pillar to read the principle in full, the behaviours I commit to, and how I apply it in my work.</p>
       </div>
 
       <div class="pillars">
 
         <article class="pillar reveal">
-          <button class="pillar-trigger" aria-expanded="false">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="p1">
             <span class="pillar-num">01</span>
-            <span class="pillar-title">
-              <span class="pillar-name">Emotional Regulation</span>
+            <span>
+              <span class="pillar-name">Emotional regulation</span>
               <span class="pillar-tagline">Leadership under pressure starts with self-control.</span>
             </span>
-            <span class="pillar-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
-          <div class="pillar-body">
-            <div class="pillar-body-inner">
-              <div></div>
-              <div class="pillar-body-content">
+          <div class="pillar-body" id="p1">
+            <div class="inner">
+              <div class="pillar-content">
                 <p class="why">A leader sets the emotional tone for the team. If the leader panics, the team becomes unstable. If the leader stays grounded, the team can think clearly and perform.</p>
-                <div class="how-label">How I apply it</div>
+                <p class="how-label">How I apply it</p>
                 <ul>
                   <li>Stay calm during uncertainty</li>
                   <li>Pause before reacting</li>
@@ -204,20 +321,19 @@
         </article>
 
         <article class="pillar reveal">
-          <button class="pillar-trigger" aria-expanded="false">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="p2">
             <span class="pillar-num">02</span>
-            <span class="pillar-title">
-              <span class="pillar-name">Sincere Candor</span>
+            <span>
+              <span class="pillar-name">Sincere candor</span>
               <span class="pillar-tagline">Clear feedback builds trust faster than hidden expectations.</span>
             </span>
-            <span class="pillar-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
-          <div class="pillar-body">
-            <div class="pillar-body-inner">
-              <div></div>
-              <div class="pillar-body-content">
+          <div class="pillar-body" id="p2">
+            <div class="inner">
+              <div class="pillar-content">
                 <p class="why">Strong leaders do not avoid difficult conversations. They give honest, specific, private feedback that helps people improve.</p>
-                <div class="how-label">How I apply it</div>
+                <p class="how-label">How I apply it</p>
                 <ul>
                   <li>Say expectations clearly upfront</li>
                   <li>Give feedback early, not after resentment builds</li>
@@ -227,7 +343,7 @@
                 </ul>
                 <div class="applied">
                   <span class="applied-label">In practice</span>
-                  <p class="applied-text">I believe in sincere candor — direct, respectful, and actionable communication. I aim to remove ambiguity so teams understand expectations, performance gaps, and the next step forward.</p>
+                  <p class="applied-text">I believe in sincere candor &mdash; direct, respectful, and actionable communication. I aim to remove ambiguity so teams understand expectations, performance gaps, and the next step forward.</p>
                 </div>
               </div>
             </div>
@@ -235,20 +351,19 @@
         </article>
 
         <article class="pillar reveal">
-          <button class="pillar-trigger" aria-expanded="false">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="p3">
             <span class="pillar-num">03</span>
-            <span class="pillar-title">
-              <span class="pillar-name">Unimpeachable Character</span>
+            <span>
+              <span class="pillar-name">Unimpeachable character</span>
               <span class="pillar-tagline">Trustworthiness matters more than appearing perfect.</span>
             </span>
-            <span class="pillar-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
-          <div class="pillar-body">
-            <div class="pillar-body-inner">
-              <div></div>
-              <div class="pillar-body-content">
+          <div class="pillar-body" id="p3">
+            <div class="inner">
+              <div class="pillar-content">
                 <p class="why">People follow leaders whose behavior is predictable, honest, and consistent. A leader should not emotionally dump on the team, but should be transparent enough that people understand context.</p>
-                <div class="how-label">How I apply it</div>
+                <p class="how-label">How I apply it</p>
                 <ul>
                   <li>Be honest without venting downward</li>
                   <li>Take responsibility for my behavior</li>
@@ -266,26 +381,25 @@
         </article>
 
         <article class="pillar reveal">
-          <button class="pillar-trigger" aria-expanded="false">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="p4">
             <span class="pillar-num">04</span>
-            <span class="pillar-title">
+            <span>
               <span class="pillar-name">Clarity</span>
               <span class="pillar-tagline">A leader turns complexity into action.</span>
             </span>
-            <span class="pillar-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
-          <div class="pillar-body">
-            <div class="pillar-body-inner">
-              <div></div>
-              <div class="pillar-body-content">
+          <div class="pillar-body" id="p4">
+            <div class="inner">
+              <div class="pillar-content">
                 <p class="why">Good leadership means taking messy problems and translating them into clear decisions, priorities, and next steps.</p>
-                <div class="how-label">How I apply it</div>
+                <p class="how-label">How I apply it</p>
                 <ul>
                   <li>Simplify complex problems</li>
                   <li>Avoid unnecessary jargon</li>
                   <li>Define the problem before solving it</li>
                   <li>Clarify what success looks like</li>
-                  <li>Give teams 1–3 clear priorities</li>
+                  <li>Give teams 1&ndash;3 clear priorities</li>
                 </ul>
                 <div class="applied">
                   <span class="applied-label">In practice</span>
@@ -297,20 +411,19 @@
         </article>
 
         <article class="pillar reveal">
-          <button class="pillar-trigger" aria-expanded="false">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="p5">
             <span class="pillar-num">05</span>
-            <span class="pillar-title">
+            <span>
               <span class="pillar-name">Ownership</span>
               <span class="pillar-tagline">Leaders solve problems, even when they did not create them.</span>
             </span>
-            <span class="pillar-toggle"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
-          <div class="pillar-body">
-            <div class="pillar-body-inner">
-              <div></div>
-              <div class="pillar-body-content">
+          <div class="pillar-body" id="p5">
+            <div class="inner">
+              <div class="pillar-content">
                 <p class="why">Ownership means taking responsibility for the outcome, not only for your assigned tasks. High-performing teams decentralize responsibility instead of waiting for permission.</p>
-                <div class="how-label">How I apply it</div>
+                <p class="how-label">How I apply it</p>
                 <ul>
                   <li>Focus on solutions, not blame</li>
                   <li>Take responsibility for outcomes</li>
@@ -328,49 +441,46 @@
         </article>
 
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="footer-cta">
-    <div class="container">
-      <h3 class="reveal">See how these principles show up in the <em>operational work</em>.</h3>
-      <p class="reveal">The leadership framework anchors the way I approach the day-to-day operating choices on the portfolio — diagnostics, partner conversations, planning, and analytical decisions.</p>
-      <a href="/" class="btn-back reveal">Back to portfolio <span class="arrow">→</span></a>
-    </div>
-  </section>
+    <section class="card footer-cta reveal">
+      <h3>See how these principles show up in the <em>operational work</em>.</h3>
+      <p>The leadership framework anchors the way I approach the day-to-day operating choices on the portfolio &mdash; diagnostics, partner conversations, planning, and analytical decisions.</p>
+      <a href="/" class="btn-back">Back to portfolio <span>&rarr;</span></a>
+    </section>
 
+  </div>
 </main>
 
-<footer>
-  <div class="inner">
-    <span>© 2026 Jorge Aguilar · Berlin</span>
-    <span>Framework adopted from Leila Hormozi</span>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>Jorge Aguilar &middot; Berlin</p>
+    <p>Framework adapted from Leila Hormozi</p>
   </div>
 </footer>
 
 <script>
-  document.querySelectorAll('.pillar-trigger').forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      const pillar = trigger.closest('.pillar');
-      const isOpen = pillar.classList.contains('open');
-      pillar.classList.toggle('open');
-      trigger.setAttribute('aria-expanded', !isOpen);
+  document.querySelectorAll('.pillar-trigger').forEach(function(trigger){
+    trigger.addEventListener('click', function(){
+      var pillar = trigger.closest('.pillar');
+      var isOpen = pillar.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', String(isOpen));
     });
   });
 
-  const reveals = document.querySelectorAll('.reveal');
+  var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
           io.unobserve(entry.target);
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => io.observe(el));
+    reveals.forEach(function(el){ io.observe(el); });
   } else {
-    reveals.forEach(el => el.classList.add('visible'));
+    reveals.forEach(function(el){ el.classList.add('visible'); });
   }
 </script>
 
