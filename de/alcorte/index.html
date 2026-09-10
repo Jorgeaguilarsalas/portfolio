@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alcorte Alemán Fallstudie — Jorge Aguilar</title>
+<meta name="description" content="KI-gestütztes Bestellmanagementsystem, entworfen um eine einzige Randbedingung: Der Betreiber öffnet nie ein Dashboard. WhatsApp-first + Claude + Supabase.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Alcorte Alemán Fallstudie — Jorge Aguilar">
+<meta property="og:description" content="KI-gestütztes Bestellmanagementsystem, entworfen um eine einzige Randbedingung: Der Betreiber öffnet nie ein Dashboard. WhatsApp-first + Claude + Supabase.">
+<meta property="og:url" content="https://portfolio.j-l-aguilar-salas.workers.dev/de/alcorte/">
+<meta property="og:image" content="https://portfolio.j-l-aguilar-salas.workers.dev/photo.jpg">
+<meta property="og:site_name" content="Jorge Aguilar Portfolio">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Alcorte Alemán Fallstudie — Jorge Aguilar">
+<meta name="twitter:description" content="KI-gestütztes Bestellmanagementsystem, entworfen um eine einzige Randbedingung: Der Betreiber öffnet nie ein Dashboard. WhatsApp-first + Claude + Supabase.">
+<meta name="twitter:image" content="https://portfolio.j-l-aguilar-salas.workers.dev/photo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<style>
+  :root{
+    --bg:#0B0B0D;
+    --surface:#0F0F12;
+    --surface-2:#141417;
+    --fg:#F7F7F8;
+    --muted:#B4B4BB;
+    --border:#303036;
+    --accent:#B8FF3D;
+    --accent-fg:#09090B;
+    --warn:#F5B23D;
+    --crit:#EF4444;
+    --radius:1.75rem;
+    --radius-sm:1.125rem;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --sans:"Inter",system-ui,-apple-system,sans-serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* NAV */
+  .nav{
+    padding:20px 32px;border-bottom:1px solid var(--border);
+    background:rgba(11,11,13,0.85);backdrop-filter:blur(8px);
+    position:sticky;top:0;z-index:20;
+  }
+  .nav-inner{max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  .back-link{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+    white-space:nowrap;transition:color .2s ease;
+  }
+  .back-link:hover{color:var(--accent);}
+  .nav-actions{display:flex;align-items:center;gap:14px;}
+  .nav-actions a{white-space:nowrap;text-decoration:none;}
+  .nav-download{
+    padding:8px 16px;border:1px solid var(--border);border-radius:999px;
+    font-family:var(--sans);font-weight:500;font-size:12.5px;color:var(--fg);
+    transition:border-color .2s ease,color .2s ease;
+  }
+  .nav-download:hover{border-color:var(--accent);color:var(--accent);}
+  .nav-cta{
+    background:var(--accent);color:var(--accent-fg);
+    padding:10px 18px;border-radius:999px;
+    font-family:var(--sans);font-weight:600;font-size:12.5px;
+    transition:transform .2s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px);color:var(--accent-fg);}
+
+  /* NAV — hamburger toggle (mobile only) */
+  .nav-toggle{
+    display:none;width:42px;height:42px;padding:0;flex:none;
+    align-items:center;justify-content:center;
+    background:transparent;border:1px solid var(--border);border-radius:999px;
+    cursor:pointer;transition:border-color .2s ease;
+  }
+  .nav-toggle:hover{border-color:var(--accent);}
+  .nav-toggle .bars,.nav-toggle .bars::before,.nav-toggle .bars::after{
+    display:block;width:17px;height:1.5px;background:var(--fg);border-radius:2px;
+    transition:background .2s ease;
+  }
+  .nav-toggle .bars{position:relative;}
+  .nav-toggle .bars::before,.nav-toggle .bars::after{content:"";position:absolute;left:0;}
+  .nav-toggle .bars::before{top:-5.5px;}
+  .nav-toggle .bars::after{top:5.5px;}
+  .nav-toggle:hover .bars,.nav-toggle:hover .bars::before,.nav-toggle:hover .bars::after{background:var(--accent);}
+
+  @media (max-width:800px){
+    .nav{padding:14px 20px;}
+    .nav-actions{display:none;}
+    .nav-toggle{display:inline-flex;}
+  }
+
+  /* MOBILE MENU OVERLAY */
+  .mobile-menu{
+    position:fixed;inset:0;z-index:60;
+    display:flex;flex-direction:column;
+    background:rgba(9,9,11,0.97);backdrop-filter:blur(16px);
+    opacity:0;visibility:hidden;
+    transition:opacity .3s ease,visibility .3s ease;
+  }
+  .mobile-menu.open{opacity:1;visibility:visible;}
+  .mobile-menu-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 20px;border-bottom:1px solid var(--border);flex:none;
+  }
+  .mobile-menu-close{
+    width:42px;height:42px;padding:0;flex:none;
+    display:inline-flex;align-items:center;justify-content:center;
+    background:transparent;border:1px solid var(--border);border-radius:999px;
+    color:var(--fg);font-family:var(--sans);font-size:20px;line-height:1;
+    cursor:pointer;transition:border-color .2s ease,color .2s ease,transform .2s ease;
+  }
+  .mobile-menu-close:hover{border-color:var(--accent);color:var(--accent);transform:rotate(90deg);}
+  .mobile-menu-body{
+    flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:32px 20px 40px;
+    display:flex;flex-direction:column;
+  }
+  .mobile-menu-actions{
+    display:flex;flex-direction:column;gap:12px;
+    opacity:0;transform:translateY(10px);
+    transition:opacity .45s ease,transform .45s ease;
+  }
+  .mobile-menu.open .mobile-menu-actions{opacity:1;transform:translateY(0);transition-delay:.08s;}
+  .mobile-menu-actions a{
+    display:block;text-align:center;padding:15px 22px;border-radius:999px;
+    font-family:var(--sans);font-weight:600;font-size:14px;text-decoration:none;
+  }
+  .mm-cta{background:var(--accent);color:var(--accent-fg);}
+  .mm-download{border:1px solid var(--border);color:var(--fg);font-weight:500;transition:border-color .2s ease,color .2s ease;}
+  .mm-download:hover{border-color:var(--accent);color:var(--accent);}
+  .mobile-menu-foot{
+    margin-top:auto;padding-top:32px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);opacity:.6;
+  }
+  body.menu-open{overflow:hidden;}
+  @media (min-width:801px){.mobile-menu{display:none;}}
+  @media (prefers-reduced-motion: reduce){
+    .mobile-menu,.mobile-menu-actions{transition-duration:.01ms;}
+    .mobile-menu-close:hover{transform:none;}
+  }
+
+  .wrap{max-width:1320px;margin:0 auto;padding:64px 32px 88px}
+
+  .layout{display:grid;grid-template-columns:320px minmax(0,1fr);gap:64px;align-items:start}
+  .rail{position:sticky;top:96px;display:flex;flex-direction:column;gap:24px}
+
+  .rule{width:80px;height:4px;background:var(--accent);border-radius:2px}
+
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);margin:0;
+  }
+  .eyebrow.on{color:var(--accent)}
+
+  h1{
+    font-size:clamp(46px,5.4vw,80px);font-weight:900;line-height:.9;
+    letter-spacing:-.03em;text-transform:uppercase;margin:0;text-wrap:balance;
+  }
+  .rail p{color:var(--muted);font-size:15.5px;line-height:1.65;margin:0;max-width:34ch}
+
+  .stack{display:flex;flex-direction:column;gap:24px;min-width:0}
+
+  .card{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius);padding:40px;min-width:0;
+  }
+  .card > * + *{margin-top:24px}
+  .card > h3{font-size:25px;font-weight:800;letter-spacing:-.02em;margin:0}
+
+  .head{display:flex;flex-direction:column;gap:6px}
+  .head h2{font-size:30px;font-weight:800;letter-spacing:-.02em;margin:0}
+  .head .role{font-size:16.5px;font-weight:500;margin:0}
+  .head .place{font-size:15px;color:var(--muted);margin:0}
+
+  .metrics{display:flex;flex-wrap:wrap;gap:12px}
+  .metric{
+    display:flex;align-items:baseline;gap:10px;
+    border:1px solid var(--border);border-radius:999px;padding:9px 18px 9px 16px;
+  }
+  .metric b{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent)}
+  .metric span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+  .status{
+    display:inline-flex;align-items:center;gap:10px;margin:0;
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);
+  }
+  .status .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+
+  .lede{font-size:17px;line-height:1.7;color:var(--muted);margin:0;max-width:68ch}
+  .lede strong{color:var(--fg);font-weight:600}
+
+  .sub{
+    background:var(--surface-2);border:1px solid var(--border);
+    border-radius:var(--radius-sm);padding:30px;min-width:0;
+  }
+  .sub > * + *{margin-top:16px}
+  .sub h3{font-size:21px;font-weight:700;letter-spacing:-.01em;margin:0}
+
+  .impact{color:var(--accent);font-size:16.5px;font-weight:600;line-height:1.5;margin:0;max-width:62ch}
+  .body{font-size:15.5px;line-height:1.7;color:var(--muted);margin:0;max-width:70ch}
+  .body strong{color:var(--fg);font-weight:600}
+  .body em{color:var(--fg);font-style:italic}
+
+  .list{margin:0;padding-left:20px;color:var(--muted);font-size:15px;line-height:1.75;max-width:72ch}
+  .list li + li{margin-top:9px}
+  .list strong{color:var(--fg);font-weight:600}
+  .list em{color:var(--fg);font-style:italic}
+
+  code{
+    font-family:var(--mono);font-size:.9em;color:var(--fg);
+    background:rgba(255,255,255,.055);border:1px solid var(--border);
+    border-radius:5px;padding:1px 5px;
+    overflow-wrap:anywhere;
+  }
+
+  figure{margin:0;display:flex;flex-direction:column;gap:12px}
+  .figbox{
+    position:relative;border-radius:14px;
+    background:#0A0A0C;border:1px solid var(--border);
+  }
+  .figscroll{
+    overflow-x:auto;overscroll-behavior-x:contain;
+    border-radius:14px;padding:22px;
+  }
+  .figbox svg{display:block;width:100%;height:auto}
+  /* El fade en el borde derecho avisa que el diagrama sigue mas alla del corte.
+     Vive en .figbox (estatico) y no en .figscroll, porque un hijo absoluto de un
+     scroller se ancla al area scrolleable, no al borde visible.
+     El diagrama mide 520px de min-width + 44 de padding = 564px. Aqui la figura
+     es hija directa de .card (en /nexio/ va dentro de un .sub anidado), asi que
+     la columna es mas ancha y los umbrales NO son los de aquel archivo:
+       una columna -> columna = viewport-100, entra a partir de 664px
+       con el rail -> columna = viewport-532, entra a partir de 1096px
+     De ahi los dos rangos donde el diagrama se corta. */
+  @media (max-width:663px), (min-width:981px) and (max-width:1095px){
+    .figbox::after{
+      content:"";position:absolute;top:0;right:0;bottom:0;width:46px;
+      border-radius:0 13px 13px 0;pointer-events:none;
+      background:linear-gradient(to left,#0A0A0C 18%,rgba(10,10,12,0) 100%);
+    }
+  }
+  figcaption{
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    color:var(--muted);line-height:1.6;
+  }
+
+  .callout{
+    border-left:3px solid var(--accent);padding:4px 0 4px 20px;
+    font-size:15.5px;line-height:1.65;color:var(--fg);max-width:64ch;
+  }
+  .callout span{color:var(--muted)}
+
+  .callout.big{
+    font-size:19px;line-height:1.5;font-weight:600;
+    padding:10px 0 10px 24px;border-left-width:4px;max-width:60ch;
+  }
+
+  /* AT A GLANCE + ROADMAP — key/value grid */
+  .kv{display:grid;grid-template-columns:170px minmax(0,1fr);margin:0}
+  .kv.narrow{grid-template-columns:140px minmax(0,1fr)}
+  .kv dt{
+    font-family:var(--mono);font-size:11px;letter-spacing:.13em;
+    text-transform:uppercase;color:var(--accent);
+    padding:15px 16px 15px 0;border-top:1px solid var(--border);
+  }
+  .kv dd{
+    margin:0;font-size:15px;line-height:1.65;color:var(--muted);
+    padding:15px 0;border-top:1px solid var(--border);
+  }
+  .kv dd strong{color:var(--fg);font-weight:600}
+  .kv dd em{color:var(--fg);font-style:italic}
+  .kv > :nth-child(1),.kv > :nth-child(2){border-top:none;padding-top:0}
+  @media (max-width:640px){
+    .kv,.kv.narrow{grid-template-columns:minmax(0,1fr)}
+    .kv dt{padding:15px 0 4px;border-top:1px solid var(--border)}
+    .kv dd{padding:0 0 15px;border-top:none}
+    .kv > :nth-child(2){padding-top:0}
+  }
+
+  /* DESIGN PRINCIPLES — mismo patron que Approach en el home */
+  .principles{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+    background:var(--border);border:1px solid var(--border);
+    border-radius:var(--radius-sm);overflow:hidden;
+  }
+  .principle{background:var(--surface-2);padding:26px 24px}
+  .principle:last-child{grid-column:1/-1}
+  .pnum{
+    font-family:var(--mono);font-size:11px;color:var(--accent);
+    letter-spacing:.14em;font-weight:600;margin:0 0 11px;display:block;
+  }
+  .principle h4{font-size:17.5px;font-weight:700;letter-spacing:-.01em;color:var(--fg);margin:0 0 9px}
+  .principle p{font-size:14.5px;color:var(--muted);line-height:1.65;margin:0}
+  .principle p strong{color:var(--fg);font-weight:600}
+  @media (max-width:800px){.principles{grid-template-columns:minmax(0,1fr)}}
+
+  /* PERMISSION TIERS */
+  .tiers{
+    display:grid;grid-template-columns:180px minmax(0,1fr);gap:1px;
+    background:var(--border);border:1px solid var(--border);
+    border-radius:var(--radius-sm);overflow:hidden;
+  }
+  .tiers > div{background:var(--surface-2);padding:18px 20px;display:flex;align-items:center}
+  .tier-name{
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--accent);
+  }
+  .tier-tools{flex-wrap:wrap;gap:8px}
+  .tier-tools code{background:rgba(184,255,61,.07);border-color:rgba(184,255,61,.22);font-size:11.5px}
+  @media (max-width:640px){.tiers{grid-template-columns:minmax(0,1fr)}}
+
+  /* ESCALATION CHAIN */
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0;padding:0;list-style:none}
+  .chain li{
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);border:1px solid var(--border);border-radius:999px;
+    padding:8px 15px;background:var(--surface-2);
+  }
+  .chain li.locked{color:var(--accent);border-color:rgba(184,255,61,.35)}
+  .chain li.sep{border:none;background:none;padding:0 2px;color:var(--accent)}
+
+  /* ONBOARDING COLOUR CODES */
+  .swatches{display:flex;flex-direction:column;gap:13px;margin:0;padding:0;list-style:none}
+  .swatches li{
+    display:flex;gap:14px;align-items:flex-start;
+    font-size:15px;line-height:1.65;color:var(--muted);max-width:70ch;
+  }
+  .swatches li::before{content:"";width:13px;height:13px;border-radius:4px;flex:none;margin-top:5px}
+  .swatches .green::before{background:var(--accent)}
+  .swatches .amber::before{background:var(--warn)}
+  .swatches .grey::before{background:#5A5A63}
+  .swatches strong{color:var(--fg);font-weight:600}
+
+  /* CLOSING POINTS */
+  .points{display:flex;flex-direction:column;gap:22px}
+  .point h4{font-size:17px;font-weight:700;color:var(--fg);margin:0 0 7px;letter-spacing:-.01em}
+  .point p{font-size:15px;line-height:1.7;color:var(--muted);margin:0;max-width:72ch}
+  .point p strong{color:var(--fg);font-weight:600}
+
+  /* Site footer */
+  .site-footer{padding:32px;border-top:1px solid var(--border);margin-top:64px;}
+  .site-footer-inner{max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .site-footer p{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0;}
+
+  a{color:var(--accent)}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  @media (max-width:980px){
+    .wrap{padding:48px 20px 64px}
+    .layout{grid-template-columns:minmax(0,1fr);gap:40px}
+    .rail{position:static}
+    .card{padding:28px}
+    .card > h3{font-size:22px}
+    .sub{padding:22px}
+    .principle{padding:22px 20px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/de/" class="back-link"><span>&larr;</span> Portfolio</a>
+    <div class="nav-actions">
+      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download">Lebenslauf &darr;</a>
+      <a href="/de/#contact" class="nav-cta">Kontakt aufnehmen</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
+      <span class="bars" aria-hidden="true"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigationsmenü" aria-hidden="true">
+  <div class="mobile-menu-head">
+    <a href="/de/" class="back-link"><span>&larr;</span> Portfolio</a>
+    <button class="mobile-menu-close" id="menuClose" type="button" aria-label="Menü schließen">&times;</button>
+  </div>
+  <div class="mobile-menu-body">
+    <div class="mobile-menu-actions">
+      <a href="/de/#contact" class="mm-cta">Kontakt aufnehmen</a>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Lebenslauf &darr;</a>
+    </div>
+    <div class="mobile-menu-foot">Berlin &middot; EMEA</div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="layout">
+
+    <aside class="rail">
+      <div class="rule"></div>
+      <h1>Alcorte<br>Alem&aacute;n</h1>
+      <p>Ein KI-gestütztes Bestellmanagementsystem für eine seit fünfzig Jahren bestehende Familienmetzgerei in Mexiko-Stadt, entworfen um eine einzige Randbedingung: Der Betreiber wird nie ein Dashboard öffnen.</p>
+      <p class="eyebrow">Fallstudie &middot; Produkt &amp; Engineering</p>
+    </aside>
+
+    <div class="stack">
+
+      <!-- ============ HEADER CARD ============ -->
+      <section class="card">
+        <p class="eyebrow on">Fallstudie &middot; Produkt &amp; Engineering</p>
+        <div class="head">
+          <h2>Alcorte Alem&aacute;n</h2>
+          <p class="role">Eine 50 Jahre alte Metzgerei über WhatsApp betreiben</p>
+          <p class="place">Alleiniger Architekt und Entwickler &middot; Produktdefinition, Systemdesign, Implementierung, Einarbeitung des Betreibers</p>
+        </div>
+
+        <div class="metrics">
+          <div class="metric"><b>120+</b><span>Produkte im Katalog</span></div>
+          <div class="metric"><b>1000+</b><span>Kunden</span></div>
+          <div class="metric"><b>50+</b><span>Jahre im Betrieb</span></div>
+        </div>
+
+        <p class="status"><span class="dot"></span> Phase 0 abgeschlossen, Phase A1 in Arbeit</p>
+
+        <p class="lede"><strong>Ein KI-gestütztes Bestellmanagementsystem, entworfen um eine einzige Randbedingung: Der Betreiber wird nie ein Dashboard öffnen.</strong></p>
+      </section>
+
+      <!-- ============ AT A GLANCE ============ -->
+      <section class="card">
+        <h3>Auf einen Blick</h3>
+        <dl class="kv">
+          <dt>Kunde</dt>
+          <dd>Alcorte Alem&aacute;n &mdash; Familienmetzgerei, Mexiko-Stadt, über 50 Jahre im Betrieb</dd>
+
+          <dt>Rolle</dt>
+          <dd>Alleiniger Architekt und Entwickler &mdash; Produktdefinition, Systemdesign, Implementierung, Einarbeitung des Betreibers</dd>
+
+          <dt>Größenordnung</dt>
+          <dd>über 120 Produkte im Katalog, über 1000 Kunden</dd>
+
+          <dt>Problem</dt>
+          <dd>Bestellannahme und Tagesgeschäft digitalisieren, ohne von einem lebenslangen Betreiber zu verlangen, seine Arbeitsweise zu ändern</dd>
+
+          <dt>Ansatz</dt>
+          <dd>WhatsApp als <em>gesamte</em> Oberfläche &mdash; für Kunden <em>und</em> für den Inhaber</dd>
+
+          <dt>Stack</dt>
+          <dd>WhatsApp Business API &rarr; Meta webhooks &rarr; Vercel (Next.js) &rarr; Anthropic Claude &rarr; Supabase (Postgres + RLS)</dd>
+
+          <dt>Status</dt>
+          <dd>Phase 0 abgeschlossen, Phase A1 in Arbeit. Durchgängige Pipeline produktiv im Einsatz; Werkzeugsatz für den Betreiber gegen echte Daten validiert</dd>
+
+          <dt>Repository</dt>
+          <dd>Privat, 2FA erzwungen. Produktivbetrieb auf Vercel</dd>
+        </dl>
+      </section>
+
+      <!-- ============ THE PROBLEM ============ -->
+      <section class="card">
+        <h3>Das Problem</h3>
+        <p class="body">Software für kleine Unternehmen scheitert meist auf dieselbe Weise: Sie setzt voraus, dass der Inhaber eine neue Oberfläche erlernt. Der Inhaber führt diese Metzgerei seit über fünfzig Jahren. Er kennt seine Produkte, seine Margen, seine Stammkunden und seine Lieferanten besser, als es ein System je könnte. Was ihm fehlt, ist eine Stunde am Tag, um ein Verwaltungsmenü zu erlernen &mdash; und rund eine Stunde täglich ist die ehrliche Obergrenze dessen, was er überhaupt für die Interaktion mit einem System aufbringen kann.</p>
+        <p class="body">Das Geschäft nimmt täglich eine überschaubare Zahl an Bestellungen an, überwiegend von Privatkunden, gelegentlich von Restaurants. Bestellungen kommen per Telefon und per WhatsApp. Nichts wird protokolliert. Die Preise stehen im Kopf des Inhabers und auf handschriftlichen Zetteln. Lieferzeiten werden nach Gefühl geschätzt. Das funktioniert &mdash; bis es nicht mehr skaliert oder bis die eine Person, die das Wissen trägt, ausfällt.</p>
+        <p class="body">Die naheliegende Lösung ist ein Web-Dashboard mit Bestellliste und Produktkatalog. <strong>Die naheliegende Lösung wäre binnen einer Woche liegen geblieben.</strong></p>
+      </section>
+
+      <!-- ============ THE REFRAME ============ -->
+      <section class="card">
+        <h3>Der Perspektivwechsel</h3>
+        <p class="body">Ich habe die Anforderung umgedreht. Statt &ldquo;ein Verwaltungsmenü bauen und dem Inhaber dessen Bedienung beibringen&rdquo; lautete der Auftrag:</p>
+
+        <p class="callout big">Wenn der Inhaber jemals einen Browser öffnen muss, um sein Geschäft zu führen, ist das Projekt gescheitert.</p>
+
+        <p class="body">WhatsApp ist kein Kanal, der dem Produkt angeflanscht wurde. Es <em>ist</em> die Produktoberfläche &mdash; für Kunden, die bestellen, und für den Inhaber, der das System konfiguriert. Einen Preis ändern, ein Stück Fleisch als ausverkauft melden und die Tageszusammenfassung abrufen geschieht alles in derselben Chat-App, die er ohnehin den ganzen Tag geöffnet hat.</p>
+        <p class="body"><strong>Diese eine Randbedingung bestimmte jede der folgenden Architekturentscheidungen.</strong></p>
+      </section>
+
+      <!-- ============ DESIGN PRINCIPLES ============ -->
+      <section class="card">
+        <h3>Entwurfsprinzipien</h3>
+        <p class="body">Sie standen fest, bevor eine Zeile Code geschrieben war, und jede spätere Entscheidung wurde an ihnen geprüft.</p>
+
+        <div class="principles">
+          <div class="principle">
+            <span class="pnum">01</span>
+            <h4>Konfiguration WhatsApp-first</h4>
+            <p>Jede Systemeinstellung muss vom Betreiber per Chatnachricht änderbar sein. Grundlage dafür ist eine <code>vendor_settings</code>-Tabelle statt Umgebungsvariablen oder fest verdrahteter Konfiguration &mdash; wenn ein Wert sich ändern kann, muss er sich vom Telefon aus ändern lassen.</p>
+          </div>
+
+          <div class="principle">
+            <span class="pnum">02</span>
+            <h4>Operative Sprache, niemals Strategiejargon</h4>
+            <p>Das System spricht mit dem Inhaber so, wie es ein guter Mitarbeiter täte: konkret und im Rahmen des Tagesgeschäfts. Niemals &ldquo;Conversion Rate&rdquo;, &ldquo;ROI&rdquo; oder &ldquo;NPS&rdquo;. &ldquo;Siebzehn Bestellungen heute, drei noch auszuliefern&rdquo; ist ein Satz, auf den er handeln kann. &ldquo;Erfüllungsquote 82 %&rdquo; ist es nicht.</p>
+          </div>
+
+          <div class="principle">
+            <span class="pnum">03</span>
+            <h4>Niemals Geschäftsfakten erfinden</h4>
+            <p>Der Bot darf keinen Preis, kein Liefergebiet und kein Detail der Geschäftshistorie nennen, das er nicht aus der Datenbank belegen kann. Das ist als harte Vorgabe im System-Prompt verankert, nicht als weiche Empfehlung &mdash; <strong>ein plausibel klingender falscher Preis ist schlechter als keine Antwort</strong>, denn er wird zu einem Versprechen, das das Geschäft einlösen muss.</p>
+          </div>
+
+          <div class="principle">
+            <span class="pnum">04</span>
+            <h4>Automatisierung erst nach manuellem Betrieb</h4>
+            <p>Nichts läuft unbeaufsichtigt, bevor die Daten es rechtfertigen. Der Automatikmodus wird erst freigeschaltet, wenn sich ausreichend belastbare Signale angesammelt haben; jeder automatisierbare Schritt geht zuerst als Schaltfläche in Betrieb, die jemand drückt.</p>
+          </div>
+
+          <div class="principle">
+            <span class="pnum">05</span>
+            <h4>Zubereitung mit der Ankunft synchronisieren</h4>
+            <p>Zu früh zubereitetes Fleisch verliert an Qualität; zu spät zubereitetes hält den Fahrer auf. Die Zeitberechnungen sind realistisch statt optimistisch und werden mit proaktiver Kommunikation verbunden, wenn sie sich verschieben.</p>
+          </div>
+
+          <div class="principle">
+            <span class="pnum">06</span>
+            <h4>Passives Lernen aus Eskalationen</h4>
+            <p>Jedes Mal, wenn das System ein Gespräch an einen Menschen übergibt, wird dieser Austausch zu abrufbarem Wissen (RAG) statt zu einem verworfenen Fehlschlag. Das System verbessert sich als Nebenprodukt seiner Nutzung, ohne dass jemand einen Annotationsprozess pflegen müsste.</p>
+          </div>
+
+          <div class="principle">
+            <span class="pnum">07</span>
+            <h4>Die Buchhaltungsarchitektur früh anlegen, spät umsetzen</h4>
+            <p>Die mexikanische Steuerrechnung (CFDI) ist ein theoretisch gelöstes, praktisch mühsames Problem, und die Entscheidung zwischen Eigenausstellung und externem Steuerberater liegt nicht bei mir. Das Schema sieht sie daher vor; die Funktion wartet.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ARCHITECTURE ============ -->
+      <section class="card">
+        <h3>Architektur</h3>
+
+        <figure>
+          <div class="figbox">
+            <div class="figscroll">
+              <svg viewBox="0 0 720 530" role="img" aria-label="Anfragepfad: Ein Kunde oder Betreiber sendet eine WhatsApp-Nachricht, die WhatsApp Business API von Meta stellt sie an einen zustandslosen Vercel-Handler zu, der eine agentische Schleife auf Anthropic Claude ausführt und Supabase Postgres unter Row-Level Security auf Basis von vendor_id liest und schreibt. Kerntabellen sind products, operators, vendor_settings, price_history und customers." style="min-width:520px">
+                <defs>
+                  <marker id="al-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <polygon points="0,0 10,5 0,10" fill="#B4B4BB"/>
+                  </marker>
+                  <marker id="al-arrow-on" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <polygon points="0,0 10,5 0,10" fill="#B8FF3D"/>
+                  </marker>
+                </defs>
+
+                <!-- Espina vertical alineada a la izquierda: en movil se ve primero -->
+                <rect x="20" y="20" width="300" height="64" rx="14" fill="#121215" stroke="#303036"/>
+                <text x="170" y="48" text-anchor="middle" font-family="Inter,sans-serif" font-size="14.5" font-weight="600" fill="#F7F7F8">Kunde / Betreiber</text>
+                <text x="170" y="68" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" letter-spacing="1.2" fill="#8A8A93">WHATSAPP</text>
+
+                <path d="M170,84 V120" fill="none" stroke="#4A4A52" stroke-width="1.3" marker-end="url(#al-arrow)"/>
+                <text x="184" y="108" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8A8A93">Nachricht</text>
+
+                <rect x="20" y="124" width="300" height="64" rx="14" fill="#121215" stroke="#303036"/>
+                <text x="170" y="162" text-anchor="middle" font-family="Inter,sans-serif" font-size="14.5" font-weight="600" fill="#F7F7F8">Meta WhatsApp Business API</text>
+
+                <path d="M170,188 V224" fill="none" stroke="#4A4A52" stroke-width="1.3" marker-end="url(#al-arrow)"/>
+                <text x="184" y="212" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8A8A93">webhook</text>
+
+                <rect x="20" y="228" width="300" height="72" rx="14" fill="#121215" stroke="#303036"/>
+                <text x="170" y="258" text-anchor="middle" font-family="Inter,sans-serif" font-size="14.5" font-weight="600" fill="#F7F7F8">Vercel (Next.js)</text>
+                <text x="170" y="280" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8A8A93">zustandslos &#183; kein Server am Leben zu halten</text>
+
+                <!-- Ramificacion -->
+                <path d="M170,300 V330" fill="none" stroke="#4A4A52" stroke-width="1.3"/>
+                <path d="M170,330 H565" fill="none" stroke="#4A4A52" stroke-width="1.3"/>
+                <path d="M170,330 V366" fill="none" stroke="#4A4A52" stroke-width="1.3" marker-end="url(#al-arrow)"/>
+                <path d="M565,330 V366" fill="none" stroke="#4A4A52" stroke-width="1.3" marker-end="url(#al-arrow)"/>
+
+                <rect x="20" y="370" width="300" height="86" rx="14" fill="#121215" stroke="#303036"/>
+                <text x="170" y="404" text-anchor="middle" font-family="Inter,sans-serif" font-size="14.5" font-weight="600" fill="#F7F7F8">Anthropic Claude</text>
+                <text x="170" y="428" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8A8A93">agentische Schleife &#183; Tool Calling</text>
+
+                <rect x="430" y="370" width="270" height="140" rx="14" fill="#121215" stroke="#303036"/>
+                <text x="565" y="404" text-anchor="middle" font-family="Inter,sans-serif" font-size="14.5" font-weight="600" fill="#F7F7F8">Supabase (Postgres)</text>
+                <text x="565" y="428" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" letter-spacing="0.6" fill="#B8FF3D">RLS por vendor_id</text>
+                <path d="M450,446 H680" fill="none" stroke="#303036" stroke-width="1"/>
+                <text x="565" y="472" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10.5" fill="#B4B4BB">products &#183; operators &#183; vendor_settings</text>
+                <text x="565" y="492" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10.5" fill="#B4B4BB">price_history &#183; customers</text>
+
+                <path d="M324,424 H426" fill="none" stroke="#B8FF3D" stroke-width="1.3" marker-start="url(#al-arrow-on)" marker-end="url(#al-arrow-on)"/>
+                <text x="375" y="410" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" letter-spacing="1" fill="#B8FF3D">TOOL CALLS</text>
+              </svg>
+            </div>
+          </div>
+          <figcaption>Abb. 1 &mdash; Anfragepfad von einer WhatsApp-Nachricht bis zur werkzeuggestützten Antwort. Row-Level Security greift über einen <code>get_vendor_id()</code>-Helper auf <code>vendor_id</code> zu, sodass das Schema von Tag eins an mandantenfähig ist. Für diese Fallstudie nachgebaut.</figcaption>
+        </figure>
+
+        <div class="sub">
+          <h3>Warum dieser Zuschnitt</h3>
+          <p class="body">Der Webhook-Handler ist zustandslos und läuft auf Vercel, sodass ein Ein-Personen-Team keinen Server am Leben halten muss. Der Zustand liegt in Supabase mit Row-Level Security auf Basis von <code>vendor_id</code> &mdash; die Architektur ist von Tag eins an mandantenfähig, obwohl sie nur ein Geschäft bedient, denn <strong>Mandantenfähigkeit nachzurüsten ist eine Neuentwicklung, sie vorwegzunehmen eine <code>WHERE</code>-Klausel.</strong></p>
+        </div>
+
+        <div class="sub">
+          <h3>Die agentische Schicht</h3>
+          <p class="body">Statt eines starren Intent-Klassifikators läuft die Nachrichtenverarbeitung als vollständige agentische Schleife: Das Modell erhält die Nachricht samt <code>UserContext</code> und entscheidet, welche Werkzeuge es aufruft. Das ist entscheidend, denn echte Nachrichten eines Metzgers sind keine wohlgeformten Befehle. &ldquo;El sirloin s&uacute;belo a 320&rdquo; und &ldquo;ya no hay arrachera&rdquo; sind beides Konfigurationsänderungen in gesprochener Form.</p>
+        </div>
+      </section>
+
+      <!-- ============ IDENTITY AND PERMISSIONS ============ -->
+      <section class="card">
+        <h3>Identität und Berechtigungen</h3>
+        <p class="body">Das System unterscheidet Kunden von Betreibern, indem es die eingehende Rufnummer gegen eine <code>operators</code>-Tabelle abgleicht und daraus einen <code>UserContext</code> erzeugt, der die gesamte Anfrage begleitet. Sechs Werkzeuge stehen bereit, getrennt nach Berechtigungsstufe:</p>
+
+        <div class="tiers">
+          <div class="tier-name">Öffentlich</div>
+          <div class="tier-tools">
+            <code>get_product</code>
+            <code>search_products</code>
+            <code>list_products_summary</code>
+          </div>
+
+          <div class="tier-name">Nur Betreiber</div>
+          <div class="tier-tools">
+            <code>update_product_price</code>
+            <code>set_product_availability</code>
+            <code>get_today_summary</code>
+          </div>
+        </div>
+
+        <p class="body">Die Rechteprüfung folgt dem Prinzip der gestaffelten Verteidigung: Der dem Modell angebotene Werkzeugsatz wird nach Kontext gefiltert, <em>und</em> jedes privilegierte Werkzeug prüft den Aufrufer vor der Ausführung erneut. <strong>Sich allein auf den Prompt zu verlassen, damit ein Kunde keine Preise ändert, ist kein Sicherheitsmodell &mdash; es ist eine Hoffnung.</strong> Eine Nachricht von einer unbekannten Nummer erreicht keinen Schreibpfad, selbst wenn das Modell dazu überredet wird.</p>
+
+        <p class="body">Jede Preisänderung schreibt nach <code>price_history</code> mit <code>changed_via: "whatsapp_tool"</code>, sodass eine per Chat ausgelöste Änderung ebenso nachvollziehbar ist wie eine über jede andere Oberfläche.</p>
+      </section>
+
+      <!-- ============ THE ESCALATION CHAIN ============ -->
+      <section class="card">
+        <h3>Die Eskalationskette</h3>
+        <p class="body">Die operative Realität ist, dass der Bot nicht alles bewältigen wird, und der Fehlerfall eines KI-Assistenten ohne Ausweg ist ein frustrierter Kunde.</p>
+
+        <ul class="chain">
+          <li>Inhaber</li>
+          <li class="sep">&rarr;</li>
+          <li>Schichtleitung</li>
+          <li class="sep">&rarr;</li>
+          <li>Weitere Mitarbeitende</li>
+          <li class="sep">&rarr;</li>
+          <li class="locked">dev_backup &middot; nicht entfernbar</li>
+        </ul>
+
+        <p class="body">Die Eskalation verläuft <strong>Inhaber &rarr; Schichtleitung &rarr; weitere Mitarbeitende &rarr; ich als nicht entfernbares <code>dev_backup</code>.</strong> Die Kette ist vom Betreiber konfigurierbar, mit einer Ausnahme: Das letzte Glied lässt sich nicht entfernen.</p>
+
+        <p class="callout">Ein System, das sich in einen Zustand konfigurieren lässt, in dem niemand mehr zuhört, <span>ist ein System, das irgendwann genau so konfiguriert sein wird.</span></p>
+      </section>
+
+      <!-- ============ WHAT SHIPPED ============ -->
+      <section class="card">
+        <h3>Was ausgeliefert wurde</h3>
+
+        <div class="sub">
+          <h3>Phase 0 &mdash; Grundlagen (abgeschlossen)</h3>
+          <ul class="list">
+            <li><code>vendor_settings</code>-Tabelle mit zehn Standardwerten, ausgeliefert als Migration <code>001_vendor_settings.sql</code>, die dem bestehenden RLS-Muster folgt, statt ein zweites einzuführen.</li>
+            <li>Anbindung der Meta WhatsApp Business API mit einem dauerhaften System-User-Token, beschränkt auf <code>whatsapp_business_messaging</code> und <code>whatsapp_business_management</code>.</li>
+            <li>Durchgängige Pipeline im Produktivbetrieb bestätigt: WhatsApp &rarr; Meta &rarr; Vercel &rarr; Claude &rarr; WhatsApp.</li>
+          </ul>
+        </div>
+
+        <div class="sub">
+          <h3>Phase A1 &mdash; Werkzeugsatz für den Betreiber (in Arbeit)</h3>
+          <ul class="list">
+            <li>Sechs agentische Werkzeuge mit vollständiger Schleife, Identitätsauflösung über <code>UserContext</code> und der oben beschriebenen Rechteprüfung.</li>
+            <li>Drei Validierungstests, alle bestanden gegen echte Infrastruktur statt gegen Mocks:
+              <ol class="list" style="margin-top:9px">
+                <li>Betreibererkennung über Rufnummernabgleich</li>
+                <li>Live-Abfrage eines Produktpreises gegen Supabase</li>
+                <li>Preisänderung mit bestätigtem Audit-Trail in <code>price_history</code></li>
+              </ol>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============ OPERATOR ONBOARDING ARTIFACT ============ -->
+      <section class="card">
+        <h3>Artefakt zur Einarbeitung des Betreibers</h3>
+        <p class="body">Fünfzig Jahre undokumentiertes Geschäftswissen in eine Datenbank zu bekommen, ist <strong>ein Interviewproblem, kein Engineeringproblem</strong>. Ich habe für den Inhaber fünf strukturierte PDF-Interviewdokumente mit einem dreifarbigen Codiersystem erstellt:</p>
+
+        <ul class="swatches">
+          <li class="green"><span><strong>Grün</strong> &mdash; von mir vorausgefüllte Antwortentwürfe, die er bestätigt oder korrigiert</span></li>
+          <li class="amber"><span><strong>Gelb</strong> &mdash; geschäftsspezifische Daten, die nur er kennt, bewusst leer gelassen</span></li>
+          <li class="grey"><span><strong>Grau</strong> &mdash; interne Preisdaten, bewusst aus der Wissensbasis des Bots ausgeschlossen</span></li>
+        </ul>
+
+        <p class="body">Das Vorausfüllen der grünen Felder machte aus einer Aufgabe vor leerem Blatt eine Prüfaufgabe. Die grauen Felder ausdrücklich zu kennzeichnen bedeutete, dass die Grenze zwischen &ldquo;das darf der Bot sagen&rdquo; und &ldquo;das ist intern&rdquo; einmal auf Papier entschieden wurde, statt bei jeder Prompt-Überarbeitung neu verhandelt zu werden.</p>
+      </section>
+
+      <!-- ============ ENGINEERING PROBLEMS ============ -->
+      <section class="card">
+        <h3>Technische Probleme, die eine Beschreibung verdienen</h3>
+
+        <div class="sub">
+          <h3>Ein einziges unsichtbares Zeichen legte die Authentifizierung lahm</h3>
+          <p class="body">Die API-Anbindung scheiterte an Authentifizierungsfehlern, obwohl die Zugangsdaten bei Sichtprüfung korrekt waren. Ursache war ein nicht druckbares Unicode-Zeichen (Klasse U+2028), das per Kopieren und Einfügen in die Umgebungsvariable geraten war. Es überstand jede Sichtprüfung, weil es per Definition unsichtbar ist. Behebung: Zugangsdaten bereinigen, bevor sie an einen SDK-Konstruktor übergeben werden &mdash; <code>.replace(/[^\x21-\x7E]/g, '')</code> &mdash; und die Hygiene von Umgebungsvariablen als vorrangiges Thema behandeln statt als nachgelagerte Konfigurationsfrage. Die allgemeine Lehre: <strong>Wenn Zugangsdaten &ldquo;offensichtlich korrekt&rdquo; sind und trotzdem scheitern, hört auf, sie zu lesen, und fangt an, ihre Bytes zu prüfen.</strong></p>
+        </div>
+
+        <div class="sub">
+          <h3>Temporäre Tokens sind eine Falle, die man sich selbst stellt</h3>
+          <p class="body">Der zweite blockierende Fehler war ein abgelaufenes WhatsApp-API-Token &mdash; das übliche Ergebnis, wenn man einer Einstiegsanleitung folgt. Ein dauerhaftes System-User-Token mit ausdrücklich zugewiesenen Assets und Berechtigungen muss bewusst eingerichtet werden, und der Preis dafür, es zu unterlassen, ist <strong>ein System, das in der Entwicklung funktioniert und Wochen später im Produktivbetrieb stillschweigend ausfällt, im ungünstigsten Moment.</strong></p>
+        </div>
+
+        <div class="sub">
+          <h3>Für die Array-Filterung in Postgres gibt es hier genau eine richtige Form</h3>
+          <p class="body">Produktaliase werden als <code>text[]</code> gespeichert (ein Fleischstück hat viele Namen, und Kunden verwenden sie alle). Die Filterung erfordert <code>aliases.cs.{value}</code> innerhalb eines <em>einzigen</em> <code>.or()</code>-Aufrufs &mdash; zwei verkettete <code>.or()</code>-Aufrufe ergeben eine Abfrage, die richtig aussieht und falsche Ergebnisse liefert. Verwandte Schemaentscheidungen, die die Werkzeuge geprägt haben: <code>base_unit</code> ist ein <code>unit_type</code>-Enum, weiches Löschen nutzt <code>deleted_at</code>, und Verfügbarkeitsänderungen müssen sowohl <code>availability_updated_at</code> als auch <code>availability_updated_by</code> schreiben, um die Nachvollziehbarkeit zu wahren.</p>
+        </div>
+
+        <div class="sub">
+          <h3>Leitplanken gehören in den System-Prompt, nicht in die Wissensbasis</h3>
+          <p class="body">Zwei Vorgaben wurden bewusst von &ldquo;Inhalt&rdquo; zu &ldquo;harter Regel&rdquo; hochgestuft: niemals medizinische oder ernährungsbezogene Gesundheitsberatung; und Entscheidungen über Kredit bzw. <code>fiado</code> sind eine strukturierte Geschäftsregel, gebunden an <code>customers.credit_limit_cents</code>, und nichts, was der Bot aus Freitext wiedergibt. Eine Metzgerei, die informell anschreiben lässt, unterhält damit eine reale, tragende Geschäftsbeziehung. Fehler kosten Geld und Vertrauen, deshalb ist die Regel in Code und Schema verankert statt in Sprache, die sich das Modell merken soll.</p>
+        </div>
+      </section>
+
+      <!-- ============ HOW THE WORK WAS ORGANISED ============ -->
+      <section class="card">
+        <h3>Wie die Arbeit organisiert war</h3>
+        <p class="body">Das Projekt läuft über drei bewusst getrennte Kanäle, denn sie zu vermischen verschlechtert alle drei:</p>
+
+        <ul class="list">
+          <li><strong>Architekturkanal</strong> &mdash; Strategie, Phasendefinition und offene Entwurfsentscheidungen. Langsam, schriftlich, Entscheidungen dokumentiert.</li>
+          <li><strong>Debug-Kanal</strong> &mdash; Fehlerdiagnose, Auswertung von Screenshots, Korrekturen auf Codeebene. Schnell, kurzlebig.</li>
+          <li><strong>Lokale Ausführung</strong> &mdash; Claude Code auf dem Repository.</li>
+        </ul>
+
+        <p class="body">Planungssitzungen gehen der Umsetzung voraus, und Phasen werden formal definiert, bevor die Implementierung beginnt. Die Arbeit schreitet in prüfbaren, freigabepflichtigen Schritten mit Screenshot-Kontrollpunkten voran, nicht in ungeprüften Codepaketen.</p>
+      </section>
+
+      <!-- ============ ROADMAP ============ -->
+      <section class="card">
+        <h3>Roadmap</h3>
+
+        <dl class="kv narrow">
+          <dt>A2.1</dt>
+          <dd>Kundenseitiger Bot</dd>
+
+          <dt>A2.2</dt>
+          <dd>Auswertung und Beobachtbarkeit &mdash; Funnel-Analyse, Gesprächsprotokollierung</dd>
+
+          <dt>A3</dt>
+          <dd>Kosten, Margen, Statistiken</dd>
+
+          <dt>Operaci&oacute;n</dt>
+          <dd>Laufender Tagesbetrieb mit der konfigurierbaren Eskalationskette</dd>
+
+          <dt>Decisi&oacute;n</dt>
+          <dd>Strategischer Kontrollpunkt nach 3&ndash;6 Monaten echter Daten, aufbereitet in operativer Sprache</dd>
+
+          <dt>Log&iacute;stica</dt>
+          <dd>Anbindung externer Lieferdienste (Uber Direct, iVoy, Rappi Cargo) hinter einer Provider-Abstraktion, zunächst manuell über Schaltflächen im Dashboard</dd>
+
+          <dt>B</dt>
+          <dd>Sprach-KI &mdash; Vapi.ai als erste Wahl, ElevenLabs in Prüfung. Der Inhaber hat zugestimmt, seine Stimme zum Klonen aufzunehmen</dd>
+
+          <dt>C</dt>
+          <dd>Vollständiger E-Commerce</dd>
+
+          <dt>D</dt>
+          <dd>Buchhaltung &mdash; abhängig von der Entscheidung des Steuerberaters zur CFDI-Eigenausstellung</dd>
+        </dl>
+
+        <p class="body">Die Phase <strong>Decisi&oacute;n</strong> ist diejenige, an der sich der Entwurfsgedanke am deutlichsten zeigt. Es gibt einen Kontrollpunkt in einigen Monaten, an dem die gesammelten Daten geprüft werden und die Roadmap die Richtung wechseln kann &mdash; und die Unterlagen für diese Prüfung werden <em>jetzt schon</em> in operativer Sprache festgelegt, denn ein Strategiefoliensatz voller Funnel-Diagramme wäre ein Dokument, mit dem die Person, für die es gedacht ist, nichts anfangen kann.</p>
+      </section>
+
+      <!-- ============ WHAT THIS DEMONSTRATES ============ -->
+      <section class="card">
+        <h3>Was dieses Projekt zeigt</h3>
+
+        <div class="points">
+          <div class="point">
+            <h4>Architektur aus der Randbedingung heraus</h4>
+            <p>&ldquo;Kein Dashboard&rdquo; ist keine Einschränkung, die man umgehen muss, sondern die Spezifikation. Sie ernst zu nehmen ergab ein saubereres System als die Variante, die sich mit einem Verwaltungsmenü im Web abgesichert hätte, das niemand öffnet.</p>
+          </div>
+
+          <div class="point">
+            <h4>Disziplin bei der Produktivintegration</h4>
+            <p>WhatsApp Business API, das Token-Modell von Meta, Vercel, Supabase RLS und ein Modell mit Tool Calling, durchgängig verdrahtet und gegen Live-Daten validiert &mdash; einschließlich der unspektakulären Fehlschläge (unsichtbare Zeichen, ablaufende Tokens), die eine Demo von etwas unterscheiden, das an einem Dienstagmorgen läuft.</p>
+          </div>
+
+          <div class="point">
+            <h4>Sicherheit als Struktur, nicht als Anweisung</h4>
+            <p>Berechtigungen werden über Kontextfilterung und Prüfung je Werkzeug durchgesetzt. Audit-Trails schreibt der Schreibpfad selbst. <strong>Das Modell ist nie die letzte Verteidigungslinie.</strong></p>
+          </div>
+
+          <div class="point">
+            <h4>Ernsthafter Entwurf für einen nicht technischen Betreiber</h4>
+            <p>Farbcodierte Interview-PDFs, operative Begriffe, ein nicht entfernbarer Rückhalt in der Eskalation und die ausdrückliche Entscheidung, die Buchhaltung zurückzustellen, bis der Steuerberater sich äußert. Das Schwierige an diesem Projekt war nie die Tool-Calling-Schleife.</p>
+          </div>
+
+          <div class="point">
+            <h4>Bauen für ein Geschäft, das bereits funktioniert</h4>
+            <p>Ein fünfzig Jahre altes Geschäft muss nicht disruptiert werden. Es braucht, dass die Teile, die im Kopf einer einzigen Person liegen, dauerhaft werden, ohne die Arbeitsweise dieser Person zu ändern. Das ist ein engeres und interessanteres Problem als eine Neuentwicklung auf der grünen Wiese.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>Jorge Aguilar &middot; Berlin</p>
+    <p>&copy; 2026</p>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  (function () {
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileMenu');
+    const close = document.getElementById('menuClose');
+    if (!toggle || !menu || !close) return;
+
+    function openMenu() {
+      menu.classList.add('open');
+      menu.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('menu-open');
+      close.focus();
+    }
+
+    function closeMenu(refocus) {
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      if (refocus) toggle.focus();
+    }
+
+    toggle.addEventListener('click', openMenu);
+    close.addEventListener('click', () => closeMenu(true));
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => closeMenu(false));
+    });
+
+    menu.addEventListener('click', (e) => {
+      if (e.target === menu || e.target.classList.contains('mobile-menu-body')) closeMenu(true);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu(true);
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 800 && menu.classList.contains('open')) closeMenu(false);
+    });
+  })();
+</script>
+
+</body>
+</html>

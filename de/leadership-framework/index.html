@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Führungsmodell — Jorge Aguilar</title>
+<meta name="description" content="Die fünf Säulen, die meine Führungsarbeit prägen: emotionale Selbststeuerung, aufrichtige Offenheit, untadeliger Charakter, Klarheit und Eigenverantwortung. Ein Modell auf Grundlage der Führungsarbeit von Leila Hormozi.">
+<meta property="og:title" content="Führungsmodell — Jorge Aguilar">
+<meta property="og:description" content="Fünf Säulen, die prägen, wie ich Teams durch Unsicherheit führe — in Operations, Produkt und Partnerschaften.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<style>
+  :root{
+    --bg:#0B0B0D;
+    --surface:#0F0F12;
+    --surface-2:#141417;
+    --fg:#F7F7F8;
+    --muted:#B4B4BB;
+    --border:#303036;
+    --accent:#B8FF3D;
+    --accent-fg:#09090B;
+    --radius:1.75rem;
+    --radius-sm:1.125rem;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --sans:"Inter",system-ui,-apple-system,sans-serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  ::selection{background:var(--accent);color:var(--accent-fg)}
+  a{color:var(--accent);text-decoration:none}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  /* NAV */
+  .nav{
+    padding:20px 32px;border-bottom:1px solid var(--border);
+    background:rgba(11,11,13,0.85);backdrop-filter:blur(8px);
+    position:sticky;top:0;z-index:20;
+  }
+  .nav-inner{max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  .back-link{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+    white-space:nowrap;transition:color .2s ease;
+  }
+  .back-link:hover{color:var(--accent);}
+  .nav-actions{display:flex;align-items:center;gap:14px;}
+  .nav-actions a{white-space:nowrap;text-decoration:none;}
+  .nav-download{
+    padding:8px 16px;border:1px solid var(--border);border-radius:999px;
+    font-family:var(--sans);font-weight:500;font-size:12.5px;color:var(--fg);
+    transition:border-color .2s ease,color .2s ease;
+  }
+  .nav-download:hover{border-color:var(--accent);color:var(--accent);}
+  .nav-cta{
+    background:var(--accent);color:var(--accent-fg);
+    padding:10px 18px;border-radius:999px;
+    font-family:var(--sans);font-weight:600;font-size:12.5px;
+    transition:transform .2s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px);color:var(--accent-fg);}
+
+  /* NAV — hamburger toggle (mobile only) */
+  .nav-toggle{
+    display:none;width:42px;height:42px;padding:0;flex:none;
+    align-items:center;justify-content:center;
+    background:transparent;border:1px solid var(--border);border-radius:999px;
+    cursor:pointer;transition:border-color .2s ease;
+  }
+  .nav-toggle:hover{border-color:var(--accent);}
+  .nav-toggle .bars,.nav-toggle .bars::before,.nav-toggle .bars::after{
+    display:block;width:17px;height:1.5px;background:var(--fg);border-radius:2px;
+    transition:background .2s ease;
+  }
+  .nav-toggle .bars{position:relative;}
+  .nav-toggle .bars::before,.nav-toggle .bars::after{content:"";position:absolute;left:0;}
+  .nav-toggle .bars::before{top:-5.5px;}
+  .nav-toggle .bars::after{top:5.5px;}
+  .nav-toggle:hover .bars,.nav-toggle:hover .bars::before,.nav-toggle:hover .bars::after{background:var(--accent);}
+
+  @media (max-width:800px){
+    .nav{padding:14px 20px;}
+    .nav-actions{display:none;}
+    .nav-toggle{display:inline-flex;}
+  }
+
+  /* MOBILE MENU OVERLAY */
+  .mobile-menu{
+    position:fixed;inset:0;z-index:60;
+    display:flex;flex-direction:column;
+    background:rgba(9,9,11,0.97);backdrop-filter:blur(16px);
+    opacity:0;visibility:hidden;
+    transition:opacity .3s ease,visibility .3s ease;
+  }
+  .mobile-menu.open{opacity:1;visibility:visible;}
+  .mobile-menu-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 20px;border-bottom:1px solid var(--border);flex:none;
+  }
+  .mobile-menu-close{
+    width:42px;height:42px;padding:0;flex:none;
+    display:inline-flex;align-items:center;justify-content:center;
+    background:transparent;border:1px solid var(--border);border-radius:999px;
+    color:var(--fg);font-family:var(--sans);font-size:20px;line-height:1;
+    cursor:pointer;transition:border-color .2s ease,color .2s ease,transform .2s ease;
+  }
+  .mobile-menu-close:hover{border-color:var(--accent);color:var(--accent);transform:rotate(90deg);}
+  .mobile-menu-body{
+    flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:32px 20px 40px;
+    display:flex;flex-direction:column;
+  }
+  .mobile-menu-actions{
+    display:flex;flex-direction:column;gap:12px;
+    opacity:0;transform:translateY(10px);
+    transition:opacity .45s ease,transform .45s ease;
+  }
+  .mobile-menu.open .mobile-menu-actions{opacity:1;transform:translateY(0);transition-delay:.08s;}
+  .mobile-menu-actions a{
+    display:block;text-align:center;padding:15px 22px;border-radius:999px;
+    font-family:var(--sans);font-weight:600;font-size:14px;text-decoration:none;
+  }
+  .mm-cta{background:var(--accent);color:var(--accent-fg);}
+  .mm-download{border:1px solid var(--border);color:var(--fg);font-weight:500;transition:border-color .2s ease,color .2s ease;}
+  .mm-download:hover{border-color:var(--accent);color:var(--accent);}
+  .mobile-menu-foot{
+    margin-top:auto;padding-top:32px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);opacity:.6;
+  }
+  body.menu-open{overflow:hidden;}
+  @media (min-width:801px){.mobile-menu{display:none;}}
+  @media (prefers-reduced-motion: reduce){
+    .mobile-menu,.mobile-menu-actions{transition-duration:.01ms;}
+    .mobile-menu-close:hover{transform:none;}
+  }
+
+  .wrap{max-width:1320px;margin:0 auto;padding:72px 32px 88px}
+  .col{max-width:900px}
+
+  .rule{width:80px;height:4px;background:var(--accent);border-radius:2px;margin-bottom:28px}
+
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 24px;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:24px;height:2px;background:var(--accent);border-radius:2px}
+
+  h1{
+    font-size:clamp(40px,6vw,76px);font-weight:900;line-height:.95;
+    letter-spacing:-.03em;text-transform:uppercase;margin:0 0 28px;
+    max-width:17ch;text-wrap:balance;
+  }
+
+  .lede{font-size:clamp(17px,1.7vw,20px);line-height:1.65;color:var(--muted);margin:0 0 20px;max-width:62ch}
+  .lede strong{color:var(--fg);font-weight:600}
+  .attribution{font-size:15px;line-height:1.65;color:var(--muted);margin:0;max-width:62ch}
+  .attribution a{border-bottom:1px solid rgba(184,255,61,.3);padding-bottom:1px;transition:border-color .2s ease}
+  .attribution a:hover{border-bottom-color:var(--accent)}
+
+  /* misma medida que el hero para que la columna quede alineada de arriba a abajo */
+  .stack{display:flex;flex-direction:column;gap:24px;margin-top:56px;min-width:0;max-width:900px}
+
+  .card{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius);padding:40px;min-width:0;
+    display:flex;flex-direction:column;gap:24px;
+  }
+
+  /* LEADERSHIP STATEMENT */
+  .statement{
+    background:var(--surface-2);position:relative;overflow:hidden;
+  }
+  .statement::before{
+    content:"";position:absolute;top:0;right:0;width:240px;height:240px;
+    background:radial-gradient(circle at top right,rgba(184,255,61,.08) 0%,transparent 70%);
+    pointer-events:none;
+  }
+  .statement > *{position:relative}
+  .statement-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);margin:0;
+  }
+  .statement-prose{
+    font-size:clamp(22px,2.6vw,32px);font-weight:700;line-height:1.3;
+    letter-spacing:-.02em;color:var(--fg);margin:0;max-width:28ch;
+  }
+  .statement-prose em{font-style:normal;color:var(--accent)}
+
+  /* PILLARS */
+  .section-head h2{
+    font-size:clamp(30px,3.6vw,46px);font-weight:900;line-height:1;
+    letter-spacing:-.025em;text-transform:uppercase;margin:0 0 20px;max-width:20ch;
+  }
+  .section-head h2 em{font-style:normal;color:var(--muted)}
+  .section-head p{font-size:16.5px;line-height:1.65;color:var(--muted);margin:0;max-width:60ch}
+
+  .pillars{display:flex;flex-direction:column;gap:16px}
+
+  .pillar{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius);overflow:hidden;
+    transition:border-color .3s ease;
+  }
+  .pillar:hover{border-color:rgba(184,255,61,.28)}
+  .pillar.open{border-color:rgba(184,255,61,.35)}
+
+  .pillar-trigger{
+    width:100%;display:grid;grid-template-columns:auto minmax(0,1fr) auto;
+    align-items:center;gap:20px;
+    background:none;border:0;cursor:pointer;text-align:left;
+    padding:30px 36px;font-family:var(--sans);color:inherit;
+  }
+  .pillar-num{
+    font-family:var(--mono);font-size:11px;font-weight:600;
+    letter-spacing:.14em;color:var(--accent);
+  }
+  .pillar-name{
+    display:block;font-size:21px;font-weight:700;
+    letter-spacing:-.01em;color:var(--fg);margin-bottom:5px;
+  }
+  .pillar-tagline{display:block;font-size:14.5px;line-height:1.5;color:var(--muted)}
+  .pillar-toggle{
+    width:34px;height:34px;border:1px solid var(--border);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex:none;
+    transition:transform .3s ease,border-color .3s ease;
+  }
+  .pillar-toggle svg{width:15px;height:15px;fill:none;stroke:var(--muted);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .pillar.open .pillar-toggle{transform:rotate(180deg);border-color:var(--accent)}
+  .pillar.open .pillar-toggle svg{stroke:var(--accent)}
+
+  /* Expand/collapse sin alturas fijas: 0fr -> 1fr anima la fila del grid */
+  .pillar-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+  .pillar.open .pillar-body{grid-template-rows:1fr}
+  .pillar-body > .inner{overflow:hidden}
+  .pillar-content{
+    padding:0 36px 34px;max-width:74ch;
+    display:flex;flex-direction:column;gap:20px;
+  }
+
+  .why{font-size:15.5px;line-height:1.7;color:var(--muted);margin:0}
+  .how-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin:0;
+  }
+  .pillar-content ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+  .pillar-content li{
+    position:relative;padding-left:24px;
+    font-size:15px;line-height:1.6;color:var(--muted);
+  }
+  .pillar-content li::before{content:"—";position:absolute;left:0;top:0;color:var(--accent)}
+
+  .applied{
+    background:var(--surface-2);border:1px solid var(--border);
+    border-radius:var(--radius-sm);padding:24px 26px;
+  }
+  .applied-label{
+    display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:10px;
+  }
+  .applied-text{font-size:15.5px;line-height:1.7;color:var(--fg);margin:0}
+
+  /* CLOSING CTA */
+  .footer-cta h3{
+    font-size:clamp(22px,2.4vw,30px);font-weight:800;line-height:1.2;
+    letter-spacing:-.02em;margin:0;max-width:24ch;
+  }
+  .footer-cta h3 em{font-style:normal;color:var(--accent)}
+  .footer-cta p{font-size:15.5px;line-height:1.7;color:var(--muted);margin:0;max-width:68ch}
+  .btn-back{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--accent);color:var(--accent-fg);
+    padding:14px 22px;border-radius:999px;font-weight:600;font-size:14px;
+    align-self:flex-start;transition:transform .2s ease;
+  }
+  .btn-back:hover{transform:translateY(-2px);color:var(--accent-fg)}
+  .footer-cta{gap:18px;align-items:flex-start}
+
+  /* SITE FOOTER */
+  .site-footer{padding:32px;border-top:1px solid var(--border);margin-top:64px}
+  .site-footer-inner{
+    max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;
+    align-items:center;flex-wrap:wrap;gap:16px;
+  }
+  .site-footer p{
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);margin:0;
+  }
+
+  /* REVEAL */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:none}
+
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .pillar-body{transition:none}
+    .pillar-toggle{transition:none}
+  }
+
+  @media (max-width:980px){
+    .wrap{padding:48px 20px 64px}
+    .card{padding:28px}
+    .pillar-trigger{padding:24px 24px;gap:14px}
+    .pillar-content{padding:0 24px 26px}
+    .stack{margin-top:40px}
+  }
+  @media (max-width:560px){
+    .pillar-trigger{grid-template-columns:auto minmax(0,1fr);row-gap:12px}
+    .pillar-toggle{grid-column:1/-1;justify-self:end}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/de/" class="back-link"><span>&larr;</span> Portfolio</a>
+    <div class="nav-actions">
+      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download">Lebenslauf &darr;</a>
+      <a href="/de/#contact" class="nav-cta">Kontakt aufnehmen</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
+      <span class="bars" aria-hidden="true"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigationsmenü" aria-hidden="true">
+  <div class="mobile-menu-head">
+    <a href="/de/" class="back-link"><span>&larr;</span> Portfolio</a>
+    <button class="mobile-menu-close" id="menuClose" type="button" aria-label="Menü schließen">&times;</button>
+  </div>
+  <div class="mobile-menu-body">
+    <div class="mobile-menu-actions">
+      <a href="/de/#contact" class="mm-cta">Kontakt aufnehmen</a>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Lebenslauf &darr;</a>
+    </div>
+    <div class="mobile-menu-foot">Berlin &middot; EMEA</div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <header class="col">
+    <div class="rule reveal"></div>
+    <p class="eyebrow reveal">Führungsmodell</p>
+    <h1 class="reveal">Die fünf Säulen, die meine Führungsarbeit prägen</h1>
+    <p class="lede reveal">Ein Modell auf Grundlage der Führungsarbeit von Leila Hormozi, weiterentwickelt aus meiner Erfahrung in Operations, Partnerschaften und cross-funktionalen Teams.</p>
+    <p class="attribution reveal">Adaptiert nach der Arbeit von <a href="https://www.acquisition.com/team/bio-leila-2" target="_blank" rel="noopener">Leila Hormozi</a> &mdash; Operating Partnerin und CEO, deren Auseinandersetzung mit Führung meinem eigenen Denken darüber, wie man Menschen durch Unsicherheit führt, am nächsten kommt.</p>
+  </header>
+
+  <div class="stack">
+
+    <section class="card statement reveal">
+      <p class="statement-label">Führungsverständnis</p>
+      <p class="statement-prose">In schnelllebigen operativen Kontexten heißt Führung, <em>unter Druck ruhig zu bleiben</em>, Komplexität zu reduzieren und Teams zu befähigen, sicher zu handeln.</p>
+    </section>
+
+    <section class="card">
+      <div class="section-head reveal">
+        <h2>Fünf Säulen, <em>im Detail</em>.</h2>
+        <p>Öffnen Sie eine Säule, um das Prinzip vollständig zu lesen, die Verhaltensweisen, zu denen ich mich verpflichte, und wie ich es in meiner Arbeit anwende.</p>
+      </div>
+
+      <div class="pillars">
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="p1">
+            <span class="pillar-num">01</span>
+            <span>
+              <span class="pillar-name">Emotionale Selbststeuerung</span>
+              <span class="pillar-tagline">Führung unter Druck beginnt mit Selbstbeherrschung.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="p1">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Eine Führungskraft gibt den emotionalen Ton für das Team vor. Gerät sie in Panik, verliert das Team seine Stabilität. Bleibt sie gefasst, kann das Team klar denken und leisten.</p>
+                <p class="how-label">Wie ich es anwende</p>
+                <ul>
+                  <li>In Phasen der Unsicherheit ruhig bleiben</li>
+                  <li>Innehalten, bevor ich reagiere</li>
+                  <li>Im Konflikt einen sachlichen Ton wahren</li>
+                  <li>Probleme mit Neugier angehen, nicht mit Vorverurteilung</li>
+                  <li>Stabilisierend wirken, wenn andere überfordert sind</li>
+                </ul>
+                <div class="applied">
+                  <span class="applied-label">In der Praxis</span>
+                  <p class="applied-text">Ich führe mit emotionaler Stabilität, gerade in operativen Umfeldern unter hohem Druck. Meine Aufgabe ist es, Ruhe, Fokus und Zuversicht zu schaffen, damit Teams unter Unsicherheit bessere Entscheidungen treffen.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="p2">
+            <span class="pillar-num">02</span>
+            <span>
+              <span class="pillar-name">Aufrichtige Offenheit</span>
+              <span class="pillar-tagline">Klares Feedback schafft schneller Vertrauen als unausgesprochene Erwartungen.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="p2">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Starke Führungskräfte weichen schwierigen Gesprächen nicht aus. Sie geben ehrliches, konkretes Feedback unter vier Augen, das Menschen weiterbringt.</p>
+                <p class="how-label">Wie ich es anwende</p>
+                <ul>
+                  <li>Erwartungen von Anfang an klar benennen</li>
+                  <li>Feedback früh geben, nicht erst wenn sich Unmut aufgestaut hat</li>
+                  <li>Verhalten kritisieren, nicht die Person</li>
+                  <li>Keine Herabsetzungen, Schuldzuweisungen oder persönlichen Angriffe</li>
+                  <li>Dafür sorgen, dass alle jederzeit wissen, wo sie stehen</li>
+                </ul>
+                <div class="applied">
+                  <span class="applied-label">In der Praxis</span>
+                  <p class="applied-text">Ich stehe für aufrichtige Offenheit &mdash; direkte, respektvolle und umsetzbare Kommunikation. Mein Ziel ist es, Mehrdeutigkeit auszuräumen, damit Teams Erwartungen, Leistungslücken und den nächsten Schritt klar vor Augen haben.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="p3">
+            <span class="pillar-num">03</span>
+            <span>
+              <span class="pillar-name">Untadeliger Charakter</span>
+              <span class="pillar-tagline">Vertrauenswürdigkeit zählt mehr als der Anschein von Perfektion.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="p3">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Menschen folgen Führungskräften, deren Verhalten berechenbar, ehrlich und konsistent ist. Eine Führungskraft sollte ihre Anspannung nicht beim Team abladen, aber transparent genug sein, dass alle den Kontext verstehen.</p>
+                <p class="how-label">Wie ich es anwende</p>
+                <ul>
+                  <li>Ehrlich sein, ohne Frust nach unten weiterzugeben</li>
+                  <li>Verantwortung für mein eigenes Verhalten übernehmen</li>
+                  <li>Kontext kommunizieren, wenn er das Team betrifft</li>
+                  <li>Mich fragen: Würde ich mir selbst als Führungskraft vertrauen?</li>
+                  <li>Psychologische Sicherheit durch Verlässlichkeit aufbauen</li>
+                </ul>
+                <div class="applied">
+                  <span class="applied-label">In der Praxis</span>
+                  <p class="applied-text">Ich führe mit Integrität, Transparenz und Konsistenz. Mein Anspruch ist es, eine Führungskraft zu sein, auf deren Entscheidungen und Verhalten man sich auch in schwierigen Momenten verlassen kann.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="p4">
+            <span class="pillar-num">04</span>
+            <span>
+              <span class="pillar-name">Klarheit</span>
+              <span class="pillar-tagline">Führung übersetzt Komplexität in Handlung.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="p4">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Gute Führung heißt, unübersichtliche Probleme in klare Entscheidungen, Prioritäten und nächste Schritte zu übersetzen.</p>
+                <p class="how-label">Wie ich es anwende</p>
+                <ul>
+                  <li>Komplexe Probleme vereinfachen</li>
+                  <li>Unnötigen Fachjargon vermeiden</li>
+                  <li>Das Problem definieren, bevor ich es löse</li>
+                  <li>Klären, wie Erfolg konkret aussieht</li>
+                  <li>Teams 1&ndash;3 klare Prioritäten geben</li>
+                </ul>
+                <div class="applied">
+                  <span class="applied-label">In der Praxis</span>
+                  <p class="applied-text">Ich bin darauf spezialisiert, komplexe operative Herausforderungen in klare Prioritäten, Umsetzungspläne und messbare Ergebnisse zu übersetzen. Ich sorge dafür, dass Teams genau wissen, worauf es ankommt, was als Nächstes zu tun ist und woran Erfolg gemessen wird.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="p5">
+            <span class="pillar-num">05</span>
+            <span>
+              <span class="pillar-name">Eigenverantwortung</span>
+              <span class="pillar-tagline">Führungskräfte lösen Probleme, auch wenn sie sie nicht verursacht haben.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="p5">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Eigenverantwortung bedeutet, Verantwortung für das Ergebnis zu übernehmen, nicht nur für die zugewiesenen Aufgaben. Leistungsstarke Teams verteilen Verantwortung, statt auf Freigaben zu warten.</p>
+                <p class="how-label">Wie ich es anwende</p>
+                <ul>
+                  <li>Auf Lösungen fokussieren, nicht auf Schuldfragen</li>
+                  <li>Verantwortung für Ergebnisse übernehmen</li>
+                  <li>Probleme auch außerhalb meines formalen Zuständigkeitsbereichs lösen, wenn es nötig ist</li>
+                  <li>Teams ermutigen, unternehmerisch zu handeln</li>
+                  <li>Jedes Problem als Gelegenheit begreifen, Kompetenz aufzubauen</li>
+                </ul>
+                <div class="applied">
+                  <span class="applied-label">In der Praxis</span>
+                  <p class="applied-text">Ich handle mit ausgeprägter Eigenverantwortung. Ich warte weder auf perfekte Bedingungen noch auf sauber gezogene Zuständigkeitsgrenzen. Wenn ein Problem das Ziel gefährdet, konzentriere ich mich darauf, es zu lösen und Wert für das Team zu schaffen.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="card footer-cta reveal">
+      <h3>Wie sich diese Prinzipien in der <em>operativen Arbeit</em> zeigen.</h3>
+      <p>Das Führungsmodell prägt, wie ich die täglichen operativen Entscheidungen im Portfolio angehe &mdash; Diagnostik, Partnergespräche, Planung und analytische Entscheidungen.</p>
+      <a href="/de/" class="btn-back">Zurück zum Portfolio <span>&rarr;</span></a>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>Jorge Aguilar &middot; Berlin</p>
+    <p>Modell adaptiert nach Leila Hormozi</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.pillar-trigger').forEach(function(trigger){
+    trigger.addEventListener('click', function(){
+      var pillar = trigger.closest('.pillar');
+      var isOpen = pillar.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('visible'); });
+  }
+</script>
+
+<script>
+  // Mobile menu
+  (function () {
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileMenu');
+    const close = document.getElementById('menuClose');
+    if (!toggle || !menu || !close) return;
+
+    function openMenu() {
+      menu.classList.add('open');
+      menu.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('menu-open');
+      close.focus();
+    }
+
+    function closeMenu(refocus) {
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      if (refocus) toggle.focus();
+    }
+
+    toggle.addEventListener('click', openMenu);
+    close.addEventListener('click', () => closeMenu(true));
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => closeMenu(false));
+    });
+
+    menu.addEventListener('click', (e) => {
+      if (e.target === menu || e.target.classList.contains('mobile-menu-body')) closeMenu(true);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu(true);
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 800 && menu.classList.contains('open')) closeMenu(false);
+    });
+  })();
+</script>
+
+</body>
+</html>
