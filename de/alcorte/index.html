@@ -9,14 +9,23 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Alcorte Alemán Fallstudie — Jorge Aguilar">
 <meta property="og:description" content="KI-gestütztes Bestellmanagementsystem, entworfen um eine einzige Randbedingung: Der Betreiber öffnet nie ein Dashboard. WhatsApp-first + Claude + Supabase.">
-<meta property="og:url" content="https://portfolio.j-l-aguilar-salas.workers.dev/de/alcorte/">
-<meta property="og:image" content="https://portfolio.j-l-aguilar-salas.workers.dev/photo.jpg">
 <meta property="og:site_name" content="Jorge Aguilar Portfolio">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Alcorte Alemán Fallstudie — Jorge Aguilar">
 <meta name="twitter:description" content="KI-gestütztes Bestellmanagementsystem, entworfen um eine einzige Randbedingung: Der Betreiber öffnet nie ein Dashboard. WhatsApp-first + Claude + Supabase.">
-<meta name="twitter:image" content="https://portfolio.j-l-aguilar-salas.workers.dev/photo.jpg">
+<link rel="canonical" href="https://343ride.de/de/alcorte/">
+<link rel="alternate" hreflang="en" href="https://343ride.de/alcorte/">
+<link rel="alternate" hreflang="de" href="https://343ride.de/de/alcorte/">
+<link rel="alternate" hreflang="es" href="https://343ride.de/es/alcorte/">
+<link rel="alternate" hreflang="x-default" href="https://343ride.de/alcorte/">
+<meta property="og:url" content="https://343ride.de/de/alcorte/">
+<meta property="og:image" content="https://343ride.de/og-card-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta name="twitter:url" content="https://343ride.de/de/alcorte/">
+<meta name="twitter:image" content="https://343ride.de/og-card-1200x630.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
@@ -77,6 +86,38 @@
     transition:transform .2s ease;
   }
   .nav-cta:hover{transform:translateY(-2px);color:var(--accent-fg);}
+
+  /* LANGUAGE SWITCHER */
+  .lang-switch{
+    display:inline-flex;align-items:center;flex:none;
+    border:1px solid var(--border);border-radius:999px;padding:3px;gap:2px;
+  }
+  .lang-switch a{
+    font-family:var(--mono)!important;font-size:10.5px!important;
+    letter-spacing:.1em!important;text-transform:uppercase!important;
+    color:var(--muted)!important;text-decoration:none;
+    padding:5px 9px;border-radius:999px;line-height:1;
+    transition:color .2s ease,background-color .2s ease;
+  }
+  .lang-switch a:hover{color:var(--fg)!important;}
+  .lang-switch a.is-current{background:var(--accent);color:var(--accent-fg)!important;}
+  .lang-switch a.is-current:hover{color:var(--accent-fg)!important;}
+
+  .mobile-menu-lang{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    margin-top:34px;padding-bottom:22px;border-bottom:1px solid var(--border);
+    opacity:0;transform:translateY(10px);
+    transition:opacity .45s ease,transform .45s ease;
+  }
+  .mobile-menu.open .mobile-menu-lang{opacity:1;transform:translateY(0);transition-delay:.34s;}
+  .mobile-menu-lang .mm-lang-label{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .mobile-menu-lang .lang-switch a{font-size:12px!important;padding:8px 14px;}
+  .mobile-menu-lang + .mobile-menu-actions{margin-top:22px;}
+  @media (prefers-reduced-motion: reduce){.mobile-menu-lang{transition-duration:.01ms;}}
+
 
   /* NAV — hamburger toggle (mobile only) */
   .nav-toggle{
@@ -376,6 +417,11 @@
   <div class="nav-inner">
     <a href="/de/" class="back-link"><span>&larr;</span> Portfolio</a>
     <div class="nav-actions">
+      <div class="lang-switch" role="group" aria-label="Sprache">
+        <a href="/alcorte/" hreflang="en">EN</a>
+        <a href="/de/alcorte/" hreflang="de" class="is-current" aria-current="page">DE</a>
+        <a href="/es/alcorte/" hreflang="es">ES</a>
+      </div>
       <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download">Lebenslauf &darr;</a>
       <a href="/de/#contact" class="nav-cta">Kontakt aufnehmen</a>
     </div>
@@ -391,6 +437,14 @@
     <button class="mobile-menu-close" id="menuClose" type="button" aria-label="Menü schließen">&times;</button>
   </div>
   <div class="mobile-menu-body">
+    <div class="mobile-menu-lang">
+      <span class="mm-lang-label">Sprache</span>
+      <div class="lang-switch" role="group" aria-label="Sprache">
+        <a href="/alcorte/" hreflang="en">EN</a>
+        <a href="/de/alcorte/" hreflang="de" class="is-current" aria-current="page">DE</a>
+        <a href="/es/alcorte/" hreflang="es">ES</a>
+      </div>
+    </div>
     <div class="mobile-menu-actions">
       <a href="/de/#contact" class="mm-cta">Kontakt aufnehmen</a>
       <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Lebenslauf &darr;</a>

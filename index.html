@@ -9,15 +9,24 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Jorge Aguilar — Strategy, Operations & Product">
 <meta property="og:description" content="Strategy, Operations & Product at the intersection of mobility, logistics and compliance-critical SaaS. Berlin. Co-founder @ Nexio Fleet.">
-<meta property="og:url" content="https://portfolio.j-l-aguilar-salas.workers.dev">
-<meta property="og:image" content="https://portfolio.j-l-aguilar-salas.workers.dev/photo.jpg">
 <meta property="og:site_name" content="Jorge Aguilar Portfolio">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Jorge Aguilar — Strategy, Operations & Product">
 <meta name="twitter:description" content="Strategy, Operations & Product at the intersection of mobility, logistics and compliance-critical SaaS. Berlin. Co-founder @ Nexio Fleet.">
-<meta name="twitter:image" content="https://portfolio.j-l-aguilar-salas.workers.dev/photo.jpg">
 
+<link rel="canonical" href="https://343ride.de/">
+<link rel="alternate" hreflang="en" href="https://343ride.de/">
+<link rel="alternate" hreflang="de" href="https://343ride.de/de/">
+<link rel="alternate" hreflang="es" href="https://343ride.de/es/">
+<link rel="alternate" hreflang="x-default" href="https://343ride.de/">
+<meta property="og:url" content="https://343ride.de/">
+<meta property="og:image" content="https://343ride.de/og-card-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta name="twitter:url" content="https://343ride.de/">
+<meta name="twitter:image" content="https://343ride.de/og-card-1200x630.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
@@ -68,6 +77,38 @@
   .nav-download{padding:8px 16px;border:1px solid var(--border);border-radius:999px;font-family:var(--sans)!important;font-weight:500!important;font-size:12.5px!important;letter-spacing:normal!important;text-transform:none!important;color:var(--fg)!important;}
   .nav-download:hover{border-color:var(--accent);color:var(--accent)!important;}
   .nav-links a{white-space:nowrap;}
+
+  /* LANGUAGE SWITCHER */
+  .lang-switch{
+    display:inline-flex;align-items:center;flex:none;
+    border:1px solid var(--border);border-radius:999px;padding:3px;gap:2px;
+  }
+  .lang-switch a{
+    font-family:var(--mono)!important;font-size:10.5px!important;
+    letter-spacing:.1em!important;text-transform:uppercase!important;
+    color:var(--muted)!important;text-decoration:none;
+    padding:5px 9px;border-radius:999px;line-height:1;
+    transition:color .2s ease,background-color .2s ease;
+  }
+  .lang-switch a:hover{color:var(--fg)!important;}
+  .lang-switch a.is-current{background:var(--accent);color:var(--accent-fg)!important;}
+  .lang-switch a.is-current:hover{color:var(--accent-fg)!important;}
+
+  .mobile-menu-lang{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    margin-top:34px;padding-bottom:22px;border-bottom:1px solid var(--border);
+    opacity:0;transform:translateY(10px);
+    transition:opacity .45s ease,transform .45s ease;
+  }
+  .mobile-menu.open .mobile-menu-lang{opacity:1;transform:translateY(0);transition-delay:.34s;}
+  .mobile-menu-lang .mm-lang-label{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .mobile-menu-lang .lang-switch a{font-size:12px!important;padding:8px 14px;}
+  .mobile-menu-lang + .mobile-menu-actions{margin-top:22px;}
+  @media (prefers-reduced-motion: reduce){.mobile-menu-lang{transition-duration:.01ms;}}
+
   @media (max-width:900px){.nav-links{gap:16px;} .nav-dl-long{display:none;}}
 
   /* NAV — hamburger toggle (mobile only) */
@@ -409,6 +450,11 @@
       <a href="#approach">Approach</a>
       <a href="#experience">Experience</a>
       <a href="#work">Work</a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a href="/" hreflang="en" class="is-current" aria-current="page">EN</a>
+        <a href="/de/" hreflang="de">DE</a>
+        <a href="/es/" hreflang="es">ES</a>
+      </div>
       <a href="Jorge_Aguilar_CV.pdf" download class="nav-download"><span class="nav-dl-long">Download </span>CV ↓</a>
       <a href="#contact" class="nav-cta">Get in touch</a>
     </nav>
@@ -434,6 +480,14 @@
       <a href="#leadership">Leadership<span class="num">07</span></a>
       <a href="#contact">Contact<span class="num">08</span></a>
     </nav>
+    <div class="mobile-menu-lang">
+      <span class="mm-lang-label">Language</span>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a href="/" hreflang="en" class="is-current" aria-current="page">EN</a>
+        <a href="/de/" hreflang="de">DE</a>
+        <a href="/es/" hreflang="es">ES</a>
+      </div>
+    </div>
     <div class="mobile-menu-actions">
       <a href="#contact" class="mm-cta">Get in touch</a>
       <a href="Jorge_Aguilar_CV.pdf" download class="mm-download">Download CV ↓</a>
