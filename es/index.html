@@ -217,6 +217,9 @@
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(184,255,61,0.6);}70%{box-shadow:0 0 0 12px rgba(184,255,61,0);}100%{box-shadow:0 0 0 0 rgba(184,255,61,0);}}
   .hero-name{font-size:clamp(48px,7vw,88px);font-weight:900;line-height:.9;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:28px;}
   .hero-name .last{color:var(--muted);display:block;}
+  /* Blinking cursor after the name: cap-height tall, sits on the baseline, and cancels its own advance so line breaks never change */
+  .hero-cursor{--w:clamp(4px,.07em,6px);--gap:3px;display:inline-block;width:var(--w);height:.72em;margin-left:var(--gap);margin-right:calc(-1 * (var(--w) + var(--gap)));vertical-align:baseline;background:var(--accent);animation:hero-cursor-blink 1s steps(1,end) infinite;}
+  @keyframes hero-cursor-blink{50%{opacity:0;}}
   .hero-tagline{font-size:clamp(22px,2.4vw,32px);font-weight:600;color:var(--fg);line-height:1.3;letter-spacing:-.015em;max-width:34ch;margin-bottom:18px;}
   .hero-sub{font-size:clamp(16px,1.3vw,18px);color:var(--muted);line-height:1.6;max-width:60ch;margin-bottom:36px;}
   .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
@@ -445,7 +448,7 @@
   /* REVEAL */
   .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease;}
   .reveal.visible{opacity:1;transform:translateY(0);}
-  @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none;} html{scroll-behavior:auto;} .hero-eyebrow .pulse{animation:none;}}
+  @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none;} html{scroll-behavior:auto;} .hero-eyebrow .pulse{animation:none;} .hero-cursor{animation:none;}}
 </style>
 </head>
 <body>
@@ -513,7 +516,7 @@
       <div>
         <div class="hero-eyebrow reveal"><span class="pulse"></span> Abierto a posiciones senior · Berlín · EMEA</div>
         <h1 class="hero-name reveal">
-          <span>Jorge Aguilar</span>
+          <span>Jorge Aguilar</span><span class="hero-cursor" aria-hidden="true"></span>
         </h1>
         <p class="hero-tagline reveal">Convierto problemas operativos complejos en sistemas, productos y alianzas escalables.</p>
         <p class="hero-sub reveal">En movilidad, logística y tecnología — desde la operación de primera línea hasta la estrategia y la ejecución.</p>
