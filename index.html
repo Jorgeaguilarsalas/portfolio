@@ -100,7 +100,7 @@
     opacity:0;transform:translateY(10px);
     transition:opacity .45s ease,transform .45s ease;
   }
-  .mobile-menu.open .mobile-menu-lang{opacity:1;transform:translateY(0);transition-delay:.34s;}
+  .mobile-menu.open .mobile-menu-lang{opacity:1;transform:translateY(0);transition-delay:.38s;}
   .mobile-menu-lang .mm-lang-label{
     font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
     text-transform:uppercase;color:var(--muted);
@@ -183,12 +183,13 @@
   .mobile-menu.open .mobile-menu-links a:nth-child(6){transition-delay:.25s;}
   .mobile-menu.open .mobile-menu-links a:nth-child(7){transition-delay:.29s;}
   .mobile-menu.open .mobile-menu-links a:nth-child(8){transition-delay:.33s;}
+  .mobile-menu.open .mobile-menu-links a:nth-child(9){transition-delay:.37s;}
   .mobile-menu-actions{
     display:flex;flex-direction:column;gap:12px;margin-top:34px;
     opacity:0;transform:translateY(10px);
     transition:opacity .45s ease,transform .45s ease;
   }
-  .mobile-menu.open .mobile-menu-actions{opacity:1;transform:translateY(0);transition-delay:.36s;}
+  .mobile-menu.open .mobile-menu-actions{opacity:1;transform:translateY(0);transition-delay:.40s;}
   .mobile-menu-actions a{
     display:block;text-align:center;padding:15px 22px;border-radius:999px;
     font-family:var(--sans);font-weight:600;font-size:14px;
@@ -453,9 +454,9 @@
     <a href="#top" class="nav-brand">Jorge<span class="dot">.</span>Aguilar</a>
     <nav class="nav-links">
       <a href="#snapshot">About</a>
-      <a href="#approach">Approach</a>
-      <a href="#experience">Experience</a>
       <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#approach">Approach</a>
       <div class="lang-switch" role="group" aria-label="Language">
         <a href="/" hreflang="en" class="is-current" aria-current="page">EN</a>
         <a href="/de/" hreflang="de">DE</a>
@@ -478,13 +479,14 @@
   <div class="mobile-menu-body">
     <nav class="mobile-menu-links">
       <a href="#snapshot">About<span class="num">01</span></a>
-      <a href="#approach">Approach<span class="num">02</span></a>
-      <a href="#experience">Experience<span class="num">03</span></a>
-      <a href="#work">Selected work<span class="num">04</span></a>
-      <a href="#skills">Skills<span class="num">05</span></a>
-      <a href="#stack">Tooling<span class="num">06</span></a>
-      <a href="#leadership">Leadership<span class="num">07</span></a>
-      <a href="#contact">Contact<span class="num">08</span></a>
+      <a href="#impact">Impact<span class="num">02</span></a>
+      <a href="#work">Selected work<span class="num">03</span></a>
+      <a href="#experience">Experience<span class="num">04</span></a>
+      <a href="#approach">Approach<span class="num">05</span></a>
+      <a href="#skills">Skills<span class="num">06</span></a>
+      <a href="#stack">Tooling<span class="num">07</span></a>
+      <a href="#leadership">Leadership<span class="num">08</span></a>
+      <a href="#contact">Contact<span class="num">09</span></a>
     </nav>
     <div class="mobile-menu-lang">
       <span class="mm-lang-label">Language</span>
@@ -516,7 +518,7 @@
         <p class="hero-sub reveal">Across mobility, logistics and technology — from frontline operations to strategy and execution.</p>
         <div class="hero-actions reveal">
           <a href="#contact" class="btn-primary">Get in touch <span>→</span></a>
-          <a href="#experience" class="btn-secondary">See my work</a>
+          <a href="#work" class="btn-secondary">See my work</a>
         </div>
       </div>
     </div>
@@ -603,54 +605,55 @@
     </div>
   </section>
 
-  <!-- APPROACH -->
-  <section class="section" id="approach">
+  <!-- WORK -->
+  <section class="section" id="work">
     <div class="container">
-      <div class="section-label reveal">Approach</div>
-      <h2 class="reveal">Seven principles I bring to <em>marketplace operations and B2B SaaS</em>.</h2>
-      <p class="approach-intro reveal">Earned through operating across mobility platforms, sharpened through analytical work. These are the principles that anchor how I diagnose, plan, and execute.</p>
+      <div class="section-label reveal">Selected work</div>
+      <h2 class="reveal">Case studies and <em>self-directed projects</em>.</h2>
 
-      <div class="approach-grid reveal">
-        <div class="approach-item">
-          <span class="approach-num">01</span>
-          <h3>Diagnose before levering</h3>
-          <p>Most operating problems aren't modeling problems &mdash; they're framing or instrumentation problems. The work that creates value is naming what's actually broken before applying a fix.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">02</span>
-          <h3>Quality is multi-dimensional</h3>
-          <p>Define "good" across pillars &mdash; safety, reliability, peace of mind. Measure with operational telemetry first, customer ratings second. Premium customers value their time more than rating prompts.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">03</span>
-          <h3>Grow with discipline</h3>
-          <p>Markets earn growth by passing explicit gates &mdash; readiness, concentration, rejection-rate, supply depth. Filter-passing is necessary, not sufficient.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">04</span>
-          <h3>Translate diagnosis into roadmaps</h3>
-          <p>Insight without execution is academic. The strongest planning artifacts name assumptions, structural floors, and explicit decision points where the plan pivots or doubles down.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">05</span>
-          <h3>Sequence risk before levers fire</h3>
-          <p>What you defer matters as much as what you do. Remediate fragile markets before scaling them; design for downside, not just upside.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">06</span>
-          <h3>ML for probabilistic problems; rules for policy</h3>
-          <p>Trying to use ML for tier classification adds complexity without value. Trying to use rules for prediction misses the probabilistic structure. The split is first-principles, not stylistic.</p>
-        </div>
-        <div class="approach-item" style="grid-column:1/-1;">
-          <span class="approach-num">07</span>
-          <h3>Partner accountability is conversation infrastructure</h3>
-          <p>Tiered scorecards turn partner performance into structured commercial conversations &mdash; Tier A standard terms, Tier C 90-day improvement plan with named targets. The framework is the conversation.</p>
-        </div>
-      </div>
+      <div class="work-grid">
 
-      <div class="approach-cta reveal">
-        <p>These principles are demonstrated in a live interactive dashboard.</p>
-        <a href="https://marketplace-ops-demo-port.streamlit.app/" target="_blank" rel="noopener" class="approach-link">Open dashboard <span>↗</span></a>
+        <div class="work-card feature reveal">
+          <div class="work-meta">2025 — Present · Co-founder · Featured case study</div>
+          <h3>Nexio Fleet — Building compliance-native product for Berlin PHV fleets.</h3>
+          <p class="work-body">Strategy, operations and product at an early-stage compliance SaaS. Translated regulatory frameworks (LABO, PBefG) into product specifications, ran field discovery with fleet operators and drivers, prioritised the roadmap, and built the systems that make compliance measurable.</p>
+          <ul>
+            <li><strong>Product ownership.</strong> Wrote product specs for the Driver App and Fleet Dashboard; owned QA across iOS, Android, and web; established structured feedback loops between operations and engineering.</li>
+            <li><strong>Compliance at scale.</strong> Framework now underpins compliance for <strong>800+ active drivers across 8 fleet operators</strong> in Berlin and Brandenburg, aligned with LABO reporting requirements.</li>
+            <li><strong>Automation.</strong> Reduced manual reporting effort by 60–70% via Python pipelines integrating Uber and Bolt platform data with Nexio's internal architecture.</li>
+            <li><strong>Cross-functional.</strong> Contributed to tiered compliance pricing, fleet partnerships, competitive research, and early GTM positioning alongside the CEO.</li>
+          </ul>
+          <p><a href="/nexio/" class="work-link">Open the Nexio case study <span>↗</span></a></p>
+          <p class="work-note">Reference letter on file from Aleksander Boski, CEO and co-founder of Nexio Fleet GmbH.</p>
+        </div>
+
+        <div class="work-card feature reveal">
+          <div class="work-meta">2025 — Present · Solo architect and engineer · Featured case study</div>
+          <h3>Alcorte Alemán — Running a 50-year-old butcher shop through WhatsApp.</h3>
+          <p class="work-body">An AI order-management system for a family butcher shop in Mexico City, designed around a single constraint: the operator never opens a dashboard. WhatsApp is not a channel bolted onto the product — it is the entire product surface, for customers placing orders and for the owner configuring the system. Built end to end on WhatsApp Business API, Meta webhooks, Vercel (Next.js), Anthropic Claude, and Supabase (Postgres + RLS).</p>
+          <ul>
+            <li><strong>Constraint-driven architecture.</strong> &ldquo;No dashboard&rdquo; treated as the specification rather than a limitation to work around — WhatsApp as the entire product surface for customers and operator alike.</li>
+            <li><strong>Production integration.</strong> Meta WhatsApp Business API, Vercel, Supabase RLS, and a Claude agentic loop with tool calling, wired end to end and validated against live data.</li>
+            <li><strong>Security as structure.</strong> Phone-number identity resolution, permission gating filtered by context and re-validated per tool, and audit trails written by the write path — never by the model.</li>
+            <li><strong>Scale.</strong> <strong>120+ products in catalogue across 1000+ customers</strong>, with row-level security keyed on vendor_id so the schema is multi-tenant from day one.</li>
+          </ul>
+          <p><a href="/alcorte/" class="work-link">Open the Alcorte case study <span>↗</span></a></p>
+          <p class="work-note">Private repository, 2FA-enforced. Reference details on request.</p>
+        </div>
+
+        <div class="work-card reveal">
+          <div class="work-meta">Self-directed · 2026 · Premium mobility sector</div>
+          <h3>Marketplace Strategy & Analytics — European Premium Mobility</h3>
+          <p class="work-body">A self-directed analytical project applying my framework to a multi-city premium ride marketplace. Demonstrates how I approach growth strategy, partnership accountability, and quality economics at marketplace scale.</p>
+          <ul>
+            <li><strong>BD strategy across regions.</strong> Growth-market selection through explicit filter gates — partnership-channel markets (airline-driven, Southern Europe) and direct-customer markets (Western Europe).</li>
+            <li><strong>Customer-facing analytical dashboards.</strong> Interactive dashboards built in Python, Streamlit, and Plotly — operational telemetry, partner performance, segment economics, and quality-vs-margin views.</li>
+            <li><strong>Partnership segmentation & supplier scorecard.</strong> Tiered classification across the supply base, each tier mapped to a structured commercial conversation.</li>
+            <li><strong>Quality Contribution Index.</strong> Penalty-adjusted contribution metric translating quality failures into a per-ride P&L number.</li>
+          </ul>
+          <p class="work-note">Full project detail available on request.</p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -751,55 +754,54 @@
     </div>
   </section>
 
-  <!-- WORK -->
-  <section class="section" id="work">
+  <!-- APPROACH -->
+  <section class="section" id="approach">
     <div class="container">
-      <div class="section-label reveal">Selected work</div>
-      <h2 class="reveal">Case studies and <em>self-directed projects</em>.</h2>
+      <div class="section-label reveal">Approach</div>
+      <h2 class="reveal">Seven principles I bring to <em>marketplace operations and B2B SaaS</em>.</h2>
+      <p class="approach-intro reveal">Earned through operating across mobility platforms, sharpened through analytical work. These are the principles that anchor how I diagnose, plan, and execute.</p>
 
-      <div class="work-grid">
-
-        <div class="work-card feature reveal">
-          <div class="work-meta">2025 — Present · Co-founder · Featured case study</div>
-          <h3>Nexio Fleet — Building compliance-native product for Berlin PHV fleets.</h3>
-          <p class="work-body">Strategy, operations and product at an early-stage compliance SaaS. Translated regulatory frameworks (LABO, PBefG) into product specifications, ran field discovery with fleet operators and drivers, prioritised the roadmap, and built the systems that make compliance measurable.</p>
-          <ul>
-            <li><strong>Product ownership.</strong> Wrote product specs for the Driver App and Fleet Dashboard; owned QA across iOS, Android, and web; established structured feedback loops between operations and engineering.</li>
-            <li><strong>Compliance at scale.</strong> Framework now underpins compliance for <strong>800+ active drivers across 8 fleet operators</strong> in Berlin and Brandenburg, aligned with LABO reporting requirements.</li>
-            <li><strong>Automation.</strong> Reduced manual reporting effort by 60–70% via Python pipelines integrating Uber and Bolt platform data with Nexio's internal architecture.</li>
-            <li><strong>Cross-functional.</strong> Contributed to tiered compliance pricing, fleet partnerships, competitive research, and early GTM positioning alongside the CEO.</li>
-          </ul>
-          <p><a href="/nexio/" class="work-link">Open the Nexio case study <span>↗</span></a></p>
-          <p class="work-note">Reference letter on file from Aleksander Boski, CEO and co-founder of Nexio Fleet GmbH.</p>
+      <div class="approach-grid reveal">
+        <div class="approach-item">
+          <span class="approach-num">01</span>
+          <h3>Diagnose before levering</h3>
+          <p>Most operating problems aren't modeling problems &mdash; they're framing or instrumentation problems. The work that creates value is naming what's actually broken before applying a fix.</p>
         </div>
-
-        <div class="work-card feature reveal">
-          <div class="work-meta">2025 — Present · Solo architect and engineer · Featured case study</div>
-          <h3>Alcorte Alemán — Running a 50-year-old butcher shop through WhatsApp.</h3>
-          <p class="work-body">An AI order-management system for a family butcher shop in Mexico City, designed around a single constraint: the operator never opens a dashboard. WhatsApp is not a channel bolted onto the product — it is the entire product surface, for customers placing orders and for the owner configuring the system. Built end to end on WhatsApp Business API, Meta webhooks, Vercel (Next.js), Anthropic Claude, and Supabase (Postgres + RLS).</p>
-          <ul>
-            <li><strong>Constraint-driven architecture.</strong> &ldquo;No dashboard&rdquo; treated as the specification rather than a limitation to work around — WhatsApp as the entire product surface for customers and operator alike.</li>
-            <li><strong>Production integration.</strong> Meta WhatsApp Business API, Vercel, Supabase RLS, and a Claude agentic loop with tool calling, wired end to end and validated against live data.</li>
-            <li><strong>Security as structure.</strong> Phone-number identity resolution, permission gating filtered by context and re-validated per tool, and audit trails written by the write path — never by the model.</li>
-            <li><strong>Scale.</strong> <strong>120+ products in catalogue across 1000+ customers</strong>, with row-level security keyed on vendor_id so the schema is multi-tenant from day one.</li>
-          </ul>
-          <p><a href="/alcorte/" class="work-link">Open the Alcorte case study <span>↗</span></a></p>
-          <p class="work-note">Private repository, 2FA-enforced. Reference details on request.</p>
+        <div class="approach-item">
+          <span class="approach-num">02</span>
+          <h3>Quality is multi-dimensional</h3>
+          <p>Define "good" across pillars &mdash; safety, reliability, peace of mind. Measure with operational telemetry first, customer ratings second. Premium customers value their time more than rating prompts.</p>
         </div>
-
-        <div class="work-card reveal">
-          <div class="work-meta">Self-directed · 2026 · Premium mobility sector</div>
-          <h3>Marketplace Strategy & Analytics — European Premium Mobility</h3>
-          <p class="work-body">A self-directed analytical project applying my framework to a multi-city premium ride marketplace. Demonstrates how I approach growth strategy, partnership accountability, and quality economics at marketplace scale.</p>
-          <ul>
-            <li><strong>BD strategy across regions.</strong> Growth-market selection through explicit filter gates — partnership-channel markets (airline-driven, Southern Europe) and direct-customer markets (Western Europe).</li>
-            <li><strong>Customer-facing analytical dashboards.</strong> Interactive dashboards built in Python, Streamlit, and Plotly — operational telemetry, partner performance, segment economics, and quality-vs-margin views.</li>
-            <li><strong>Partnership segmentation & supplier scorecard.</strong> Tiered classification across the supply base, each tier mapped to a structured commercial conversation.</li>
-            <li><strong>Quality Contribution Index.</strong> Penalty-adjusted contribution metric translating quality failures into a per-ride P&L number.</li>
-          </ul>
-          <p class="work-note">Full project detail available on request.</p>
+        <div class="approach-item">
+          <span class="approach-num">03</span>
+          <h3>Grow with discipline</h3>
+          <p>Markets earn growth by passing explicit gates &mdash; readiness, concentration, rejection-rate, supply depth. Filter-passing is necessary, not sufficient.</p>
         </div>
+        <div class="approach-item">
+          <span class="approach-num">04</span>
+          <h3>Translate diagnosis into roadmaps</h3>
+          <p>Insight without execution is academic. The strongest planning artifacts name assumptions, structural floors, and explicit decision points where the plan pivots or doubles down.</p>
+        </div>
+        <div class="approach-item">
+          <span class="approach-num">05</span>
+          <h3>Sequence risk before levers fire</h3>
+          <p>What you defer matters as much as what you do. Remediate fragile markets before scaling them; design for downside, not just upside.</p>
+        </div>
+        <div class="approach-item">
+          <span class="approach-num">06</span>
+          <h3>ML for probabilistic problems; rules for policy</h3>
+          <p>Trying to use ML for tier classification adds complexity without value. Trying to use rules for prediction misses the probabilistic structure. The split is first-principles, not stylistic.</p>
+        </div>
+        <div class="approach-item" style="grid-column:1/-1;">
+          <span class="approach-num">07</span>
+          <h3>Partner accountability is conversation infrastructure</h3>
+          <p>Tiered scorecards turn partner performance into structured commercial conversations &mdash; Tier A standard terms, Tier C 90-day improvement plan with named targets. The framework is the conversation.</p>
+        </div>
+      </div>
 
+      <div class="approach-cta reveal">
+        <p>These principles are demonstrated in a live interactive dashboard.</p>
+        <a href="https://marketplace-ops-demo-port.streamlit.app/" target="_blank" rel="noopener" class="approach-link">Open dashboard <span>↗</span></a>
       </div>
     </div>
   </section>
