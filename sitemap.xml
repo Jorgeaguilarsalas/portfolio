@@ -29,6 +29,13 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://343ride.de/wolt/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://343ride.de/wolt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://343ride.de/wolt/"/>
+    <lastmod>2026-09-13</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://343ride.de/leadership-framework/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://343ride.de/leadership-framework/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://343ride.de/de/leadership-framework/"/>
