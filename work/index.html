@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Selected Work &mdash; Jorge Aguilar</title>
+<meta name="description" content="Five case studies across marketplace operations, mobility, compliance-critical SaaS and AI-native product: Nexio Fleet, Alcorte Alemán, Wolt, Bolt and a self-directed marketplace analysis.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Selected Work &mdash; Jorge Aguilar">
+<meta property="og:description" content="Five case studies across marketplace operations, mobility, compliance-critical SaaS and AI-native product.">
+<meta property="og:site_name" content="Jorge Aguilar Portfolio">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Selected Work &mdash; Jorge Aguilar">
+<meta name="twitter:description" content="Five case studies across marketplace operations, mobility, compliance-critical SaaS and AI-native product.">
+<link rel="canonical" href="https://343ride.de/work/">
+<link rel="alternate" hreflang="en" href="https://343ride.de/work/">
+<link rel="alternate" hreflang="de" href="https://343ride.de/de/work/">
+<link rel="alternate" hreflang="es" href="https://343ride.de/es/work/">
+<link rel="alternate" hreflang="x-default" href="https://343ride.de/work/">
+<meta property="og:url" content="https://343ride.de/work/">
+<meta property="og:image" content="https://343ride.de/og-card-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta name="twitter:url" content="https://343ride.de/work/">
+<meta name="twitter:image" content="https://343ride.de/og-card-1200x630.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<style>
+  :root{
+    --bg:#0B0B0D;
+    --surface:#0F0F12;
+    --surface-2:#141417;
+    --fg:#F7F7F8;
+    --muted:#B4B4BB;
+    --border:#303036;
+    --accent:#B8FF3D;
+    --accent-fg:#09090B;
+    --warn:#F5B23D;
+    --crit:#EF4444;
+    --radius:1.75rem;
+    --radius-sm:1.125rem;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --sans:"Inter",system-ui,-apple-system,sans-serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* NAV */
+  .nav{
+    padding:20px 32px;border-bottom:1px solid var(--border);
+    background:rgba(11,11,13,0.85);backdrop-filter:blur(8px);
+    position:sticky;top:0;z-index:20;
+  }
+  .nav-inner{max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  .back-link{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+    white-space:nowrap;transition:color .2s ease;
+  }
+  .back-link:hover{color:var(--accent);}
+  .nav-actions{display:flex;align-items:center;gap:14px;}
+  .nav-actions a{white-space:nowrap;text-decoration:none;}
+  .nav-download{
+    padding:8px 16px;border:1px solid var(--border);border-radius:999px;
+    font-family:var(--sans);font-weight:500;font-size:12.5px;color:var(--fg);
+    transition:border-color .2s ease,color .2s ease;
+  }
+  .nav-download:hover{border-color:var(--accent);color:var(--accent);}
+  .nav-cta{
+    background:var(--accent);color:var(--accent-fg);
+    padding:10px 18px;border-radius:999px;
+    font-family:var(--sans);font-weight:600;font-size:12.5px;
+    transition:transform .2s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px);color:var(--accent-fg);}
+
+  /* NAV — hamburger toggle (mobile only) */
+  .nav-toggle{
+    display:none;width:42px;height:42px;padding:0;flex:none;
+    align-items:center;justify-content:center;
+    background:transparent;border:1px solid var(--border);border-radius:999px;
+    cursor:pointer;transition:border-color .2s ease;
+  }
+  .nav-toggle:hover{border-color:var(--accent);}
+  .nav-toggle .bars,.nav-toggle .bars::before,.nav-toggle .bars::after{
+    display:block;width:17px;height:1.5px;background:var(--fg);border-radius:2px;
+    transition:background .2s ease;
+  }
+  .nav-toggle .bars{position:relative;}
+  .nav-toggle .bars::before,.nav-toggle .bars::after{content:"";position:absolute;left:0;}
+  .nav-toggle .bars::before{top:-5.5px;}
+  .nav-toggle .bars::after{top:5.5px;}
+  .nav-toggle:hover .bars,.nav-toggle:hover .bars::before,.nav-toggle:hover .bars::after{background:var(--accent);}
+
+  @media (max-width:800px){
+    .nav{padding:14px 20px;}
+    .nav-actions{display:none;}
+    .nav-toggle{display:inline-flex;}
+  }
+
+  /* MOBILE MENU OVERLAY */
+  .mobile-menu{
+    position:fixed;inset:0;z-index:60;
+    display:flex;flex-direction:column;
+    background:rgba(9,9,11,0.97);backdrop-filter:blur(16px);
+    opacity:0;visibility:hidden;
+    transition:opacity .3s ease,visibility .3s ease;
+  }
+  .mobile-menu.open{opacity:1;visibility:visible;}
+  .mobile-menu-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 20px;border-bottom:1px solid var(--border);flex:none;
+  }
+  .mobile-menu-close{
+    width:42px;height:42px;padding:0;flex:none;
+    display:inline-flex;align-items:center;justify-content:center;
+    background:transparent;border:1px solid var(--border);border-radius:999px;
+    color:var(--fg);font-family:var(--sans);font-size:20px;line-height:1;
+    cursor:pointer;transition:border-color .2s ease,color .2s ease,transform .2s ease;
+  }
+  .mobile-menu-close:hover{border-color:var(--accent);color:var(--accent);transform:rotate(90deg);}
+  .mobile-menu-body{
+    flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:32px 20px 40px;
+    display:flex;flex-direction:column;
+  }
+  .mobile-menu-actions{
+    display:flex;flex-direction:column;gap:12px;
+    opacity:0;transform:translateY(10px);
+    transition:opacity .45s ease,transform .45s ease;
+  }
+  .mobile-menu.open .mobile-menu-actions{opacity:1;transform:translateY(0);transition-delay:.08s;}
+  .mobile-menu-actions a{
+    display:block;text-align:center;padding:15px 22px;border-radius:999px;
+    font-family:var(--sans);font-weight:600;font-size:14px;text-decoration:none;
+  }
+  .mm-cta{background:var(--accent);color:var(--accent-fg);}
+  .mm-download{border:1px solid var(--border);color:var(--fg);font-weight:500;transition:border-color .2s ease,color .2s ease;}
+  .mm-download:hover{border-color:var(--accent);color:var(--accent);}
+  .mobile-menu-foot{
+    margin-top:auto;padding-top:32px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);opacity:.6;
+  }
+  body.menu-open{overflow:hidden;}
+  @media (min-width:801px){.mobile-menu{display:none;}}
+  @media (prefers-reduced-motion: reduce){
+    .mobile-menu,.mobile-menu-actions{transition-duration:.01ms;}
+    .mobile-menu-close:hover{transform:none;}
+  }
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none;}}
+
+  /* Contenedor y cabecera propios de la pagina */
+  .container{max-width:1320px;margin:0 auto;padding:0 32px;}
+  @media (max-width:640px){.container{padding:0 20px;}}
+
+  .page-head{padding:72px 0 44px;border-bottom:1px solid var(--border);}
+  .page-eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent);display:inline-flex;align-items:center;gap:10px;margin:0 0 24px;
+  }
+  .page-eyebrow::before{content:"";width:24px;height:2px;background:var(--accent);border-radius:2px;}
+  .page-head h1{
+    font-size:clamp(42px,6vw,80px);font-weight:900;line-height:.92;letter-spacing:-.03em;
+    text-transform:uppercase;margin:0 0 26px;
+  }
+  .page-lede{font-size:17px;line-height:1.65;color:var(--muted);margin:0;max-width:62ch;}
+  .page-lede strong{color:var(--fg);font-weight:600;}
+
+  .work-list{padding:48px 0 24px;}
+
+  .back-home{padding:8px 0 80px;}
+  .back-cta{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 26px;border:1px solid var(--border);border-radius:999px;
+    color:var(--fg);font-weight:600;font-size:14px;text-decoration:none;
+    transition:border-color .25s ease,color .25s ease;
+  }
+  .back-cta:hover{border-color:var(--accent);color:var(--accent);}
+  .back-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  .back-cta .arrow{color:var(--accent);}
+
+  @media (max-width:900px){
+    .page-head{padding:52px 0 34px;}
+    .work-list{padding:34px 0 16px;}
+    .back-home{padding:4px 0 60px;}
+    .back-cta{width:100%;justify-content:center;}
+  }
+  /* SELECTED WORK — zig-zag editorial: texto y diagrama alternan lado en
+     escritorio y se apilan en movil, donde el diagrama pasa a ser on-demand. */
+  .work-grid{display:flex;flex-direction:column;gap:28px;}
+  .case{
+    display:grid;grid-template-columns:minmax(0,60fr) minmax(0,40fr);
+    gap:72px;align-items:center;
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:44px;position:relative;overflow:hidden;
+    transition:border-color .3s ease;
+  }
+  .case:hover{border-color:rgba(184,255,61,0.28);}
+  .case::before{
+    content:"";position:absolute;top:0;right:0;width:220px;height:220px;
+    background:radial-gradient(circle at top right, rgba(184,255,61,0.06) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  /* Zig-zag: en las pares el diagrama va a la izquierda. Se invierte con order
+     para no alterar el orden del DOM, que es el que leen lector y teclado. */
+  .case:nth-of-type(even) .case-text{order:2;}
+  .case:nth-of-type(even) .case-visual{order:1;}
+  .case:nth-of-type(even)::before{right:auto;left:0;background:radial-gradient(circle at top left, rgba(184,255,61,0.06) 0%, transparent 70%);}
+
+  .case-text{min-width:0;position:relative;z-index:1;}
+  .case-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+  .case-text h3{font-size:clamp(24px,2.3vw,31px);font-weight:800;letter-spacing:-.02em;line-height:1.15;color:var(--fg);margin-bottom:16px;max-width:28ch;}
+  .case-intro{color:var(--muted);font-size:15.5px;line-height:1.65;margin-bottom:20px;max-width:66ch;}
+  .case-points{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+  .case-points li{position:relative;padding-left:22px;color:var(--muted);font-size:14.5px;line-height:1.6;max-width:68ch;}
+  .case-points li::before{content:"▸";position:absolute;left:0;top:.35em;color:var(--accent);font-size:12px;}
+  .case-points strong{color:var(--fg);font-weight:600;}
+  .case-meta{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);padding-top:18px;border-top:1px solid var(--border);margin-bottom:20px;
+  }
+  .case-cta{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:14px 24px;border:1px solid var(--border);border-radius:999px;
+    background:transparent;color:var(--fg);
+    font-family:var(--sans);font-weight:600;font-size:14px;text-decoration:none;
+    transition:border-color .25s ease,color .25s ease,transform .25s ease;
+  }
+  .case-cta .arrow{color:var(--accent);transition:transform .25s ease;}
+  .case-cta:hover{border-color:var(--accent);color:var(--accent);}
+  .case-cta:hover .arrow{transform:translateX(3px);}
+  .case-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  .case-note{font-size:12.5px;color:var(--muted);font-style:italic;line-height:1.55;margin-top:14px;max-width:52ch;}
+
+  .case-visual{min-width:0;position:relative;z-index:1;}
+  .case-figure{margin:0;}
+  .case-figure svg{display:block;width:100%;height:auto;border-radius:18px;}
+  .case-figcaption{
+    font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);margin-top:12px;text-align:center;
+  }
+  /* El toggle solo existe en movil */
+  .case-toggle{display:none;}
+
+  /* Card sin diagrama (proyecto self-directed): el texto ocupa todo el ancho */
+  .case.case--solo{grid-template-columns:minmax(0,1fr);gap:0;}
+  .case.case--solo .case-text h3{max-width:34ch;}
+  .case.case--solo .case-intro,.case.case--solo .case-points li{max-width:78ch;}
+
+  @media (max-width:1100px){
+    .case{gap:48px;padding:36px;}
+  }
+  /* Movil y tablet: una columna, diagrama on-demand */
+  @media (max-width:900px){
+    .work-grid{gap:22px;}
+    .case{grid-template-columns:minmax(0,1fr);gap:26px;padding:30px 24px;}
+    /* El diagrama siempre despues del texto al apilar, sea cual sea el zig-zag */
+    .case:nth-of-type(even) .case-text,.case:nth-of-type(even) .case-visual{order:initial;}
+    .case-text h3{max-width:none;}
+    .case-meta{margin-bottom:18px;}
+    .case-cta{width:100%;justify-content:center;padding:15px 22px;}
+    .case-note{max-width:none;}
+
+    .case-toggle{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
+      min-height:48px;padding:13px 20px;
+      background:transparent;border:1px dashed rgba(184,255,61,0.3);border-radius:999px;
+      color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+      text-transform:uppercase;cursor:pointer;
+      transition:border-color .25s ease,color .25s ease;
+    }
+    .case-toggle:hover,.case-toggle[aria-expanded="true"]{border-color:rgba(184,255,61,0.6);color:var(--fg);}
+    .case-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+    .case-toggle .sign{
+      display:inline-flex;align-items:center;justify-content:center;flex:none;
+      width:22px;height:22px;border-radius:50%;border:1px solid rgba(184,255,61,0.4);
+      color:var(--accent);font-family:var(--sans);font-size:14px;line-height:1;
+      transition:transform .3s ease;
+    }
+    .case-toggle[aria-expanded="true"] .sign{transform:rotate(45deg);}
+
+    /* display:none/block en vez de animar la altura: la figura tiene dos hijos
+       (diagrama y pie), asi que colapsar con grid-template-rows dejaba el pie
+       suelto, y la interpolacion de fr no es fiable en todos los motores.
+       La entrada se anima con keyframes, que si arrancan al aparecer. */
+    .case-figure{display:none;}
+    .case-visual.is-open .case-figure{display:block;margin-top:16px;animation:case-reveal .28s ease both;}
+  }
+  @media (max-width:560px){
+    .case{padding:26px 20px;}
+    .case-text h3{font-size:22px;}
+  }
+  @media (max-width:380px){
+    .case{padding:22px 16px;}
+    .case-toggle{padding:13px 16px;font-size:10px;letter-spacing:.1em;}
+  }
+  @keyframes case-reveal{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+  @media (prefers-reduced-motion: reduce){
+    .case-visual.is-open .case-figure{animation:none;}
+    .case-toggle .sign,.case-cta,.case-cta .arrow{transition:none;}
+  }
+
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="back-link"><span>&larr;</span> Portfolio</a>
+    <div class="nav-actions">
+      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download">Download CV &darr;</a>
+      <a href="/#contact" class="nav-cta">Get in touch</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span class="bars" aria-hidden="true"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true">
+  <div class="mobile-menu-head">
+    <a href="/" class="back-link"><span>&larr;</span> Portfolio</a>
+    <button class="mobile-menu-close" id="menuClose" type="button" aria-label="Close menu">&times;</button>
+  </div>
+  <div class="mobile-menu-body">
+    <div class="mobile-menu-actions">
+      <a href="/#contact" class="mm-cta">Get in touch</a>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Download CV &darr;</a>
+    </div>
+    <div class="mobile-menu-foot">Berlin &middot; EMEA</div>
+  </div>
+</div>
+
+<main>
+
+  <header class="page-head">
+    <div class="container">
+      <p class="page-eyebrow">Case studies</p>
+      <h1>Selected<br>Work</h1>
+      <p class="page-lede">Five projects across marketplace operations, mobility, compliance-critical SaaS and AI-native product. <strong>Two were built, three were fixed</strong> &mdash; and each one started from an operational problem nobody had instrumented yet.</p>
+    </div>
+  </header>
+
+  <section class="work-list" aria-label="Case studies">
+    <div class="container">
+      <div class="work-grid">
+
+        <!-- 01 — NEXIO -->
+        <article class="case reveal">
+          <div class="case-text">
+            <p class="case-eyebrow">01 · Featured case study</p>
+            <h3>Nexio Fleet — Building compliance-native product for Berlin PHV fleets.</h3>
+            <p class="case-intro">Strategy, operations and product at an early-stage compliance SaaS. I translated regulatory frameworks (LABO, PBefG) into product specifications, ran field discovery with fleet operators and drivers, and built the systems that make compliance measurable.</p>
+            <ul class="case-points">
+              <li><strong>Product ownership.</strong> Specs for the Driver App and Fleet Dashboard, QA across iOS, Android and web, and structured feedback loops between operations and engineering.</li>
+              <li><strong>Compliance at scale.</strong> The framework underpins compliance for <strong>800+ active drivers across 8 fleet operators</strong> in Berlin and Brandenburg.</li>
+              <li><strong>Automation.</strong> Manual reporting effort down 60–70% via Python pipelines integrating Uber and Bolt platform data.</li>
+            </ul>
+            <p class="case-meta">2025 — Present · Co-founder · 6+ months</p>
+            <a href="/nexio/" class="case-cta">Read the case study <span class="arrow" aria-hidden="true">→</span></a>
+            <p class="case-note">Reference letter on file from Aleksander Boski, CEO and co-founder of Nexio Fleet GmbH.</p>
+          </div>
+          <div class="case-visual" id="vis-nexio">
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-nexio">View diagram <span class="sign" aria-hidden="true">+</span></button>
+            <figure class="case-figure" id="fig-nexio">
+              <div class="case-figure-inner">
+                <svg viewBox="0 0 480 330" role="img" aria-label="Abstract representation of the Nexio fleet dashboard: three KPI tiles reading 800+ drivers, 8 operators and 6 flagged shifts, a driver table with per-row compliance status badges, and a compliance trend chart along the bottom.">
+                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
+                  <circle cx="24" cy="24" r="3.5" fill="#3A3A42"/><circle cx="37" cy="24" r="3.5" fill="#3A3A42"/><circle cx="50" cy="24" r="3.5" fill="#3A3A42"/>
+                  <text x="70" y="28" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">FLEET DASHBOARD</text>
+                  <line x1="0" y1="42" x2="480" y2="42" stroke="#303036"/>
+
+                  <rect x="20" y="58" width="138" height="54" rx="10" fill="#141417" stroke="#2A2A30"/>
+                  <text x="34" y="76" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">DRIVERS</text>
+                  <text x="34" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="#B8FF3D">800+</text>
+                  <rect x="171" y="58" width="138" height="54" rx="10" fill="#141417" stroke="#2A2A30"/>
+                  <text x="185" y="76" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">OPERATORS</text>
+                  <text x="185" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="#B8FF3D">8</text>
+                  <rect x="322" y="58" width="138" height="54" rx="10" fill="#141417" stroke="#2A2A30"/>
+                  <text x="336" y="76" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">FLAGGED</text>
+                  <text x="336" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="#F5B23D">6</text>
+
+                  <text x="20" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">DRIVER</text>
+                  <text x="150" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">SHIFT</text>
+                  <text x="250" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">BREAK</text>
+                  <text x="372" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">STATUS</text>
+                  <line x1="20" y1="147" x2="460" y2="147" stroke="#26262C"/>
+
+                  <rect x="20" y="159" width="86" height="7" rx="3.5" fill="#3A3A42"/>
+                  <rect x="150" y="159" width="66" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="250" y="159" width="44" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="372" y="154" width="70" height="17" rx="8.5" fill="rgba(184,255,61,0.10)" stroke="rgba(184,255,61,0.35)"/>
+                  <text x="407" y="166" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#B8FF3D">Compliant</text>
+                  <line x1="20" y1="181" x2="460" y2="181" stroke="#1F1F25"/>
+
+                  <rect x="20" y="193" width="72" height="7" rx="3.5" fill="#3A3A42"/>
+                  <rect x="150" y="193" width="58" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="250" y="193" width="36" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="372" y="188" width="70" height="17" rx="8.5" fill="rgba(245,178,61,0.12)" stroke="rgba(245,178,61,0.4)"/>
+                  <text x="407" y="200" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#F5B23D">Break short</text>
+                  <line x1="20" y1="215" x2="460" y2="215" stroke="#1F1F25"/>
+
+                  <rect x="20" y="227" width="94" height="7" rx="3.5" fill="#3A3A42"/>
+                  <rect x="150" y="227" width="70" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="250" y="227" width="50" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="372" y="222" width="70" height="17" rx="8.5" fill="rgba(184,255,61,0.10)" stroke="rgba(184,255,61,0.35)"/>
+                  <text x="407" y="234" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#B8FF3D">Compliant</text>
+
+                  <line x1="20" y1="256" x2="460" y2="256" stroke="#26262C"/>
+                  <text x="20" y="274" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">COMPLIANCE RATE · 12 WEEKS</text>
+                  <path d="M20,306 L69,300 L118,302 L167,294 L216,296 L265,288 L314,284 L363,280 L412,274 L460,270" fill="none" stroke="#B8FF3D" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M20,306 L69,300 L118,302 L167,294 L216,296 L265,288 L314,284 L363,280 L412,274 L460,270 L460,314 L20,314 Z" fill="rgba(184,255,61,0.07)"/>
+                  <circle cx="460" cy="270" r="3" fill="#B8FF3D"/>
+                </svg>
+              </div>
+              <figcaption class="case-figcaption">Fleet dashboard — abstract representation</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <!-- 02 — ALCORTE -->
+        <article class="case reveal">
+          <div class="case-text">
+            <p class="case-eyebrow">02 · Featured case study</p>
+            <h3>Alcorte Alemán — Running a 50-year-old butcher shop through WhatsApp.</h3>
+            <p class="case-intro">An AI order-management system for a family butcher shop in Mexico City, designed around a single constraint: the operator never opens a dashboard. WhatsApp is not a channel bolted onto the product — it is the entire product surface, for customers and owner alike.</p>
+            <ul class="case-points">
+              <li><strong>Constraint-driven architecture.</strong> “No dashboard” treated as the specification rather than a limitation to work around.</li>
+              <li><strong>Production integration.</strong> Meta WhatsApp Business API, Vercel, Supabase RLS and a Claude agentic loop with tool calling, wired end to end against live data.</li>
+              <li><strong>Scale.</strong> <strong>120+ products across 1000+ customers</strong>, with row-level security keyed on vendor_id so the schema is multi-tenant from day one.</li>
+            </ul>
+            <p class="case-meta">2025 — Present · Side project · Solo build</p>
+            <a href="/alcorte/" class="case-cta">Read the case study <span class="arrow" aria-hidden="true">→</span></a>
+            <p class="case-note">Private repository, 2FA-enforced. Reference details on request.</p>
+          </div>
+          <div class="case-visual" id="vis-alcorte">
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-alcorte">View diagram <span class="sign" aria-hidden="true">+</span></button>
+            <figure class="case-figure" id="fig-alcorte">
+              <div class="case-figure-inner">
+                <svg viewBox="0 0 480 330" role="img" aria-label="Flow diagram of the WhatsApp order system: a customer message reaches the WhatsApp Business API, then a Claude agentic loop with tool calling, which reads and writes Supabase under row-level security, and the reply returns to the customer through WhatsApp.">
+                  <defs>
+                    <marker id="al-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#B8FF3D"/></marker>
+                  </defs>
+                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
+                  <text x="24" y="30" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">ORDER FLOW · ONE SURFACE</text>
+
+                  <rect x="24" y="62" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="86" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Customer</text>
+                  <text x="86" y="103" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">SENDS A MESSAGE</text>
+
+                  <rect x="178" y="62" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="240" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">WhatsApp API</text>
+                  <text x="240" y="103" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">META WEBHOOK</text>
+
+                  <rect x="332" y="62" width="124" height="56" rx="12" fill="rgba(184,255,61,0.06)" stroke="rgba(184,255,61,0.4)"/>
+                  <text x="394" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Claude loop</text>
+                  <text x="394" y="103" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#B8FF3D">TOOL CALLING</text>
+
+                  <line x1="152" y1="90" x2="174" y2="90" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
+                  <line x1="306" y1="90" x2="328" y2="90" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
+                  <line x1="394" y1="118" x2="394" y2="176" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
+
+                  <rect x="332" y="180" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="394" y="204" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Supabase</text>
+                  <text x="394" y="221" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">POSTGRES · RLS</text>
+
+                  <rect x="178" y="180" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="240" y="204" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Response</text>
+                  <text x="240" y="221" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">ORDER CONFIRMED</text>
+
+                  <line x1="328" y1="208" x2="306" y2="208" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
+                  <path d="M178,208 H86 V124" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
+
+                  <path d="M24,270 V278 H456 V270" fill="none" stroke="#4A4A52" stroke-width="1.2"/>
+                  <text x="240" y="298" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">NO DASHBOARD · THE CHAT IS THE PRODUCT</text>
+                </svg>
+              </div>
+              <figcaption class="case-figcaption">WhatsApp system flow</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <!-- 03 — WOLT -->
+        <article class="case reveal">
+          <div class="case-text">
+            <p class="case-eyebrow">03 · Featured case study</p>
+            <h3>Wolt — Turning courier gear from a purchase into a loop.</h3>
+            <p class="case-intro">Courier equipment at Wolt Germany was bought once per hire and never came back: the cost curve tracked hiring and turnover rather than active courier count. I redesigned the lifecycle from linear to circular — recovery at offboarding, refurbishment in Berlin, and a recycling route for gear that could not be saved.</p>
+            <ul class="case-points">
+              <li><strong>Lifecycle redesign.</strong> Four intervention points: offboarding recovery, financial accountability for missing items, warehouse refurbishment, and downstream recycling via TARPREC through Wolt HQ Denmark.</li>
+              <li><strong>Nationwide rollout.</strong> Gear return embedded into offboarding across <strong>6 German cities covering 2,000+ courier partners</strong>.</li>
+              <li><strong>Result.</strong> <strong>30% reduction in equipment procurement spend</strong>, first 12 months against the following 12 post-implementation.</li>
+            </ul>
+            <p class="case-meta">2021 — 2022 · Operations Associate · Nationwide</p>
+            <a href="/wolt/" class="case-cta">Read the case study <span class="arrow" aria-hidden="true">→</span></a>
+            <p class="case-note">Reference letter on file from Wolt, available via the Certificates section.</p>
+          </div>
+          <div class="case-visual" id="vis-wolt">
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-wolt">View diagram <span class="sign" aria-hidden="true">+</span></button>
+            <figure class="case-figure" id="fig-wolt">
+              <div class="case-figure-inner">
+                <svg viewBox="0 0 480 330" role="img" aria-label="Compact circular gear lifecycle: procurement feeds distribution as a residual input, while the main loop runs refurbishment to distribution to recovery and back to refurbishment. Gear that fails assessment exits downstream to Wolt HQ Denmark, the TARPREC facility, and material recovery.">
+                  <defs>
+                    <marker id="wo-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#B8FF3D"/></marker>
+                    <marker id="wo-arrow-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#8A8A93"/></marker>
+                  </defs>
+                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
+                  <text x="24" y="28" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">GEAR LIFECYCLE</text>
+
+                  <rect x="178" y="44" width="124" height="36" rx="10" fill="#141417" stroke="#303036" stroke-dasharray="4 3"/>
+                  <text x="240" y="66" text-anchor="middle" font-family="Inter,sans-serif" font-size="11.5" font-weight="600" fill="#8A8A93">Procurement</text>
+                  <line x1="240" y1="80" x2="240" y2="104" stroke="#8A8A93" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#wo-arrow-m)"/>
+                  <text x="252" y="96" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">RESIDUAL</text>
+
+                  <rect x="24" y="108" width="124" height="50" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="86" y="131" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Refurbish</text>
+                  <text x="86" y="147" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">BERLIN INTAKE</text>
+
+                  <rect x="178" y="108" width="124" height="50" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="240" y="131" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Distribution</text>
+                  <text x="240" y="147" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">ISSUED AT HIRE</text>
+
+                  <rect x="332" y="108" width="124" height="50" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="394" y="131" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Recovery</text>
+                  <text x="394" y="147" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">AT OFFBOARDING</text>
+
+                  <line x1="152" y1="133" x2="174" y2="133" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#wo-arrow)"/>
+                  <line x1="306" y1="133" x2="328" y2="133" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#wo-arrow)"/>
+                  <path d="M394,158 V186 H86 V164" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#wo-arrow)"/>
+                  <text x="240" y="202" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8.5" letter-spacing="1.2" fill="#B8FF3D">GEAR RETURNS TO THE SYSTEM</text>
+
+                  <line x1="48" y1="158" x2="48" y2="234" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#wo-arrow-m)"/>
+                  <text x="58" y="222" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">FAILS ASSESSMENT</text>
+
+                  <rect x="24" y="238" width="130" height="42" rx="10" fill="#101013" stroke="#2A2A30"/>
+                  <text x="89" y="264" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#F7F7F8">Damaged gear</text>
+                  <rect x="176" y="238" width="130" height="42" rx="10" fill="#101013" stroke="#2A2A30"/>
+                  <text x="241" y="258" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#F7F7F8">TARPREC</text>
+                  <text x="241" y="272" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">VIA HQ DENMARK</text>
+                  <rect x="328" y="238" width="128" height="42" rx="10" fill="#101013" stroke="#2A2A30"/>
+                  <text x="392" y="264" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#F7F7F8">Material recovery</text>
+
+                  <line x1="158" y1="259" x2="172" y2="259" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#wo-arrow-m)"/>
+                  <line x1="310" y1="259" x2="324" y2="259" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#wo-arrow-m)"/>
+                  <text x="240" y="306" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8.5" letter-spacing="1.2" fill="#8A8A93">DOWNSTREAM — MATERIAL RECOVERY</text>
+                </svg>
+              </div>
+              <figcaption class="case-figcaption">Circular gear lifecycle</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <!-- 04 — BOLT -->
+        <article class="case reveal">
+          <div class="case-text">
+            <p class="case-eyebrow">04 · Featured case study</p>
+            <h3>Bolt — Rebuilding a driver activation funnel nobody could see inside.</h3>
+            <p class="case-intro">Driver activation at Bolt Rides in Southern Germany was a single number reported weekly: around 25%, with no visibility into which step drivers stalled at. I built the in-app instrumentation to see the funnel stage by stage, then designed interventions against each specific leak.</p>
+            <ul class="case-points">
+              <li><strong>Instrumentation first.</strong> In-app analytics measuring drop-off per stage — registration, upload, verification, activation, first ride — replacing a weekly aggregate that hid the leak.</li>
+              <li><strong>Diagnosis.</strong> Five friction points: manual document review, generic communication, duplicate account blocks, language barriers, and deprioritised long-tail fleets.</li>
+              <li><strong>Result.</strong> Activation moved from <strong>25% to 58% in six weeks across 1,000+ registrations</strong>.</li>
+            </ul>
+            <p class="case-meta">2023 · Operations Specialist · 6 weeks</p>
+            <a href="/bolt/" class="case-cta">Read the case study <span class="arrow" aria-hidden="true">→</span></a>
+            <p class="case-note">Contribution split and specific figures available on request.</p>
+          </div>
+          <div class="case-visual" id="vis-bolt">
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-bolt">View diagram <span class="sign" aria-hidden="true">+</span></button>
+            <figure class="case-figure" id="fig-bolt">
+              <div class="case-figure-inner">
+                <svg viewBox="0 0 480 330" role="img" aria-label="Compact activation funnel in five narrowing stages: registration at 100 percent, document upload, document verification highlighted as the largest drop-off, account activation, and first ride at roughly 25 percent of registrations at baseline.">
+                  <defs>
+                    <marker id="bo-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#8A8A93"/></marker>
+                  </defs>
+                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
+                  <text x="24" y="28" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">100% REGISTERED</text>
+
+                  <rect x="24" y="42" width="412" height="42" rx="10" fill="#141417" stroke="#303036"/>
+                  <text x="230" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Registration</text>
+                  <line x1="230" y1="84" x2="230" y2="98" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#bo-arrow)"/>
+
+                  <rect x="60" y="102" width="340" height="42" rx="10" fill="#141417" stroke="#303036"/>
+                  <text x="230" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Document upload</text>
+                  <line x1="230" y1="144" x2="230" y2="158" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#bo-arrow)"/>
+
+                  <rect x="96" y="162" width="268" height="42" rx="10" fill="rgba(184,255,61,0.07)" stroke="rgba(184,255,61,0.45)"/>
+                  <text x="230" y="182" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Document verification</text>
+                  <text x="230" y="196" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#B8FF3D">LARGEST DROP-OFF</text>
+                  <line x1="372" y1="183" x2="398" y2="183" stroke="rgba(184,255,61,0.45)" stroke-width="1" stroke-dasharray="3 3"/>
+                  <text x="404" y="186" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#B8FF3D">MANUAL</text>
+                  <line x1="230" y1="204" x2="230" y2="218" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#bo-arrow)"/>
+
+                  <rect x="140" y="222" width="180" height="42" rx="10" fill="#141417" stroke="#303036"/>
+                  <text x="230" y="248" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Account activation</text>
+                  <line x1="230" y1="264" x2="230" y2="278" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#bo-arrow)"/>
+
+                  <rect x="168" y="282" width="124" height="42" rx="10" fill="#141417" stroke="#303036"/>
+                  <text x="230" y="302" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">First ride</text>
+                  <text x="230" y="316" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">≈25% BASELINE</text>
+                </svg>
+              </div>
+              <figcaption class="case-figcaption">Activation funnel — stage widths illustrative</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <!-- 05 — SELF-DIRECTED (sin case study publicado) -->
+        <article class="case case--solo reveal">
+          <div class="case-text">
+            <p class="case-eyebrow">05 · Self-directed project</p>
+            <h3>Marketplace Strategy &amp; Analytics — European Premium Mobility</h3>
+            <p class="case-intro">A self-directed analytical project applying my framework to a multi-city premium ride marketplace. Demonstrates how I approach growth strategy, partnership accountability, and quality economics at marketplace scale.</p>
+            <ul class="case-points">
+              <li><strong>BD strategy across regions.</strong> Growth-market selection through explicit filter gates — partnership-channel markets (airline-driven, Southern Europe) and direct-customer markets (Western Europe).</li>
+              <li><strong>Customer-facing analytical dashboards.</strong> Built in Python, Streamlit and Plotly — operational telemetry, partner performance, segment economics, and quality-vs-margin views.</li>
+              <li><strong>Quality Contribution Index.</strong> Penalty-adjusted contribution metric translating quality failures into a per-ride P&amp;L number.</li>
+            </ul>
+            <p class="case-meta">2026 · Self-directed · Premium mobility sector</p>
+            <p class="case-note">Full project detail available on request.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="back-home">
+    <div class="container">
+      <a href="/" class="back-cta"><span class="arrow" aria-hidden="true">&larr;</span> Back to portfolio</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>Jorge Aguilar &middot; Berlin</p>
+    <p>&copy; 2026</p>
+  </div>
+</footer>
+
+<script>
+  // Reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Diagramas on-demand (solo en movil: arriba de 900px el CSS los muestra
+  // siempre y el boton no existe)
+  (function () {
+    document.querySelectorAll('.case-toggle').forEach((btn) => {
+      const visual = btn.closest('.case-visual');
+      const fig = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!visual || !fig) return;
+      const label = btn.childNodes[0];
+      btn.addEventListener('click', () => {
+        const open = visual.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (label) label.nodeValue = open ? 'Hide diagram ' : 'View diagram ';
+      });
+    });
+  })();
+</script>
+
+<script>
+  // Mobile menu
+  (function () {
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileMenu');
+    const close = document.getElementById('menuClose');
+    if (!toggle || !menu || !close) return;
+
+    function openMenu() {
+      menu.classList.add('open');
+      menu.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('menu-open');
+      close.focus();
+    }
+
+    function closeMenu(refocus) {
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      if (refocus) toggle.focus();
+    }
+
+    toggle.addEventListener('click', openMenu);
+    close.addEventListener('click', () => closeMenu(true));
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => closeMenu(false));
+    });
+
+    menu.addEventListener('click', (e) => {
+      if (e.target === menu || e.target.classList.contains('mobile-menu-body')) closeMenu(true);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu(true);
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 800 && menu.classList.contains('open')) closeMenu(false);
+    });
+  })();
+</script>
+
+
+</body>
+</html>

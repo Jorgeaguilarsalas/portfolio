@@ -234,7 +234,10 @@
   }
   /* Area de toque: el cursor mide 6px, muy poco para el dedo o el raton. Se
      agranda con un pseudo-elemento para no alterar el flujo del titulo. */
-  .hero-cursor::after{content:"";position:absolute;inset:-18px -20px;}
+  /* El area de toque se extiende mas hacia la izquierda que hacia la derecha:
+     el cursor va al final del nombre y en pantallas estrechas (414px) los 20px
+     de la derecha empujaban el scroll del documento 5px. */
+  .hero-cursor::after{content:"";position:absolute;inset:-18px -4px -18px -30px;}
   .hero-cursor:focus-visible{outline:2px solid var(--accent);outline-offset:6px;}
 
   .hero-tip{
@@ -441,21 +444,141 @@
   .approach-link:hover{transform:translateY(-2px);color:var(--accent-fg);}
 
   /* WORK */
-  .work-grid{display:flex;flex-direction:column;gap:24px;}
-  .work-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:40px;transition:border-color .3s ease, transform .3s ease;position:relative;overflow:hidden;}
-  .work-card:hover{border-color:rgba(184,255,61,0.35);transform:translateY(-2px);}
-  .work-card.feature{background:var(--surface-2);border-color:var(--border);}
-  .work-card.feature::before{content:"";position:absolute;top:0;right:0;width:220px;height:220px;background:radial-gradient(circle at top right, rgba(184,255,61,0.08) 0%, transparent 70%);pointer-events:none;}
-  .work-meta{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
-  .work-card h3{font-size:clamp(24px,2.4vw,32px);font-weight:800;letter-spacing:-.02em;margin-bottom:18px;color:var(--fg);max-width:26ch;line-height:1.15;}
-  .work-body{color:var(--muted);font-size:15.5px;line-height:1.65;margin-bottom:20px;max-width:70ch;}
-  .work-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
-  .work-card ul li{display:block;position:relative;padding-left:22px;color:var(--muted);font-size:14.5px;line-height:1.6;max-width:75ch;}
-  .work-card ul li::before{content:"▸";position:absolute;left:0;top:.35em;color:var(--accent);font-size:12px;}
-  .work-card ul li strong{color:var(--fg);font-weight:600;}
+  /* SELECTED WORK — zig-zag editorial: texto y diagrama alternan lado en
+     escritorio y se apilan en movil, donde el diagrama pasa a ser on-demand. */
+  .work-grid{display:flex;flex-direction:column;gap:28px;}
+  .case{
+    display:grid;grid-template-columns:minmax(0,60fr) minmax(0,40fr);
+    gap:72px;align-items:center;
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:44px;position:relative;overflow:hidden;
+    transition:border-color .3s ease;
+  }
+  .case:hover{border-color:rgba(184,255,61,0.28);}
+  .case::before{
+    content:"";position:absolute;top:0;right:0;width:220px;height:220px;
+    background:radial-gradient(circle at top right, rgba(184,255,61,0.06) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  /* Zig-zag: en las pares el diagrama va a la izquierda. Se invierte con order
+     para no alterar el orden del DOM, que es el que leen lector y teclado. */
+  .case:nth-of-type(even) .case-text{order:2;}
+  .case:nth-of-type(even) .case-visual{order:1;}
+  .case:nth-of-type(even)::before{right:auto;left:0;background:radial-gradient(circle at top left, rgba(184,255,61,0.06) 0%, transparent 70%);}
+
+  .case-text{min-width:0;position:relative;z-index:1;}
+  .case-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+  .case-text h3{font-size:clamp(24px,2.3vw,31px);font-weight:800;letter-spacing:-.02em;line-height:1.15;color:var(--fg);margin-bottom:16px;max-width:28ch;}
+  .case-intro{color:var(--muted);font-size:15.5px;line-height:1.65;margin-bottom:20px;max-width:66ch;}
+  .case-points{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+  .case-points li{position:relative;padding-left:22px;color:var(--muted);font-size:14.5px;line-height:1.6;max-width:68ch;}
+  .case-points li::before{content:"▸";position:absolute;left:0;top:.35em;color:var(--accent);font-size:12px;}
+  .case-points strong{color:var(--fg);font-weight:600;}
+  .case-meta{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);padding-top:18px;border-top:1px solid var(--border);margin-bottom:20px;
+  }
+  .case-cta{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:14px 24px;border:1px solid var(--border);border-radius:999px;
+    background:transparent;color:var(--fg);
+    font-family:var(--sans);font-weight:600;font-size:14px;text-decoration:none;
+    transition:border-color .25s ease,color .25s ease,transform .25s ease;
+  }
+  .case-cta .arrow{color:var(--accent);transition:transform .25s ease;}
+  .case-cta:hover{border-color:var(--accent);color:var(--accent);}
+  .case-cta:hover .arrow{transform:translateX(3px);}
+  .case-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  .case-note{font-size:12.5px;color:var(--muted);font-style:italic;line-height:1.55;margin-top:14px;max-width:52ch;}
+
+  .case-visual{min-width:0;position:relative;z-index:1;}
+  .case-figure{margin:0;}
+  .case-figure svg{display:block;width:100%;height:auto;border-radius:18px;}
+  .case-figcaption{
+    font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);margin-top:12px;text-align:center;
+  }
+  /* El toggle solo existe en movil */
+  .case-toggle{display:none;}
+
+  /* Card sin diagrama (proyecto self-directed): el texto ocupa todo el ancho */
+  .case.case--solo{grid-template-columns:minmax(0,1fr);gap:0;}
+  .case.case--solo .case-text h3{max-width:34ch;}
+  .case.case--solo .case-intro,.case.case--solo .case-points li{max-width:78ch;}
+
+  @media (max-width:1100px){
+    .case{gap:48px;padding:36px;}
+  }
+  /* Movil y tablet: una columna, diagrama on-demand */
+  @media (max-width:900px){
+    .work-grid{gap:22px;}
+    .case{grid-template-columns:minmax(0,1fr);gap:26px;padding:30px 24px;}
+    /* El diagrama siempre despues del texto al apilar, sea cual sea el zig-zag */
+    .case:nth-of-type(even) .case-text,.case:nth-of-type(even) .case-visual{order:initial;}
+    .case-text h3{max-width:none;}
+    .case-meta{margin-bottom:18px;}
+    .case-cta{width:100%;justify-content:center;padding:15px 22px;}
+    .case-note{max-width:none;}
+
+    .case-toggle{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
+      min-height:48px;padding:13px 20px;
+      background:transparent;border:1px dashed rgba(184,255,61,0.3);border-radius:999px;
+      color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+      text-transform:uppercase;cursor:pointer;
+      transition:border-color .25s ease,color .25s ease;
+    }
+    .case-toggle:hover,.case-toggle[aria-expanded="true"]{border-color:rgba(184,255,61,0.6);color:var(--fg);}
+    .case-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+    .case-toggle .sign{
+      display:inline-flex;align-items:center;justify-content:center;flex:none;
+      width:22px;height:22px;border-radius:50%;border:1px solid rgba(184,255,61,0.4);
+      color:var(--accent);font-family:var(--sans);font-size:14px;line-height:1;
+      transition:transform .3s ease;
+    }
+    .case-toggle[aria-expanded="true"] .sign{transform:rotate(45deg);}
+
+    /* display:none/block en vez de animar la altura: la figura tiene dos hijos
+       (diagrama y pie), asi que colapsar con grid-template-rows dejaba el pie
+       suelto, y la interpolacion de fr no es fiable en todos los motores.
+       La entrada se anima con keyframes, que si arrancan al aparecer. */
+    .case-figure{display:none;}
+    .case-visual.is-open .case-figure{display:block;margin-top:16px;animation:case-reveal .28s ease both;}
+  }
+  @media (max-width:560px){
+    .case{padding:26px 20px;}
+    .case-text h3{font-size:22px;}
+  }
+  @media (max-width:380px){
+    .case{padding:22px 16px;}
+    .case-toggle{padding:13px 16px;font-size:10px;letter-spacing:.1em;}
+  }
+  @keyframes case-reveal{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+  @media (prefers-reduced-motion: reduce){
+    .case-visual.is-open .case-figure{animation:none;}
+    .case-toggle .sign,.case-cta,.case-cta .arrow{transition:none;}
+  }
+
+  /* CTA al listado completo: unico boton en lima plena de la seccion */
+  .work-all{display:flex;justify-content:center;margin-top:36px;}
+  .work-all-cta{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:18px 34px;border:1px solid rgba(184,255,61,0.45);border-radius:999px;
+    color:var(--accent);font-weight:600;font-size:15.5px;text-decoration:none;
+    transition:background-color .25s ease,border-color .25s ease;
+  }
+  .work-all-cta:hover{background:rgba(184,255,61,0.08);border-color:var(--accent);}
+  .work-all-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  .work-all-cta .arrow{transition:transform .25s ease;}
+  .work-all-cta:hover .arrow{transform:translateX(4px);}
+  @media (max-width:900px){
+    .work-all{margin-top:26px;}
+    .work-all-cta{width:100%;justify-content:center;padding:17px 24px;}
+  }
+  @media (prefers-reduced-motion: reduce){.work-all-cta,.work-all-cta .arrow{transition:none;}}
+
   .work-link{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:600;font-size:15px;border-bottom:1px solid rgba(184,255,61,0.3);padding-bottom:2px;}
   .work-link:hover{border-bottom-color:var(--accent);}
-  .work-note{font-size:13px;color:var(--muted);font-style:italic;line-height:1.55;margin-top:12px;}
 
   /* SKILLS */
   .skills-list{display:flex;flex-direction:column;gap:0;max-width:900px;}
@@ -690,75 +813,153 @@
 
       <div class="work-grid">
 
-        <div class="work-card feature reveal">
-          <div class="work-meta">2025 — Present · Co-founder · Featured case study</div>
-          <h3>Nexio Fleet — Building compliance-native product for Berlin PHV fleets.</h3>
-          <p class="work-body">Strategy, operations and product at an early-stage compliance SaaS. Translated regulatory frameworks (LABO, PBefG) into product specifications, ran field discovery with fleet operators and drivers, prioritised the roadmap, and built the systems that make compliance measurable.</p>
-          <ul>
-            <li><strong>Product ownership.</strong> Wrote product specs for the Driver App and Fleet Dashboard; owned QA across iOS, Android, and web; established structured feedback loops between operations and engineering.</li>
-            <li><strong>Compliance at scale.</strong> Framework now underpins compliance for <strong>800+ active drivers across 8 fleet operators</strong> in Berlin and Brandenburg, aligned with LABO reporting requirements.</li>
-            <li><strong>Automation.</strong> Reduced manual reporting effort by 60–70% via Python pipelines integrating Uber and Bolt platform data with Nexio's internal architecture.</li>
-            <li><strong>Cross-functional.</strong> Contributed to tiered compliance pricing, fleet partnerships, competitive research, and early GTM positioning alongside the CEO.</li>
-          </ul>
-          <p><a href="/nexio/" class="work-link">Open the Nexio case study <span>↗</span></a></p>
-          <p class="work-note">Reference letter on file from Aleksander Boski, CEO and co-founder of Nexio Fleet GmbH.</p>
-        </div>
+        <!-- 01 — NEXIO -->
+        <article class="case reveal">
+          <div class="case-text">
+            <p class="case-eyebrow">01 · Featured case study</p>
+            <h3>Nexio Fleet — Building compliance-native product for Berlin PHV fleets.</h3>
+            <p class="case-intro">Strategy, operations and product at an early-stage compliance SaaS. I translated regulatory frameworks (LABO, PBefG) into product specifications, ran field discovery with fleet operators and drivers, and built the systems that make compliance measurable.</p>
+            <ul class="case-points">
+              <li><strong>Product ownership.</strong> Specs for the Driver App and Fleet Dashboard, QA across iOS, Android and web, and structured feedback loops between operations and engineering.</li>
+              <li><strong>Compliance at scale.</strong> The framework underpins compliance for <strong>800+ active drivers across 8 fleet operators</strong> in Berlin and Brandenburg.</li>
+              <li><strong>Automation.</strong> Manual reporting effort down 60–70% via Python pipelines integrating Uber and Bolt platform data.</li>
+            </ul>
+            <p class="case-meta">2025 — Present · Co-founder · 6+ months</p>
+            <a href="/nexio/" class="case-cta">Read the case study <span class="arrow" aria-hidden="true">→</span></a>
+            <p class="case-note">Reference letter on file from Aleksander Boski, CEO and co-founder of Nexio Fleet GmbH.</p>
+          </div>
+          <div class="case-visual" id="vis-nexio">
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-nexio">View diagram <span class="sign" aria-hidden="true">+</span></button>
+            <figure class="case-figure" id="fig-nexio">
+              <div class="case-figure-inner">
+                <svg viewBox="0 0 480 330" role="img" aria-label="Abstract representation of the Nexio fleet dashboard: three KPI tiles reading 800+ drivers, 8 operators and 6 flagged shifts, a driver table with per-row compliance status badges, and a compliance trend chart along the bottom.">
+                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
+                  <circle cx="24" cy="24" r="3.5" fill="#3A3A42"/><circle cx="37" cy="24" r="3.5" fill="#3A3A42"/><circle cx="50" cy="24" r="3.5" fill="#3A3A42"/>
+                  <text x="70" y="28" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">FLEET DASHBOARD</text>
+                  <line x1="0" y1="42" x2="480" y2="42" stroke="#303036"/>
 
-        <div class="work-card feature reveal">
-          <div class="work-meta">2025 — Present · Solo architect and engineer · Featured case study</div>
-          <h3>Alcorte Alemán — Running a 50-year-old butcher shop through WhatsApp.</h3>
-          <p class="work-body">An AI order-management system for a family butcher shop in Mexico City, designed around a single constraint: the operator never opens a dashboard. WhatsApp is not a channel bolted onto the product — it is the entire product surface, for customers placing orders and for the owner configuring the system. Built end to end on WhatsApp Business API, Meta webhooks, Vercel (Next.js), Anthropic Claude, and Supabase (Postgres + RLS).</p>
-          <ul>
-            <li><strong>Constraint-driven architecture.</strong> &ldquo;No dashboard&rdquo; treated as the specification rather than a limitation to work around — WhatsApp as the entire product surface for customers and operator alike.</li>
-            <li><strong>Production integration.</strong> Meta WhatsApp Business API, Vercel, Supabase RLS, and a Claude agentic loop with tool calling, wired end to end and validated against live data.</li>
-            <li><strong>Security as structure.</strong> Phone-number identity resolution, permission gating filtered by context and re-validated per tool, and audit trails written by the write path — never by the model.</li>
-            <li><strong>Scale.</strong> <strong>120+ products in catalogue across 1000+ customers</strong>, with row-level security keyed on vendor_id so the schema is multi-tenant from day one.</li>
-          </ul>
-          <p><a href="/alcorte/" class="work-link">Open the Alcorte case study <span>↗</span></a></p>
-          <p class="work-note">Private repository, 2FA-enforced. Reference details on request.</p>
-        </div>
+                  <rect x="20" y="58" width="138" height="54" rx="10" fill="#141417" stroke="#2A2A30"/>
+                  <text x="34" y="76" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">DRIVERS</text>
+                  <text x="34" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="#B8FF3D">800+</text>
+                  <rect x="171" y="58" width="138" height="54" rx="10" fill="#141417" stroke="#2A2A30"/>
+                  <text x="185" y="76" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">OPERATORS</text>
+                  <text x="185" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="#B8FF3D">8</text>
+                  <rect x="322" y="58" width="138" height="54" rx="10" fill="#141417" stroke="#2A2A30"/>
+                  <text x="336" y="76" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">FLAGGED</text>
+                  <text x="336" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="#F5B23D">6</text>
 
-        <div class="work-card feature reveal">
-          <div class="work-meta">2020 — 2023 · Sustainability Operations · Featured case study</div>
-          <h3>Wolt — Turning courier gear from a purchase into a loop.</h3>
-          <p class="work-body">Courier equipment at Wolt Germany was bought once per hire and never came back: the cost curve tracked hiring and turnover rather than active courier count. I redesigned the lifecycle from linear to circular — structured recovery at offboarding, refurbishment and re-issue from the Berlin office, and a downstream recycling route for gear that could not be saved.</p>
-          <ul>
-            <li><strong>Lifecycle redesign.</strong> Four intervention points — offboarding recovery, financial accountability for missing items, warehouse refurbishment, and downstream recycling via the TARPREC partnership through Wolt HQ Denmark.</li>
-            <li><strong>Warehouse operations.</strong> Designed the Berlin intake workflow, condition assessment criteria, and cleaning and repair protocols; coordinated a team of Gear Associates for daily execution.</li>
-            <li><strong>Nationwide rollout.</strong> Gear return embedded into standard offboarding across <strong>6 German cities covering 2,000+ courier partners</strong>, with local ops teams in Berlin, Munich, Hamburg, Frankfurt, Düsseldorf and Stuttgart.</li>
-            <li><strong>Result.</strong> <strong>30% reduction in equipment procurement spend</strong>, comparing the first 12 months against the following 12 months post-implementation, with the environmental contribution quantified for external publication.</li>
-          </ul>
-          <p><a href="/wolt/" class="work-link">Open the Wolt case study <span>↗</span></a></p>
-          <p class="work-note">Reference letter on file from Wolt, available via the Certificates section.</p>
-        </div>
+                  <text x="20" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">DRIVER</text>
+                  <text x="150" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">SHIFT</text>
+                  <text x="250" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">BREAK</text>
+                  <text x="372" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">STATUS</text>
+                  <line x1="20" y1="147" x2="460" y2="147" stroke="#26262C"/>
 
-        <div class="work-card feature reveal">
-          <div class="work-meta">2023 — 2024 · Operations Specialist · Featured case study</div>
-          <h3>Bolt — Rebuilding a driver activation funnel nobody could see inside.</h3>
-          <p class="work-body">Driver activation at Bolt Rides in Southern Germany was a single number reported weekly: around 25%, with no visibility into which step drivers stalled at. I built the in-app instrumentation to see the funnel stage by stage, diagnosed the friction with driver and fleet-owner interviews, then designed interventions against each specific leak.</p>
-          <ul>
-            <li><strong>Instrumentation first.</strong> In-app analytics measuring drop-off per funnel stage — registration, document upload, verification, activation, first ride — replacing a weekly aggregate that hid where the leak was.</li>
-            <li><strong>Diagnosis.</strong> Five friction points surfaced: manual document review, generic communication, duplicate account blocks, language barriers, and deprioritisation of long-tail fleets and multi-app drivers.</li>
-            <li><strong>Six interventions.</strong> Duplicate detection at registration, rewritten document notifications, translated onboarding material, explicit queue priority for small fleets, and a feedback loop with Support and Ops.</li>
-            <li><strong>Result.</strong> Activation moved from <strong>25% to 58% in six weeks across 1,000+ registrations</strong>, with the funnel measurable stage by stage from then on.</li>
-          </ul>
-          <p><a href="/bolt/" class="work-link">Open the Bolt case study <span>↗</span></a></p>
-          <p class="work-note">Contribution split and specific figures available on request.</p>
-        </div>
+                  <rect x="20" y="159" width="86" height="7" rx="3.5" fill="#3A3A42"/>
+                  <rect x="150" y="159" width="66" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="250" y="159" width="44" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="372" y="154" width="70" height="17" rx="8.5" fill="rgba(184,255,61,0.10)" stroke="rgba(184,255,61,0.35)"/>
+                  <text x="407" y="166" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#B8FF3D">Compliant</text>
+                  <line x1="20" y1="181" x2="460" y2="181" stroke="#1F1F25"/>
 
-        <div class="work-card reveal">
-          <div class="work-meta">Self-directed · 2026 · Premium mobility sector</div>
-          <h3>Marketplace Strategy & Analytics — European Premium Mobility</h3>
-          <p class="work-body">A self-directed analytical project applying my framework to a multi-city premium ride marketplace. Demonstrates how I approach growth strategy, partnership accountability, and quality economics at marketplace scale.</p>
-          <ul>
-            <li><strong>BD strategy across regions.</strong> Growth-market selection through explicit filter gates — partnership-channel markets (airline-driven, Southern Europe) and direct-customer markets (Western Europe).</li>
-            <li><strong>Customer-facing analytical dashboards.</strong> Interactive dashboards built in Python, Streamlit, and Plotly — operational telemetry, partner performance, segment economics, and quality-vs-margin views.</li>
-            <li><strong>Partnership segmentation & supplier scorecard.</strong> Tiered classification across the supply base, each tier mapped to a structured commercial conversation.</li>
-            <li><strong>Quality Contribution Index.</strong> Penalty-adjusted contribution metric translating quality failures into a per-ride P&L number.</li>
-          </ul>
-          <p class="work-note">Full project detail available on request.</p>
-        </div>
+                  <rect x="20" y="193" width="72" height="7" rx="3.5" fill="#3A3A42"/>
+                  <rect x="150" y="193" width="58" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="250" y="193" width="36" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="372" y="188" width="70" height="17" rx="8.5" fill="rgba(245,178,61,0.12)" stroke="rgba(245,178,61,0.4)"/>
+                  <text x="407" y="200" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#F5B23D">Break short</text>
+                  <line x1="20" y1="215" x2="460" y2="215" stroke="#1F1F25"/>
 
+                  <rect x="20" y="227" width="94" height="7" rx="3.5" fill="#3A3A42"/>
+                  <rect x="150" y="227" width="70" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="250" y="227" width="50" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="372" y="222" width="70" height="17" rx="8.5" fill="rgba(184,255,61,0.10)" stroke="rgba(184,255,61,0.35)"/>
+                  <text x="407" y="234" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#B8FF3D">Compliant</text>
+
+                  <line x1="20" y1="256" x2="460" y2="256" stroke="#26262C"/>
+                  <text x="20" y="274" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">COMPLIANCE RATE · 12 WEEKS</text>
+                  <path d="M20,306 L69,300 L118,302 L167,294 L216,296 L265,288 L314,284 L363,280 L412,274 L460,270" fill="none" stroke="#B8FF3D" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M20,306 L69,300 L118,302 L167,294 L216,296 L265,288 L314,284 L363,280 L412,274 L460,270 L460,314 L20,314 Z" fill="rgba(184,255,61,0.07)"/>
+                  <circle cx="460" cy="270" r="3" fill="#B8FF3D"/>
+                </svg>
+              </div>
+              <figcaption class="case-figcaption">Fleet dashboard — abstract representation</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <!-- 03 — WOLT -->
+        <article class="case reveal">
+          <div class="case-text">
+            <p class="case-eyebrow">02 · Featured case study</p>
+            <h3>Wolt — Turning courier gear from a purchase into a loop.</h3>
+            <p class="case-intro">Courier equipment at Wolt Germany was bought once per hire and never came back: the cost curve tracked hiring and turnover rather than active courier count. I redesigned the lifecycle from linear to circular — recovery at offboarding, refurbishment in Berlin, and a recycling route for gear that could not be saved.</p>
+            <ul class="case-points">
+              <li><strong>Lifecycle redesign.</strong> Four intervention points: offboarding recovery, financial accountability for missing items, warehouse refurbishment, and downstream recycling via TARPREC through Wolt HQ Denmark.</li>
+              <li><strong>Nationwide rollout.</strong> Gear return embedded into offboarding across <strong>6 German cities covering 2,000+ courier partners</strong>.</li>
+              <li><strong>Result.</strong> <strong>30% reduction in equipment procurement spend</strong>, first 12 months against the following 12 post-implementation.</li>
+            </ul>
+            <p class="case-meta">2021 — 2022 · Operations Associate · Nationwide</p>
+            <a href="/wolt/" class="case-cta">Read the case study <span class="arrow" aria-hidden="true">→</span></a>
+            <p class="case-note">Reference letter on file from Wolt, available via the Certificates section.</p>
+          </div>
+          <div class="case-visual" id="vis-wolt">
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-wolt">View diagram <span class="sign" aria-hidden="true">+</span></button>
+            <figure class="case-figure" id="fig-wolt">
+              <div class="case-figure-inner">
+                <svg viewBox="0 0 480 330" role="img" aria-label="Compact circular gear lifecycle: procurement feeds distribution as a residual input, while the main loop runs refurbishment to distribution to recovery and back to refurbishment. Gear that fails assessment exits downstream to Wolt HQ Denmark, the TARPREC facility, and material recovery.">
+                  <defs>
+                    <marker id="wo-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#B8FF3D"/></marker>
+                    <marker id="wo-arrow-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#8A8A93"/></marker>
+                  </defs>
+                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
+                  <text x="24" y="28" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">GEAR LIFECYCLE</text>
+
+                  <rect x="178" y="44" width="124" height="36" rx="10" fill="#141417" stroke="#303036" stroke-dasharray="4 3"/>
+                  <text x="240" y="66" text-anchor="middle" font-family="Inter,sans-serif" font-size="11.5" font-weight="600" fill="#8A8A93">Procurement</text>
+                  <line x1="240" y1="80" x2="240" y2="104" stroke="#8A8A93" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#wo-arrow-m)"/>
+                  <text x="252" y="96" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">RESIDUAL</text>
+
+                  <rect x="24" y="108" width="124" height="50" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="86" y="131" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Refurbish</text>
+                  <text x="86" y="147" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">BERLIN INTAKE</text>
+
+                  <rect x="178" y="108" width="124" height="50" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="240" y="131" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Distribution</text>
+                  <text x="240" y="147" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">ISSUED AT HIRE</text>
+
+                  <rect x="332" y="108" width="124" height="50" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="394" y="131" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Recovery</text>
+                  <text x="394" y="147" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">AT OFFBOARDING</text>
+
+                  <line x1="152" y1="133" x2="174" y2="133" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#wo-arrow)"/>
+                  <line x1="306" y1="133" x2="328" y2="133" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#wo-arrow)"/>
+                  <path d="M394,158 V186 H86 V164" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#wo-arrow)"/>
+                  <text x="240" y="202" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8.5" letter-spacing="1.2" fill="#B8FF3D">GEAR RETURNS TO THE SYSTEM</text>
+
+                  <line x1="48" y1="158" x2="48" y2="234" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#wo-arrow-m)"/>
+                  <text x="58" y="222" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">FAILS ASSESSMENT</text>
+
+                  <rect x="24" y="238" width="130" height="42" rx="10" fill="#101013" stroke="#2A2A30"/>
+                  <text x="89" y="264" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#F7F7F8">Damaged gear</text>
+                  <rect x="176" y="238" width="130" height="42" rx="10" fill="#101013" stroke="#2A2A30"/>
+                  <text x="241" y="258" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#F7F7F8">TARPREC</text>
+                  <text x="241" y="272" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">VIA HQ DENMARK</text>
+                  <rect x="328" y="238" width="128" height="42" rx="10" fill="#101013" stroke="#2A2A30"/>
+                  <text x="392" y="264" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#F7F7F8">Material recovery</text>
+
+                  <line x1="158" y1="259" x2="172" y2="259" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#wo-arrow-m)"/>
+                  <line x1="310" y1="259" x2="324" y2="259" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#wo-arrow-m)"/>
+                  <text x="240" y="306" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8.5" letter-spacing="1.2" fill="#8A8A93">DOWNSTREAM — MATERIAL RECOVERY</text>
+                </svg>
+              </div>
+              <figcaption class="case-figcaption">Circular gear lifecycle</figcaption>
+            </figure>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="work-all">
+        <a href="/work/" class="work-all-cta">See all case studies <span class="arrow" aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
   </section>
@@ -1204,6 +1405,27 @@
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && isOpen) { close(); trigger.focus(); }
+    });
+  })();
+
+  // Diagramas on-demand de Selected Work (solo en movil: arriba de 900px el
+  // CSS los muestra siempre y el boton no existe).
+  (function () {
+    const toggles = document.querySelectorAll('.case-toggle');
+    if (!toggles.length) return;
+
+    toggles.forEach((btn) => {
+      const visual = btn.closest('.case-visual');
+      const fig = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!visual || !fig) return;
+      const label = btn.childNodes[0];
+
+      btn.addEventListener('click', () => {
+        const open = visual.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        // Solo cambia la etiqueta: el signo + gira a x por CSS
+        if (label) label.nodeValue = open ? 'Hide diagram ' : 'View diagram ';
+      });
     });
   })();
 
