@@ -382,6 +382,10 @@
   @media (max-width:500px){.impact-grid .value{font-size:clamp(30px,9vw,40px);}}
 
   /* SECTIONS */
+  /* El nav sticky del home mide 80px: sin este margen, al llegar con #work
+     la etiqueta de la seccion queda debajo de la barra. */
+  .section[id]{scroll-margin-top:100px;}
+
   .section{padding:80px 0;border-bottom:1px solid var(--border);}
   .section-label{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:10px;margin-bottom:24px;}
   .section-label::before{content:"";width:24px;height:2px;background:var(--accent);border-radius:2px;}
@@ -1272,6 +1276,20 @@
 </footer>
 
 <script>
+  // Llegada desde otra pagina con #hash: el scroll suave del documento se queda
+  // a medias en una pagina larga con reveals (el observer cambia alturas mientras
+  // la animacion corre), asi que el salto se hace explicito e instantaneo.
+  (function () {
+    if (!window.location.hash) return;
+    const target = document.getElementById(window.location.hash.slice(1));
+    if (!target) return;
+    // 'instant' y no 'auto': auto delega en scroll-behavior:smooth del CSS,
+    // que en esta pagina se queda a medio camino.
+    const jump = () => target.scrollIntoView({ behavior: 'instant', block: 'start' });
+    jump();
+    window.addEventListener('load', () => { jump(); setTimeout(jump, 150); });
+  })();
+
   // Reveal animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
