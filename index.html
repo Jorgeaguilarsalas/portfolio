@@ -219,6 +219,72 @@
   /* Blinking cursor after the name: cap-height tall, sits on the baseline, and cancels its own advance so line breaks never change */
   .hero-cursor{--w:clamp(4px,.07em,6px);--gap:3px;display:inline-block;width:var(--w);height:.72em;margin-left:var(--gap);margin-right:calc(-1 * (var(--w) + var(--gap)));vertical-align:baseline;background:var(--accent);animation:hero-cursor-blink 1s steps(1,end) infinite;}
   @keyframes hero-cursor-blink{50%{opacity:0;}}
+  /* TOOLTIP DE ESTADO — cuelga del cursor lima del nombre.
+     El wrapper es inline-block para cenirse al ancho del nombre: asi el tooltip
+     se ancla al borde derecho del nombre (justo bajo el cursor) sin depender de
+     la posicion exacta del cursor, que cambia cuando el titulo se parte. */
+  /* block (no inline-block: el eyebrow de arriba es inline-flex y compartirian
+     linea) pero cenido al ancho del nombre con fit-content, para poder anclar
+     el tooltip al borde derecho del titulo. */
+  .hero-name-wrap{position:relative;display:block;width:fit-content;max-width:100%;}
+  .hero-cursor{
+    padding:0;border:0;background:var(--accent);
+    -webkit-appearance:none;appearance:none;
+    position:relative;cursor:pointer;
+  }
+  /* Area de toque: el cursor mide 6px, muy poco para el dedo o el raton. Se
+     agranda con un pseudo-elemento para no alterar el flujo del titulo. */
+  .hero-cursor::after{content:"";position:absolute;inset:-18px -20px;}
+  .hero-cursor:focus-visible{outline:2px solid var(--accent);outline-offset:6px;}
+
+  .hero-tip{
+    position:absolute;top:100%;right:0;margin-top:6px;z-index:30;
+    display:flex;flex-direction:column;gap:9px;
+    width:max-content;max-width:min(320px,calc(100vw - 40px));
+    padding:18px 20px;
+    background:var(--bg);border:1px solid rgba(184,255,61,0.35);border-radius:16px;
+    box-shadow:0 18px 40px rgba(0,0,0,0.55);
+    font-family:var(--sans);font-size:14px;font-weight:400;
+    letter-spacing:normal;text-transform:none;line-height:1.5;
+    opacity:0;transform:translateY(-6px);
+    transition:opacity .2s ease,transform .2s ease;
+  }
+  .hero-tip[hidden]{display:none;}
+  .hero-tip.is-open{opacity:1;transform:translateY(0);}
+  .hero-tip::before{
+    content:"";position:absolute;top:-5px;right:26px;
+    width:8px;height:8px;background:var(--bg);
+    border-left:1px solid rgba(184,255,61,0.35);border-top:1px solid rgba(184,255,61,0.35);
+    transform:rotate(45deg);
+  }
+  .tip-avail{display:flex;align-items:center;gap:9px;color:var(--fg);font-weight:600;font-size:14.5px;}
+  .tip-dot{
+    width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;
+    box-shadow:0 0 0 0 rgba(184,255,61,0.6);animation:pulse 2s infinite;
+  }
+  .tip-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+  .tip-now{color:var(--muted);font-size:13.5px;padding-top:9px;border-top:1px solid var(--border);}
+  .tip-now b{color:var(--fg);font-weight:600;}
+  .tip-link{
+    display:inline-flex;align-items:center;gap:7px;align-self:flex-start;
+    font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;
+    transition:transform .2s ease;
+  }
+  .tip-link:hover{transform:translateX(3px);}
+  /* En pantallas estrechas el nombre es mas corto que el tooltip: se ancla al
+     borde izquierdo para no salirse por la derecha. */
+  @media (max-width:700px){
+    .hero-tip{right:auto;left:0;}
+    /* Anclado a la izquierda, la flecha ya no cae bajo el cursor (que esta al
+       final del nombre): mejor sin flecha que apuntando a ningun sitio. */
+    .hero-tip::before{display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-tip{transition:none;}
+    .tip-dot{animation:none;box-shadow:none;}
+    .tip-link:hover{transform:none;}
+  }
+
   .hero-tagline{font-size:clamp(22px,2.4vw,32px);font-weight:600;color:var(--fg);line-height:1.3;letter-spacing:-.015em;max-width:34ch;margin-bottom:18px;}
   .hero-sub{font-size:clamp(16px,1.3vw,18px);color:var(--muted);line-height:1.6;max-width:60ch;margin-bottom:36px;}
   .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
@@ -514,9 +580,17 @@
     <div class="container hero-inner">
       <div>
         <div class="hero-eyebrow reveal"><span class="pulse"></span> Open to senior roles · Berlin · EMEA</div>
-        <h1 class="hero-name reveal">
-          <span>Jorge Aguilar</span><span class="hero-cursor" aria-hidden="true"></span>
-        </h1>
+        <div class="hero-name-wrap">
+          <h1 class="hero-name reveal">
+            <span>Jorge Aguilar</span><button type="button" class="hero-cursor" id="statusTrigger" aria-label="Availability and current role" aria-expanded="false" aria-describedby="statusTip"></button>
+          </h1>
+          <span class="hero-tip" id="statusTip" role="tooltip" hidden>
+            <span class="tip-avail"><span class="tip-dot" aria-hidden="true"></span>Open to senior roles</span>
+            <span class="tip-meta">Berlin · EMEA</span>
+            <span class="tip-now">Currently: <b>Co-founder @ Nexio Fleet</b></span>
+            <a href="/nexio/" class="tip-link">See the case study <span aria-hidden="true">→</span></a>
+          </span>
+        </div>
         <p class="hero-tagline reveal">I turn complex operational problems into scalable systems, products and partnerships.</p>
         <p class="hero-sub reveal">Across mobility, logistics and technology — from frontline operations to strategy and execution.</p>
         <div class="hero-actions reveal">
@@ -1052,6 +1126,84 @@
     // Never leave the overlay stuck open when the desktop nav comes back
     window.addEventListener('resize', () => {
       if (window.innerWidth > 800 && menu.classList.contains('open')) closeMenu(false);
+    });
+  })();
+
+  // Status tooltip on the blinking cursor after the name.
+  // Desktop: hover (with a grace delay so the pointer can reach the link inside).
+  // Touch: tap toggles. Keyboard: focus opens, Escape closes.
+  (function () {
+    const trigger = document.getElementById('statusTrigger');
+    const tip = document.getElementById('statusTip');
+    if (!trigger || !tip) return;
+
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    // El estado es explicito y no se deduce de la clase CSS: la clase solo
+    // gobierna la transicion, y leerla como estado deja el toggle a merced
+    // de cuando el navegador pinte el siguiente frame.
+    let isOpen = false;
+    let closeDelay = null;
+    let hideDelay = null;
+
+    function open() {
+      clearTimeout(closeDelay);
+      clearTimeout(hideDelay);
+      isOpen = true;
+      tip.hidden = false;
+      void tip.offsetWidth; // reflow sincrono: sin esto la transicion no arranca
+      tip.classList.add('is-open');
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+
+    function close() {
+      clearTimeout(closeDelay);
+      clearTimeout(hideDelay);
+      isOpen = false;
+      tip.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+      if (reduced.matches) {
+        tip.hidden = true;
+      } else {
+        hideDelay = setTimeout(() => { if (!isOpen) tip.hidden = true; }, 220);
+      }
+    }
+
+    function scheduleClose() {
+      clearTimeout(closeDelay);
+      closeDelay = setTimeout(close, 160);
+    }
+
+    if (canHover.matches) {
+      trigger.addEventListener('mouseenter', open);
+      trigger.addEventListener('mouseleave', scheduleClose);
+      tip.addEventListener('mouseenter', () => clearTimeout(closeDelay));
+      tip.addEventListener('mouseleave', scheduleClose);
+    }
+
+    // Tap en movil, click en escritorio: alterna
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isOpen ? close() : open();
+    });
+
+    trigger.addEventListener('focus', open);
+    trigger.addEventListener('blur', () => {
+      // No cerrar si el foco pasa al enlace que vive dentro del tooltip
+      setTimeout(() => { if (!tip.contains(document.activeElement)) close(); }, 0);
+    });
+    tip.addEventListener('focusout', () => {
+      setTimeout(() => {
+        if (!tip.contains(document.activeElement) && document.activeElement !== trigger) close();
+      }, 0);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (isOpen && !tip.contains(e.target) && e.target !== trigger) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen) { close(); trigger.focus(); }
     });
   })();
 
