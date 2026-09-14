@@ -220,6 +220,75 @@
   /* Blinking cursor after the name: cap-height tall, sits on the baseline, and cancels its own advance so line breaks never change */
   .hero-cursor{--w:clamp(4px,.07em,6px);--gap:3px;display:inline-block;width:var(--w);height:.72em;margin-left:var(--gap);margin-right:calc(-1 * (var(--w) + var(--gap)));vertical-align:baseline;background:var(--accent);animation:hero-cursor-blink 1s steps(1,end) infinite;}
   @keyframes hero-cursor-blink{50%{opacity:0;}}
+  /* TOOLTIP DE ESTADO — cuelga del cursor lima del nombre.
+     El wrapper es inline-block para cenirse al ancho del nombre: asi el tooltip
+     se ancla al borde derecho del nombre (justo bajo el cursor) sin depender de
+     la posicion exacta del cursor, que cambia cuando el titulo se parte. */
+  /* block (no inline-block: el eyebrow de arriba es inline-flex y compartirian
+     linea) pero cenido al ancho del nombre con fit-content, para poder anclar
+     el tooltip al borde derecho del titulo. */
+  .hero-name-wrap{position:relative;display:block;width:fit-content;max-width:100%;}
+  .hero-cursor{
+    padding:0;border:0;background:var(--accent);
+    -webkit-appearance:none;appearance:none;
+    position:relative;cursor:pointer;
+  }
+  /* Area de toque: el cursor mide 6px, muy poco para el dedo o el raton. Se
+     agranda con un pseudo-elemento para no alterar el flujo del titulo. */
+  /* El area de toque se extiende mas hacia la izquierda que hacia la derecha:
+     el cursor va al final del nombre y en pantallas estrechas (414px) los 20px
+     de la derecha empujaban el scroll del documento 5px. */
+  .hero-cursor::after{content:"";position:absolute;inset:-18px -4px -18px -30px;}
+  .hero-cursor:focus-visible{outline:2px solid var(--accent);outline-offset:6px;}
+
+  .hero-tip{
+    position:absolute;top:100%;right:0;margin-top:6px;z-index:30;
+    display:flex;flex-direction:column;gap:9px;
+    width:max-content;max-width:min(320px,calc(100vw - 40px));
+    padding:18px 20px;
+    background:var(--bg);border:1px solid rgba(184,255,61,0.35);border-radius:16px;
+    box-shadow:0 18px 40px rgba(0,0,0,0.55);
+    font-family:var(--sans);font-size:14px;font-weight:400;
+    letter-spacing:normal;text-transform:none;line-height:1.5;
+    opacity:0;transform:translateY(-6px);
+    transition:opacity .2s ease,transform .2s ease;
+  }
+  .hero-tip[hidden]{display:none;}
+  .hero-tip.is-open{opacity:1;transform:translateY(0);}
+  .hero-tip::before{
+    content:"";position:absolute;top:-5px;right:26px;
+    width:8px;height:8px;background:var(--bg);
+    border-left:1px solid rgba(184,255,61,0.35);border-top:1px solid rgba(184,255,61,0.35);
+    transform:rotate(45deg);
+  }
+  .tip-avail{display:flex;align-items:center;gap:9px;color:var(--fg);font-weight:600;font-size:14.5px;}
+  .tip-dot{
+    width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;
+    box-shadow:0 0 0 0 rgba(184,255,61,0.6);animation:pulse 2s infinite;
+  }
+  .tip-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+  .tip-now{color:var(--muted);font-size:13.5px;padding-top:9px;border-top:1px solid var(--border);}
+  .tip-now b{color:var(--fg);font-weight:600;}
+  .tip-link{
+    display:inline-flex;align-items:center;gap:7px;align-self:flex-start;
+    font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;
+    transition:transform .2s ease;
+  }
+  .tip-link:hover{transform:translateX(3px);}
+  /* En pantallas estrechas el nombre es mas corto que el tooltip: se ancla al
+     borde izquierdo para no salirse por la derecha. */
+  @media (max-width:700px){
+    .hero-tip{right:auto;left:0;}
+    /* Anclado a la izquierda, la flecha ya no cae bajo el cursor (que esta al
+       final del nombre): mejor sin flecha que apuntando a ningun sitio. */
+    .hero-tip::before{display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-tip{transition:none;}
+    .tip-dot{animation:none;box-shadow:none;}
+    .tip-link:hover{transform:none;}
+  }
+
   .hero-tagline{font-size:clamp(22px,2.4vw,32px);font-weight:600;color:var(--fg);line-height:1.3;letter-spacing:-.015em;max-width:34ch;margin-bottom:18px;}
   .hero-sub{font-size:clamp(16px,1.3vw,18px);color:var(--muted);line-height:1.6;max-width:60ch;margin-bottom:36px;}
   .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
@@ -376,21 +445,141 @@
   .approach-link:hover{transform:translateY(-2px);color:var(--accent-fg);}
 
   /* WORK */
-  .work-grid{display:flex;flex-direction:column;gap:24px;}
-  .work-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:40px;transition:border-color .3s ease, transform .3s ease;position:relative;overflow:hidden;}
-  .work-card:hover{border-color:rgba(184,255,61,0.35);transform:translateY(-2px);}
-  .work-card.feature{background:var(--surface-2);border-color:var(--border);}
-  .work-card.feature::before{content:"";position:absolute;top:0;right:0;width:220px;height:220px;background:radial-gradient(circle at top right, rgba(184,255,61,0.08) 0%, transparent 70%);pointer-events:none;}
-  .work-meta{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
-  .work-card h3{font-size:clamp(24px,2.4vw,32px);font-weight:800;letter-spacing:-.02em;margin-bottom:18px;color:var(--fg);max-width:26ch;line-height:1.15;}
-  .work-body{color:var(--muted);font-size:15.5px;line-height:1.65;margin-bottom:20px;max-width:70ch;}
-  .work-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
-  .work-card ul li{display:block;position:relative;padding-left:22px;color:var(--muted);font-size:14.5px;line-height:1.6;max-width:75ch;}
-  .work-card ul li::before{content:"▸";position:absolute;left:0;top:.35em;color:var(--accent);font-size:12px;}
-  .work-card ul li strong{color:var(--fg);font-weight:600;}
+  /* SELECTED WORK — zig-zag editorial: texto y diagrama alternan lado en
+     escritorio y se apilan en movil, donde el diagrama pasa a ser on-demand. */
+  .work-grid{display:flex;flex-direction:column;gap:28px;}
+  .case{
+    display:grid;grid-template-columns:minmax(0,60fr) minmax(0,40fr);
+    gap:72px;align-items:center;
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:44px;position:relative;overflow:hidden;
+    transition:border-color .3s ease;
+  }
+  .case:hover{border-color:rgba(184,255,61,0.28);}
+  .case::before{
+    content:"";position:absolute;top:0;right:0;width:220px;height:220px;
+    background:radial-gradient(circle at top right, rgba(184,255,61,0.06) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  /* Zig-zag: en las pares el diagrama va a la izquierda. Se invierte con order
+     para no alterar el orden del DOM, que es el que leen lector y teclado. */
+  .case:nth-of-type(even) .case-text{order:2;}
+  .case:nth-of-type(even) .case-visual{order:1;}
+  .case:nth-of-type(even)::before{right:auto;left:0;background:radial-gradient(circle at top left, rgba(184,255,61,0.06) 0%, transparent 70%);}
+
+  .case-text{min-width:0;position:relative;z-index:1;}
+  .case-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+  .case-text h3{font-size:clamp(24px,2.3vw,31px);font-weight:800;letter-spacing:-.02em;line-height:1.15;color:var(--fg);margin-bottom:16px;max-width:28ch;}
+  .case-intro{color:var(--muted);font-size:15.5px;line-height:1.65;margin-bottom:20px;max-width:66ch;}
+  .case-points{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+  .case-points li{position:relative;padding-left:22px;color:var(--muted);font-size:14.5px;line-height:1.6;max-width:68ch;}
+  .case-points li::before{content:"▸";position:absolute;left:0;top:.35em;color:var(--accent);font-size:12px;}
+  .case-points strong{color:var(--fg);font-weight:600;}
+  .case-meta{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);padding-top:18px;border-top:1px solid var(--border);margin-bottom:20px;
+  }
+  .case-cta{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:14px 24px;border:1px solid var(--border);border-radius:999px;
+    background:transparent;color:var(--fg);
+    font-family:var(--sans);font-weight:600;font-size:14px;text-decoration:none;
+    transition:border-color .25s ease,color .25s ease,transform .25s ease;
+  }
+  .case-cta .arrow{color:var(--accent);transition:transform .25s ease;}
+  .case-cta:hover{border-color:var(--accent);color:var(--accent);}
+  .case-cta:hover .arrow{transform:translateX(3px);}
+  .case-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  .case-note{font-size:12.5px;color:var(--muted);font-style:italic;line-height:1.55;margin-top:14px;max-width:52ch;}
+
+  .case-visual{min-width:0;position:relative;z-index:1;}
+  .case-figure{margin:0;}
+  .case-figure svg{display:block;width:100%;height:auto;border-radius:18px;}
+  .case-figcaption{
+    font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);margin-top:12px;text-align:center;
+  }
+  /* El toggle solo existe en movil */
+  .case-toggle{display:none;}
+
+  /* Card sin diagrama (proyecto self-directed): el texto ocupa todo el ancho */
+  .case.case--solo{grid-template-columns:minmax(0,1fr);gap:0;}
+  .case.case--solo .case-text h3{max-width:34ch;}
+  .case.case--solo .case-intro,.case.case--solo .case-points li{max-width:78ch;}
+
+  @media (max-width:1100px){
+    .case{gap:48px;padding:36px;}
+  }
+  /* Movil y tablet: una columna, diagrama on-demand */
+  @media (max-width:900px){
+    .work-grid{gap:22px;}
+    .case{grid-template-columns:minmax(0,1fr);gap:26px;padding:30px 24px;}
+    /* El diagrama siempre despues del texto al apilar, sea cual sea el zig-zag */
+    .case:nth-of-type(even) .case-text,.case:nth-of-type(even) .case-visual{order:initial;}
+    .case-text h3{max-width:none;}
+    .case-meta{margin-bottom:18px;}
+    .case-cta{width:100%;justify-content:center;padding:15px 22px;}
+    .case-note{max-width:none;}
+
+    .case-toggle{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
+      min-height:48px;padding:13px 20px;
+      background:transparent;border:1px dashed rgba(184,255,61,0.3);border-radius:999px;
+      color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+      text-transform:uppercase;cursor:pointer;
+      transition:border-color .25s ease,color .25s ease;
+    }
+    .case-toggle:hover,.case-toggle[aria-expanded="true"]{border-color:rgba(184,255,61,0.6);color:var(--fg);}
+    .case-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+    .case-toggle .sign{
+      display:inline-flex;align-items:center;justify-content:center;flex:none;
+      width:22px;height:22px;border-radius:50%;border:1px solid rgba(184,255,61,0.4);
+      color:var(--accent);font-family:var(--sans);font-size:14px;line-height:1;
+      transition:transform .3s ease;
+    }
+    .case-toggle[aria-expanded="true"] .sign{transform:rotate(45deg);}
+
+    /* display:none/block en vez de animar la altura: la figura tiene dos hijos
+       (diagrama y pie), asi que colapsar con grid-template-rows dejaba el pie
+       suelto, y la interpolacion de fr no es fiable en todos los motores.
+       La entrada se anima con keyframes, que si arrancan al aparecer. */
+    .case-figure{display:none;}
+    .case-visual.is-open .case-figure{display:block;margin-top:16px;animation:case-reveal .28s ease both;}
+  }
+  @media (max-width:560px){
+    .case{padding:26px 20px;}
+    .case-text h3{font-size:22px;}
+  }
+  @media (max-width:380px){
+    .case{padding:22px 16px;}
+    .case-toggle{padding:13px 16px;font-size:10px;letter-spacing:.1em;}
+  }
+  @keyframes case-reveal{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+  @media (prefers-reduced-motion: reduce){
+    .case-visual.is-open .case-figure{animation:none;}
+    .case-toggle .sign,.case-cta,.case-cta .arrow{transition:none;}
+  }
+
+  /* CTA al listado completo: unico boton en lima plena de la seccion */
+  .work-all{display:flex;justify-content:center;margin-top:36px;}
+  .work-all-cta{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:18px 34px;border:1px solid rgba(184,255,61,0.45);border-radius:999px;
+    color:var(--accent);font-weight:600;font-size:15.5px;text-decoration:none;
+    transition:background-color .25s ease,border-color .25s ease;
+  }
+  .work-all-cta:hover{background:rgba(184,255,61,0.08);border-color:var(--accent);}
+  .work-all-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  .work-all-cta .arrow{transition:transform .25s ease;}
+  .work-all-cta:hover .arrow{transform:translateX(4px);}
+  @media (max-width:900px){
+    .work-all{margin-top:26px;}
+    .work-all-cta{width:100%;justify-content:center;padding:17px 24px;}
+  }
+  @media (prefers-reduced-motion: reduce){.work-all-cta,.work-all-cta .arrow{transition:none;}}
+
   .work-link{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:600;font-size:15px;border-bottom:1px solid rgba(184,255,61,0.3);padding-bottom:2px;}
   .work-link:hover{border-bottom-color:var(--accent);}
-  .work-note{font-size:13px;color:var(--muted);font-style:italic;line-height:1.55;margin-top:12px;}
 
   /* SKILLS */
   .skills-list{display:flex;flex-direction:column;gap:0;max-width:900px;}
@@ -515,9 +704,17 @@
     <div class="container hero-inner">
       <div>
         <div class="hero-eyebrow reveal"><span class="pulse"></span> Offen für Senior-Positionen · Berlin · EMEA</div>
-        <h1 class="hero-name reveal">
-          <span>Jorge Aguilar</span><span class="hero-cursor" aria-hidden="true"></span>
-        </h1>
+        <div class="hero-name-wrap">
+          <h1 class="hero-name reveal">
+            <span>Jorge Aguilar</span><button type="button" class="hero-cursor" id="statusTrigger" aria-label="Verfügbarkeit und aktuelle Rolle" aria-expanded="false" aria-describedby="statusTip"></button>
+          </h1>
+          <span class="hero-tip" id="statusTip" role="tooltip" hidden>
+            <span class="tip-avail"><span class="tip-dot" aria-hidden="true"></span>Offen für Senior Positionen</span>
+            <span class="tip-meta">Berlin · EMEA</span>
+            <span class="tip-now">Aktuell: <b>Co-Founder @ Nexio Fleet</b></span>
+            <a href="/de/nexio/" class="tip-link">Fallstudie lesen <span aria-hidden="true">→</span></a>
+          </span>
+        </div>
         <p class="hero-tagline reveal">Ich verwandle komplexe operative Probleme in skalierbare Systeme, Produkte und Partnerschaften.</p>
         <p class="hero-sub reveal">Von Mobilität über Logistik bis Technologie — vom operativen Tagesgeschäft bis zu Strategie und Umsetzung.</p>
         <div class="hero-actions reveal">
@@ -617,47 +814,153 @@
 
       <div class="work-grid">
 
-        <div class="work-card feature reveal">
-          <div class="work-meta">2025 — heute · Mitgründer · Hervorgehobene Fallstudie</div>
-          <h3>Nexio Fleet — Compliance-natives Produkt für Berliner PHV-Flotten.</h3>
-          <p class="work-body">Strategie, Operations und Produkt in einer Compliance-SaaS in der Frühphase. Regulatorische Rahmenwerke (LABO, PBefG) in Produktspezifikationen übersetzt, Feld-Discovery mit Flottenbetreibern und Fahrern durchgeführt, die Roadmap priorisiert und die Systeme gebaut, die Compliance messbar machen.</p>
-          <ul>
-            <li><strong>Product Ownership.</strong> Produktspezifikationen für die Driver App und das Fleet Dashboard verfasst; QA über iOS, Android und Web verantwortet; strukturierte Feedbackschleifen zwischen Operations und Engineering etabliert.</li>
-            <li><strong>Compliance im Maßstab.</strong> Das Rahmenwerk trägt heute die Compliance für <strong>über 800 aktive Fahrer bei 8 Flottenbetreibern</strong> in Berlin und Brandenburg, abgestimmt auf die Berichtspflichten der LABO.</li>
-            <li><strong>Automatisierung.</strong> Manuellen Reporting-Aufwand um 60–70 % reduziert über Python-Pipelines, die Plattformdaten von Uber und Bolt in die interne Architektur von Nexio integrieren.</li>
-            <li><strong>Cross-funktional.</strong> Mitwirkung an gestufter Compliance-Preisgestaltung, Flottenpartnerschaften, Wettbewerbsanalyse und früher GTM-Positionierung gemeinsam mit dem CEO.</li>
-          </ul>
-          <p><a href="/de/nexio/" class="work-link">Nexio-Fallstudie öffnen <span>↗</span></a></p>
-          <p class="work-note">Referenzschreiben von Aleksander Boski, CEO und Mitgründer der Nexio Fleet GmbH, liegt vor.</p>
-        </div>
+        <!-- 01 — NEXIO -->
+        <article class="case reveal">
+          <div class="case-text">
+            <p class="case-eyebrow">01 · Ausgewählte Fallstudie</p>
+            <h3>Nexio Fleet — Compliance-natives Produkt für Berliner Mietwagenflotten.</h3>
+            <p class="case-intro">Strategie, Operations und Produkt bei einem Compliance-SaaS in der Frühphase. Ich habe regulatorische Vorgaben (LABO, PBefG) in Produktspezifikationen übersetzt, Field Discovery mit Flottenbetreibern und Fahrern durchgeführt und die Systeme gebaut, die Compliance messbar machen.</p>
+            <ul class="case-points">
+              <li><strong>Product Ownership.</strong> Spezifikationen für Driver App und Fleet Dashboard, QA über iOS, Android und Web sowie strukturierte Feedback-Schleifen zwischen Operations und Engineering.</li>
+              <li><strong>Compliance im Maßstab.</strong> Das Framework trägt die Compliance für <strong>800+ aktive Fahrer bei 8 Flottenbetreibern</strong> in Berlin und Brandenburg.</li>
+              <li><strong>Automatisierung.</strong> Manueller Reporting-Aufwand um 60–70% gesenkt durch Python-Pipelines, die Uber- und Bolt-Plattformdaten integrieren.</li>
+            </ul>
+            <p class="case-meta">2025 — Gegenwart · Co-Founder · 6+ Monate</p>
+            <a href="/de/nexio/" class="case-cta">Fallstudie lesen <span class="arrow" aria-hidden="true">→</span></a>
+            <p class="case-note">Referenzschreiben von Aleksander Boski, CEO und Mitgründer der Nexio Fleet GmbH, liegt vor.</p>
+          </div>
+          <div class="case-visual" id="vis-nexio">
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-nexio">Diagramm ansehen <span class="sign" aria-hidden="true">+</span></button>
+            <figure class="case-figure" id="fig-nexio">
+              <div class="case-figure-inner">
+                <svg viewBox="0 0 480 330" role="img" aria-label="Abstrakte Darstellung des Nexio Fleet Dashboards: drei KPI-Kacheln mit 800+ Fahrern, 8 Betreibern und 6 markierten Schichten, eine Fahrertabelle mit Compliance-Status je Zeile und darunter ein Verlaufsdiagramm der Compliance-Quote.">
+                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
+                  <circle cx="24" cy="24" r="3.5" fill="#3A3A42"/><circle cx="37" cy="24" r="3.5" fill="#3A3A42"/><circle cx="50" cy="24" r="3.5" fill="#3A3A42"/>
+                  <text x="70" y="28" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">FLEET DASHBOARD</text>
+                  <line x1="0" y1="42" x2="480" y2="42" stroke="#303036"/>
 
-        <div class="work-card feature reveal">
-          <div class="work-meta">2025 — heute · Alleiniger Architekt und Entwickler · Hervorgehobene Fallstudie</div>
-          <h3>Alcorte Alemán — Eine 50 Jahre alte Metzgerei über WhatsApp betreiben.</h3>
-          <p class="work-body">Ein KI-gestütztes Bestellmanagementsystem für eine Familienmetzgerei in Mexiko-Stadt, entworfen um eine einzige Randbedingung: Der Betreiber öffnet nie ein Dashboard. WhatsApp ist kein Kanal, der dem Produkt angeflanscht wurde — es ist die gesamte Produktoberfläche, für Kunden, die bestellen, und für den Inhaber, der das System konfiguriert. Durchgängig gebaut auf WhatsApp Business API, Meta-Webhooks, Vercel (Next.js), Anthropic Claude und Supabase (Postgres + RLS).</p>
-          <ul>
-            <li><strong>Architektur aus der Randbedingung heraus.</strong> &ldquo;Kein Dashboard&rdquo; als Spezifikation behandelt statt als zu umgehende Einschränkung — WhatsApp als gesamte Produktoberfläche für Kunden wie für den Betreiber.</li>
-            <li><strong>Produktivintegration.</strong> Meta WhatsApp Business API, Vercel, Supabase RLS und eine agentische Claude-Schleife mit Tool Calling, durchgängig verdrahtet und gegen Live-Daten validiert.</li>
-            <li><strong>Sicherheit als Struktur.</strong> Identitätsauflösung über die Rufnummer, kontextgefilterte Rechteprüfung mit erneuter Validierung je Werkzeug und Audit-Trails, die der Schreibpfad selbst schreibt — nie das Modell.</li>
-            <li><strong>Größenordnung.</strong> <strong>Über 120 Produkte im Katalog bei über 1000 Kunden</strong>, mit Row-Level Security auf Basis von vendor_id, sodass das Schema von Tag eins an mandantenfähig ist.</li>
-          </ul>
-          <p><a href="/de/alcorte/" class="work-link">Alcorte-Fallstudie öffnen <span>↗</span></a></p>
-          <p class="work-note">Privates Repository, 2FA erzwungen. Referenzdetails auf Anfrage.</p>
-        </div>
+                  <rect x="20" y="58" width="138" height="54" rx="10" fill="#141417" stroke="#2A2A30"/>
+                  <text x="34" y="76" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">FAHRER</text>
+                  <text x="34" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="#B8FF3D">800+</text>
+                  <rect x="171" y="58" width="138" height="54" rx="10" fill="#141417" stroke="#2A2A30"/>
+                  <text x="185" y="76" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">BETREIBER</text>
+                  <text x="185" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="#B8FF3D">8</text>
+                  <rect x="322" y="58" width="138" height="54" rx="10" fill="#141417" stroke="#2A2A30"/>
+                  <text x="336" y="76" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">MARKIERT</text>
+                  <text x="336" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="#F5B23D">6</text>
 
-        <div class="work-card reveal">
-          <div class="work-meta">Eigeninitiiert · 2026 · Premium-Mobilitätssektor</div>
-          <h3>Marktplatz&shy;strategie & Analytik — Europäische Premium-Mobilität</h3>
-          <p class="work-body">Ein eigeninitiiertes Analyseprojekt, das mein Rahmenwerk auf einen Premium-Fahrtenmarktplatz in mehreren Städten anwendet. Es zeigt, wie ich Wachstumsstrategie, Partner-Verbindlichkeit und Qualitätsökonomie im Maßstab eines Marktplatzes angehe.</p>
-          <ul>
-            <li><strong>BD-Strategie über Regionen hinweg.</strong> Auswahl der Wachstumsmärkte über ausdrückliche Filterkriterien — Märkte über Partnerkanäle (fluglinienbasiert, Südeuropa) und Märkte mit Direktkunden (Westeuropa).</li>
-            <li><strong>Analytische Dashboards für Kunden.</strong> Interaktive Dashboards, gebaut mit Python, Streamlit und Plotly — operative Telemetrie, Partnerleistung, Segmentökonomie und Ansichten zu Qualität gegenüber Marge.</li>
-            <li><strong>Partnersegmentierung & Lieferanten-Scorecard.</strong> Gestufte Klassifizierung der gesamten Angebotsbasis, jede Stufe einem strukturierten kommerziellen Gespräch zugeordnet.</li>
-            <li><strong>Quality Contribution Index.</strong> Um Malusfaktoren bereinigte Deckungsbeitragskennzahl, die Qualitätsmängel in eine GuV-Zahl je Fahrt übersetzt.</li>
-          </ul>
-          <p class="work-note">Vollständige Projektdetails auf Anfrage.</p>
-        </div>
+                  <text x="20" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">FAHRER</text>
+                  <text x="150" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">SCHICHT</text>
+                  <text x="250" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">PAUSE</text>
+                  <text x="372" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">STATUS</text>
+                  <line x1="20" y1="147" x2="460" y2="147" stroke="#26262C"/>
 
+                  <rect x="20" y="159" width="86" height="7" rx="3.5" fill="#3A3A42"/>
+                  <rect x="150" y="159" width="66" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="250" y="159" width="44" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="372" y="154" width="70" height="17" rx="8.5" fill="rgba(184,255,61,0.10)" stroke="rgba(184,255,61,0.35)"/>
+                  <text x="407" y="166" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#B8FF3D">Konform</text>
+                  <line x1="20" y1="181" x2="460" y2="181" stroke="#1F1F25"/>
+
+                  <rect x="20" y="193" width="72" height="7" rx="3.5" fill="#3A3A42"/>
+                  <rect x="150" y="193" width="58" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="250" y="193" width="36" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="372" y="188" width="70" height="17" rx="8.5" fill="rgba(245,178,61,0.12)" stroke="rgba(245,178,61,0.4)"/>
+                  <text x="407" y="200" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#F5B23D">Pause zu kurz</text>
+                  <line x1="20" y1="215" x2="460" y2="215" stroke="#1F1F25"/>
+
+                  <rect x="20" y="227" width="94" height="7" rx="3.5" fill="#3A3A42"/>
+                  <rect x="150" y="227" width="70" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="250" y="227" width="50" height="7" rx="3.5" fill="#2E2E35"/>
+                  <rect x="372" y="222" width="70" height="17" rx="8.5" fill="rgba(184,255,61,0.10)" stroke="rgba(184,255,61,0.35)"/>
+                  <text x="407" y="234" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#B8FF3D">Konform</text>
+
+                  <line x1="20" y1="256" x2="460" y2="256" stroke="#26262C"/>
+                  <text x="20" y="274" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">COMPLIANCE-QUOTE · 12 WOCHEN</text>
+                  <path d="M20,306 L69,300 L118,302 L167,294 L216,296 L265,288 L314,284 L363,280 L412,274 L460,270" fill="none" stroke="#B8FF3D" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M20,306 L69,300 L118,302 L167,294 L216,296 L265,288 L314,284 L363,280 L412,274 L460,270 L460,314 L20,314 Z" fill="rgba(184,255,61,0.07)"/>
+                  <circle cx="460" cy="270" r="3" fill="#B8FF3D"/>
+                </svg>
+              </div>
+              <figcaption class="case-figcaption">Fleet Dashboard — abstrakte Darstellung</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <!-- 03 — WOLT -->
+        <article class="case reveal">
+          <div class="case-text">
+            <p class="case-eyebrow">02 · Ausgewählte Fallstudie</p>
+            <h3>Wolt — Kurier-Ausrüstung vom Kauf zum Kreislauf.</h3>
+            <p class="case-intro">Kurier-Ausrüstung bei Wolt Deutschland wurde je Einstellung einmal gekauft und kam nie zurück: Die Kostenkurve folgte Einstellungen und Fluktuation statt der Zahl aktiver Kuriere. Ich habe den Lebenszyklus von linear auf zirkulär umgebaut — Rücknahme beim Offboarding, Aufbereitung in Berlin und eine Recyclingroute für Unrettbares.</p>
+            <ul class="case-points">
+              <li><strong>Neugestaltung des Lebenszyklus.</strong> Vier Ansatzpunkte: Rücknahme beim Offboarding, finanzielle Verbindlichkeit für fehlende Teile, Aufbereitung im Warehouse und nachgelagertes Recycling über TARPREC via Wolt HQ Dänemark.</li>
+              <li><strong>Bundesweiter Rollout.</strong> Ausrüstungsrückgabe im Offboarding verankert in <strong>6 deutschen Städten mit 2.000+ Kurierpartnern</strong>.</li>
+              <li><strong>Ergebnis.</strong> <strong>30% weniger Beschaffungskosten für Ausrüstung</strong>, erste 12 Monate gegenüber den folgenden 12 nach der Umsetzung.</li>
+            </ul>
+            <p class="case-meta">2021 — 2022 · Operations Associate · Bundesweit</p>
+            <a href="/de/wolt/" class="case-cta">Fallstudie lesen <span class="arrow" aria-hidden="true">→</span></a>
+            <p class="case-note">Referenzschreiben von Wolt liegt vor, abrufbar über den Zertifikate-Bereich.</p>
+          </div>
+          <div class="case-visual" id="vis-wolt">
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-wolt">Diagramm ansehen <span class="sign" aria-hidden="true">+</span></button>
+            <figure class="case-figure" id="fig-wolt">
+              <div class="case-figure-inner">
+                <svg viewBox="0 0 480 330" role="img" aria-label="Kompakter zirkulärer Ausrüstungs-Lebenszyklus: Die Beschaffung speist die Ausgabe als Restzufluss, während der Hauptkreislauf von der Aufbereitung über die Ausgabe zur Rücknahme und zurück zur Aufbereitung führt. Ausrüstung, die die Prüfung nicht besteht, geht nachgelagert an das Wolt HQ Dänemark, die TARPREC-Anlage und die Materialrückgewinnung.">
+                  <defs>
+                    <marker id="wo-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#B8FF3D"/></marker>
+                    <marker id="wo-arrow-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#8A8A93"/></marker>
+                  </defs>
+                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
+                  <text x="24" y="28" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">AUSRÜSTUNGS-LEBENSZYKLUS</text>
+
+                  <rect x="178" y="44" width="124" height="36" rx="10" fill="#141417" stroke="#303036" stroke-dasharray="4 3"/>
+                  <text x="240" y="66" text-anchor="middle" font-family="Inter,sans-serif" font-size="11.5" font-weight="600" fill="#8A8A93">Beschaffung</text>
+                  <line x1="240" y1="80" x2="240" y2="104" stroke="#8A8A93" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#wo-arrow-m)"/>
+                  <text x="252" y="96" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">REST</text>
+
+                  <rect x="24" y="108" width="124" height="50" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="86" y="131" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Aufbereiten</text>
+                  <text x="86" y="147" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">ANNAHME BERLIN</text>
+
+                  <rect x="178" y="108" width="124" height="50" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="240" y="131" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Ausgabe</text>
+                  <text x="240" y="147" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">BEI EINSTELLUNG</text>
+
+                  <rect x="332" y="108" width="124" height="50" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="394" y="131" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Rücknahme</text>
+                  <text x="394" y="147" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">BEIM OFFBOARDING</text>
+
+                  <line x1="152" y1="133" x2="174" y2="133" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#wo-arrow)"/>
+                  <line x1="306" y1="133" x2="328" y2="133" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#wo-arrow)"/>
+                  <path d="M394,158 V186 H86 V164" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#wo-arrow)"/>
+                  <text x="240" y="202" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8.5" letter-spacing="1.2" fill="#B8FF3D">AUSRÜSTUNG KEHRT INS SYSTEM ZURÜCK</text>
+
+                  <line x1="48" y1="158" x2="48" y2="234" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#wo-arrow-m)"/>
+                  <text x="58" y="222" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">PRÜFUNG NICHT BESTANDEN</text>
+
+                  <rect x="24" y="238" width="130" height="42" rx="10" fill="#101013" stroke="#2A2A30"/>
+                  <text x="89" y="264" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#F7F7F8">Beschädigte Ausrüstung</text>
+                  <rect x="176" y="238" width="130" height="42" rx="10" fill="#101013" stroke="#2A2A30"/>
+                  <text x="241" y="258" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#F7F7F8">TARPREC</text>
+                  <text x="241" y="272" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">VIA HQ DÄNEMARK</text>
+                  <rect x="328" y="238" width="128" height="42" rx="10" fill="#101013" stroke="#2A2A30"/>
+                  <text x="392" y="264" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#F7F7F8">Materialrückgewinnung</text>
+
+                  <line x1="158" y1="259" x2="172" y2="259" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#wo-arrow-m)"/>
+                  <line x1="310" y1="259" x2="324" y2="259" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#wo-arrow-m)"/>
+                  <text x="240" y="306" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8.5" letter-spacing="1.2" fill="#8A8A93">NACHGELAGERT — MATERIALRÜCKGEWINNUNG</text>
+                </svg>
+              </div>
+              <figcaption class="case-figcaption">Zirkulärer Ausrüstungs-Lebenszyklus</figcaption>
+            </figure>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="work-all">
+        <a href="/de/work/" class="work-all-cta">Alle Fallstudien ansehen <span class="arrow" aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
   </section>
@@ -1023,6 +1326,105 @@
     // Never leave the overlay stuck open when the desktop nav comes back
     window.addEventListener('resize', () => {
       if (window.innerWidth > 800 && menu.classList.contains('open')) closeMenu(false);
+    });
+  })();
+
+  // Status tooltip on the blinking cursor after the name.
+  // Desktop: hover (with a grace delay so the pointer can reach the link inside).
+  // Touch: tap toggles. Keyboard: focus opens, Escape closes.
+  (function () {
+    const trigger = document.getElementById('statusTrigger');
+    const tip = document.getElementById('statusTip');
+    if (!trigger || !tip) return;
+
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    // El estado es explicito y no se deduce de la clase CSS: la clase solo
+    // gobierna la transicion, y leerla como estado deja el toggle a merced
+    // de cuando el navegador pinte el siguiente frame.
+    let isOpen = false;
+    let closeDelay = null;
+    let hideDelay = null;
+
+    function open() {
+      clearTimeout(closeDelay);
+      clearTimeout(hideDelay);
+      isOpen = true;
+      tip.hidden = false;
+      void tip.offsetWidth; // reflow sincrono: sin esto la transicion no arranca
+      tip.classList.add('is-open');
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+
+    function close() {
+      clearTimeout(closeDelay);
+      clearTimeout(hideDelay);
+      isOpen = false;
+      tip.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+      if (reduced.matches) {
+        tip.hidden = true;
+      } else {
+        hideDelay = setTimeout(() => { if (!isOpen) tip.hidden = true; }, 220);
+      }
+    }
+
+    function scheduleClose() {
+      clearTimeout(closeDelay);
+      closeDelay = setTimeout(close, 160);
+    }
+
+    if (canHover.matches) {
+      trigger.addEventListener('mouseenter', open);
+      trigger.addEventListener('mouseleave', scheduleClose);
+      tip.addEventListener('mouseenter', () => clearTimeout(closeDelay));
+      tip.addEventListener('mouseleave', scheduleClose);
+    }
+
+    // Tap en movil, click en escritorio: alterna
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      isOpen ? close() : open();
+    });
+
+    trigger.addEventListener('focus', open);
+    trigger.addEventListener('blur', () => {
+      // No cerrar si el foco pasa al enlace que vive dentro del tooltip
+      setTimeout(() => { if (!tip.contains(document.activeElement)) close(); }, 0);
+    });
+    tip.addEventListener('focusout', () => {
+      setTimeout(() => {
+        if (!tip.contains(document.activeElement) && document.activeElement !== trigger) close();
+      }, 0);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (isOpen && !tip.contains(e.target) && e.target !== trigger) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen) { close(); trigger.focus(); }
+    });
+  })();
+
+  // Diagramas on-demand de Selected Work (solo en movil: arriba de 900px el
+  // CSS los muestra siempre y el boton no existe).
+  (function () {
+    const toggles = document.querySelectorAll('.case-toggle');
+    if (!toggles.length) return;
+
+    toggles.forEach((btn) => {
+      const visual = btn.closest('.case-visual');
+      const fig = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!visual || !fig) return;
+      const label = btn.childNodes[0];
+
+      btn.addEventListener('click', () => {
+        const open = visual.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        // Solo cambia la etiqueta: el signo + gira a x por CSS
+        if (label) label.nodeValue = open ? 'Diagramm ausblenden ' : 'Diagramm ansehen ';
+      });
     });
   })();
 
