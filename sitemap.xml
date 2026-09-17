@@ -43,7 +43,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://343ride.de/de/wolt/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://343ride.de/es/wolt/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://343ride.de/wolt/"/>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -58,8 +58,10 @@
   <url>
     <loc>https://343ride.de/bliq/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://343ride.de/bliq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://343ride.de/de/bliq/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://343ride.de/es/bliq/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://343ride.de/bliq/"/>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -77,7 +79,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://343ride.de/de/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://343ride.de/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://343ride.de/"/>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -113,7 +115,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://343ride.de/de/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://343ride.de/es/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://343ride.de/"/>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -158,7 +160,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://343ride.de/de/wolt/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://343ride.de/es/wolt/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://343ride.de/wolt/"/>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -168,6 +170,15 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://343ride.de/es/bolt/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://343ride.de/bolt/"/>
     <lastmod>2026-09-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://343ride.de/de/bliq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://343ride.de/bliq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://343ride.de/de/bliq/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://343ride.de/es/bliq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://343ride.de/bliq/"/>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -185,7 +196,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://343ride.de/de/wolt/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://343ride.de/es/wolt/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://343ride.de/wolt/"/>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -195,6 +206,15 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://343ride.de/es/bolt/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://343ride.de/bolt/"/>
     <lastmod>2026-09-14</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://343ride.de/es/bliq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://343ride.de/bliq/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://343ride.de/de/bliq/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://343ride.de/es/bliq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://343ride.de/bliq/"/>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.7</priority>
   </url>
 </urlset>

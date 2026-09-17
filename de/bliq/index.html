@@ -1,30 +1,30 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Rebuilding Fleet Supply at Bliq &mdash; Jorge Aguilar</title>
-<meta name="description" content="Case study: designing an Earnings-per-Hour supply model with SLAs at Bliq. Marketplace operations, fleet partnerships, and treating supply as a system.">
+<title>Fleet Supply bei Bliq neu aufbauen &mdash; Jorge Aguilar</title>
+<meta name="description" content="Fallstudie: Entwurf eines Earnings-per-Hour-Angebotsmodells mit SLA bei Bliq. Marketplace Operations, Flottenpartnerschaften und Angebot als System gedacht.">
 
 <meta property="og:type" content="article">
-<meta property="og:title" content="Rebuilding Fleet Supply at Bliq &mdash; Jorge Aguilar">
-<meta property="og:description" content="Case study: designing an Earnings-per-Hour supply model with SLAs at Bliq. Marketplace operations, fleet partnerships, and treating supply as a system.">
+<meta property="og:title" content="Fleet Supply bei Bliq neu aufbauen &mdash; Jorge Aguilar">
+<meta property="og:description" content="Fallstudie: Entwurf eines Earnings-per-Hour-Angebotsmodells mit SLA bei Bliq. Marketplace Operations, Flottenpartnerschaften und Angebot als System gedacht.">
 <meta property="og:site_name" content="Jorge Aguilar Portfolio">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Rebuilding Fleet Supply at Bliq &mdash; Jorge Aguilar">
-<meta name="twitter:description" content="Case study: designing an Earnings-per-Hour supply model with SLAs at Bliq. Marketplace operations, fleet partnerships, and treating supply as a system.">
-<link rel="canonical" href="https://343ride.de/bliq/">
+<meta name="twitter:title" content="Fleet Supply bei Bliq neu aufbauen &mdash; Jorge Aguilar">
+<meta name="twitter:description" content="Fallstudie: Entwurf eines Earnings-per-Hour-Angebotsmodells mit SLA bei Bliq. Marketplace Operations, Flottenpartnerschaften und Angebot als System gedacht.">
+<link rel="canonical" href="https://343ride.de/de/bliq/">
 <link rel="alternate" hreflang="en" href="https://343ride.de/bliq/">
 <link rel="alternate" hreflang="de" href="https://343ride.de/de/bliq/">
 <link rel="alternate" hreflang="es" href="https://343ride.de/es/bliq/">
 <link rel="alternate" hreflang="x-default" href="https://343ride.de/bliq/">
-<meta property="og:url" content="https://343ride.de/bliq/">
+<meta property="og:url" content="https://343ride.de/de/bliq/">
 <meta property="og:image" content="https://343ride.de/bliq/og-bliq-1200x630.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:type" content="image/png">
-<meta name="twitter:url" content="https://343ride.de/bliq/">
+<meta name="twitter:url" content="https://343ride.de/de/bliq/">
 <meta name="twitter:image" content="https://343ride.de/bliq/og-bliq-1200x630.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -214,7 +214,7 @@
      80px, 415 a 68 y 390 a 64. Con el rail de 360 y el gap de 64, a 64px quedan
      ~34px de aire antes de la columna de las cards (Wolt tiene 19). */
   h1{
-    font-size:clamp(46px,4.4vw,64px);font-weight:900;line-height:.9;
+    font-size:clamp(38px,4.0vw,56px);font-weight:900;line-height:.9;
     letter-spacing:-.03em;text-transform:uppercase;margin:0;text-wrap:balance;
     /* Palabras compuestas largas (DE/ES) deben poder partirse dentro del
        rail en vez de desbordarlo; hyphens:auto usa el diccionario del
@@ -453,7 +453,7 @@
      todo el ancho y vuelve a mandar el clamp en vw. */
   @media (min-width:981px){
     .rail{container-type:inline-size;}
-    .rail h1{font-size:clamp(40px,18cqw,80px);}
+    .rail h1{font-size:clamp(34px,15.5cqw,56px);}
   }
 
   @media (max-width:980px){
@@ -475,39 +475,39 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="/#work" class="back-link"><span>&larr;</span> Portfolio</a>
+    <a href="/de/#work" class="back-link"><span>&larr;</span> Portfolio</a>
     <div class="nav-actions">
-      <div class="lang-switch" role="group" aria-label="Language">
-        <a href="/bliq/" hreflang="en" class="is-current" aria-current="page">EN</a>
-        <a href="/de/bliq/" hreflang="de">DE</a>
+      <div class="lang-switch" role="group" aria-label="Sprache">
+        <a href="/bliq/" hreflang="en">EN</a>
+        <a href="/de/bliq/" hreflang="de" class="is-current" aria-current="page">DE</a>
         <a href="/es/bliq/" hreflang="es">ES</a>
       </div>
-      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download">Download CV &darr;</a>
-      <a href="/#contact" class="nav-cta">Get in touch</a>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download">Lebenslauf &darr;</a>
+      <a href="/de/#contact" class="nav-cta">Kontakt aufnehmen</a>
     </div>
-    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
       <span class="bars" aria-hidden="true"></span>
     </button>
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Seitenmenü" aria-hidden="true">
   <div class="mobile-menu-head">
-    <a href="/#work" class="back-link"><span>&larr;</span> Portfolio</a>
-    <button class="mobile-menu-close" id="menuClose" type="button" aria-label="Close menu">&times;</button>
+    <a href="/de/#work" class="back-link"><span>&larr;</span> Portfolio</a>
+    <button class="mobile-menu-close" id="menuClose" type="button" aria-label="Menü schließen">&times;</button>
   </div>
   <div class="mobile-menu-body">
     <div class="mobile-menu-lang">
-      <span class="mm-lang-label">Language</span>
-        <div class="lang-switch" role="group" aria-label="Language">
-          <a href="/bliq/" hreflang="en" class="is-current" aria-current="page">EN</a>
-          <a href="/de/bliq/" hreflang="de">DE</a>
+      <span class="mm-lang-label">Sprache</span>
+        <div class="lang-switch" role="group" aria-label="Sprache">
+          <a href="/bliq/" hreflang="en">EN</a>
+          <a href="/de/bliq/" hreflang="de" class="is-current" aria-current="page">DE</a>
           <a href="/es/bliq/" hreflang="es">ES</a>
         </div>
     </div>
     <div class="mobile-menu-actions">
-      <a href="/#contact" class="mm-cta">Get in touch</a>
-      <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Download CV &darr;</a>
+      <a href="/de/#contact" class="mm-cta">Kontakt aufnehmen</a>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Lebenslauf &darr;</a>
     </div>
     <div class="mobile-menu-foot">Berlin &middot; EMEA</div>
   </div>
@@ -518,17 +518,17 @@
 
     <aside class="rail">
       <div class="rule"></div>
-      <h1>Rebuilding<br>Fleet Supply<br>at Bliq</h1>
-      <p>A marketplace where the incumbents already had the drivers. Supply that activates on a bonus and leaves when it ends is not supply &mdash; it is a rented number.</p>
-      <p class="eyebrow">Case study &middot; Marketplace operations</p>
+      <h1>Fleet Supply<br>bei Bliq neu<br>aufbauen</h1>
+      <p>Ein Marktplatz, auf dem die Etablierten die Fahrer bereits hatten. Angebot, das sich über einen Bonus aktiviert und mit ihm wieder verschwindet, ist kein Angebot &mdash; es ist eine gemietete Zahl.</p>
+      <p class="eyebrow">Fallstudie &middot; Marketplace Operations</p>
       <ul class="rail-toc">
-        <li><a href="#problem"><span class="n">01</span> The problem</a></li>
-        <li><a href="#incentives"><span class="n">02</span> What incentives couldn't fix</a></li>
-        <li><a href="#insight"><span class="n">03</span> The fleet insight</a></li>
-        <li><a href="#pilot"><span class="n">04</span> The EPH pilot</a></li>
-        <li><a href="#moved"><span class="n">05</span> What moved</a></li>
-        <li><a href="#owned"><span class="n">06</span> What I owned</a></li>
-        <li><a href="#learned"><span class="n">07</span> What I learned</a></li>
+        <li><a href="#problem"><span class="n">01</span> Das Problem</a></li>
+        <li><a href="#incentives"><span class="n">02</span> Was Anreize allein nicht lösten</a></li>
+        <li><a href="#insight"><span class="n">03</span> Die Flotten-Einsicht</a></li>
+        <li><a href="#pilot"><span class="n">04</span> Der EPH-Pilot</a></li>
+        <li><a href="#moved"><span class="n">05</span> Was sich bewegte</a></li>
+        <li><a href="#owned"><span class="n">06</span> Was ich verantwortete</a></li>
+        <li><a href="#learned"><span class="n">07</span> Was ich lernte</a></li>
       </ul>
     </aside>
 
@@ -538,179 +538,179 @@
       <section class="card">
         <p class="eyebrow on">Jul 2024 &mdash; Jul 2025</p>
         <div class="head">
-          <h2>Rebuilding Fleet Supply at Bliq</h2>
-          <p class="role">Supply Operations Manager &middot; Marketplace operations &amp; fleet partnerships</p>
-          <p class="place">Berlin &middot; German mobility markets</p>
+          <h2>Fleet Supply bei Bliq neu aufbauen</h2>
+          <p class="role">Supply Operations Manager &middot; Marketplace Operations &amp; Flottenpartnerschaften</p>
+          <p class="place">Berlin &middot; Deutsche Mobilitätsmärkte</p>
         </div>
 
         <div class="metrics">
-          <div class="metric"><b>EPH</b><span>Pilot designed</span></div>
-          <div class="metric"><b>&gt;90% / &le;10%</b><span>Acceptance / cancellation SLA</span></div>
-          <div class="metric"><b>12</b><span>Months</span></div>
+          <div class="metric"><b>EPH</b><span>Pilot entworfen</span></div>
+          <div class="metric"><b>&gt;90% / &le;10%</b><span>Annahme- / Stornoquote SLA</span></div>
+          <div class="metric"><b>12</b><span>Monate</span></div>
         </div>
 
-        <p class="lede">Bliq competed for drivers against platforms that already had them. Incentives bought activation and never bought retention. <strong>The work was turning supply from a number you rent into capacity you can count on</strong> &mdash; an Earnings-per-Hour model with a service-level agreement attached, piloted with one fleet before it went anywhere near the network.</p>
+        <p class="lede">Bliq konkurrierte um Fahrer mit Plattformen, die sie längst hatten. Anreize kauften Aktivierung und nie Bindung. <strong>Die Aufgabe war, Angebot von einer gemieteten Zahl in verlässlich planbare Kapazität zu verwandeln</strong> &mdash; ein Earnings-per-Hour-Modell (EPH: Verdienst pro Stunde) mit angehängtem Service Level Agreement, zuerst mit einer einzigen Flotte pilotiert, lange bevor es in die Nähe des Netzwerks kam.</p>
 
-        <p class="tags"><span class="tag">Marketplace ops</span><span class="tag">Fleet partnerships</span><span class="tag">Incentive design</span><span class="tag">SLA design</span></p>
+        <p class="tags"><span class="tag">Marketplace Ops</span><span class="tag">Flottenpartnerschaften</span><span class="tag">Incentive-Design</span><span class="tag">SLA-Design</span></p>
       </section>
 
-      <!-- ============ 01 — THE PROBLEM ============ -->
+      <!-- ============ 01 ============ -->
       <section class="card" id="problem">
-        <p class="eyebrow on">01 &middot; The problem</p>
-        <h2 class="phase-title">Building supply in a marketplace that already had incumbents.</h2>
-        <p class="lede">Bliq operated in a highly competitive ride-hailing market. Drivers and fleets already had established relationships with Uber and Bolt.</p>
-        <p class="body">The product had a compelling proposition: a multi-platform experience letting drivers access rides across Bliq and established platforms through one interface. On the passenger side, aggressive pricing and promotions made Bliq rides competitive.</p>
-        <p class="callout">But an attractive product does not create a functioning marketplace. <span>Bliq needed enough reliable vehicles online at the right times to serve passenger demand. That was considerably harder.</span></p>
+        <p class="eyebrow on">01 &middot; Das Problem</p>
+        <h2 class="phase-title">Angebot aufbauen auf einem Marktplatz, den andere schon besetzt hatten.</h2>
+        <p class="lede">Bliq agierte in einem stark umkämpften Ride-Hailing-Markt. Fahrer und Flotten hatten bereits etablierte Beziehungen zu Uber und Bolt.</p>
+        <p class="body">Das Produkt hatte ein überzeugendes Versprechen: ein Multi-Plattform-Erlebnis, mit dem Fahrer über eine einzige Oberfläche auf Fahrten bei Bliq und bei etablierten Plattformen zugreifen konnten. Auf der Fahrgastseite machten aggressive Preise und Aktionen Bliq-Fahrten wettbewerbsfähig.</p>
+        <p class="callout">Ein attraktives Produkt schafft aber noch keinen funktionierenden Marktplatz. <span>Bliq brauchte genug verlässliche Fahrzeuge online, zur richtigen Zeit, um die Nachfrage der Fahrgäste zu bedienen. Das war deutlich schwieriger.</span></p>
       </section>
 
-      <!-- ============ 02 — WHAT INCENTIVES ALONE COULDN'T FIX ============ -->
+      <!-- ============ 02 ============ -->
       <section class="card" id="incentives">
-        <p class="eyebrow on">02 &middot; What incentives alone couldn't fix</p>
-        <h2 class="phase-title">The activation-retention gap.</h2>
-        <p class="lede">The initial approach was familiar: driver bonuses, fleet incentives, cashback, reduced service fees, vehicle advertising, promotional pricing. These measures generated activation.</p>
-        <p class="body"><strong>But activation and retention were different problems.</strong> Some fleet operators would activate a significant number of drivers to benefit from an incentive. Once the incentive ended &mdash; or if ride volume was insufficient &mdash; the economics became less attractive and drivers shifted their activity back toward Uber or Bolt.</p>
+        <p class="eyebrow on">02 &middot; Was Anreize allein nicht lösten</p>
+        <h2 class="phase-title">Die Lücke zwischen Aktivierung und Bindung.</h2>
+        <p class="lede">Der erste Ansatz war der übliche: Fahrerboni, Flottenanreize, Cashback, reduzierte Servicegebühren, Fahrzeugwerbung, Aktionspreise. Diese Maßnahmen erzeugten Aktivierung.</p>
+        <p class="body"><strong>Aktivierung und Bindung waren jedoch zwei verschiedene Probleme.</strong> Manche Flottenbetreiber aktivierten eine erhebliche Zahl von Fahrern, um von einem Anreiz zu profitieren. Sobald der Anreiz endete &mdash; oder das Fahrtvolumen nicht ausreichte &mdash; wurde die Rechnung unattraktiver, und die Fahrer verlagerten ihre Aktivität zurück zu Uber oder Bolt.</p>
 
         <div class="sub">
-          <h3>The churn cycle</h3>
-          <p class="impact">Incentives bought activation, and activation without utilisation bought the next round of churn.</p>
-          <p class="body">The result was a recurring cycle. And lower supply weakened passenger experience, making it even harder to generate the trip volume drivers needed.</p>
+          <h3>Die Churn-Schleife</h3>
+          <p class="impact">Anreize kauften Aktivierung, und Aktivierung ohne Auslastung kaufte die nächste Runde Churn.</p>
+          <p class="body">Das Ergebnis war ein sich wiederholender Kreislauf. Und ein geringeres Angebot schwächte das Fahrgast-Erlebnis, was es noch schwerer machte, das Fahrtvolumen zu erzeugen, das die Fahrer brauchten.</p>
 
           <figure>
             <div class="figbox">
               <div class="figscroll">
-              <svg viewBox="0 0 1040 470" role="img" aria-label="Closed loop of six stages showing how incentives fed churn: incentives lead to activation, activation to insufficient utilisation, which leads to declining driver economics, highlighted as the stage where the loop turns, then to churn and to lower supply, which sends the operation back to incentives." style="min-width:640px">
+              <svg viewBox="0 0 1040 470" role="img" aria-label="Geschlossene Schleife aus sechs Stufen, die zeigt, wie Anreize den Churn nährten: Anreize führen zu Aktivierung, Aktivierung zu zu geringer Auslastung, diese zu einer sinkenden Fahrer-Ökonomie, hervorgehoben als die Stelle, an der sich die Schleife dreht, dann zu Churn und zu weniger Angebot, was den Betrieb zurück zu Anreizen führt." style="min-width:640px">
                 <defs>
                   <marker id="bq-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#8A8A93"/></marker>
                   <marker id="bq-arrow-l" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#B8FF3D"/></marker>
                 </defs>
                 <rect x="0.5" y="0.5" width="1039" height="469" rx="18" fill="#0F0F12" stroke="#303036"/>
-                <text x="28" y="34" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1.3" fill="#8A8A93">THE LOOP THAT FED ITSELF</text>
+                <text x="28" y="34" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1.3" fill="#8A8A93">DIE SCHLEIFE, DIE SICH SELBST NÄHRTE</text>
 
                 <rect x="40" y="70" width="268" height="78" rx="12" fill="#141417" stroke="#303036"/>
-                <text x="174" y="103" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-weight="600" fill="#F7F7F8">Incentives</text>
-                <text x="174" y="124" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">BONUS &middot; CASHBACK &middot; FEE CUTS</text>
+                <text x="174" y="103" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-weight="600" fill="#F7F7F8">Anreize</text>
+                <text x="174" y="124" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">BONUS &middot; CASHBACK &middot; GEBÜHREN</text>
 
                 <rect x="386" y="70" width="268" height="78" rx="12" fill="#141417" stroke="#303036"/>
-                <text x="520" y="103" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-weight="600" fill="#F7F7F8">Activation</text>
-                <text x="520" y="124" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">DRIVERS SIGNED ON</text>
+                <text x="520" y="103" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-weight="600" fill="#F7F7F8">Aktivierung</text>
+                <text x="520" y="124" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">FAHRER REGISTRIERT</text>
 
                 <rect x="732" y="70" width="268" height="78" rx="12" fill="#141417" stroke="#303036"/>
-                <text x="866" y="103" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-weight="600" fill="#F7F7F8">Insufficient utilisation</text>
-                <text x="866" y="124" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">NOT ENOUGH TRIPS PER CAR</text>
+                <text x="866" y="103" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-weight="600" fill="#F7F7F8">Zu geringe Auslastung</text>
+                <text x="866" y="124" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">ZU WENIG FAHRTEN PRO WAGEN</text>
 
                 <line x1="312" y1="109" x2="382" y2="109" stroke="#8A8A93" stroke-width="1.6" marker-end="url(#bq-arrow)"/>
                 <line x1="658" y1="109" x2="728" y2="109" stroke="#8A8A93" stroke-width="1.6" marker-end="url(#bq-arrow)"/>
                 <path d="M866,148 V196" fill="none" stroke="#8A8A93" stroke-width="1.6" marker-end="url(#bq-arrow)"/>
 
                 <rect x="732" y="200" width="268" height="82" rx="12" fill="rgba(184,255,61,0.07)" stroke="rgba(184,255,61,0.45)"/>
-                <text x="866" y="232" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-weight="600" fill="#F7F7F8">Declining driver economics</text>
-                <text x="866" y="254" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#B8FF3D">WHERE THE LOOP TURNS</text>
-                <text x="866" y="271" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1" fill="#8A8A93">EARNINGS PER HOUR FALL</text>
+                <text x="866" y="232" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-weight="600" fill="#F7F7F8">Sinkende Fahrer-Ökonomie</text>
+                <text x="866" y="254" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#B8FF3D">HIER DREHT SICH DIE SCHLEIFE</text>
+                <text x="866" y="271" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1" fill="#8A8A93">VERDIENST PRO STUNDE SINKT</text>
 
                 <rect x="386" y="200" width="268" height="82" rx="12" fill="#141417" stroke="#303036"/>
                 <text x="520" y="238" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-weight="600" fill="#F7F7F8">Churn</text>
-                <text x="520" y="259" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">BACK TO UBER OR BOLT</text>
+                <text x="520" y="259" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">ZURÜCK ZU UBER ODER BOLT</text>
 
                 <rect x="40" y="200" width="268" height="82" rx="12" fill="#141417" stroke="#303036"/>
-                <text x="174" y="238" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-weight="600" fill="#F7F7F8">Lower supply</text>
-                <text x="174" y="259" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">FEWER CARS AT PEAK</text>
+                <text x="174" y="238" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-weight="600" fill="#F7F7F8">Weniger Angebot</text>
+                <text x="174" y="259" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">WENIGER WAGEN IM PEAK</text>
 
                 <line x1="728" y1="241" x2="658" y2="241" stroke="#8A8A93" stroke-width="1.6" marker-end="url(#bq-arrow)"/>
                 <line x1="382" y1="241" x2="312" y2="241" stroke="#8A8A93" stroke-width="1.6" marker-end="url(#bq-arrow)"/>
                 <path d="M174,200 V156" fill="none" stroke="#8A8A93" stroke-width="1.6" marker-end="url(#bq-arrow)"/>
 
                 <path d="M40,330 V352 H1000 V330" fill="none" stroke="#4A4A52" stroke-width="1.3"/>
-                <text x="520" y="376" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.4" fill="#8A8A93">AND LOWER SUPPLY WEAKENED PASSENGER EXPERIENCE &mdash; WHICH MADE THE TRIP VOLUME HARDER TO REACH</text>
-                <text x="520" y="414" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" letter-spacing="1.2" fill="#6E6E78">EVERY TURN OF THE LOOP COST MORE THAN THE LAST</text>
+                <text x="520" y="376" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.4" fill="#8A8A93">UND WENIGER ANGEBOT SCHWÄCHTE DAS FAHRGAST-ERLEBNIS &mdash; DAS FAHRTVOLUMEN RÜCKTE WEITER WEG</text>
+                <text x="520" y="414" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" letter-spacing="1.2" fill="#6E6E78">JEDE RUNDE DER SCHLEIFE KOSTETE MEHR ALS DIE VORIGE</text>
               </svg>
               </div>
             </div>
-            <figcaption>Fig. 1 &mdash; The cycle the incentive budget was paying for. Drawn for this case study.</figcaption>
+            <figcaption>Abb. 1 &mdash; Der Kreislauf, den das Anreizbudget bezahlte. Für diese Fallstudie gezeichnet.</figcaption>
           </figure>
         </div>
       </section>
 
-      <!-- ============ 03 — THE FLEET INSIGHT ============ -->
+      <!-- ============ 03 ============ -->
       <section class="card" id="insight">
-        <p class="eyebrow on">03 &middot; The fleet insight</p>
-        <h2 class="phase-title">Fleet operators wanted predictability, not bigger bonuses.</h2>
-        <p class="lede">Through direct conversations with fleet operators, another issue emerged: predictability.</p>
-        <p class="body">Short incentive campaigns were attractive short-term. But professional fleet operators had to plan vehicle utilization and driver deployment beyond a few days. Limited offers lasting a month &mdash; or changing frequently &mdash; made operational commitments difficult.</p>
-        <p class="body">Several fleet partners raised the possibility of a more predictable earnings structure. That feedback pointed toward an Earnings-per-Hour model &mdash; <strong>not as a bigger bonus, but as an economic commitment on both sides.</strong></p>
+        <p class="eyebrow on">03 &middot; Die Flotten-Einsicht</p>
+        <h2 class="phase-title">Flottenbetreiber wollten Planbarkeit, nicht größere Boni.</h2>
+        <p class="lede">In direkten Gesprächen mit Flottenbetreibern trat ein weiteres Thema hervor: Planbarkeit.</p>
+        <p class="body">Kurze Anreizkampagnen waren kurzfristig attraktiv. Professionelle Flottenbetreiber mussten Fahrzeugauslastung und Fahrereinsatz jedoch über wenige Tage hinaus planen. Befristete Angebote über einen Monat &mdash; oder solche, die sich häufig änderten &mdash; erschwerten betriebliche Zusagen.</p>
+        <p class="body">Mehrere Flottenpartner brachten eine planbarere Verdienststruktur ins Gespräch. Dieses Feedback wies auf ein Earnings-per-Hour-Modell hin &mdash; <strong>nicht als größerer Bonus, sondern als wirtschaftliche Zusage auf beiden Seiten.</strong></p>
 
         <ul class="fn-list">
-          <li><b>Bliq provides greater earnings predictability.</b></li>
-          <li><b>Fleets provide more predictable supply.</b></li>
+          <li><b>Bliq liefert mehr Planbarkeit beim Verdienst.</b></li>
+          <li><b>Die Flotten liefern planbareres Angebot.</b></li>
         </ul>
       </section>
 
-      <!-- ============ 04 — THE EARNINGS-PER-HOUR PILOT ============ -->
+      <!-- ============ 04 ============ -->
       <section class="card" id="pilot">
-        <p class="eyebrow on">04 &middot; The Earnings-per-Hour pilot</p>
-        <h2 class="phase-title">Designing a two-sided commitment.</h2>
-        <p class="lede">We started cautiously. Rather than rolling the concept out across the network, we tested it with one fleet.</p>
-        <p class="body">The model was not unconditional guaranteed income. <strong>The guarantee was linked to operational performance.</strong></p>
+        <p class="eyebrow on">04 &middot; Der Earnings-per-Hour-Pilot</p>
+        <h2 class="phase-title">Eine beidseitige Zusage entwerfen.</h2>
+        <p class="lede">Wir begannen vorsichtig. Statt das Konzept über das Netzwerk auszurollen, testeten wir es mit einer einzigen Flotte.</p>
+        <p class="body">Das Modell war kein bedingungsloses Einkommensversprechen. <strong>Die Zusage war an operative Leistung gekoppelt.</strong></p>
 
         <ul class="fn-list">
-          <li><b>Acceptance rate: &gt;90%</b></li>
-          <li><b>Cancellation rate: &le;10%</b></li>
-          <li><b>Availability during strategically important peak operating periods</b></li>
+          <li><b>Annahmequote: &gt;90%</b></li>
+          <li><b>Stornoquote: &le;10%</b></li>
+          <li><b>Verfügbarkeit in den strategisch wichtigen Peak-Zeiten</b></li>
         </ul>
 
-        <p class="body">This created a lightweight service-level agreement between supply and marketplace economics. The proposition became: we provide greater earnings predictability; in exchange, you provide reliable vehicle availability and service quality when the marketplace needs it.</p>
+        <p class="body">Damit entstand ein schlankes Service Level Agreement zwischen Angebot und Marktplatz-Ökonomie. Das Versprechen lautete: Wir liefern mehr Planbarkeit beim Verdienst; im Gegenzug liefert ihr verlässliche Fahrzeugverfügbarkeit und Servicequalität, wenn der Marktplatz sie braucht.</p>
 
         <div class="sub">
-          <h3>Timing was part of the design</h3>
-          <p class="body">Fleet operators were particularly concerned about the lower-demand period at the beginning of the year. A short-term promotion during a strong period was less valuable than knowing an attractive economic model would remain available when market conditions became more difficult. The EPH arrangement therefore included a commitment covering strategic low-season periods.</p>
+          <h3>Das Timing war Teil des Entwurfs</h3>
+          <p class="body">Flottenbetreiber sorgten sich besonders um die nachfrageschwache Zeit zu Jahresbeginn. Eine kurzfristige Aktion in einer starken Phase war weniger wert als die Gewissheit, dass ein attraktives wirtschaftliches Modell auch dann verfügbar bleibt, wenn die Marktlage schwieriger wird. Die EPH-Vereinbarung enthielt deshalb eine Zusage für die strategisch schwachen Zeiten.</p>
         </div>
       </section>
 
-      <!-- ============ 05 — WHAT MOVED (AND WHAT DIDN'T) ============ -->
+      <!-- ============ 05 ============ -->
       <section class="card" id="moved">
-        <p class="eyebrow on">05 &middot; What moved (and what didn't)</p>
-        <h2 class="phase-title">Supply became measurable &mdash; and sometimes too abundant.</h2>
-        <p class="lede">The first positive signal was straightforward: vehicle availability increased. More importantly, increased availability translated into more completed rides &mdash; evidence that additional supply was contributing to marketplace performance rather than merely creating inactive capacity.</p>
-        <p class="body">We expanded gradually. Instead of activating many fleets simultaneously, we worked step by step, eventually testing with several medium-sized fleet partners of roughly 20 vehicles each.</p>
+        <p class="eyebrow on">05 &middot; Was sich bewegte (und was nicht)</p>
+        <h2 class="phase-title">Angebot wurde messbar &mdash; und zeitweise zu reichlich.</h2>
+        <p class="lede">Das erste positive Signal war eindeutig: Die Fahrzeugverfügbarkeit stieg. Wichtiger noch, die höhere Verfügbarkeit übersetzte sich in mehr abgeschlossene Fahrten &mdash; ein Beleg dafür, dass zusätzliches Angebot zur Marktplatzleistung beitrug und nicht bloß untätige Kapazität schuf.</p>
+        <p class="body">Wir weiteten schrittweise aus. Statt viele Flotten gleichzeitig zu aktivieren, gingen wir Schritt für Schritt vor und testeten schließlich mit mehreren mittelgroßen Flottenpartnern von jeweils rund 20 Fahrzeugen.</p>
 
-        <p class="callout">Scaling introduced a new problem: too much supply damaged driver economics. <span>Once vehicles became reliably available, we had to avoid oversupply. Better ETAs at the cost of fewer rides per driver was not a win.</span></p>
+        <p class="callout">Das Skalieren brachte ein neues Problem: Zu viel Angebot schadete der Fahrer-Ökonomie. <span>Sobald Fahrzeuge verlässlich verfügbar waren, mussten wir ein Überangebot vermeiden. Bessere ETAs zum Preis von weniger Fahrten pro Fahrer waren kein Gewinn.</span></p>
 
-        <p class="body">So we started to become more selective. Rather than continuing to increase spending, we tightened the SLA. High acceptance rates and low cancellation rates became mechanisms for ensuring subsidized supply translated into actual marketplace capacity &mdash; not just registered vehicles. <strong>The incentive system increasingly rewarded useful supply, not nominal supply.</strong></p>
+        <p class="body">Also wurden wir selektiver. Statt die Ausgaben weiter zu erhöhen, zogen wir das SLA an. Hohe Annahmequoten und niedrige Stornoquoten wurden zum Mechanismus, der sicherstellte, dass subventioniertes Angebot sich in tatsächliche Marktplatzkapazität übersetzte &mdash; und nicht nur in registrierte Fahrzeuge. <strong>Das Anreizsystem belohnte zunehmend nützliches Angebot, nicht nominelles.</strong></p>
 
         <div class="sub">
-          <h3>The supply flywheel</h3>
-          <p class="impact">When availability, demand and the SLA line up, each turn of the wheel pays for the next one.</p>
-          <p class="body">The same loop that fed churn runs the other way once supply is reliable: shorter pickups convert more demand, more completed trips raise utilisation, and utilisation is what lets earnings come from rides instead of from the incentive budget.</p>
+          <h3>Das Supply-Schwungrad</h3>
+          <p class="impact">Wenn Verfügbarkeit, Nachfrage und SLA zusammenpassen, bezahlt jede Umdrehung die nächste.</p>
+          <p class="body">Dieselbe Schleife, die den Churn nährte, läuft andersherum, sobald das Angebot verlässlich ist: kürzere Anfahrten wandeln mehr Nachfrage um, mehr abgeschlossene Fahrten heben die Auslastung, und die Auslastung ist es, die den Verdienst aus Fahrten statt aus dem Anreizbudget kommen lässt.</p>
 
           <figure>
             <div class="figbox">
               <div class="figscroll">
-              <svg viewBox="0 0 1040 520" role="img" aria-label="Positive seven-stage flywheel: reliable supply leads to better ETAs, better ETAs to passenger experience, then to completed trips, driver utilisation, less bonus dependency and an efficient budget, which funds reliable supply again. Reliable supply is highlighted as the entry point." style="min-width:640px">
+              <svg viewBox="0 0 1040 520" role="img" aria-label="Positives Schwungrad aus sieben Stufen: verlässliches Angebot führt zu besseren ETAs, bessere ETAs zum Fahrgast-Erlebnis, dann zu abgeschlossenen Fahrten, zur Fahrer-Auslastung, zu weniger Bonusbedarf und zu einem effizienten Budget, das wiederum verlässliches Angebot finanziert. Verlässliches Angebot ist als Einstiegspunkt hervorgehoben." style="min-width:640px">
                 <defs>
                   <marker id="fw-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#B8FF3D"/></marker>
                 </defs>
                 <rect x="0.5" y="0.5" width="1039" height="519" rx="18" fill="#0F0F12" stroke="#303036"/>
-                <text x="28" y="34" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1.3" fill="#8A8A93">THE SUPPLY FLYWHEEL</text>
+                <text x="28" y="34" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1.3" fill="#8A8A93">DAS SUPPLY-SCHWUNGRAD</text>
                 <rect x="425" y="59" width="190" height="54" rx="11" fill="rgba(184,255,61,0.07)" stroke="rgba(184,255,61,0.45)"/>
-                <text x="520" y="83" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#F7F7F8">Reliable supply</text>
-                <text x="520" y="100" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="0.8" fill="#B8FF3D">VEHICLES ACTUALLY ONLINE</text>
+                <text x="520" y="83" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#F7F7F8">Verlässliches Angebot</text>
+                <text x="520" y="100" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="0.8" fill="#B8FF3D">FAHRZEUGE WIRKLICH ONLINE</text>
                 <rect x="700" y="128" width="190" height="54" rx="11" fill="#141417" stroke="#303036"/>
-                <text x="795" y="152" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#F7F7F8">Better ETAs</text>
-                <text x="795" y="169" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="0.8" fill="#8A8A93">SHORTER PICKUPS</text>
+                <text x="795" y="152" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#F7F7F8">Bessere ETAs</text>
+                <text x="795" y="169" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="0.8" fill="#8A8A93">KÜRZERE ANFAHRT</text>
                 <rect x="768" y="281" width="190" height="54" rx="11" fill="#141417" stroke="#303036"/>
-                <text x="863" y="305" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#F7F7F8">Passenger experience</text>
-                <text x="863" y="322" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="0.8" fill="#8A8A93">FEWER FAILED REQUESTS</text>
+                <text x="863" y="305" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#F7F7F8">Fahrgast-Erlebnis</text>
+                <text x="863" y="322" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="0.8" fill="#8A8A93">WENIGER FEHLANFRAGEN</text>
                 <rect x="578" y="405" width="190" height="54" rx="11" fill="#141417" stroke="#303036"/>
-                <text x="673" y="429" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#F7F7F8">Completed trips</text>
-                <text x="673" y="446" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="0.8" fill="#8A8A93">DEMAND THAT CONVERTS</text>
+                <text x="673" y="429" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#F7F7F8">Abgeschlossene Fahrten</text>
+                <text x="673" y="446" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="0.8" fill="#8A8A93">NACHFRAGE, DIE KONVERTIERT</text>
                 <rect x="272" y="405" width="190" height="54" rx="11" fill="#141417" stroke="#303036"/>
-                <text x="367" y="429" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#F7F7F8">Driver utilisation</text>
-                <text x="367" y="446" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="0.8" fill="#8A8A93">MORE TRIPS PER HOUR</text>
+                <text x="367" y="429" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#F7F7F8">Fahrer-Auslastung</text>
+                <text x="367" y="446" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="0.8" fill="#8A8A93">MEHR FAHRTEN PRO STUNDE</text>
                 <rect x="82" y="281" width="190" height="54" rx="11" fill="#141417" stroke="#303036"/>
-                <text x="177" y="305" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#F7F7F8">Less bonus dependency</text>
-                <text x="177" y="322" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="0.8" fill="#8A8A93">EARNINGS FROM RIDES</text>
+                <text x="177" y="305" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#F7F7F8">Weniger Bonusbedarf</text>
+                <text x="177" y="322" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="0.8" fill="#8A8A93">VERDIENST AUS FAHRTEN</text>
                 <rect x="150" y="128" width="190" height="54" rx="11" fill="#141417" stroke="#303036"/>
-                <text x="245" y="152" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#F7F7F8">Efficient budget</text>
-                <text x="245" y="169" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="0.8" fill="#8A8A93">SPEND ON USEFUL SUPPLY</text>
+                <text x="245" y="152" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#F7F7F8">Effizientes Budget</text>
+                <text x="245" y="169" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="0.8" fill="#8A8A93">AUSGABEN FÜR NÜTZLICHES</text>
                 <path d="M662,70 Q763,80 820,125" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#fw-arrow)"/>
                 <path d="M917,218 Q952,237 928,261" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#fw-arrow)"/>
                 <path d="M906,336 Q909,370 855,389" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#fw-arrow)"/>
@@ -718,95 +718,95 @@
                 <path d="M185,389 Q131,370 134,336" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#fw-arrow)"/>
                 <path d="M112,261 Q88,237 123,218" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#fw-arrow)"/>
                 <path d="M220,125 Q277,80 378,70" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#fw-arrow)"/>
-                <text x="520" y="258" text-anchor="middle" font-family="Inter,sans-serif" font-size="17" font-weight="700" fill="#F7F7F8">Useful supply</text>
-                <text x="520" y="282" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1.3" fill="#B8FF3D">NOT NOMINAL SUPPLY</text>
-                <text x="520" y="304" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1" fill="#8A8A93">SLA IS WHAT KEEPS THE WHEEL TURNING</text>
+                <text x="520" y="258" text-anchor="middle" font-family="Inter,sans-serif" font-size="17" font-weight="700" fill="#F7F7F8">Nützliches Angebot</text>
+                <text x="520" y="282" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1.3" fill="#B8FF3D">NICHT NOMINELLES ANGEBOT</text>
+                <text x="520" y="304" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1" fill="#8A8A93">DAS SLA HÄLT DAS RAD IN BEWEGUNG</text>
               </svg>
               </div>
             </div>
-            <figcaption>Fig. 2 &mdash; The loop running in the useful direction. Drawn for this case study.</figcaption>
+            <figcaption>Abb. 2 &mdash; Dieselbe Schleife, in die nützliche Richtung gedreht. Für diese Fallstudie gezeichnet.</figcaption>
           </figure>
         </div>
       </section>
 
-      <!-- ============ 06 — WHAT I OWNED, WHAT I DIDN'T ============ -->
+      <!-- ============ 06 ============ -->
       <section class="card" id="owned">
-        <p class="eyebrow on">06 &middot; What I owned, what I didn't</p>
-        <h2 class="phase-title">Attribution.</h2>
-        <p class="lede">Explicit attribution matters for a project of this scale.</p>
+        <p class="eyebrow on">06 &middot; Was ich verantwortete, was nicht</p>
+        <h2 class="phase-title">Zurechnung.</h2>
+        <p class="lede">Bei einem Projekt dieser Größenordnung zählt eine ausdrückliche Zurechnung.</p>
 
         <div class="sub">
-          <h3>What I owned</h3>
+          <h3>Was ich verantwortete</h3>
           <ul class="fn-list">
-            <li>Fleet negotiations and understanding of operational requirements before commitment</li>
-            <li>Design of the Earnings-per-Hour pilot with the first fleet</li>
-            <li>SLA structure (&gt;90% acceptance, &le;10% cancellations, peak-hour availability)</li>
-            <li>Budget allocation for the supply initiatives</li>
-            <li>Monitoring pilot signals and deciding rollout to additional fleets</li>
-            <li>Business case for internal senior management</li>
+            <li>Flottenverhandlungen und das Verständnis der betrieblichen Anforderungen vor jeder Zusage</li>
+            <li>Entwurf des Earnings-per-Hour-Piloten mit der ersten Flotte</li>
+            <li>Struktur des SLA (&gt;90% Annahme, &le;10% Stornierungen, Verfügbarkeit in Peak-Zeiten)</li>
+            <li>Budgetzuteilung für die Supply-Initiativen</li>
+            <li>Beobachtung der Pilotsignale und Entscheidung über den Rollout auf weitere Flotten</li>
+            <li>Business Case für das interne Senior Management</li>
           </ul>
         </div>
 
         <div class="sub">
-          <h3>What I contributed to (broader team)</h3>
+          <h3>Wozu ich beitrug (breiteres Team)</h3>
           <ul class="fn-list">
-            <li>Marketplace balancing decisions across supply, demand, and pricing</li>
-            <li>Coordination between supply operations and demand-side initiatives</li>
-            <li>Incentive strategy refinement over time</li>
+            <li>Entscheidungen zum Marktplatz-Ausgleich zwischen Angebot, Nachfrage und Preisgestaltung</li>
+            <li>Abstimmung zwischen Supply Operations und den Initiativen auf der Nachfrageseite</li>
+            <li>Schrittweise Schärfung der Incentive-Strategie</li>
           </ul>
         </div>
 
         <div class="sub">
-          <h3>What I did not own</h3>
+          <h3>Was ich nicht verantwortete</h3>
           <ul class="fn-list">
-            <li>Company-level marketing and passenger acquisition</li>
-            <li>Product decisions on the multi-platform interface</li>
-            <li>Broader pricing strategy</li>
+            <li>Marketing auf Unternehmensebene und Fahrgastgewinnung</li>
+            <li>Produktentscheidungen zur Multi-Plattform-Oberfläche</li>
+            <li>Die übergreifende Preisstrategie</li>
           </ul>
         </div>
 
         <div class="result-metrics">
           <div class="metric-big">
-            <span class="kicker">Company-level · 12 months</span>
-            <span class="value">4.6&times;<span class="dir">&uarr;</span></span>
-            <span class="label">Drivers across German mobility markets</span>
+            <span class="kicker">Unternehmensebene &middot; 12 Monate</span>
+            <span class="value">4,6&times;<span class="dir">&uarr;</span></span>
+            <span class="label">Fahrer in den deutschen Mobilitätsmärkten</span>
           </div>
           <div class="metric-big">
-            <span class="kicker">Company-level</span>
-            <span class="value">2.6&times;<span class="dir">&uarr;</span></span>
-            <span class="label">Fleet partners</span>
+            <span class="kicker">Unternehmensebene</span>
+            <span class="value">2,6&times;<span class="dir">&uarr;</span></span>
+            <span class="label">Flottenpartner</span>
           </div>
           <div class="metric-big">
-            <span class="kicker">Company-level</span>
-            <span class="value">2.6&times;<span class="dir">&uarr;</span></span>
-            <span class="label">Completed trips</span>
+            <span class="kicker">Unternehmensebene</span>
+            <span class="value">2,6&times;<span class="dir">&uarr;</span></span>
+            <span class="label">Abgeschlossene Fahrten</span>
           </div>
         </div>
 
-        <p class="body">Across the 12-month period, the network grew substantially: approximately 4.6&times; in drivers, 2.6&times; in fleet partners, 2.6&times; in completed trips. <strong>These are company-level results</strong> across the broader supply-development period &mdash; driven by a combination of product positioning, incentives, pricing, demand generation, and the EPH pilot. The EPH model was one important intervention within that larger strategy.</p>
+        <p class="body">Über den Zeitraum von 12 Monaten wuchs das Netzwerk erheblich: rund 4,6&times; bei den Fahrern, 2,6&times; bei den Flottenpartnern, 2,6&times; bei den abgeschlossenen Fahrten. <strong>Das sind Ergebnisse auf Unternehmensebene</strong> über die gesamte Phase des Angebotsaufbaus &mdash; getragen von einer Kombination aus Produktpositionierung, Anreizen, Preisgestaltung, Nachfragegenerierung und dem EPH-Piloten. Das EPH-Modell war eine wichtige Maßnahme innerhalb dieser größeren Strategie.</p>
       </section>
 
-      <!-- ============ 07 — WHAT I LEARNED ============ -->
+      <!-- ============ 07 ============ -->
       <section class="card" id="learned">
-        <p class="eyebrow on">07 &middot; What I learned</p>
-        <h2 class="phase-title">Treating supply as a system, not a sales target.</h2>
-        <p class="lede">The strongest insight from this project was not &ldquo;we grew the driver network 4.6&times;.&rdquo;</p>
+        <p class="eyebrow on">07 &middot; Was ich lernte</p>
+        <h2 class="phase-title">Angebot als System behandeln, nicht als Vertriebsziel.</h2>
+        <p class="lede">Die stärkste Erkenntnis aus diesem Projekt war nicht &bdquo;wir haben das Fahrernetzwerk um das 4,6-Fache vergrößert&ldquo;.</p>
 
-        <p class="callout">More supply is not always better supply.</p>
+        <p class="callout">Mehr Angebot ist nicht immer besseres Angebot.</p>
 
-        <p class="body">In a two-sided marketplace, maximizing one side independently can damage the economics of the other. The job was to find the operating point where availability, demand, timing, utilization, service quality, and incentive cost reinforced each other rather than undermining each other.</p>
+        <p class="body">Auf einem zweiseitigen Marktplatz kann die isolierte Maximierung einer Seite die Wirtschaftlichkeit der anderen beschädigen. Die Aufgabe war, den Betriebspunkt zu finden, an dem Verfügbarkeit, Nachfrage, Timing, Auslastung, Servicequalität und Anreizkosten einander verstärken statt sich gegenseitig zu untergraben.</p>
 
-        <p class="body">That is a different mental model than acquisition-first thinking. It changed fleet acquisition from a primarily commercial activity into a marketplace-management problem &mdash; asking not just <em>&ldquo;can we acquire this fleet?&rdquo;</em> but <em>&ldquo;when do we actually need its vehicles, and under which conditions does that translate into marketplace value?&rdquo;</em></p>
+        <p class="body">Das ist ein anderes Denkmodell als ein Akquise-zuerst-Ansatz. Es verwandelte die Flottengewinnung von einer vorrangig kommerziellen Tätigkeit in ein Marktplatz-Management-Problem &mdash; mit der Frage nicht nur <em>&bdquo;können wir diese Flotte gewinnen?&ldquo;</em>, sondern <em>&bdquo;wann brauchen wir ihre Fahrzeuge tatsächlich, und unter welchen Bedingungen wird daraus Wert für den Marktplatz?&ldquo;</em></p>
       </section>
 
       <!-- ============ EXTERNAL VALIDATION ============ -->
       <section class="note">
-        <p class="eyebrow">External validation</p>
-        <p class="lede">Selected accomplishments from this project are documented in the Bliq reference letter, available via the Certificates section of this portfolio.</p>
+        <p class="eyebrow">Externe Bestätigung</p>
+        <p class="lede">Ausgewählte Erfolge aus diesem Projekt sind im Bliq-Referenzschreiben dokumentiert, abrufbar über den Zertifikate-Bereich dieses Portfolios.</p>
         <ul>
-          <li><b>Attribution is stated, not implied.</b> Section 06 separates what I owned from what the broader team drove and what sat outside my remit.</li>
-          <li><b>The diagrams were drawn for this case study.</b> They are models of the supply dynamics, not reproductions of internal dashboards.</li>
-          <li><b>No internal financials.</b> Incentive budgets, per-fleet terms and commercial conditions are left out; growth is stated as multiples over the period, not as absolute volumes.</li>
+          <li><b>Die Zurechnung ist ausgesprochen, nicht angedeutet.</b> Abschnitt 06 trennt, was ich verantwortete, von dem, was das breitere Team trug, und von dem, was außerhalb meines Bereichs lag.</li>
+          <li><b>Die Diagramme wurden für diese Fallstudie gezeichnet.</b> Sie sind Modelle der Angebotsdynamik, keine Reproduktionen interner Dashboards.</li>
+          <li><b>Keine internen Finanzdaten.</b> Anreizbudgets, Konditionen je Flotte und kommerzielle Bedingungen bleiben außen vor; das Wachstum ist als Vielfaches über den Zeitraum angegeben, nicht als absolute Menge.</li>
         </ul>
       </section>
 

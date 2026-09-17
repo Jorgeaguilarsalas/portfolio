@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kreislauf-Ausrüstungsprogramm bei Wolt &mdash; Jorge Aguilar</title>
-<meta name="description" content="Fallstudie: Aufbau eines Kreislauf-Ausrüstungsprogramms bei Wolt Deutschland. Vom Einwegprinzip zu wiederverwendbarer Ausrüstung für 2.000+ Kuriere in 6 Städten, 30% weniger Beschaffungskosten.">
+<title>Operations skalieren bei Wolt &mdash; Jorge Aguilar</title>
+<meta name="description" content="Fallstudie: zwei operative Systeme, mit derselben Methode bei Wolt Berlin gebaut. Strukturierung der Support-Nachfrage und Kreislaufführung der Ausrüstung während der Wachstumsphase.">
 
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kreislauf-Ausrüstungsprogramm bei Wolt &mdash; Jorge Aguilar">
-<meta property="og:description" content="Fallstudie: Aufbau eines Kreislauf-Ausrüstungsprogramms bei Wolt Deutschland. Vom Einwegprinzip zu wiederverwendbarer Ausrüstung für 2.000+ Kuriere in 6 Städten, 30% weniger Beschaffungskosten.">
+<meta property="og:title" content="Operations skalieren bei Wolt &mdash; Jorge Aguilar">
+<meta property="og:description" content="Fallstudie: zwei operative Systeme, mit derselben Methode bei Wolt Berlin gebaut. Strukturierung der Support-Nachfrage und Kreislaufführung der Ausrüstung während der Wachstumsphase.">
 <meta property="og:site_name" content="Jorge Aguilar Portfolio">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kreislauf-Ausrüstungsprogramm bei Wolt &mdash; Jorge Aguilar">
-<meta name="twitter:description" content="Fallstudie: Aufbau eines Kreislauf-Ausrüstungsprogramms bei Wolt Deutschland. Vom Einwegprinzip zu wiederverwendbarer Ausrüstung für 2.000+ Kuriere in 6 Städten, 30% weniger Beschaffungskosten.">
+<meta name="twitter:title" content="Operations skalieren bei Wolt &mdash; Jorge Aguilar">
+<meta name="twitter:description" content="Fallstudie: zwei operative Systeme, mit derselben Methode bei Wolt Berlin gebaut. Strukturierung der Support-Nachfrage und Kreislaufführung der Ausrüstung während der Wachstumsphase.">
 <link rel="canonical" href="https://343ride.de/de/wolt/">
 <link rel="alternate" hreflang="en" href="https://343ride.de/wolt/">
 <link rel="alternate" hreflang="de" href="https://343ride.de/de/wolt/">
@@ -195,10 +195,10 @@
 
   .wrap{max-width:1320px;margin:0 auto;padding:64px 32px 88px}
 
-  /* Rail de 360px: el h1 en mayusculas llega a 80px y "PROGRAM" mide 405px, asi
-     que desborda la columna 45px. Con el gap de 64px sobran 19px y el titulo
-     nunca invade la columna de las cards (con 320px se montaba 21px desde
-     1410px de viewport para arriba). */
+  /* Rail de 360px. La palabra mas ancha del titulo es "OPERATIONS": 10 mayusculas
+     Black, ~6 em de avance ya con el letter-spacing negativo. A 60px mide ~358px,
+     asi que cabe dentro del rail sin llegar al tope de 404px que permite
+     max-width, y nunca invade la columna de las cards a traves del gap de 64px. */
   .layout{display:grid;grid-template-columns:360px minmax(0,1fr);gap:64px;align-items:start}
   .rail{position:sticky;top:96px;min-width:0;display:flex;flex-direction:column;gap:24px}
   .rule{width:80px;height:4px;background:var(--accent);border-radius:2px}
@@ -210,14 +210,14 @@
   .eyebrow.on{color:var(--accent)}
 
   h1{
-    font-size:clamp(46px,5.4vw,80px);font-weight:900;line-height:.9;
+    font-size:clamp(38px,4.4vw,60px);font-weight:900;line-height:.9;
     letter-spacing:-.03em;text-transform:uppercase;margin:0;text-wrap:balance;
     /* Palabras compuestas largas (DE/ES) deben poder partirse dentro del
        rail en vez de desbordarlo; hyphens:auto usa el diccionario del
        idioma declarado en <html lang>. */
     hyphens:auto;-webkit-hyphens:auto;
     /* El titulo puede respirar sobre el gap de 64px sin tocar las cards:
-       asi "CIRCULAR" (388px) entra entero en vez de partirse. */
+       asi "OPERATIONS" entra entera en vez de partirse. */
     width:max-content;max-width:calc(100% + 44px);
   }
   .rail p{color:var(--muted);font-size:15.5px;line-height:1.65;margin:0;max-width:34ch}
@@ -268,6 +268,18 @@
     font-size:clamp(27px,3.1vw,40px);font-weight:800;line-height:1.08;
     letter-spacing:-.025em;margin:0;max-width:22ch;text-wrap:balance;
   }
+  /* .lede, .body, .impact, .fn-list, .steps, .tags y .cats declaran margin:0 mas
+     abajo en esta hoja, con la misma especificidad que los resets de stack de
+     arriba: ganaban por orden y dejaban los bloques pegados. Subiendo a 0,2,0 se
+     devuelve el aire. Es el mismo arreglo que .card > .facts ya tenia suelto. */
+  .card > * + .lede,
+  .card > * + .body,
+  .card > * + .impact,
+  .card > * + .fn-list,
+  .card > * + .steps,
+  .card > * + .tags,
+  .card > * + .cats{margin-top:24px}
+
   .card > .phase-title + .lede{margin-top:20px}
 
   .sub{
@@ -275,6 +287,15 @@
     border-radius:var(--radius-sm);padding:30px;min-width:0;
   }
   .sub > * + *{margin-top:16px}
+  .sub > * + .lede,
+  .sub > * + .body,
+  .sub > * + .impact,
+  .sub > * + .fn-list,
+  .sub > * + .steps,
+  .sub > * + .tags,
+  .sub > * + .cats,
+  .sub > * + .facts,
+  .sub > * + figure{margin-top:16px}
   .sub h3{font-size:21px;font-weight:700;letter-spacing:-.01em;margin:0}
 
   .tags{display:flex;gap:8px;flex-wrap:wrap;margin:0}
@@ -282,6 +303,16 @@
     font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
     color:var(--accent);background:rgba(184,255,61,.10);
     border:1px solid rgba(184,255,61,.24);border-radius:999px;padding:5px 12px;
+  }
+
+  /* Taxonomia de visitas: mismas pastillas que .tags pero en gris. Son nueve
+     categorias operativas, no claims — el acento lima se reserva para lo que si
+     lo es (metricas, callouts, el camino del diagrama). */
+  .cats{display:flex;gap:8px;flex-wrap:wrap;margin:0}
+  .cat{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--fg);background:var(--surface);
+    border:1px solid var(--border);border-radius:999px;padding:5px 12px;
   }
 
   .impact{color:var(--accent);font-size:16.5px;font-weight:600;line-height:1.5;margin:0;max-width:62ch}
@@ -432,6 +463,10 @@
     transition:border-color .2s ease,color .2s ease;
   }
   .reference-cta .ghost-link:hover{border-color:var(--accent);color:var(--accent);}
+  /* Las citas de la carta van en .callout dentro de .reference-cta, y
+     `.reference-cta p` (0,1,1) le gana el color a `.callout` (0,1,0):
+     se lo devolvemos para que la cita pese mas que el parrafo que la enmarca. */
+  .reference-cta .callout{color:var(--fg);}
 
   /* Site footer */
   .site-footer{padding:32px;border-top:1px solid var(--border);margin-top:64px;}
@@ -447,7 +482,7 @@
      todo el ancho y vuelve a mandar el clamp en vw. */
   @media (min-width:981px){
     .rail{container-type:inline-size;}
-    .rail h1{font-size:clamp(40px,15cqw,80px);}
+    .rail h1{font-size:clamp(34px,16.6cqw,60px);}
   }
 
   @media (max-width:980px){
@@ -513,16 +548,17 @@
 
     <aside class="rail">
       <div class="rule"></div>
-      <h1>Kreislauf-<br>Ausrüstungs-<br>programm</h1>
-      <p>Kurier-Ausrüstung bei Wolt Deutschland wurde einmal gekauft und einmal verloren. Das Programm machte aus linearen Kosten einen Kreislauf &mdash; Rücknahme, Aufbereitung, Neuausgabe &mdash; in 6 Städten.</p>
-      <p class="eyebrow">Fallstudie &middot; Operations &amp; Nachhaltigkeit</p>
+      <h1>Operations<br>skalieren<br>bei Wolt</h1>
+      <p>Zwei operative Systeme, mit derselben Methode gebaut &mdash; Strukturierung der Support-Nachfrage und Kreislaufführung der Ausrüstung &mdash; während Wolts Berliner Wachstumsphase.</p>
+      <p class="eyebrow">Fallstudie &middot; Service- &amp; Gear-Operations</p>
       <ul class="rail-toc">
-        <li><a href="#signal"><span class="n">01</span> Signal</a></li>
-        <li><a href="#diagnosis"><span class="n">02</span> Diagnose</a></li>
-        <li><a href="#decision"><span class="n">03</span> Entscheidung</a></li>
-        <li><a href="#operation"><span class="n">04</span> Operation</a></li>
-        <li><a href="#result"><span class="n">05</span> Ergebnis</a></li>
-        <li><a href="#next"><span class="n">06</span> Nächste Iteration</a></li>
+        <li><a href="#office"><span class="n">01</span> Das Büro als System</a></li>
+        <li><a href="#visible"><span class="n">02</span> Das Unsichtbare sichtbar machen</a></li>
+        <li><a href="#method"><span class="n">03</span> Zwei Probleme, eine Methode</a></li>
+        <li><a href="#support"><span class="n">04</span> Das Support-System</a></li>
+        <li><a href="#gear"><span class="n">05</span> Das Gear-System</a></li>
+        <li><a href="#moved"><span class="n">06</span> Was sich bewegte</a></li>
+        <li><a href="#learned"><span class="n">07</span> Was ich lernte</a></li>
       </ul>
     </aside>
 
@@ -530,80 +566,246 @@
 
       <!-- ============ HEADER CARD ============ -->
       <section class="card">
-        <p class="eyebrow on">10.2020 &mdash; 02.2023</p>
+        <p class="eyebrow on">Feb 2021 &mdash; Jan 2022 &middot; Operations Associate &middot; Berlin (bundesweit)</p>
         <div class="head">
-          <h2>Kreislauf-Ausrüstungsprogramm bei Wolt</h2>
-          <p class="role">Sustainability Operations Associate &middot; Warehouse Operations &amp; Reverse Logistics</p>
-          <p class="place">Berlin &middot; Wolt Deutschland, 6 Märkte</p>
+          <h2>Operations skalieren bei Wolt</h2>
+          <p class="role">Operations Associate &middot; Service-Operations &amp; Gear-Operations</p>
+          <p class="place">Berliner Büro &middot; Wolt Deutschland, 6 Märkte</p>
         </div>
 
         <div class="metrics">
+          <div class="metric"><b>~50%&darr;</b><span>Support-Nachfrage</span></div>
           <div class="metric"><b>30%&darr;</b><span>Ausrüstungskosten</span></div>
-          <div class="metric"><b>2,000+</b><span>Kurierpartner</span></div>
-          <div class="metric"><b>6</b><span>deutsche Städte</span></div>
+          <div class="metric"><b>2.000+</b><span>Kurierpartner</span></div>
         </div>
 
-        <p class="lede">Vom Einwegprinzip zum Kreislaufbetrieb &mdash; 30% weniger Beschaffungskosten für Kurier-Ausrüstung in 6 deutschen Städten. <strong>Das Programm machte die Ausrüstung nicht billiger. Es sorgte dafür, dass sie das System nicht mehr verließ.</strong> Rücknahme beim Offboarding, Aufbereitung im Berliner Büro und eine nachgelagerte Recyclingroute für Unrettbares machten aus einem Kauf pro Einstellung einen zirkulierenden Bestand.</p>
+        <p class="lede">Zwei operative Systeme, mit derselben Methode gebaut &mdash; Strukturierung der Support-Nachfrage und Kreislaufführung der Ausrüstung &mdash; während Wolts Berliner Wachstumsphase. <strong>Aus Sicht der Kuriere waren es zwei verschiedene Probleme. Aus Sicht von Operations war es dasselbe:</strong> unstrukturierte Nachfrage, die über einen einzigen physischen Kanal hereinkam, ohne Kategorisierung und ohne klare Zuständigkeit dahinter.</p>
 
-        <p class="tags"><span class="tag">Reverse Logistics</span><span class="tag">Warehouse Operations</span><span class="tag">Kreislaufwirtschaft</span><span class="tag">Bundesweiter Rollout</span></p>
+        <p class="tags"><span class="tag">Service Design</span><span class="tag">Nachfrage-Routing</span><span class="tag">Reverse Logistics</span><span class="tag">Kreislaufwirtschaft</span></p>
       </section>
 
-      <!-- ============ 01 — SIGNAL ============ -->
-      <section class="card" id="signal">
-        <p class="eyebrow on">01 &middot; Signal</p>
-        <h2 class="phase-title">Ausrüstung galt standardmäßig als Verbrauchsgut.</h2>
-        <p class="lede">Jede neue Kraft bei Wolt erhielt ein komplettes Ausrüstungsset &mdash; Thermotaschen, wetterfeste Jacken, Thermoboxen &mdash; importiert von Herstellern in Übersee und deutschlandweit verteilt. Ausscheidende Kuriere behielten ihres. <strong>Die Kostenkurve folgte Einstellungen und Fluktuation, nicht der Zahl aktiver Kuriere.</strong></p>
+      <!-- ============ 01 ============ -->
+      <section class="card" id="office">
+        <p class="eyebrow on">01 &middot; Das Büro als System</p>
+        <h2 class="phase-title">Eine Rolle, zwei operative Flächen.</h2>
+        <p class="lede">In Wolts Berliner Wachstumsphase wurde ein erheblicher Teil der Kuriere direkt vom Unternehmen betreut. Die Beziehung ging weit über den Lieferbetrieb hinaus &mdash; Kuriere brauchten Unterstützung über ihren gesamten Lebenszyklus: Onboarding, Unterlagen, Verträge, Ausrüstung, Payroll, Urlaub, personalbezogene Anliegen.</p>
+
+        <p class="body">Vieles davon lief im Wolt-Büro zusammen. Meine Rolle &mdash; Operations Associate &mdash; lag an der Schnittstelle zweier operativer Flächen zugleich.</p>
+
+        <ul class="fn-list">
+          <li><b>Service-Operations.</b> Die Support-Nachfrage der Kuriere bearbeiten, so wie sie im Büro eintraf.</li>
+          <li><b>Gear-Operations.</b> Ausgabe, Rücknahme und Aufbereitung der Ausrüstung für die gesamte Kurierbasis steuern.</li>
+        </ul>
+
+        <p class="body">Beide Flächen hingen zusammen. Jeder Kurierkontakt war auch ein möglicher Ausrüstungsmoment. Jede Ausgabe von Ausrüstung war auch ein Informationsaustausch. Behandelt wurden sie jedoch als getrennte Abläufe, ohne gemeinsame operative Struktur.</p>
 
         <div class="sub">
-          <h3>Ausgangslage</h3>
-          <ul class="fn-list">
-            <li><b>2.000+ Kurierpartner in 6 deutschen Städten.</b> Berlin, München, Hamburg, Frankfurt, D&uuml;sseldorf und Stuttgart, jede mit eigenem lokalen Operations-Team.</li>
-            <li><b>Lebenszyklus der Ausrüstung: Einmalnutzung pro Kurier.</b> Ein Set wurde einmalig beim Onboarding ausgegeben und nicht zurückerwartet.</li>
-            <li><b>Scope: bundesweit.</b> Wolt Deutschland Operations, koordiniert aus dem Berliner Büro.</li>
+          <h3>Ausgangsvolumen</h3>
+          <p class="body">Beim Ausgangsvolumen &mdash; rund 5 Kuriere pro Stunde, verteilt auf 3 Mitarbeitende, 7 Stunden am Tag, 5 Tage die Woche &mdash; verarbeitete das Büro etwa 525 Kurierkontakte pro Woche.</p>
+          <ul class="facts">
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>~5 Kuriere / Stunde</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>3 Mitarbeitende &middot; 7 Std. / Tag</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5 Tage / Woche</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>~525 Kontakte / Woche</li>
           </ul>
         </div>
+
+        <p class="callout">Genug Volumen, um die Kapazität zu belasten. <span>Zu wenig Struktur, um damit zu planen.</span></p>
       </section>
 
-      <!-- ============ 02 — DIAGNOSIS ============ -->
-      <section class="card" id="diagnosis">
-        <p class="eyebrow on">02 &middot; Diagnose</p>
-        <h2 class="phase-title">Drei systemische Lücken im Ausrüstungszyklus.</h2>
-        <p class="lede">Das Problem waren nicht die Stückkosten der Ausrüstung, sondern die Annahme, sie sei ein Einwegartikel &mdash; sichtbar in drei operativen Lücken.</p>
-
-        <ol class="steps">
-          <li><b>Keine strukturierte Rücknahme beim Offboarding.</b> Ausscheidende Kuriere gingen mit ihrer Ausrüstung. Es gab keinen Rückgabekanal, keine Verbindlichkeit und keinen Anreiz zur Rückgabe.</li>
-          <li><b>Kein finanzieller Mechanismus zur Durchsetzung der Rückgabe.</b> Fehlende Ausrüstung erzeugte kein sichtbares Kostensignal &mdash; weder für den Kurier noch für das Unternehmen.</li>
-          <li><b>Kein nachgelagerter Weg für beschädigte Ausrüstung.</b> Selbst zurückgegebene, verschlissene oder irreparable Teile hatten keinen Recyclingkanal. Sie landeten auf der Deponie.</li>
-        </ol>
+      <!-- ============ 02 ============ -->
+      <section class="card" id="visible">
+        <p class="eyebrow on">02 &middot; Das Unsichtbare sichtbar machen</p>
+        <h2 class="phase-title">525 Kontakte pro Woche kategorisieren.</h2>
+        <p class="lede">Das erste Problem war die Messung. Unterschiedlichste Anliegen kamen über denselben physischen Kanal herein &mdash; unabhängig davon, ob sie überhaupt einen persönlichen Termin erforderten. <strong>Ein geplantes Onboarding konnte neben einer dringenden Payroll-Eskalation stattfinden. Eine Ausrüstungsausgabe neben einer allgemeinen Personalfrage.</strong></p>
 
         <figure class="photo">
           <img src="/wolt/images/wolt-02-cajas.jpg" width="1600" height="744" loading="lazy" decoding="async" alt="Kartons sowie gestapelte Kurierjacken und Thermotaschen an den Fenstern des Berliner Wolt-Büros, ohne Regale oder Annahmesystem.">
-          <figcaption>Abb. 1 &mdash; Berliner Büro vor dem Programm: eingehender Bestand ohne strukturierte Annahme.</figcaption>
+          <figcaption>Abb. 1 &mdash; Berliner Büro vor dem strukturierten Nachfrage-Routing: eingehendes Material ohne Kategorisierungskanäle.</figcaption>
         </figure>
-      </section>
 
-      <!-- ============ 03 — DECISION ============ -->
-      <section class="card" id="decision">
-        <p class="eyebrow on">03 &middot; Entscheidung</p>
-        <h2 class="phase-title">Den Lebenszyklus von linear auf zirkulär umbauen.</h2>
-        <p class="lede">Statt die Beschaffung zu optimieren oder die Stückkosten pro Set zu senken, haben wir den gesamten Lebenszyklus neu gestaltet. <strong>Die Ausrüstung sollte das System nicht verlassen, wenn ein Kurier es verlässt.</strong></p>
-
-        <ol class="steps">
-          <li><b>Rücknahme beim Offboarding.</b> Strukturierte Rückgabe beim Austritt, integriert in die Offboarding-Checkliste.</li>
-          <li><b>Finanzielle Verbindlichkeit.</b> Fehlende Teile werden dem Kurier beim Offboarding berechnet &mdash; ein Mechanismus zur Verhaltensänderung, keine Einnahmequelle.</li>
-          <li><b>Aufbereitung im Warehouse.</b> Zentrale Annahme im Berliner Büro: Zustandsbewertung, Reinigung, kleinere Reparaturen und ein Bestand zur Neuausgabe an neue Kräfte.</li>
-          <li><b>Nachgelagertes Recycling.</b> Irreparable Ausrüstung geht über die bestehende Partnerschaft mit TARPREC an das Wolt HQ in Dänemark; dort werden Taschen und Heizplatten in T&oslash;rring zur Materialrückgewinnung verarbeitet.</li>
-        </ol>
+        <p class="body">Wir begannen, Kurierbesuche systematisch zu kategorisieren. Statt jeden Kontakt als isolierten Supportfall zu behandeln, erfassten wir den Anlass des Besuchs.</p>
 
         <div class="sub">
-          <h3>Der Kreislauf, gezeichnet</h3>
-          <p class="impact">Vier Stufen, die die Ausrüstung im System halten, und ein nachgelagerter Weg für Unrettbares.</p>
-          <p class="body">Die Beschaffung ist nicht mehr der Motor des Systems, sondern sein Restzufluss: Neuware wird nur noch für den Bedarf gekauft, den der Rücklaufbestand nicht deckt. Alles, was der limettenfarbene Pfad berührt, ist bereits einmal bezahlte Ausrüstung.</p>
+          <h3>Die Besuchs-Taxonomie</h3>
+          <p class="cats">
+            <span class="cat">Payroll</span>
+            <span class="cat">Personal &amp; Arbeitsverhältnis</span>
+            <span class="cat">Urlaub</span>
+            <span class="cat">Verträge</span>
+            <span class="cat">Fehlende Unterlagen</span>
+            <span class="cat">Onboarding</span>
+            <span class="cat">Gear &mdash; Ausgabe, Rückgabe, Schäden</span>
+            <span class="cat">Dringende Eskalationen</span>
+            <span class="cat">Sonstige operative Anliegen</span>
+          </p>
+        </div>
+
+        <p class="body">Das wöchentliche Monitoring floss in ein monatliches Reporting. Damit hatte Operations, was zuvor fehlte: Sichtbarkeit darüber, <b>warum</b> Kuriere den physischen Supportkanal nutzten &mdash; und welcher Anteil sich tatsächlich vor Ort lösen ließ statt anderswo.</p>
+
+        <p class="body">Dieselbe Kategorisierungsdisziplin, die Support-Muster sichtbar machte, legte auch Ausrüstungsmuster offen: welche Teile in welchem Zustand zurückkamen, welche am schnellsten das Ende ihrer Lebensdauer erreichten, welche Ausgabemomente mit den Stoßzeiten im Support zusammenfielen. <b>Beide Dimensionen wurden über dieselben operativen Daten sichtbar.</b></p>
+      </section>
+
+      <!-- ============ 03 ============ -->
+      <section class="card" id="method">
+        <p class="eyebrow on">03 &middot; Zwei Probleme, eine Methode</p>
+        <h2 class="phase-title">Daten &rarr; Kategorisierung &rarr; Routing &rarr; Redesign.</h2>
+        <p class="lede">Sobald die Nachfrage sichtbar war, zeigten beide operativen Flächen dasselbe Grundmuster: <strong>unstrukturierte Nachfrage über einen einzigen physischen Kanal</strong>, Symptome vorgelagerter Probleme und keine klare Grenze zwischen dem, was Operations verantwortete, und dem, was andere Teams verantworteten.</p>
+
+        <p class="body">Die Methode, die für das eine funktionierte, galt auch für das andere.</p>
+
+        <ul class="fn-list">
+          <li><b>Datenerhebung</b> an jedem Kontaktpunkt.</li>
+          <li><b>Kategorisierung</b> wiederkehrender Muster.</li>
+          <li><b>Zuordnung</b> der Verantwortung je Kategorie.</li>
+          <li><b>Routing</b> an den passenden Lösungskanal.</li>
+          <li><b>Redesign des Systems,</b> um die Abhängigkeit von spontanen Walk-ins zu senken.</li>
+        </ul>
+
+        <div class="sub">
+          <h3>Die Methoden-Schleife</h3>
+          <p class="impact">Fünf Schritte, die aus einer Schlange von Einzelfällen ein System machen, das seinen eigenen Zulauf verkleinert.</p>
+          <p class="body">Die Schleife schließt sich: Das Redesign verändert, was die nächste Messung sieht &mdash; die Ausgangslage verschiebt sich, und die Kategorien ordnen sich neu. Auf Service angewandt entstanden Termine und Routing; auf Gear angewandt Rücknahme und Aufbereitung. Dieselbe Abfolge, ein anderes Ergebnis.</p>
 
           <figure>
             <div class="figbox">
               <div class="figscroll">
-              <svg viewBox="0 0 1040 470" role="img" aria-label="Diagramm des Kreislauf-Lebenszyklus der Ausrüstung. Die Beschaffung speist Neuware als Restzufluss in die Ausgabe. Der Hauptkreislauf führt von der Aufbereitung über die Ausgabe als Bestand zur Neuausgabe, von der Ausgabe über den Kurier-Lebenszyklus zur Rücknahme und von dort zurück zur Aufbereitung im Berliner Büro, sodass Ausrüstung ins System zurückkehrt statt zum Kurier. Ausrüstung, die die Zustandsprüfung nicht besteht, verlässt den Kreislauf in eine nachgelagerte Kette: irreparable Ausrüstung, Konsolidierung im Wolt HQ Dänemark, Verarbeitung in der TARPREC-Anlage in Torring und Materialrückgewinnung zurück in die Industrie." style="min-width:640px">
+              <svg viewBox="0 0 1040 330" role="img" aria-label="Diagramm der Methoden-Schleife. Jeder Kurier-Kontaktpunkt läuft in Daten ein, die an jedem Kontaktpunkt erhoben werden. Daten speisen Kategorisieren, das wiederkehrende Muster bündelt. Kategorisieren speist Zuordnen, das je Kategorie klärt, wer zuständig ist. Zuordnen speist Weiterleiten, das jede Kategorie an das lösende Team gibt. Weiterleiten speist Neu gestalten, das die Ad-hoc-Nachfrage senkt. Neu gestalten führt zurück zu Daten, denn das Redesign verändert, was die nächste Messung sieht. Dieselbe Methode wurde auf Service-Operations und auf Gear-Operations angewandt." style="min-width:640px">
+                <defs>
+                  <marker id="m-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <polygon points="0,0 10,5 0,10" fill="#B8FF3D"/>
+                  </marker>
+                  <marker id="m-arrow-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <polygon points="0,0 10,5 0,10" fill="#8A8A93"/>
+                  </marker>
+                </defs>
+
+                <text x="20" y="36" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.2" fill="#B8FF3D">JEDER KURIER-KONTAKTPUNKT</text>
+                <line x1="104" y1="48" x2="104" y2="86" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#m-arrow)"/>
+
+                <rect x="20" y="90" width="168" height="84" rx="12" fill="#141417" stroke="#B8FF3D" stroke-opacity="0.55"/>
+                <rect x="228" y="90" width="168" height="84" rx="12" fill="#141417" stroke="#303036"/>
+                <rect x="436" y="90" width="168" height="84" rx="12" fill="#141417" stroke="#303036"/>
+                <rect x="644" y="90" width="168" height="84" rx="12" fill="#141417" stroke="#303036"/>
+                <rect x="852" y="90" width="168" height="84" rx="12" fill="#141417" stroke="#303036"/>
+
+                <text x="104" y="127" text-anchor="middle" font-family="Inter,sans-serif" font-size="16.5" font-weight="600" fill="#B8FF3D">Daten</text>
+                <text x="104" y="149" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="0.9" fill="#8A8A93">AN JEDEM KONTAKTPUNKT</text>
+                <text x="312" y="127" text-anchor="middle" font-family="Inter,sans-serif" font-size="16.5" font-weight="600" fill="#F7F7F8">Kategorisieren</text>
+                <text x="312" y="149" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="0.9" fill="#8A8A93">WIEDERKEHRENDE MUSTER</text>
+                <text x="520" y="127" text-anchor="middle" font-family="Inter,sans-serif" font-size="16.5" font-weight="600" fill="#F7F7F8">Zuordnen</text>
+                <text x="520" y="149" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="0.9" fill="#8A8A93">WER IST ZUSTÄNDIG</text>
+                <text x="728" y="127" text-anchor="middle" font-family="Inter,sans-serif" font-size="16.5" font-weight="600" fill="#F7F7F8">Weiterleiten</text>
+                <text x="728" y="149" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="0.9" fill="#8A8A93">AN DAS LÖSENDE TEAM</text>
+                <text x="936" y="127" text-anchor="middle" font-family="Inter,sans-serif" font-size="16.5" font-weight="600" fill="#F7F7F8">Neu gestalten</text>
+                <text x="936" y="149" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="0.9" fill="#8A8A93">AD-HOC-NACHFRAGE SENKEN</text>
+
+                <line x1="192" y1="132" x2="224" y2="132" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#m-arrow)"/>
+                <line x1="400" y1="132" x2="432" y2="132" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#m-arrow)"/>
+                <line x1="608" y1="132" x2="640" y2="132" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#m-arrow)"/>
+                <line x1="816" y1="132" x2="848" y2="132" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#m-arrow)"/>
+
+                <path d="M936,174 V232 H104 V182" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#m-arrow)"/>
+                <text x="520" y="254" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.2" fill="#B8FF3D">DAS REDESIGN ÄNDERT, WAS DIE NÄCHSTE MESSUNG SIEHT</text>
+
+                <path d="M20,286 V294 H1020 V286" fill="none" stroke="#4A4A52" stroke-width="1.3"/>
+                <text x="520" y="316" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" letter-spacing="1.4" fill="#8A8A93">DIESELBE METHODE &mdash; ANGEWANDT AUF SERVICE UND AUF GEAR</text>
+              </svg>
+              </div>
+            </div>
+            <figcaption>Abb. 2 &mdash; Die Schleife ist die Methode, nicht das Organigramm: Dieselben fünf Schritte brachten das Support-System und das Gear-System hervor. Für diese Fallstudie gezeichnet.</figcaption>
+          </figure>
+        </div>
+
+        <p class="body">Daraus wurde das Arbeitsprinzip für Service und Gear gleichermaßen:</p>
+
+        <p class="callout">Kuriere dort unterstützen, wo Unterstützung einen Unterschied macht. Den Prozess dort verantworten, wo die Verantwortung bei Operations liegt. <span>Alles Übrige an das Team weiterleiten, dem das eigentliche Problem gehört.</span></p>
+      </section>
+
+      <!-- ============ 04 ============ -->
+      <section class="card" id="support">
+        <p class="eyebrow on">04 &middot; Das Support-System</p>
+        <h2 class="phase-title">Vom Walk-in-Chaos zur Service-Architektur.</h2>
+        <p class="lede">Für die Service-Operations verschob das Redesign den Kuriersupport von reaktiv zu strukturiert &mdash; nicht durch mehr Kapazität am Tresen, sondern indem weniger überhaupt bis zum Tresen gelangen musste.</p>
+
+        <figure class="photo">
+          <img src="/wolt/images/wolt-01-oficina.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Das Berliner Wolt-Büro im laufenden Betrieb: besetzte Arbeitsplätze, gestapelte Thermoboxen, gepackte Taschen und Jacken auf Stangen entlang der Fensterwand.">
+          <figcaption>Abb. 3 &mdash; Das Berliner Büro als Servicefläche: Onboarding, Ausrüstungsausgabe und Support-Nachfrage im selben Raum.</figcaption>
+        </figure>
+
+        <ul class="fn-list">
+          <li><b>Strukturierte Terminverwaltung</b> mit kategorisierten Termintypen.</li>
+          <li><b>Self-Service-Material:</b> FAQs, In-App-Hinweise und Chatbot-Flows für wiederkehrende Fragen.</li>
+          <li><b>Klareres Kanal-Routing:</b> welche Anliegen zu Support, welche zu Personal, welche zu Payroll gehen.</li>
+          <li><b>Persönlicher Support nur dort,</b> wo er wirklich nötig ist.</li>
+          <li><b>Wöchentliches Reporting,</b> das wiederkehrende Engpässe an die verantwortlichen Teams eskaliert.</li>
+        </ul>
+
+        <div class="sub">
+          <h3>Unterstützen ist nicht Verantworten</h3>
+          <p class="body">Eine der schärfsten Unterscheidungen, die dieses Projekt sichtbar machte, war die zwischen <b>unterstützen</b> und <b>verantworten</b>.</p>
+          <p class="body">Ein Kurier, der seit Tagen auf die Klärung eines Payroll-Problems wartete, konnte frustriert im Büro stehen. Weil er physisch da war, half Operations naheliegenderweise beim Eskalieren. Die Lösung des Payroll-Problems lag jedoch nicht in der Verantwortung von Operations. Unser Reporting machte diesen Unterschied sichtbar &mdash; und half, die Verantwortung an die Teams zu leiten, denen die jeweilige wiederkehrende Kategorie tatsächlich gehörte, statt alles im Büro aufzufangen.</p>
+        </div>
+
+        <div class="sub">
+          <h3>Die neue Support-Journey</h3>
+          <p class="impact">Ein Problem beginnt nicht mehr an der Bürotür. Das Büro wurde zur Ausnahme, nicht zum Eingang.</p>
+          <ol class="steps">
+            <li><b>Self-Service, wo möglich.</b> FAQs, In-App-Hinweise und Chatbot-Flows für die Fragen, die sich wiederholen.</li>
+            <li><b>Der richtige digitale Kanal.</b> Nach Kategorie geroutet, nicht danach, wer zuerst antwortet.</li>
+            <li><b>Kategorisierter Termin, wenn nötig.</b> Geplant, mit der richtigen Person und den richtigen Unterlagen.</li>
+            <li><b>Persönlich nur im Ausnahmefall.</b> Reserviert für das, was wirklich einen Menschen und einen Tresen braucht.</li>
+            <li><b>Eskalation an die verantwortliche Funktion.</b> Für das eigentliche Problem hinter der wiederkehrenden Kategorie.</li>
+          </ol>
+        </div>
+
+        <p class="body">Zwei Verantwortlichkeiten verankerten meine Rolle in diesem System: Ich übernahm eigenständig das On- und Offboarding der Kuriere im Berliner Büro und koordinierte ein kleines Team von Gear Associates &mdash; so dokumentiert im Wolt-Referenzschreiben.</p>
+      </section>
+
+      <!-- ============ 05 ============ -->
+      <section class="card" id="gear">
+        <p class="eyebrow on">05 &middot; Das Gear-System</p>
+        <h2 class="phase-title">Vom Verbrauchsgut zum Kreislauf.</h2>
+        <p class="lede">Für die Gear-Operations legte dieselbe Messdisziplin ein anderes Problem offen: Ausrüstung war standardmäßig Einwegware. Jede neue Einstellung bekam ein komplettes Set &mdash; Thermotaschen, wetterfeste Jacken, Thermoboxen &mdash; importiert von Herstellern in Übersee und deutschlandweit verteilt. Ausscheidende Kuriere behielten ihres. <strong>Die Kostenkurve folgte Einstellungen und Fluktuation, nicht der Zahl aktiver Kuriere.</strong></p>
+
+        <div class="photo-split">
+          <figure class="photo wide">
+            <img src="/wolt/images/wolt-04-estacion.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Ausgabestation im Berliner Wolt-Büro: Jacken auf Rollständern, nach Größe sortierte Shirts in offenen Kisten und Paletten mit verpackter Ware.">
+            <figcaption>Abb. 4 &mdash; Das Berliner Büro nach der Umsetzung: Ausgabestation mit strukturierter Zuteilung nach Größe und Rolle.</figcaption>
+          </figure>
+          <figure class="photo tall">
+            <img src="/wolt/images/wolt-03-racks.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="Reihen von Wolt-Kurierjacken auf Stangen im Berliner Büro, sortiert und bereit zur Neuausgabe.">
+            <figcaption>Abb. 5 &mdash; Geprüfte und gereinigte Jacken auf Stangen als Bestand zur Neuausgabe.</figcaption>
+          </figure>
+        </div>
+
+        <div class="sub">
+          <h3>Drei systemische Lücken im Ausrüstungszyklus</h3>
+          <ol class="steps">
+            <li><b>Keine strukturierte Rücknahme beim Offboarding.</b> Ausscheidende Kuriere gingen mit ihrer Ausrüstung. Kein Rückgabekanal, keine Verbindlichkeit, kein Anreiz zurückzugeben.</li>
+            <li><b>Kein finanzieller Mechanismus für die Rückgabe.</b> Fehlende Ausrüstung erzeugte kein sichtbares Kostensignal &mdash; weder beim Kurier noch im Unternehmen.</li>
+            <li><b>Kein nachgelagerter Weg für beschädigte Ausrüstung.</b> Selbst zurückgekommene, abgenutzte oder irreparable Teile hatten keinen Recyclingkanal. Sie landeten im Restmüll.</li>
+          </ol>
+        </div>
+
+        <p class="body">Das Redesign führte den Ausrüstungszyklus vom linearen Verlauf in den Kreislauf.</p>
+
+        <ul class="fn-list">
+          <li><b>Strukturierte Rücknahme beim Offboarding,</b> fest in der Offboarding-Checkliste verankert.</li>
+          <li><b>Finanzielle Verbindlichkeit.</b> Fehlende Teile werden dem Kurier beim Austritt berechnet &mdash; als Mechanismus zur Verhaltensänderung, nicht zur Einnahmeerzielung.</li>
+          <li><b>Aufbereitung im Berliner Büro.</b> Annahme-Workflow, Zustandsprüfung, Reinigung und kleinere Reparatur sowie ein Bestand zur Neuausgabe an neue Kuriere.</li>
+          <li><b>Nachgelagertes Recycling.</b> Irreparable Ausrüstung geht über die bestehende Partnerschaft mit TARPREC an Wolt HQ Dänemark; TARPREC verarbeitet Taschen und Heizplatten in T&oslash;rring zur Materialrückgewinnung: Taschen und Ausrüstung werden versandt und demontiert, und bis zu <b>96% der Materialien</b> werden vom Restmüll ferngehalten und zu Produkten wie Verkehrsschildern und Füllmaterial weiterverarbeitet &mdash; so dokumentiert in Wolts globaler Nachhaltigkeitskommunikation.</li>
+        </ul>
+
+        <div class="sub">
+          <h3>Die Schleife, gezeichnet</h3>
+          <p class="impact">Vier Stufen halten die Ausrüstung im System, ein nachgelagerter Weg fängt auf, was nicht zu retten ist.</p>
+          <p class="body">Die Beschaffung ist nicht mehr der Motor des Systems, sondern sein Restzufluss: Neuware wird nur noch für den Bedarf gekauft, den der zurückgeflossene Bestand nicht deckt. Alles, was der limettenfarbene Pfad berührt, ist Ausrüstung, die bereits einmal bezahlt wurde.</p>
+
+          <figure>
+            <div class="figbox">
+              <div class="figscroll">
+              <svg viewBox="0 0 1040 470" role="img" aria-label="Diagramm des Ausrüstungskreislaufs. Die Beschaffung speist Neuware als Restzufluss in die Ausgabe. Die Hauptschleife läuft von der Aufbereitung zur Ausgabe als Bestand zur Neuausgabe, von der Ausgabe zur Rücknahme über den Kurier-Lebenszyklus und von der Rücknahme zurück in die Aufbereitung im Berliner Büro, sodass Ausrüstung ins System zurückkehrt und nicht zum Kurier. Ausrüstung, die die Zustandsprüfung nicht besteht, verlässt die Schleife in eine nachgelagerte Kette: irreparable Ausrüstung, Konsolidierung bei Wolt HQ Dänemark, Verarbeitung in der TARPREC-Anlage in Toerring und Materialrückgewinnung zurück in die Industrie." style="min-width:640px">
                 <defs>
                   <marker id="w-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                     <polygon points="0,0 10,5 0,10" fill="#B8FF3D"/>
@@ -613,14 +815,12 @@
                   </marker>
                 </defs>
 
-                <!-- PROCUREMENT — residual input, outside the loop -->
                 <rect x="306" y="16" width="224" height="62" rx="12" fill="#141417" stroke="#303036" stroke-dasharray="5 4"/>
                 <text x="418" y="43" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-weight="600" fill="#F7F7F8">Beschaffung</text>
                 <text x="418" y="62" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" letter-spacing="1.1" fill="#8A8A93">NEUWARE &middot; ÜBERSEE</text>
                 <line x1="418" y1="80" x2="418" y2="108" stroke="#8A8A93" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#w-arrow-m)"/>
                 <text x="440" y="100" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.2" fill="#8A8A93">RESTZUFLUSS</text>
 
-                <!-- MAIN LOOP -->
                 <rect x="24" y="112" width="224" height="86" rx="12" fill="#141417" stroke="#303036"/>
                 <rect x="304" y="112" width="224" height="86" rx="12" fill="#141417" stroke="#303036"/>
                 <rect x="584" y="112" width="224" height="86" rx="12" fill="#141417" stroke="#303036"/>
@@ -637,15 +837,12 @@
                 <text x="276" y="222" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.2" fill="#B8FF3D">BESTAND ZUR NEUAUSGABE</text>
                 <text x="556" y="222" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.2" fill="#8A8A93">KURIER-LEBENSZYKLUS</text>
 
-                <!-- return leg: recovery back to refurbishment -->
                 <path d="M696,198 V258 H136 V206" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#w-arrow)"/>
                 <text x="416" y="280" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.2" fill="#B8FF3D">AUSRÜSTUNG KEHRT INS SYSTEM ZURÜCK, NICHT ZUM KURIER</text>
 
-                <!-- exit branch: fails condition assessment -->
                 <line x1="80" y1="198" x2="80" y2="324" stroke="#8A8A93" stroke-width="1.5" marker-end="url(#w-arrow-m)"/>
                 <text x="96" y="304" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.2" fill="#8A8A93">PRÜFUNG NICHT BESTANDEN</text>
 
-                <!-- DOWNSTREAM CHAIN -->
                 <rect x="24" y="330" width="204" height="76" rx="12" fill="#101013" stroke="#2A2A30"/>
                 <rect x="286" y="330" width="204" height="76" rx="12" fill="#101013" stroke="#2A2A30"/>
                 <rect x="548" y="330" width="204" height="76" rx="12" fill="#101013" stroke="#2A2A30"/>
@@ -658,7 +855,7 @@
                 <text x="650" y="362" text-anchor="middle" font-family="Inter,sans-serif" font-size="14.5" font-weight="600" fill="#F7F7F8">TARPREC &middot; T&oslash;rring</text>
                 <text x="650" y="382" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">DEMONTAGE</text>
                 <text x="912" y="362" text-anchor="middle" font-family="Inter,sans-serif" font-size="14.5" font-weight="600" fill="#F7F7F8">Materialrückgewinnung</text>
-                <text x="912" y="382" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">ZURÜCK IN DIE INDUSTRIE</text>
+                <text x="912" y="382" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">BIS ZU 96% VERWERTET</text>
 
                 <line x1="232" y1="368" x2="282" y2="368" stroke="#8A8A93" stroke-width="1.4" marker-end="url(#w-arrow-m)"/>
                 <line x1="494" y1="368" x2="544" y2="368" stroke="#8A8A93" stroke-width="1.4" marker-end="url(#w-arrow-m)"/>
@@ -669,103 +866,88 @@
               </svg>
               </div>
             </div>
-            <figcaption>Abb. 2 &mdash; Der limettenfarbene Pfad ist der Kreislauf, den das Programm geschaffen hat; der gestrichelte Zufluss ist das, was er verdrängt hat. Für diese Fallstudie gezeichnet.</figcaption>
-          </figure>
-        </div>
-
-        <p class="callout">Ausrüstung, die mit einem Kurier verschwindet, ist kein Logistikproblem. <span>Es ist eine Designentscheidung, die niemand bewusst getroffen hat.</span></p>
-      </section>
-
-      <!-- ============ 04 — OPERATION ============ -->
-      <section class="card" id="operation">
-        <p class="eyebrow on">04 &middot; Operation</p>
-        <h2 class="phase-title">Ein cross-funktionales System in bundesweitem Maßstab.</h2>
-        <p class="lede">Ein Kreislauf existiert erst, wenn vier Funktionen ihn betreiben. Das System erforderte Koordination über Warehouse, Support, lokale Operations und HQ hinweg &mdash; in sechs Städten und zwei Ländern.</p>
-
-        <ul class="fn-list">
-          <li><b>Warehouse Operations (Berliner Büro).</b> Annahme-Workflow, Kriterien zur Zustandsbewertung sowie Reinigungs- und Reparaturprotokolle entworfen. Ein kleines Team von Gear Associates für die tägliche Ausführung koordiniert.</li>
-          <li><b>Offboarding-Integration.</b> Mit Support- und Ops-Teams die Ausrüstungsrückgabe in die Standard-Offboarding-Prozesse der 6 deutschen Städte eingebettet.</li>
-          <li><b>Bundesweiter Rollout.</b> Umsetzung in Berlin, München, Hamburg, Frankfurt, D&uuml;sseldorf und Stuttgart mit den lokalen Ops-Teams koordiniert.</li>
-          <li><b>Koordination mit dem HQ Dänemark.</b> Mit dem Wolt HQ den nachgelagerten Materialfluss abgestimmt: Konsolidierung irreparabler Ausrüstung, Versandlogistik zur TARPREC-Anlage in T&oslash;rring und die Pipeline zur Materialrückgewinnung.</li>
-        </ul>
-
-        <ul class="facts">
-          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Annahme- &amp; Bewertungs-Workflow</li>
-          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Offboarding-Checkliste</li>
-          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Grenzüberschreitender Materialfluss</li>
-        </ul>
-
-        <div class="photo-split">
-          <figure class="photo wide">
-            <img src="/wolt/images/wolt-04-estacion.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Ausgabestation im Berliner Wolt-Büro: Jacken auf Rollstangen, nach Größe sortierte Shirts in offenen Kisten und Paletten mit Kartonware.">
-            <figcaption>Abb. 3 &mdash; Berliner Büro nach der Umsetzung: Ausgabestation mit strukturierter Zuteilung nach Größe und Rolle.</figcaption>
-          </figure>
-          <figure class="photo tall">
-            <img src="/wolt/images/wolt-03-racks.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="Reihen von Wolt-Kurierjacken auf Stangen im Berliner Büro, sortiert und bereit zur Neuausgabe.">
-            <figcaption>Abb. 4 &mdash; Bewertete und gereinigte Jacken auf Stangen als Bestand zur Neuausgabe.</figcaption>
+            <figcaption>Abb. 6 &mdash; Der limettenfarbene Pfad ist die Schleife, die das Programm geschaffen hat; der gestrichelte Zufluss ist das, was sie verdrängt hat. Für diese Fallstudie gezeichnet.</figcaption>
           </figure>
         </div>
 
         <div class="sub">
           <h3>Quantifizierung des CO&sub2;-Fußabdrucks</h3>
-          <p class="body">Die Umweltwirkung des Programms wurde quantifiziert statt behauptet, damit sie extern veröffentlicht und an den beschriebenen Materialflüssen geprüft werden konnte. Diese Berechnung machte aus einem internen Kostenprogramm einen berichtsfähigen Nachhaltigkeitsbeitrag.</p>
+          <p class="body">Die ökologische Wirkung des Programms wurde berechnet statt behauptet, damit sie extern veröffentlicht und gegen die beschriebenen Materialflüsse geprüft werden konnte. Diese Berechnung machte aus einem internen Kostenprogramm einen berichtsfähigen Nachhaltigkeitsbeitrag, der in Wolts breiteres Nachhaltigkeitsreporting einfloss.</p>
         </div>
+
+        <p class="callout">Ausrüstung, die mit einem Kurier verschwindet, ist kein Logistikproblem. <span>Sie ist eine Designentscheidung, die niemand absichtlich getroffen hat.</span></p>
       </section>
 
-      <!-- ============ 05 — RESULT ============ -->
-      <section class="card" id="result">
-        <p class="eyebrow on">05 &middot; Ergebnis</p>
-        <h2 class="phase-title">Die Kostenkurve löste sich von der Fluktuation.</h2>
+      <!-- ============ 06 ============ -->
+      <section class="card" id="moved">
+        <p class="eyebrow on">06 &middot; Was sich bewegte</p>
+        <h2 class="phase-title">Zwei Ergebnisse, eine Methode, ehrliche Zurechnung.</h2>
 
         <div class="result-metrics">
           <div class="metric-big">
-            <span class="kicker">Erste 12 Monate</span>
+            <span class="kicker">Support-Nachfrage</span>
+            <span class="value">~50%<span class="dir">&darr;</span></span>
+            <span class="label">Die wöchentliche Support-Nachfrage der Kuriere halbierte sich im Zeitraum in etwa (von ~525 Kontakten/Woche als Ausgangswert auf ~262/Woche zum Schluss)</span>
+          </div>
+          <div class="metric-big">
+            <span class="kicker">Beschaffungskosten</span>
             <span class="value">30%<span class="dir">&darr;</span></span>
-            <span class="label">Beschaffungskosten für Ausrüstung: erste 12 Monate bei Wolt (Feb 2021 &ndash; Jan 2022) als Basis gegenüber den folgenden 12 Monaten nach der Umsetzung (Feb 2022 &ndash; Jan 2023)</span>
+            <span class="label">Ausgaben für Ausrüstung, erste 12 Monate bei Wolt (Feb 2021 &ndash; Jan 2022) als Ausgangswert gegenüber den folgenden 12 Monaten nach Umsetzung (Feb 2022 &ndash; Jan 2023)</span>
           </div>
           <div class="metric-big">
-            <span class="kicker">Bundesweit</span>
-            <span class="value">6 Städte</span>
-            <span class="label">Berlin, München, Hamburg, Frankfurt, D&uuml;sseldorf, Stuttgart</span>
-          </div>
-          <div class="metric-big">
-            <span class="kicker">Umfang</span>
-            <span class="value">2,000+</span>
-            <span class="label">Kurierpartner im Kreislauf-Ausrüstungssystem</span>
+            <span class="kicker">Reichweite</span>
+            <span class="value">2.000+</span>
+            <span class="label">Kuriere, die von beiden Systemen erfasst wurden &mdash; Support und Gear &mdash; in 6 deutschen Städten: Berlin, München, Hamburg, Frankfurt, Düsseldorf, Stuttgart</span>
           </div>
         </div>
 
-        <p class="lede">Die Entkopplung war strukturell, nicht zufällig. Sobald der Kreislauf aus Rücknahme, Aufbereitung und Recycling lief, bestanden die Sets für neue Kräfte zunehmend aus aufbereiteter Ausrüstung aus dem Rücklaufbestand. <strong>Die Beschaffungskosten folgten nicht mehr dem Einstellungsvolumen.</strong></p>
+        <p class="lede"><strong>Die Zurechnung wiegt schwerer als die Schlagzeile.</strong></p>
 
-        <p class="body">Der Umweltbeitrag des Programms &mdash; für die externe Veröffentlichung quantifiziert &mdash; floss in die Nachhaltigkeitsberichterstattung von Wolt ein und trug zu den 25.000+ kg Material bei, die über TARPREC in Wolts europäischem Betrieb von der Deponie ferngehalten wurden (Quelle: Wolt Blog, Oktober 2023).</p>
+        <p class="body">Der Rückgang der wöchentlichen Support-Nachfrage um 50% ging nicht allein auf das Service-Redesign zurück. Wolt führte im selben Zeitraum externe Flottenbetreiber ein, wodurch die Zahl der direkt betreuten Kuriere sank und das Walk-in-Volumen mechanisch zurückging. Die Änderungen am Service Design trugen zu der Verschiebung bei &mdash; aber ebenso Entscheidungen zum Betriebsmodell, die ich nicht verantwortete.</p>
 
-        <figure class="photo">
-          <img src="/wolt/images/wolt-01-oficina.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Das Berliner Wolt-Büro im Tagesbetrieb: besetzte Schreibtische, gestapelte Thermoboxen, verpackte Taschen und Jacken auf Stangen entlang der Fensterfront.">
-          <figcaption>Abb. 5 &mdash; Der Berliner Betrieb im Maßstab.</figcaption>
-        </figure>
+        <p class="body">Der Rückgang der Beschaffungskosten um 30% lässt sich deutlich direkter dem Gear-Redesign zurechnen, im Vergleich der 12-Monats-Zeiträume vor und nach der Umsetzung.</p>
+
+        <p class="body">Beide Ergebnisse sind im Wolt-Referenzschreiben bestätigt. Der ökologische Beitrag des Gear-Programms &mdash; quantifiziert für die externe Veröffentlichung &mdash; floss in Wolts breiteres Nachhaltigkeitsreporting ein und trug zu den <b>25.000+ kg Material bei, die über TARPREC</b> im europäischen Betrieb von Wolt vom Restmüll ferngehalten wurden (Quelle: <a href="https://blog.wolt.com/hq/2023/10/31/better-cities-delivered/" target="_blank" rel="noopener">Wolt Blog, Oktober 2023</a>).</p>
       </section>
 
-      <!-- ============ 06 — NEXT ITERATION ============ -->
-      <section class="card" id="next">
-        <p class="eyebrow on">06 &middot; Nächste Iteration</p>
-        <h2 class="phase-title">Was ich ergänzen würde, wenn ich das heute verantworten würde.</h2>
-        <p class="lede">Drei Dinge, die nicht in meinem Scope lagen, die ich aber als Nächstes bauen würde.</p>
+      <!-- ============ 07 ============ -->
+      <section class="card" id="learned">
+        <p class="eyebrow on">07 &middot; Was ich lernte</p>
+        <h2 class="phase-title">Eine Methode, zwei Systeme.</h2>
+        <p class="lede">Die stärkste Lehre aus dieser Rolle war struktureller Natur: Zwei operative Flächen, die aus Sicht der Kuriere völlig verschieden aussahen &mdash; Hilfe bei einem Payroll-Problem gegenüber der Rückgabe einer beschädigten Tasche &mdash; <strong>waren aus Sicht von Operations dasselbe Problem.</strong></p>
 
-        <ol class="steps">
-          <li><b>Vorausschauende Ausrüstungszuteilung.</b> Aufbereiteten Bestand aktiver auf die Einstellungspipeline abstimmen und so die verbleibende Beschaffungsvarianz senken.</li>
-          <li><b>Zirkularität auf Komponentenebene.</b> Über Taschen und Jacken hinaus den Verschleiß einzelner Komponenten erfassen &mdash; Gurte, Reißverschlüsse, Isolierung &mdash; für gezielte Aufbereitung.</li>
-          <li><b>Benchmark über mehrere Märkte.</b> Das Framework auf weitere Wolt-Regionen ausweiten, in denen Größe und Fluktuationsprofil ähnliche Programme rechtfertigen.</li>
-        </ol>
+        <p class="body">Beide waren Symptome einer Nachfrage, die unkategorisiert über den physischen Kanal hereinkam. Beiden half dieselbe Disziplin.</p>
+
+        <ul class="fn-list">
+          <li><b>Messen,</b> bevor optimiert wird.</li>
+          <li><b>Kategorisieren,</b> bevor geroutet wird.</li>
+          <li><b>Verantwortung zuordnen,</b> bevor eine Maßnahme entworfen wird.</li>
+          <li><b>Für Ausnahmen gestalten,</b> nicht für den Normalfall.</li>
+        </ul>
+
+        <p class="body">Das ist weder Customer-Support-Methodik noch Supply-Chain-Methodik. Es ist <b>Operations-Methodik</b>. Auf Service angewandt senkt sie die Abhängigkeit von Walk-ins und schafft Klarheit über abteilungsübergreifende Verantwortung. Auf Gear angewandt macht sie aus Verbrauchsgütern Kreislaufsysteme und entkoppelt die Kosten von der Fluktuation.</p>
+
+        <div class="sub">
+          <h3>Fünfzig Menschen mit derselben Frage</h3>
+          <p class="body">Eine weitere Lehre, die es zu benennen lohnt: Wiederkehrende Supportanfragen sind oft nicht in erster Linie ein Customer-Support-Problem. Sie können Beleg für ein vorgelagertes Prozess-, Informations- oder Verantwortungsproblem sein. Wenn fünfzig Menschen dieselbe Frage stellen, mag es nötig sein, sie fünfzig Mal zu beantworten &mdash; das eigentliche Problem löst das nicht. Der skalierbarere Eingriff ist zu verstehen, <b>warum</b> gefragt wird, <b>wo</b> die Information stehen müsste und <b>welches Team</b> das zugrunde liegende Problem verantwortet.</p>
+        </div>
+
+        <p class="callout">Keine Bearbeitung Fall für Fall. <span>Redesign auf Systemebene entlang wiederkehrender Nutzerbedürfnisse.</span></p>
       </section>
 
       <!-- ============ EXTERNAL VALIDATION ============ -->
       <section class="reference-cta">
-        <p class="eyebrow on">Externe Validierung</p>
+        <p class="eyebrow on">Externe Bestätigung</p>
         <h3>Referenzschreiben und veröffentlichte Quellen</h3>
-        <p>Ausgewählte Ergebnisse dieses Projekts sind im Wolt-Referenzschreiben dokumentiert, abrufbar über den Zertifikate-Bereich dieses Portfolios. Die nachgelagerte Recycling-Partnerschaft und ihre Zahlen zur Materialrückgewinnung finden sich in Wolts globaler Nachhaltigkeitskommunikation.</p>
+        <p>Beide Ergebnisse sind im Wolt-Referenzschreiben dokumentiert, abrufbar über den Zertifikate-Bereich dieses Portfolios. Ausgewählte Erfolge, wörtlich aus dem Wolt-Referenzschreiben zitiert (englisches Original):</p>
+        <p class="callout" lang="en">&ldquo;He led the project of cleaning the couriers' work clothes to reduce Wolt's costs by more than 30%.&rdquo;</p>
+        <p class="callout" lang="en">&ldquo;He took responsibility for a nationwide recycling project to reduce Wolt's carbon footprint.&rdquo;</p>
+        <p class="callout" lang="en">&ldquo;He independently took over the onboarding and offboarding of couriers in our local office in Berlin and coordinated a small team of Gear Associates.&rdquo;</p>
+        <p class="callout" lang="en">&ldquo;He demonstrated his strong analytical skills in supporting the team leader through data-driven analysis and the preparation of weekly reports.&rdquo;</p>
+        <p>Die externe Bestätigung der ökologischen Wirkung des Gear-Programms findet sich in Wolts globaler Nachhaltigkeitskommunikation: 25.000+ kg Material, die über TARPREC im europäischen Betrieb von Wolt vom Restmüll ferngehalten wurden (Wolt Blog, Oktober 2023).</p>
         <div class="cta-row">
           <a href="https://drive.google.com/file/d/17s7xCyrMM8qRZtqPk7gZReJvZa7iSguF/view?usp=sharing" target="_blank" rel="noopener" class="letter-link">Zertifikate &amp; Referenzschreiben <span>&rarr;</span></a>
-          <a href="https://blog.wolt.com/hq/2023/10/31/better-cities-delivered/" target="_blank" rel="noopener" class="ghost-link">Wolt-Nachhaltigkeitsbericht <span>&#8599;</span></a>
+          <a href="https://blog.wolt.com/hq/2023/10/31/better-cities-delivered/" target="_blank" rel="noopener" class="ghost-link">Wolt Nachhaltigkeitsbericht <span>&#8599;</span></a>
         </div>
       </section>
 
@@ -773,19 +955,21 @@
       <section class="card">
         <p class="eyebrow">Das Team</p>
         <figure class="photo">
-          <img src="/wolt/images/wolt-05-equipo.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Jorge Aguilar mit dem Gear-Team im Berliner Wolt-Büro, umgeben von Thermoboxen und Verpackungskartons am Ende einer Schicht.">
-          <figcaption>Abb. 6 &mdash; Das Berliner Gear-Team. Ein Kreislauf, der täglich läuft, ist erst eine Teamgewohnheit und dann ein Prozess.</figcaption>
+          <img src="/wolt/images/wolt-05-equipo.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Jorge Aguilar mit dem Gear-Team im Berliner Wolt-Büro, umgeben von Thermoboxen und Packkartons am Ende einer Schicht.">
+          <figcaption>Abb. 7 &mdash; Das Berliner Gear-Team. Ein System, das täglich läuft, ist erst Teamgewohnheit und dann Prozess.</figcaption>
         </figure>
       </section>
 
-      <!-- ============ NOTE ON THE MATERIAL ============ -->
+      <!-- ============ NOTE ============ -->
       <section class="note">
         <p class="eyebrow">Zu den Abbildungen und Fotos</p>
-        <p class="lede">Diese Fallstudie beschreibt Arbeit, die zwischen Oktober 2020 und Februar 2023 bei Wolt Deutschland geleistet wurde. Sie ist aus meinem eigenen Aufgabenbereich geschrieben und benennt bewusst, woher welche Zahl stammt.</p>
+        <p class="lede">Diese Fallstudie beschreibt Arbeit, die ich als Operations Associate in Berlin bei Wolt Deutschland geleistet habe (Feb 2021 &mdash; Jan 2022). Sie ist aus meinem eigenen Aufgabenbereich geschrieben und benennt bewusst, woher welche Zahl stammt.</p>
         <ul>
           <li><b>Die Fotos sind meine eigenen, aus dem Berliner Büro.</b> Gesichter und personenbezogene Details sind in jeder Aufnahme unkenntlich gemacht.</li>
-          <li><b>Das Diagramm wurde für diese Fallstudie gezeichnet.</b> Es ist ein Modell des Lebenszyklus, keine Reproduktion eines internen Dokuments.</li>
-          <li><b>Die Zahlen zum nachgelagerten Recycling sind öffentlich.</b> Die TARPREC-Partnerschaft und die Zahl von 25.000+ kg zurückgewonnenem Material stammen aus Wolts veröffentlichter Kommunikation und beschreiben Wolts europäischen Betrieb &mdash; nicht allein dieses Programm.</li>
+          <li><b>Die Diagramme wurden für diese Fallstudie gezeichnet.</b> Sie sind Modelle der Methode und des Lebenszyklus, keine Reproduktionen interner Dokumente.</li>
+          <li><b>Die Zahl zur Support-Nachfrage ist ein Näherungswert und geteilt zuzurechnen.</b> Die Spanne von ~525 auf ~262 Kontakte pro Woche ist eine operative Schätzung aus dem Reporting des Zeitraums, und der Rückgang ist sowohl dem Service-Redesign <b>als auch</b> Wolts Wechsel zu externen Flottenbetreibern zuzurechnen &mdash; einer Veränderung, die ich nicht verantwortete.</li>
+          <li><b>Der Beschaffungsvergleich reicht über die Rolle hinaus.</b> Die 30% vergleichen Feb 2021 &ndash; Jan 2022 mit dem Zeitraum nach der Umsetzung, Feb 2022 &ndash; Jan 2023.</li>
+          <li><b>Die Zahlen zum nachgelagerten Recycling sind öffentlich.</b> Die TARPREC-Partnerschaft, die Verwertungsquote von 96% und die Zahl von 25.000+ kg zurückgewonnenem Material stammen aus Wolts veröffentlichter Kommunikation und beschreiben Wolts europäischen Betrieb &mdash; nicht allein dieses Programm.</li>
           <li><b>Keine internen Finanzdaten.</b> Absolute Beschaffungswerte, Stückkosten und kommerzielle Konditionen bleiben außen vor; die Reduktion um 30% ist ausschließlich als relative Veränderung angegeben.</li>
         </ul>
       </section>

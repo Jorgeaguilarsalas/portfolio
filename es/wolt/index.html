@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Programa circular de equipamiento en Wolt &mdash; Jorge Aguilar</title>
-<meta name="description" content="Caso de estudio: diseño de un programa circular de equipamiento en Wolt Alemania. Del uso único al equipo reutilizable para 2.000+ mensajeros en 6 ciudades, con 30% menos de gasto en compras.">
+<title>Escalar operaciones en Wolt &mdash; Jorge Aguilar</title>
+<meta name="description" content="Caso de estudio: dos sistemas operativos construidos con el mismo método en Wolt Berlín. Estructurar la demanda de soporte y dar circularidad al equipo durante el crecimiento.">
 
 <meta property="og:type" content="article">
-<meta property="og:title" content="Programa circular de equipamiento en Wolt &mdash; Jorge Aguilar">
-<meta property="og:description" content="Caso de estudio: diseño de un programa circular de equipamiento en Wolt Alemania. Del uso único al equipo reutilizable para 2.000+ mensajeros en 6 ciudades, con 30% menos de gasto en compras.">
+<meta property="og:title" content="Escalar operaciones en Wolt &mdash; Jorge Aguilar">
+<meta property="og:description" content="Caso de estudio: dos sistemas operativos construidos con el mismo método en Wolt Berlín. Estructurar la demanda de soporte y dar circularidad al equipo durante el crecimiento.">
 <meta property="og:site_name" content="Jorge Aguilar Portfolio">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Programa circular de equipamiento en Wolt &mdash; Jorge Aguilar">
-<meta name="twitter:description" content="Caso de estudio: diseño de un programa circular de equipamiento en Wolt Alemania. Del uso único al equipo reutilizable para 2.000+ mensajeros en 6 ciudades, con 30% menos de gasto en compras.">
+<meta name="twitter:title" content="Escalar operaciones en Wolt &mdash; Jorge Aguilar">
+<meta name="twitter:description" content="Caso de estudio: dos sistemas operativos construidos con el mismo método en Wolt Berlín. Estructurar la demanda de soporte y dar circularidad al equipo durante el crecimiento.">
 <link rel="canonical" href="https://343ride.de/es/wolt/">
 <link rel="alternate" hreflang="en" href="https://343ride.de/wolt/">
 <link rel="alternate" hreflang="de" href="https://343ride.de/de/wolt/">
@@ -195,10 +195,10 @@
 
   .wrap{max-width:1320px;margin:0 auto;padding:64px 32px 88px}
 
-  /* Rail de 360px: el h1 en mayusculas llega a 80px y "PROGRAM" mide 405px, asi
-     que desborda la columna 45px. Con el gap de 64px sobran 19px y el titulo
-     nunca invade la columna de las cards (con 320px se montaba 21px desde
-     1410px de viewport para arriba). */
+  /* Rail de 360px. La palabra mas ancha del titulo es "OPERACIONES": 11 mayusculas
+     Black, ~6,6 em de avance ya con el letter-spacing negativo. A 56px mide ~370px,
+     asi que cabe dentro del rail sin llegar al tope de 404px que permite
+     max-width, y nunca invade la columna de las cards a traves del gap de 64px. */
   .layout{display:grid;grid-template-columns:360px minmax(0,1fr);gap:64px;align-items:start}
   .rail{position:sticky;top:96px;min-width:0;display:flex;flex-direction:column;gap:24px}
   .rule{width:80px;height:4px;background:var(--accent);border-radius:2px}
@@ -210,14 +210,14 @@
   .eyebrow.on{color:var(--accent)}
 
   h1{
-    font-size:clamp(46px,5.4vw,80px);font-weight:900;line-height:.9;
+    font-size:clamp(36px,4.2vw,56px);font-weight:900;line-height:.9;
     letter-spacing:-.03em;text-transform:uppercase;margin:0;text-wrap:balance;
     /* Palabras compuestas largas (DE/ES) deben poder partirse dentro del
        rail en vez de desbordarlo; hyphens:auto usa el diccionario del
        idioma declarado en <html lang>. */
     hyphens:auto;-webkit-hyphens:auto;
     /* El titulo puede respirar sobre el gap de 64px sin tocar las cards:
-       asi "CIRCULAR" (388px) entra entero en vez de partirse. */
+       asi "OPERACIONES" entra entera en vez de partirse. */
     width:max-content;max-width:calc(100% + 44px);
   }
   .rail p{color:var(--muted);font-size:15.5px;line-height:1.65;margin:0;max-width:34ch}
@@ -268,6 +268,18 @@
     font-size:clamp(27px,3.1vw,40px);font-weight:800;line-height:1.08;
     letter-spacing:-.025em;margin:0;max-width:22ch;text-wrap:balance;
   }
+  /* .lede, .body, .impact, .fn-list, .steps, .tags y .cats declaran margin:0 mas
+     abajo en esta hoja, con la misma especificidad que los resets de stack de
+     arriba: ganaban por orden y dejaban los bloques pegados. Subiendo a 0,2,0 se
+     devuelve el aire. Es el mismo arreglo que .card > .facts ya tenia suelto. */
+  .card > * + .lede,
+  .card > * + .body,
+  .card > * + .impact,
+  .card > * + .fn-list,
+  .card > * + .steps,
+  .card > * + .tags,
+  .card > * + .cats{margin-top:24px}
+
   .card > .phase-title + .lede{margin-top:20px}
 
   .sub{
@@ -275,6 +287,15 @@
     border-radius:var(--radius-sm);padding:30px;min-width:0;
   }
   .sub > * + *{margin-top:16px}
+  .sub > * + .lede,
+  .sub > * + .body,
+  .sub > * + .impact,
+  .sub > * + .fn-list,
+  .sub > * + .steps,
+  .sub > * + .tags,
+  .sub > * + .cats,
+  .sub > * + .facts,
+  .sub > * + figure{margin-top:16px}
   .sub h3{font-size:21px;font-weight:700;letter-spacing:-.01em;margin:0}
 
   .tags{display:flex;gap:8px;flex-wrap:wrap;margin:0}
@@ -282,6 +303,16 @@
     font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
     color:var(--accent);background:rgba(184,255,61,.10);
     border:1px solid rgba(184,255,61,.24);border-radius:999px;padding:5px 12px;
+  }
+
+  /* Taxonomia de visitas: mismas pastillas que .tags pero en gris. Son nueve
+     categorias operativas, no claims — el acento lima se reserva para lo que si
+     lo es (metricas, callouts, el camino del diagrama). */
+  .cats{display:flex;gap:8px;flex-wrap:wrap;margin:0}
+  .cat{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--fg);background:var(--surface);
+    border:1px solid var(--border);border-radius:999px;padding:5px 12px;
   }
 
   .impact{color:var(--accent);font-size:16.5px;font-weight:600;line-height:1.5;margin:0;max-width:62ch}
@@ -432,6 +463,10 @@
     transition:border-color .2s ease,color .2s ease;
   }
   .reference-cta .ghost-link:hover{border-color:var(--accent);color:var(--accent);}
+  /* Las citas de la carta van en .callout dentro de .reference-cta, y
+     `.reference-cta p` (0,1,1) le gana el color a `.callout` (0,1,0):
+     se lo devolvemos para que la cita pese mas que el parrafo que la enmarca. */
+  .reference-cta .callout{color:var(--fg);}
 
   /* Site footer */
   .site-footer{padding:32px;border-top:1px solid var(--border);margin-top:64px;}
@@ -447,7 +482,7 @@
      todo el ancho y vuelve a mandar el clamp en vw. */
   @media (min-width:981px){
     .rail{container-type:inline-size;}
-    .rail h1{font-size:clamp(40px,15cqw,80px);}
+    .rail h1{font-size:clamp(32px,15.4cqw,56px);}
   }
 
   @media (max-width:980px){
@@ -513,16 +548,17 @@
 
     <aside class="rail">
       <div class="rule"></div>
-      <h1>Programa<br>circular de<br>equipamiento</h1>
-      <p>El equipo de mensajeros en Wolt Alemania se compraba una vez y se perdía una vez. El programa convirtió un costo lineal en un ciclo &mdash; recuperación, reacondicionamiento, reasignación &mdash; en 6 ciudades.</p>
-      <p class="eyebrow">Caso de estudio &middot; Operations y sostenibilidad</p>
+      <h1>Escalar<br>operaciones<br>en Wolt</h1>
+      <p>Dos sistemas operativos construidos con el mismo método &mdash; estructurar la demanda de soporte y dar circularidad al equipo &mdash; durante la fase de crecimiento de Wolt en Berlín.</p>
+      <p class="eyebrow">Caso de estudio &middot; Operaciones de servicio y equipo</p>
       <ul class="rail-toc">
-        <li><a href="#signal"><span class="n">01</span> Señal</a></li>
-        <li><a href="#diagnosis"><span class="n">02</span> Diagnóstico</a></li>
-        <li><a href="#decision"><span class="n">03</span> Decisión</a></li>
-        <li><a href="#operation"><span class="n">04</span> Operación</a></li>
-        <li><a href="#result"><span class="n">05</span> Resultado</a></li>
-        <li><a href="#next"><span class="n">06</span> Siguiente iteración</a></li>
+        <li><a href="#office"><span class="n">01</span> La oficina como sistema</a></li>
+        <li><a href="#visible"><span class="n">02</span> Hacer visible lo invisible</a></li>
+        <li><a href="#method"><span class="n">03</span> Dos problemas, un método</a></li>
+        <li><a href="#support"><span class="n">04</span> El sistema de soporte</a></li>
+        <li><a href="#gear"><span class="n">05</span> El sistema de equipo</a></li>
+        <li><a href="#moved"><span class="n">06</span> Lo que se movió</a></li>
+        <li><a href="#learned"><span class="n">07</span> Lo que aprendí</a></li>
       </ul>
     </aside>
 
@@ -530,80 +566,246 @@
 
       <!-- ============ HEADER CARD ============ -->
       <section class="card">
-        <p class="eyebrow on">10.2020 &mdash; 02.2023</p>
+        <p class="eyebrow on">Feb 2021 &mdash; Jan 2022 &middot; Operations Associate &middot; Berlín (nacional)</p>
         <div class="head">
-          <h2>Programa circular de equipamiento en Wolt</h2>
-          <p class="role">Sustainability Operations Associate &middot; Warehouse Operations y logística inversa</p>
-          <p class="place">Berlin &middot; Wolt Alemania, 6 mercados</p>
+          <h2>Escalar operaciones en Wolt</h2>
+          <p class="role">Operations Associate &middot; Operaciones de servicio y de equipo</p>
+          <p class="place">Oficina de Berlín &middot; Wolt Alemania, 6 mercados</p>
         </div>
 
         <div class="metrics">
+          <div class="metric"><b>~50%&darr;</b><span>Demanda de soporte</span></div>
           <div class="metric"><b>30%&darr;</b><span>Gasto en equipo</span></div>
-          <div class="metric"><b>2,000+</b><span>Mensajeros socios</span></div>
-          <div class="metric"><b>6</b><span>ciudades alemanas</span></div>
+          <div class="metric"><b>2.000+</b><span>Mensajeros</span></div>
         </div>
 
-        <p class="lede">Del uso único a la operación circular &mdash; 30% menos de gasto en compra de equipo de mensajeros en 6 ciudades alemanas. <strong>El programa no abarató el equipo. Hizo que el equipo dejara de irse.</strong> La recuperación al salir, el reacondicionamiento en la oficina de Berlín y una ruta de reciclaje para lo irrecuperable convirtieron una compra por contratación en un inventario que circula.</p>
+        <p class="lede">Dos sistemas operativos construidos con el mismo método &mdash; estructurar la demanda de soporte y dar circularidad al equipo &mdash; durante la fase de crecimiento de Wolt en Berlín. <strong>Desde el lado del mensajero eran dos problemas distintos. Desde el lado de operaciones eran el mismo:</strong> demanda sin estructura entrando por un único canal físico, sin categorización y sin una responsabilidad clara detrás.</p>
 
-        <p class="tags"><span class="tag">Logística inversa</span><span class="tag">Warehouse Operations</span><span class="tag">Economía circular</span><span class="tag">Despliegue nacional</span></p>
+        <p class="tags"><span class="tag">Diseño de servicio</span><span class="tag">Enrutamiento de demanda</span><span class="tag">Logística inversa</span><span class="tag">Economía circular</span></p>
       </section>
 
-      <!-- ============ 01 — SIGNAL ============ -->
-      <section class="card" id="signal">
-        <p class="eyebrow on">01 &middot; Señal</p>
-        <h2 class="phase-title">El equipo era consumible por defecto.</h2>
-        <p class="lede">Cada nueva incorporación en Wolt recibía un kit completo &mdash; mochilas térmicas, chaquetas impermeables, cajas térmicas &mdash; importado de fabricantes en ultramar y distribuido por toda Alemania. Los mensajeros que se iban se quedaban con el suyo. <strong>La curva de costo seguía las contrataciones y la rotación, no el número de mensajeros activos.</strong></p>
+      <!-- ============ 01 ============ -->
+      <section class="card" id="office">
+        <p class="eyebrow on">01 &middot; La oficina como sistema</p>
+        <h2 class="phase-title">Un rol, dos superficies operativas.</h2>
+        <p class="lede">Durante la fase de crecimiento de Wolt en Berlín, una parte considerable de los mensajeros era gestionada directamente por la empresa. La relación iba mucho más allá de la operación de reparto &mdash; los mensajeros necesitaban apoyo a lo largo de todo su ciclo: onboarding, documentación, contratos, equipo, nómina, vacaciones, asuntos de recursos humanos.</p>
+
+        <p class="body">Buena parte de eso ocurría en la oficina de Wolt. Mi rol &mdash; Operations Associate &mdash; estaba en la intersección de dos superficies operativas al mismo tiempo.</p>
+
+        <ul class="fn-list">
+          <li><b>Operaciones de servicio.</b> Atender la demanda de soporte de los mensajeros tal como llegaba a la oficina.</li>
+          <li><b>Operaciones de equipo.</b> Gestionar la entrega, recuperación y reacondicionamiento del equipo para toda la base de mensajeros.</li>
+        </ul>
+
+        <p class="body">Ambas superficies estaban conectadas. Cada interacción con un mensajero era también un momento potencial de equipo. Cada entrega de equipo era también un intercambio de información. Pero se trataban como flujos separados, sin una estructura operativa común.</p>
 
         <div class="sub">
-          <h3>Condiciones iniciales</h3>
-          <ul class="fn-list">
-            <li><b>2.000+ mensajeros socios en 6 ciudades alemanas.</b> Berlín, Múnich, Hamburgo, Fráncfort, D&uuml;sseldorf y Stuttgart, cada una con su propio equipo local de Operations.</li>
-            <li><b>Ciclo de vida del equipo: un solo uso por mensajero.</b> El kit se entregaba una vez, en el onboarding, y no se esperaba de vuelta.</li>
-            <li><b>Alcance: nacional.</b> Operación de Wolt Alemania, coordinada desde la oficina de Berlín.</li>
+          <h3>Volumen inicial</h3>
+          <p class="body">Con el volumen inicial &mdash; unos 5 mensajeros por hora, repartidos en 3 agentes, 7 horas al día, 5 días a la semana &mdash; la oficina procesaba alrededor de 525 interacciones semanales.</p>
+          <ul class="facts">
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>~5 mensajeros / hora</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>3 agentes &middot; 7 h / día</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>5 días / semana</li>
+            <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>~525 interacciones / semana</li>
           </ul>
         </div>
+
+        <p class="callout">Volumen suficiente para tensionar la capacidad. <span>Estructura insuficiente para planificarlo.</span></p>
       </section>
 
-      <!-- ============ 02 — DIAGNOSIS ============ -->
-      <section class="card" id="diagnosis">
-        <p class="eyebrow on">02 &middot; Diagnóstico</p>
-        <h2 class="phase-title">Tres brechas sistémicas en el ciclo de vida del equipo.</h2>
-        <p class="lede">El problema no era el costo unitario del equipo, sino el supuesto de que era de un solo uso &mdash; reflejado en tres brechas operativas.</p>
-
-        <ol class="steps">
-          <li><b>Sin recuperación estructurada en la salida.</b> Los mensajeros que se iban se llevaban su equipo. No había canal de devolución, ni responsabilidad, ni incentivo para regresarlo.</li>
-          <li><b>Sin mecanismo financiero para exigir la devolución.</b> El equipo faltante no generaba ninguna señal de costo visible &mdash; ni para el mensajero ni para la empresa.</li>
-          <li><b>Sin ruta posterior para el equipo dañado.</b> Incluso cuando las piezas volvían, las desgastadas o irreparables no tenían canal de reciclaje. Terminaban en el vertedero.</li>
-        </ol>
+      <!-- ============ 02 ============ -->
+      <section class="card" id="visible">
+        <p class="eyebrow on">02 &middot; Hacer visible lo invisible</p>
+        <h2 class="phase-title">Categorizar 525 interacciones por semana.</h2>
+        <p class="lede">El primer problema era de medición. Solicitudes de todo tipo entraban por el mismo canal físico, con independencia de si requerían o no una atención presencial. <strong>Un onboarding agendado podía coincidir con una escalación urgente de nómina. Una entrega de equipo, con una consulta general de recursos humanos.</strong></p>
 
         <figure class="photo">
-          <img src="/wolt/images/wolt-02-cajas.jpg" width="1600" height="744" loading="lazy" decoding="async" alt="Cajas de cartón y pilas de chaquetas de mensajero y mochilas térmicas contra las ventanas de la oficina de Wolt en Berlín, sin estanterías ni sistema de recepción.">
-          <figcaption>Fig. 1 &mdash; Oficina de Berlín, antes del programa: inventario entrante sin recepción estructurada.</figcaption>
+          <img src="/wolt/images/wolt-02-cajas.jpg" width="1600" height="744" loading="lazy" decoding="async" alt="Cajas de cartón y pilas de chaquetas y bolsas térmicas de mensajería contra las ventanas de la oficina de Wolt en Berlín, sin estanterías ni sistema de recepción.">
+          <figcaption>Fig. 1 &mdash; Oficina de Berlín, antes del enrutamiento estructurado de la demanda: material entrante sin canales de categorización.</figcaption>
         </figure>
-      </section>
 
-      <!-- ============ 03 — DECISION ============ -->
-      <section class="card" id="decision">
-        <p class="eyebrow on">03 &middot; Decisión</p>
-        <h2 class="phase-title">Rediseñar el ciclo de vida de lineal a circular.</h2>
-        <p class="lede">En lugar de optimizar la compra de equipo o reducir el costo unitario del kit, rediseñamos el ciclo de vida completo. <strong>El equipo no debía salir del sistema cuando un mensajero salía del sistema.</strong></p>
-
-        <ol class="steps">
-          <li><b>Recuperación en la salida.</b> Devolución estructurada del equipo al salir, integrada en la lista de verificación de offboarding.</li>
-          <li><b>Responsabilidad financiera.</b> Las piezas faltantes se cobran al mensajero en la salida &mdash; un mecanismo de cambio de conducta, no una fuente de ingresos.</li>
-          <li><b>Reacondicionamiento en el almacén.</b> Recepción central en la oficina de Berlín: evaluación de estado, limpieza, reparación menor y un inventario de reasignación para nuevas incorporaciones.</li>
-          <li><b>Reciclaje posterior.</b> El equipo irreparable se envía a la sede de Wolt en Dinamarca mediante la alianza existente con TARPREC, que procesa mochilas y placas térmicas en T&oslash;rring para recuperar material.</li>
-        </ol>
+        <p class="body">Empezamos a categorizar sistemáticamente las visitas de los mensajeros. En lugar de tratar cada interacción como un caso de soporte aislado, registrábamos el motivo de la visita.</p>
 
         <div class="sub">
-          <h3>El ciclo, dibujado</h3>
-          <p class="impact">Cuatro etapas que mantienen el equipo dentro del sistema, y una ruta posterior para lo que no puede salvarse.</p>
-          <p class="body">La compra deja de ser el motor del sistema y pasa a ser su entrada residual: solo se adquieren unidades nuevas para la demanda que el inventario devuelto no cubre. Todo lo que toca la ruta en lima es equipo ya pagado una vez.</p>
+          <h3>La taxonomía de visitas</h3>
+          <p class="cats">
+            <span class="cat">Nómina</span>
+            <span class="cat">RR. HH. y empleo</span>
+            <span class="cat">Vacaciones</span>
+            <span class="cat">Contratos</span>
+            <span class="cat">Documentación faltante</span>
+            <span class="cat">Onboarding</span>
+            <span class="cat">Equipo &mdash; entrega, devolución, daños</span>
+            <span class="cat">Escalaciones urgentes</span>
+            <span class="cat">Otras solicitudes operativas</span>
+          </p>
+        </div>
+
+        <p class="body">El seguimiento semanal se consolidaba en un reporte mensual. Eso le dio a operaciones algo que antes faltaba: visibilidad sobre <b>por qué</b> los mensajeros usaban el canal físico de soporte &mdash; y qué porcentaje era realmente resoluble en persona frente a lo que podía derivarse a otro canal.</p>
+
+        <p class="body">La misma disciplina de categorización que reveló los patrones de soporte reveló también los de equipo: qué piezas volvían y en qué estado, cuáles llegaban antes al fin de su vida útil, qué momentos de entrega coincidían con las horas de mayor demanda de soporte. <b>Ambas dimensiones se hicieron visibles con los mismos datos operativos.</b></p>
+      </section>
+
+      <!-- ============ 03 ============ -->
+      <section class="card" id="method">
+        <p class="eyebrow on">03 &middot; Dos problemas, un método</p>
+        <h2 class="phase-title">Datos &rarr; categorización &rarr; enrutamiento &rarr; rediseño.</h2>
+        <p class="lede">Una vez visible la demanda, ambas superficies operativas revelaron el mismo patrón de fondo: <strong>demanda sin estructura entrando por un único canal físico</strong>, síntomas de problemas anteriores en la cadena y ningún límite claro entre lo que era responsabilidad de operaciones y lo que correspondía a otros equipos.</p>
+
+        <p class="body">El método que funcionaba para una servía para la otra.</p>
+
+        <ul class="fn-list">
+          <li><b>Recolección de datos</b> en cada punto de contacto.</li>
+          <li><b>Categorización</b> de los patrones recurrentes.</li>
+          <li><b>Atribución</b> de la responsabilidad por categoría.</li>
+          <li><b>Enrutamiento</b> al canal de resolución adecuado.</li>
+          <li><b>Rediseño del sistema</b> para reducir la dependencia de las visitas espontáneas.</li>
+        </ul>
+
+        <div class="sub">
+          <h3>El ciclo del método</h3>
+          <p class="impact">Cinco pasos que convierten una fila de casos individuales en un sistema que reduce su propia entrada.</p>
+          <p class="body">El ciclo se cierra sobre sí mismo: el rediseño cambia lo que ve la siguiente medición, así que la línea base se mueve y las categorías se reordenan. Aplicado al servicio produjo citas y enrutamiento; aplicado al equipo produjo recuperación y reacondicionamiento. La misma secuencia, distinto resultado.</p>
 
           <figure>
             <div class="figbox">
               <div class="figscroll">
-              <svg viewBox="0 0 1040 470" role="img" aria-label="Diagrama del ciclo de vida circular del equipo. La compra alimenta unidades nuevas hacia la entrega como entrada residual. El ciclo principal va del reacondicionamiento a la entrega como inventario de reasignación, de la entrega a la recuperación a lo largo del ciclo del mensajero, y de vuelta al reacondicionamiento en la oficina de Berlín, de modo que el equipo regresa al sistema y no al mensajero. El equipo que no pasa la evaluación de estado sale hacia una cadena posterior: equipo irreparable, consolidación en la sede de Wolt en Dinamarca, procesamiento en la planta de TARPREC en Torring y recuperación de material de vuelta a la industria." style="min-width:640px">
+              <svg viewBox="0 0 1040 330" role="img" aria-label="Diagrama del ciclo del método. Cada punto de contacto con un mensajero entra en Datos, que se recogen en cada punto de contacto. Datos alimenta Categorizar, que agrupa los patrones recurrentes. Categorizar alimenta Atribuir, que define quién es responsable por categoría. Atribuir alimenta Derivar, que envía cada categoría al equipo que resuelve. Derivar alimenta Rediseñar, que reduce la demanda ad-hoc. Rediseñar vuelve a Datos, porque el rediseño cambia lo que ve la siguiente medición. El mismo método se aplicó a las operaciones de servicio y a las de equipo." style="min-width:640px">
+                <defs>
+                  <marker id="m-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <polygon points="0,0 10,5 0,10" fill="#B8FF3D"/>
+                  </marker>
+                  <marker id="m-arrow-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <polygon points="0,0 10,5 0,10" fill="#8A8A93"/>
+                  </marker>
+                </defs>
+
+                <text x="20" y="36" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.2" fill="#B8FF3D">CADA PUNTO DE CONTACTO</text>
+                <line x1="104" y1="48" x2="104" y2="86" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#m-arrow)"/>
+
+                <rect x="20" y="90" width="168" height="84" rx="12" fill="#141417" stroke="#B8FF3D" stroke-opacity="0.55"/>
+                <rect x="228" y="90" width="168" height="84" rx="12" fill="#141417" stroke="#303036"/>
+                <rect x="436" y="90" width="168" height="84" rx="12" fill="#141417" stroke="#303036"/>
+                <rect x="644" y="90" width="168" height="84" rx="12" fill="#141417" stroke="#303036"/>
+                <rect x="852" y="90" width="168" height="84" rx="12" fill="#141417" stroke="#303036"/>
+
+                <text x="104" y="127" text-anchor="middle" font-family="Inter,sans-serif" font-size="16.5" font-weight="600" fill="#B8FF3D">Datos</text>
+                <text x="104" y="149" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="0.9" fill="#8A8A93">EN CADA CONTACTO</text>
+                <text x="312" y="127" text-anchor="middle" font-family="Inter,sans-serif" font-size="16.5" font-weight="600" fill="#F7F7F8">Categorizar</text>
+                <text x="312" y="149" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="0.9" fill="#8A8A93">PATRONES RECURRENTES</text>
+                <text x="520" y="127" text-anchor="middle" font-family="Inter,sans-serif" font-size="16.5" font-weight="600" fill="#F7F7F8">Atribuir</text>
+                <text x="520" y="149" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="0.9" fill="#8A8A93">QUIÉN ES RESPONSABLE</text>
+                <text x="728" y="127" text-anchor="middle" font-family="Inter,sans-serif" font-size="16.5" font-weight="600" fill="#F7F7F8">Derivar</text>
+                <text x="728" y="149" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="0.9" fill="#8A8A93">AL EQUIPO QUE RESUELVE</text>
+                <text x="936" y="127" text-anchor="middle" font-family="Inter,sans-serif" font-size="16.5" font-weight="600" fill="#F7F7F8">Rediseñar</text>
+                <text x="936" y="149" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="0.9" fill="#8A8A93">MENOS DEMANDA AD-HOC</text>
+
+                <line x1="192" y1="132" x2="224" y2="132" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#m-arrow)"/>
+                <line x1="400" y1="132" x2="432" y2="132" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#m-arrow)"/>
+                <line x1="608" y1="132" x2="640" y2="132" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#m-arrow)"/>
+                <line x1="816" y1="132" x2="848" y2="132" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#m-arrow)"/>
+
+                <path d="M936,174 V232 H104 V182" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#m-arrow)"/>
+                <text x="520" y="254" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.2" fill="#B8FF3D">EL REDISEÑO CAMBIA LO QUE VE LA SIGUIENTE MEDICIÓN</text>
+
+                <path d="M20,286 V294 H1020 V286" fill="none" stroke="#4A4A52" stroke-width="1.3"/>
+                <text x="520" y="316" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" letter-spacing="1.4" fill="#8A8A93">EL MISMO MÉTODO &mdash; APLICADO A SERVICIO Y A EQUIPO</text>
+              </svg>
+              </div>
+            </div>
+            <figcaption>Fig. 2 &mdash; El ciclo es el método, no el organigrama: los mismos cinco pasos produjeron el sistema de soporte y el de equipo. Dibujado para este caso de estudio.</figcaption>
+          </figure>
+        </div>
+
+        <p class="body">Esto se convirtió en el principio de trabajo para servicio y equipo por igual:</p>
+
+        <p class="callout">Apoyar al mensajero donde el apoyo aporta valor. Hacerse cargo del proceso donde la responsabilidad es de operaciones. <span>Derivar todo lo demás al equipo al que realmente pertenece el problema de fondo.</span></p>
+      </section>
+
+      <!-- ============ 04 ============ -->
+      <section class="card" id="support">
+        <p class="eyebrow on">04 &middot; El sistema de soporte</p>
+        <h2 class="phase-title">Del caos de las visitas a una arquitectura de servicio.</h2>
+        <p class="lede">Para las operaciones de servicio, el rediseño llevó el soporte al mensajero de lo reactivo a lo estructurado &mdash; no añadiendo capacidad en el mostrador, sino reduciendo lo que tenía que llegar hasta él.</p>
+
+        <figure class="photo">
+          <img src="/wolt/images/wolt-01-oficina.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="La oficina de Wolt en Berlín en operación diaria: escritorios en uso, cajas térmicas apiladas, bolsas empacadas y chaquetas en rieles junto a la pared de ventanas.">
+          <figcaption>Fig. 3 &mdash; La oficina de Berlín como superficie de servicio: onboarding, entrega de equipo y demanda de soporte en el mismo espacio físico.</figcaption>
+        </figure>
+
+        <ul class="fn-list">
+          <li><b>Gestión estructurada de citas</b> con tipos de cita categorizados.</li>
+          <li><b>Material de self-service:</b> FAQs, guías dentro de la app y flujos de chatbot para las preguntas recurrentes.</li>
+          <li><b>Enrutamiento de canal más claro:</b> qué asuntos iban a Soporte, cuáles a Recursos Humanos, cuáles a Nómina.</li>
+          <li><b>Atención presencial reservada</b> para los casos que realmente la requerían.</li>
+          <li><b>Reporte semanal</b> que escalaba los cuellos de botella recurrentes a los equipos responsables.</li>
+        </ul>
+
+        <div class="sub">
+          <h3>Apoyar no es ser responsable</h3>
+          <p class="body">Una de las distinciones más nítidas que sacó a la luz este proyecto fue la que hay entre <b>apoyar</b> y <b>ser responsable</b>.</p>
+          <p class="body">Un mensajero que llevaba varios días esperando la resolución de un problema de nómina podía llegar frustrado a la oficina. Como estaba físicamente presente, operaciones ayudaba de forma natural a escalarlo. Pero resolver la nómina no era responsabilidad de operaciones. Nuestro reporte hizo visible esa distinción &mdash; y ayudó a dirigir la responsabilidad hacia los equipos a los que pertenecía realmente cada categoría recurrente, en lugar de absorberlo todo en la oficina.</p>
+        </div>
+
+        <div class="sub">
+          <h3>El nuevo recorrido de soporte</h3>
+          <p class="impact">Un problema ya no empieza en la puerta de la oficina. La oficina pasó a ser la excepción, no la entrada.</p>
+          <ol class="steps">
+            <li><b>Self-service donde sea posible.</b> FAQs, guías en la app y flujos de chatbot para las preguntas que se repiten.</li>
+            <li><b>El canal digital correcto.</b> Enrutado por categoría, no por quien respondiera primero.</li>
+            <li><b>Cita categorizada cuando haga falta.</b> Agendada, con la persona adecuada y los documentos listos.</li>
+            <li><b>Presencial solo en casos excepcionales.</b> Reservado para lo que de verdad necesita una persona y un mostrador.</li>
+            <li><b>Escalación a la función responsable.</b> Para el problema de fondo detrás de la categoría recurrente.</li>
+          </ol>
+        </div>
+
+        <p class="body">Dos responsabilidades anclaron mi rol en este sistema: asumí de forma independiente el onboarding y el offboarding de los mensajeros en la oficina de Berlín, y coordiné un pequeño equipo de Gear Associates &mdash; tal como consta en la carta de referencia de Wolt.</p>
+      </section>
+
+      <!-- ============ 05 ============ -->
+      <section class="card" id="gear">
+        <p class="eyebrow on">05 &middot; El sistema de equipo</p>
+        <h2 class="phase-title">De consumible a circular.</h2>
+        <p class="lede">Para las operaciones de equipo, la misma disciplina de medición sacó a la luz un problema distinto: el equipamiento era de un solo uso por defecto. Cada nueva contratación recibía un kit completo &mdash; bolsas térmicas, chaquetas impermeables, cajas térmicas &mdash; importado de fabricantes de ultramar y distribuido por toda Alemania. Los mensajeros que se iban se quedaban con el suyo. <strong>La curva de costos seguía las contrataciones y la rotación, no el número de mensajeros activos.</strong></p>
+
+        <div class="photo-split">
+          <figure class="photo wide">
+            <img src="/wolt/images/wolt-04-estacion.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Estación de entrega en la oficina de Wolt en Berlín: chaquetas en rieles móviles, camisetas dobladas y ordenadas por talla en cajas abiertas, y palés con existencias embaladas.">
+            <figcaption>Fig. 4 &mdash; La oficina de Berlín tras la implementación: estación de entrega con asignación estructurada por talla y rol.</figcaption>
+          </figure>
+          <figure class="photo tall">
+            <img src="/wolt/images/wolt-03-racks.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="Filas de chaquetas de mensajero de Wolt colgadas en rieles en la oficina de Berlín, clasificadas y listas para reasignación.">
+            <figcaption>Fig. 5 &mdash; Chaquetas evaluadas y limpias en rieles, como inventario de reasignación.</figcaption>
+          </figure>
+        </div>
+
+        <div class="sub">
+          <h3>Tres brechas sistémicas en el ciclo del equipo</h3>
+          <ol class="steps">
+            <li><b>Sin recuperación estructurada al salir.</b> Los mensajeros que se iban se llevaban su equipo. No había canal de devolución, ni responsabilidad, ni incentivo para devolverlo.</li>
+            <li><b>Sin mecanismo financiero que respaldara la devolución.</b> El equipo perdido no generaba ninguna señal de costo visible &mdash; ni para el mensajero ni para la empresa.</li>
+            <li><b>Sin salida posterior para el equipo dañado.</b> Incluso cuando las piezas volvían, las desgastadas o irreparables no tenían canal de reciclaje. Terminaban en el vertedero.</li>
+          </ol>
+        </div>
+
+        <p class="body">El rediseño llevó el ciclo del equipo de lineal a circular.</p>
+
+        <ul class="fn-list">
+          <li><b>Recuperación estructurada al salir,</b> integrada en la lista de verificación de offboarding.</li>
+          <li><b>Responsabilidad financiera.</b> Las piezas faltantes se cobran al mensajero al salir &mdash; como mecanismo de cambio de comportamiento, no como fuente de ingresos.</li>
+          <li><b>Reacondicionamiento en la oficina de Berlín.</b> Flujo de recepción, evaluación del estado, limpieza y reparación menor, y un inventario de reasignación para las nuevas contrataciones.</li>
+          <li><b>Reciclaje posterior.</b> El equipo irreparable se envía a la sede de Wolt en Dinamarca mediante la alianza existente con TARPREC, que procesa bolsas y placas calefactoras en T&oslash;rring para recuperación de material: las bolsas y el equipo se envían y se desmontan, y hasta el <b>96% de los materiales</b> se desvía del vertedero y se reutiliza en productos como señales de tráfico y material de relleno &mdash; tal como consta en la comunicación global de sostenibilidad de Wolt.</li>
+        </ul>
+
+        <div class="sub">
+          <h3>El ciclo, dibujado</h3>
+          <p class="impact">Cuatro etapas que mantienen el equipo dentro del sistema, y una ruta posterior para lo que no se puede salvar.</p>
+          <p class="body">La compra deja de ser el motor del sistema y pasa a ser su entrada residual: solo se adquieren unidades nuevas para la demanda que el inventario devuelto no alcanza a cubrir. Todo lo que toca el trazo lima es equipo que ya se pagó una vez.</p>
+
+          <figure>
+            <div class="figbox">
+              <div class="figscroll">
+              <svg viewBox="0 0 1040 470" role="img" aria-label="Diagrama del ciclo circular del equipo. La compra alimenta la entrega con unidades nuevas como entrada residual. El ciclo principal va del reacondicionamiento a la entrega como inventario de reasignación, de la entrega a la recuperación a lo largo del ciclo del mensajero, y de la recuperación de vuelta al reacondicionamiento en la oficina de Berlín, de modo que el equipo vuelve al sistema y no al mensajero. El equipo que no pasa la evaluación de estado sale hacia una cadena posterior: equipo irreparable, consolidación en la sede de Wolt en Dinamarca, procesamiento en la planta de TARPREC en Torring y recuperación de material de vuelta a la industria." style="min-width:640px">
                 <defs>
                   <marker id="w-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                     <polygon points="0,0 10,5 0,10" fill="#B8FF3D"/>
@@ -613,14 +815,12 @@
                   </marker>
                 </defs>
 
-                <!-- PROCUREMENT — residual input, outside the loop -->
                 <rect x="306" y="16" width="224" height="62" rx="12" fill="#141417" stroke="#303036" stroke-dasharray="5 4"/>
                 <text x="418" y="43" text-anchor="middle" font-family="Inter,sans-serif" font-size="15.5" font-weight="600" fill="#F7F7F8">Compra</text>
                 <text x="418" y="62" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" letter-spacing="1.1" fill="#8A8A93">UNIDADES NUEVAS &middot; ULTRAMAR</text>
                 <line x1="418" y1="80" x2="418" y2="108" stroke="#8A8A93" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#w-arrow-m)"/>
                 <text x="440" y="100" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.2" fill="#8A8A93">ENTRADA RESIDUAL</text>
 
-                <!-- MAIN LOOP -->
                 <rect x="24" y="112" width="224" height="86" rx="12" fill="#141417" stroke="#303036"/>
                 <rect x="304" y="112" width="224" height="86" rx="12" fill="#141417" stroke="#303036"/>
                 <rect x="584" y="112" width="224" height="86" rx="12" fill="#141417" stroke="#303036"/>
@@ -637,15 +837,12 @@
                 <text x="276" y="222" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.2" fill="#B8FF3D">INVENTARIO DE REASIGNACIÓN</text>
                 <text x="556" y="222" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.2" fill="#8A8A93">CICLO DEL MENSAJERO</text>
 
-                <!-- return leg: recovery back to refurbishment -->
                 <path d="M696,198 V258 H136 V206" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#w-arrow)"/>
                 <text x="416" y="280" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.2" fill="#B8FF3D">EL EQUIPO VUELVE AL SISTEMA, NO AL MENSAJERO</text>
 
-                <!-- exit branch: fails condition assessment -->
                 <line x1="80" y1="198" x2="80" y2="324" stroke="#8A8A93" stroke-width="1.5" marker-end="url(#w-arrow-m)"/>
                 <text x="96" y="304" font-family="ui-monospace,Menlo,monospace" font-size="10.5" letter-spacing="1.2" fill="#8A8A93">NO PASA LA EVALUACIÓN</text>
 
-                <!-- DOWNSTREAM CHAIN -->
                 <rect x="24" y="330" width="204" height="76" rx="12" fill="#101013" stroke="#2A2A30"/>
                 <rect x="286" y="330" width="204" height="76" rx="12" fill="#101013" stroke="#2A2A30"/>
                 <rect x="548" y="330" width="204" height="76" rx="12" fill="#101013" stroke="#2A2A30"/>
@@ -658,7 +855,7 @@
                 <text x="650" y="362" text-anchor="middle" font-family="Inter,sans-serif" font-size="14.5" font-weight="600" fill="#F7F7F8">TARPREC &middot; T&oslash;rring</text>
                 <text x="650" y="382" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">DESMONTAJE</text>
                 <text x="912" y="362" text-anchor="middle" font-family="Inter,sans-serif" font-size="14.5" font-weight="600" fill="#F7F7F8">Recuperación de material</text>
-                <text x="912" y="382" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">DE VUELTA A LA INDUSTRIA</text>
+                <text x="912" y="382" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9.5" letter-spacing="1" fill="#8A8A93">HASTA 96% DESVIADO</text>
 
                 <line x1="232" y1="368" x2="282" y2="368" stroke="#8A8A93" stroke-width="1.4" marker-end="url(#w-arrow-m)"/>
                 <line x1="494" y1="368" x2="544" y2="368" stroke="#8A8A93" stroke-width="1.4" marker-end="url(#w-arrow-m)"/>
@@ -669,100 +866,85 @@
               </svg>
               </div>
             </div>
-            <figcaption>Fig. 2 &mdash; La ruta en lima es el ciclo que creó el programa; la entrada punteada es lo que desplazó. Dibujado para este caso de estudio.</figcaption>
-          </figure>
-        </div>
-
-        <p class="callout">El equipo que se va con un mensajero no es un problema de logística. <span>Es una decisión de diseño que nadie tomó a propósito.</span></p>
-      </section>
-
-      <!-- ============ 04 — OPERATION ============ -->
-      <section class="card" id="operation">
-        <p class="eyebrow on">04 &middot; Operación</p>
-        <h2 class="phase-title">Un sistema transversal a escala nacional.</h2>
-        <p class="lede">Un ciclo solo existe cuando cuatro funciones lo operan. El sistema exigió coordinación entre almacén, Support, Operations locales y la sede &mdash; en seis ciudades y dos países.</p>
-
-        <ul class="fn-list">
-          <li><b>Warehouse Operations (oficina de Berlín).</b> Diseñé el flujo de recepción, los criterios de evaluación de estado y los protocolos de limpieza y reparación. Coordiné un equipo pequeño de Gear Associates para la ejecución diaria.</li>
-          <li><b>Integración con el offboarding.</b> Trabajé con los equipos de Support y Ops para incorporar la devolución de equipo al procedimiento estándar de offboarding en las 6 ciudades alemanas.</li>
-          <li><b>Despliegue nacional.</b> Coordiné la implementación en Berlín, Múnich, Hamburgo, Fráncfort, D&uuml;sseldorf y Stuttgart con los equipos locales de Ops.</li>
-          <li><b>Coordinación con la sede en Dinamarca.</b> Alineé con la sede de Wolt el flujo posterior de materiales: consolidación del equipo irreparable, logística de envío a la planta de TARPREC en T&oslash;rring y el circuito de recuperación de material.</li>
-        </ul>
-
-        <ul class="facts">
-          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Flujo de recepción y clasificación</li>
-          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Lista de verificación de offboarding</li>
-          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Flujo transfronterizo de materiales</li>
-        </ul>
-
-        <div class="photo-split">
-          <figure class="photo wide">
-            <img src="/wolt/images/wolt-04-estacion.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Estación de entrega en la oficina de Wolt en Berlín: chaquetas en barras rodantes, camisetas dobladas ordenadas por talla en cajas abiertas y tarimas con mercancía encajada.">
-            <figcaption>Fig. 3 &mdash; Oficina de Berlín, tras la implementación: estación de entrega con asignación estructurada por talla y rol.</figcaption>
-          </figure>
-          <figure class="photo tall">
-            <img src="/wolt/images/wolt-03-racks.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="Filas de chaquetas de mensajero de Wolt colgadas en barras en la oficina de Berlín, ordenadas y listas para reasignación.">
-            <figcaption>Fig. 4 &mdash; Chaquetas clasificadas y limpias en barras como inventario de reasignación.</figcaption>
+            <figcaption>Fig. 6 &mdash; El trazo lima es el ciclo que creó el programa; la entrada punteada es lo que desplazó. Dibujado para este caso de estudio.</figcaption>
           </figure>
         </div>
 
         <div class="sub">
           <h3>Cuantificación de la huella de carbono</h3>
-          <p class="body">El efecto ambiental del programa se cuantificó en lugar de afirmarse, para poder publicarlo externamente y auditarlo contra los flujos de materiales que describía. Ese cálculo convirtió un programa interno de costos en una contribución de sostenibilidad reportable.</p>
+          <p class="body">El efecto ambiental del programa se calculó en lugar de afirmarse, para poder publicarlo externamente y auditarlo contra los flujos de material que describía. Ese cálculo fue lo que convirtió un programa interno de costos en una contribución de sostenibilidad reportable, que alimentó el reporte de sostenibilidad más amplio de Wolt.</p>
         </div>
+
+        <p class="callout">El equipo que se va con un mensajero no es un problema de logística. <span>Es una decisión de diseño que nadie tomó a propósito.</span></p>
       </section>
 
-      <!-- ============ 05 — RESULT ============ -->
-      <section class="card" id="result">
-        <p class="eyebrow on">05 &middot; Resultado</p>
-        <h2 class="phase-title">La curva de costo se desacopló de la rotación.</h2>
+      <!-- ============ 06 ============ -->
+      <section class="card" id="moved">
+        <p class="eyebrow on">06 &middot; Lo que se movió</p>
+        <h2 class="phase-title">Dos resultados, un método, atribución honesta.</h2>
 
         <div class="result-metrics">
           <div class="metric-big">
-            <span class="kicker">Primeros 12 meses</span>
-            <span class="value">30%<span class="dir">&darr;</span></span>
-            <span class="label">Gasto en compra de equipo: primeros 12 meses en Wolt (feb 2021 &ndash; ene 2022) como base frente a los 12 meses siguientes tras la implementación (feb 2022 &ndash; ene 2023)</span>
+            <span class="kicker">Demanda de soporte</span>
+            <span class="value">~50%<span class="dir">&darr;</span></span>
+            <span class="label">La demanda semanal de soporte de los mensajeros se redujo aproximadamente a la mitad durante el período (de ~525 interacciones/semana de línea base a ~262/semana al cierre)</span>
           </div>
           <div class="metric-big">
-            <span class="kicker">Nacional</span>
-            <span class="value">6 ciudades</span>
-            <span class="label">Berlín, Múnich, Hamburgo, Fráncfort, D&uuml;sseldorf, Stuttgart</span>
+            <span class="kicker">Costo de compra</span>
+            <span class="value">30%<span class="dir">&darr;</span></span>
+            <span class="label">Gasto en compra de equipo, primeros 12 meses en Wolt (Feb 2021 &ndash; Jan 2022) como línea base frente a los 12 meses siguientes tras la implementación (Feb 2022 &ndash; Jan 2023)</span>
           </div>
           <div class="metric-big">
             <span class="kicker">Escala</span>
-            <span class="value">2,000+</span>
-            <span class="label">Mensajeros socios cubiertos por el sistema circular de equipamiento</span>
+            <span class="value">2.000+</span>
+            <span class="label">Mensajeros cubiertos por ambos sistemas &mdash; soporte y equipo &mdash; en 6 ciudades alemanas: Berlín, Múnich, Hamburgo, Fráncfort, Düsseldorf, Stuttgart</span>
           </div>
         </div>
 
-        <p class="lede">El desacople fue estructural, no incidental. Una vez operativo el ciclo de recuperación, reacondicionamiento y reciclaje, los kits para nuevas incorporaciones se compusieron cada vez más de equipo reacondicionado del inventario devuelto. <strong>El costo de compra dejó de seguir el volumen de contrataciones.</strong></p>
+        <p class="lede"><strong>La atribución importa más que la cifra de titular.</strong></p>
 
-        <p class="body">La contribución ambiental del programa &mdash; cuantificada para su publicación externa &mdash; alimentó el reporte de sostenibilidad de Wolt y aportó a los 25.000+ kg de material desviados del vertedero mediante TARPREC en la operación europea de Wolt (fuente: Wolt Blog, octubre de 2023).</p>
+        <p class="body">La reducción del 50% en la demanda semanal de soporte no se debió en exclusiva al rediseño del servicio. Wolt introdujo operadores de flota externos durante el período, lo que redujo el número de mensajeros gestionados directamente y, de forma mecánica, el volumen de visitas. Los cambios en el diseño del servicio contribuyeron a ese desplazamiento &mdash; pero también decisiones sobre el modelo operativo que no dependían de mí.</p>
 
-        <figure class="photo">
-          <img src="/wolt/images/wolt-01-oficina.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="La oficina de Wolt en Berlín en operación diaria: escritorios ocupados, cajas térmicas apiladas, mochilas empacadas y chaquetas en barras junto a la ventana.">
-          <figcaption>Fig. 5 &mdash; La operación de Berlín a escala.</figcaption>
-        </figure>
+        <p class="body">La reducción del 30% en el costo de compra es bastante más atribuible de forma directa al rediseño del equipo, comparando los períodos de 12 meses antes y después de la implementación.</p>
+
+        <p class="body">Ambos resultados están validados en la carta de referencia de Wolt. La contribución ambiental del programa de equipo &mdash; cuantificada para su publicación externa &mdash; alimentó el reporte de sostenibilidad más amplio de Wolt y contribuyó a los <b>25.000+ kg de material desviados del vertedero vía TARPREC</b> en la operación europea de Wolt (fuente: <a href="https://blog.wolt.com/hq/2023/10/31/better-cities-delivered/" target="_blank" rel="noopener">Wolt Blog, octubre de 2023</a>).</p>
       </section>
 
-      <!-- ============ 06 — NEXT ITERATION ============ -->
-      <section class="card" id="next">
-        <p class="eyebrow on">06 &middot; Siguiente iteración</p>
-        <h2 class="phase-title">Qué agregaría si dirigiera esto hoy.</h2>
-        <p class="lede">Tres cosas que no estaban en mi alcance pero que construiría a continuación.</p>
+      <!-- ============ 07 ============ -->
+      <section class="card" id="learned">
+        <p class="eyebrow on">07 &middot; Lo que aprendí</p>
+        <h2 class="phase-title">Un método, dos sistemas.</h2>
+        <p class="lede">La lección más fuerte de este rol fue estructural: dos superficies operativas que desde la perspectiva del mensajero se veían completamente distintas &mdash; necesitar ayuda con un tema de nómina frente a devolver una bolsa dañada &mdash; <strong>eran el mismo problema desde la perspectiva de operaciones.</strong></p>
 
-        <ol class="steps">
-          <li><b>Asignación predictiva de equipo.</b> Ajustar el inventario reacondicionado al flujo de contrataciones de forma más activa, reduciendo la varianza residual de compra.</li>
-          <li><b>Circularidad a nivel de componente.</b> Más allá de mochilas y chaquetas, registrar el desgaste de cada componente &mdash; correas, cierres, aislamiento &mdash; para un reacondicionamiento dirigido.</li>
-          <li><b>Referencia entre mercados.</b> Extender el marco a otras geografías de Wolt donde la escala y el perfil de rotación justifiquen programas similares.</li>
-        </ol>
+        <p class="body">Ambas eran síntomas de una demanda que entraba por el canal físico sin categorizar. Ambas se beneficiaron de la misma disciplina.</p>
+
+        <ul class="fn-list">
+          <li><b>Medir</b> antes de optimizar.</li>
+          <li><b>Categorizar</b> antes de derivar.</li>
+          <li><b>Atribuir la responsabilidad</b> antes de diseñar la intervención.</li>
+          <li><b>Diseñar para las excepciones,</b> no para el caso normal.</li>
+        </ul>
+
+        <p class="body">Eso no es metodología de atención al cliente ni de cadena de suministro. Es <b>metodología de operaciones</b>. Aplicada al servicio, reduce la dependencia de las visitas espontáneas y aclara la responsabilidad entre áreas. Aplicada al equipo, convierte los consumibles en sistemas circulares y desacopla el costo de la rotación.</p>
+
+        <div class="sub">
+          <h3>Cincuenta personas con la misma pregunta</h3>
+          <p class="body">Otra lección que vale la pena nombrar: las solicitudes de soporte repetidas a menudo no son, en primer lugar, un problema de atención al cliente. Pueden ser evidencia de un problema anterior de proceso, de información o de responsabilidad. Si cincuenta personas hacen la misma pregunta, puede ser necesario responderla cincuenta veces &mdash; pero eso no resuelve el problema de fondo. La intervención más escalable es entender <b>por qué</b> preguntan, <b>dónde</b> debería estar esa información y <b>qué equipo</b> es responsable del problema subyacente.</p>
+        </div>
+
+        <p class="callout">No atender caso por caso. <span>Rediseñar a nivel de sistema en torno a necesidades recurrentes.</span></p>
       </section>
 
       <!-- ============ EXTERNAL VALIDATION ============ -->
       <section class="reference-cta">
         <p class="eyebrow on">Validación externa</p>
         <h3>Carta de referencia y fuentes publicadas</h3>
-        <p>Algunos logros de este proyecto están documentados en la carta de referencia de Wolt, disponible en la sección de Certificados de este portafolio. La alianza de reciclaje y sus cifras de recuperación de material aparecen en la comunicación global de sostenibilidad de Wolt.</p>
+        <p>Ambos resultados están documentados en la carta de referencia de Wolt, disponible en la sección de Certificados de este portafolio. Logros seleccionados, citados literalmente de la carta de referencia de Wolt (original en inglés):</p>
+        <p class="callout" lang="en">&ldquo;He led the project of cleaning the couriers' work clothes to reduce Wolt's costs by more than 30%.&rdquo;</p>
+        <p class="callout" lang="en">&ldquo;He took responsibility for a nationwide recycling project to reduce Wolt's carbon footprint.&rdquo;</p>
+        <p class="callout" lang="en">&ldquo;He independently took over the onboarding and offboarding of couriers in our local office in Berlin and coordinated a small team of Gear Associates.&rdquo;</p>
+        <p class="callout" lang="en">&ldquo;He demonstrated his strong analytical skills in supporting the team leader through data-driven analysis and the preparation of weekly reports.&rdquo;</p>
+        <p>La validación externa del impacto ambiental del programa de equipo consta en la comunicación global de sostenibilidad de Wolt: 25.000+ kg de material desviados del vertedero vía TARPREC en la operación europea de Wolt (Wolt Blog, octubre de 2023).</p>
         <div class="cta-row">
           <a href="https://drive.google.com/file/d/17s7xCyrMM8qRZtqPk7gZReJvZa7iSguF/view?usp=sharing" target="_blank" rel="noopener" class="letter-link">Certificados y cartas de referencia <span>&rarr;</span></a>
           <a href="https://blog.wolt.com/hq/2023/10/31/better-cities-delivered/" target="_blank" rel="noopener" class="ghost-link">Reporte de sostenibilidad de Wolt <span>&#8599;</span></a>
@@ -773,19 +955,21 @@
       <section class="card">
         <p class="eyebrow">El equipo</p>
         <figure class="photo">
-          <img src="/wolt/images/wolt-05-equipo.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Jorge Aguilar con el equipo de gear en la oficina de Wolt en Berlín, rodeado de cajas térmicas y cartones de empaque al final de un turno.">
-          <figcaption>Fig. 6 &mdash; El equipo de gear en Berlín. Un ciclo que corre a diario es primero un hábito de equipo y después un proceso.</figcaption>
+          <img src="/wolt/images/wolt-05-equipo.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Jorge Aguilar con el equipo de gear en la oficina de Wolt en Berlín, rodeado de cajas térmicas y cartones de embalaje al final de un turno.">
+          <figcaption>Fig. 7 &mdash; El equipo de gear de Berlín. Un sistema que funciona a diario es primero un hábito de equipo y después un proceso.</figcaption>
         </figure>
       </section>
 
-      <!-- ============ NOTE ON THE MATERIAL ============ -->
+      <!-- ============ NOTE ============ -->
       <section class="note">
         <p class="eyebrow">Sobre las figuras y las fotografías</p>
-        <p class="lede">Este caso de estudio describe trabajo realizado en Wolt Alemania entre octubre de 2020 y febrero de 2023. Está escrito desde mi propio alcance de trabajo y es explícito sobre el origen de cada cifra.</p>
+        <p class="lede">Este caso de estudio describe trabajo que realicé como Operations Associate en Berlín, en Wolt Alemania (Feb 2021 &mdash; Jan 2022). Está escrito desde mi propio alcance de trabajo y es explícito sobre el origen de cada cifra.</p>
         <ul>
           <li><b>Las fotografías son mías, de la oficina de Berlín.</b> Los rostros y los datos personales están ocultos en cada toma.</li>
-          <li><b>El diagrama se dibujó para este caso de estudio.</b> Es un modelo del ciclo de vida, no la reproducción de un documento interno.</li>
-          <li><b>Las cifras de reciclaje posterior son públicas.</b> La alianza con TARPREC y la cifra de 25.000+ kg de material recuperado provienen de la comunicación publicada por Wolt y describen su operación europea &mdash; no solo este programa.</li>
+          <li><b>Los diagramas se dibujaron para este caso de estudio.</b> Son modelos del método y del ciclo de vida, no reproducciones de documentos internos.</li>
+          <li><b>La cifra de demanda de soporte es aproximada y de atribución compartida.</b> El rango de ~525 a ~262 interacciones semanales es una estimación operativa a partir del reporte del período, y la reducción es atribuible al rediseño del servicio <b>y</b> al giro de Wolt hacia operadores de flota externos &mdash; un cambio que no dependía de mí.</li>
+          <li><b>La comparación de compras se extiende más allá del rol.</b> La cifra del 30% compara Feb 2021 &ndash; Jan 2022 con la ventana posterior a la implementación, Feb 2022 &ndash; Jan 2023.</li>
+          <li><b>Las cifras de reciclaje posterior son públicas.</b> La alianza con TARPREC, la tasa de desvío de material del 96% y la cifra de 25.000+ kg de material recuperado provienen de la comunicación publicada por Wolt y describen su operación europea &mdash; no solo este programa.</li>
           <li><b>Sin datos financieros internos.</b> Se omiten valores absolutos de compra, costos unitarios y condiciones comerciales; la reducción del 30% se expresa únicamente como cambio relativo.</li>
         </ul>
       </section>
