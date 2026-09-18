@@ -98,6 +98,11 @@
   @media (prefers-reduced-motion: reduce){
     a,.btn-primary{transition:none}
   }
+
+  /* Enlace al Impressum: hereda el gris del footer; en lima competiria con el
+     CTA del nav. */
+  footer a{color:inherit;text-decoration:none;transition:color .2s ease}
+  footer a:hover{color:var(--accent)}
 </style>
 </head>
 <body>
@@ -129,7 +134,7 @@
 <footer>
   <div class="footer-inner">
     <span>&copy; 2026 Jorge Aguilar</span>
-    <span>Berlin &middot; EMEA</span>
+    <span>Berlin &middot; EMEA &middot; <a href="/impressum/">Impressum</a></span>
   </div>
 </footer>
 

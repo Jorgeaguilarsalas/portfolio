@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Impressum &mdash; Jorge Aguilar</title>
+<meta name="description" content="Impressum gem&auml;&szlig; &sect; 5 DDG &mdash; Salas UG (haftungsbeschr&auml;nkt), Berlin">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://343ride.de/impressum/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Impressum &mdash; Jorge Aguilar">
+<meta property="og:description" content="Impressum gem&auml;&szlig; &sect; 5 DDG &mdash; Salas UG (haftungsbeschr&auml;nkt), Berlin">
+<meta property="og:url" content="https://343ride.de/impressum/">
+<meta property="og:site_name" content="Jorge Aguilar Portfolio">
+<!-- Sin hreflang: el Impressum es contenido legal aleman y existe en una sola
+     version. Las tres entradas del selector de idioma llevan aqui. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+<style>
+
+  :root{
+    --bg:#0B0B0D;
+    --surface:#0F0F12;
+    --surface-2:#141417;
+    --fg:#F7F7F8;
+    --muted:#B4B4BB;
+    --border:#303036;
+    --accent:#B8FF3D;
+    --accent-fg:#09090B;
+    --radius:1.75rem;
+    --radius-sm:1.125rem;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --sans:"Inter",system-ui,-apple-system,sans-serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  ::selection{background:var(--accent);color:var(--accent-fg)}
+  a{color:var(--accent);text-decoration:none}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  /* NAV */
+  .nav{
+    padding:20px 32px;border-bottom:1px solid var(--border);
+    background:rgba(11,11,13,0.85);backdrop-filter:blur(8px);
+    position:sticky;top:0;z-index:20;
+  }
+  .nav-inner{max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  .back-link{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+    white-space:nowrap;transition:color .2s ease;
+  }
+  .back-link:hover{color:var(--accent);}
+  .nav-actions{display:flex;align-items:center;gap:14px;}
+  .nav-actions a{white-space:nowrap;text-decoration:none;}
+  .nav-download{
+    padding:8px 16px;border:1px solid var(--border);border-radius:999px;
+    font-family:var(--sans);font-weight:500;font-size:12.5px;color:var(--fg);
+    transition:border-color .2s ease,color .2s ease;
+  }
+  .nav-download:hover{border-color:var(--accent);color:var(--accent);}
+  .nav-cta{
+    background:var(--accent);color:var(--accent-fg);
+    padding:10px 18px;border-radius:999px;
+    font-family:var(--sans);font-weight:600;font-size:12.5px;
+    transition:transform .2s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px);color:var(--accent-fg);}
+
+  /* LANGUAGE SWITCHER */
+  .lang-switch{
+    display:inline-flex;align-items:center;flex:none;
+    border:1px solid var(--border);border-radius:999px;padding:3px;gap:2px;
+  }
+  .lang-switch a{
+    font-family:var(--mono)!important;font-size:10.5px!important;
+    letter-spacing:.1em!important;text-transform:uppercase!important;
+    color:var(--muted)!important;text-decoration:none;
+    padding:5px 9px;border-radius:999px;line-height:1;
+    transition:color .2s ease,background-color .2s ease;
+  }
+  .lang-switch a:hover{color:var(--fg)!important;}
+  .lang-switch a.is-current{background:var(--accent);color:var(--accent-fg)!important;}
+  .lang-switch a.is-current:hover{color:var(--accent-fg)!important;}
+
+  .mobile-menu-lang{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    margin-top:34px;padding-bottom:22px;border-bottom:1px solid var(--border);
+    opacity:0;transform:translateY(10px);
+    transition:opacity .45s ease,transform .45s ease;
+  }
+  .mobile-menu.open .mobile-menu-lang{opacity:1;transform:translateY(0);transition-delay:.34s;}
+  .mobile-menu-lang .mm-lang-label{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .mobile-menu-lang .lang-switch a{font-size:12px!important;padding:8px 14px;}
+  .mobile-menu-lang + .mobile-menu-actions{margin-top:22px;}
+  @media (prefers-reduced-motion: reduce){.mobile-menu-lang{transition-duration:.01ms;}}
+
+
+  /* NAV — hamburger toggle (mobile only) */
+  .nav-toggle{
+    display:none;width:42px;height:42px;padding:0;flex:none;
+    align-items:center;justify-content:center;
+    background:transparent;border:1px solid var(--border);border-radius:999px;
+    cursor:pointer;transition:border-color .2s ease;
+  }
+  .nav-toggle:hover{border-color:var(--accent);}
+  .nav-toggle .bars,.nav-toggle .bars::before,.nav-toggle .bars::after{
+    display:block;width:17px;height:1.5px;background:var(--fg);border-radius:2px;
+    transition:background .2s ease;
+  }
+  .nav-toggle .bars{position:relative;}
+  .nav-toggle .bars::before,.nav-toggle .bars::after{content:"";position:absolute;left:0;}
+  .nav-toggle .bars::before{top:-5.5px;}
+  .nav-toggle .bars::after{top:5.5px;}
+  .nav-toggle:hover .bars,.nav-toggle:hover .bars::before,.nav-toggle:hover .bars::after{background:var(--accent);}
+
+  @media (max-width:800px){
+    .nav{padding:14px 20px;}
+    .nav-actions{display:none;}
+    .nav-toggle{display:inline-flex;}
+  }
+
+  /* MOBILE MENU OVERLAY */
+  .mobile-menu{
+    position:fixed;inset:0;z-index:60;
+    display:flex;flex-direction:column;
+    background:rgba(9,9,11,0.97);backdrop-filter:blur(16px);
+    opacity:0;visibility:hidden;
+    transition:opacity .3s ease,visibility .3s ease;
+  }
+  .mobile-menu.open{opacity:1;visibility:visible;}
+  .mobile-menu-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 20px;border-bottom:1px solid var(--border);flex:none;
+  }
+  .mobile-menu-close{
+    width:42px;height:42px;padding:0;flex:none;
+    display:inline-flex;align-items:center;justify-content:center;
+    background:transparent;border:1px solid var(--border);border-radius:999px;
+    color:var(--fg);font-family:var(--sans);font-size:20px;line-height:1;
+    cursor:pointer;transition:border-color .2s ease,color .2s ease,transform .2s ease;
+  }
+  .mobile-menu-close:hover{border-color:var(--accent);color:var(--accent);transform:rotate(90deg);}
+  .mobile-menu-body{
+    flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:32px 20px 40px;
+    display:flex;flex-direction:column;
+  }
+  .mobile-menu-actions{
+    display:flex;flex-direction:column;gap:12px;
+    opacity:0;transform:translateY(10px);
+    transition:opacity .45s ease,transform .45s ease;
+  }
+  .mobile-menu.open .mobile-menu-actions{opacity:1;transform:translateY(0);transition-delay:.08s;}
+  .mobile-menu-actions a{
+    display:block;text-align:center;padding:15px 22px;border-radius:999px;
+    font-family:var(--sans);font-weight:600;font-size:14px;text-decoration:none;
+  }
+  .mm-cta{background:var(--accent);color:var(--accent-fg);}
+  .mm-download{border:1px solid var(--border);color:var(--fg);font-weight:500;transition:border-color .2s ease,color .2s ease;}
+  .mm-download:hover{border-color:var(--accent);color:var(--accent);}
+  .mobile-menu-foot{
+    margin-top:auto;padding-top:32px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);opacity:.6;
+  }
+  body.menu-open{overflow:hidden;}
+  @media (min-width:801px){.mobile-menu{display:none;}}
+  @media (prefers-reduced-motion: reduce){
+    .mobile-menu,.mobile-menu-actions{transition-duration:.01ms;}
+    .mobile-menu-close:hover{transform:none;}
+  }
+
+  .wrap{max-width:1320px;margin:0 auto;padding:72px 32px 88px}
+  .col{max-width:900px}
+
+  .rule{width:80px;height:4px;background:var(--accent);border-radius:2px;margin-bottom:28px}
+
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 24px;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:24px;height:2px;background:var(--accent);border-radius:2px}
+
+  h1{
+    font-size:clamp(40px,6vw,76px);font-weight:900;line-height:.95;
+    letter-spacing:-.03em;text-transform:uppercase;margin:0 0 20px;
+    max-width:17ch;text-wrap:balance;
+  }
+
+  .intro{font-size:clamp(16px,1.6vw,18px);line-height:1.65;color:var(--muted);margin:0;max-width:62ch}
+
+  /* BLOQUES LEGALES
+     Sin cards ni acentos: el contenido es normativo, asi que manda la lectura.
+     La prosa se corta a 60ch y el aire entre bloques hace el trabajo que en el
+     resto del portafolio hacen los bordes. */
+  .legal{margin-top:52px}
+  .legal h2{
+    font-size:clamp(18px,1.9vw,22px);font-weight:700;letter-spacing:-.01em;
+    color:var(--fg);margin:0 0 14px;max-width:38ch;
+  }
+  .legal p{font-size:16.5px;line-height:1.8;color:var(--muted);margin:0;max-width:60ch}
+  .legal p + p{margin-top:16px}
+  .legal a{
+    color:var(--accent);text-decoration:none;
+    border-bottom:1px solid rgba(184,255,61,.3);padding-bottom:1px;
+    transition:border-color .2s ease;
+  }
+  .legal a:hover{border-bottom-color:var(--accent)}
+
+  /* SITE FOOTER */
+  .site-footer{padding:32px;border-top:1px solid var(--border);margin-top:80px}
+  .site-footer-inner{
+    max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;
+    align-items:center;flex-wrap:wrap;gap:16px;
+  }
+  .site-footer p{
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);margin:0;
+  }
+  /* El enlace hereda el gris del footer: en lima competiria con el CTA del nav. */
+  .site-footer a{color:inherit;text-decoration:none;transition:color .2s ease}
+  .site-footer a:hover{color:var(--accent)}
+
+  @media (max-width:980px){
+    .wrap{padding:48px 20px 64px}
+    .legal{margin-top:40px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="back-link"><span>&larr;</span> Portfolio</a>
+    <div class="nav-actions">
+      <div class="lang-switch" role="group" aria-label="Sprache">
+        <a href="/impressum/" hreflang="en">EN</a>
+        <a href="/impressum/" hreflang="de" class="is-current" aria-current="page">DE</a>
+        <a href="/impressum/" hreflang="es">ES</a>
+      </div>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download">Download CV &darr;</a>
+      <a href="/#contact" class="nav-cta">Get in touch</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Men&uuml; &ouml;ffnen" aria-expanded="false" aria-controls="mobileMenu">
+      <span class="bars" aria-hidden="true"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Seitenmen&uuml;" aria-hidden="true">
+  <div class="mobile-menu-head">
+    <a href="/" class="back-link"><span>&larr;</span> Portfolio</a>
+    <button class="mobile-menu-close" id="menuClose" type="button" aria-label="Men&uuml; schlie&szlig;en">&times;</button>
+  </div>
+  <div class="mobile-menu-body">
+    <div class="mobile-menu-lang">
+      <span class="mm-lang-label">Sprache</span>
+      <div class="lang-switch" role="group" aria-label="Sprache">
+        <a href="/impressum/" hreflang="en">EN</a>
+        <a href="/impressum/" hreflang="de" class="is-current" aria-current="page">DE</a>
+        <a href="/impressum/" hreflang="es">ES</a>
+      </div>
+    </div>
+    <div class="mobile-menu-actions">
+      <a href="/#contact" class="mm-cta">Get in touch</a>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Download CV &darr;</a>
+    </div>
+    <div class="mobile-menu-foot">Berlin &middot; EMEA</div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="col">
+
+    <div class="rule"></div>
+    <p class="eyebrow">Rechtliche Angaben</p>
+    <h1>Impressum</h1>
+    <p class="intro">Pflichtangaben f&uuml;r diese Website nach deutschem Recht.</p>
+
+    <section class="legal">
+      <h2>Angaben gem&auml;&szlig; &sect; 5 DDG</h2>
+      <p>
+        Salas UG (haftungsbeschr&auml;nkt)<br>
+        Jessnerstra&szlig;e 6<br>
+        10247 Berlin<br>
+        Deutschland
+      </p>
+    </section>
+
+    <section class="legal">
+      <h2>Vertreten durch den Gesch&auml;ftsf&uuml;hrer</h2>
+      <p>Jorge Luis Aguilar Salas</p>
+    </section>
+
+    <section class="legal">
+      <h2>Kontakt</h2>
+      <p>
+        Telefon: <a href="tel:+4915734551124">+49 1573 4551124</a><br>
+        E-Mail: <a href="mailto:fleet@343ride.de">fleet@343ride.de</a>
+      </p>
+    </section>
+
+    <section class="legal">
+      <h2>Registereintrag</h2>
+      <p>Eingetragen im Handelsregister.</p>
+      <p>
+        Registergericht: Amtsgericht Charlottenburg<br>
+        Handelsregisternummer: HRB 275650 B
+      </p>
+    </section>
+
+    <section class="legal">
+      <h2>Umsatzsteuer-Identifikationsnummer</h2>
+      <p>
+        Umsatzsteuer-Identifikationsnummer gem&auml;&szlig; &sect; 27a UStG:<br>
+        DE456001961
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <p>Jorge Aguilar &middot; Berlin</p>
+    <p>&copy; 2026 &middot; <a href="/impressum/">Impressum</a></p>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  (function () {
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileMenu');
+    const close = document.getElementById('menuClose');
+    if (!toggle || !menu || !close) return;
+
+    function openMenu() {
+      menu.classList.add('open');
+      menu.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('menu-open');
+      close.focus();
+    }
+
+    function closeMenu(refocus) {
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      if (refocus) toggle.focus();
+    }
+
+    toggle.addEventListener('click', openMenu);
+    close.addEventListener('click', () => closeMenu(true));
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => closeMenu(false));
+    });
+
+    menu.addEventListener('click', (e) => {
+      if (e.target === menu || e.target.classList.contains('mobile-menu-body')) closeMenu(true);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu(true);
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 800 && menu.classList.contains('open')) closeMenu(false);
+    });
+  })();
+</script>
+
+</body>
+</html>

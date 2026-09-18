@@ -367,6 +367,11 @@
     .pillar-trigger{grid-template-columns:auto minmax(0,1fr);row-gap:12px}
     .pillar-toggle{grid-column:1/-1;justify-self:end}
   }
+
+  /* Enlace al Impressum: hereda el gris del footer; en lima competiria con el
+     CTA del nav. */
+  .site-footer a{color:inherit;text-decoration:none;transition:color .2s ease}
+  .site-footer a:hover{color:var(--accent)}
 </style>
 </head>
 <body>
@@ -600,7 +605,7 @@
 
 <footer class="site-footer">
   <div class="site-footer-inner">
-    <p>Jorge Aguilar &middot; Berlin</p>
+    <p>Jorge Aguilar &middot; Berlin &middot; <a href="/impressum/">Impressum</a></p>
     <p>Marco adaptado de Leila Hormozi</p>
   </div>
 </footer>
