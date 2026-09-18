@@ -3,3 +3,4 @@
 .DS_Store
 README.md
 wrangler.toml
+worker.js

@@ -357,9 +357,10 @@
 
   /* RESULT — big metrics, same language as the home page impact grid */
   .result-metrics{
-    /* La descripcion larga aqui es la tercera (no la primera como en Wolt), asi
-       que el peso extra va a esa columna. */
-    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.35fr);gap:28px;
+    /* Cuatro metricas: en fila quedarian a ~190px y los labels se romperian en
+       tiras de tres palabras, asi que van en 2x2. Abajo de 820px cae a una sola
+       columna, igual que el resto de los case studies. */
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 32px;
     padding:30px;background:var(--surface-2);
     border:1px solid var(--border);border-radius:var(--radius-sm);
   }
@@ -666,6 +667,11 @@
             <span class="kicker">6 semanas después</span>
             <span class="value">58%<span class="dir">&uarr;</span></span>
             <span class="label">Tasa de activación de conductores al cierre del proyecto</span>
+          </div>
+          <div class="metric-big">
+            <span class="kicker">Cancelación</span>
+            <span class="value">18%<span class="dir">&darr;</span></span>
+            <span class="label">Reducción de la tasa de cancelación mediante intervenciones operativas con flotas socias durante el proyecto de 6 semanas</span>
           </div>
           <div class="metric-big">
             <span class="kicker">Escala</span>
