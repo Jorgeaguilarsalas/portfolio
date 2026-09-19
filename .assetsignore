@@ -4,3 +4,11 @@
 README.md
 wrangler.toml
 worker.js
+# Toolchain del CV: vive en el repo pero no se sirve. Con directory="./" un
+# `npm install` en Cloudflare Workers Builds subiria node_modules/ completo
+# (miles de archivos por Puppeteer) como assets del sitio.
+node_modules/
+package.json
+package-lock.json
+scripts/
+cv/

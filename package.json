@@ -1,0 +1,13 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portafolio de Jorge Aguilar (343ride.de) servido con Cloudflare Workers + assets estaticos.",
+  "scripts": {
+    "cv": "node scripts/build_cv.js",
+    "cv:setup": "puppeteer browsers install chrome"
+  },
+  "devDependencies": {
+    "puppeteer": "^25.11.0"
+  }
+}

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Jorge Aguilar — CV</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* ---------------------------------------------------------------------------
+     Fuente editable del CV. `npm run cv` la renderiza a Jorge_Aguilar_CV.pdf
+     con Puppeteer, asi que el PDF y este HTML son el mismo render: cualquier
+     cambio de contenido o diseno se hace aqui, nunca en el PDF.
+     Tokens alineados al portafolio (dark + lima), acento #C6FF00.
+  --------------------------------------------------------------------------- */
+
+  :root{
+    --bg:#0B0B0D;
+    --fg:#FFFFFF;
+    --body:#E6E6E6;
+    --muted:#8A8A8F;
+    --accent:#C6FF00;
+    --line:rgba(255,255,255,0.12);
+    --sans:"Inter",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    /* Ancho de la columna de meta (fechas + ubicacion) */
+    --meta:126px;
+    --gutter:22px;
+  }
+
+  @page{ size:A4; margin:0; }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html,body{ background:var(--bg); }
+
+  body{
+    font-family:var(--sans);
+    font-size:10.6px;
+    line-height:1.55;
+    color:var(--body);
+    -webkit-font-smoothing:antialiased;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  /* Una caja A4 por pagina: asi cada pagina tiene sus propios margenes y el
+     corte cae donde lo decidimos, no donde alcance el contenido. */
+  .sheet{
+    position:relative;
+    width:210mm;
+    height:296mm;          /* < 297mm: evita que el redondeo genere una pagina en blanco */
+    margin:0 auto;
+    padding:14mm 14mm 12mm;
+    background:var(--bg);
+    overflow:hidden;
+    break-after:page;
+    page-break-after:always;
+  }
+  .sheet:last-child{ break-after:auto; page-break-after:auto; }
+  .sheet > .section:first-child{ margin-top:0; }
+
+  a{ color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+  /* Numeros y resultados: blanco + semibold para que salten sobre el gris */
+  .metric{ color:var(--fg); font-weight:600; }
+
+  /* ----- Header ----- */
+  .head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:24px;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line);
+  }
+  .name{
+    font-size:38px;
+    font-weight:900;
+    letter-spacing:-0.022em;
+    line-height:1.02;
+    color:var(--fg);
+  }
+  .tagline{
+    margin-top:8px;
+    font-size:11.6px;
+    font-weight:500;
+    color:var(--body);
+    max-width:54ch;
+  }
+  .tagline .role{ color:var(--fg); font-weight:600; }
+
+  .contact{
+    flex:0 0 auto;
+    text-align:right;
+    font-family:var(--mono);
+    font-size:9.1px;
+    line-height:1.72;
+    color:var(--muted);
+    padding-top:4px;
+  }
+  .contact a{ text-decoration:none; }
+  .contact a:hover{ text-decoration:underline; }
+  .contact .certs{
+    margin-top:6px;
+    padding-top:6px;
+    border-top:1px solid var(--line);
+  }
+  .contact .certs .lbl{
+    display:block;
+    font-size:7.6px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  /* ----- Secciones ----- */
+  .section{ margin-top:18px; }
+  .kicker{
+    font-family:var(--mono);
+    font-size:9px;
+    font-weight:500;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+    padding-bottom:7px;
+    margin-bottom:12px;
+    border-bottom:1px solid var(--line);
+  }
+
+  /* ----- Entradas (trabajo / educacion) ----- */
+  .entry{
+    display:grid;
+    grid-template-columns:var(--meta) 1fr;
+    gap:var(--gutter);
+    padding-bottom:13px;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  .entry:last-child{ padding-bottom:0; }
+
+  .meta{ padding-top:1px; }
+  .meta .dates{
+    display:block;
+    font-family:var(--mono);
+    font-size:8.9px;
+    font-weight:500;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--body);
+    white-space:nowrap;
+  }
+  .meta .place{
+    display:block;
+    margin-top:3px;
+    font-size:9.4px;
+    color:var(--muted);
+  }
+
+  .role-title{
+    font-size:12.8px;
+    font-weight:700;
+    letter-spacing:-0.006em;
+    color:var(--fg);
+    line-height:1.28;
+  }
+  .org{
+    margin-top:1px;
+    font-size:10.5px;
+    font-weight:500;
+    color:var(--muted);
+  }
+
+  ul.bullets{ list-style:none; margin-top:6px; }
+  ul.bullets li{
+    position:relative;
+    padding-left:18px;
+    margin-bottom:3.5px;
+  }
+  ul.bullets li:last-child{ margin-bottom:0; }
+  /* Flecha lima brillante: el marcador mas visible del documento */
+  ul.bullets li::before{
+    content:"\2192";
+    position:absolute;
+    left:0;
+    top:-0.5px;
+    font-size:13px;
+    font-weight:700;
+    line-height:1.3;
+    color:var(--accent);
+  }
+
+  .note{
+    margin-top:4px;
+    font-size:9.6px;
+    color:var(--muted);
+  }
+
+  /* ----- Skills ----- */
+  .skill{
+    display:grid;
+    grid-template-columns:var(--meta) 1fr;
+    gap:var(--gutter);
+    padding:6px 0;
+    border-bottom:1px solid var(--line);
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  .skill:last-child{ border-bottom:0; padding-bottom:0; }
+  .skill .lbl{
+    font-family:var(--mono);
+    font-size:8.9px;
+    font-weight:500;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--muted);
+    padding-top:1.5px;
+  }
+  .skill .val{ font-size:10.5px; color:var(--body); }
+
+  /* Pantalla: encuadre del A4 para revisar antes de generar el PDF */
+  @media screen{
+    body{ padding:24px 0; }
+    .sheet{ box-shadow:0 0 0 1px var(--line); margin-bottom:24px; }
+    .sheet:last-child{ margin-bottom:0; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="head">
+    <div>
+      <h1 class="name">Jorge Aguilar</h1>
+      <p class="tagline">
+        <span class="role">Strategy, Operations &amp; Product</span> — across mobility, logistics and
+        technology, from frontline operations to strategy and execution.
+      </p>
+    </div>
+    <div class="contact">
+      <a href="mailto:aguilarjorge@outlook.com">aguilarjorge@outlook.com</a><br>
+      <a href="tel:+4915734551124">+49 1573 4551124</a><br>
+      <a href="https://343ride.de">343ride.de</a><br>
+      <a href="https://linkedin.com/in/jorge-aguilar-ops">linkedin.com/in/jorge-aguilar-ops</a><br>
+      <a href="https://nexiofleet.de">nexiofleet.de</a>
+      <div class="certs">
+        <span class="lbl">Certificates</span>
+        <a href="https://drive.google.com/file/d/17s7xCyrMM8qRZtqPk7gZReJvZa7iSguF/view">drive.google.com</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="kicker">Experience</div>
+
+    <div class="entry">
+      <div class="meta">
+        <span class="dates">Jul 2025 — Present</span>
+        <span class="place">Berlin</span>
+      </div>
+      <div>
+        <div class="role-title">Co-founder — Strategy, Operations &amp; Product</div>
+        <div class="org">Nexio Fleet GmbH</div>
+        <ul class="bullets">
+          <li>Compliance-first fleet management SaaS for regulated Mietwagen operators (LABO, PBefG) in Berlin/Brandenburg.</li>
+          <li><span class="metric">800+ drivers</span> monitored across <span class="metric">8 fleet operators</span>; Firebase/Firestore architecture with Uber/Bolt API integrations.</li>
+          <li>iOS/Android/web QA; <span class="metric">60–70% reduction</span> in manual reporting through Python/n8n/Claude automation.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="meta">
+        <span class="dates">Jul 2025 — Present</span>
+        <span class="place">Berlin</span>
+      </div>
+      <div>
+        <div class="role-title">Founder &amp; Managing Director</div>
+        <div class="org">Salas UG (haftungsbeschränkt)</div>
+        <ul class="bullets">
+          <li><span class="metric">100% owner</span> of pre-revenue fleet management and compliance SaaS venture.</li>
+          <li>Advisory vehicle for fleet operations, compliance automation, and marketplace strategy.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="meta">
+        <span class="dates">Jul 2024 — Jul 2025</span>
+        <span class="place">Berlin</span>
+      </div>
+      <div>
+        <div class="role-title">Supply Operations Manager</div>
+        <div class="org">Bliq</div>
+        <ul class="bullets">
+          <li>Designed Earnings-per-Hour (EPH) supply model with performance-based SLAs (<span class="metric">&gt;90% acceptance</span>, <span class="metric">≤10% cancellation</span>) for medium-sized fleet partners.</li>
+          <li>Contributed to <span class="metric">4.6×</span> driver growth, <span class="metric">2.6×</span> fleet partner growth, <span class="metric">2.6×</span> trip growth across 12 months (company-level results across broader supply-development period).</li>
+          <li>Marketplace balancing across supply, demand, pricing and incentives; treating supply as system rather than acquisition target.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="meta">
+        <span class="dates">Jun 2023 — Jun 2024</span>
+        <span class="place">Southern Germany</span>
+      </div>
+      <div>
+        <div class="role-title">Operations Specialist</div>
+        <div class="org">Bolt</div>
+        <ul class="bullets">
+          <li>Driver activation funnel redesign: <span class="metric">25% → 58%</span> activation rate across <span class="metric">1,000+ drivers</span> over 6 weeks.</li>
+          <li><span class="metric">18% reduction</span> in cancellation rate through operational interventions with fleet partners.</li>
+          <li>Cross-functional work with Support, Product and Marketing to fix drop-off points across activation funnel.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="meta">
+        <span class="dates">Feb 2021 — Feb 2023</span>
+        <span class="place">Berlin &amp; Germany</span>
+      </div>
+      <div>
+        <div class="role-title">Operations Associate</div>
+        <div class="org">Wolt</div>
+        <ul class="bullets">
+          <li>Customer Success: structured <span class="metric">~525 weekly courier interactions</span> into categorized service model; <span class="metric">~50% reduction</span> in weekly support demand.</li>
+          <li>Circular Gear Program: <span class="metric">30% reduction</span> in equipment procurement cost; <span class="metric">25,000+ kg</span> of material diverted from landfill via TARPREC partnership; <span class="metric">2,000+ couriers</span> across 6 German cities.</li>
+          <li>Independently owned onboarding/offboarding + coordinated small team of Gear Associates (per reference letter).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="meta">
+        <span class="dates">Oct 2020 — Feb 2021</span>
+        <span class="place">Berlin</span>
+      </div>
+      <div>
+        <div class="role-title">Courier Partner</div>
+        <div class="org">Wolt</div>
+        <ul class="bullets">
+          <li>Frontline operations experience before joining HQ team.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /sheet 1 -->
+
+<div class="sheet">
+
+  <section class="section">
+    <div class="kicker">Education &amp; Training</div>
+
+    <div class="entry">
+      <div class="meta">
+        <span class="dates">2025 — Present</span>
+        <span class="place">Berlin</span>
+      </div>
+      <div>
+        <div class="role-title">MSc Business Management — Digital Business Management (berufsbegleitend)</div>
+        <div class="org">HWR Berlin</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="meta">
+        <span class="dates">Jan 2026 — Mar 2026</span>
+        <span class="place">Berlin</span>
+      </div>
+      <div>
+        <div class="role-title">Diploma DevOps &amp; Cloud Computing</div>
+        <div class="org">Ironhack</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="meta">
+        <span class="dates">Mar 2023 — Jun 2023</span>
+        <span class="place">Berlin</span>
+      </div>
+      <div>
+        <div class="role-title">Diploma Data Analytics</div>
+        <div class="org">Ironhack</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="meta">
+        <span class="dates">2019 — 2021</span>
+        <span class="place">Kleve</span>
+      </div>
+      <div>
+        <div class="role-title">M.A. Sustainable Development Management <span class="metric">(Grade 1.7)</span></div>
+        <div class="org">Rhine-Waal University (HSRW)</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="meta">
+        <span class="dates">2012 — 2015</span>
+        <span class="place">Mexico City</span>
+      </div>
+      <div>
+        <div class="role-title">B.Sc. International Business Administration</div>
+        <div class="org">Universidad La Salle — Erasmus HSB Bremen 2014</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="kicker">Skills</div>
+
+    <div class="skill">
+      <div class="lbl">Domains</div>
+      <div class="val">Marketplace Operations · Fleet Compliance (LABO, PBefG) · Supply Strategy · Service Design · Cross-functional Leadership · Product Ownership</div>
+    </div>
+    <div class="skill">
+      <div class="lbl">Data &amp; Automation</div>
+      <div class="val">Python · SQL · n8n · Zapier · Claude API · OpenAI · LangChain</div>
+    </div>
+    <div class="skill">
+      <div class="lbl">Infrastructure</div>
+      <div class="val">Firebase · GCP · Docker · Terraform · CI/CD</div>
+    </div>
+    <div class="skill">
+      <div class="lbl">Analytics &amp; CRM</div>
+      <div class="val">Looker · Amplitude · Metabase · Salesforce · Pipedrive · HubSpot</div>
+    </div>
+    <div class="skill">
+      <div class="lbl">Languages</div>
+      <div class="val">Spanish (native) · English (C1) · German (C1)</div>
+    </div>
+    <div class="skill">
+      <div class="lbl">Certifications</div>
+      <div class="val">Ironhack DevOps &amp; Cloud Computing (2026) · Ironhack Data Analytics (2023) · Google Project Management (2023)</div>
+    </div>
+  </section>
+
+</div><!-- /sheet 2 -->
+</body>
+</html>
