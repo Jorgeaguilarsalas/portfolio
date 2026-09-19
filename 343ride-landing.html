@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>343ride — Automations for mobility and logistics</title>
+<meta name="description" content="343ride is building on-demand automations and API integrations for mobility and logistics companies. Get in touch.">
+<link rel="canonical" href="https://343ride.de/">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="343ride — Coming soon">
+<meta property="og:description" content="343ride is building on-demand automations and API integrations for mobility and logistics companies. Get in touch.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://343ride.de/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  /* Landing temporal de 343ride.de. El Worker la sirve solo en la raiz; el
+     resto de los paths sigue redirigiendo a jorgeag.com. Se reemplaza cuando
+     exista el site real del proyecto. */
+  :root{
+    --bg:#0B0B0D;
+    --fg:#FFFFFF;
+    --muted:#8A8A8F;
+    --dim:#6B6B70;
+    --accent:#C6FF00;
+    --line:rgba(255,255,255,0.12);
+    --sans:"Inter",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    min-height:100dvh;
+    display:flex;
+    flex-direction:column;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--accent); color:var(--bg); }
+
+  main{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:64px 24px;
+    max-width:960px;
+    width:100%;
+    margin:0 auto;
+  }
+
+  h1{
+    font-size:clamp(48px,8vw,96px);
+    font-weight:900;
+    letter-spacing:-0.04em;
+    line-height:0.95;
+  }
+
+  .tagline{
+    margin-top:20px;
+    max-width:520px;
+    font-size:clamp(18px,1.6vw,20px);
+    font-weight:400;
+    line-height:1.5;
+    color:var(--muted);
+  }
+
+  .status{
+    margin-top:28px;
+    font-family:var(--mono);
+    font-weight:500;
+    font-size:11px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--dim);
+  }
+
+  .actions{
+    margin-top:40px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .btn{
+    /* El primary lleva borde transparente para igualar la altura del
+       secondary, que si tiene borde de 1.5px. */
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px 28px;
+    border:1.5px solid transparent;
+    border-radius:28px;
+    font-size:14px;
+    font-weight:600;
+    text-decoration:none;
+    transition:opacity .18s ease, background-color .18s ease, color .18s ease;
+  }
+  .btn.primary{ background:var(--accent); color:var(--bg); }
+  .btn.primary:hover{ opacity:.85; }
+  .btn.secondary{ border-color:var(--accent); color:var(--accent); }
+  .btn.secondary:hover{ background:var(--accent); color:var(--bg); }
+  .btn:focus-visible{ outline:2px solid var(--accent); outline-offset:4px; }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:20px 24px;
+    max-width:960px;
+    width:100%;
+    margin:0 auto;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 20px;
+    align-items:center;
+    justify-content:space-between;
+    font-family:var(--mono);
+    font-weight:500;
+    font-size:10px;
+    letter-spacing:0.06em;
+    color:var(--dim);
+  }
+  footer nav{ display:flex; gap:20px; }
+  footer a{ color:var(--dim); text-decoration:none; }
+  footer a:hover{ color:var(--accent); }
+
+  @media (max-width:520px){
+    main{ padding:48px 20px; }
+    footer{ padding:18px 20px; }
+    .actions{ flex-direction:column; align-items:stretch; }
+    .btn{ width:100%; }
+  }
+</style>
+</head>
+<body>
+  <main>
+    <h1>343ride</h1>
+    <p class="tagline">Building on-demand automations and API integrations for mobility and logistics.</p>
+    <p class="status">Launching soon.</p>
+    <div class="actions">
+      <a href="mailto:fleet@343ride.de" class="btn primary">Get in touch</a>
+      <a href="https://jorgeag.com" class="btn secondary">Portfolio of the founder</a>
+    </div>
+  </main>
+  <footer>
+    <span>&copy; 2026 Salas UG (haftungsbeschr&auml;nkt)</span>
+    <nav>
+      <a href="https://jorgeag.com/impressum/">Impressum</a>
+      <a href="https://jorgeag.com/datenschutz/">Datenschutz</a>
+    </nav>
+  </footer>
+</body>
+</html>
