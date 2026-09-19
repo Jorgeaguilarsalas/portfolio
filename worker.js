@@ -1,20 +1,32 @@
 /**
- * El portafolio se sirve en tres endpoints: 343ride.de (canonico),
- * www.343ride.de y la URL por defecto del Worker en workers.dev. Los tres
- * devolvian el mismo HTML, y como los enlaces internos son relativos, la copia
- * de workers.dev se enlazaba a si misma: una segunda version indexable del
- * sitio compitiendo con el dominio propio.
+ * El portafolio vive en jorgeag.com. El mismo Worker esta atado a varios
+ * hostnames, y todos devolvian el mismo HTML: como los enlaces internos son
+ * relativos, cada copia se enlazaba a si misma y competia en indexacion con el
+ * dominio canonico.
  *
- * Aqui workers.dev deja de servir contenido y responde 301 al mismo path en
- * 343ride.de. Los dominios propios siguen sirviendo los assets igual que antes.
+ * Aqui solo jorgeag.com sirve contenido. El resto responde 301 al mismo path en
+ * jorgeag.com:
+ *
+ *   - 343ride.de / www.343ride.de  redirect temporal: el dominio se retoma
+ *     como proyecto 343ride y entonces deja de apuntar a este Worker.
+ *   - www.jorgeag.com             canonico sin www.
+ *   - portfolio.*.workers.dev     URL por defecto del Worker.
+ *
+ * El email legal de Salas UG (fleet@343ride.de) no depende de esto: es un
+ * registro MX, no una ruta del Worker, y sigue vigente en Impressum.
  */
 
-const CANONICAL_ORIGIN = "https://343ride.de";
+const CANONICAL_ORIGIN = "https://jorgeag.com";
 
-/* Solo el host de produccion del Worker. Los previews de Cloudflare
+/* Todo lo demas se redirige. Los previews de Cloudflare
    (<version>-portfolio.j-l-aguilar-salas.workers.dev) quedan fuera a proposito,
    para poder revisar un deploy antes de promoverlo. */
-const REDIRECT_HOSTS = new Set(["portfolio.j-l-aguilar-salas.workers.dev"]);
+const REDIRECT_HOSTS = new Set([
+  "343ride.de",
+  "www.343ride.de",
+  "www.jorgeag.com",
+  "portfolio.j-l-aguilar-salas.workers.dev",
+]);
 
 export default {
   async fetch(request, env) {
