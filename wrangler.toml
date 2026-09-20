@@ -10,3 +10,10 @@ not_found_handling = "404-page"
 # Worker, y el redirect de workers.dev nunca correria para "/" ni para ninguna
 # pagina real.
 run_worker_first = true
+
+# Sincronizado con Observability activado en el dashboard de Cloudflare. Si
+# solo vive en el dashboard, un deploy desde el repo puede sobreescribirlo:
+# la config del repo es la fuente de verdad.
+[observability.logs]
+enabled = true
+invocation_logs = true
