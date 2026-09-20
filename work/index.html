@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Selected Work &mdash; Jorge Aguilar</title>
-<meta name="description" content="Translating marketplace operations into systems thinking — six case studies across mobility, compliance-critical SaaS and AI-native product: Nexio Fleet, Alcorte Alemán, Wolt, Bolt and a self-directed marketplace analysis.">
+<meta name="description" content="Translating marketplace operations into systems thinking — six projects across mobility, compliance-critical SaaS and AI-native product: Nexio Fleet, Bliq, Wolt, Bolt, Alcorte Alemán and a self-directed marketplace analysis.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Selected Work &mdash; Jorge Aguilar">
-<meta property="og:description" content="Translating marketplace operations into systems thinking — six case studies across mobility, compliance-critical SaaS and AI-native product.">
+<meta property="og:description" content="Translating marketplace operations into systems thinking — six projects across mobility, compliance-critical SaaS and AI-native product.">
 <meta property="og:site_name" content="Jorge Aguilar Portfolio">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Selected Work &mdash; Jorge Aguilar">
-<meta name="twitter:description" content="Translating marketplace operations into systems thinking — six case studies across mobility, compliance-critical SaaS and AI-native product.">
+<meta name="twitter:description" content="Translating marketplace operations into systems thinking — six projects across mobility, compliance-critical SaaS and AI-native product.">
 <link rel="canonical" href="https://jorgeag.com/work/">
 <link rel="alternate" hreflang="en" href="https://jorgeag.com/work/">
 <link rel="alternate" hreflang="de" href="https://jorgeag.com/de/work/">
@@ -251,9 +251,13 @@
   }
   /* Zig-zag: en las pares el diagrama va a la izquierda. Se invierte con order
      para no alterar el orden del DOM, que es el que leen lector y teclado. */
-  .case:nth-of-type(even) .case-text{order:2;}
-  .case:nth-of-type(even) .case-visual{order:1;}
-  .case:nth-of-type(even)::before{right:auto;left:0;background:radial-gradient(circle at top left, rgba(184,255,61,0.06) 0%, transparent 70%);}
+  /* El zig-zag cuenta solo las cards de dos columnas: la card solo (a ancho
+     completo, sin diagrama) no debe consumir un turno de la alternancia, o dos
+     cards seguidas quedan con el diagrama del mismo lado. Si el navegador no
+     soporta `of S`, la regla cae y todas quedan en el orden base. */
+  .case:nth-child(even of .case:not(.case--solo)) .case-text{order:2;}
+  .case:nth-child(even of .case:not(.case--solo)) .case-visual{order:1;}
+  .case:nth-child(even of .case:not(.case--solo))::before{right:auto;left:0;background:radial-gradient(circle at top left, rgba(184,255,61,0.06) 0%, transparent 70%);}
 
   .case-text{min-width:0;position:relative;z-index:1;}
   .case-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
@@ -303,7 +307,7 @@
     .work-grid{gap:22px;}
     .case{grid-template-columns:minmax(0,1fr);gap:26px;padding:30px 24px;}
     /* El diagrama siempre despues del texto al apilar, sea cual sea el zig-zag */
-    .case:nth-of-type(even) .case-text,.case:nth-of-type(even) .case-visual{order:initial;}
+    .case:nth-child(even of .case:not(.case--solo)) .case-text,.case:nth-child(even of .case:not(.case--solo)) .case-visual{order:initial;}
     .case-text h3{max-width:none;}
     .case-meta{margin-bottom:18px;}
     .case-cta{width:100%;justify-content:center;padding:15px 22px;}
@@ -490,198 +494,10 @@
             </figure>
           </div>
         </article>
-
-        <!-- 02 — ALCORTE -->
+        <!-- 02 — BLIQ -->
         <article class="case reveal">
           <div class="case-text">
             <p class="case-eyebrow">02 · Featured case study</p>
-            <h3>Alcorte Alemán — Running a 50-year-old butcher shop through WhatsApp.</h3>
-            <p class="case-intro">An AI order-management system for a family butcher shop in Mexico City, designed around a single constraint: the operator never opens a dashboard. WhatsApp is not a channel bolted onto the product — it is the entire product surface, for customers and owner alike.</p>
-            <ul class="case-points">
-              <li><strong>Constraint-driven architecture.</strong> “No dashboard” treated as the specification rather than a limitation to work around.</li>
-              <li><strong>Production integration.</strong> Meta WhatsApp Business API, Vercel, Supabase RLS and a Claude agentic loop with tool calling, wired end to end against live data.</li>
-              <li><strong>Scale.</strong> <strong>120+ products across 1000+ customers</strong>, with row-level security keyed on vendor_id so the schema is multi-tenant from day one.</li>
-            </ul>
-            <p class="case-meta">2025 — Present · Side project · Solo build</p>
-            <a href="/alcorte/" class="case-cta">Read the case study <span class="arrow" aria-hidden="true">→</span></a>
-            <p class="case-note">Private repository, 2FA-enforced. Reference details on request.</p>
-          </div>
-          <div class="case-visual" id="vis-alcorte">
-            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-alcorte">View diagram <span class="sign" aria-hidden="true">+</span></button>
-            <figure class="case-figure" id="fig-alcorte">
-              <div class="case-figure-inner">
-                <svg viewBox="0 0 480 330" role="img" aria-label="Flow diagram of the WhatsApp order system: a customer message reaches the WhatsApp Business API, then a Claude agentic loop with tool calling, which reads and writes Supabase under row-level security, and the reply returns to the customer through WhatsApp.">
-                  <defs>
-                    <marker id="al-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#B8FF3D"/></marker>
-                  </defs>
-                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
-                  <text x="24" y="30" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">ORDER FLOW · ONE SURFACE</text>
-
-                  <rect x="24" y="62" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
-                  <text x="86" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Customer</text>
-                  <text x="86" y="103" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">SENDS A MESSAGE</text>
-
-                  <rect x="178" y="62" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
-                  <text x="240" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">WhatsApp API</text>
-                  <text x="240" y="103" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">META WEBHOOK</text>
-
-                  <rect x="332" y="62" width="124" height="56" rx="12" fill="rgba(184,255,61,0.06)" stroke="rgba(184,255,61,0.4)"/>
-                  <text x="394" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Claude loop</text>
-                  <text x="394" y="103" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#B8FF3D">TOOL CALLING</text>
-
-                  <line x1="152" y1="90" x2="174" y2="90" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
-                  <line x1="306" y1="90" x2="328" y2="90" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
-                  <line x1="394" y1="118" x2="394" y2="176" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
-
-                  <rect x="332" y="180" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
-                  <text x="394" y="204" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Supabase</text>
-                  <text x="394" y="221" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">POSTGRES · RLS</text>
-
-                  <rect x="178" y="180" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
-                  <text x="240" y="204" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Response</text>
-                  <text x="240" y="221" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">ORDER CONFIRMED</text>
-
-                  <line x1="328" y1="208" x2="306" y2="208" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
-                  <path d="M178,208 H86 V124" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
-
-                  <path d="M24,270 V278 H456 V270" fill="none" stroke="#4A4A52" stroke-width="1.2"/>
-                  <text x="240" y="298" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">NO DASHBOARD · THE CHAT IS THE PRODUCT</text>
-                </svg>
-              </div>
-              <figcaption class="case-figcaption">WhatsApp system flow</figcaption>
-            </figure>
-          </div>
-        </article>
-
-        <!-- 03 — WOLT -->
-        <article class="case reveal">
-          <div class="case-text">
-            <p class="case-eyebrow">03 · Featured case study</p>
-            <h3>Wolt — Turning courier gear from a purchase into a loop.</h3>
-            <p class="case-intro">Courier equipment at Wolt Germany was bought once per hire and never came back: the cost curve tracked hiring and turnover rather than active courier count. I redesigned the lifecycle from linear to circular — recovery at offboarding, refurbishment in Berlin, and a recycling route for gear that could not be saved.</p>
-            <ul class="case-points">
-              <li><strong>Lifecycle redesign.</strong> Four intervention points: offboarding recovery, financial accountability for missing items, warehouse refurbishment, and downstream recycling via TARPREC through Wolt HQ Denmark.</li>
-              <li><strong>Nationwide rollout.</strong> Gear return embedded into offboarding across <strong>6 German cities covering 2,000+ courier partners</strong>.</li>
-              <li><strong>Result.</strong> <strong>30% reduction in equipment procurement spend</strong>, first 12 months against the following 12 post-implementation.</li>
-            </ul>
-            <p class="case-meta">2021 — 2022 · Operations Associate · Nationwide</p>
-            <a href="/wolt/" class="case-cta">Read the case study <span class="arrow" aria-hidden="true">→</span></a>
-            <p class="case-note">Reference letter on file from Wolt, available via the Certificates section.</p>
-          </div>
-          <div class="case-visual" id="vis-wolt">
-            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-wolt">View diagram <span class="sign" aria-hidden="true">+</span></button>
-            <figure class="case-figure" id="fig-wolt">
-              <div class="case-figure-inner">
-                <svg viewBox="0 0 480 330" role="img" aria-label="Compact circular gear lifecycle: procurement feeds distribution as a residual input, while the main loop runs refurbishment to distribution to recovery and back to refurbishment. Gear that fails assessment exits downstream to Wolt HQ Denmark, the TARPREC facility, and material recovery.">
-                  <defs>
-                    <marker id="wo-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#B8FF3D"/></marker>
-                    <marker id="wo-arrow-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#8A8A93"/></marker>
-                  </defs>
-                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
-                  <text x="24" y="28" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">GEAR LIFECYCLE</text>
-
-                  <rect x="178" y="44" width="124" height="36" rx="10" fill="#141417" stroke="#303036" stroke-dasharray="4 3"/>
-                  <text x="240" y="66" text-anchor="middle" font-family="Inter,sans-serif" font-size="11.5" font-weight="600" fill="#8A8A93">Procurement</text>
-                  <line x1="240" y1="80" x2="240" y2="104" stroke="#8A8A93" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#wo-arrow-m)"/>
-                  <text x="252" y="96" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">RESIDUAL</text>
-
-                  <rect x="24" y="108" width="124" height="50" rx="12" fill="#141417" stroke="#303036"/>
-                  <text x="86" y="131" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Refurbish</text>
-                  <text x="86" y="147" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">BERLIN INTAKE</text>
-
-                  <rect x="178" y="108" width="124" height="50" rx="12" fill="#141417" stroke="#303036"/>
-                  <text x="240" y="131" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Distribution</text>
-                  <text x="240" y="147" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">ISSUED AT HIRE</text>
-
-                  <rect x="332" y="108" width="124" height="50" rx="12" fill="#141417" stroke="#303036"/>
-                  <text x="394" y="131" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Recovery</text>
-                  <text x="394" y="147" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">AT OFFBOARDING</text>
-
-                  <line x1="152" y1="133" x2="174" y2="133" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#wo-arrow)"/>
-                  <line x1="306" y1="133" x2="328" y2="133" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#wo-arrow)"/>
-                  <path d="M394,158 V186 H86 V164" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#wo-arrow)"/>
-                  <text x="240" y="202" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8.5" letter-spacing="1.2" fill="#B8FF3D">GEAR RETURNS TO THE SYSTEM</text>
-
-                  <line x1="48" y1="158" x2="48" y2="234" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#wo-arrow-m)"/>
-                  <text x="58" y="222" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">FAILS ASSESSMENT</text>
-
-                  <rect x="24" y="238" width="130" height="42" rx="10" fill="#101013" stroke="#2A2A30"/>
-                  <text x="89" y="264" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#F7F7F8">Damaged gear</text>
-                  <rect x="176" y="238" width="130" height="42" rx="10" fill="#101013" stroke="#2A2A30"/>
-                  <text x="241" y="258" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#F7F7F8">TARPREC</text>
-                  <text x="241" y="272" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">VIA HQ DENMARK</text>
-                  <rect x="328" y="238" width="128" height="42" rx="10" fill="#101013" stroke="#2A2A30"/>
-                  <text x="392" y="264" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#F7F7F8">Material recovery</text>
-
-                  <line x1="158" y1="259" x2="172" y2="259" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#wo-arrow-m)"/>
-                  <line x1="310" y1="259" x2="324" y2="259" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#wo-arrow-m)"/>
-                  <text x="240" y="306" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8.5" letter-spacing="1.2" fill="#8A8A93">DOWNSTREAM — MATERIAL RECOVERY</text>
-                </svg>
-              </div>
-              <figcaption class="case-figcaption">Circular gear lifecycle</figcaption>
-            </figure>
-          </div>
-        </article>
-
-        <!-- 04 — BOLT -->
-        <article class="case reveal">
-          <div class="case-text">
-            <p class="case-eyebrow">04 · Featured case study</p>
-            <h3>Bolt — Rebuilding a driver activation funnel nobody could see inside.</h3>
-            <p class="case-intro">Driver activation at Bolt Rides in Southern Germany was a single number reported weekly: around 25%, with no visibility into which step drivers stalled at. I built the in-app instrumentation to see the funnel stage by stage, then designed interventions against each specific leak.</p>
-            <ul class="case-points">
-              <li><strong>Instrumentation first.</strong> In-app analytics measuring drop-off per stage — registration, upload, verification, activation, first ride — replacing a weekly aggregate that hid the leak.</li>
-              <li><strong>Diagnosis.</strong> Five friction points: manual document review, generic communication, duplicate account blocks, language barriers, and deprioritised long-tail fleets.</li>
-              <li><strong>Result.</strong> Activation moved from <strong>25% to 58% in six weeks across 1,000+ registrations</strong>.</li>
-            </ul>
-            <p class="case-meta">2023 · Operations Specialist · 6 weeks</p>
-            <a href="/bolt/" class="case-cta">Read the case study <span class="arrow" aria-hidden="true">→</span></a>
-            <p class="case-note">Contribution split and specific figures available on request.</p>
-          </div>
-          <div class="case-visual" id="vis-bolt">
-            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-bolt">View diagram <span class="sign" aria-hidden="true">+</span></button>
-            <figure class="case-figure" id="fig-bolt">
-              <div class="case-figure-inner">
-                <svg viewBox="0 0 480 330" role="img" aria-label="Compact activation funnel in five narrowing stages: registration at 100 percent, document upload, document verification highlighted as the largest drop-off, account activation, and first ride at roughly 25 percent of registrations at baseline.">
-                  <defs>
-                    <marker id="bo-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#8A8A93"/></marker>
-                  </defs>
-                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
-                  <text x="24" y="28" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">100% REGISTERED</text>
-
-                  <rect x="24" y="42" width="412" height="42" rx="10" fill="#141417" stroke="#303036"/>
-                  <text x="230" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Registration</text>
-                  <line x1="230" y1="84" x2="230" y2="98" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#bo-arrow)"/>
-
-                  <rect x="60" y="102" width="340" height="42" rx="10" fill="#141417" stroke="#303036"/>
-                  <text x="230" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Document upload</text>
-                  <line x1="230" y1="144" x2="230" y2="158" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#bo-arrow)"/>
-
-                  <rect x="96" y="162" width="268" height="42" rx="10" fill="rgba(184,255,61,0.07)" stroke="rgba(184,255,61,0.45)"/>
-                  <text x="230" y="182" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Document verification</text>
-                  <text x="230" y="196" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#B8FF3D">LARGEST DROP-OFF</text>
-                  <line x1="372" y1="183" x2="398" y2="183" stroke="rgba(184,255,61,0.45)" stroke-width="1" stroke-dasharray="3 3"/>
-                  <text x="404" y="186" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#B8FF3D">MANUAL</text>
-                  <line x1="230" y1="204" x2="230" y2="218" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#bo-arrow)"/>
-
-                  <rect x="140" y="222" width="180" height="42" rx="10" fill="#141417" stroke="#303036"/>
-                  <text x="230" y="248" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Account activation</text>
-                  <line x1="230" y1="264" x2="230" y2="278" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#bo-arrow)"/>
-
-                  <rect x="168" y="282" width="124" height="42" rx="10" fill="#141417" stroke="#303036"/>
-                  <text x="230" y="302" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">First ride</text>
-                  <text x="230" y="316" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">≈25% BASELINE</text>
-                </svg>
-              </div>
-              <figcaption class="case-figcaption">Activation funnel — stage widths illustrative</figcaption>
-            </figure>
-          </div>
-        </article>
-
-        <!-- 05 — BLIQ -->
-        <article class="case reveal">
-          <div class="case-text">
-            <p class="case-eyebrow">05 · Featured case study</p>
             <h3>Bliq — Rebuilding fleet supply in a market that already had incumbents.</h3>
             <p class="case-intro">Drivers and fleets already belonged to Uber and Bolt. Incentives bought activation and never bought retention: fleets switched on for a bonus, and switched back when it ended. I designed an Earnings-per-Hour model with a service-level agreement attached, piloted with one fleet before it went near the network.</p>
             <ul class="case-points">
@@ -752,11 +568,10 @@
             </figure>
           </div>
         </article>
-
-        <!-- 06 — SELF-DIRECTED (sin case study publicado) -->
+        <!-- 03 — SELF-DIRECTED (sin case study publicado) -->
         <article class="case case--solo reveal">
           <div class="case-text">
-            <p class="case-eyebrow">06 · Self-directed project</p>
+            <p class="case-eyebrow">03 · Self-directed project</p>
             <h3>Marketplace Strategy &amp; Analytics — European Premium Mobility</h3>
             <p class="case-intro">A self-directed analytical project applying my framework to a multi-city premium ride marketplace. Demonstrates how I approach growth strategy, partnership accountability, and quality economics at marketplace scale.</p>
             <ul class="case-points">
@@ -766,6 +581,190 @@
             </ul>
             <p class="case-meta">2026 · Self-directed · Premium mobility sector</p>
             <p class="case-note">Full project detail available on request.</p>
+          </div>
+        </article>
+        <!-- 04 — WOLT -->
+        <article class="case reveal">
+          <div class="case-text">
+            <p class="case-eyebrow">04 · Featured case study</p>
+            <h3>Wolt — Turning courier gear from a purchase into a loop.</h3>
+            <p class="case-intro">Courier equipment at Wolt Germany was bought once per hire and never came back: the cost curve tracked hiring and turnover rather than active courier count. I redesigned the lifecycle from linear to circular — recovery at offboarding, refurbishment in Berlin, and a recycling route for gear that could not be saved.</p>
+            <ul class="case-points">
+              <li><strong>Lifecycle redesign.</strong> Four intervention points: offboarding recovery, financial accountability for missing items, warehouse refurbishment, and downstream recycling via TARPREC through Wolt HQ Denmark.</li>
+              <li><strong>Nationwide rollout.</strong> Gear return embedded into offboarding across <strong>6 German cities covering 2,000+ courier partners</strong>.</li>
+              <li><strong>Result.</strong> <strong>30% reduction in equipment procurement spend</strong>, first 12 months against the following 12 post-implementation.</li>
+            </ul>
+            <p class="case-meta">2021 — 2022 · Operations Associate · Nationwide</p>
+            <a href="/wolt/" class="case-cta">Read the case study <span class="arrow" aria-hidden="true">→</span></a>
+            <p class="case-note">Reference letter on file from Wolt, available via the Certificates section.</p>
+          </div>
+          <div class="case-visual" id="vis-wolt">
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-wolt">View diagram <span class="sign" aria-hidden="true">+</span></button>
+            <figure class="case-figure" id="fig-wolt">
+              <div class="case-figure-inner">
+                <svg viewBox="0 0 480 330" role="img" aria-label="Compact circular gear lifecycle: procurement feeds distribution as a residual input, while the main loop runs refurbishment to distribution to recovery and back to refurbishment. Gear that fails assessment exits downstream to Wolt HQ Denmark, the TARPREC facility, and material recovery.">
+                  <defs>
+                    <marker id="wo-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#B8FF3D"/></marker>
+                    <marker id="wo-arrow-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#8A8A93"/></marker>
+                  </defs>
+                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
+                  <text x="24" y="28" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">GEAR LIFECYCLE</text>
+
+                  <rect x="178" y="44" width="124" height="36" rx="10" fill="#141417" stroke="#303036" stroke-dasharray="4 3"/>
+                  <text x="240" y="66" text-anchor="middle" font-family="Inter,sans-serif" font-size="11.5" font-weight="600" fill="#8A8A93">Procurement</text>
+                  <line x1="240" y1="80" x2="240" y2="104" stroke="#8A8A93" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#wo-arrow-m)"/>
+                  <text x="252" y="96" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">RESIDUAL</text>
+
+                  <rect x="24" y="108" width="124" height="50" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="86" y="131" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Refurbish</text>
+                  <text x="86" y="147" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">BERLIN INTAKE</text>
+
+                  <rect x="178" y="108" width="124" height="50" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="240" y="131" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Distribution</text>
+                  <text x="240" y="147" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">ISSUED AT HIRE</text>
+
+                  <rect x="332" y="108" width="124" height="50" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="394" y="131" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Recovery</text>
+                  <text x="394" y="147" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">AT OFFBOARDING</text>
+
+                  <line x1="152" y1="133" x2="174" y2="133" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#wo-arrow)"/>
+                  <line x1="306" y1="133" x2="328" y2="133" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#wo-arrow)"/>
+                  <path d="M394,158 V186 H86 V164" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#wo-arrow)"/>
+                  <text x="240" y="202" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8.5" letter-spacing="1.2" fill="#B8FF3D">GEAR RETURNS TO THE SYSTEM</text>
+
+                  <line x1="48" y1="158" x2="48" y2="234" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#wo-arrow-m)"/>
+                  <text x="58" y="222" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">FAILS ASSESSMENT</text>
+
+                  <rect x="24" y="238" width="130" height="42" rx="10" fill="#101013" stroke="#2A2A30"/>
+                  <text x="89" y="264" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#F7F7F8">Damaged gear</text>
+                  <rect x="176" y="238" width="130" height="42" rx="10" fill="#101013" stroke="#2A2A30"/>
+                  <text x="241" y="258" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#F7F7F8">TARPREC</text>
+                  <text x="241" y="272" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">VIA HQ DENMARK</text>
+                  <rect x="328" y="238" width="128" height="42" rx="10" fill="#101013" stroke="#2A2A30"/>
+                  <text x="392" y="264" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="600" fill="#F7F7F8">Material recovery</text>
+
+                  <line x1="158" y1="259" x2="172" y2="259" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#wo-arrow-m)"/>
+                  <line x1="310" y1="259" x2="324" y2="259" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#wo-arrow-m)"/>
+                  <text x="240" y="306" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8.5" letter-spacing="1.2" fill="#8A8A93">DOWNSTREAM — MATERIAL RECOVERY</text>
+                </svg>
+              </div>
+              <figcaption class="case-figcaption">Circular gear lifecycle</figcaption>
+            </figure>
+          </div>
+        </article>
+        <!-- 05 — BOLT -->
+        <article class="case reveal">
+          <div class="case-text">
+            <p class="case-eyebrow">05 · Featured case study</p>
+            <h3>Bolt — Rebuilding a driver activation funnel nobody could see inside.</h3>
+            <p class="case-intro">Driver activation at Bolt Rides in Southern Germany was a single number reported weekly: around 25%, with no visibility into which step drivers stalled at. I built the in-app instrumentation to see the funnel stage by stage, then designed interventions against each specific leak.</p>
+            <ul class="case-points">
+              <li><strong>Instrumentation first.</strong> In-app analytics measuring drop-off per stage — registration, upload, verification, activation, first ride — replacing a weekly aggregate that hid the leak.</li>
+              <li><strong>Diagnosis.</strong> Five friction points: manual document review, generic communication, duplicate account blocks, language barriers, and deprioritised long-tail fleets.</li>
+              <li><strong>Result.</strong> Activation moved from <strong>25% to 58% in six weeks across 1,000+ registrations</strong>.</li>
+            </ul>
+            <p class="case-meta">2023 · Operations Specialist · 6 weeks</p>
+            <a href="/bolt/" class="case-cta">Read the case study <span class="arrow" aria-hidden="true">→</span></a>
+            <p class="case-note">Contribution split and specific figures available on request.</p>
+          </div>
+          <div class="case-visual" id="vis-bolt">
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-bolt">View diagram <span class="sign" aria-hidden="true">+</span></button>
+            <figure class="case-figure" id="fig-bolt">
+              <div class="case-figure-inner">
+                <svg viewBox="0 0 480 330" role="img" aria-label="Compact activation funnel in five narrowing stages: registration at 100 percent, document upload, document verification highlighted as the largest drop-off, account activation, and first ride at roughly 25 percent of registrations at baseline.">
+                  <defs>
+                    <marker id="bo-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#8A8A93"/></marker>
+                  </defs>
+                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
+                  <text x="24" y="28" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">100% REGISTERED</text>
+
+                  <rect x="24" y="42" width="412" height="42" rx="10" fill="#141417" stroke="#303036"/>
+                  <text x="230" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Registration</text>
+                  <line x1="230" y1="84" x2="230" y2="98" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#bo-arrow)"/>
+
+                  <rect x="60" y="102" width="340" height="42" rx="10" fill="#141417" stroke="#303036"/>
+                  <text x="230" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Document upload</text>
+                  <line x1="230" y1="144" x2="230" y2="158" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#bo-arrow)"/>
+
+                  <rect x="96" y="162" width="268" height="42" rx="10" fill="rgba(184,255,61,0.07)" stroke="rgba(184,255,61,0.45)"/>
+                  <text x="230" y="182" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Document verification</text>
+                  <text x="230" y="196" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#B8FF3D">LARGEST DROP-OFF</text>
+                  <line x1="372" y1="183" x2="398" y2="183" stroke="rgba(184,255,61,0.45)" stroke-width="1" stroke-dasharray="3 3"/>
+                  <text x="404" y="186" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#B8FF3D">MANUAL</text>
+                  <line x1="230" y1="204" x2="230" y2="218" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#bo-arrow)"/>
+
+                  <rect x="140" y="222" width="180" height="42" rx="10" fill="#141417" stroke="#303036"/>
+                  <text x="230" y="248" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">Account activation</text>
+                  <line x1="230" y1="264" x2="230" y2="278" stroke="#8A8A93" stroke-width="1.3" marker-end="url(#bo-arrow)"/>
+
+                  <rect x="168" y="282" width="124" height="42" rx="10" fill="#141417" stroke="#303036"/>
+                  <text x="230" y="302" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#F7F7F8">First ride</text>
+                  <text x="230" y="316" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="7.5" letter-spacing="1" fill="#8A8A93">≈25% BASELINE</text>
+                </svg>
+              </div>
+              <figcaption class="case-figcaption">Activation funnel — stage widths illustrative</figcaption>
+            </figure>
+          </div>
+        </article>
+        <!-- 06 — ALCORTE -->
+        <article class="case reveal">
+          <div class="case-text">
+            <p class="case-eyebrow">06 · Featured case study</p>
+            <h3>Alcorte Alemán — Running a 50-year-old butcher shop through WhatsApp.</h3>
+            <p class="case-intro">An AI order-management system for a family butcher shop in Mexico City, designed around a single constraint: the operator never opens a dashboard. WhatsApp is not a channel bolted onto the product — it is the entire product surface, for customers and owner alike.</p>
+            <ul class="case-points">
+              <li><strong>Constraint-driven architecture.</strong> “No dashboard” treated as the specification rather than a limitation to work around.</li>
+              <li><strong>Production integration.</strong> Meta WhatsApp Business API, Vercel, Supabase RLS and a Claude agentic loop with tool calling, wired end to end against live data.</li>
+              <li><strong>Scale.</strong> <strong>120+ products across 1000+ customers</strong>, with row-level security keyed on vendor_id so the schema is multi-tenant from day one.</li>
+            </ul>
+            <p class="case-meta">2025 — Present · Side project · Solo build</p>
+            <a href="/alcorte/" class="case-cta">Read the case study <span class="arrow" aria-hidden="true">→</span></a>
+            <p class="case-note">Private repository, 2FA-enforced. Reference details on request.</p>
+          </div>
+          <div class="case-visual" id="vis-alcorte">
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-alcorte">View diagram <span class="sign" aria-hidden="true">+</span></button>
+            <figure class="case-figure" id="fig-alcorte">
+              <div class="case-figure-inner">
+                <svg viewBox="0 0 480 330" role="img" aria-label="Flow diagram of the WhatsApp order system: a customer message reaches the WhatsApp Business API, then a Claude agentic loop with tool calling, which reads and writes Supabase under row-level security, and the reply returns to the customer through WhatsApp.">
+                  <defs>
+                    <marker id="al-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#B8FF3D"/></marker>
+                  </defs>
+                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
+                  <text x="24" y="30" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">ORDER FLOW · ONE SURFACE</text>
+
+                  <rect x="24" y="62" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="86" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Customer</text>
+                  <text x="86" y="103" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">SENDS A MESSAGE</text>
+
+                  <rect x="178" y="62" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="240" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">WhatsApp API</text>
+                  <text x="240" y="103" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">META WEBHOOK</text>
+
+                  <rect x="332" y="62" width="124" height="56" rx="12" fill="rgba(184,255,61,0.06)" stroke="rgba(184,255,61,0.4)"/>
+                  <text x="394" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Claude loop</text>
+                  <text x="394" y="103" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#B8FF3D">TOOL CALLING</text>
+
+                  <line x1="152" y1="90" x2="174" y2="90" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
+                  <line x1="306" y1="90" x2="328" y2="90" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
+                  <line x1="394" y1="118" x2="394" y2="176" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
+
+                  <rect x="332" y="180" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="394" y="204" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Supabase</text>
+                  <text x="394" y="221" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">POSTGRES · RLS</text>
+
+                  <rect x="178" y="180" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="240" y="204" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Response</text>
+                  <text x="240" y="221" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">ORDER CONFIRMED</text>
+
+                  <line x1="328" y1="208" x2="306" y2="208" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
+                  <path d="M178,208 H86 V124" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
+
+                  <path d="M24,270 V278 H456 V270" fill="none" stroke="#4A4A52" stroke-width="1.2"/>
+                  <text x="240" y="298" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">NO DASHBOARD · THE CHAT IS THE PRODUCT</text>
+                </svg>
+              </div>
+              <figcaption class="case-figcaption">WhatsApp system flow</figcaption>
+            </figure>
           </div>
         </article>
 

@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ausgewählte Arbeiten &mdash; Jorge Aguilar</title>
-<meta name="description" content="Marketplace-Operations in Systems Thinking übersetzen — fünf Fallstudien aus Mobilität, compliance-kritischem SaaS und AI-nativem Produkt: Nexio Fleet, Alcorte Alemán, Wolt, Bolt und eine eigenständige Marktplatzanalyse.">
+<meta name="description" content="Marketplace-Operations in Systems Thinking übersetzen — fünf Projekte aus Mobilität, compliance-kritischem SaaS und AI-nativem Produkt: Nexio Fleet, Wolt, Bolt, Alcorte Alemán und eine eigenständige Marktplatzanalyse.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ausgewählte Arbeiten &mdash; Jorge Aguilar">
-<meta property="og:description" content="Marketplace-Operations in Systems Thinking übersetzen — fünf Fallstudien aus Mobilität, compliance-kritischem SaaS und AI-nativem Produkt.">
+<meta property="og:description" content="Marketplace-Operations in Systems Thinking übersetzen — fünf Projekte aus Mobilität, compliance-kritischem SaaS und AI-nativem Produkt.">
 <meta property="og:site_name" content="Jorge Aguilar Portfolio">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ausgewählte Arbeiten &mdash; Jorge Aguilar">
-<meta name="twitter:description" content="Marketplace-Operations in Systems Thinking übersetzen — fünf Fallstudien aus Mobilität, compliance-kritischem SaaS und AI-nativem Produkt.">
+<meta name="twitter:description" content="Marketplace-Operations in Systems Thinking übersetzen — fünf Projekte aus Mobilität, compliance-kritischem SaaS und AI-nativem Produkt.">
 <link rel="canonical" href="https://jorgeag.com/de/work/">
 <link rel="alternate" hreflang="en" href="https://jorgeag.com/work/">
 <link rel="alternate" hreflang="de" href="https://jorgeag.com/de/work/">
@@ -251,9 +251,13 @@
   }
   /* Zig-zag: en las pares el diagrama va a la izquierda. Se invierte con order
      para no alterar el orden del DOM, que es el que leen lector y teclado. */
-  .case:nth-of-type(even) .case-text{order:2;}
-  .case:nth-of-type(even) .case-visual{order:1;}
-  .case:nth-of-type(even)::before{right:auto;left:0;background:radial-gradient(circle at top left, rgba(184,255,61,0.06) 0%, transparent 70%);}
+  /* El zig-zag cuenta solo las cards de dos columnas: la card solo (a ancho
+     completo, sin diagrama) no debe consumir un turno de la alternancia, o dos
+     cards seguidas quedan con el diagrama del mismo lado. Si el navegador no
+     soporta `of S`, la regla cae y todas quedan en el orden base. */
+  .case:nth-child(even of .case:not(.case--solo)) .case-text{order:2;}
+  .case:nth-child(even of .case:not(.case--solo)) .case-visual{order:1;}
+  .case:nth-child(even of .case:not(.case--solo))::before{right:auto;left:0;background:radial-gradient(circle at top left, rgba(184,255,61,0.06) 0%, transparent 70%);}
 
   .case-text{min-width:0;position:relative;z-index:1;}
   .case-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
@@ -303,7 +307,7 @@
     .work-grid{gap:22px;}
     .case{grid-template-columns:minmax(0,1fr);gap:26px;padding:30px 24px;}
     /* El diagrama siempre despues del texto al apilar, sea cual sea el zig-zag */
-    .case:nth-of-type(even) .case-text,.case:nth-of-type(even) .case-visual{order:initial;}
+    .case:nth-child(even of .case:not(.case--solo)) .case-text,.case:nth-child(even of .case:not(.case--solo)) .case-visual{order:initial;}
     .case-text h3{max-width:none;}
     .case-meta{margin-bottom:18px;}
     .case-cta{width:100%;justify-content:center;padding:15px 22px;}
@@ -490,69 +494,21 @@
             </figure>
           </div>
         </article>
-
-        <!-- 02 — ALCORTE -->
-        <article class="case reveal">
+        <!-- 02 — SELF-DIRECTED (sin case study publicado) -->
+        <article class="case case--solo reveal">
           <div class="case-text">
-            <p class="case-eyebrow">02 · Ausgewählte Fallstudie</p>
-            <h3>Alcorte Alemán — Eine 50 Jahre alte Metzgerei über WhatsApp betreiben.</h3>
-            <p class="case-intro">Ein KI-gestütztes Bestellsystem für eine Familienmetzgerei in Mexiko-Stadt, entworfen um eine einzige Bedingung: Der Betreiber öffnet nie ein Dashboard. WhatsApp ist kein Kanal, der an das Produkt angeflanscht wurde — es ist die gesamte Produktoberfläche, für Kunden wie für den Inhaber.</p>
+            <p class="case-eyebrow">02 · Eigenständiges Projekt</p>
+            <h3>Marketplace Strategy &amp; Analytics — Europäische Premium-Mobilität</h3>
+            <p class="case-intro">Ein eigenständiges analytisches Projekt, das mein Framework auf einen Premium-Fahrtenmarktplatz in mehreren Städten anwendet. Es zeigt, wie ich Wachstumsstrategie, Partnerschaftsverantwortung und Qualitätsökonomie im Marktplatzmaßstab angehe.</p>
             <ul class="case-points">
-              <li><strong>Von Beschränkungen getriebene Architektur.</strong> „Kein Dashboard“ wurde als Spezifikation behandelt, nicht als zu umgehende Einschränkung.</li>
-              <li><strong>Integration im Produktivbetrieb.</strong> Meta WhatsApp Business API, Vercel, Supabase RLS und ein agentischer Claude-Loop mit Tool Calling, durchgängig gegen Live-Daten verdrahtet.</li>
-              <li><strong>Umfang.</strong> <strong>120+ Produkte bei 1000+ Kunden</strong>, mit Row-Level Security auf vendor_id, sodass das Schema von Tag eins an mandantenfähig ist.</li>
+              <li><strong>BD-Strategie über Regionen hinweg.</strong> Auswahl der Wachstumsmärkte über explizite Filterstufen — partnerschaftsgetriebene Märkte (Airline-getrieben, Südeuropa) und Direktkundenmärkte (Westeuropa).</li>
+              <li><strong>Kundenorientierte Analyse-Dashboards.</strong> Gebaut in Python, Streamlit und Plotly — operative Telemetrie, Partner-Performance, Segmentökonomie und Qualität-gegen-Marge-Sichten.</li>
+              <li><strong>Quality Contribution Index.</strong> Um Strafabzüge bereinigte Deckungsbeitragskennzahl, die Qualitätsmängel in eine P&amp;L-Zahl pro Fahrt übersetzt.</li>
             </ul>
-            <p class="case-meta">2025 — Gegenwart · Side Project · Solo Build</p>
-            <a href="/de/alcorte/" class="case-cta">Fallstudie lesen <span class="arrow" aria-hidden="true">→</span></a>
-            <p class="case-note">Privates Repository, 2FA erzwungen. Referenzdetails auf Anfrage.</p>
-          </div>
-          <div class="case-visual" id="vis-alcorte">
-            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-alcorte">Diagramm ansehen <span class="sign" aria-hidden="true">+</span></button>
-            <figure class="case-figure" id="fig-alcorte">
-              <div class="case-figure-inner">
-                <svg viewBox="0 0 480 330" role="img" aria-label="Flussdiagramm des WhatsApp-Bestellsystems: Eine Kundennachricht erreicht die WhatsApp Business API, dann einen agentischen Claude-Loop mit Tool Calling, der unter Row-Level Security aus Supabase liest und schreibt; die Antwort geht über WhatsApp zurück an den Kunden.">
-                  <defs>
-                    <marker id="al-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#B8FF3D"/></marker>
-                  </defs>
-                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
-                  <text x="24" y="30" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">BESTELLFLUSS · EINE OBERFLÄCHE</text>
-
-                  <rect x="24" y="62" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
-                  <text x="86" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Kunde</text>
-                  <text x="86" y="103" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">SENDET EINE NACHRICHT</text>
-
-                  <rect x="178" y="62" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
-                  <text x="240" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">WhatsApp API</text>
-                  <text x="240" y="103" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">META WEBHOOK</text>
-
-                  <rect x="332" y="62" width="124" height="56" rx="12" fill="rgba(184,255,61,0.06)" stroke="rgba(184,255,61,0.4)"/>
-                  <text x="394" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Claude-Loop</text>
-                  <text x="394" y="103" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#B8FF3D">TOOL CALLING</text>
-
-                  <line x1="152" y1="90" x2="174" y2="90" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
-                  <line x1="306" y1="90" x2="328" y2="90" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
-                  <line x1="394" y1="118" x2="394" y2="176" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
-
-                  <rect x="332" y="180" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
-                  <text x="394" y="204" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Supabase</text>
-                  <text x="394" y="221" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">POSTGRES · RLS</text>
-
-                  <rect x="178" y="180" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
-                  <text x="240" y="204" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Antwort</text>
-                  <text x="240" y="221" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">BESTELLUNG BESTÄTIGT</text>
-
-                  <line x1="328" y1="208" x2="306" y2="208" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
-                  <path d="M178,208 H86 V124" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
-
-                  <path d="M24,270 V278 H456 V270" fill="none" stroke="#4A4A52" stroke-width="1.2"/>
-                  <text x="240" y="298" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">KEIN DASHBOARD · DER CHAT IST DAS PRODUKT</text>
-                </svg>
-              </div>
-              <figcaption class="case-figcaption">WhatsApp-Systemfluss</figcaption>
-            </figure>
+            <p class="case-meta">2026 · Eigenständig · Premium-Mobilitätssektor</p>
+            <p class="case-note">Vollständige Projektdetails auf Anfrage.</p>
           </div>
         </article>
-
         <!-- 03 — WOLT -->
         <article class="case reveal">
           <div class="case-text">
@@ -622,7 +578,6 @@
             </figure>
           </div>
         </article>
-
         <!-- 04 — BOLT -->
         <article class="case reveal">
           <div class="case-text">
@@ -677,20 +632,65 @@
             </figure>
           </div>
         </article>
-
-        <!-- 05 — SELF-DIRECTED (sin case study publicado) -->
-        <article class="case case--solo reveal">
+        <!-- 05 — ALCORTE -->
+        <article class="case reveal">
           <div class="case-text">
-            <p class="case-eyebrow">05 · Eigenständiges Projekt</p>
-            <h3>Marketplace Strategy &amp; Analytics — Europäische Premium-Mobilität</h3>
-            <p class="case-intro">Ein eigenständiges analytisches Projekt, das mein Framework auf einen Premium-Fahrtenmarktplatz in mehreren Städten anwendet. Es zeigt, wie ich Wachstumsstrategie, Partnerschaftsverantwortung und Qualitätsökonomie im Marktplatzmaßstab angehe.</p>
+            <p class="case-eyebrow">05 · Ausgewählte Fallstudie</p>
+            <h3>Alcorte Alemán — Eine 50 Jahre alte Metzgerei über WhatsApp betreiben.</h3>
+            <p class="case-intro">Ein KI-gestütztes Bestellsystem für eine Familienmetzgerei in Mexiko-Stadt, entworfen um eine einzige Bedingung: Der Betreiber öffnet nie ein Dashboard. WhatsApp ist kein Kanal, der an das Produkt angeflanscht wurde — es ist die gesamte Produktoberfläche, für Kunden wie für den Inhaber.</p>
             <ul class="case-points">
-              <li><strong>BD-Strategie über Regionen hinweg.</strong> Auswahl der Wachstumsmärkte über explizite Filterstufen — partnerschaftsgetriebene Märkte (Airline-getrieben, Südeuropa) und Direktkundenmärkte (Westeuropa).</li>
-              <li><strong>Kundenorientierte Analyse-Dashboards.</strong> Gebaut in Python, Streamlit und Plotly — operative Telemetrie, Partner-Performance, Segmentökonomie und Qualität-gegen-Marge-Sichten.</li>
-              <li><strong>Quality Contribution Index.</strong> Um Strafabzüge bereinigte Deckungsbeitragskennzahl, die Qualitätsmängel in eine P&amp;L-Zahl pro Fahrt übersetzt.</li>
+              <li><strong>Von Beschränkungen getriebene Architektur.</strong> „Kein Dashboard“ wurde als Spezifikation behandelt, nicht als zu umgehende Einschränkung.</li>
+              <li><strong>Integration im Produktivbetrieb.</strong> Meta WhatsApp Business API, Vercel, Supabase RLS und ein agentischer Claude-Loop mit Tool Calling, durchgängig gegen Live-Daten verdrahtet.</li>
+              <li><strong>Umfang.</strong> <strong>120+ Produkte bei 1000+ Kunden</strong>, mit Row-Level Security auf vendor_id, sodass das Schema von Tag eins an mandantenfähig ist.</li>
             </ul>
-            <p class="case-meta">2026 · Eigenständig · Premium-Mobilitätssektor</p>
-            <p class="case-note">Vollständige Projektdetails auf Anfrage.</p>
+            <p class="case-meta">2025 — Gegenwart · Side Project · Solo Build</p>
+            <a href="/de/alcorte/" class="case-cta">Fallstudie lesen <span class="arrow" aria-hidden="true">→</span></a>
+            <p class="case-note">Privates Repository, 2FA erzwungen. Referenzdetails auf Anfrage.</p>
+          </div>
+          <div class="case-visual" id="vis-alcorte">
+            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-alcorte">Diagramm ansehen <span class="sign" aria-hidden="true">+</span></button>
+            <figure class="case-figure" id="fig-alcorte">
+              <div class="case-figure-inner">
+                <svg viewBox="0 0 480 330" role="img" aria-label="Flussdiagramm des WhatsApp-Bestellsystems: Eine Kundennachricht erreicht die WhatsApp Business API, dann einen agentischen Claude-Loop mit Tool Calling, der unter Row-Level Security aus Supabase liest und schreibt; die Antwort geht über WhatsApp zurück an den Kunden.">
+                  <defs>
+                    <marker id="al-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#B8FF3D"/></marker>
+                  </defs>
+                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
+                  <text x="24" y="30" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">BESTELLFLUSS · EINE OBERFLÄCHE</text>
+
+                  <rect x="24" y="62" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="86" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Kunde</text>
+                  <text x="86" y="103" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">SENDET EINE NACHRICHT</text>
+
+                  <rect x="178" y="62" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="240" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">WhatsApp API</text>
+                  <text x="240" y="103" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">META WEBHOOK</text>
+
+                  <rect x="332" y="62" width="124" height="56" rx="12" fill="rgba(184,255,61,0.06)" stroke="rgba(184,255,61,0.4)"/>
+                  <text x="394" y="86" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Claude-Loop</text>
+                  <text x="394" y="103" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#B8FF3D">TOOL CALLING</text>
+
+                  <line x1="152" y1="90" x2="174" y2="90" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
+                  <line x1="306" y1="90" x2="328" y2="90" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
+                  <line x1="394" y1="118" x2="394" y2="176" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
+
+                  <rect x="332" y="180" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="394" y="204" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Supabase</text>
+                  <text x="394" y="221" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">POSTGRES · RLS</text>
+
+                  <rect x="178" y="180" width="124" height="56" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="240" y="204" text-anchor="middle" font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#F7F7F8">Antwort</text>
+                  <text x="240" y="221" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1" fill="#8A8A93">BESTELLUNG BESTÄTIGT</text>
+
+                  <line x1="328" y1="208" x2="306" y2="208" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
+                  <path d="M178,208 H86 V124" fill="none" stroke="#B8FF3D" stroke-width="1.6" marker-end="url(#al-arrow)"/>
+
+                  <path d="M24,270 V278 H456 V270" fill="none" stroke="#4A4A52" stroke-width="1.2"/>
+                  <text x="240" y="298" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">KEIN DASHBOARD · DER CHAT IST DAS PRODUKT</text>
+                </svg>
+              </div>
+              <figcaption class="case-figcaption">WhatsApp-Systemfluss</figcaption>
+            </figure>
           </div>
         </article>
 
