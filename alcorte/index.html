@@ -457,6 +457,65 @@
      en lima competirian con el CTA del nav. */
   .site-footer a{color:inherit;text-decoration:none;transition:color .2s ease}
   .site-footer a:hover{color:var(--accent)}
+
+  /* ── ESCALA UNICA DE ESPACIADO Y TIPOGRAFIA ────────────────────────────
+     Los resets margin:0 de .lede, .body, .impact, .tags y las listas se
+     declaran con la misma especificidad (0,1,0) que las reglas de pila
+     (.card > * + *, .sub > * + *) y ganaban por orden: por eso el mismo par
+     medía 0px en Nexio y 16px en Wolt, que llevaba un parche propio. Aqui
+     cada par se resuelve por ESPECIFICIDAD (0,2,x), no por orden, asi que
+     una regla nueva mas abajo no puede volver a romperlo.
+
+     Los contenedores flex espacian con gap; ponerles margen ademas lo
+     sumaria, asi que a esos se les ajusta el gap y a los de bloque el
+     margen. .card y .pillar-content pasan a bloque para que en todas las
+     paginas mande el mismo mecanismo. */
+  :root{
+    --sp-label:16px;   /* chips o eyebrow -> titulo      */
+    --sp-title:8px;    /* titulo -> subtitulo o impacto  */
+    --sp-text:16px;    /* impacto -> parrafo, p -> p     */
+    --sp-media:24px;   /* texto -> figura o lista        */
+    --sp-block:48px;   /* entre bloques                  */
+    --lh-title:1.15; --lh-text:1.65; --lh-impact:1.45;
+    --ls-display:-.03em; --ls-title:-.02em; --ls-mono:.12em;
+  }
+  @media (max-width:480px){ :root{--sp-block:40px} }
+
+  /* un solo mecanismo de espaciado vertical */
+  .card,.pillar-content{display:block}
+  .stack{gap:var(--sp-block)}
+  .head{gap:var(--sp-title)}
+
+  /* entre bloques */
+  :is(.card,.note,.sub) > :is(p,ul,ol,dl,figure,div,h2,h3,h4,.body,.lede,.impact,.tags) + .sub,
+  .sub + .sub,
+  main section + section{margin-top:var(--sp-block)}
+
+  /* Un margin-bottom suelto colapsa con el margin-top de la escala y gana el
+     mayor, asi que la escala dejaba de mandar (19px en el callout de Alcorte,
+     20px bajo el h2 de leadership-framework). El ritmo lo fija una sola
+     propiedad: el margen superior del elemento que entra. */
+  :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement) > :is(p,h1,h2,h3,h4,ul,ol,dl,figure){margin-bottom:0}
+
+  /* base: ritmo de texto */
+  :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement) > * + :is(p,ul,ol,dl,figure,div,h2,h3,h4,.body,.lede,.impact,.tags){margin-top:var(--sp-text)}
+
+  /* etiqueta -> titulo */
+  :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement) > :is(.tags,.eyebrow,.kicker,.applied-label,.statement-label) + :is(h1,h2,h3,h4){margin-top:var(--sp-label)}
+
+  /* titulo -> subtitulo o linea de impacto */
+  :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement) > :is(h1,h2,h3,h4) + :is(.impact,.lede,.role,.subtitle){margin-top:var(--sp-title)}
+
+  /* texto -> figura o lista */
+  :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement) > :is(p,.impact,.lede,.body,h2,h3,h4,figure,ul,ol,dl,.figbox) + :is(figure,ul,ol,dl,.figbox,.photo-split){margin-top:var(--sp-media)}
+
+  /* tipografia */
+  :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) :is(h2,h3,h4){line-height:var(--lh-title);letter-spacing:var(--ls-title)}
+  .rail h1{letter-spacing:var(--ls-display)}
+  :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) :is(p,li,figcaption){line-height:var(--lh-text);letter-spacing:normal}
+  :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) .impact{line-height:var(--lh-impact)}
+  :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) :is(.eyebrow,.tag,.kicker,.applied-label,.statement-label){letter-spacing:var(--ls-mono)}
+  :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) figcaption{letter-spacing:.04em}
 </style>
 <script src="/consent.js" defer></script>
 </head>
