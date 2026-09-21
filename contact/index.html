@@ -24,6 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap">
 <link rel="stylesheet" href="/contact/form.css">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 </head>
 <body>
 
@@ -137,14 +138,14 @@
       <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
     </div>
 
-    <!-- TURNSTILE — pendiente de configurar. Cuando exista el site key:
-         1) descomentar las dos lineas de abajo y pegar el key en data-sitekey
-         2) `wrangler secret put TURNSTILE_SECRET_KEY` con el secret key
-         Mientras no exista, el Worker aplica honeypot + rate limiting y no
-         exige token, para no mostrar un widget roto.
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-    <div class="cf-turnstile" data-sitekey="PEGAR_SITE_KEY" data-theme="dark" data-response-field-name="cf-turnstile-response"></div>
-    -->
+    <!-- Turnstile en modo Managed: invisible salvo que la senal del visitante
+         sea sospechosa. El script vive en <head>; este div es el punto de
+         montaje. Al resolverse inyecta un <input hidden> con name
+         cf-turnstile-response dentro del form, y FormData lo recoge solo.
+         El secret correspondiente vive en el Worker (wrangler secret put
+         TURNSTILE_SECRET_KEY), nunca en el repo. -->
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAAE-5HS0m-wuLJxic"
+         data-theme="dark" data-response-field-name="cf-turnstile-response"></div>
 
     <div class="consent">
       <input type="checkbox" id="consent" name="consent" value="1">

@@ -55,6 +55,16 @@
     return d;
   }
 
+  /* El token de Turnstile es de un solo uso: el Worker lo consume al validarlo.
+     Si el envio no prospera, el que sigue en el widget ya no sirve y el
+     siguiente intento fallaria el spam check aunque la persona sea legitima.
+     Se pide uno nuevo tras cada fallo. */
+  function resetTurnstile() {
+    if (window.turnstile && typeof window.turnstile.reset === 'function') {
+      try { window.turnstile.reset(); } catch (e) { /* widget aun no montado */ }
+    }
+  }
+
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
     clearErrors();
@@ -95,6 +105,7 @@
           show('is-ok', '<span class="mark">&#10003;</span>' + T.success);
           return;
         }
+        resetTurnstile();
         var code = (res.body && res.body.code) || 'error';
         if (code === 'not_configured' || res.status >= 500) {
           show('is-err', T.unavailable.replace('{link}',
@@ -108,6 +119,7 @@
         }
       })
       .catch(function () {
+        resetTurnstile();
         show('is-err', T.unavailable.replace('{link}',
           '<a href="' + mailtoFallback(d) + '">' + T.unavailableLink + '</a>'));
       })

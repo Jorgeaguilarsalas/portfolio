@@ -43,26 +43,34 @@ Estado sin configurar: el endpoint responde `503 not_configured` y el frontend
 ofrece un `mailto:` ya redactado con lo que la persona escribio, asi que no se
 pierde ningun lead. Honeypot y rate limiting funcionan desde el primer dia.
 
-### Pasos pendientes para activarlo
+### Estado: activo
 
-1. **Turnstile** — Dashboard → Turnstile → Add site `jorgeag.com`, modo Managed.
-   Pegar el *site key* en `data-sitekey` y descomentar el bloque TURNSTILE en las
-   tres paginas; luego `wrangler secret put TURNSTILE_SECRET_KEY` con el *secret
-   key*. Mientras el secret no exista, el Worker no exige token.
-2. **Envio de correo** — una de las dos:
-   - `wrangler secret put RESEND_API_KEY` (dominio verificado en Resend). Es la
-     unica via que permite el **auto-reply**: Cloudflare Email Workers solo
-     entrega a direcciones verificadas de la cuenta, nunca a un remitente
-     desconocido.
-   - o binding `[[send_email]]` (`name = "MAIL"`, `destination_address` ya
-     verificado en Email Routing). Cubre el aviso a Jorge, no el auto-reply.
-3. **Rate limiting entre isolates** (opcional) — `wrangler kv namespace create
-   CONTACT_KV` y agregar el binding como `CONTACT_KV`. Sin el, el limite de
-   5/hora por IP se aplica por isolate.
+1. **Turnstile** — sitio `jorgeag.com` en modo Managed. El *site key* es publico
+   y vive en `data-sitekey` de las tres paginas; el *secret key* esta cargado
+   como secret del Worker (`TURNSTILE_SECRET_KEY`). El Worker solo exige token
+   si ese secret existe, asi que un entorno sin el sigue aceptando envios.
+   El token es de un solo uso: `contact/form.js` llama a `turnstile.reset()`
+   tras cada respuesta de error para que el reintento tenga uno fresco.
+2. **Envio de correo** — `RESEND_API_KEY` cargado como secret. Resend es la
+   unica via que permite el **auto-reply**: Cloudflare Email Workers solo
+   entrega a direcciones verificadas de la cuenta, nunca a un remitente
+   desconocido. Si Resend falla, el endpoint responde 502 y el frontend ofrece
+   un `mailto:` ya redactado, asi que el lead no se pierde.
+3. **Rate limiting entre isolates** (pendiente, opcional) — `wrangler kv
+   namespace create CONTACT_KV` y agregar el binding como `CONTACT_KV`. Sin el,
+   el limite de 5/hora por IP se aplica por isolate.
 
-Opcionales: `CONTACT_INBOX` (destino, default `hello@jorgeag.com`) y
-`CONTACT_FROM` (remitente, default `contact@jorgeag.com`).
+Variables opcionales (`[vars]` en `wrangler.toml` o dashboard):
 
-Al activar Resend u otro proveedor hay que nombrarlo en la seccion 12
-(Kontaktformular) del Datenschutz, donde hoy figuran Cloudflare y el proveedor
-del buzon.
+| Variable | Default | Para que |
+|---|---|---|
+| `CONTACT_INBOX` | `hello@jorgeag.com` | destino del aviso |
+| `CONTACT_FROM` | `contact@jorgeag.com` | remitente del aviso |
+| `CONTACT_REPLY_FROM` | `hello@jorgeag.com` | remitente del auto-reply |
+
+Los remitentes tienen que pertenecer a un dominio verificado en Resend, si no
+la API responde 403 y el envio cae al `mailto:`.
+
+Turnstile, Cloudflare Workers y Resend figuran como encargados del tratamiento
+en la seccion 12 (Kontaktformular) del Datenschutz. Cambiar de proveedor obliga
+a actualizar esa seccion.

@@ -63,6 +63,11 @@ input::placeholder,textarea::placeholder{color:#5c5c63;}
 
 /* honeypot: fuera de pantalla, no display:none (algunos bots lo detectan) */
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+/* Turnstile en Managed no pinta nada cuando el visitante no es sospechoso:
+   sin margen propio, para no dejar un hueco en el caso normal. El iframe
+   trae su alto cuando si hay que mostrar el reto. */
+.cf-turnstile{margin:26px 0 0;}
+.cf-turnstile:empty{margin:0;}
 
 /* error */
 .field.has-error input,.field.has-error select,.field.has-error textarea{border-color:var(--err);}

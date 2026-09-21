@@ -1,5 +1,8 @@
 .git/
 .wrangler/
+# Config y estado de sesion de Claude Code. Con directory="./" se servia en
+# jorgeag.com/.claude/*, que es una filtracion de ficheros internos.
+.claude/
 .DS_Store
 README.md
 wrangler.toml
