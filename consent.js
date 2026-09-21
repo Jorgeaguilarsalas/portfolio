@@ -81,18 +81,35 @@
     }
   };
 
-  /* La ruta manda: en este sitio el idioma de la pagina es el del prefijo, y
-     es lo que la persona esta leyendo. navigator.language solo decide si la
-     ruta no lo dice (solo pasaria en una pagina suelta sin prefijo). */
-  function pickLang() {
+  /* El idioma de la pagina: el prefijo de la ruta manda, y si no lo hay, el
+     atributo lang del documento. Sirve de respaldo del banner y vale igual
+     para /de/motion/ que para /de/wolt/. */
+  function pageLang() {
     var p = location.pathname;
     if (p.indexOf('/de/') === 0) return 'de';
     if (p.indexOf('/es/') === 0) return 'es';
     var htmlLang = (document.documentElement.lang || '').slice(0, 2).toLowerCase();
-    if (COPY[htmlLang]) return htmlLang;
-    var nav = ((navigator.languages && navigator.languages[0]) || navigator.language || '')
-      .slice(0, 2).toLowerCase();
-    return COPY[nav] ? nav : 'en';
+    return COPY[htmlLang] ? htmlLang : null;
+  }
+
+  /* El banner lo lee una persona, no la pagina: manda el idioma que pide su
+     navegador. Se recorre navigator.languages en orden de preferencia y gana
+     el primero de los tres que tenemos; se compara solo el prefijo, asi que
+     de-AT es 'de' y es-MX es 'es'. Si no pide ninguno de los tres (fr-FR),
+     se le habla en el idioma de la pagina que esta leyendo.
+
+     Los eventos NO usan esto: langFromPath() sigue saliendo de la ruta,
+     porque ahi lo que interesa medir es que version se leyo, no quien la
+     leia. */
+  function pickLang() {
+    var list = (navigator.languages && navigator.languages.length)
+      ? navigator.languages
+      : (navigator.language ? [navigator.language] : []);
+    for (var i = 0; i < list.length; i++) {
+      var code = String(list[i] || '').slice(0, 2).toLowerCase();
+      if (COPY[code]) return code;
+    }
+    return pageLang() || 'en';
   }
 
   var T = COPY[pickLang()];
