@@ -121,6 +121,22 @@ async function gather(env, token, ayer) {
   const METRICS = [{ name: "totalUsers" }, { name: "sessions" }, { name: "screenPageViews" }];
   const rango = [{ startDate: ayer, endDate: ayer }];
 
+  /* La dimension personalizada "section" hay que registrarla a mano en GA4 y
+     solo existe a partir de ese momento. Si aun no esta, la API responde con
+     un error de campo invalido: se omite la linea en vez de tumbar el
+     resumen entero. */
+  const secciones = runReport(env, token, {
+    dateRanges: rango, dimensions: [{ name: "customEvent:section" }],
+    metrics: [{ name: "eventCount" }],
+    dimensionFilter: {
+      filter: { fieldName: "eventName", stringFilter: { matchType: "EXACT", value: "section_view" } }
+    },
+    orderBys: [{ metric: { metricName: "eventCount" }, desc: true }], limit: 5
+  }).catch((e) => {
+    console.log("secciones no disponibles:", e && e.message);
+    return null;
+  });
+
   const [hoy, semana, paginas, origenes, motion, form, paises] = await Promise.all([
     runReport(env, token, { dateRanges: rango, metrics: METRICS }),
     runReport(env, token, { dateRanges: [{ startDate: desde7, endDate: hasta7 }], metrics: METRICS }),
@@ -166,7 +182,10 @@ async function gather(env, token, ayer) {
     })),
     motionVistas: totals(motion, 0),
     envios: totals(form, 0),
-    paises: (paises.rows || []).map((r) => ({ pais: dim(r), usuarios: num(r) }))
+    paises: (paises.rows || []).map((r) => ({ pais: dim(r), usuarios: num(r) })),
+    secciones: ((await secciones)?.rows || [])
+      .map((r) => ({ id: dim(r), vistas: num(r) }))
+      .filter((x) => x.id && x.id !== "(not set)")
   };
 }
 
@@ -240,8 +259,13 @@ function componer(d, ayer) {
     L.push(`✉️ ${d.envios} ${d.envios === 1 ? "envío" : "envíos"} del formulario`);
   }
 
+  if (d.secciones.length) {
+    L.push("", "🧭 <b>Secciones</b>");
+    L.push(" " + d.secciones.map((x) => `${esc(x.id)} ${x.vistas}`).join(" · "));
+  }
+
   if (d.paises.length) {
-    L.push(`🗺 ${d.paises.map((p) => `${esc(p.pais)} ${p.usuarios}`).join(" · ")}`);
+    L.push("", `🗺 ${d.paises.map((p) => `${esc(p.pais)} ${p.usuarios}`).join(" · ")}`);
   }
 
   return L.join("\n");

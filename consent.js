@@ -29,7 +29,27 @@
 
   var GA_ID = 'G-4XMR36K6W9';
   var STORAGE_KEY = 'consent_decision';
+  var OPTOUT_KEY = 'ga_opt_out';
   var TTL_MS = 365 * 24 * 60 * 60 * 1000; // 1 ano
+
+  /* Exclusion del propio autor, por dispositivo y no por IP: la IPv6 de una
+     linea residencial rota a diario y no cubre el movil en datos. Con
+     ?noga=1 este navegador deja de cargar GA para siempre; ?noga=0 lo
+     deshace. No toca el consentimiento: el banner se sigue viendo igual que
+     lo ve cualquiera. */
+  function optedOut() {
+    try { return localStorage.getItem(OPTOUT_KEY) === '1'; } catch (e) { return false; }
+  }
+
+  var noga = null;
+  try { noga = new URLSearchParams(location.search).get('noga'); } catch (e) {}
+  if (noga === '1' || noga === '0') {
+    try {
+      if (noga === '1') localStorage.setItem(OPTOUT_KEY, '1');
+      else localStorage.removeItem(OPTOUT_KEY);
+    } catch (e) {}
+  }
+  var EXCLUDED = optedOut();
 
   /* ----------------------------------------------------------------- gtag */
 
@@ -150,7 +170,7 @@
      decide si hay medicion real no es esta carga, sino el valor de
      analytics_storage. */
   function loadGA() {
-    if (gaLoaded) return;
+    if (EXCLUDED || gaLoaded) return;
     gaLoaded = true;
     var s = document.createElement('script');
     s.async = true;
@@ -247,6 +267,13 @@
     '.cc-actions{width:100%;}',
     '.cc-btn{flex:1 1 0;padding:13px 16px;}',
     '}',
+    '.cc-toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);',
+    'z-index:2147483647;max-width:calc(100vw - 32px);',
+    'background:var(--cc-bg);border:1px solid var(--cc-accent);border-radius:999px;',
+    'padding:10px 20px;color:var(--cc-fg);font-family:inherit;font-size:13px;',
+    'font-weight:500;letter-spacing:normal;text-align:center;',
+    'box-shadow:0 10px 30px rgba(0,0,0,.5);transition:opacity .4s ease;}',
+    '.cc-toast.is-out{opacity:0;}',
     '@media(prefers-reduced-motion:no-preference){',
     '.cc-banner{animation:cc-up .32s cubic-bezier(.22,.61,.36,1) both;}',
     '@keyframes cc-up{from{transform:translateY(100%)}to{transform:translateY(0)}}',
@@ -282,6 +309,17 @@
     if (cls) n.className = cls;
     if (text) n.textContent = text;
     return n;
+  }
+
+  function estilos() {
+    var style = document.getElementById('cc-style');
+    if (!style) {
+      style = el('style');
+      style.id = 'cc-style';
+      style.textContent = CSS;
+      document.head.appendChild(style);
+    }
+    return style;
   }
 
   function show() {
@@ -337,6 +375,33 @@
     banner.focus();
   }
 
+  /* ---------------------------------------------------------- aviso */
+
+  var TOAST = {
+    en: { on: "This browser no longer counts in Analytics",
+          off: "This browser counts in Analytics again" },
+    de: { on: "Dieser Browser zählt nicht mehr in Analytics",
+          off: "Dieser Browser zählt wieder in Analytics" },
+    es: { on: "Este navegador ya no cuenta en Analytics",
+          off: "Este navegador vuelve a contar en Analytics" }
+  };
+
+  /* Va arriba y no abajo para no pisar el banner de cookies, que ocupa el
+     borde inferior y puede estar visible a la vez. */
+  function aviso(texto) {
+    var el = document.createElement('div');
+    el.className = 'cc-toast';
+    el.setAttribute('role', 'status');
+    el.textContent = texto;
+    var poner = function () {
+      document.body.appendChild(el);
+      setTimeout(function () { el.classList.add('is-out'); }, 4200);
+      setTimeout(function () { el.remove(); }, 4800);
+    };
+    if (document.body) poner();
+    else document.addEventListener('DOMContentLoaded', poner);
+  }
+
   /* ------------------------------------------------------------ eventos */
 
   var CASE_STUDIES = ['wolt', 'bolt', 'bliq', 'nexio', 'alcorte'];
@@ -357,7 +422,7 @@
   /* Unica puerta de salida de los eventos. Si no hay consentimiento no se
      envia nada, y el resto del codigo no tiene que acordarse de comprobarlo. */
   function track(name, params) {
-    if (!granted || typeof gtag !== 'function') return;
+    if (EXCLUDED || !granted || typeof gtag !== 'function') return;
     gtag('event', name, params || {});
   }
 
@@ -398,8 +463,14 @@
     if (!a) return;
 
     var raw = a.getAttribute('href') || '';
-    // Anclas, mailto: y tel: no son navegacion medible.
-    if (raw.charAt(0) === '#') return;
+    // Las anclas no son navegacion externa, pero desde el menu si dicen que
+    // buscaba la persona: se miden aparte y luego se descartan.
+    if (raw.charAt(0) === '#') {
+      if (a.closest('.nav-links, .mobile-menu, .rail-toc, nav')) {
+        track('nav_click', { section: raw.slice(1) });
+      }
+      return;
+    }
     var proto = (a.protocol || '').toLowerCase();
     if (proto === 'mailto:' || proto === 'tel:') return;
     if (proto !== 'http:' && proto !== 'https:') return;
@@ -434,6 +505,51 @@
     }
   }, true);
 
+  /* Secciones vistas. El umbral no puede ser solo "el 50% de la seccion":
+     work, experience y approach son mas altas que la ventana (a 390px work
+     mide 2495px contra 844 de alto util), asi que ese 50% es inalcanzable y
+     el evento no se dispararia nunca, en silencio. Cuenta como vista si se
+     ve media seccion O si la seccion ocupa media pantalla, que es lo que de
+     verdad significa "la estoy mirando". */
+  var SECCION_MS = 1000;
+
+  (function secciones() {
+    if (!('IntersectionObserver' in window)) return;
+    var arranca = function () {
+      var secs = document.querySelectorAll('main section[id], section[id]');
+      if (!secs.length) return;
+      var vistas = {};   // una vez por seccion y por visita
+      var timers = {};
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          var id = e.target.id;
+          if (!id || vistas[id]) return;
+          var medioAlto = (window.innerHeight || 0) / 2;
+          var dentro = e.isIntersecting &&
+            (e.intersectionRatio >= 0.5 || e.intersectionRect.height >= medioAlto);
+          if (dentro) {
+            if (timers[id]) return;
+            timers[id] = setTimeout(function () {
+              timers[id] = null;
+              if (vistas[id]) return;
+              vistas[id] = true;
+              track('section_view', { section: id });
+              io.unobserve(e.target);
+            }, SECCION_MS);
+          } else if (timers[id]) {
+            // salio antes de cumplir el segundo: no cuenta
+            clearTimeout(timers[id]); timers[id] = null;
+          }
+        });
+      }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+
+      for (var i = 0; i < secs.length; i++) io.observe(secs[i]);
+    };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arranca);
+    else arranca();
+  })();
+
   /* Lectura de un case study: 30 s de permanencia real. Si la pestana se
      oculta antes, el temporizador se cancela y no se reprograma, que es lo que
      evita contar pestanas abiertas de fondo. */
@@ -463,6 +579,14 @@
      decision ya guardada entra dentro de la ventana de wait_for_update, asi que
      gtag no llega a enviar nada en denied para quien ya habia aceptado. */
   loadGA();
+
+  // El aviso va aqui y no junto a la lectura del parametro porque necesita
+  // que CSS ya este asignado.
+  if (noga === '1' || noga === '0') {
+    estilos();
+    var t = TOAST[pickLang()] || TOAST.en;
+    aviso(noga === '1' ? t.on : t.off);
+  }
 
   var decision = readDecision();
   if (decision) {
