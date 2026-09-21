@@ -151,11 +151,17 @@ async function gather(env, token, ayer) {
       metrics: [{ name: "sessions" }],
       orderBys: [{ metric: { metricName: "sessions" }, desc: true }], limit: 3
     }),
-    // Solo Motion: el resto del sitio sale por diferencia con el total.
+    /* Solo Motion: el resto del sitio sale por diferencia con el total.
+       Tiene que ser una expresion y no "empieza por /motion", porque las
+       versiones traducidas viven en /de/motion/ y /es/motion/ y quedaban
+       contadas como portafolio. */
     runReport(env, token, {
       dateRanges: rango, metrics: [{ name: "screenPageViews" }],
       dimensionFilter: {
-        filter: { fieldName: "pagePath", stringFilter: { matchType: "BEGINS_WITH", value: "/motion" } }
+        filter: {
+          fieldName: "pagePath",
+          stringFilter: { matchType: "FULL_REGEXP", value: "^/(de/|es/)?motion(/.*)?$" }
+        }
       }
     }),
     runReport(env, token, {
@@ -250,8 +256,10 @@ function componer(d, ayer) {
   const motion = d.motionVistas;
   const porta = Math.max(0, d.vistas - motion);
   if (d.vistas > 0) {
-    const pc = (n) => Math.round((n / d.vistas) * 100);
-    L.push("", `📚 Portafolio ${porta} (${pc(porta)}%) · Motion ${motion} (${pc(motion)}%)`);
+    // Se redondea uno y el otro sale por diferencia: redondeando los dos por
+    // separado la suma daba 101% y parecia un error de cuentas.
+    const pcMotion = Math.round((motion / d.vistas) * 100);
+    L.push("", `📚 Portafolio ${porta} (${100 - pcMotion}%) · Motion ${motion} (${pcMotion}%)`);
   }
 
   // Solo si hubo envios: una linea a cero cada dia seria ruido.
