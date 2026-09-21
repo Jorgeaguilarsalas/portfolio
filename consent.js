@@ -57,7 +57,7 @@
   var COPY = {
     en: {
       title: 'Cookies & Analytics',
-      desc: 'This site uses necessary cookies to function and optional analytics cookies (Google Analytics) to understand how visitors use the portfolio. Analytics helps improve content and user experience. You can change your preference anytime via the Datenschutzerklärung.',
+      desc: 'This site uses necessary cookies to function and optional analytics cookies (Google Analytics) to understand how visitors use this website. Analytics helps improve content and user experience. You can change your preference anytime via the Datenschutzerklärung.',
       accept: 'Accept analytics',
       decline: 'Decline',
       more: 'Learn more →',
@@ -65,7 +65,7 @@
     },
     de: {
       title: 'Cookies & Analytics',
-      desc: 'Diese Website nutzt notwendige Cookies zur Funktion und optionale Analyse-Cookies (Google Analytics), um zu verstehen, wie Besucher das Portfolio nutzen. Analytics hilft, Inhalte und Benutzererfahrung zu verbessern. Sie können Ihre Einstellung jederzeit über die Datenschutzerklärung ändern.',
+      desc: 'Diese Website nutzt notwendige Cookies zur Funktion und optionale Analyse-Cookies (Google Analytics), um zu verstehen, wie Besucher diese Website nutzen. Analytics hilft, Inhalte und Benutzererfahrung zu verbessern. Sie können Ihre Einstellung jederzeit über die Datenschutzerklärung ändern.',
       accept: 'Analytics akzeptieren',
       decline: 'Ablehnen',
       more: 'Mehr erfahren →',
@@ -73,7 +73,7 @@
     },
     es: {
       title: 'Cookies y Analytics',
-      desc: 'Este sitio utiliza cookies necesarias para funcionar y cookies opcionales de analytics (Google Analytics) para entender cómo los visitantes usan el portafolio. Analytics ayuda a mejorar el contenido y la experiencia. Puedes cambiar tu preferencia en cualquier momento vía la Política de Privacidad.',
+      desc: 'Este sitio utiliza cookies necesarias para funcionar y cookies opcionales de analytics (Google Analytics) para entender cómo los visitantes usan este sitio web. Analytics ayuda a mejorar el contenido y la experiencia. Puedes cambiar tu preferencia en cualquier momento vía la Política de Privacidad.',
       accept: 'Aceptar analytics',
       decline: 'Rechazar',
       more: 'Más información →',
@@ -395,6 +395,10 @@
       return;
     }
     if (isInternal(host) && path.indexOf('/motion') > -1) {
+      /* Mide la entrada a la publicacion desde el portafolio. Dentro de
+         /motion/ la navegacion entre notas es navegacion interna y ya la
+         cuenta page_view: contarla tambien aqui inflaria el evento. */
+      if (/^\/(?:de\/|es\/)?motion(\/|$)/.test(location.pathname)) return;
       track('motion_click', { page_language: langFromPath(), destination: motionDestination(path) });
       return;
     }

@@ -225,6 +225,14 @@
     border-radius:var(--radius);padding:40px;min-width:0;
     display:flex;flex-direction:column;gap:24px;
   }
+  /* La seccion de los pilares no lleva caja: dentro viven los acordeones, que
+     si son superficie y ademas tienen que verse pulsables. Una tarjeta
+     alrededor solo anadia un borde concentrico. El modificador es necesario
+     porque .card tambien la usan .statement y .footer-cta, que si son la
+     unica superficie de su seccion y conservan la suya. */
+  .card.is-plain{
+    background:none;border:0;border-radius:0;padding:0;
+  }
 
   /* LEADERSHIP STATEMENT */
   .statement{
@@ -309,9 +317,10 @@
   }
   .pillar-content li::before{content:"—";position:absolute;left:0;top:0;color:var(--accent)}
 
+  /* Tercer nivel eliminado: una regla lateral y la etiqueta bastan para
+     separar el "en la practica" del cuerpo del pilar. */
   .applied{
-    background:var(--surface-2);border:1px solid var(--border);
-    border-radius:var(--radius-sm);padding:24px 26px;
+    border-left:2px solid var(--border);padding:2px 0 2px 18px;
   }
   .applied-label{
     display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
@@ -358,8 +367,8 @@
 
   @media (max-width:980px){
     .wrap{padding:48px 20px 64px}
-    .card{padding:28px}
     .pillar-trigger{padding:24px 24px;gap:14px}
+    .card{padding:28px}
     .pillar-content{padding:0 24px 26px}
     .stack{margin-top:40px}
   }
@@ -434,7 +443,7 @@
       <p class="statement-prose">En contextos operativos de ritmo acelerado, liderar significa <em>mantener la calma bajo presión</em>, reducir la complejidad y lograr que los equipos ejecuten con seguridad.</p>
     </section>
 
-    <section class="card">
+    <section class="card is-plain">
       <div class="section-head reveal">
         <h2>Cinco pilares, <em>en detalle</em>.</h2>
         <p>Abra cualquier pilar para leer el principio completo, las conductas con las que me comprometo y cómo lo aplico en mi trabajo.</p>
