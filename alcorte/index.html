@@ -213,6 +213,10 @@
        rail en vez de desbordarlo; hyphens:auto usa el diccionario del
        idioma declarado en <html lang>. */
     hyphens:auto;-webkit-hyphens:auto;
+    /* Ultimo recurso: hyphens:auto solo parte donde el diccionario lo permite,
+       y un compuesto aleman sin punto de corte seguiria desbordando el rail.
+       Hoy no cambia nada; existe para que no lo haga un titulo futuro. */
+    overflow-wrap:break-word;
     /* El titulo puede respirar sobre el gap de 64px sin tocar las cards:
        asi "CIRCULAR" (388px) entra entero en vez de partirse. */
     width:max-content;max-width:calc(100% + 44px);
