@@ -249,10 +249,10 @@
   .lede{font-size:17px;line-height:1.7;color:var(--muted);margin:0;max-width:68ch}
   .lede strong{color:var(--fg);font-weight:600}
 
-  .sub{
-    background:var(--surface-2);border:1px solid var(--border);
-    border-radius:var(--radius-sm);padding:30px;min-width:0;
-  }
+  /* Sin caja propia. La jerarquia la marcan el h3 y el espacio: una tarjeta
+     dentro de otra solo anadia un borde concentrico. */
+  .sub{min-width:0}
+  .card > * + .sub{margin-top:36px}
   .sub > * + *{margin-top:16px}
 
   .tags{display:flex;gap:8px;flex-wrap:wrap;margin:0}
@@ -274,14 +274,18 @@
   .facts svg{flex:none;color:var(--accent)}
 
   figure{margin:0;display:flex;flex-direction:column;gap:12px}
-  .figbox{
-    position:relative;border-radius:14px;
-    background:#0A0A0C;border:1px solid var(--border);
-  }
+  /* El diagrama va sin caja: solo el SVG y su pie. */
+  .figbox{position:relative}
   .figscroll{
-    overflow-x:auto;overscroll-behavior-x:contain;
-    border-radius:14px;padding:22px;
+    overflow-x:auto;overscroll-behavior-x:contain;padding:0;
+    scroll-snap-type:x proximity;
   }
+  .figscroll > svg{scroll-snap-align:start}
+  /* El pipeline es una secuencia lineal de cinco etapas: en vertical cabe
+     entero a 390px y no hace falta deslizar. Se intercambian con display
+     para que solo uno exista en el arbol de accesibilidad. */
+  .fig-v{display:none}
+  .fig-v svg{display:block;width:100%;height:auto}
   .figbox svg{display:block;width:100%;height:auto}
   /* El fade en el borde derecho avisa que el diagrama sigue mas alla del corte.
      Vive en .figbox (estatico) y no en .figscroll, porque un hijo absoluto de un
@@ -297,8 +301,8 @@
   @media (max-width:849px), (min-width:981px) and (max-width:1297px){
     .figbox::after{
       content:"";position:absolute;top:0;right:0;bottom:0;width:46px;
-      border-radius:0 13px 13px 0;pointer-events:none;
-      background:linear-gradient(to left,#0A0A0C 18%,rgba(10,10,12,0) 100%);
+      pointer-events:none;
+      background:linear-gradient(to left,var(--surface) 18%,rgba(15,15,18,0) 100%);
     }
   }
   figcaption{
@@ -359,10 +363,33 @@
     .wrap{padding:48px 20px 64px}
     .layout{grid-template-columns:minmax(0,1fr);gap:40px}
     .rail{position:static}
+    /* El titulo puede volar sobre el gutter de 64px solo mientras hay dos
+       columnas. En una sola no hay gutter: el +44px de max-width se iba
+       fuera del viewport y hacia scrollear la pagina entera (visible en
+       es/bolt, cuya primera palabra es la mas larga de los cinco casos). */
+    .rail h1{max-width:100%}
     .card{padding:28px}
-    .sub{padding:22px}
     .note{padding:28px}
     .reference-cta{padding:28px;}
+  }
+
+  /* Regla C: en movil la tarjeta se acerca al borde y el diagrama se sale
+     de su padding (full-bleed dentro de la tarjeta), para que el texto pase
+     de ~28 a ~40 caracteres por linea y el diagrama gane ~120px. */
+  @media (max-width:480px){
+    .has-vertical .figbox{display:none}
+    .has-vertical .fig-v{display:block}
+    .wrap{padding:32px 12px 48px}
+    .card{padding:22px 16px;border-radius:20px}
+    .card > * + .sub{margin-top:28px}
+    .figscroll{margin-inline:-16px;padding-inline:16px}
+    /* Etiqueta de deslizamiento: el fade solo se ve, esto se lee. Se
+       oculta en la figura que tiene version vertical, que no se desliza. */
+    figure:has(.figbox):not(.has-vertical)::after{
+      content:"Desliza \2192";
+      font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--accent);
+    }
   }
 
   /* Enlaces legales (Impressum, Datenschutz): heredan el gris del footer;
@@ -452,7 +479,7 @@
           <p class="impact">Sustituyó la reconstrucción mensual en hojas de cálculo por un pipeline de cinco etapas que un operador termina de una sola vez.</p>
           <p class="body">Desglosé la obligación de auditoría a partir de lo que la LABO realmente exige y luego la dividí en etapas de las que se responsabilizan la máquina o la persona. Las tres primeras etapas corren sin supervisión; el operador sólo ve los turnos que requieren una decisión. Definir ese punto de traspaso &mdash; qué puede corregir el software en silencio y qué debe autorizar el titular de la Konzession &mdash; fue la decisión de producto central de toda la plataforma.</p>
 
-          <figure>
+          <figure class="has-vertical">
             <div class="figbox">
               <div class="figscroll">
               <svg viewBox="0 0 1040 186" role="img" aria-label="Pipeline de compliance de cinco etapas: integraciones de plataforma, registro de turnos normalizado, motor de reglas de pausas, revisión del operador y paquete de informe de auditoría. Las tres primeras etapas corren sin supervisión; las dos últimas las autoriza el titular de la Konzession." style="min-width:660px">
@@ -497,6 +524,51 @@
               </svg>
               </div>
             </div>
+                <div class="fig-v">
+                <svg viewBox="0 0 340 598" role="img" aria-label="Pipeline de compliance de cinco etapas: integraciones de plataforma, registro de turnos normalizado, motor de reglas de pausas, revisión del operador y paquete de informe de auditoría. Las tres primeras etapas corren sin supervisión; las dos últimas las autoriza el titular de la Konzession.">
+                  <defs>
+                    <marker id="pv-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                      <polygon points="0,0 10,5 0,10" fill="#B4B4BB"/>
+                    </marker>
+                  </defs>
+                
+                  <text x="20" y="14" font-family="ui-monospace,Menlo,monospace" font-size="11.5" letter-spacing="1.4" fill="#B8FF3D">SIN SUPERVISI&Oacute;N</text>
+                  <line x1="20" y1="24" x2="320" y2="24" stroke="#B8FF3D" stroke-width="1" opacity=".35"/>
+                
+                  <rect x="20" y="36" width="300" height="66" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="170" y="64" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" font-weight="600" fill="#F7F7F8">Integraciones</text>
+                  <text x="170" y="84" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" font-weight="600" fill="#F7F7F8">de plataforma</text>
+                  <line x1="60" y1="102" x2="60" y2="142" stroke="#B4B4BB" stroke-width="1.5" marker-end="url(#pv-arrow)"/>
+                  <text x="76" y="126" font-family="ui-monospace,Menlo,monospace" font-size="11.5" fill="#8A8A93">4&times;/d&iacute;a</text>
+                
+                  <rect x="20" y="146" width="300" height="66" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="170" y="174" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" font-weight="600" fill="#F7F7F8">Registro de turnos</text>
+                  <text x="170" y="194" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" font-weight="600" fill="#F7F7F8">normalizado</text>
+                  <line x1="60" y1="212" x2="60" y2="252" stroke="#B4B4BB" stroke-width="1.5" marker-end="url(#pv-arrow)"/>
+                  <text x="76" y="236" font-family="ui-monospace,Menlo,monospace" font-size="11.5" fill="#8A8A93">por conductor-d&iacute;a</text>
+                
+                  <rect x="20" y="256" width="300" height="66" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="170" y="284" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" font-weight="600" fill="#F7F7F8">Motor de reglas</text>
+                  <text x="170" y="304" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" font-weight="600" fill="#F7F7F8">de pausas</text>
+                  <line x1="60" y1="322" x2="60" y2="410" stroke="#B4B4BB" stroke-width="1.5" marker-end="url(#pv-arrow)"/>
+                  <text x="76" y="346" font-family="ui-monospace,Menlo,monospace" font-size="11.5" fill="#8A8A93">s&oacute;lo marcadas</text>
+                
+                  <text x="76" y="392" font-family="ui-monospace,Menlo,monospace" font-size="11.5" letter-spacing="1.4" fill="#8A8A93">FIRMA EL TITULAR</text>
+                  <line x1="20" y1="402" x2="48" y2="402" stroke="#4A4A52" stroke-width="1"/>
+                  <line x1="72" y1="402" x2="320" y2="402" stroke="#4A4A52" stroke-width="1"/>
+                
+                  <rect x="20" y="414" width="300" height="66" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="170" y="442" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" font-weight="600" fill="#F7F7F8">Revisi&oacute;n del</text>
+                  <text x="170" y="462" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" font-weight="600" fill="#F7F7F8">operador</text>
+                  <line x1="60" y1="480" x2="60" y2="520" stroke="#B4B4BB" stroke-width="1.5" marker-end="url(#pv-arrow)"/>
+                  <text x="76" y="504" font-family="ui-monospace,Menlo,monospace" font-size="11.5" fill="#8A8A93">exportaci&oacute;n firmada</text>
+                
+                  <rect x="20" y="524" width="300" height="66" rx="12" fill="#141417" stroke="#303036"/>
+                  <text x="170" y="552" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" font-weight="600" fill="#F7F7F8">Paquete</text>
+                  <text x="170" y="572" text-anchor="middle" font-family="Inter,sans-serif" font-size="15" font-weight="600" fill="#F7F7F8">de auditor&iacute;a</text>
+                
+                </svg>
+                </div>
             <figcaption>Fig. 1 &mdash; Dónde termina la máquina y empieza el titular de la Konzession. Reconstruido para este caso de estudio.</figcaption>
           </figure>
         </div>

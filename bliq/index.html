@@ -289,10 +289,10 @@
 
   .card > .phase-title + .lede{margin-top:20px}
 
-  .sub{
-    background:var(--surface-2);border:1px solid var(--border);
-    border-radius:var(--radius-sm);padding:30px;min-width:0;
-  }
+  /* Sin caja propia. La jerarquia la marcan el h3 y el espacio: una tarjeta
+     dentro de otra solo anadia un borde concentrico. */
+  .sub{min-width:0}
+  .card > * + .sub{margin-top:36px}
   .sub > * + *{margin-top:16px}
   .sub > * + .lede,
   .sub > * + .body,
@@ -351,14 +351,13 @@
   .card > .facts{margin-top:24px}
 
   figure{margin:0;display:flex;flex-direction:column;gap:12px}
-  .figbox{
-    position:relative;border-radius:14px;
-    background:#0A0A0C;border:1px solid var(--border);
-  }
+  /* El diagrama va sin caja: solo el SVG y su pie. */
+  .figbox{position:relative}
   .figscroll{
-    overflow-x:auto;overscroll-behavior-x:contain;
-    border-radius:14px;padding:22px;
+    overflow-x:auto;overscroll-behavior-x:contain;padding:0;
+    scroll-snap-type:x proximity;
   }
+  .figscroll > svg{scroll-snap-align:start}
   .figbox svg{display:block;width:100%;height:auto}
   /* Fade en el borde derecho: avisa que el diagrama sigue mas alla del corte.
      Vive en .figbox (estatico) y no en .figscroll, porque un hijo absoluto de un
@@ -369,8 +368,8 @@
   @media (max-width:827px), (min-width:981px) and (max-width:1317px){
     .figbox::after{
       content:"";position:absolute;top:0;right:0;bottom:0;width:46px;
-      border-radius:0 13px 13px 0;pointer-events:none;
-      background:linear-gradient(to left,#0A0A0C 18%,rgba(10,10,12,0) 100%);
+      pointer-events:none;
+      background:linear-gradient(to left,var(--surface) 18%,rgba(15,15,18,0) 100%);
     }
   }
   figcaption{
@@ -383,8 +382,9 @@
     /* La descripcion larga aqui es la tercera (no la primera como en Wolt), asi
        que el peso extra va a esa columna. */
     display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.35fr);gap:28px;
-    padding:30px;background:var(--surface-2);
-    border:1px solid var(--border);border-radius:var(--radius-sm);
+    /* Sin caja: era la misma superficie-2 con borde que .sub, es decir otra
+       tarjeta dentro de la tarjeta. Una linea superior basta para separarla. */
+    padding:26px 0 0;border-top:1px solid var(--border);
   }
   .metric-big{display:flex;flex-direction:column;gap:10px}
   .metric-big .kicker{
@@ -464,8 +464,12 @@
     .wrap{padding:48px 20px 64px}
     .layout{grid-template-columns:minmax(0,1fr);gap:40px}
     .rail{position:static}
+    /* El titulo puede volar sobre el gutter de 64px solo mientras hay dos
+       columnas. En una sola no hay gutter: el +44px de max-width se iba
+       fuera del viewport y hacia scrollear la pagina entera (visible en
+       es/bolt, cuya primera palabra es la mas larga de los cinco casos). */
+    .rail h1{max-width:100%}
     .card{padding:28px}
-    .sub{padding:22px}
     .note{padding:28px}
     .reference-cta{padding:28px;}
   }
@@ -473,6 +477,23 @@
     .wrap{padding:40px 16px 56px}
     .card{padding:22px}
     .steps li{padding-left:44px}
+  }
+
+  /* Regla C: en movil la tarjeta se acerca al borde y el diagrama se sale
+     de su padding (full-bleed dentro de la tarjeta), para que el texto pase
+     de ~28 a ~40 caracteres por linea y el diagrama gane ~120px. */
+  @media (max-width:480px){
+    .wrap{padding:32px 12px 48px}
+    .card{padding:22px 16px;border-radius:20px}
+    .card > * + .sub{margin-top:28px}
+    .figscroll{margin-inline:-16px;padding-inline:16px}
+    /* Etiqueta de deslizamiento: el fade solo se ve, esto se lee. Se
+       oculta en la figura que tiene version vertical, que no se desliza. */
+    figure:has(.figbox):not(.has-vertical)::after{
+      content:"Swipe \2192";
+      font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+      text-transform:uppercase;color:var(--accent);
+    }
   }
 
   /* Enlaces legales (Impressum, Datenschutz): heredan el gris del footer;
