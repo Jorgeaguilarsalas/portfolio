@@ -222,6 +222,25 @@
   }
   .legal a:hover{border-bottom-color:var(--accent)}
 
+  /* Control de consentimiento (seccion 13). El estado lo rellena consent.js;
+     el texto por defecto del span cubre el caso de JS desactivado. */
+  .legal .mono{font-family:var(--mono);font-size:.92em;color:var(--fg)}
+  .consent-box{
+    display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;
+    margin-top:22px !important;padding:18px 20px;
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius-sm);max-width:60ch;
+  }
+  .consent-btn{
+    margin-left:auto;background:var(--accent);color:var(--accent-fg);border:0;
+    border-radius:28px;padding:10px 22px;
+    font-family:var(--sans);font-size:13.5px;font-weight:600;cursor:pointer;
+    transition:opacity .18s ease;
+  }
+  .consent-btn:hover{opacity:.87}
+  .consent-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  @media(max-width:560px){.consent-btn{margin-left:0;width:100%}}
+
   /* SITE FOOTER */
   .site-footer{padding:32px;border-top:1px solid var(--border);margin-top:80px}
   .site-footer-inner{
@@ -263,6 +282,7 @@
     text-transform:uppercase;color:var(--muted);
   }
 </style>
+<script src="/consent.js" defer></script>
 </head>
 <body>
 
@@ -317,22 +337,28 @@
     <section class="legal">
       <h2>1. Datenschutz auf einen Blick</h2>
       <p>
-        Diese Website ist eine reine Informationsseite. Sie setzt keine eigenen
-        Cookies, bindet keine Analyse- oder Tracking-Dienste ein (kein Google
-        Analytics, kein Meta Pixel, keine vergleichbaren Werkzeuge) und enth&auml;lt
-        weder ein Kontaktformular noch eine Newsletter-Anmeldung.
+        Diese Website ist im Wesentlichen eine Informationsseite. Sie bietet
+        zus&auml;tzlich ein Kontaktformular (Abschnitt 12) und setzt eine
+        Reichweitenmessung mit Google Analytics 4 ein (Abschnitt 13). Eine
+        Newsletter-Anmeldung besteht nicht, ebenso wenig Werbe- oder
+        Remarketing-Dienste wie das Meta Pixel.
       </p>
       <p>
-        Personenbezogene Daten fallen daher nur in dem Umfang an, der f&uuml;r den
-        technischen Betrieb der Seite unvermeidbar ist: Ihre IP-Adresse und
+        Personenbezogene Daten fallen zun&auml;chst nur in dem Umfang an, der f&uuml;r
+        den technischen Betrieb der Seite unvermeidbar ist: Ihre IP-Adresse und
         allgemeine Verbindungsdaten werden beim Abruf der Seite an unseren
         Hosting- und CDN-Dienstleister &uuml;bermittelt, und beim Laden der
         eingesetzten Schriftarten an Google. Beides ist in den Abschnitten 7, 8
         und 10 im Einzelnen beschrieben.
       </p>
       <p>
-        Weil keine einwilligungspflichtigen Cookies oder Tracker zum Einsatz
-        kommen, wird auf dieser Website kein Cookie-Banner angezeigt.
+        <strong>Cookies und Einwilligung.</strong> Ohne Ihre Einwilligung
+        werden keine Analyse-Cookies gesetzt und es werden keine Daten an
+        Google Analytics &uuml;bermittelt; die entsprechenden Skripte werden bis
+        dahin gar nicht erst geladen. Beim ersten Aufruf der Seite fragt ein
+        Banner Ihre Entscheidung ab. Sie k&ouml;nnen ablehnen, ohne dass die Seite
+        dadurch eingeschr&auml;nkt nutzbar w&auml;re, und Ihre Entscheidung jederzeit in
+        <a href="#analytics">Abschnitt 13</a> &auml;ndern.
       </p>
     </section>
 
@@ -668,8 +694,95 @@
       </p>
     </section>
 
+    <section class="legal" id="analytics">
+      <h2>13. Reichweitenmessung mit Google Analytics 4</h2>
+      <p>
+        Diese Website nutzt Google Analytics 4, einen Webanalysedienst der
+        Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland
+        (&bdquo;Google&ldquo;). Die Messung dient ausschlie&szlig;lich dazu,
+        nachzuvollziehen, welche Inhalte des Portfolios genutzt werden, um sie
+        verbessern zu k&ouml;nnen. Die verwendete Mess-ID lautet
+        <span class="mono">G-4XMR36K6W9</span>.
+      </p>
+      <p>
+        <strong>Nur mit Ihrer Einwilligung.</strong> Google Analytics wird erst
+        aktiv, nachdem Sie im Cookie-Banner ausdr&uuml;cklich zugestimmt haben.
+        Solange keine Einwilligung vorliegt, wird das Google-Skript nicht
+        geladen, es werden keine Analyse-Cookies gesetzt und es findet keine
+        &Uuml;bermittlung an Google statt &ndash; auch keine cookiefreien
+        Messsignale. Rechtsgrundlage f&uuml;r die Verarbeitung ist Ihre
+        Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO; f&uuml;r das Speichern von
+        Informationen auf Ihrem Endger&auml;t und den Zugriff darauf ist dies
+        zugleich die Einwilligung nach &sect; 25 Abs. 1 TDDDG.
+      </p>
+      <p>
+        <strong>Google Consent Mode v2.</strong> Die Einwilligungssignale
+        <span class="mono">ad_storage</span>,
+        <span class="mono">ad_user_data</span>,
+        <span class="mono">ad_personalization</span>,
+        <span class="mono">analytics_storage</span> und
+        <span class="mono">personalization_storage</span> sind f&uuml;r alle
+        Besucherinnen und Besucher standardm&auml;&szlig;ig auf
+        <span class="mono">denied</span> gesetzt, unabh&auml;ngig davon, aus
+        welchem Land die Seite aufgerufen wird. Erst Ihre Zustimmung setzt
+        <span class="mono">analytics_storage</span> auf
+        <span class="mono">granted</span>. Werbebezogene Signale bleiben
+        dauerhaft auf <span class="mono">denied</span>: es findet keine
+        Verarbeitung f&uuml;r Werbezwecke, kein Remarketing und keine Bildung von
+        Werbezielgruppen statt.
+      </p>
+      <p>
+        <strong>Verarbeitete Daten.</strong> Nach erteilter Einwilligung
+        verarbeitet Google insbesondere eine pseudonyme Kennung Ihres Browsers
+        (Cookies mit den Namen <span class="mono">_ga</span> und
+        <span class="mono">_ga_&lt;Mess-ID&gt;</span>), die aufgerufenen
+        Seiten und den Zeitpunkt des Aufrufs, die verweisende Seite, Angaben zu
+        Browser, Betriebssystem und Endger&auml;t sowie eine grobe, aus der
+        IP-Adresse abgeleitete Ortsangabe auf Ebene von Land und Region. Die
+        IP-Adresse wird von Google Analytics 4 gek&uuml;rzt und nicht dauerhaft
+        gespeichert; eine Zusammenf&uuml;hrung mit anderen Daten &uuml;ber Sie findet
+        durch uns nicht statt. Die genannten Cookies haben eine Laufzeit von
+        bis zu 24&nbsp;Monaten, die in Google Analytics gespeicherten
+        Ereignisdaten werden nach h&ouml;chstens 14&nbsp;Monaten gel&ouml;scht.
+      </p>
+      <p>
+        <strong>Empf&auml;nger und Daten&uuml;bermittlung in Drittl&auml;nder.</strong>
+        Auftragsverarbeiterin ist die Google Ireland Limited; es besteht ein
+        Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO. Eine Verarbeitung
+        durch die Google LLC in den Vereinigten Staaten kann nicht
+        ausgeschlossen werden. Google LLC ist unter dem EU-US Data Privacy
+        Framework zertifiziert; erg&auml;nzend werden die Standardvertragsklauseln
+        der EU-Kommission zugrunde gelegt. Trotz dieser Garantien kann nicht
+        vollst&auml;ndig ausgeschlossen werden, dass US-Beh&ouml;rden auf die Daten
+        zugreifen.
+      </p>
+      <p>
+        <strong>Widerruf und &Auml;nderung Ihrer Entscheidung.</strong> Sie k&ouml;nnen
+        Ihre Einwilligung jederzeit mit Wirkung f&uuml;r die Zukunft widerrufen.
+        Beim Widerruf wird die Messung sofort beendet und die bereits gesetzten
+        Analyse-Cookies werden gel&ouml;scht. Ihre Entscheidung wird ein Jahr lang
+        lokal in Ihrem Browser gespeichert und danach erneut abgefragt.
+      </p>
+      <p class="consent-box">
+        <strong>Ihre aktuelle Einstellung:</strong>
+        <span id="consent-status"
+              data-none="noch keine Entscheidung getroffen"
+              data-on="Analytics erlaubt"
+              data-off="Analytics abgelehnt">noch keine Entscheidung getroffen</span>
+        <button type="button" class="consent-btn" data-consent-open>Einstellung &auml;ndern</button>
+      </p>
+      <p>
+        Unabh&auml;ngig davon k&ouml;nnen Sie die Erfassung durch Google Analytics mit
+        dem von Google bereitgestellten Browser-Add-on verhindern:
+        <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">tools.google.com/dlpage/gaoptout</a>.
+        Weitere Informationen zur Datenverarbeitung durch Google finden Sie in
+        der Datenschutzerkl&auml;rung von Google:
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.
+      </p>
+    </section>
+
     <section class="legal">
-      <h2>13. SSL- bzw. TLS-Verschl&uuml;sselung</h2>
+      <h2>14. SSL- bzw. TLS-Verschl&uuml;sselung</h2>
       <p>
         Diese Website nutzt aus Sicherheitsgr&uuml;nden und zum Schutz der
         &Uuml;bertragung vertraulicher Inhalte eine SSL- beziehungsweise
@@ -684,7 +797,7 @@
     </section>
 
     <section class="legal">
-      <h2>14. Speicherdauer</h2>
+      <h2>15. Speicherdauer</h2>
       <p>
         Soweit innerhalb dieser Erkl&auml;rung keine speziellere Speicherdauer genannt
         wird, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck f&uuml;r
@@ -708,7 +821,7 @@
     </section>
 
     <section class="legal">
-      <h2>15. Haftung f&uuml;r Inhalte</h2>
+      <h2>16. Haftung f&uuml;r Inhalte</h2>
       <p>
         Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs. 1 DDG (vormals &sect; 7 TMG)
         f&uuml;r eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen
@@ -734,7 +847,7 @@
     </section>
 
     <section class="legal">
-      <h2>16. Haftung f&uuml;r Links</h2>
+      <h2>17. Haftung f&uuml;r Links</h2>
       <p>
         Unser Angebot enth&auml;lt Links zu externen Websites Dritter, auf deren
         Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden
@@ -753,7 +866,7 @@
     </section>
 
     <section class="legal">
-      <h2>17. Urheberrecht</h2>
+      <h2>18. Urheberrecht</h2>
       <p>
         Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
         Seiten unterliegen dem deutschen Urheberrecht. Die Vervielf&auml;ltigung,
