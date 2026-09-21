@@ -13,3 +13,4 @@ package-lock.json
 scripts/
 cv/
 343ride-landing.html
+worker-contact.js

@@ -22,6 +22,7 @@
  */
 
 import LANDING_HTML from "./343ride-landing.html";
+import { handleContactSubmit } from "./worker-contact.js";
 
 const PORTFOLIO_ORIGIN = "https://jorgeag.com";
 const RIDE_ORIGIN = "https://343ride.de";
@@ -55,6 +56,12 @@ export default {
 
     const target = REDIRECT_TO.get(host);
     if (target) return redirect(target, url);
+
+    // El formulario del portafolio postea aqui. Va antes de los assets porque
+    // /contact/submit no es un archivo: solo existe como ruta del Worker.
+    if (url.pathname === "/contact/submit") {
+      return handleContactSubmit(request, env);
+    }
 
     if (host === "343ride.de") {
       if (url.pathname === "/") {
