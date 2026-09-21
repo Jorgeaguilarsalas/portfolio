@@ -3,6 +3,9 @@
 # Config y estado de sesion de Claude Code. Con directory="./" se servia en
 # jorgeag.com/.claude/*, que es una filtracion de ficheros internos.
 .claude/
+# Worker del resumen diario: tiene su propio despliegue y no debe servirse
+# como asset del portafolio (directory="./" lo publicaria en jorgeag.com).
+daily-digest/
 .DS_Store
 README.md
 wrangler.toml

@@ -1,0 +1,21 @@
+name = "jorgeag-daily"
+main = "index.js"
+compatibility_date = "2025-01-01"
+
+# Worker aparte del portafolio a proposito: este tiene cron y secretos de
+# Google, y no debe compartir ciclo de vida ni superficie con el sitio.
+
+[vars]
+# El ID de la propiedad de GA4 no es un secreto, es un identificador.
+GA_PROPERTY_ID = "555065961"
+TZ_NAME = "Europe/Berlin"
+
+# Cloudflare solo programa en UTC. 08:00 en Berlin son las 07:00 UTC en
+# invierno y las 06:00 UTC en verano, asi que se registran las dos y el
+# propio Worker descarta la que no toca segun la fecha. Asi no hay que
+# acordarse de cambiarlo en marzo ni en octubre.
+[triggers]
+crons = ["0 6 * * *", "0 7 * * *"]
+
+[observability.logs]
+enabled = true
