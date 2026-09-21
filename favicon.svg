@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Jorge Aguilar">
+  <!-- Monograma JA. Las letras van como trazos y no como <text> porque un
+       favicon SVG no carga fuentes web: con <text> cada sistema dibujaria una
+       tipografia distinta. El cuadro oscuro es propio, para no depender del
+       color de la pestana; el aro lima da contorno cuando la barra tambien es
+       oscura y el cuadro se fundiria con ella. -->
+  <rect width="64" height="64" rx="15" fill="#0B0B0D"/>
+  <rect x="1.25" y="1.25" width="61.5" height="61.5" rx="13.75"
+        fill="none" stroke="#B8FF3D" stroke-opacity=".38" stroke-width="2.5"/>
+  <g fill="none" stroke="#B8FF3D" stroke-width="6.5" stroke-linecap="butt">
+    <path d="M22 15 V32 A7.5 7.5 0 0 1 7 32"/>
+    <path d="M35 49 L45 15 L55 49"/>
+    <path d="M38.2 38.5 H51.8"/>
+  </g>
+</svg>

@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://jorgeag.com/sitemap.xml
+Sitemap: https://jorgeag.com/motion/sitemap.xml
