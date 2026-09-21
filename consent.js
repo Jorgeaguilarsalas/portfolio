@@ -162,7 +162,12 @@
     });
   }
 
+  /* Los eventos personalizados miran esta bandera, no el localStorage: asi una
+     decision tomada a mitad de visita vale de inmediato. */
+  var granted = false;
+
   function applyGrant() {
+    granted = true;
     gtag('consent', 'update', { analytics_storage: 'granted' });
   }
 
@@ -170,6 +175,7 @@
      sin identificadores. Las _ga que hubieran quedado de un consentimiento
      anterior se borran, porque revocar tiene que vaciar lo ya escrito. */
   function applyDeny() {
+    granted = false;
     gtag('consent', 'update', { analytics_storage: 'denied' });
     dropGaCookies();
   }
@@ -314,6 +320,122 @@
     banner.focus();
   }
 
+  /* ------------------------------------------------------------ eventos */
+
+  var CASE_STUDIES = ['wolt', 'bolt', 'bliq', 'nexio', 'alcorte'];
+  var ENGAGED_AFTER_MS = 30000;
+
+  /* Para los eventos el idioma sale solo de la ruta, no de navigator: lo que
+     interesa medir es que version de la pagina se estaba leyendo.
+     Va como 'page_language' y no como 'language': GA4 reserva ese nombre para
+     el idioma del navegador y descarta en silencio el parametro homonimo, asi
+     que el evento llegaba sin el y la dimension quedaba siempre vacia. */
+  function langFromPath() {
+    var p = location.pathname;
+    if (p.indexOf('/de/') === 0) return 'de';
+    if (p.indexOf('/es/') === 0) return 'es';
+    return 'en';
+  }
+
+  /* Unica puerta de salida de los eventos. Si no hay consentimiento no se
+     envia nada, y el resto del codigo no tiene que acordarse de comprobarlo. */
+  function track(name, params) {
+    if (!granted || typeof gtag !== 'function') return;
+    gtag('event', name, params || {});
+  }
+
+  var INTERNAL_HOSTS = ['jorgeag.com', 'www.jorgeag.com'];
+  /* El propio host cuenta como interno ademas de los canonicos: en un preview
+     de workers.dev o en local, si no, cada enlace del sitio se contaria como
+     salida externa y ensuciaria el informe. */
+  function isInternal(host) {
+    return INTERNAL_HOSTS.indexOf(host) > -1 || host === location.hostname;
+  }
+
+  /* Cloudflare sirve la misma pagina en /wolt/ y en /wolt/index.html. Sin
+     normalizar, la segunda forma no casaria con ningun patron y el evento se
+     perderia sin que nada lo avisara. */
+  function normalizePath(path) {
+    return (path || '').replace(/index\.html?$/i, '');
+  }
+
+  /* /motion/ -> index, /motion/fn01-... -> fn01. Sirve para las notas que
+     vengan despues sin tocar esto. */
+  function motionDestination(path) {
+    var p = normalizePath(path);
+    if (/^\/(?:de\/|es\/)?motion\/?$/.test(p)) return 'index';
+    var m = p.match(/\/(fn\d{2})/);
+    return m ? m[1] : 'unknown';
+  }
+
+  function caseStudyOf(path) {
+    var m = normalizePath(path).match(/^\/(?:de\/|es\/)?([a-z-]+)\/?$/);
+    if (!m) return null;
+    return CASE_STUDIES.indexOf(m[1]) > -1 ? m[1] : null;
+  }
+
+  /* Un solo listener en document, en fase de captura para que se vea el clic
+     aunque otro handler llame a stopPropagation. */
+  document.addEventListener('click', function (ev) {
+    var a = ev.target && ev.target.closest && ev.target.closest('a[href]');
+    if (!a) return;
+
+    var raw = a.getAttribute('href') || '';
+    // Anclas, mailto: y tel: no son navegacion medible.
+    if (raw.charAt(0) === '#') return;
+    var proto = (a.protocol || '').toLowerCase();
+    if (proto === 'mailto:' || proto === 'tel:') return;
+    if (proto !== 'http:' && proto !== 'https:') return;
+
+    var host = a.hostname;
+    var path = a.pathname || '';
+
+    if (/\/Jorge_Aguilar_CV\.pdf$/i.test(path)) {
+      track('cv_download', { page_language: langFromPath() });
+      return;
+    }
+    if (isInternal(host) && path.indexOf('/motion') > -1) {
+      track('motion_click', { page_language: langFromPath(), destination: motionDestination(path) });
+      return;
+    }
+    if (/(^|\.)linkedin\.com$/i.test(host)) {
+      track('linkedin_click', { source_page: location.pathname });
+      return;
+    }
+    if (/(^|\.)calendly\.com$/i.test(host)) {
+      track('calendly_click', { source_page: location.pathname });
+      return;
+    }
+    // Resto de salidas. LinkedIn y Calendly ya salieron arriba, por eso no se
+    // cuentan dos veces.
+    if (!isInternal(host)) {
+      track('external_link_click', { url: a.href, source_page: location.pathname });
+    }
+  }, true);
+
+  /* Lectura de un case study: 30 s de permanencia real. Si la pestana se
+     oculta antes, el temporizador se cancela y no se reprograma, que es lo que
+     evita contar pestanas abiertas de fondo. */
+  (function engagement() {
+    var study = caseStudyOf(location.pathname);
+    if (!study) return;
+    var timer = setTimeout(function () {
+      track('case_study_engaged', {
+        case_study: study,
+        page_language: langFromPath(),
+        duration: ENGAGED_AFTER_MS / 1000
+      });
+    }, ENGAGED_AFTER_MS);
+    function cancel() {
+      if (timer) { clearTimeout(timer); timer = null; }
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') cancel();
+    });
+    // pagehide cubre la navegacion; en moviles beforeunload no siempre llega.
+    window.addEventListener('pagehide', cancel);
+  })();
+
   /* --------------------------------------------------------------- init */
 
   /* Orden deliberado: defaults (arriba) -> gtag.js -> update. El update de una
@@ -337,6 +459,10 @@
   window.__consent = {
     open: show,
     set: decide,
+    // El formulario de contacto lo usa para su propio evento: solo el sabe si
+    // el Worker respondio 200.
+    track: track,
+    granted: function () { return granted; },
     current: function () {
       var d = readDecision();
       return d ? d.analytics : null;

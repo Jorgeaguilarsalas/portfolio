@@ -103,6 +103,14 @@
         if (res.body && res.body.ok) {
           form.hidden = true;
           show('is-ok', '<span class="mark">&#10003;</span>' + T.success);
+          /* Se mide aqui y no en el submit: solo cuenta el envio que el Worker
+             acepto. consent.js decide si llega a GA4 segun el consentimiento. */
+          if (window.__consent && window.__consent.track) {
+            window.__consent.track('contact_form_submit', {
+              page_language: T.lang,
+              inquiry_type: d.inquiry_type || 'not_specified'
+            });
+          }
           return;
         }
         resetTurnstile();
