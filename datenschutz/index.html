@@ -353,12 +353,15 @@
       </p>
       <p>
         <strong>Cookies und Einwilligung.</strong> Ohne Ihre Einwilligung
-        werden keine Analyse-Cookies gesetzt und es werden keine Daten an
-        Google Analytics &uuml;bermittelt; die entsprechenden Skripte werden bis
-        dahin gar nicht erst geladen. Beim ersten Aufruf der Seite fragt ein
-        Banner Ihre Entscheidung ab. Sie k&ouml;nnen ablehnen, ohne dass die Seite
-        dadurch eingeschr&auml;nkt nutzbar w&auml;re, und Ihre Entscheidung jederzeit in
-        <a href="#analytics">Abschnitt 13</a> &auml;ndern.
+        werden keine Analyse-Cookies gesetzt und Sie werden nicht
+        wiedererkannt. Das Google-Skript wird allerdings bereits beim
+        Seitenaufruf geladen und &uuml;bertr&auml;gt dabei cookiefreie Messsignale, zu
+        denen auch Ihre IP-Adresse geh&ouml;rt; Einzelheiten und die
+        Rechtsgrundlage dazu finden Sie in
+        <a href="#analytics">Abschnitt 13</a>. Beim ersten Aufruf der Seite
+        fragt ein Banner Ihre Entscheidung ab. Sie k&ouml;nnen ablehnen, ohne dass
+        die Seite dadurch eingeschr&auml;nkt nutzbar w&auml;re, und Ihre Entscheidung
+        jederzeit &auml;ndern.
       </p>
     </section>
 
@@ -705,15 +708,37 @@
         <span class="mono">G-4XMR36K6W9</span>.
       </p>
       <p>
-        <strong>Nur mit Ihrer Einwilligung.</strong> Google Analytics wird erst
-        aktiv, nachdem Sie im Cookie-Banner ausdr&uuml;cklich zugestimmt haben.
-        Solange keine Einwilligung vorliegt, wird das Google-Skript nicht
-        geladen, es werden keine Analyse-Cookies gesetzt und es findet keine
-        &Uuml;bermittlung an Google statt &ndash; auch keine cookiefreien
-        Messsignale. Rechtsgrundlage f&uuml;r die Verarbeitung ist Ihre
-        Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO; f&uuml;r das Speichern von
-        Informationen auf Ihrem Endger&auml;t und den Zugriff darauf ist dies
-        zugleich die Einwilligung nach &sect; 25 Abs. 1 TDDDG.
+        <strong>Vor Ihrer Einwilligung.</strong> Wir setzen Google Analytics im
+        von Google empfohlenen Einwilligungsmodus ein (&bdquo;Advanced Consent
+        Mode&ldquo;). Das bedeutet: Das Google-Skript wird bereits beim Aufruf
+        der Seite geladen, l&auml;uft bis zu Ihrer Entscheidung aber im Zustand
+        <span class="mono">denied</span>. In diesem Zustand werden keine
+        Cookies gesetzt und keine Kennungen vergeben, mit denen Sie
+        wiedererkannt werden k&ouml;nnten. Es werden jedoch sogenannte cookiefreie
+        Messsignale an Google &uuml;bertragen, die insbesondere Ihre IP-Adresse,
+        Angaben zu Browser und Endger&auml;t, die aufgerufene Seite sowie den
+        Zeitpunkt des Aufrufs enthalten. Google nutzt diese Signale, um den
+        nicht eingewilligten Teil der Zugriffe statistisch zu sch&auml;tzen
+        (&bdquo;modellierte Daten&ldquo;). Rechtsgrundlage hierf&uuml;r ist unser
+        berechtigtes Interesse an einer belastbaren Reichweitenmessung
+        (Art. 6 Abs. 1 lit. f DSGVO). Da dabei weder Informationen auf Ihrem
+        Endger&auml;t gespeichert noch ausgelesen werden, greift &sect; 25 Abs. 1
+        TDDDG f&uuml;r diesen Schritt nicht. Sie k&ouml;nnen dieser Verarbeitung nach
+        Art. 21 DSGVO widersprechen; nutzen Sie dazu die unten genannten
+        Kontaktwege oder das Browser-Add-on von Google.
+      </p>
+      <p>
+        <strong>Nach Ihrer Einwilligung.</strong> Erst wenn Sie im Banner
+        ausdr&uuml;cklich zustimmen, wechselt
+        <span class="mono">analytics_storage</span> auf
+        <span class="mono">granted</span>. Ab diesem Zeitpunkt werden
+        Analyse-Cookies gesetzt und Ihre Nutzung wird pseudonym &uuml;ber mehrere
+        Seitenaufrufe hinweg gemessen. Rechtsgrundlage ist Ihre Einwilligung
+        nach Art. 6 Abs. 1 lit. a DSGVO; f&uuml;r das Speichern von Informationen
+        auf Ihrem Endger&auml;t und den Zugriff darauf ist dies zugleich die
+        Einwilligung nach &sect; 25 Abs. 1 TDDDG. Lehnen Sie ab, bleibt es
+        dauerhaft beim oben beschriebenen Zustand
+        <span class="mono">denied</span>.
       </p>
       <p>
         <strong>Google Consent Mode v2.</strong> Die Einwilligungssignale
@@ -732,8 +757,8 @@
         Werbezielgruppen statt.
       </p>
       <p>
-        <strong>Verarbeitete Daten.</strong> Nach erteilter Einwilligung
-        verarbeitet Google insbesondere eine pseudonyme Kennung Ihres Browsers
+        <strong>Verarbeitete Daten nach Einwilligung.</strong> Nach erteilter
+        Einwilligung verarbeitet Google insbesondere eine pseudonyme Kennung Ihres Browsers
         (Cookies mit den Namen <span class="mono">_ga</span> und
         <span class="mono">_ga_&lt;Mess-ID&gt;</span>), die aufgerufenen
         Seiten und den Zeitpunkt des Aufrufs, die verweisende Seite, Angaben zu

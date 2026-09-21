@@ -8,13 +8,21 @@
  * tiene bundle ni hoja compartida, y una segunda peticion solo para el banner
  * haria que apareciera sin estilos durante un instante.
  *
- * Postura DSGVO: no se contacta a Google hasta que hay consentimiento
- * explicito. Los defaults de Consent Mode se fijan siempre, pero son un push
- * a dataLayer en memoria, sin red. gtag.js se inyecta unicamente cuando
- * analytics_storage pasa a 'granted'. Es mas estricto que el patron que
- * recomienda Google (cargar gtag.js con defaults denied y mandar pings
- * cookieless), y responde al requisito de que no haya ningun tracking antes
- * del consentimiento.
+ * Modelo de consentimiento: el patron recomendado por Google. gtag.js se carga
+ * siempre, pero solo despues de fijar los defaults de Consent Mode v2 en
+ * denied. Con analytics_storage en denied, gtag no escribe cookies ni envia
+ * identificadores: manda pings sin cookies que permiten a GA4 modelar la
+ * parte no consentida del trafico. Al aceptar, un 'consent update' pasa
+ * analytics_storage a granted y desde ahi si hay cookies _ga.
+ *
+ * El orden importa y es lo unico fragil del archivo: el push de 'default'
+ * tiene que ocurrir antes de que gtag.js se ejecute. Por eso el script se
+ * inyecta desde aqui y no con una etiqueta suelta en el <head> de cada
+ * pagina, que podria adelantarsele.
+ *
+ * Contrapartida asumida a proposito: bajo este modelo la IP del visitante
+ * llega a Google antes de que haya consentimiento, cosa que el modelo
+ * anterior evitaba. Queda reflejado en la seccion 13 del Datenschutz.
  */
 (function () {
   'use strict';
@@ -121,6 +129,9 @@
 
   var gaLoaded = false;
 
+  /* Se llama una sola vez, en el arranque y con los defaults ya fijados. Lo que
+     decide si hay medicion real no es esta carga, sino el valor de
+     analytics_storage. */
   function loadGA() {
     if (gaLoaded) return;
     gaLoaded = true;
@@ -153,9 +164,11 @@
 
   function applyGrant() {
     gtag('consent', 'update', { analytics_storage: 'granted' });
-    loadGA();
   }
 
+  /* gtag.js sigue corriendo tras un rechazo, pero en modo denied: sin cookies y
+     sin identificadores. Las _ga que hubieran quedado de un consentimiento
+     anterior se borran, porque revocar tiene que vaciar lo ya escrito. */
   function applyDeny() {
     gtag('consent', 'update', { analytics_storage: 'denied' });
     dropGaCookies();
@@ -164,7 +177,9 @@
   /* ----------------------------------------------------------- estilos */
 
   var CSS = [
-    ':root{--cc-bg:#14141a;--cc-accent:#C6FF00;--cc-accent-fg:#0B0B0D;--cc-fg:#FFFFFF;--cc-muted:#8A8A8F;}',
+    /* --cc-accent es el acento canonico de jorgeag.com (#B8FF3D, 262 usos).
+       #C6FF00 es el lima del CV y de 343ride.de, otra marca. */
+    ':root{--cc-bg:#14141a;--cc-accent:#B8FF3D;--cc-accent-fg:#0B0B0D;--cc-fg:#FFFFFF;--cc-muted:#8A8A8F;}',
     /* El velo solo enfoca la atencion: no intercepta clics ni bloquea el
        scroll. Un banner que tapa el sitio hasta obtener un si seria un cookie
        wall, y el consentimiento dejaria de ser libre. */
@@ -300,6 +315,11 @@
   }
 
   /* --------------------------------------------------------------- init */
+
+  /* Orden deliberado: defaults (arriba) -> gtag.js -> update. El update de una
+     decision ya guardada entra dentro de la ventana de wait_for_update, asi que
+     gtag no llega a enviar nada en denied para quien ya habia aceptado. */
+  loadGA();
 
   var decision = readDecision();
   if (decision) {
