@@ -402,9 +402,10 @@
       <p>
         Diese Website ist im Wesentlichen eine Informationsseite. Sie bietet
         zus&auml;tzlich ein Kontaktformular (Abschnitt 12) und setzt eine
-        Reichweitenmessung mit Google Analytics 4 ein (Abschnitt 13). Eine
-        Newsletter-Anmeldung besteht nicht, ebenso wenig Werbe- oder
-        Remarketing-Dienste wie das Meta Pixel.
+        Reichweitenmessung mit Google Analytics 4 ein (Abschnitt 13). Hinzu
+        kommt auf allen Seiten eine zweite, cookielose und einwilligungsfreie
+        Reichweitenmessung mit Cloudflare Web Analytics (Abschnitt 14). Eine Newsletter-Anmeldung besteht nicht,
+        ebenso wenig Werbe- oder Remarketing-Dienste wie das Meta Pixel.
       </p>
       <p>
         Personenbezogene Daten fallen zun&auml;chst nur in dem Umfang an, der f&uuml;r
@@ -422,7 +423,11 @@
         denen auch Ihre IP-Adresse geh&ouml;rt; Einzelheiten und die
         Rechtsgrundlage dazu finden Sie in
         <a href="#analytics">Abschnitt 13</a>. Beim ersten Aufruf der Seite
-        fragt ein Banner Ihre Entscheidung ab. Sie k&ouml;nnen ablehnen, ohne dass
+        fragt ein Banner Ihre Entscheidung ab. Die in
+        <a href="#web-analytics">Abschnitt 14</a> beschriebene zweite Messung
+        h&auml;ngt nicht von dieser Entscheidung ab: Sie
+        kommt ohne Cookies und ohne Wiedererkennung aus und l&auml;uft deshalb auch
+        dann, wenn Sie im Banner ablehnen. Sie k&ouml;nnen ablehnen, ohne dass
         die Seite dadurch eingeschr&auml;nkt nutzbar w&auml;re, und Ihre Entscheidung
         jederzeit &auml;ndern.
       </p>
@@ -874,8 +879,83 @@
       </p>
     </section>
 
+    <section class="legal" id="web-analytics">
+      <h2>14. Reichweitenmessung mit Cloudflare Web Analytics</h2>
+      <p>
+        Diese Website nutzt zus&auml;tzlich Cloudflare Web Analytics, einen
+        Webanalysedienst der Cloudflare, Inc., 101 Townsend St., San Francisco,
+        CA 94107, USA, f&uuml;r Nutzerinnen und Nutzer im Europ&auml;ischen
+        Wirtschaftsraum vertreten durch die Cloudflare Germany GmbH,
+        Rosental 7, 80331 M&uuml;nchen. Die Messung ist nicht auf einzelne
+        Bereiche beschr&auml;nkt: Sie umfasst alle Seiten dieser Website
+        einschlie&szlig;lich der Publikation &bdquo;Operations in Motion&ldquo;
+        (/motion/, /de/motion/ und /es/motion/) sowie der Subdomains von
+        jorgeag.com. Das Messskript wird dabei nicht von unserem Server
+        ausgeliefert, sondern von Cloudflare automatisch in die Seite
+        eingef&uuml;gt, w&auml;hrend diese &uuml;ber das CDN an Ihren Browser ausgeliefert
+        wird.
+      </p>
+      <p>
+        <strong>Keine Cookies, keine Wiedererkennung, keine Einwilligung.</strong>
+        Cloudflare Web Analytics setzt keine Cookies, nutzt keinen
+        Browserspeicher (localStorage) und legt keine Kennung auf Ihrem
+        Endger&auml;t ab. Es wird weder eine Besucher- noch eine Sitzungskennung
+        vergeben, und es findet kein &bdquo;Fingerprinting&ldquo; &uuml;ber IP-Adresse,
+        User-Agent oder sonstige Merkmale statt. Da auf Ihrem Endger&auml;t somit
+        weder Informationen gespeichert noch ausgelesen werden, greift
+        &sect; 25 Abs. 1 TDDDG nicht und es wird keine Einwilligung eingeholt.
+        Diese Messung ist deshalb von Ihrer Entscheidung im Cookie-Banner
+        unabh&auml;ngig: Sie wird durch eine Ablehnung dort nicht abgeschaltet, und
+        sie erfasst alle Aufrufe dieser Website.
+      </p>
+      <p>
+        <strong>Verarbeitete Daten.</strong> Beim Aufruf einer Seite dieser
+        Website l&auml;dt Ihr Browser ein Messskript von
+        static.cloudflareinsights.com und &uuml;bermittelt die Messwerte
+        anschlie&szlig;end an die Adresse jorgeag.com/cdn-cgi/rum, also an unsere
+        eigene Domain, von wo aus Cloudflare sie entgegennimmt. &Uuml;bermittelt
+        werden insbesondere: die aufgerufene Adresse, die zuvor besuchte Seite (Referrer), den Zeitpunkt des
+        Aufrufs, Angaben zu Browser, Betriebssystem und Ger&auml;teart aus dem
+        User-Agent, das aus der IP-Adresse abgeleitete Land sowie technische
+        Messwerte zur Ladezeit der Seite. Ihre IP-Adresse wird f&uuml;r die
+        &Uuml;bertragung und zur Ableitung des Landes verarbeitet; sie wird
+        bereits im n&auml;chstgelegenen Rechenzentrum von Cloudflare entfernt und
+        nicht in die Auswertung &uuml;bernommen.
+      </p>
+      <p>
+        <strong>Was der Bericht zeigt.</strong> Die Auswertung ist aggregiert.
+        Ein &bdquo;Besuch&ldquo; ist dort schlicht ein Seitenaufruf, dessen Referrer von
+        einer anderen Website stammt; einen &bdquo;eindeutigen Besucher&ldquo; im Sinne
+        herk&ouml;mmlicher Analysedienste gibt es nicht, und Ihr Verhalten wird
+        nicht &uuml;ber mehrere Seitenaufrufe oder Besuche hinweg zusammengef&uuml;hrt.
+      </p>
+      <p>
+        <strong>Rechtsgrundlage und Widerspruch.</strong> Rechtsgrundlage ist
+        unser berechtigtes Interesse an einer datensparsamen,
+        einwilligungsfreien Reichweitenmessung, die erkennen l&auml;sst, welche
+        Beitr&auml;ge gelesen werden (Art. 6 Abs. 1 lit. f DSGVO). Sie k&ouml;nnen dieser
+        Verarbeitung nach Art. 21 DSGVO jederzeit &uuml;ber die in Abschnitt 3
+        genannten Kontaktwege widersprechen. Da kein Banner-Schalter existiert,
+        k&ouml;nnen Sie das Messskript zudem technisch unterbinden, etwa indem Sie
+        mit einer Browser-Erweiterung Skripte von
+        static.cloudflareinsights.com blockieren; die Seiten
+        bleiben dadurch uneingeschr&auml;nkt nutzbar.
+      </p>
+      <p>
+        <strong>Empf&auml;nger und Daten&uuml;bermittlung in Drittl&auml;nder.</strong>
+        Cloudflare ist bereits als Hosting- und CDN-Dienstleister dieser
+        Website t&auml;tig (Abschnitt 7); es besteht ein Vertrag &uuml;ber
+        Auftragsverarbeitung nach Art. 28 DSGVO, der auch diese Verarbeitung
+        umfasst. Eine Verarbeitung in den Vereinigten Staaten kann nicht
+        ausgeschlossen werden; erg&auml;nzend werden die Standardvertragsklauseln
+        der EU-Kommission zugrunde gelegt. Weitere Informationen finden Sie in
+        der Datenschutzerkl&auml;rung von Cloudflare:
+        <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a>.
+      </p>
+    </section>
+
     <section class="legal">
-      <h2>14. SSL- bzw. TLS-Verschl&uuml;sselung</h2>
+      <h2>15. SSL- bzw. TLS-Verschl&uuml;sselung</h2>
       <p>
         Diese Website nutzt aus Sicherheitsgr&uuml;nden und zum Schutz der
         &Uuml;bertragung vertraulicher Inhalte eine SSL- beziehungsweise
@@ -890,7 +970,7 @@
     </section>
 
     <section class="legal">
-      <h2>15. Speicherdauer</h2>
+      <h2>16. Speicherdauer</h2>
       <p>
         Soweit innerhalb dieser Erkl&auml;rung keine speziellere Speicherdauer genannt
         wird, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck f&uuml;r
@@ -914,7 +994,7 @@
     </section>
 
     <section class="legal">
-      <h2>16. Haftung f&uuml;r Inhalte</h2>
+      <h2>17. Haftung f&uuml;r Inhalte</h2>
       <p>
         Als Diensteanbieter sind wir gem&auml;&szlig; &sect; 7 Abs. 1 DDG (vormals &sect; 7 TMG)
         f&uuml;r eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen
@@ -940,7 +1020,7 @@
     </section>
 
     <section class="legal">
-      <h2>17. Haftung f&uuml;r Links</h2>
+      <h2>18. Haftung f&uuml;r Links</h2>
       <p>
         Unser Angebot enth&auml;lt Links zu externen Websites Dritter, auf deren
         Inhalte wir keinen Einfluss haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden
@@ -959,7 +1039,7 @@
     </section>
 
     <section class="legal">
-      <h2>18. Urheberrecht</h2>
+      <h2>19. Urheberrecht</h2>
       <p>
         Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
         Seiten unterliegen dem deutschen Urheberrecht. Die Vervielf&auml;ltigung,
