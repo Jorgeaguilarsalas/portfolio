@@ -8,21 +8,20 @@
  * tiene bundle ni hoja compartida, y una segunda peticion solo para el banner
  * haria que apareciera sin estilos durante un instante.
  *
- * Modelo de consentimiento: el patron recomendado por Google. gtag.js se carga
- * siempre, pero solo despues de fijar los defaults de Consent Mode v2 en
- * denied. Con analytics_storage en denied, gtag no escribe cookies ni envia
- * identificadores: manda pings sin cookies que permiten a GA4 modelar la
- * parte no consentida del trafico. Al aceptar, un 'consent update' pasa
- * analytics_storage a granted y desde ahi si hay cookies _ga.
+ * Modelo de consentimiento: Consent Mode basico. gtag.js no se carga hasta que
+ * el visitante acepta. Antes de esa aceptacion no sale ni una peticion hacia
+ * Google —tampoco un ping sin cookies—, de modo que su IP no llega a los
+ * servidores de Google. Al aceptar, un 'consent update' pasa analytics_storage
+ * a granted y solo entonces se inyecta gtag.js.
  *
- * El orden importa y es lo unico fragil del archivo: el push de 'default'
- * tiene que ocurrir antes de que gtag.js se ejecute. Por eso el script se
- * inyecta desde aqui y no con una etiqueta suelta en el <head> de cada
- * pagina, que podria adelantarsele.
+ * Los defaults en denied se siguen fijando al arrancar, antes que nada. Con el
+ * modelo basico nada puede llegar a gtag.js por delante de ellos, pero dejarlos
+ * cuesta cero y cubre el dia en que algo vuelva a cargar la etiqueta antes de
+ * tiempo: la cola ya estaria en denied.
  *
- * Contrapartida asumida a proposito: bajo este modelo la IP del visitante
- * llega a Google antes de que haya consentimiento, cosa que el modelo
- * anterior evitaba. Queda reflejado en la seccion 13 del Datenschutz.
+ * Contrapartida asumida a proposito: GA4 pierde el modelado de la parte no
+ * consentida del trafico, porque deja de recibir los pings sin cookies que lo
+ * alimentaban. GA4 pasa a contar solo a quien acepta.
  */
 (function () {
   'use strict';
@@ -166,9 +165,9 @@
 
   var gaLoaded = false;
 
-  /* Se llama una sola vez, en el arranque y con los defaults ya fijados. Lo que
-     decide si hay medicion real no es esta carga, sino el valor de
-     analytics_storage. */
+  /* Se llama una sola vez, desde applyGrant y nunca antes. En el modelo basico
+     esta carga ES la decision: si el visitante no acepta, gtag.js no existe en
+     la pagina. */
   function loadGA() {
     if (EXCLUDED || gaLoaded) return;
     gaLoaded = true;
@@ -206,11 +205,17 @@
   function applyGrant() {
     granted = true;
     gtag('consent', 'update', { analytics_storage: 'granted' });
+    // El update entra en dataLayer antes de inyectar el script, asi que cuando
+    // gtag.js arranca encuentra la cola ya en granted: no hay ventana en denied.
+    loadGA();
   }
 
-  /* gtag.js sigue corriendo tras un rechazo, pero en modo denied: sin cookies y
-     sin identificadores. Las _ga que hubieran quedado de un consentimiento
-     anterior se borran, porque revocar tiene que vaciar lo ya escrito. */
+  /* Tras un rechazo no queda nada corriendo: con el modelo basico gtag.js solo
+     se carga desde applyGrant, asi que quien rechaza de entrada nunca lo tuvo en
+     la pagina. El update a denied importa en el otro caso, el de revocar a mitad
+     de visita: ahi gtag.js ya esta cargado y hay que pararlo en el acto. Las _ga
+     que quedaran de aquel consentimiento se borran, porque revocar tiene que
+     vaciar lo ya escrito; en la siguiente pagina el script ya no se carga. */
   function applyDeny() {
     granted = false;
     gtag('consent', 'update', { analytics_storage: 'denied' });
@@ -575,10 +580,9 @@
 
   /* --------------------------------------------------------------- init */
 
-  /* Orden deliberado: defaults (arriba) -> gtag.js -> update. El update de una
-     decision ya guardada entra dentro de la ventana de wait_for_update, asi que
-     gtag no llega a enviar nada en denied para quien ya habia aceptado. */
-  loadGA();
+  /* Orden deliberado: defaults (arriba) -> update -> gtag.js. gtag.js solo se
+     carga desde applyGrant, asi que quien no ha decidido todavia, quien rechazo
+     y quien lleva ?noga=1 no generan una sola peticion hacia Google. */
 
   // El aviso va aqui y no junto a la lectura del parametro porque necesita
   // que CSS ya este asignado.
