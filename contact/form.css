@@ -155,3 +155,16 @@ footer.site a:hover{color:var(--accent);}
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) .impact{line-height:var(--lh-impact)}
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) :is(.eyebrow,.tag,.kicker,.applied-label,.statement-label){letter-spacing:var(--ls-mono)}
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) figcaption{letter-spacing:.04em}
+
+/* Auto-ocultar la barra: el estado lo pone /nav.js, aqui solo la transicion.
+   Estas tres paginas cargan su CSS desde este archivo y no inline, asi que la
+   regla vive aqui y no en cada documento. */
+.nav{transition:transform .2s ease;will-change:transform;}
+.nav.nav-hidden{transform:translateY(-100%);}
+@media (prefers-reduced-motion:reduce){ .nav{transition:none;} }
+
+/* Foco visible generico. El formulario ya lo tenia; los enlaces de la barra
+   y el pie no. */
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
+  outline:2px solid var(--accent);outline-offset:3px;
+}

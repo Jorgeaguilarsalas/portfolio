@@ -222,7 +222,7 @@
     display:inline-flex;align-items:center;gap:10px;
     padding:15px 26px;border:1px solid var(--border);border-radius:999px;
     color:var(--fg);font-weight:600;font-size:14px;text-decoration:none;
-    transition:border-color .25s ease,color .25s ease;
+    transition:border-color .2s ease,color .2s ease;
   }
   .back-cta:hover{border-color:var(--accent);color:var(--accent);}
   .back-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
@@ -271,9 +271,9 @@
     padding:14px 24px;border:1px solid var(--border);border-radius:999px;
     background:transparent;color:var(--fg);
     font-family:var(--sans);font-weight:600;font-size:14px;text-decoration:none;
-    transition:border-color .25s ease,color .25s ease,transform .25s ease;
+    transition:border-color .2s ease,color .2s ease,transform .2s ease;
   }
-  .case-cta .arrow{color:var(--accent);transition:transform .25s ease;}
+  .case-cta .arrow{color:var(--accent);transition:transform .2s ease;}
   .case-cta:hover{border-color:var(--accent);color:var(--accent);}
   .case-cta:hover .arrow{transform:translateX(3px);}
   .case-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
@@ -314,7 +314,7 @@
       background:transparent;border:1px dashed rgba(184,255,61,0.3);border-radius:999px;
       color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.14em;
       text-transform:uppercase;cursor:pointer;
-      transition:border-color .25s ease,color .25s ease;
+      transition:border-color .2s ease,color .2s ease;
     }
     .case-toggle:hover,.case-toggle[aria-expanded="true"]{border-color:var(--accent);color:var(--fg);}
     .case-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
@@ -424,12 +424,25 @@
     color:var(--muted);text-decoration:none;white-space:nowrap;transition:color .2s ease;
   }
   .nav-pagelink:hover{color:var(--accent);}
+  /* Auto-ocultar la barra: el estado lo pone /nav.js y aqui solo vive la
+     transicion. transform y no top, para que no recalcule layout al animar. */
+  .nav{transition:transform .2s ease;will-change:transform;}
+  .nav.nav-hidden{transform:translateY(-100%);}
+  @media (prefers-reduced-motion:reduce){
+    .nav{transition:none;}
+  }
+  /* La barra interior crece a cuatro destinos: por debajo de 1100px el
+     back-link mas los enlaces mas las acciones ya no caben en una linea, y
+     ahi el menu de hamburguesa toma el relevo. */
+  @media (max-width:1100px){ .nav-pagelink{display:none;} }
+  .nav-pagelink.is-active{color:var(--accent);}
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script src="/tab.js" defer></script>
+<script src="/nav.js" defer></script>
 </head>
 <body>
 
@@ -437,7 +450,10 @@
   <div class="nav-inner">
     <a href="/es/#work" class="back-link"><span>&larr;</span> Portafolio</a>
     <div class="nav-actions">
+      <a href="/es/work/" class="nav-pagelink is-active" aria-current="page">Trabajo</a>
       <a href="/es/about/" class="nav-pagelink">Sobre</a>
+      <a href="/es/motion/" class="nav-pagelink" title="Operations in Motion — la publicación de investigación de Jorge sobre operaciones y tecnología.">Motion</a>
+      <a href="/es/leadership-framework/" class="nav-pagelink">Framework</a>
       <div class="lang-switch" role="group" aria-label="Idioma">
         <a href="/work/" hreflang="en">EN</a>
         <a href="/de/work/" hreflang="de">DE</a>
@@ -468,6 +484,9 @@
     </div>
     <div class="mobile-menu-actions">
       <a href="/es/about/" class="mm-download">Sobre</a>
+      <a href="/es/work/" class="mm-download">Trabajo</a>
+      <a href="/es/motion/" class="mm-download">Motion</a>
+      <a href="/es/leadership-framework/" class="mm-download">Framework</a>
       <a href="/es/#contact" class="mm-cta">Hablemos</a>
       <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Currículum &darr;</a>
     </div>

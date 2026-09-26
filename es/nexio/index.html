@@ -480,12 +480,25 @@
   @media (prefers-reduced-motion:reduce){
     .scroll-progress span{transition:none;}
   }
+  /* Auto-ocultar la barra: el estado lo pone /nav.js y aqui solo vive la
+     transicion. transform y no top, para que no recalcule layout al animar. */
+  .nav{transition:transform .2s ease;will-change:transform;}
+  .nav.nav-hidden{transform:translateY(-100%);}
+  @media (prefers-reduced-motion:reduce){
+    .nav{transition:none;}
+  }
+  /* La barra interior crece a cuatro destinos: por debajo de 1100px el
+     back-link mas los enlaces mas las acciones ya no caben en una linea, y
+     ahi el menu de hamburguesa toma el relevo. */
+  @media (max-width:1100px){ .nav-pagelink{display:none;} }
+  .nav-pagelink.is-active{color:var(--accent);}
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script src="/tab.js" defer></script>
+<script src="/nav.js" defer></script>
 </head>
 <body>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -494,7 +507,10 @@
   <div class="nav-inner">
     <a href="/es/#work" class="back-link"><span>&larr;</span> Portafolio</a>
     <div class="nav-actions">
+      <a href="/es/work/" class="nav-pagelink">Trabajo</a>
       <a href="/es/about/" class="nav-pagelink">Sobre</a>
+      <a href="/es/motion/" class="nav-pagelink" title="Operations in Motion — la publicación de investigación de Jorge sobre operaciones y tecnología.">Motion</a>
+      <a href="/es/leadership-framework/" class="nav-pagelink">Framework</a>
       <div class="lang-switch" role="group" aria-label="Idioma">
         <a href="/nexio/" hreflang="en">EN</a>
         <a href="/de/nexio/" hreflang="de">DE</a>
@@ -525,6 +541,9 @@
     </div>
     <div class="mobile-menu-actions">
       <a href="/es/about/" class="mm-download">Sobre</a>
+      <a href="/es/work/" class="mm-download">Trabajo</a>
+      <a href="/es/motion/" class="mm-download">Motion</a>
+      <a href="/es/leadership-framework/" class="mm-download">Framework</a>
       <a href="/es/#contact" class="mm-cta">Hablemos</a>
       <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Currículum &darr;</a>
     </div>

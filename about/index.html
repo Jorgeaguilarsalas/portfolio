@@ -497,9 +497,9 @@
     padding:14px 24px;border:1px solid var(--border);border-radius:999px;
     background:transparent;color:var(--fg);
     font-family:var(--sans);font-weight:600;font-size:14px;text-decoration:none;
-    transition:border-color .25s ease,color .25s ease,transform .25s ease;
+    transition:border-color .2s ease,color .2s ease,transform .2s ease;
   }
-  .case-cta .arrow{color:var(--accent);transition:transform .25s ease;}
+  .case-cta .arrow{color:var(--accent);transition:transform .2s ease;}
   .case-cta:hover{border-color:var(--accent);color:var(--accent);}
   .case-cta:hover .arrow{transform:translateX(3px);}
   .case-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
@@ -540,7 +540,7 @@
       background:transparent;border:1px dashed rgba(184,255,61,0.3);border-radius:999px;
       color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.14em;
       text-transform:uppercase;cursor:pointer;
-      transition:border-color .25s ease,color .25s ease;
+      transition:border-color .2s ease,color .2s ease;
     }
     .case-toggle:hover,.case-toggle[aria-expanded="true"]{border-color:var(--accent);color:var(--fg);}
     .case-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
@@ -579,11 +579,11 @@
     display:inline-flex;align-items:center;gap:12px;
     padding:18px 34px;border:1px solid rgba(184,255,61,0.45);border-radius:999px;
     color:var(--accent);font-weight:600;font-size:15.5px;text-decoration:none;
-    transition:background-color .25s ease,border-color .25s ease;
+    transition:background-color .2s ease,border-color .2s ease;
   }
   .work-all-cta:hover{background:rgba(184,255,61,0.08);border-color:var(--accent);}
   .work-all-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
-  .work-all-cta .arrow{transition:transform .25s ease;}
+  .work-all-cta .arrow{transition:transform .2s ease;}
   .work-all-cta:hover .arrow{transform:translateX(4px);}
   @media (max-width:900px){
     .work-all{margin-top:26px;}
@@ -736,7 +736,7 @@
      .section / .container, asi que el rail se monta alrededor sin tocarlas:
      la rejilla la pone .hub-layout y dentro .container solo tiene que
      dejar de centrar y de repetir el gutter, que ya lo pone la rejilla. */
-  .hub-hero{padding:72px var(--gutter) 8px;}
+  .hub-hero{padding:72px var(--gutter) 0;}
   .hub-hero h1{
     font-size:clamp(44px,7vw,92px);font-weight:900;line-height:.94;
     letter-spacing:-.035em;text-transform:uppercase;margin:24px 0 0;
@@ -791,7 +791,6 @@
 
   /* El primer .section del hub ya viene despues del hero: sin esto queda un
      doble respiro de 80+72px. */
-  .hub-main > .section:first-child{padding-top:0;}
   .hub-main > .section:last-of-type{border-bottom:0;}
   .hub-main .container{max-width:none;margin:0;padding:0;}
 
@@ -873,12 +872,29 @@
   @media (prefers-reduced-motion:reduce){
     .scroll-progress span{transition:none;}
   }
+  /* Auto-ocultar la barra: el estado lo pone /nav.js y aqui solo vive la
+     transicion. transform y no top, para que no recalcule layout al animar. */
+  .nav{transition:transform .2s ease;will-change:transform;}
+  .nav.nav-hidden{transform:translateY(-100%);}
+  @media (prefers-reduced-motion:reduce){
+    .nav{transition:none;}
+  }
+  /* Ritmo entre secciones en un solo sitio. .contact traia 100px propios y
+     la primera seccion del hub abria con 0: ambos se alinean aqui. */
+  :root{ --sec-pad:80px; }
+  @media (max-width:640px){ :root{ --sec-pad:56px; } }
+  .section{padding:var(--sec-pad) 0;}
+  .contact{padding:var(--sec-pad) 0;}
+  /* El hub abria pegado al hero (8px) y el resto de saltos median ~208px. */
+  .hub-main > .section:first-child{padding-top:var(--sec-pad);}
+  .hub-hero{padding-bottom:var(--sec-pad);}
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script src="/tab.js" defer></script>
+<script src="/nav.js" defer></script>
 </head>
 <body>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>

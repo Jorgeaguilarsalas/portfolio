@@ -35,6 +35,7 @@
     --card:#14141A;
     --fg:#F7F7F8;
     --muted:#B4B4BB;
+    --muted-2:#8A8A8F;
     --border:#262626;
     --accent:#B8FF3D;
     --accent-fg:#09090B;
@@ -683,7 +684,7 @@
   }
   .layer .attrib-note{
     font-family:var(--sans);font-size:13.5px;line-height:1.75;
-    font-style:italic;color:#8A8A8F;letter-spacing:normal;
+    font-style:italic;color:var(--muted-2);letter-spacing:normal;
   }
   .layer .attrib-note em{font-style:normal;color:var(--muted)}
 
@@ -771,12 +772,49 @@
   @media (prefers-reduced-motion:reduce){
     .scroll-progress span{transition:none;}
   }
+  /* Auto-ocultar la barra: el estado lo pone /nav.js y aqui solo vive la
+     transicion. transform y no top, para que no recalcule layout al animar. */
+  .nav{transition:transform .2s ease;will-change:transform;}
+  .nav.nav-hidden{transform:translateY(-100%);}
+  @media (prefers-reduced-motion:reduce){
+    .nav{transition:none;}
+  }
+  /* Retícula del manual: indice fijo a la izquierda, capas a la derecha.
+     Misma estructura que /about/ y que los case studies. */
+  .lf-layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:64px;align-items:start;margin-top:56px}
+  .lf-rail{position:sticky;top:96px;min-width:0}
+  .lf-rail .rail-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 16px;display:block;
+  }
+  .rail-toc{display:flex;flex-direction:column;gap:0;margin:0;padding:0;list-style:none;border-top:1px solid var(--border)}
+  .rail-toc a{
+    display:flex;align-items:baseline;gap:12px;padding:11px 0;
+    border-bottom:1px solid var(--border);text-decoration:none;
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);transition:color .2s ease;
+  }
+  .rail-toc a:hover,.rail-toc a.is-active{color:var(--accent)}
+  .rail-toc .n{color:var(--accent);opacity:.65;flex:none}
+  .lf-layout .stack{max-width:none;margin-top:0}
+  /* El indice en linea sigue existiendo para movil, donde no hay rail. */
+  @media (min-width:981px){ .toc-wrap{display:none} }
+  @media (max-width:980px){
+    .lf-layout{grid-template-columns:minmax(0,1fr);gap:0;margin-top:40px}
+    .lf-rail{display:none}
+  }
+  /* La barra interior crece a cuatro destinos: por debajo de 1100px el
+     back-link mas los enlaces mas las acciones ya no caben en una linea, y
+     ahi el menu de hamburguesa toma el relevo. */
+  @media (max-width:1100px){ .nav-pagelink{display:none;} }
+  .nav-pagelink.is-active{color:var(--accent);}
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script src="/tab.js" defer></script>
+<script src="/nav.js" defer></script>
 </head>
 <body>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -785,7 +823,10 @@
   <div class="nav-inner">
     <a href="/" class="back-link"><span>&larr;</span> Portfolio</a>
     <div class="nav-actions">
+      <a href="/work/" class="nav-pagelink">Work</a>
       <a href="/about/" class="nav-pagelink">About</a>
+      <a href="/motion/" class="nav-pagelink" title="Operations in Motion — Jorge's research publication on operations and technology.">Motion</a>
+      <a href="/leadership-framework/" class="nav-pagelink is-active" aria-current="page">Framework</a>
       <div class="lang-switch" role="group" aria-label="Language">
         <a href="/leadership-framework/" hreflang="en" class="is-current" aria-current="page">EN</a>
         <a href="/de/leadership-framework/" hreflang="de">DE</a>
@@ -816,6 +857,9 @@
     </div>
     <div class="mobile-menu-actions">
       <a href="/about/" class="mm-download">About</a>
+      <a href="/work/" class="mm-download">Work</a>
+      <a href="/motion/" class="mm-download">Motion</a>
+      <a href="/leadership-framework/" class="mm-download">Framework</a>
       <a href="/#contact" class="mm-cta">Get in touch</a>
       <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Download CV &darr;</a>
     </div>
@@ -835,7 +879,21 @@
     <p class="attribution reveal">Layer 01 adapts the work of <a href="https://www.acquisition.com/team/bio-leila-2" target="_blank" rel="noopener">Leila Hormozi</a> &mdash; the operating partner and CEO whose body of work on leadership most closely matches how I think about leading people through ambiguity. Layers 02 to 07 are my own, built from running service delivery and operations teams.</p>
   </header>
 
-  <div class="stack">
+  <div class="lf-layout">
+    <aside class="lf-rail">
+      <span class="rail-label">The seven layers</span>
+      <ul class="rail-toc">
+        <li><a href="#layer-01"><span class="n">01</span> Leadership Principles</a></li>
+        <li><a href="#layer-02"><span class="n">02</span> People Management</a></li>
+        <li><a href="#layer-03"><span class="n">03</span> Execution Management</a></li>
+        <li><a href="#layer-04"><span class="n">04</span> Operational Improvement</a></li>
+        <li><a href="#layer-05"><span class="n">05</span> Service &amp; Cross-Functional Delivery</a></li>
+        <li><a href="#layer-06"><span class="n">06</span> Working Principles</a></li>
+        <li><a href="#layer-07"><span class="n">07</span> How It All Connects</a></li>
+      </ul>
+    </aside>
+
+    <div class="stack">
 
     <section class="card statement reveal">
       <p class="statement-label">Core philosophy</p>
@@ -2014,6 +2072,7 @@
       <a href="/" class="btn-back">Back to portfolio <span>&rarr;</span></a>
     </section>
 
+    </div>
   </div>
 </main>
 
@@ -2107,6 +2166,27 @@
       var max = Math.max(document.body.scrollHeight, doc.scrollHeight) - window.innerHeight;
       var pct = max > 8 ? (window.scrollY / max) * 100 : 0;
       fill.style.setProperty('--p', Math.min(100, Math.max(0, pct)).toFixed(2) + '%');
+    }
+    window.addEventListener('scroll', function () {
+      if (!queued) { queued = true; window.requestAnimationFrame(sync); }
+    }, { passive: true });
+    window.addEventListener('resize', sync, { passive: true });
+    sync();
+  })();
+</script>
+
+<script>
+  /* Marca en el indice la capa que se esta leyendo. */
+  (function () {
+    var links = [].slice.call(document.querySelectorAll('.lf-rail .rail-toc a'));
+    if (!links.length) return;
+    var targets = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    var queued = false;
+    function sync() {
+      queued = false;
+      var y = window.scrollY + 140, best = 0;
+      for (var i = 0; i < targets.length; i++) { if (targets[i] && targets[i].offsetTop <= y) best = i; }
+      links.forEach(function (a, i) { a.classList.toggle('is-active', i === best); });
     }
     window.addEventListener('scroll', function () {
       if (!queued) { queued = true; window.requestAnimationFrame(sync); }

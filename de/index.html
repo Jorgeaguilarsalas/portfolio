@@ -498,9 +498,9 @@
     padding:14px 24px;border:1px solid var(--border);border-radius:999px;
     background:transparent;color:var(--fg);
     font-family:var(--sans);font-weight:600;font-size:14px;text-decoration:none;
-    transition:border-color .25s ease,color .25s ease,transform .25s ease;
+    transition:border-color .2s ease,color .2s ease,transform .2s ease;
   }
-  .case-cta .arrow{color:var(--accent);transition:transform .25s ease;}
+  .case-cta .arrow{color:var(--accent);transition:transform .2s ease;}
   .case-cta:hover{border-color:var(--accent);color:var(--accent);}
   .case-cta:hover .arrow{transform:translateX(3px);}
   .case-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
@@ -541,7 +541,7 @@
       background:transparent;border:1px dashed rgba(184,255,61,0.3);border-radius:999px;
       color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.14em;
       text-transform:uppercase;cursor:pointer;
-      transition:border-color .25s ease,color .25s ease;
+      transition:border-color .2s ease,color .2s ease;
     }
     .case-toggle:hover,.case-toggle[aria-expanded="true"]{border-color:var(--accent);color:var(--fg);}
     .case-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
@@ -580,11 +580,11 @@
     display:inline-flex;align-items:center;gap:12px;
     padding:18px 34px;border:1px solid rgba(184,255,61,0.45);border-radius:999px;
     color:var(--accent);font-weight:600;font-size:15.5px;text-decoration:none;
-    transition:background-color .25s ease,border-color .25s ease;
+    transition:background-color .2s ease,border-color .2s ease;
   }
   .work-all-cta:hover{background:rgba(184,255,61,0.08);border-color:var(--accent);}
   .work-all-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
-  .work-all-cta .arrow{transition:transform .25s ease;}
+  .work-all-cta .arrow{transition:transform .2s ease;}
   .work-all-cta:hover .arrow{transform:translateX(4px);}
   @media (max-width:900px){
     .work-all{margin-top:26px;}
@@ -738,12 +738,26 @@
     margin:28px 0 0;max-width:58ch;
   }
   .exp-line strong{color:var(--fg);font-weight:600;}
+  /* Auto-ocultar la barra: el estado lo pone /nav.js y aqui solo vive la
+     transicion. transform y no top, para que no recalcule layout al animar. */
+  .nav{transition:transform .2s ease;will-change:transform;}
+  .nav.nav-hidden{transform:translateY(-100%);}
+  @media (prefers-reduced-motion:reduce){
+    .nav{transition:none;}
+  }
+  /* Ritmo entre secciones en un solo sitio. .contact traia 100px propios y
+     la primera seccion del hub abria con 0: ambos se alinean aqui. */
+  :root{ --sec-pad:80px; }
+  @media (max-width:640px){ :root{ --sec-pad:56px; } }
+  .section{padding:var(--sec-pad) 0;}
+  .contact{padding:var(--sec-pad) 0;}
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script src="/tab.js" defer></script>
+<script src="/nav.js" defer></script>
 </head>
 <body>
 
