@@ -745,7 +745,28 @@
     font-size:clamp(17px,1.9vw,22px);font-weight:600;line-height:1.4;
     letter-spacing:-.01em;color:var(--fg);margin:20px 0 0;max-width:50ch;
   }
-  .hub-bio{margin-top:26px;max-width:66ch;display:flex;flex-direction:column;gap:18px;}
+  /* El max-width de 66ch estaba pensado para una columna de texto suelta.
+     Desde que el bio volvio a traer el retrato, lo que recorta es la rejilla
+     entera: la prosa caia a 342px y quedaban 590px muertos a la derecha. El
+     limite de medida pasa a la columna de texto, que es a quien le toca. */
+  .hub-bio{margin-top:26px;display:flex;flex-direction:column;gap:18px;}
+  .hub-bio .about-layout{grid-template-columns:300px minmax(0,1fr);gap:64px;align-items:start;}
+  .hub-bio .about-photo-wrap{max-width:300px;}
+  .hub-bio .snapshot-prose{max-width:72ch;}
+  /* .hub-bio p{margin:0} servia cuando los parrafos eran hijos directos y los
+     separaba el gap del flex. Anidados en .snapshot-prose ese gap ya no les
+     llega, asi que recuperan su propio margen. */
+  .hub-bio .snapshot-prose p{margin-bottom:20px;}
+  .hub-bio .snapshot-prose p:last-child{margin-bottom:0;}
+  @media (max-width:1024px){
+    .hub-bio .about-layout{grid-template-columns:240px minmax(0,1fr);gap:48px;}
+    .hub-bio .about-photo-wrap{max-width:240px;}
+  }
+  @media (max-width:800px){
+    .hub-bio .about-layout{grid-template-columns:minmax(0,1fr);gap:32px;justify-items:start;}
+    .hub-bio .about-photo-wrap{max-width:200px;}
+    .hub-bio .snapshot-prose{max-width:100%;}
+  }
   .hub-bio p{font-size:17px;line-height:1.7;color:var(--muted);margin:0;}
   .hub-bio p strong{color:var(--fg);font-weight:600;}
 
@@ -829,6 +850,11 @@
   @media (max-width:640px){
     .hub-bio p{font-size:16px;}
   }
+  /* Temario de una entrada de Education. Hereda el tono de .degree para no
+     pesar mas que las entradas que no lo llevan. */
+  .edu-points{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:5px;}
+  .edu-points li{position:relative;padding-left:16px;font-size:14px;line-height:1.55;color:var(--muted);}
+  .edu-points li::before{content:"—";position:absolute;left:0;top:0;color:var(--accent);}
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -1168,6 +1194,18 @@
           <div class="edu-body">
             <div class="school">Ironhack · Berlin</div>
             <div class="degree">Diploma, DevOps & Cloud Computing — <em>CI/CD pipelines, Terraform, Docker, Kubernetes, AWS, Azure</em></div>
+          </div>
+        </div>
+        <div class="edu-item reveal">
+          <div class="edu-year">03.2023 — 06.2023</div>
+          <div class="edu-body">
+            <div class="school">Ironhack · Berlin</div>
+            <div class="degree">Diploma of Education, Data Analytics and ML — <em>Data Analytics Boot Camp &middot; Full-Time &middot; Campus Berlin</em></div>
+            <ul class="edu-points">
+              <li>Advanced resources of Git, Python, MySQL, Tableau, and statistical analysis</li>
+              <li>Data analysis with Pandas, data visualization, and statistics in Python</li>
+              <li>Advanced topics in data analytics and machine learning</li>
+            </ul>
           </div>
         </div>
         <div class="edu-item reveal">
