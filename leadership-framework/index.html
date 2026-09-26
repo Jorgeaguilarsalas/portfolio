@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Leadership Framework — Jorge Aguilar</title>
-<meta name="description" content="The five pillars that shape how I lead: emotional regulation, sincere candor, unimpeachable character, clarity, and ownership. A framework grounded in Leila Hormozi's work on leadership.">
-<meta property="og:title" content="Leadership Framework — Jorge Aguilar">
-<meta property="og:description" content="Five pillars that shape how I lead teams through ambiguity across operations, product, and partnerships.">
+<title>Leadership & Operations frameworks — Jorge Aguilar</title>
+<meta name="description" content="Seven layers of leadership and operations frameworks: leadership principles, people management, execution management, operational improvement, and service &amp; cross-functional delivery.">
+<meta property="og:title" content="Leadership &amp; Operations frameworks — Jorge Aguilar">
+<meta property="og:description" content="How I show up, how I develop people, and how I turn goals into execution — the operating frameworks behind my service and operations work.">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://jorgeag.com/leadership-framework/">
 <link rel="alternate" hreflang="en" href="https://jorgeag.com/leadership-framework/">
@@ -22,8 +22,8 @@
 <meta name="twitter:image" content="https://jorgeag.com/og-card-1200x630.png">
 <meta property="og:site_name" content="Jorge Aguilar Portfolio">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Leadership Framework — Jorge Aguilar">
-<meta name="twitter:description" content="Five pillars that shape how I lead teams through ambiguity across operations, product, and partnerships.">
+<meta name="twitter:title" content="Leadership &amp; Operations frameworks — Jorge Aguilar">
+<meta name="twitter:description" content="How I show up, how I develop people, and how I turn goals into execution — the operating frameworks behind my service and operations work.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
@@ -440,6 +440,278 @@
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) .impact{line-height:var(--lh-impact)}
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) :is(.eyebrow,.tag,.kicker,.applied-label,.statement-label){letter-spacing:var(--ls-mono)}
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) figcaption{letter-spacing:.04em}
+
+  /* ── ARQUITECTURA POR CAPAS ────────────────────────────────────────────
+     La pagina paso de cinco pilares a siete capas, asi que el bloque de
+     abajo va DESPUES de la escala de espaciado a proposito: los selectores
+     genericos de la escala son (0,1,1) y aqui hace falta ganarles con
+     (0,2,0) sin tocar las reglas compartidas con el resto del sitio. */
+
+  /* Indice de capas */
+  .toc-wrap{scroll-margin-top:96px}
+  .toc{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius);padding:34px 36px;
+  }
+  .toc-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin:0;
+  }
+  .toc-list{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:0 40px;margin:20px 0 0;padding:0;list-style:none;
+  }
+  .toc-list li{margin:0}
+  .toc-list a{
+    display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;
+    align-items:baseline;padding:13px 0;color:var(--fg);
+    border-top:1px solid rgba(48,48,54,.75);
+  }
+  .toc-list li:first-child a,.toc-list li:nth-child(2) a{border-top:0;padding-top:0}
+  .toc-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--accent)}
+  .toc-name{font-size:15px;font-weight:600;line-height:1.35;transition:color .2s ease}
+  .toc-name span{display:block;font-weight:400;font-size:13.5px;line-height:1.5;color:var(--muted);margin-top:4px}
+  .toc-list a:hover .toc-name{color:var(--accent)}
+
+  /* Cabecera de capa */
+  .layer{scroll-margin-top:88px}
+  .layer-head{max-width:64ch}
+  .layer-head > *{margin:0}
+  .layer-num{
+    font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .layer-num::before{content:"";width:24px;height:2px;background:var(--accent);border-radius:2px}
+  .layer .layer-head h2{
+    font-size:clamp(28px,3.4vw,44px);font-weight:900;line-height:1;
+    letter-spacing:-.025em;text-transform:uppercase;max-width:20ch;text-wrap:balance;
+  }
+  .layer .layer-sub{
+    font-size:clamp(16px,1.7vw,20px);font-weight:600;line-height:1.35;
+    letter-spacing:-.01em;color:var(--muted);
+  }
+  .layer .layer-intro{font-size:16px;line-height:1.7;color:var(--muted);max-width:62ch}
+  .layer .layer-intro strong{color:var(--fg);font-weight:600}
+  .layer-head > .layer-num + h2{margin-top:var(--sp-label)}
+  .layer-head > h2 + .layer-sub{margin-top:var(--sp-title)}
+  .layer-head > * + .layer-intro{margin-top:var(--sp-text)}
+
+  /* Sub-bloque dentro de una capa (p. ej. Management Practices) */
+  .subhead{max-width:62ch}
+  .subhead > *{margin:0}
+  .sub-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);
+  }
+  .layer .subhead h3{font-size:clamp(21px,2.3vw,28px);font-weight:800;letter-spacing:-.02em}
+  .layer .subhead p{font-size:15.5px;line-height:1.7;color:var(--muted)}
+  .subhead > .sub-label + h3{margin-top:var(--sp-label)}
+  .subhead > h3 + p{margin-top:var(--sp-title)}
+
+  /* Cadena de pasos de un framework: Translate -> Assign -> Track -> Act */
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:0;padding:0;list-style:none}
+  .flow li{display:flex;align-items:center;gap:9px;margin:0}
+  .flow .step{
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--fg);background:var(--surface-2);border:1px solid var(--border);
+    border-radius:999px;padding:8px 15px;line-height:1;white-space:nowrap;
+  }
+  .flow .arrow{color:var(--accent);font-size:12px;line-height:1}
+  .flow li:last-child .arrow{display:none}
+  .flow.is-tight .step{font-size:10.5px;padding:7px 12px}
+
+  /* Principio operativo / pregunta guia */
+  .principle{
+    border-left:2px solid var(--accent);background:rgba(184,255,61,.05);
+    border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:18px 22px;margin:0;
+  }
+  .principle .plabel{
+    display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 9px;
+  }
+  .layer .principle p,.pillar-content .principle p{
+    font-size:16px;line-height:1.5;font-weight:600;color:var(--fg);margin:0;
+  }
+  .principle.is-ask{border-left-color:var(--border);background:var(--surface-2)}
+  .principle.is-ask .plabel{color:var(--muted)}
+
+  /* Referencia cruzada entre frameworks */
+  .xref{
+    margin:0;padding-left:16px;border-left:1px solid var(--border);
+    font-size:14px;line-height:1.65;color:var(--muted);
+  }
+  .pillar-content .xref b,.layer .xref b{color:var(--fg);font-weight:600}
+
+  /* Rejillas de definiciones: Skill/Will/System, buckets de KPI */
+  .grid-2,.grid-3,.grid-4{display:grid;gap:14px;margin:0}
+  .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tile{
+    background:var(--surface-2);border:1px solid var(--border);
+    border-radius:var(--radius-sm);padding:20px 22px;
+  }
+  .tile > *{margin:0}
+  .tile-kicker{
+    display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);
+  }
+  .layer .tile h4,.pillar-content .tile h4{font-size:15.5px;font-weight:700;color:var(--fg);letter-spacing:-.01em}
+  .layer .tile p,.pillar-content .tile p{font-size:14.5px;line-height:1.6;color:var(--muted)}
+  .tile > .tile-kicker + h4{margin-top:10px}
+  .tile > h4 + p{margin-top:8px}
+  .tile > p + p{margin-top:10px}
+  .layer .tile p.tile-resp,.pillar-content .tile p.tile-resp{color:var(--fg)}
+  .tile p.tile-resp b{color:var(--accent);font-weight:600}
+
+  /* Pasos numerados de un framework (Coaching, Feedback, Incidentes) */
+  .steps{list-style:none;margin:0;padding:0}
+  .steps li{
+    display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;
+    padding:15px 0;margin:0;border-top:1px solid rgba(48,48,54,.75);
+  }
+  .steps li:first-child{border-top:0;padding-top:0}
+  .steps li:last-child{padding-bottom:0}
+  .steps .sn{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--accent);padding-top:3px}
+  .steps .st{display:block;font-size:15.5px;font-weight:700;color:var(--fg);letter-spacing:-.01em;margin-bottom:6px}
+  .layer .steps .sd,.pillar-content .steps .sd{display:block;font-size:14.5px;line-height:1.65;color:var(--muted)}
+  .steps .sd q{color:var(--fg);font-style:italic}
+
+  /* Capa 06: los principios transversales */
+  .plist{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;
+  }
+  .plist li{
+    display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;
+    padding:15px 0;margin:0;border-top:1px solid rgba(48,48,54,.75);
+    font-size:15px;line-height:1.6;color:var(--muted);
+  }
+  .plist li:first-child,.plist li:nth-child(2){border-top:0;padding-top:0}
+  .plist .pn{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.12em;color:var(--accent);padding-top:3px}
+  .plist b{color:var(--fg);font-weight:600}
+
+  /* Capa 07: el modelo por capas */
+  .model{display:flex;flex-direction:column;gap:10px;margin:0}
+  .model-row{
+    display:grid;grid-template-columns:auto minmax(0,.9fr) minmax(0,1.2fr);
+    gap:20px;align-items:center;
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius-sm);padding:18px 24px;
+  }
+  .model-row .mn{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--accent)}
+  .model-row .mname{font-size:15.5px;font-weight:700;color:var(--fg);letter-spacing:-.01em;line-height:1.35}
+  .model-row .mout{font-size:14.5px;line-height:1.6;color:var(--muted)}
+  .model-row .mout b{color:var(--fg);font-weight:600}
+  .model-legend{
+    display:grid;grid-template-columns:auto minmax(0,.9fr) minmax(0,1.2fr);gap:20px;
+    padding:0 24px 2px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  }
+  .model-legend span:first-child{visibility:hidden}
+
+  /* Capa 07: el flujo aplicado */
+  .scenario{
+    background:var(--surface-2);border:1px solid var(--border);
+    border-radius:var(--radius-sm);padding:22px 24px;margin:0;
+  }
+  .scenario > *{margin:0}
+  .scenario-label{
+    display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:10px;
+  }
+  .layer .scenario p{font-size:15.5px;line-height:1.7;color:var(--fg)}
+
+  .aflow{list-style:none;margin:0;padding:0}
+  .aflow li{
+    position:relative;display:grid;grid-template-columns:34px minmax(0,1fr);
+    gap:18px;padding:0 0 26px;margin:0;
+  }
+  .aflow li:last-child{padding-bottom:0}
+  .aflow li::before{content:"";position:absolute;left:16.5px;top:36px;bottom:0;width:1px;background:var(--border)}
+  .aflow li:last-child::before{display:none}
+  .aflow .an{
+    width:34px;height:34px;border-radius:50%;flex:none;
+    border:1px solid var(--border);background:var(--surface-2);
+    display:flex;align-items:center;justify-content:center;position:relative;z-index:1;
+    font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);
+  }
+  .aflow .ab > *{margin:0}
+  .atag{
+    display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--accent);
+    border:1px solid rgba(184,255,61,.32);border-radius:999px;padding:4px 10px;line-height:1;
+  }
+  .aflow .atitle{display:block;font-size:16px;font-weight:700;color:var(--fg);letter-spacing:-.01em;margin-top:10px}
+  .layer .aflow .ab p{font-size:14.5px;line-height:1.7;color:var(--muted);margin-top:7px}
+
+  /* Aviso de idioma en las versiones DE/ES mientras no esten traducidas */
+  .lang-note{
+    background:var(--surface-2);border:1px dashed var(--border);
+    border-radius:var(--radius);padding:32px 36px;
+  }
+  .lang-note > *{margin:0}
+  .lang-note-label{
+    display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);
+  }
+  .layer .lang-note h3,.lang-note h3{font-size:clamp(20px,2.2vw,26px);font-weight:800;letter-spacing:-.02em;margin-top:16px}
+  .lang-note p{font-size:15.5px;line-height:1.7;color:var(--muted);margin-top:14px;max-width:60ch}
+  .lang-note ul{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  .lang-note li{position:relative;padding-left:24px;font-size:15px;line-height:1.6;color:var(--muted)}
+  .lang-note li::before{content:"—";position:absolute;left:0;top:0;color:var(--accent)}
+  .lang-note .btn-back{margin-top:26px}
+
+  /* Los bloques nuevos viven tambien DENTRO de los acordeones, donde ya
+     mandaban .pillar-content ul (flex en columna) y .pillar-content li
+     (guion lima y sangria de 24px). Ambas son (0,2,0), asi que no bastaba
+     con declarar .flow o .steps: hay que neutralizarlas con la misma
+     especificidad y mas abajo. Se limita a los contenedores nuevos para
+     que la lista normal de "In practice" conserve su guion. */
+  .pillar-content .flow{display:flex;flex-direction:row;flex-wrap:wrap;gap:9px}
+  .pillar-content .steps{display:block}
+  .pillar-content :is(.flow,.steps) > li{position:static;padding-left:0}
+  .pillar-content :is(.flow,.steps) > li::before{content:none}
+  .pillar-content .flow > li{display:flex;align-items:center;gap:9px}
+  .pillar-content .steps > li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;padding:15px 0}
+  .pillar-content .steps > li:first-child{padding-top:0}
+  .pillar-content .steps > li:last-child{padding-bottom:0}
+
+  /* Ritmo vertical de los bloques nuevos. Una sola regla por contenedor,
+     con (0,2,0), para que la escala generica no vuelva a meter 16px donde
+     el bloque pide 28. */
+  .layer > * + *,
+  .pillar-content > * + *,
+  .toc > * + *,
+  .scenario > * + *{margin-top:var(--sp-text)}
+  .layer > * + :is(.flow,.pillars,.plist,.model,.model-legend,.aflow,.scenario,.grid-2,.grid-3,.grid-4,.principle,.steps),
+  .pillar-content > * + :is(.flow,.grid-2,.grid-3,.grid-4,.principle,.steps,.xref,.model){margin-top:var(--sp-media)}
+  .layer > * + .subhead{margin-top:56px}
+  .layer > * + .pillars{margin-top:32px}
+  .layer > .layer-head + .flow{margin-top:28px}
+
+  @media (max-width:900px){
+    .toc-list{grid-template-columns:minmax(0,1fr);gap:0}
+    .toc-list li:nth-child(2) a{border-top:1px solid rgba(48,48,54,.75);padding-top:13px}
+    .plist{grid-template-columns:minmax(0,1fr);gap:0}
+    .plist li:nth-child(2){border-top:1px solid rgba(48,48,54,.75);padding-top:15px}
+    .grid-3,.grid-4,.grid-2{grid-template-columns:minmax(0,1fr)}
+    .model-row{grid-template-columns:auto minmax(0,1fr);row-gap:8px}
+    .model-row .mout{grid-column:2}
+    .model-legend{display:none}
+  }
+  @media (max-width:980px){
+    .toc{padding:26px 24px}
+    .lang-note{padding:26px 24px}
+    .layer > * + .subhead{margin-top:44px}
+  }
+  @media (max-width:560px){
+    .steps li,.plist li{grid-template-columns:minmax(0,1fr);gap:6px}
+    .steps .sn,.plist .pn{padding-top:0}
+    .aflow li{grid-template-columns:minmax(0,1fr);gap:12px}
+    .aflow li::before{display:none}
+  }
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -493,23 +765,43 @@
 
   <header class="col">
     <div class="rule reveal"></div>
-    <p class="eyebrow reveal">Leadership framework</p>
-    <h1 class="reveal">The five pillars that shape how I lead</h1>
-    <p class="lede reveal">Framework grounded in Leila Hormozi's work on leadership, adapted through my experience across operations, partnerships, and cross-functional teams.</p>
-    <p class="attribution reveal">Adapted from the work of <a href="https://www.acquisition.com/team/bio-leila-2" target="_blank" rel="noopener">Leila Hormozi</a> &mdash; the operating partner and CEO whose body of work on leadership most closely matches how I think about leading people through ambiguity.</p>
+    <p class="eyebrow reveal">Leadership &amp; operations</p>
+    <h1 class="reveal">Leadership &amp; Operations frameworks</h1>
+    <p class="lede reveal"><strong>How I show up, how I develop people, how I turn goals into execution.</strong></p>
+    <p class="lede reveal">This manual consolidates the methods I have developed to lead service, operations, and teams in technically complex environments. The frameworks are operating tools, not slogans &mdash; each one exists to resolve a specific management problem, and each one is meant to be picked up when that problem appears.</p>
+    <p class="lede reveal">They are layered. Leadership principles define how I show up. People management defines how I build performance. Execution management converts goals into delivered outcomes. Operational improvement makes the system itself better. Service and cross-functional delivery is where all of it is applied against a customer outcome.</p>
+    <p class="attribution reveal">Layer 01 adapts the work of <a href="https://www.acquisition.com/team/bio-leila-2" target="_blank" rel="noopener">Leila Hormozi</a> &mdash; the operating partner and CEO whose body of work on leadership most closely matches how I think about leading people through ambiguity. Layers 02 to 07 are my own, built from running service delivery and operations teams.</p>
   </header>
 
   <div class="stack">
 
     <section class="card statement reveal">
-      <p class="statement-label">Leadership statement</p>
-      <p class="statement-prose">In fast-moving operational contexts, leadership means <em>staying calm under pressure</em>, simplifying complexity, and helping teams execute with confidence.</p>
+      <p class="statement-label">Core philosophy</p>
+      <p class="statement-prose">Clarify the outcome, make ownership explicit, create visibility, <em>diagnose before intervening</em>, and build systems that reduce dependence on constant managerial intervention.</p>
     </section>
 
-    <section class="card is-plain">
-      <div class="section-head reveal">
-        <h2>Five pillars, <em>expanded</em>.</h2>
-        <p>Open any pillar to read the principle in full, the behaviours I commit to, and how I apply it in my work.</p>
+    <section class="toc-wrap reveal">
+      <nav class="toc" aria-label="Framework index">
+        <p class="toc-label">The seven layers</p>
+        <ul class="toc-list">
+          <li><a href="#layer-01"><span class="toc-num">01</span><span class="toc-name">Leadership Principles<span>How I show up</span></span></a></li>
+          <li><a href="#layer-02"><span class="toc-num">02</span><span class="toc-name">People Management<span>How I build team performance</span></span></a></li>
+          <li><a href="#layer-03"><span class="toc-num">03</span><span class="toc-name">Execution Management<span>How I turn goals into execution</span></span></a></li>
+          <li><a href="#layer-04"><span class="toc-num">04</span><span class="toc-name">Operational Improvement<span>How I improve systems</span></span></a></li>
+          <li><a href="#layer-05"><span class="toc-num">05</span><span class="toc-name">Service &amp; Cross-Functional Delivery<span>The disciplines applied</span></span></a></li>
+          <li><a href="#layer-06"><span class="toc-num">06</span><span class="toc-name">Working Principles<span>What holds across every framework</span></span></a></li>
+          <li><a href="#layer-07"><span class="toc-num">07</span><span class="toc-name">How It All Connects<span>The layered operating model</span></span></a></li>
+        </ul>
+      </nav>
+    </section>
+
+    <!-- ══ 01 — LEADERSHIP PRINCIPLES ══════════════════════════════════ -->
+    <section class="layer" id="layer-01">
+      <div class="layer-head reveal">
+        <p class="layer-num">01 &mdash; Leadership Principles</p>
+        <h2>How I show up</h2>
+        <p class="layer-sub">The behaviour the rest of the system is built on.</p>
+        <p class="layer-intro">Every framework below assumes a leader who is stable under pressure, honest early, consistent in private and in public, clear about what matters, and willing to own outcomes outside their formal scope. Without that, the mechanisms still run &mdash; they just stop being trusted.</p>
       </div>
 
       <div class="pillars">
@@ -527,7 +819,7 @@
             <div class="inner">
               <div class="pillar-content">
                 <p class="why">A leader sets the emotional tone for the team. If the leader panics, the team becomes unstable. If the leader stays grounded, the team can think clearly and perform.</p>
-                <p class="how-label">How I apply it</p>
+                <p class="how-label">In practice</p>
                 <ul>
                   <li>Stay calm during uncertainty</li>
                   <li>Pause before reacting</li>
@@ -536,8 +828,12 @@
                   <li>Be the stabilizing force when others are overwhelmed</li>
                 </ul>
                 <div class="applied">
-                  <span class="applied-label">In practice</span>
+                  <span class="applied-label">How it shows up in my work</span>
                   <p class="applied-text">I lead with emotional stability, especially in high-pressure operational environments. My role is to create calm, focus, and confidence so teams can make better decisions under uncertainty.</p>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Working principle</span>
+                  <p>&ldquo;The team&rsquo;s composure is downstream of mine.&rdquo;</p>
                 </div>
               </div>
             </div>
@@ -557,7 +853,7 @@
             <div class="inner">
               <div class="pillar-content">
                 <p class="why">Strong leaders do not avoid difficult conversations. They give honest, specific, private feedback that helps people improve.</p>
-                <p class="how-label">How I apply it</p>
+                <p class="how-label">In practice</p>
                 <ul>
                   <li>Say expectations clearly upfront</li>
                   <li>Give feedback early, not after resentment builds</li>
@@ -566,8 +862,12 @@
                   <li>Make sure people always know where they stand</li>
                 </ul>
                 <div class="applied">
-                  <span class="applied-label">In practice</span>
+                  <span class="applied-label">How it shows up in my work</span>
                   <p class="applied-text">I believe in sincere candor &mdash; direct, respectful, and actionable communication. I aim to remove ambiguity so teams understand expectations, performance gaps, and the next step forward.</p>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Working principle</span>
+                  <p>&ldquo;Nobody on my team should have to guess where they stand.&rdquo;</p>
                 </div>
               </div>
             </div>
@@ -578,7 +878,7 @@
           <button class="pillar-trigger" aria-expanded="false" aria-controls="p3">
             <span class="pillar-num">03</span>
             <span>
-              <span class="pillar-name">Unimpeachable character</span>
+              <span class="pillar-name">Impeccable character</span>
               <span class="pillar-tagline">Trustworthiness matters more than appearing perfect.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
@@ -587,7 +887,7 @@
             <div class="inner">
               <div class="pillar-content">
                 <p class="why">People follow leaders whose behavior is predictable, honest, and consistent. A leader should not emotionally dump on the team, but should be transparent enough that people understand context.</p>
-                <p class="how-label">How I apply it</p>
+                <p class="how-label">In practice</p>
                 <ul>
                   <li>Be honest without venting downward</li>
                   <li>Take responsibility for my behavior</li>
@@ -596,8 +896,12 @@
                   <li>Build psychological safety through consistency</li>
                 </ul>
                 <div class="applied">
-                  <span class="applied-label">In practice</span>
+                  <span class="applied-label">How it shows up in my work</span>
                   <p class="applied-text">I lead with integrity, transparency, and consistency. My goal is to be a leader whose decisions and behavior people can trust, even in difficult moments.</p>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Working principle</span>
+                  <p>&ldquo;Trust is built by being predictable, not by appearing perfect.&rdquo;</p>
                 </div>
               </div>
             </div>
@@ -617,7 +921,7 @@
             <div class="inner">
               <div class="pillar-content">
                 <p class="why">Good leadership means taking messy problems and translating them into clear decisions, priorities, and next steps.</p>
-                <p class="how-label">How I apply it</p>
+                <p class="how-label">In practice</p>
                 <ul>
                   <li>Simplify complex problems</li>
                   <li>Avoid unnecessary jargon</li>
@@ -626,8 +930,12 @@
                   <li>Give teams 1&ndash;3 clear priorities</li>
                 </ul>
                 <div class="applied">
-                  <span class="applied-label">In practice</span>
+                  <span class="applied-label">How it shows up in my work</span>
                   <p class="applied-text">I specialize in translating complex operational challenges into clear priorities, execution plans, and measurable outcomes. I help teams know exactly what matters, what to do next, and how success will be measured.</p>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Working principle</span>
+                  <p>&ldquo;If the priority is not clear, it is not a priority.&rdquo;</p>
                 </div>
               </div>
             </div>
@@ -647,7 +955,7 @@
             <div class="inner">
               <div class="pillar-content">
                 <p class="why">Ownership means taking responsibility for the outcome, not only for your assigned tasks. High-performing teams decentralize responsibility instead of waiting for permission.</p>
-                <p class="how-label">How I apply it</p>
+                <p class="how-label">In practice</p>
                 <ul>
                   <li>Focus on solutions, not blame</li>
                   <li>Take responsibility for outcomes</li>
@@ -656,8 +964,12 @@
                   <li>Treat every problem as a chance to build capability</li>
                 </ul>
                 <div class="applied">
-                  <span class="applied-label">In practice</span>
+                  <span class="applied-label">How it shows up in my work</span>
                   <p class="applied-text">I operate with strong ownership. I do not wait for perfect conditions or perfect responsibility boundaries. When a problem affects the mission, I focus on solving it and creating value for the team.</p>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Working principle</span>
+                  <p>&ldquo;Ownership is measured by the outcome, not by the boundary of the job description.&rdquo;</p>
                 </div>
               </div>
             </div>
@@ -667,9 +979,922 @@
       </div>
     </section>
 
+    <!-- ══ 02 — PEOPLE MANAGEMENT ══════════════════════════════════════ -->
+    <section class="layer" id="layer-02">
+      <div class="layer-head reveal">
+        <p class="layer-num">02 &mdash; People Management</p>
+        <h2>How I build team performance</h2>
+        <p class="layer-sub">Direction, Support, Accountability, Development.</p>
+        <p class="layer-intro">Performance is not a personality trait. It is the product of four conditions a manager controls: whether expectations were clear, whether the person had what they needed, whether commitments were followed up, and whether capability was allowed to grow. When performance drops, one of the four is usually missing.</p>
+      </div>
+
+      <ul class="flow reveal">
+        <li><span class="step">Direction</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Support</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Accountability</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Development</span><span class="arrow">&#9656;</span></li>
+      </ul>
+
+      <div class="pillars">
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="pm1">
+            <span class="pillar-num">01</span>
+            <span>
+              <span class="pillar-name">Direction</span>
+              <span class="pillar-tagline">Set clarity before judging performance.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="pm1">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Define expectations, priorities, ownership, and how success will be measured &mdash; before the work starts, not after it goes wrong.</p>
+                <p class="how-label">In practice</p>
+                <ul>
+                  <li>Set clear goals and expected outcomes</li>
+                  <li>Define KPIs or observable success criteria</li>
+                  <li>Clarify decision rights and responsibilities</li>
+                  <li>Connect individual work to team objectives</li>
+                </ul>
+                <div class="principle">
+                  <span class="plabel">Working principle</span>
+                  <p>&ldquo;You cannot fairly hold someone accountable for an expectation that was never clear.&rdquo;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="pm2">
+            <span class="pillar-num">02</span>
+            <span>
+              <span class="pillar-name">Support</span>
+              <span class="pillar-tagline">Create the conditions to perform.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="pm2">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Understand what the person needs to succeed and remove the barriers that are not theirs to solve.</p>
+                <p class="how-label">In practice</p>
+                <ul>
+                  <li>Regular 1:1s</li>
+                  <li>Understand motivation and individual goals</li>
+                  <li>Remove blockers</li>
+                  <li>Create psychological safety to surface problems</li>
+                  <li>Give autonomy over how outcomes are achieved</li>
+                </ul>
+                <p class="xref"><b>Cross-reference:</b> <a href="#practices">Coaching</a> is the key mechanism of Support &mdash; it is how support becomes capability instead of rescue.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="pm3">
+            <span class="pillar-num">03</span>
+            <span>
+              <span class="pillar-name">Accountability</span>
+              <span class="pillar-tagline">Turn expectations into commitments.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="pm3">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Performance requires follow-through, not only clarity and support. Accountability is what makes the first two mean something.</p>
+                <p class="how-label">In practice</p>
+                <ul>
+                  <li>Review commitments consistently</li>
+                  <li>Recognize when commitments are met</li>
+                  <li>Address gaps early</li>
+                  <li>Use evidence rather than assumptions</li>
+                  <li>Agree corrective actions and follow up</li>
+                </ul>
+                <p class="xref"><b>Cross-reference:</b> <a href="#practices">Corrective Feedback</a> structures the follow-up conversation so the gap turns into an agreed next step.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="pm4">
+            <span class="pillar-num">04</span>
+            <span>
+              <span class="pillar-name">Development</span>
+              <span class="pillar-tagline">Build capability and autonomy.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="pm4">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Development is not simply &ldquo;sending people to training.&rdquo; The goal is progressively increasing the person&rsquo;s ability to solve problems and make decisions independently.</p>
+                <p class="how-label">In practice</p>
+                <ul>
+                  <li>Identify capability gaps</li>
+                  <li>Coach through real problems</li>
+                  <li>Give progressively larger ownership</li>
+                  <li>Delegate decisions, not only tasks</li>
+                  <li>Review decisions and reasoning</li>
+                  <li>Create opportunities to practice new capabilities</li>
+                </ul>
+                <div class="principle">
+                  <span class="plabel">Working principle</span>
+                  <p>&ldquo;Can this person own more without requiring constant intervention from me?&rdquo;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="subhead reveal" id="practices">
+        <p class="sub-label">Management practices</p>
+        <h3>The tools inside People Management</h3>
+        <p>Three concrete instruments applied within the system above. Each one resolves a specific problem: how to build judgment, how to run a performance conversation, and how to tell whether the problem is even a people problem.</p>
+      </div>
+
+      <div class="pillars">
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="mp1">
+            <span class="pillar-num">A</span>
+            <span>
+              <span class="pillar-name">Coaching</span>
+              <span class="pillar-tagline">Build judgment, not dependency.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="mp1">
+            <div class="inner">
+              <div class="pillar-content">
+                <ul class="flow is-tight">
+                  <li><span class="step">Understand</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Question</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Challenge</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Commit</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Review</span><span class="arrow">&#9656;</span></li>
+                </ul>
+                <ul class="steps">
+                  <li><span class="sn">01</span><span><span class="st">Understand</span><span class="sd">Understand the person&rsquo;s perspective, context, and reasoning before giving advice.</span></span></li>
+                  <li><span class="sn">02</span><span><span class="st">Question</span><span class="sd">Use questions to help them examine the problem, assumptions, options, and consequences. <q>What do you think is causing this?</q> <q>What options do you see?</q> <q>What would you do if I weren&rsquo;t available?</q></span></span></li>
+                  <li><span class="sn">03</span><span><span class="st">Challenge</span><span class="sd">Test their reasoning. Surface blind spots and challenge assumptions without taking ownership of the problem away from them.</span></span></li>
+                  <li><span class="sn">04</span><span><span class="st">Commit</span><span class="sd">Convert the conversation into a decision or a concrete next action that the person owns.</span></span></li>
+                  <li><span class="sn">05</span><span><span class="st">Review</span><span class="sd">Return to the decision. Evaluate both the outcome and the reasoning: what happened, what did you learn, what would you do differently?</span></span></li>
+                </ul>
+                <div class="principle">
+                  <span class="plabel">Working principle</span>
+                  <p>&ldquo;Coaching builds judgment, not dependency.&rdquo;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="mp2">
+            <span class="pillar-num">B</span>
+            <span>
+              <span class="pillar-name">Corrective feedback</span>
+              <span class="pillar-tagline">Structure the performance conversation.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="mp2">
+            <div class="inner">
+              <div class="pillar-content">
+                <ul class="flow is-tight">
+                  <li><span class="step">Observe</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Explain</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Listen</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Agree</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Follow up</span><span class="arrow">&#9656;</span></li>
+                </ul>
+                <ul class="steps">
+                  <li><span class="sn">01</span><span><span class="st">Observe</span><span class="sd">State the factual behavior or performance gap without assigning motive.</span></span></li>
+                  <li><span class="sn">02</span><span><span class="st">Explain</span><span class="sd">Describe the impact and why the issue matters.</span></span></li>
+                  <li><span class="sn">03</span><span><span class="st">Listen</span><span class="sd">Hear the employee&rsquo;s perspective and diagnose the cause &mdash; the natural point to apply Skill / Will / System.</span></span></li>
+                  <li><span class="sn">04</span><span><span class="st">Agree</span><span class="sd">Define the corrective action, the expectation, the support required, the owner, and the timeline.</span></span></li>
+                  <li><span class="sn">05</span><span><span class="st">Follow up</span><span class="sd">Return to the commitment. Without this step the conversation was information, not management.</span></span></li>
+                </ul>
+                <div class="principle">
+                  <span class="plabel">Working principle</span>
+                  <p>&ldquo;Feedback without an agreed next step is incomplete.&rdquo;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="mp3">
+            <span class="pillar-num">C</span>
+            <span>
+              <span class="pillar-name">Performance diagnosis</span>
+              <span class="pillar-tagline">Skill, Will, or System &mdash; find out which one before acting.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="mp3">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">The same symptom &mdash; missed deadlines, quality gaps, escalations &mdash; has three very different causes, and each one calls for a different response. Applying the wrong one damages the person and leaves the problem in place.</p>
+                <div class="grid-3">
+                  <div class="tile">
+                    <span class="tile-kicker">Skill</span>
+                    <h4>Cannot do it yet</h4>
+                    <p>The capability is not there. The person is trying and the output still falls short.</p>
+                    <p class="tile-resp"><b>Response:</b> training, coaching, methodology, temporary support.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Will</span>
+                    <h4>Motivation is limiting</h4>
+                    <p>Motivation, confidence, or ownership is the constraint, not capability.</p>
+                    <p class="tile-resp"><b>Response:</b> motivation, standards, incentives, accountability.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">System</span>
+                    <h4>The environment prevents it</h4>
+                    <p>A capable, motivated person would still fail in this process.</p>
+                    <p class="tile-resp"><b>Response:</b> fix the process, the resource allocation, or the structural issue.</p>
+                  </div>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Working principle</span>
+                  <p>&ldquo;Underperformance is not automatically a people problem. Diagnose before acting.&rdquo;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ══ 03 — EXECUTION MANAGEMENT ═══════════════════════════════════ -->
+    <section class="layer" id="layer-03">
+      <div class="layer-head reveal">
+        <p class="layer-num">03 &mdash; Execution Management</p>
+        <h2>How I turn goals into execution</h2>
+        <p class="layer-sub">Translate, Assign, Track, Act.</p>
+        <p class="layer-intro">Strategy fails in the gap between an objective and a named person doing something measurable about it on a Tuesday. This layer closes that gap: it converts intent into outcomes, outcomes into ownership, ownership into visible progress, and progress signals into intervention.</p>
+      </div>
+
+      <ul class="flow reveal">
+        <li><span class="step">Translate</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Assign</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Track</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Act</span><span class="arrow">&#9656;</span></li>
+      </ul>
+
+      <div class="pillars">
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="ex1">
+            <span class="pillar-num">01</span>
+            <span>
+              <span class="pillar-name">Translate</span>
+              <span class="pillar-tagline">Strategy &rarr; clear goals.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="ex1">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Break strategic objectives into measurable operational outcomes.</p>
+                <div class="principle is-ask">
+                  <span class="plabel">Ask</span>
+                  <p>What specifically needs to change?</p>
+                </div>
+                <p class="how-label">In practice</p>
+                <ul>
+                  <li>Convert broad objectives into outcomes the operation can actually understand</li>
+                  <li>Define a measurable direction &mdash; &ldquo;reduce onboarding time while maintaining activation quality&rdquo; rather than &ldquo;improve Service Delivery&rdquo;</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="ex2">
+            <span class="pillar-num">02</span>
+            <span>
+              <span class="pillar-name">Assign</span>
+              <span class="pillar-tagline">Goals &rarr; ownership.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="ex2">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Turn outcomes into explicit commitments.</p>
+                <div class="principle is-ask">
+                  <span class="plabel">Ask</span>
+                  <p>Who owns the outcome, and which dependencies exist?</p>
+                </div>
+                <p class="how-label">In practice</p>
+                <ul>
+                  <li>Every meaningful commitment needs an owner</li>
+                  <li>Clarify what they control and what they depend on</li>
+                  <li>Shared responsibility without a primary owner becomes no responsibility</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="ex3">
+            <span class="pillar-num">03</span>
+            <span>
+              <span class="pillar-name">Track</span>
+              <span class="pillar-tagline">Ownership &rarr; visible progress.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="ex3">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Create visibility through milestones, KPIs, dashboards, or operating reviews.</p>
+                <div class="principle is-ask">
+                  <span class="plabel">Ask</span>
+                  <p>Are we moving toward the outcome?</p>
+                </div>
+                <p class="how-label">In practice</p>
+                <ul>
+                  <li>Dashboards, KPIs, milestones, weekly reviews</li>
+                  <li>The purpose is early detection and informed intervention</li>
+                  <li>Not micromanagement &mdash; tracking exists to enable action, not to report status</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="ex4">
+            <span class="pillar-num">04</span>
+            <span>
+              <span class="pillar-name">Act</span>
+              <span class="pillar-tagline">Progress &rarr; intervention.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="ex4">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Do not simply report the deviation. Intervene.</p>
+                <div class="principle is-ask">
+                  <span class="plabel">Ask</span>
+                  <p>What needs to happen now?</p>
+                </div>
+                <p class="how-label">In practice</p>
+                <ul>
+                  <li>Remove blockers, change priorities, reallocate resources</li>
+                  <li>Coach, escalate, adjust timelines, or redesign the mechanism</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="principle reveal">
+        <span class="plabel">Working principle</span>
+        <p>&ldquo;See &rarr; Own &rarr; Act.&rdquo;</p>
+      </div>
+    </section>
+
+    <!-- ══ 04 — OPERATIONAL IMPROVEMENT ════════════════════════════════ -->
+    <section class="layer" id="layer-04">
+      <div class="layer-head reveal">
+        <p class="layer-num">04 &mdash; Operational Improvement</p>
+        <h2>How I improve systems</h2>
+        <p class="layer-sub">Diagnose, Prioritize, Build, Own.</p>
+        <p class="layer-intro">Execution management makes the current system deliver. This layer makes the system itself better, so the same problem stops arriving every week. It is the difference between resolving exceptions and removing the conditions that produce them.</p>
+      </div>
+
+      <ul class="flow reveal">
+        <li><span class="step">Diagnose</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Prioritize</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Build</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Own</span><span class="arrow">&#9656;</span></li>
+      </ul>
+
+      <div class="pillars">
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="oi1">
+            <span class="pillar-num">01</span>
+            <span>
+              <span class="pillar-name">Diagnose</span>
+              <span class="pillar-tagline">Where does it break?</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="oi1">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Map the process, listen to the people inside it, collect evidence, establish a baseline, and separate symptoms from root causes before proposing anything.</p>
+                <p class="how-label">In practice</p>
+                <ul>
+                  <li>Listen to customers and frontline employees</li>
+                  <li>Map the process or funnel end to end</li>
+                  <li>Collect facts and operational data</li>
+                  <li>Locate bottlenecks, failure points, and handoff problems</li>
+                  <li>Separate symptoms from root causes</li>
+                  <li>Establish a measurable baseline before changing the system</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="oi2">
+            <span class="pillar-num">02</span>
+            <span>
+              <span class="pillar-name">Prioritize</span>
+              <span class="pillar-tagline">What matters most?</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="oi2">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">A diagnosis usually produces more problems than capacity. The decision lens is <strong>Impact &times; Frequency &times; Urgency</strong> &mdash; how much the outcome moves, how often the problem occurs, and how fast it has to be addressed.</p>
+                <p class="how-label">Operational KPI buckets</p>
+                <div class="grid-4">
+                  <div class="tile">
+                    <span class="tile-kicker">Speed</span>
+                    <h4>Process duration</h4>
+                    <p>Onboarding time, response time, resolution time.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Reliability</span>
+                    <h4>Consistency</h4>
+                    <p>SLA attainment, delivery rate, availability.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Quality</span>
+                    <h4>Correctness</h4>
+                    <p>Error rate, rework, first-time-right.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Operational load</span>
+                    <h4>Human effort</h4>
+                    <p>Manual interventions, tickets, escalations.</p>
+                  </div>
+                </div>
+                <div class="principle is-ask">
+                  <span class="plabel">Prioritization question</span>
+                  <p>If we fix this, how much does it move the outcome?</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="oi3">
+            <span class="pillar-num">03</span>
+            <span>
+              <span class="pillar-name">Build</span>
+              <span class="pillar-tagline">What fixes it?</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="oi3">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Design the mechanism that changes the outcome. A mechanism is rarely just software.</p>
+                <p class="how-label">The mechanisms available</p>
+                <ul>
+                  <li>Processes and SOPs</li>
+                  <li>Playbooks and decision rules</li>
+                  <li>Ownership and escalation rules</li>
+                  <li>Dashboards and operational tooling</li>
+                  <li>Automation</li>
+                  <li>Meeting and review rhythms</li>
+                  <li>SLAs and service standards</li>
+                  <li>Training and enablement</li>
+                  <li>Customer communication protocols</li>
+                </ul>
+                <div class="principle is-ask">
+                  <span class="plabel">Objective</span>
+                  <p>Transform an insight into a mechanism that can be executed consistently, by someone other than me.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="oi4">
+            <span class="pillar-num">04</span>
+            <span>
+              <span class="pillar-name">Own</span>
+              <span class="pillar-tagline">Is it working?</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="oi4">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Implementation is not completion. A process is not successfully implemented until it is monitored, adopted, and owned.</p>
+                <p class="how-label">In practice</p>
+                <ul>
+                  <li>Monitor KPIs and exceptions</li>
+                  <li>Review performance at a defined cadence</li>
+                  <li>Enforce agreed standards</li>
+                  <li>Follow up on commitments</li>
+                  <li>Coach where execution is weak</li>
+                  <li>Adjust when assumptions prove wrong</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="principle reveal">
+        <span class="plabel">Working principle</span>
+        <p>&ldquo;Diagnose where it breaks. Prioritize what matters most. Build what fixes it. Own it so it keeps working.&rdquo;</p>
+      </div>
+    </section>
+
+    <!-- ══ 05 — SERVICE & CROSS-FUNCTIONAL DELIVERY ════════════════════ -->
+    <section class="layer" id="layer-05">
+      <div class="layer-head reveal">
+        <p class="layer-num">05 &mdash; Service &amp; Cross-Functional Delivery</p>
+        <h2>The disciplines applied</h2>
+        <p class="layer-sub">Where the frameworks meet a real customer outcome.</p>
+        <p class="layer-intro">Everything above becomes visible here: a customer who signed a contract has to reach a working service, across teams I do not manage, through systems I do not own, with incidents that do not schedule themselves. These are the six disciplines that make that repeatable.</p>
+      </div>
+
+      <div class="pillars">
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="sd1">
+            <span class="pillar-num">01</span>
+            <span>
+              <span class="pillar-name">Service delivery ownership</span>
+              <span class="pillar-tagline">From commercial commitment to a service that actually works.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="sd1">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Service Delivery is the operational discipline of moving a customer from commercial commitment to successfully delivered service. It is considerably broader than ticket handling.</p>
+                <p class="how-label">Typical lifecycle</p>
+                <ul class="flow is-tight">
+                  <li><span class="step">Contract signed</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Onboarding</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Order management</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Logistics</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Technical setup</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Activation</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Go-live</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Clean handover</span><span class="arrow">&#9656;</span></li>
+                </ul>
+                <p class="why">Ownership means ensuring the system keeps moving and that nothing important becomes ownerless between two of those stages.</p>
+                <div class="principle">
+                  <span class="plabel">Leadership question</span>
+                  <p>&ldquo;What needs to happen for this customer to reach a successful go-live, and who owns each dependency?&rdquo;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="sd2">
+            <span class="pillar-num">02</span>
+            <span>
+              <span class="pillar-name">Customer performance</span>
+              <span class="pillar-tagline">The quality of the journey, not only the outcome.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="sd2">
+            <div class="inner">
+              <div class="pillar-content">
+                <ul class="flow is-tight">
+                  <li><span class="step">Promise</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Measure</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Communicate</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Improve</span><span class="arrow">&#9656;</span></li>
+                </ul>
+                <ul class="steps">
+                  <li><span class="sn">01</span><span><span class="st">Promise</span><span class="sd">Establish a clear baseline: scope, timeline, SLA, responsibilities.</span></span></li>
+                  <li><span class="sn">02</span><span><span class="st">Measure</span><span class="sd">Compare actual delivery with the promise &mdash; not with a general impression of how it went.</span></span></li>
+                  <li><span class="sn">03</span><span><span class="st">Communicate</span><span class="sd">Operational transparency. Customers should not have to chase anyone for status.</span></span></li>
+                  <li><span class="sn">04</span><span><span class="st">Improve</span><span class="sd">Performance data feeds process improvement &mdash; this is the handoff back into Operational Improvement.</span></span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="sd3">
+            <span class="pillar-num">03</span>
+            <span>
+              <span class="pillar-name">Cross-functional leadership</span>
+              <span class="pillar-tagline">Alignment without direct authority.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="sd3">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Service Delivery depends on Engineering, Product, Customer Success, Support, Logistics, and external partners. The leader is accountable for the outcome without hierarchical authority over most of the contributors.</p>
+                <p class="how-label">In practice</p>
+                <ul>
+                  <li>Establish a shared outcome</li>
+                  <li>Map dependencies and decision points</li>
+                  <li>Clarify ownership across functions</li>
+                  <li>Align priorities and deadlines</li>
+                  <li>Surface and remove blockers</li>
+                  <li>Escalate when local coordination is insufficient</li>
+                  <li>Drive decisions and closure</li>
+                </ul>
+                <div class="grid-2">
+                  <div class="tile">
+                    <span class="tile-kicker">People management</span>
+                    <h4>&ldquo;I manage the person.&rdquo;</h4>
+                    <p>Direction, support, accountability, and development for someone who reports to me.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Cross-functional leadership</span>
+                    <h4>&ldquo;I drive the outcome.&rdquo;</h4>
+                    <p>Accountability for a result delivered by people I do not manage.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="sd4">
+            <span class="pillar-num">04</span>
+            <span>
+              <span class="pillar-name">Technical fluency for operations leaders</span>
+              <span class="pillar-tagline">Enough depth to coordinate the decision.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="sd4">
+            <div class="inner">
+              <div class="pillar-content">
+                <ul class="flow is-tight">
+                  <li><span class="step">Understand</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Discuss</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Translate</span><span class="arrow">&#9656;</span></li>
+                </ul>
+                <ul class="steps">
+                  <li><span class="sn">01</span><span><span class="st">Understand</span><span class="sd">Know the system functionally: what it does, its components, its dependencies, and how it behaves when it fails.</span></span></li>
+                  <li><span class="sn">02</span><span><span class="st">Discuss</span><span class="sd">Hold substantive conversations with engineers about APIs, integrations, authentication, and dependencies.</span></span></li>
+                  <li><span class="sn">03</span><span><span class="st">Translate</span><span class="sd">Convert technical constraints into operational decisions the business can act on.</span></span></li>
+                </ul>
+                <p class="xref">This is not about writing code. It is about understanding the system well enough that technical reality and operational decisions stay connected.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="sd5">
+            <span class="pillar-num">05</span>
+            <span>
+              <span class="pillar-name">Incident management</span>
+              <span class="pillar-tagline">High-severity coordination, and the shift from reactive to proactive.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="sd5">
+            <div class="inner">
+              <div class="pillar-content">
+                <ul class="flow is-tight">
+                  <li><span class="step">Detect &amp; assess</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Bring the right people</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Map responsibilities &amp; deadlines</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Communicate</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Resolve</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Learn</span><span class="arrow">&#9656;</span></li>
+                </ul>
+                <div class="principle">
+                  <span class="plabel">Working principle</span>
+                  <p>&ldquo;During an incident, uncertainty may be unavoidable. Silence is avoidable.&rdquo;</p>
+                </div>
+                <div class="grid-2">
+                  <div class="tile">
+                    <span class="tile-kicker">Reactive</span>
+                    <h4>Customer-reported</h4>
+                    <p>Receive &rarr; Assess &rarr; Coordinate &rarr; Communicate &rarr; Resolve.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Proactive</span>
+                    <h4>Monitoring-led</h4>
+                    <p>Monitor &rarr; Detect &rarr; Act, before the customer notices.</p>
+                  </div>
+                </div>
+                <p class="xref">Mature Service Delivery reduces dependence on customers as the monitoring system. Every incident a customer reports first is a gap in detection, not only a gap in the product.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="sd6">
+            <span class="pillar-num">06</span>
+            <span>
+              <span class="pillar-name">External configuration management</span>
+              <span class="pillar-tagline">When the dependency lives outside the company.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="sd6">
+            <div class="inner">
+              <div class="pillar-content">
+                <ul class="flow is-tight">
+                  <li><span class="step">Receive</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Update</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Verify</span><span class="arrow">&#9656;</span></li>
+                </ul>
+                <p class="why">Technical services depend on external operators and APIs. When an external party changes a parameter, internal systems must reflect the change &mdash; and somebody has to confirm that they did. Skipping the verification step is how silent, delayed failures are created.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ══ 06 — WORKING PRINCIPLES ═════════════════════════════════════ -->
+    <section class="layer" id="layer-06">
+      <div class="layer-head reveal">
+        <p class="layer-num">06 &mdash; Working Principles</p>
+        <h2>What holds across every framework</h2>
+        <p class="layer-sub">The rules that do not change when the framework does.</p>
+        <p class="layer-intro">Frameworks are situational; these are not. They are the operating principles that cut across all of the above, and the ones I would keep if every framework on this page were replaced tomorrow.</p>
+      </div>
+
+      <ol class="plist reveal">
+        <li><span class="pn">01</span><span><b>Diagnose before acting.</b></span></li>
+        <li><span class="pn">02</span><span>Ownership does not mean doing everything yourself; it means <b>ensuring the outcome has no gaps</b>.</span></li>
+        <li><span class="pn">03</span><span>Every meaningful commitment needs <b>an owner and visible follow-up</b>.</span></li>
+        <li><span class="pn">04</span><span>Tracking exists to <b>enable early intervention</b>, not to create reporting for its own sake.</span></li>
+        <li><span class="pn">05</span><span>Customer communication is <b>part of service performance</b>, not an administrative afterthought.</span></li>
+        <li><span class="pn">06</span><span>Repeated exceptions are signals that <b>the operating system needs improvement</b>.</span></li>
+        <li><span class="pn">07</span><span>Underperformance may be <b>Skill, Will, or System</b>; do not assume the person is the root cause.</span></li>
+        <li><span class="pn">08</span><span>Support and accountability are <b>complementary, not opposing</b> management styles.</span></li>
+        <li><span class="pn">09</span><span>Cross-functional leadership is the ability to <b>create alignment without relying on hierarchy</b>.</span></li>
+        <li><span class="pn">10</span><span>Technical fluency is valuable when it <b>enables better operational decisions</b>.</span></li>
+        <li><span class="pn">11</span><span>A process is not successfully implemented until it is <b>monitored, adopted, and owned</b>.</span></li>
+        <li><span class="pn">12</span><span>The goal of management is not permanent dependence on the manager; it is <b>stronger capability and autonomy</b>.</span></li>
+      </ol>
+    </section>
+
+    <!-- ══ 07 — HOW IT ALL CONNECTS ════════════════════════════════════ -->
+    <section class="layer" id="layer-07">
+      <div class="layer-head reveal">
+        <p class="layer-num">07 &mdash; How It All Connects</p>
+        <h2>The layered operating model</h2>
+        <p class="layer-sub">A system, not a collection of isolated tools.</p>
+        <p class="layer-intro">The frameworks connect in two directions. <strong>Vertically</strong>, each layer makes the one below it possible: principles make management credible, management makes execution reliable, execution makes improvement measurable, improvement makes delivery repeatable. <strong>Situationally</strong>, they combine &mdash; a single real problem usually pulls in three or four of them at once.</p>
+      </div>
+
+      <div class="model-legend reveal" aria-hidden="true">
+        <span>Layer</span><span>What it governs</span><span>What it produces</span>
+      </div>
+      <div class="model reveal">
+        <div class="model-row">
+          <span class="mn">01</span>
+          <span class="mname">Leadership Principles</span>
+          <span class="mout">How I show up &rarr; <b>credibility and trust</b>, without which every mechanism below is merely tolerated.</span>
+        </div>
+        <div class="model-row">
+          <span class="mn">02</span>
+          <span class="mname">People Management</span>
+          <span class="mout">How the team performs &rarr; <b>capable, accountable owners</b> who can be given real outcomes.</span>
+        </div>
+        <div class="model-row">
+          <span class="mn">03</span>
+          <span class="mname">Execution Management</span>
+          <span class="mout">How goals become work &rarr; <b>delivered outcomes with visible progress</b> and early intervention.</span>
+        </div>
+        <div class="model-row">
+          <span class="mn">04</span>
+          <span class="mname">Operational Improvement</span>
+          <span class="mout">How the system evolves &rarr; <b>mechanisms that hold</b> so the same failure stops recurring.</span>
+        </div>
+        <div class="model-row">
+          <span class="mn">05</span>
+          <span class="mname">Service &amp; Cross-Functional Delivery</span>
+          <span class="mout">Where it is applied &rarr; <b>a customer who reaches a working service</b>, across teams and systems I do not own.</span>
+        </div>
+      </div>
+
+      <p class="xref reveal">Layer 06 is not a step in this stack. The working principles run through all five, which is why they are stated separately.</p>
+
+      <div class="subhead reveal">
+        <p class="sub-label">Applied management flow</p>
+        <h3>One problem, moving through the system</h3>
+        <p>The layers are easier to judge against a real situation than in the abstract. This is the sequence I actually follow, and which framework is doing the work at each step.</p>
+      </div>
+
+      <div class="scenario reveal">
+        <span class="scenario-label">The situation</span>
+        <p>Go-live dates are slipping. It is not one account &mdash; the same delay is appearing across several, the customers are the ones telling us, and the coordinator responsible looks like the common factor.</p>
+      </div>
+
+      <ol class="aflow reveal">
+        <li>
+          <span class="an">1</span>
+          <span class="ab">
+            <span class="atag">04 &middot; Diagnose</span>
+            <span class="atitle">Find where it actually breaks</span>
+            <p>Map the delivery funnel end to end and establish a baseline before touching anything. The delay concentrates in technical setup, waiting on a configuration change from an external operator. The coordinator is not the cause; they are the place the delay becomes visible.</p>
+          </span>
+        </li>
+        <li>
+          <span class="an">2</span>
+          <span class="ab">
+            <span class="atag">02 &middot; Skill / Will / System</span>
+            <span class="atitle">Separate the person from the system</span>
+            <p>Before any performance conversation, name the cause. A capable, motivated coordinator would still miss these dates, because nothing in the process guarantees the external change is confirmed. This is a System problem with a People symptom &mdash; and treating it as the reverse would have been both unfair and ineffective.</p>
+          </span>
+        </li>
+        <li>
+          <span class="an">3</span>
+          <span class="ab">
+            <span class="atag">03 &middot; Translate &amp; Assign</span>
+            <span class="atitle">Make the outcome and the ownership explicit</span>
+            <p>Convert &ldquo;go-lives are slipping&rdquo; into a measurable outcome: reduce time from contract to go-live, without degrading activation quality. Then give every dependency in the chain a named owner &mdash; including the one that sits with an external partner.</p>
+          </span>
+        </li>
+        <li>
+          <span class="an">4</span>
+          <span class="ab">
+            <span class="atag">04 &middot; Prioritize &amp; Build</span>
+            <span class="atitle">Build the mechanism, not the workaround</span>
+            <p>Impact &times; Frequency &times; Urgency puts the external configuration step first. The mechanism is a set, not a single fix: a Receive &rarr; Update &rarr; Verify protocol, an escalation rule with a deadline, an SLA agreed with the operator, and a dashboard exception for any setup waiting longer than the agreed window.</p>
+          </span>
+        </li>
+        <li>
+          <span class="an">5</span>
+          <span class="ab">
+            <span class="atag">05 &middot; Cross-functional leadership</span>
+            <span class="atitle">Align the people I do not manage</span>
+            <p>Engineering, Support, and the external partner all hold part of the chain. Shared outcome, mapped decision points, agreed deadlines, and escalation when local coordination is not enough. No hierarchy involved &mdash; the outcome is the authority.</p>
+          </span>
+        </li>
+        <li>
+          <span class="an">6</span>
+          <span class="ab">
+            <span class="atag">03 &middot; Track &amp; Act</span>
+            <span class="atitle">Create visibility, then intervene on it</span>
+            <p>A weekly operating review on the exception list, not on status. When an account breaches the window, something changes that week: a reallocation, an escalation, a priority swap. Reporting a deviation without acting on it is the failure mode this step exists to prevent.</p>
+          </span>
+        </li>
+        <li>
+          <span class="an">7</span>
+          <span class="ab">
+            <span class="atag">02 &middot; Development &amp; Coaching</span>
+            <span class="atitle">Hand the decision over</span>
+            <p>Once the mechanism holds, the coordinator owns the escalation decision rather than asking for it. Coach through the real cases, review the reasoning and not only the result, and widen the ownership as the judgment proves out.</p>
+          </span>
+        </li>
+        <li>
+          <span class="an">8</span>
+          <span class="ab">
+            <span class="atag">04 &middot; Own</span>
+            <span class="atitle">Keep it working</span>
+            <p>Monitor the KPI against the baseline, enforce the standard, and adjust when the assumption turns out to be wrong. Implementation was not the finish line; the mechanism producing the intended result, month after month, is.</p>
+          </span>
+        </li>
+      </ol>
+
+      <div class="principle reveal">
+        <span class="plabel">The whole system, in one line</span>
+        <p>&ldquo;Clarify the outcome, make ownership explicit, create visibility, diagnose before intervening, and build systems that reduce dependence on constant managerial intervention.&rdquo;</p>
+      </div>
+    </section>
+
     <section class="card footer-cta reveal">
-      <h3>See how these principles show up in the <em>operational work</em>.</h3>
-      <p>The leadership framework anchors the way I approach the day-to-day operating choices on the portfolio &mdash; diagnostics, partner conversations, planning, and analytical decisions.</p>
+      <h3>See how these frameworks show up in the <em>operational work</em>.</h3>
+      <p>The layers above are not theory I keep separately from the job &mdash; they are how I run diagnostics, partner conversations, delivery planning, and the analytical decisions behind them. The case studies on the portfolio are the same system with the customer names attached.</p>
       <a href="/" class="btn-back">Back to portfolio <span>&rarr;</span></a>
     </section>
 
@@ -679,7 +1904,7 @@
 <footer class="site-footer">
   <div class="site-footer-inner">
     <p>Jorge Aguilar &middot; Berlin &middot; <a href="/impressum/">Impressum</a> &middot; <a href="/datenschutz/">Datenschutz</a></p>
-    <p>Framework adapted from Leila Hormozi</p>
+    <p>Leadership principles adapted from Leila Hormozi</p>
   </div>
 </footer>
 

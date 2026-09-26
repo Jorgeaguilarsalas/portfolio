@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Führungsmodell — Jorge Aguilar</title>
-<meta name="description" content="Die fünf Säulen, die meine Führungsarbeit prägen: emotionale Selbststeuerung, aufrichtige Offenheit, untadeliger Charakter, Klarheit und Eigenverantwortung. Ein Modell auf Grundlage der Führungsarbeit von Leila Hormozi.">
-<meta property="og:title" content="Führungsmodell — Jorge Aguilar">
-<meta property="og:description" content="Fünf Säulen, die prägen, wie ich Teams durch Unsicherheit führe — in Operations, Produkt und Partnerschaften.">
+<title>Leadership- &amp; Operations-Frameworks — Jorge Aguilar</title>
+<meta name="description" content="Sieben Ebenen aus Führungs- und Operations-Frameworks: Führungsprinzipien, People Management, Execution Management, Operational Improvement sowie Service &amp; Cross-Functional Delivery.">
+<meta property="og:title" content="Leadership- &amp; Operations-Frameworks — Jorge Aguilar">
+<meta property="og:description" content="Wie ich auftrete, wie ich Menschen entwickle und wie ich aus Zielen Umsetzung mache — die Frameworks hinter meiner Arbeit in Service und Operations.">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://jorgeag.com/de/leadership-framework/">
 <link rel="alternate" hreflang="en" href="https://jorgeag.com/leadership-framework/">
@@ -22,8 +22,8 @@
 <meta name="twitter:image" content="https://jorgeag.com/og-card-1200x630.png">
 <meta property="og:site_name" content="Jorge Aguilar Portfolio">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Führungsmodell — Jorge Aguilar">
-<meta name="twitter:description" content="Fünf Säulen, die prägen, wie ich Teams durch Unsicherheit führe — in Operations, Produkt und Partnerschaften.">
+<meta name="twitter:title" content="Leadership- &amp; Operations-Frameworks — Jorge Aguilar">
+<meta name="twitter:description" content="Wie ich auftrete, wie ich Menschen entwickle und wie ich aus Zielen Umsetzung mache — die Frameworks hinter meiner Arbeit in Service und Operations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
@@ -440,6 +440,277 @@
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) .impact{line-height:var(--lh-impact)}
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) :is(.eyebrow,.tag,.kicker,.applied-label,.statement-label){letter-spacing:var(--ls-mono)}
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) figcaption{letter-spacing:.04em}
+  /* ── ARQUITECTURA POR CAPAS ────────────────────────────────────────────
+     La pagina paso de cinco pilares a siete capas, asi que el bloque de
+     abajo va DESPUES de la escala de espaciado a proposito: los selectores
+     genericos de la escala son (0,1,1) y aqui hace falta ganarles con
+     (0,2,0) sin tocar las reglas compartidas con el resto del sitio. */
+
+  /* Indice de capas */
+  .toc-wrap{scroll-margin-top:96px}
+  .toc{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius);padding:34px 36px;
+  }
+  .toc-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin:0;
+  }
+  .toc-list{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:0 40px;margin:20px 0 0;padding:0;list-style:none;
+  }
+  .toc-list li{margin:0}
+  .toc-list a{
+    display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;
+    align-items:baseline;padding:13px 0;color:var(--fg);
+    border-top:1px solid rgba(48,48,54,.75);
+  }
+  .toc-list li:first-child a,.toc-list li:nth-child(2) a{border-top:0;padding-top:0}
+  .toc-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--accent)}
+  .toc-name{font-size:15px;font-weight:600;line-height:1.35;transition:color .2s ease}
+  .toc-name span{display:block;font-weight:400;font-size:13.5px;line-height:1.5;color:var(--muted);margin-top:4px}
+  .toc-list a:hover .toc-name{color:var(--accent)}
+
+  /* Cabecera de capa */
+  .layer{scroll-margin-top:88px}
+  .layer-head{max-width:64ch}
+  .layer-head > *{margin:0}
+  .layer-num{
+    font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .layer-num::before{content:"";width:24px;height:2px;background:var(--accent);border-radius:2px}
+  .layer .layer-head h2{
+    font-size:clamp(28px,3.4vw,44px);font-weight:900;line-height:1;
+    letter-spacing:-.025em;text-transform:uppercase;max-width:20ch;text-wrap:balance;
+  }
+  .layer .layer-sub{
+    font-size:clamp(16px,1.7vw,20px);font-weight:600;line-height:1.35;
+    letter-spacing:-.01em;color:var(--muted);
+  }
+  .layer .layer-intro{font-size:16px;line-height:1.7;color:var(--muted);max-width:62ch}
+  .layer .layer-intro strong{color:var(--fg);font-weight:600}
+  .layer-head > .layer-num + h2{margin-top:var(--sp-label)}
+  .layer-head > h2 + .layer-sub{margin-top:var(--sp-title)}
+  .layer-head > * + .layer-intro{margin-top:var(--sp-text)}
+
+  /* Sub-bloque dentro de una capa (p. ej. Management Practices) */
+  .subhead{max-width:62ch}
+  .subhead > *{margin:0}
+  .sub-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);
+  }
+  .layer .subhead h3{font-size:clamp(21px,2.3vw,28px);font-weight:800;letter-spacing:-.02em}
+  .layer .subhead p{font-size:15.5px;line-height:1.7;color:var(--muted)}
+  .subhead > .sub-label + h3{margin-top:var(--sp-label)}
+  .subhead > h3 + p{margin-top:var(--sp-title)}
+
+  /* Cadena de pasos de un framework: Translate -> Assign -> Track -> Act */
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:0;padding:0;list-style:none}
+  .flow li{display:flex;align-items:center;gap:9px;margin:0}
+  .flow .step{
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--fg);background:var(--surface-2);border:1px solid var(--border);
+    border-radius:999px;padding:8px 15px;line-height:1;white-space:nowrap;
+  }
+  .flow .arrow{color:var(--accent);font-size:12px;line-height:1}
+  .flow li:last-child .arrow{display:none}
+  .flow.is-tight .step{font-size:10.5px;padding:7px 12px}
+
+  /* Principio operativo / pregunta guia */
+  .principle{
+    border-left:2px solid var(--accent);background:rgba(184,255,61,.05);
+    border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:18px 22px;margin:0;
+  }
+  .principle .plabel{
+    display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 9px;
+  }
+  .layer .principle p,.pillar-content .principle p{
+    font-size:16px;line-height:1.5;font-weight:600;color:var(--fg);margin:0;
+  }
+  .principle.is-ask{border-left-color:var(--border);background:var(--surface-2)}
+  .principle.is-ask .plabel{color:var(--muted)}
+
+  /* Referencia cruzada entre frameworks */
+  .xref{
+    margin:0;padding-left:16px;border-left:1px solid var(--border);
+    font-size:14px;line-height:1.65;color:var(--muted);
+  }
+  .pillar-content .xref b,.layer .xref b{color:var(--fg);font-weight:600}
+
+  /* Rejillas de definiciones: Skill/Will/System, buckets de KPI */
+  .grid-2,.grid-3,.grid-4{display:grid;gap:14px;margin:0}
+  .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tile{
+    background:var(--surface-2);border:1px solid var(--border);
+    border-radius:var(--radius-sm);padding:20px 22px;
+  }
+  .tile > *{margin:0}
+  .tile-kicker{
+    display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);
+  }
+  .layer .tile h4,.pillar-content .tile h4{font-size:15.5px;font-weight:700;color:var(--fg);letter-spacing:-.01em}
+  .layer .tile p,.pillar-content .tile p{font-size:14.5px;line-height:1.6;color:var(--muted)}
+  .tile > .tile-kicker + h4{margin-top:10px}
+  .tile > h4 + p{margin-top:8px}
+  .tile > p + p{margin-top:10px}
+  .layer .tile p.tile-resp,.pillar-content .tile p.tile-resp{color:var(--fg)}
+  .tile p.tile-resp b{color:var(--accent);font-weight:600}
+
+  /* Pasos numerados de un framework (Coaching, Feedback, Incidentes) */
+  .steps{list-style:none;margin:0;padding:0}
+  .steps li{
+    display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;
+    padding:15px 0;margin:0;border-top:1px solid rgba(48,48,54,.75);
+  }
+  .steps li:first-child{border-top:0;padding-top:0}
+  .steps li:last-child{padding-bottom:0}
+  .steps .sn{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--accent);padding-top:3px}
+  .steps .st{display:block;font-size:15.5px;font-weight:700;color:var(--fg);letter-spacing:-.01em;margin-bottom:6px}
+  .layer .steps .sd,.pillar-content .steps .sd{display:block;font-size:14.5px;line-height:1.65;color:var(--muted)}
+  .steps .sd q{color:var(--fg);font-style:italic}
+
+  /* Capa 06: los principios transversales */
+  .plist{
+    list-style:none;margin:0;padding:0;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;
+  }
+  .plist li{
+    display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;
+    padding:15px 0;margin:0;border-top:1px solid rgba(48,48,54,.75);
+    font-size:15px;line-height:1.6;color:var(--muted);
+  }
+  .plist li:first-child,.plist li:nth-child(2){border-top:0;padding-top:0}
+  .plist .pn{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.12em;color:var(--accent);padding-top:3px}
+  .plist b{color:var(--fg);font-weight:600}
+
+  /* Capa 07: el modelo por capas */
+  .model{display:flex;flex-direction:column;gap:10px;margin:0}
+  .model-row{
+    display:grid;grid-template-columns:auto minmax(0,.9fr) minmax(0,1.2fr);
+    gap:20px;align-items:center;
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius-sm);padding:18px 24px;
+  }
+  .model-row .mn{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--accent)}
+  .model-row .mname{font-size:15.5px;font-weight:700;color:var(--fg);letter-spacing:-.01em;line-height:1.35}
+  .model-row .mout{font-size:14.5px;line-height:1.6;color:var(--muted)}
+  .model-row .mout b{color:var(--fg);font-weight:600}
+  .model-legend{
+    display:grid;grid-template-columns:auto minmax(0,.9fr) minmax(0,1.2fr);gap:20px;
+    padding:0 24px 2px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  }
+  .model-legend span:first-child{visibility:hidden}
+
+  /* Capa 07: el flujo aplicado */
+  .scenario{
+    background:var(--surface-2);border:1px solid var(--border);
+    border-radius:var(--radius-sm);padding:22px 24px;margin:0;
+  }
+  .scenario > *{margin:0}
+  .scenario-label{
+    display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:10px;
+  }
+  .layer .scenario p{font-size:15.5px;line-height:1.7;color:var(--fg)}
+
+  .aflow{list-style:none;margin:0;padding:0}
+  .aflow li{
+    position:relative;display:grid;grid-template-columns:34px minmax(0,1fr);
+    gap:18px;padding:0 0 26px;margin:0;
+  }
+  .aflow li:last-child{padding-bottom:0}
+  .aflow li::before{content:"";position:absolute;left:16.5px;top:36px;bottom:0;width:1px;background:var(--border)}
+  .aflow li:last-child::before{display:none}
+  .aflow .an{
+    width:34px;height:34px;border-radius:50%;flex:none;
+    border:1px solid var(--border);background:var(--surface-2);
+    display:flex;align-items:center;justify-content:center;position:relative;z-index:1;
+    font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);
+  }
+  .aflow .ab > *{margin:0}
+  .atag{
+    display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--accent);
+    border:1px solid rgba(184,255,61,.32);border-radius:999px;padding:4px 10px;line-height:1;
+  }
+  .aflow .atitle{display:block;font-size:16px;font-weight:700;color:var(--fg);letter-spacing:-.01em;margin-top:10px}
+  .layer .aflow .ab p{font-size:14.5px;line-height:1.7;color:var(--muted);margin-top:7px}
+
+  /* Aviso de idioma en las versiones DE/ES mientras no esten traducidas */
+  .lang-note{
+    background:var(--surface-2);border:1px dashed var(--border);
+    border-radius:var(--radius);padding:32px 36px;
+  }
+  .lang-note > *{margin:0}
+  .lang-note-label{
+    display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent);
+  }
+  .layer .lang-note h3,.lang-note h3{font-size:clamp(20px,2.2vw,26px);font-weight:800;letter-spacing:-.02em;margin-top:16px}
+  .lang-note p{font-size:15.5px;line-height:1.7;color:var(--muted);margin-top:14px;max-width:60ch}
+  .lang-note ul{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  .lang-note li{position:relative;padding-left:24px;font-size:15px;line-height:1.6;color:var(--muted)}
+  .lang-note li::before{content:"—";position:absolute;left:0;top:0;color:var(--accent)}
+  .lang-note .btn-back{margin-top:26px}
+
+  /* Los bloques nuevos viven tambien DENTRO de los acordeones, donde ya
+     mandaban .pillar-content ul (flex en columna) y .pillar-content li
+     (guion lima y sangria de 24px). Ambas son (0,2,0), asi que no bastaba
+     con declarar .flow o .steps: hay que neutralizarlas con la misma
+     especificidad y mas abajo. Se limita a los contenedores nuevos para
+     que la lista normal de "In practice" conserve su guion. */
+  .pillar-content .flow{display:flex;flex-direction:row;flex-wrap:wrap;gap:9px}
+  .pillar-content .steps{display:block}
+  .pillar-content :is(.flow,.steps) > li{position:static;padding-left:0}
+  .pillar-content :is(.flow,.steps) > li::before{content:none}
+  .pillar-content .flow > li{display:flex;align-items:center;gap:9px}
+  .pillar-content .steps > li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;padding:15px 0}
+  .pillar-content .steps > li:first-child{padding-top:0}
+  .pillar-content .steps > li:last-child{padding-bottom:0}
+
+  /* Ritmo vertical de los bloques nuevos. Una sola regla por contenedor,
+     con (0,2,0), para que la escala generica no vuelva a meter 16px donde
+     el bloque pide 28. */
+  .layer > * + *,
+  .pillar-content > * + *,
+  .toc > * + *,
+  .scenario > * + *{margin-top:var(--sp-text)}
+  .layer > * + :is(.flow,.pillars,.plist,.model,.model-legend,.aflow,.scenario,.grid-2,.grid-3,.grid-4,.principle,.steps),
+  .pillar-content > * + :is(.flow,.grid-2,.grid-3,.grid-4,.principle,.steps,.xref,.model){margin-top:var(--sp-media)}
+  .layer > * + .subhead{margin-top:56px}
+  .layer > * + .pillars{margin-top:32px}
+  .layer > .layer-head + .flow{margin-top:28px}
+
+  @media (max-width:900px){
+    .toc-list{grid-template-columns:minmax(0,1fr);gap:0}
+    .toc-list li:nth-child(2) a{border-top:1px solid rgba(48,48,54,.75);padding-top:13px}
+    .plist{grid-template-columns:minmax(0,1fr);gap:0}
+    .plist li:nth-child(2){border-top:1px solid rgba(48,48,54,.75);padding-top:15px}
+    .grid-3,.grid-4,.grid-2{grid-template-columns:minmax(0,1fr)}
+    .model-row{grid-template-columns:auto minmax(0,1fr);row-gap:8px}
+    .model-row .mout{grid-column:2}
+    .model-legend{display:none}
+  }
+  @media (max-width:980px){
+    .toc{padding:26px 24px}
+    .lang-note{padding:26px 24px}
+    .layer > * + .subhead{margin-top:44px}
+  }
+  @media (max-width:560px){
+    .steps li,.plist li{grid-template-columns:minmax(0,1fr);gap:6px}
+    .steps .sn,.plist .pn{padding-top:0}
+    .aflow li{grid-template-columns:minmax(0,1fr);gap:12px}
+    .aflow li::before{display:none}
+  }
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -493,23 +764,27 @@
 
   <header class="col">
     <div class="rule reveal"></div>
-    <p class="eyebrow reveal">Führungsmodell</p>
-    <h1 class="reveal">Die fünf Säulen, die meine Führungsarbeit prägen</h1>
-    <p class="lede reveal">Ein Modell auf Grundlage der Führungsarbeit von Leila Hormozi, weiterentwickelt aus meiner Erfahrung in Operations, Partnerschaften und cross-funktionalen Teams.</p>
-    <p class="attribution reveal">Adaptiert nach der Arbeit von <a href="https://www.acquisition.com/team/bio-leila-2" target="_blank" rel="noopener">Leila Hormozi</a> &mdash; Operating Partnerin und CEO, deren Auseinandersetzung mit Führung meinem eigenen Denken darüber, wie man Menschen durch Unsicherheit führt, am nächsten kommt.</p>
+    <p class="eyebrow reveal">Leadership &amp; Operations</p>
+    <h1 class="reveal">Leadership- &amp; Operations-Frameworks</h1>
+    <p class="lede reveal"><strong>Wie ich auftrete, wie ich Menschen entwickle, wie ich aus Zielen Umsetzung mache.</strong></p>
+    <p class="lede reveal">Dieses Handbuch bündelt die Methoden, die ich für die Führung von Service, Operations und Teams in technisch komplexen Umfeldern entwickelt habe. Die Frameworks sind Arbeitswerkzeuge, keine Schlagworte &mdash; jedes löst ein bestimmtes Management-Problem und ist dafür gedacht, genau dann herangezogen zu werden, wenn dieses Problem auftritt.</p>
+    <p class="lede reveal">Sie bauen aufeinander auf. Führungsprinzipien bestimmen, wie ich auftrete. People Management bestimmt, wie ich Leistung aufbaue. Execution Management macht aus Zielen gelieferte Ergebnisse. Operational Improvement verbessert das System selbst. Service &amp; Cross-Functional Delivery ist der Ort, an dem all das auf ein Kundenergebnis trifft.</p>
+    <p class="attribution reveal">Ebene 01 adaptiert die Arbeit von <a href="https://www.acquisition.com/team/bio-leila-2" target="_blank" rel="noopener">Leila Hormozi</a> &mdash; Operating Partnerin und CEO, deren Auseinandersetzung mit Führung meinem eigenen Denken darüber, wie man Menschen durch Unsicherheit führt, am nächsten kommt. Die Ebenen 02 bis 07 sind eigene Frameworks, entstanden aus der Leitung von Service-Delivery- und Operations-Teams.</p>
   </header>
 
   <div class="stack">
 
     <section class="card statement reveal">
-      <p class="statement-label">Führungsverständnis</p>
-      <p class="statement-prose">In schnelllebigen operativen Kontexten heißt Führung, <em>unter Druck ruhig zu bleiben</em>, Komplexität zu reduzieren und Teams zu befähigen, sicher zu handeln.</p>
+      <p class="statement-label">Kernphilosophie</p>
+      <p class="statement-prose">Das Ergebnis klären, Verantwortung explizit machen, Sichtbarkeit schaffen, <em>diagnostizieren, bevor man eingreift</em>, und Systeme bauen, die weniger ständiges Eingreifen des Managements brauchen.</p>
     </section>
 
-    <section class="card is-plain">
-      <div class="section-head reveal">
-        <h2>Fünf Säulen, <em>im Detail</em>.</h2>
-        <p>Öffnen Sie eine Säule, um das Prinzip vollständig zu lesen, die Verhaltensweisen, zu denen ich mich verpflichte, und wie ich es in meiner Arbeit anwende.</p>
+    <section class="layer" id="layer-01">
+      <div class="layer-head reveal">
+        <p class="layer-num">01 &mdash; Leadership Principles</p>
+        <h2>Wie ich auftrete</h2>
+        <p class="layer-sub">Das Verhalten, auf dem alles Weitere aufbaut.</p>
+        <p class="layer-intro">Öffnen Sie eine Säule, um das Prinzip vollständig zu lesen, die Verhaltensweisen, zu denen ich mich verpflichte, und wie ich es in meiner Arbeit anwende.</p>
       </div>
 
       <div class="pillars">
@@ -667,9 +942,24 @@
       </div>
     </section>
 
+    <section class="lang-note reveal">
+      <span class="lang-note-label">Ebenen 02 &ndash; 07</span>
+      <h3>Available in English &mdash; deutsche Übersetzung folgt</h3>
+      <p>Die übrigen sechs Ebenen dieses Handbuchs sind derzeit nur auf Englisch verfügbar. Die deutsche Fassung folgt in Kürze.</p>
+      <ul>
+        <li><b>02 &mdash; People Management:</b> Direction, Support, Accountability, Development &mdash; einschließlich Coaching, Corrective Feedback und der Diagnose Skill / Will / System</li>
+        <li><b>03 &mdash; Execution Management:</b> Translate, Assign, Track, Act</li>
+        <li><b>04 &mdash; Operational Improvement:</b> Diagnose, Prioritize, Build, Own</li>
+        <li><b>05 &mdash; Service &amp; Cross-Functional Delivery:</b> Service-Delivery-Verantwortung, Customer Performance, cross-funktionale Führung, technisches Verständnis, Incident Management</li>
+        <li><b>06 &mdash; Working Principles:</b> die zwölf übergreifenden Arbeitsprinzipien</li>
+        <li><b>07 &mdash; How It All Connects:</b> das mehrschichtige Betriebsmodell und der Applied Management Flow</li>
+      </ul>
+      <a href="/leadership-framework/" class="btn-back" hreflang="en">Auf Englisch lesen <span>&rarr;</span></a>
+    </section>
+
     <section class="card footer-cta reveal">
-      <h3>Wie sich diese Prinzipien in der <em>operativen Arbeit</em> zeigen.</h3>
-      <p>Das Führungsmodell prägt, wie ich die täglichen operativen Entscheidungen im Portfolio angehe &mdash; Diagnostik, Partnergespräche, Planung und analytische Entscheidungen.</p>
+      <h3>Wie sich diese Frameworks in der <em>operativen Arbeit</em> zeigen.</h3>
+      <p>Die Ebenen sind keine Theorie neben dem Tagesgeschäft &mdash; sie sind die Art, wie ich Diagnostik, Partnergespräche, Delivery-Planung und die analytischen Entscheidungen dahinter führe. Die Fallstudien im Portfolio sind dasselbe System mit Kundennamen.</p>
       <a href="/de/" class="btn-back">Zurück zum Portfolio <span>&rarr;</span></a>
     </section>
 
@@ -679,7 +969,7 @@
 <footer class="site-footer">
   <div class="site-footer-inner">
     <p>Jorge Aguilar &middot; Berlin &middot; <a href="/impressum/">Impressum</a> &middot; <a href="/datenschutz/">Datenschutz</a></p>
-    <p>Modell adaptiert nach Leila Hormozi</p>
+    <p>Führungsprinzipien adaptiert nach Leila Hormozi</p>
   </div>
 </footer>
 
