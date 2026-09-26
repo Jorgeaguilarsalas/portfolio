@@ -678,6 +678,19 @@
   .pillar-content .steps > li:first-child{padding-top:0}
   .pillar-content .steps > li:last-child{padding-bottom:0}
 
+  /* Nota de atribucion al cierre de la capa 01. Tono deliberadamente bajo:
+     la fuente del framework importa y se cita donde se usa, pero no compite
+     con el contenido. El gris es mas apagado que --muted a proposito. */
+  .attrib-note{
+    border-top:1px solid rgba(184,255,61,.35);
+    padding-top:28px;margin:0;max-width:72ch;
+  }
+  .layer .attrib-note{
+    font-family:var(--sans);font-size:13.5px;line-height:1.75;
+    font-style:italic;color:#8A8A8F;letter-spacing:normal;
+  }
+  .layer .attrib-note em{font-style:normal;color:var(--muted)}
+
   /* Ritmo vertical de los bloques nuevos. Una sola regla por contenedor,
      con (0,2,0), para que la escala generica no vuelva a meter 16px donde
      el bloque pide 28. */
@@ -688,6 +701,7 @@
   .layer > * + :is(.flow,.pillars,.plist,.model,.model-legend,.aflow,.scenario,.grid-2,.grid-3,.grid-4,.principle,.steps),
   .pillar-content > * + :is(.flow,.grid-2,.grid-3,.grid-4,.principle,.steps,.xref,.model){margin-top:var(--sp-media)}
   .layer > * + .subhead{margin-top:56px}
+  .layer > * + .attrib-note{margin-top:44px}
   .layer > * + .pillars{margin-top:32px}
   .layer > .layer-head + .flow{margin-top:28px}
 
@@ -811,25 +825,25 @@
             <span class="pillar-num">01</span>
             <span>
               <span class="pillar-name">Emotional regulation</span>
-              <span class="pillar-tagline">Leadership under pressure starts with self-control.</span>
+              <span class="pillar-tagline">Respond to the pattern, not to the noise.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="pillar-body" id="p1">
             <div class="inner">
               <div class="pillar-content">
-                <p class="why">A leader sets the emotional tone for the team. If the leader panics, the team becomes unstable. If the leader stays grounded, the team can think clearly and perform.</p>
+                <p class="why">Marketplace operations produce a constant stream of urgent signals: driver disputes, SLA breaches, cancellation spikes at peak hours, a compliance deadline that moves. Most of it is noise around a much smaller number of real patterns. Emotional regulation is the discipline of telling the two apart before acting &mdash; and of not passing the volume of my inbox on to the team.</p>
                 <p class="how-label">In practice</p>
                 <ul>
-                  <li>Stay calm during uncertainty</li>
-                  <li>Pause before reacting</li>
-                  <li>Use a neutral tone in conflict</li>
-                  <li>Approach problems with curiosity, not judgment</li>
-                  <li>Be the stabilizing force when others are overwhelmed</li>
+                  <li>Separate the decision from the reaction, especially on escalations that arrive angry</li>
+                  <li>Read the pattern across a week of tickets before redesigning a process on the strength of one</li>
+                  <li>Hold a neutral tone with fleet partners and drivers when the conversation is already hot</li>
+                  <li>Absorb pressure coming from above instead of passing it down unfiltered</li>
+                  <li>Be the stable point during an incident, when everyone else is improvising</li>
                 </ul>
                 <div class="applied">
                   <span class="applied-label">How it shows up in my work</span>
-                  <p class="applied-text">I lead with emotional stability, especially in high-pressure operational environments. My role is to create calm, focus, and confidence so teams can make better decisions under uncertainty.</p>
+                  <p class="applied-text">In supply and activation work the loudest problem is rarely the largest one. I keep the operating tempo steady so the team can tell the difference &mdash; and so partners and drivers deal with a consistent counterpart rather than whoever I happened to be that day.</p>
                 </div>
                 <div class="principle">
                   <span class="plabel">Working principle</span>
@@ -845,25 +859,25 @@
             <span class="pillar-num">02</span>
             <span>
               <span class="pillar-name">Sincere candor</span>
-              <span class="pillar-tagline">Clear feedback builds trust faster than hidden expectations.</span>
+              <span class="pillar-tagline">Say the hard thing early, with the evidence attached.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="pillar-body" id="p2">
             <div class="inner">
               <div class="pillar-content">
-                <p class="why">Strong leaders do not avoid difficult conversations. They give honest, specific, private feedback that helps people improve.</p>
+                <p class="why">Marketplace operations run on feedback travelling between people who have no authority over each other: Ops and Product, Support and Engineering, and fleet partners who are commercial counterparts rather than employees. Sincere candor means saying the thing that needs saying &mdash; to a partner whose performance is sliding, to a product lead whose feature is creating operational friction, to a team member whose quality has dropped &mdash; with the evidence attached, and without diluting it into politeness.</p>
                 <p class="how-label">In practice</p>
                 <ul>
-                  <li>Say expectations clearly upfront</li>
-                  <li>Give feedback early, not after resentment builds</li>
-                  <li>Critique behavior, not identity</li>
-                  <li>Avoid insults, blame, or personal attacks</li>
-                  <li>Make sure people always know where they stand</li>
+                  <li>Lead with the observation and the number, not with the interpretation</li>
+                  <li>Give feedback while it is still one incident, not once it is a pattern and a grievance</li>
+                  <li>Tell a fleet partner their numbers are slipping before it becomes a contract conversation</li>
+                  <li>Separate a hard message from a harsh one &mdash; directness is not a licence</li>
+                  <li>Ask the uncomfortable question in the meeting, not in the corridor afterwards</li>
                 </ul>
                 <div class="applied">
                   <span class="applied-label">How it shows up in my work</span>
-                  <p class="applied-text">I believe in sincere candor &mdash; direct, respectful, and actionable communication. I aim to remove ambiguity so teams understand expectations, performance gaps, and the next step forward.</p>
+                  <p class="applied-text">Supply relationships survive honesty far better than they survive silence. Running fleet partner performance at Bliq, the partners who recovered were usually the ones who got the uncomfortable number early, framed against an agreed standard, while there was still time to act on it.</p>
                 </div>
                 <div class="principle">
                   <span class="plabel">Working principle</span>
@@ -878,26 +892,26 @@
           <button class="pillar-trigger" aria-expanded="false" aria-controls="p3">
             <span class="pillar-num">03</span>
             <span>
-              <span class="pillar-name">Impeccable character</span>
-              <span class="pillar-tagline">Trustworthiness matters more than appearing perfect.</span>
+              <span class="pillar-name">Unimpeachable character</span>
+              <span class="pillar-tagline">In regulated B2B operations, your word is the product.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="pillar-body" id="p3">
             <div class="inner">
               <div class="pillar-content">
-                <p class="why">People follow leaders whose behavior is predictable, honest, and consistent. A leader should not emotionally dump on the team, but should be transparent enough that people understand context.</p>
+                <p class="why">Regulated fleet work puts you in front of drivers, fleet operators, corporate clients and authorities at the same time &mdash; and each of them can verify what you told the others. Unimpeachable character means commitments hold once they turn out to be expensive, and decisions look the same whether or not anyone is checking. In a compliance-first context that is not a values statement; it is the operating requirement.</p>
                 <p class="how-label">In practice</p>
                 <ul>
-                  <li>Be honest without venting downward</li>
-                  <li>Take responsibility for my behavior</li>
-                  <li>Communicate context when it affects the team</li>
-                  <li>Ask: would I trust myself as a leader?</li>
-                  <li>Build psychological safety through consistency</li>
+                  <li>Keep private conduct matching the public version of it</li>
+                  <li>Honour a commitment once it has become inconvenient, or renegotiate it openly and early</li>
+                  <li>Own mistakes where they were made, and give credit in the same room</li>
+                  <li>Never trade a short-term optic against long-term trust with a partner or a regulator</li>
+                  <li>Give every audience the same account of the same situation</li>
                 </ul>
                 <div class="applied">
                   <span class="applied-label">How it shows up in my work</span>
-                  <p class="applied-text">I lead with integrity, transparency, and consistency. My goal is to be a leader whose decisions and behavior people can trust, even in difficult moments.</p>
+                  <p class="applied-text">Building compliance tooling for LABO and PBefG obligations at Nexio Fleet made the standard concrete: operators were relying on our word about what the system did and did not cover. Being accurate about the limitations was worth considerably more than being impressive about the capabilities.</p>
                 </div>
                 <div class="principle">
                   <span class="plabel">Working principle</span>
@@ -913,25 +927,25 @@
             <span class="pillar-num">04</span>
             <span>
               <span class="pillar-name">Clarity</span>
-              <span class="pillar-tagline">A leader turns complexity into action.</span>
+              <span class="pillar-tagline">Reduce ambiguity until the decision can be made without me.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="pillar-body" id="p4">
             <div class="inner">
               <div class="pillar-content">
-                <p class="why">Good leadership means taking messy problems and translating them into clear decisions, priorities, and next steps.</p>
+                <p class="why">Supply strategy, regulatory requirements and cross-functional dependencies each arrive in their own vocabulary, and the ambiguity between them is where operational time disappears. Clarity means compressing that until someone can act without re-deriving the context every time: define the outcome before the method, and write the decision down instead of only saying it in a meeting.</p>
                 <p class="how-label">In practice</p>
                 <ul>
-                  <li>Simplify complex problems</li>
-                  <li>Avoid unnecessary jargon</li>
-                  <li>Define the problem before solving it</li>
-                  <li>Clarify what success looks like</li>
-                  <li>Give teams 1&ndash;3 clear priorities</li>
+                  <li>Define the outcome and how it will be measured before agreeing the method</li>
+                  <li>Write the decision down &mdash; with the owner and the reasoning, not just the task</li>
+                  <li>Use language that survives the trip from Ops to Product to a fleet partner</li>
+                  <li>Turn a regulatory requirement into a concrete operational rule somebody can follow</li>
+                  <li>Cut meeting time by circulating the context in advance</li>
                 </ul>
                 <div class="applied">
                   <span class="applied-label">How it shows up in my work</span>
-                  <p class="applied-text">I specialize in translating complex operational challenges into clear priorities, execution plans, and measurable outcomes. I help teams know exactly what matters, what to do next, and how success will be measured.</p>
+                  <p class="applied-text">Translating LABO and PBefG requirements into product specs, or an Earnings-per-Hour target into an SLA a fleet partner can actually manage against, is the same exercise: take something that is correct but unusable and make it operable without losing what made it correct.</p>
                 </div>
                 <div class="principle">
                   <span class="plabel">Working principle</span>
@@ -947,25 +961,25 @@
             <span class="pillar-num">05</span>
             <span>
               <span class="pillar-name">Ownership</span>
-              <span class="pillar-tagline">Leaders solve problems, even when they did not create them.</span>
+              <span class="pillar-tagline">The problem stays mine until it is solved or explicitly handed over.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="pillar-body" id="p5">
             <div class="inner">
               <div class="pillar-content">
-                <p class="why">Ownership means taking responsibility for the outcome, not only for your assigned tasks. High-performing teams decentralize responsibility instead of waiting for permission.</p>
+                <p class="why">In marketplace operations the failures that cost most are the ones that fall between functions: an order that fails, a driver who never activates, a regulatory requirement that changed and nobody mapped. Ownership means the useful question is not whose scope this sits in but what has to happen now &mdash; and that a handover only counts once the other side has confirmed they have it.</p>
                 <p class="how-label">In practice</p>
                 <ul>
-                  <li>Focus on solutions, not blame</li>
-                  <li>Take responsibility for outcomes</li>
-                  <li>Solve problems outside my formal scope when needed</li>
-                  <li>Encourage teams to act like owners</li>
-                  <li>Treat every problem as a chance to build capability</li>
+                  <li>Escalate with a proposed decision, not with an open question</li>
+                  <li>Close the loop on problems outside my scope instead of routing them onward</li>
+                  <li>Turn &ldquo;not my job&rdquo; into &ldquo;here is who owns it, and I have confirmed they do&rdquo;</li>
+                  <li>Take the blame in public and hand the credit over in public</li>
+                  <li>Treat a recurring gap between two teams as something to design away, not to chase weekly</li>
                 </ul>
                 <div class="applied">
                   <span class="applied-label">How it shows up in my work</span>
-                  <p class="applied-text">I operate with strong ownership. I do not wait for perfect conditions or perfect responsibility boundaries. When a problem affects the mission, I focus on solving it and creating value for the team.</p>
+                  <p class="applied-text">Rebuilding the driver activation funnel at Bolt meant owning steps I did not control &mdash; documents, vehicle checks, third-party dependencies &mdash; because the activation rate was indifferent to where the organisational boundaries sat.</p>
                 </div>
                 <div class="principle">
                   <span class="plabel">Working principle</span>
@@ -977,6 +991,8 @@
         </article>
 
       </div>
+
+      <p class="attrib-note reveal">The five leadership principles above are grounded in Leila Hormozi&rsquo;s leadership framework, adapted here through operational experience in marketplace ecosystems (Bliq, Bolt, Wolt) and compliance-first infrastructure work (Nexio Fleet, Salas UG). The descriptions and applications reflect my own interpretation and practice.</p>
     </section>
 
     <!-- ══ 02 — PEOPLE MANAGEMENT ══════════════════════════════════════ -->

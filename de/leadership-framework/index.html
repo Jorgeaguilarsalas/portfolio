@@ -677,6 +677,19 @@
   .pillar-content .steps > li:first-child{padding-top:0}
   .pillar-content .steps > li:last-child{padding-bottom:0}
 
+  /* Nota de atribucion al cierre de la capa 01. Tono deliberadamente bajo:
+     la fuente del framework importa y se cita donde se usa, pero no compite
+     con el contenido. El gris es mas apagado que --muted a proposito. */
+  .attrib-note{
+    border-top:1px solid rgba(184,255,61,.35);
+    padding-top:28px;margin:0;max-width:72ch;
+  }
+  .layer .attrib-note{
+    font-family:var(--sans);font-size:13.5px;line-height:1.75;
+    font-style:italic;color:#8A8A8F;letter-spacing:normal;
+  }
+  .layer .attrib-note em{font-style:normal;color:var(--muted)}
+
   /* Ritmo vertical de los bloques nuevos. Una sola regla por contenedor,
      con (0,2,0), para que la escala generica no vuelva a meter 16px donde
      el bloque pide 28. */
@@ -687,6 +700,7 @@
   .layer > * + :is(.flow,.pillars,.plist,.model,.model-legend,.aflow,.scenario,.grid-2,.grid-3,.grid-4,.principle,.steps),
   .pillar-content > * + :is(.flow,.grid-2,.grid-3,.grid-4,.principle,.steps,.xref,.model){margin-top:var(--sp-media)}
   .layer > * + .subhead{margin-top:56px}
+  .layer > * + .attrib-note{margin-top:44px}
   .layer > * + .pillars{margin-top:32px}
   .layer > .layer-head + .flow{margin-top:28px}
 
@@ -794,25 +808,29 @@
             <span class="pillar-num">01</span>
             <span>
               <span class="pillar-name">Emotionale Selbststeuerung</span>
-              <span class="pillar-tagline">Führung unter Druck beginnt mit Selbstbeherrschung.</span>
+              <span class="pillar-tagline">Auf das Muster reagieren, nicht auf das Rauschen.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="pillar-body" id="p1">
             <div class="inner">
               <div class="pillar-content">
-                <p class="why">Eine Führungskraft gibt den emotionalen Ton für das Team vor. Gerät sie in Panik, verliert das Team seine Stabilität. Bleibt sie gefasst, kann das Team klar denken und leisten.</p>
-                <p class="how-label">Wie ich es anwende</p>
+                <p class="why">Marketplace-Operations erzeugen einen konstanten Strom dringender Signale: Fahrerkonflikte, SLA-Verletzungen, Stornierungsspitzen zu Stoßzeiten, eine Compliance-Frist, die sich verschiebt. Das meiste davon ist Rauschen um eine deutlich kleinere Zahl echter Muster. Emotionale Selbststeuerung ist die Disziplin, beides auseinanderzuhalten, bevor man handelt &mdash; und das Volumen des eigenen Posteingangs nicht an das Team weiterzugeben.</p>
+                <p class="how-label">In der Praxis</p>
                 <ul>
-                  <li>In Phasen der Unsicherheit ruhig bleiben</li>
-                  <li>Innehalten, bevor ich reagiere</li>
-                  <li>Im Konflikt einen sachlichen Ton wahren</li>
-                  <li>Probleme mit Neugier angehen, nicht mit Vorverurteilung</li>
-                  <li>Stabilisierend wirken, wenn andere überfordert sind</li>
+                  <li>Die Entscheidung von der Reaktion trennen, gerade bei Eskalationen, die wütend hereinkommen</li>
+                  <li>Das Muster einer ganzen Woche lesen, bevor ich wegen eines einzelnen Tickets einen Prozess umbaue</li>
+                  <li>Gegenüber Fleet-Partnern und Fahrern sachlich bleiben, wenn das Gespräch bereits erhitzt ist</li>
+                  <li>Druck von oben abfangen, statt ihn ungefiltert nach unten weiterzureichen</li>
+                  <li>Der ruhige Punkt im Incident sein, wenn alle anderen improvisieren</li>
                 </ul>
                 <div class="applied">
-                  <span class="applied-label">In der Praxis</span>
-                  <p class="applied-text">Ich führe mit emotionaler Stabilität, gerade in operativen Umfeldern unter hohem Druck. Meine Aufgabe ist es, Ruhe, Fokus und Zuversicht zu schaffen, damit Teams unter Unsicherheit bessere Entscheidungen treffen.</p>
+                  <span class="applied-label">Wie es sich in meiner Arbeit zeigt</span>
+                  <p class="applied-text">In der Supply- und Aktivierungsarbeit ist das lauteste Problem selten das größte. Ich halte das operative Tempo stabil, damit das Team den Unterschied erkennen kann &mdash; und damit Partner und Fahrer ein verlässliches Gegenüber haben und nicht meine Tagesform.</p>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Arbeitsprinzip</span>
+                  <p>&bdquo;Die Gelassenheit des Teams ist eine Folge meiner eigenen.&ldquo;</p>
                 </div>
               </div>
             </div>
@@ -824,25 +842,29 @@
             <span class="pillar-num">02</span>
             <span>
               <span class="pillar-name">Aufrichtige Offenheit</span>
-              <span class="pillar-tagline">Klares Feedback schafft schneller Vertrauen als unausgesprochene Erwartungen.</span>
+              <span class="pillar-tagline">Das Unangenehme früh sagen &mdash; mit Beleg.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="pillar-body" id="p2">
             <div class="inner">
               <div class="pillar-content">
-                <p class="why">Starke Führungskräfte weichen schwierigen Gesprächen nicht aus. Sie geben ehrliches, konkretes Feedback unter vier Augen, das Menschen weiterbringt.</p>
-                <p class="how-label">Wie ich es anwende</p>
+                <p class="why">Marketplace-Operations leben von Feedback zwischen Menschen, die einander nicht weisungsbefugt sind: Ops und Product, Support und Engineering, dazu Fleet-Partner, die kommerzielle Gegenüber sind und keine Angestellten. Aufrichtige Offenheit heißt, das Nötige auszusprechen &mdash; gegenüber einem Partner, dessen Leistung nachlässt, einem Product Lead, dessen Feature operative Reibung erzeugt, einem Teammitglied, dessen Qualität abfällt &mdash; mit Beleg und ohne es in Höflichkeit zu verdünnen.</p>
+                <p class="how-label">In der Praxis</p>
                 <ul>
-                  <li>Erwartungen von Anfang an klar benennen</li>
-                  <li>Feedback früh geben, nicht erst wenn sich Unmut aufgestaut hat</li>
-                  <li>Verhalten kritisieren, nicht die Person</li>
-                  <li>Keine Herabsetzungen, Schuldzuweisungen oder persönlichen Angriffe</li>
-                  <li>Dafür sorgen, dass alle jederzeit wissen, wo sie stehen</li>
+                  <li>Mit der Beobachtung und der Zahl beginnen, nicht mit der Deutung</li>
+                  <li>Feedback geben, solange es ein Vorfall ist &mdash; nicht erst, wenn es ein Muster und ein Groll ist</li>
+                  <li>Einem Fleet-Partner sagen, dass seine Zahlen rutschen, bevor daraus ein Vertragsgespräch wird</li>
+                  <li>Eine harte Botschaft von einem harschen Ton trennen &mdash; Direktheit ist kein Freibrief</li>
+                  <li>Die unbequeme Frage im Meeting stellen, nicht danach auf dem Flur</li>
                 </ul>
                 <div class="applied">
-                  <span class="applied-label">In der Praxis</span>
-                  <p class="applied-text">Ich stehe für aufrichtige Offenheit &mdash; direkte, respektvolle und umsetzbare Kommunikation. Mein Ziel ist es, Mehrdeutigkeit auszuräumen, damit Teams Erwartungen, Leistungslücken und den nächsten Schritt klar vor Augen haben.</p>
+                  <span class="applied-label">Wie es sich in meiner Arbeit zeigt</span>
+                  <p class="applied-text">Supply-Beziehungen überstehen Ehrlichkeit deutlich besser als Schweigen. In der Steuerung der Fleet-Partner-Performance bei Bliq waren es meist jene Partner, die sich erholten, die die unbequeme Zahl früh bekamen &mdash; eingeordnet in einen vereinbarten Standard, solange noch Zeit zum Handeln blieb.</p>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Arbeitsprinzip</span>
+                  <p>&bdquo;Niemand in meinem Team sollte raten müssen, wo er steht.&ldquo;</p>
                 </div>
               </div>
             </div>
@@ -854,25 +876,29 @@
             <span class="pillar-num">03</span>
             <span>
               <span class="pillar-name">Untadeliger Charakter</span>
-              <span class="pillar-tagline">Vertrauenswürdigkeit zählt mehr als der Anschein von Perfektion.</span>
+              <span class="pillar-tagline">Im regulierten B2B-Geschäft ist das eigene Wort das Produkt.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="pillar-body" id="p3">
             <div class="inner">
               <div class="pillar-content">
-                <p class="why">Menschen folgen Führungskräften, deren Verhalten berechenbar, ehrlich und konsistent ist. Eine Führungskraft sollte ihre Anspannung nicht beim Team abladen, aber transparent genug sein, dass alle den Kontext verstehen.</p>
-                <p class="how-label">Wie ich es anwende</p>
+                <p class="why">Regulierte Flottenarbeit stellt einen gleichzeitig vor Fahrer, Flottenbetreiber, Firmenkunden und Behörden &mdash; und jede dieser Seiten kann überprüfen, was man den anderen gesagt hat. Untadeliger Charakter heißt, dass Zusagen halten, sobald sie teuer werden, und dass Entscheidungen gleich aussehen, ob jemand hinsieht oder nicht. In einem Compliance-first-Kontext ist das kein Wertebekenntnis, sondern eine Betriebsvoraussetzung.</p>
+                <p class="how-label">In der Praxis</p>
                 <ul>
-                  <li>Ehrlich sein, ohne Frust nach unten weiterzugeben</li>
-                  <li>Verantwortung für mein eigenes Verhalten übernehmen</li>
-                  <li>Kontext kommunizieren, wenn er das Team betrifft</li>
-                  <li>Mich fragen: Würde ich mir selbst als Führungskraft vertrauen?</li>
-                  <li>Psychologische Sicherheit durch Verlässlichkeit aufbauen</li>
+                  <li>Das Verhalten hinter den Kulissen deckungsgleich zur öffentlichen Version halten</li>
+                  <li>Eine Zusage einhalten, auch wenn sie unbequem geworden ist &mdash; oder sie offen und früh neu verhandeln</li>
+                  <li>Fehler dort eingestehen, wo sie passiert sind, und Anerkennung im selben Raum weitergeben</li>
+                  <li>Nie kurzfristige Optik gegen langfristiges Vertrauen bei Partnern oder Behörden eintauschen</li>
+                  <li>Jeder Seite dieselbe Darstellung derselben Lage geben</li>
                 </ul>
                 <div class="applied">
-                  <span class="applied-label">In der Praxis</span>
-                  <p class="applied-text">Ich führe mit Integrität, Transparenz und Konsistenz. Mein Anspruch ist es, eine Führungskraft zu sein, auf deren Entscheidungen und Verhalten man sich auch in schwierigen Momenten verlassen kann.</p>
+                  <span class="applied-label">Wie es sich in meiner Arbeit zeigt</span>
+                  <p class="applied-text">Der Aufbau von Compliance-Tooling für LABO- und PBefG-Pflichten bei Nexio Fleet hat den Maßstab konkret gemacht: Betreiber verließen sich auf unser Wort dazu, was das System abdeckt und was nicht. Bei den Grenzen präzise zu sein war deutlich mehr wert, als bei den Fähigkeiten zu beeindrucken.</p>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Arbeitsprinzip</span>
+                  <p>&bdquo;Vertrauen entsteht durch Berechenbarkeit, nicht durch den Anschein von Perfektion.&ldquo;</p>
                 </div>
               </div>
             </div>
@@ -884,25 +910,29 @@
             <span class="pillar-num">04</span>
             <span>
               <span class="pillar-name">Klarheit</span>
-              <span class="pillar-tagline">Führung übersetzt Komplexität in Handlung.</span>
+              <span class="pillar-tagline">Mehrdeutigkeit so weit reduzieren, bis die Entscheidung ohne mich fällt.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="pillar-body" id="p4">
             <div class="inner">
               <div class="pillar-content">
-                <p class="why">Gute Führung heißt, unübersichtliche Probleme in klare Entscheidungen, Prioritäten und nächste Schritte zu übersetzen.</p>
-                <p class="how-label">Wie ich es anwende</p>
+                <p class="why">Supply-Strategie, regulatorische Anforderungen und cross-funktionale Abhängigkeiten kommen jeweils in ihrer eigenen Sprache an, und in der Mehrdeutigkeit dazwischen verschwindet operative Zeit. Klarheit heißt, das so weit zu verdichten, dass jemand handeln kann, ohne den Kontext jedes Mal neu herzuleiten: das Ergebnis vor der Methode definieren und die Entscheidung aufschreiben, statt sie nur im Meeting auszusprechen.</p>
+                <p class="how-label">In der Praxis</p>
                 <ul>
-                  <li>Komplexe Probleme vereinfachen</li>
-                  <li>Unnötigen Fachjargon vermeiden</li>
-                  <li>Das Problem definieren, bevor ich es löse</li>
-                  <li>Klären, wie Erfolg konkret aussieht</li>
-                  <li>Teams 1&ndash;3 klare Prioritäten geben</li>
+                  <li>Ergebnis und Messgröße festlegen, bevor die Methode vereinbart wird</li>
+                  <li>Die Entscheidung dokumentieren &mdash; mit Verantwortlichem und Begründung, nicht nur die Aufgabe</li>
+                  <li>Eine Sprache verwenden, die den Weg von Ops über Product bis zum Fleet-Partner übersteht</li>
+                  <li>Eine regulatorische Anforderung in eine konkrete operative Regel übersetzen, der jemand folgen kann</li>
+                  <li>Meetingzeit reduzieren, indem der Kontext vorab verschickt wird</li>
                 </ul>
                 <div class="applied">
-                  <span class="applied-label">In der Praxis</span>
-                  <p class="applied-text">Ich bin darauf spezialisiert, komplexe operative Herausforderungen in klare Prioritäten, Umsetzungspläne und messbare Ergebnisse zu übersetzen. Ich sorge dafür, dass Teams genau wissen, worauf es ankommt, was als Nächstes zu tun ist und woran Erfolg gemessen wird.</p>
+                  <span class="applied-label">Wie es sich in meiner Arbeit zeigt</span>
+                  <p class="applied-text">LABO- und PBefG-Anforderungen in Produktspezifikationen zu übersetzen oder ein Earnings-per-Hour-Ziel in ein SLA, das ein Fleet-Partner tatsächlich steuern kann, ist dieselbe Übung: etwas Korrektes, aber Unbenutzbares bedienbar machen, ohne zu verlieren, was es korrekt gemacht hat.</p>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Arbeitsprinzip</span>
+                  <p>&bdquo;Was nicht klar ist, ist keine Priorität.&ldquo;</p>
                 </div>
               </div>
             </div>
@@ -914,25 +944,29 @@
             <span class="pillar-num">05</span>
             <span>
               <span class="pillar-name">Eigenverantwortung</span>
-              <span class="pillar-tagline">Führungskräfte lösen Probleme, auch wenn sie sie nicht verursacht haben.</span>
+              <span class="pillar-tagline">Das Problem bleibt meins, bis es gelöst oder ausdrücklich übergeben ist.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="pillar-body" id="p5">
             <div class="inner">
               <div class="pillar-content">
-                <p class="why">Eigenverantwortung bedeutet, Verantwortung für das Ergebnis zu übernehmen, nicht nur für die zugewiesenen Aufgaben. Leistungsstarke Teams verteilen Verantwortung, statt auf Freigaben zu warten.</p>
-                <p class="how-label">Wie ich es anwende</p>
+                <p class="why">In Marketplace-Operations kosten die Fehler am meisten, die zwischen die Funktionen fallen: eine Bestellung, die scheitert, ein Fahrer, der nie aktiviert wird, eine regulatorische Anforderung, die sich geändert hat und die niemand abgebildet hat. Eigenverantwortung heißt, dass die nützliche Frage nicht lautet, in wessen Zuständigkeit das fällt, sondern was jetzt passieren muss &mdash; und dass eine Übergabe erst zählt, wenn die Gegenseite bestätigt hat, dass sie sie hat.</p>
+                <p class="how-label">In der Praxis</p>
                 <ul>
-                  <li>Auf Lösungen fokussieren, nicht auf Schuldfragen</li>
-                  <li>Verantwortung für Ergebnisse übernehmen</li>
-                  <li>Probleme auch außerhalb meines formalen Zuständigkeitsbereichs lösen, wenn es nötig ist</li>
-                  <li>Teams ermutigen, unternehmerisch zu handeln</li>
-                  <li>Jedes Problem als Gelegenheit begreifen, Kompetenz aufzubauen</li>
+                  <li>Mit einem Entscheidungsvorschlag eskalieren, nicht mit einer offenen Frage</li>
+                  <li>Probleme außerhalb meines Bereichs zu Ende bringen, statt sie weiterzureichen</li>
+                  <li>Aus &bdquo;nicht mein Job&ldquo; ein &bdquo;hier ist der Verantwortliche, und ich habe es bestätigt&ldquo; machen</li>
+                  <li>Die Verantwortung öffentlich übernehmen und die Anerkennung öffentlich weitergeben</li>
+                  <li>Eine wiederkehrende Lücke zwischen zwei Teams wegkonstruieren, statt ihr wöchentlich hinterherzulaufen</li>
                 </ul>
                 <div class="applied">
-                  <span class="applied-label">In der Praxis</span>
-                  <p class="applied-text">Ich handle mit ausgeprägter Eigenverantwortung. Ich warte weder auf perfekte Bedingungen noch auf sauber gezogene Zuständigkeitsgrenzen. Wenn ein Problem das Ziel gefährdet, konzentriere ich mich darauf, es zu lösen und Wert für das Team zu schaffen.</p>
+                  <span class="applied-label">Wie es sich in meiner Arbeit zeigt</span>
+                  <p class="applied-text">Den Fahrer-Aktivierungsfunnel bei Bolt neu aufzubauen hieß, Schritte zu verantworten, die ich nicht kontrollierte &mdash; Dokumente, Fahrzeugprüfungen, Abhängigkeiten von Dritten &mdash; weil der Aktivierungsquote gleichgültig war, wo die organisatorischen Grenzen verliefen.</p>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Arbeitsprinzip</span>
+                  <p>&bdquo;Eigenverantwortung misst sich am Ergebnis, nicht an der Grenze der Stellenbeschreibung.&ldquo;</p>
                 </div>
               </div>
             </div>
@@ -940,6 +974,8 @@
         </article>
 
       </div>
+
+      <p class="attrib-note reveal">Die fünf oben aufgeführten Leadership-Prinzipien basieren auf Leila Hormozis Leadership-Framework, hier adaptiert durch operative Erfahrung in Marketplace-Ökosystemen (Bliq, Bolt, Wolt) und Compliance-first Infrastruktur-Arbeit (Nexio Fleet, Salas UG). Die Beschreibungen und Anwendungen spiegeln meine eigene Interpretation und Praxis wider.</p>
     </section>
 
     <section class="lang-note reveal">

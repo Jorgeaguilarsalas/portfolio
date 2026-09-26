@@ -677,6 +677,19 @@
   .pillar-content .steps > li:first-child{padding-top:0}
   .pillar-content .steps > li:last-child{padding-bottom:0}
 
+  /* Nota de atribucion al cierre de la capa 01. Tono deliberadamente bajo:
+     la fuente del framework importa y se cita donde se usa, pero no compite
+     con el contenido. El gris es mas apagado que --muted a proposito. */
+  .attrib-note{
+    border-top:1px solid rgba(184,255,61,.35);
+    padding-top:28px;margin:0;max-width:72ch;
+  }
+  .layer .attrib-note{
+    font-family:var(--sans);font-size:13.5px;line-height:1.75;
+    font-style:italic;color:#8A8A8F;letter-spacing:normal;
+  }
+  .layer .attrib-note em{font-style:normal;color:var(--muted)}
+
   /* Ritmo vertical de los bloques nuevos. Una sola regla por contenedor,
      con (0,2,0), para que la escala generica no vuelva a meter 16px donde
      el bloque pide 28. */
@@ -687,6 +700,7 @@
   .layer > * + :is(.flow,.pillars,.plist,.model,.model-legend,.aflow,.scenario,.grid-2,.grid-3,.grid-4,.principle,.steps),
   .pillar-content > * + :is(.flow,.grid-2,.grid-3,.grid-4,.principle,.steps,.xref,.model){margin-top:var(--sp-media)}
   .layer > * + .subhead{margin-top:56px}
+  .layer > * + .attrib-note{margin-top:44px}
   .layer > * + .pillars{margin-top:32px}
   .layer > .layer-head + .flow{margin-top:28px}
 
@@ -794,25 +808,29 @@
             <span class="pillar-num">01</span>
             <span>
               <span class="pillar-name">Regulación emocional</span>
-              <span class="pillar-tagline">Liderar bajo presión empieza por el autocontrol.</span>
+              <span class="pillar-tagline">Responder al patrón, no al ruido.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="pillar-body" id="p1">
             <div class="inner">
               <div class="pillar-content">
-                <p class="why">Quien lidera marca el tono emocional del equipo. Si entra en pánico, el equipo pierde estabilidad. Si mantiene el temple, el equipo puede pensar con claridad y rendir.</p>
-                <p class="how-label">Cómo lo aplico</p>
+                <p class="why">Las operaciones de marketplace producen un flujo constante de señales urgentes: disputas con conductores, incumplimientos de SLA, picos de cancelación en hora punta, un plazo de compliance que se mueve. La mayor parte es ruido alrededor de un número bastante menor de patrones reales. La regulación emocional es la disciplina de distinguir unos de otro antes de actuar &mdash; y de no trasladar al equipo el volumen de mi bandeja de entrada.</p>
+                <p class="how-label">En la práctica</p>
                 <ul>
-                  <li>Mantener la calma en la incertidumbre</li>
-                  <li>Hacer una pausa antes de reaccionar</li>
-                  <li>Usar un tono neutral en el conflicto</li>
-                  <li>Abordar los problemas con curiosidad, no con juicio</li>
-                  <li>Ser el factor estabilizador cuando otros están desbordados</li>
+                  <li>Separar la decisión de la reacción, sobre todo en escalaciones que llegan con enojo</li>
+                  <li>Leer el patrón de una semana de tickets antes de rediseñar un proceso por uno solo</li>
+                  <li>Mantener un tono neutral con partners de flota y conductores cuando la conversación ya viene caliente</li>
+                  <li>Absorber la presión que baja desde arriba en lugar de pasarla sin filtrar</li>
+                  <li>Ser el punto estable durante un incidente, cuando el resto improvisa</li>
                 </ul>
                 <div class="applied">
-                  <span class="applied-label">En la práctica</span>
-                  <p class="applied-text">Lidero con estabilidad emocional, sobre todo en entornos operativos de alta presión. Mi función es generar calma, foco y confianza para que los equipos tomen mejores decisiones en la incertidumbre.</p>
+                  <span class="applied-label">Cómo se manifiesta en mi trabajo</span>
+                  <p class="applied-text">En el trabajo de supply y activación, el problema más ruidoso rara vez es el más grande. Mantengo estable el tempo operativo para que el equipo pueda notar la diferencia &mdash; y para que partners y conductores tengan una contraparte consistente y no la versión del día.</p>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Principio de trabajo</span>
+                  <p>&ldquo;La calma del equipo es consecuencia de la mía.&rdquo;</p>
                 </div>
               </div>
             </div>
@@ -824,25 +842,29 @@
             <span class="pillar-num">02</span>
             <span>
               <span class="pillar-name">Franqueza sincera</span>
-              <span class="pillar-tagline">La retroalimentación clara genera confianza más rápido que las expectativas tácitas.</span>
+              <span class="pillar-tagline">Decir lo difícil temprano y con evidencia.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="pillar-body" id="p2">
             <div class="inner">
               <div class="pillar-content">
-                <p class="why">Quien lidera bien no evita las conversaciones difíciles. Da retroalimentación honesta, concreta y en privado, que ayuda a las personas a mejorar.</p>
-                <p class="how-label">Cómo lo aplico</p>
+                <p class="why">Las operaciones de marketplace funcionan con retroalimentación que viaja entre personas sin autoridad unas sobre otras: Ops y Product, Support e Ingeniería, y partners de flota que son contrapartes comerciales, no empleados. La franqueza sincera consiste en decir lo que hay que decir &mdash; a un partner cuyo desempeño cae, a un product lead cuya función genera fricción operativa, a alguien del equipo cuya calidad bajó &mdash; con la evidencia por delante y sin diluirlo en cortesía.</p>
+                <p class="how-label">En la práctica</p>
                 <ul>
-                  <li>Plantear las expectativas con claridad desde el inicio</li>
-                  <li>Dar retroalimentación a tiempo, antes de que se acumule el resentimiento</li>
-                  <li>Criticar la conducta, no a la persona</li>
-                  <li>Evitar descalificaciones, reproches o ataques personales</li>
-                  <li>Asegurar que cada persona sepa siempre en qué situación está</li>
+                  <li>Empezar por la observación y el dato, no por la interpretación</li>
+                  <li>Dar retroalimentación mientras sigue siendo un incidente, no cuando ya es un patrón y un reclamo</li>
+                  <li>Decirle a un partner de flota que sus números caen antes de que se vuelva una conversación de contrato</li>
+                  <li>Separar un mensaje duro de un trato áspero: la franqueza no es licencia</li>
+                  <li>Hacer la pregunta incómoda en la reunión, no en el pasillo después</li>
                 </ul>
                 <div class="applied">
-                  <span class="applied-label">En la práctica</span>
-                  <p class="applied-text">Creo en la franqueza sincera: comunicación directa, respetuosa y accionable. Busco eliminar la ambigüedad para que los equipos entiendan las expectativas, las brechas de desempeño y cuál es el siguiente paso.</p>
+                  <span class="applied-label">Cómo se manifiesta en mi trabajo</span>
+                  <p class="applied-text">Las relaciones de supply sobreviven mucho mejor a la honestidad que al silencio. Dirigiendo el desempeño de partners de flota en Bliq, los que se recuperaban solían ser los que recibían el número incómodo temprano, enmarcado contra un estándar acordado, cuando todavía había tiempo de actuar.</p>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Principio de trabajo</span>
+                  <p>&ldquo;Nadie en mi equipo debería tener que adivinar en qué situación está.&rdquo;</p>
                 </div>
               </div>
             </div>
@@ -854,25 +876,29 @@
             <span class="pillar-num">03</span>
             <span>
               <span class="pillar-name">Carácter intachable</span>
-              <span class="pillar-tagline">Ser confiable importa más que parecer perfecto.</span>
+              <span class="pillar-tagline">En operaciones B2B reguladas, tu palabra es el producto.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="pillar-body" id="p3">
             <div class="inner">
               <div class="pillar-content">
-                <p class="why">Las personas siguen a quienes se comportan de forma predecible, honesta y consistente. Quien lidera no debe descargar su tensión en el equipo, pero sí ser lo bastante transparente para que todos entiendan el contexto.</p>
-                <p class="how-label">Cómo lo aplico</p>
+                <p class="why">El trabajo de flota regulada te pone al mismo tiempo frente a conductores, operadores de flota, clientes corporativos y autoridades &mdash; y cada uno puede verificar lo que le dijiste a los demás. El carácter intachable significa que los compromisos se sostienen cuando resultan caros, y que las decisiones se ven igual haya alguien mirando o no. En un contexto compliance-first eso no es una declaración de valores: es un requisito operativo.</p>
+                <p class="how-label">En la práctica</p>
                 <ul>
-                  <li>Ser honesto sin descargar la frustración hacia abajo</li>
-                  <li>Asumir la responsabilidad de mi propia conducta</li>
-                  <li>Comunicar el contexto cuando afecta al equipo</li>
-                  <li>Preguntarme: ¿confiaría en mí mismo como líder?</li>
-                  <li>Construir seguridad psicológica a través de la consistencia</li>
+                  <li>Mantener la conducta privada idéntica a su versión pública</li>
+                  <li>Cumplir un compromiso cuando ya se volvió inconveniente, o renegociarlo de forma abierta y temprana</li>
+                  <li>Asumir los errores donde ocurrieron y dar el crédito en la misma sala</li>
+                  <li>No cambiar nunca una ganancia de imagen a corto plazo por confianza a largo plazo con un partner o un regulador</li>
+                  <li>Dar a cada audiencia la misma versión de la misma situación</li>
                 </ul>
                 <div class="applied">
-                  <span class="applied-label">En la práctica</span>
-                  <p class="applied-text">Lidero con integridad, transparencia y consistencia. Mi objetivo es ser alguien en cuyas decisiones y conducta se pueda confiar, incluso en los momentos difíciles.</p>
+                  <span class="applied-label">Cómo se manifiesta en mi trabajo</span>
+                  <p class="applied-text">Construir herramientas de compliance para obligaciones LABO y PBefG en Nexio Fleet volvió concreto el estándar: los operadores dependían de nuestra palabra sobre qué cubría el sistema y qué no. Ser preciso sobre los límites valía bastante más que ser impresionante sobre las capacidades.</p>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Principio de trabajo</span>
+                  <p>&ldquo;La confianza se construye siendo predecible, no pareciendo perfecto.&rdquo;</p>
                 </div>
               </div>
             </div>
@@ -884,25 +910,29 @@
             <span class="pillar-num">04</span>
             <span>
               <span class="pillar-name">Claridad</span>
-              <span class="pillar-tagline">Liderar es convertir la complejidad en acción.</span>
+              <span class="pillar-tagline">Reducir la ambigüedad hasta que la decisión se pueda tomar sin mí.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="pillar-body" id="p4">
             <div class="inner">
               <div class="pillar-content">
-                <p class="why">Liderar bien significa tomar problemas desordenados y traducirlos en decisiones, prioridades y próximos pasos claros.</p>
-                <p class="how-label">Cómo lo aplico</p>
+                <p class="why">La estrategia de supply, los requisitos regulatorios y las dependencias multidisciplinarias llegan cada uno con su propio vocabulario, y en la ambigüedad entre ellos es donde desaparece el tiempo operativo. Claridad significa comprimir eso hasta que alguien pueda actuar sin volver a deducir el contexto cada vez: definir el resultado antes que el método, y dejar la decisión por escrito en lugar de solo decirla en una reunión.</p>
+                <p class="how-label">En la práctica</p>
                 <ul>
-                  <li>Simplificar problemas complejos</li>
-                  <li>Evitar la jerga innecesaria</li>
-                  <li>Definir el problema antes de resolverlo</li>
-                  <li>Precisar cómo se ve el éxito</li>
-                  <li>Dar a los equipos de 1&ndash;3 prioridades claras</li>
+                  <li>Definir el resultado y su medida antes de acordar el método</li>
+                  <li>Dejar la decisión por escrito, con responsable y razonamiento, no solo la tarea</li>
+                  <li>Usar un lenguaje que sobreviva el trayecto de Ops a Product y al partner de flota</li>
+                  <li>Convertir un requisito regulatorio en una regla operativa concreta que alguien pueda seguir</li>
+                  <li>Recortar tiempo de reunión enviando el contexto por adelantado</li>
                 </ul>
                 <div class="applied">
-                  <span class="applied-label">En la práctica</span>
-                  <p class="applied-text">Me especializo en traducir desafíos operativos complejos en prioridades claras, planes de ejecución y resultados medibles. Logro que los equipos sepan exactamente qué importa, qué sigue y cómo se medirá el éxito.</p>
+                  <span class="applied-label">Cómo se manifiesta en mi trabajo</span>
+                  <p class="applied-text">Traducir requisitos LABO y PBefG a especificaciones de producto, o un objetivo de Earnings-per-Hour a un SLA que un partner de flota pueda gestionar de verdad, es el mismo ejercicio: tomar algo correcto pero inutilizable y volverlo operable sin perder lo que lo hacía correcto.</p>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Principio de trabajo</span>
+                  <p>&ldquo;Si la prioridad no está clara, no es una prioridad.&rdquo;</p>
                 </div>
               </div>
             </div>
@@ -914,25 +944,29 @@
             <span class="pillar-num">05</span>
             <span>
               <span class="pillar-name">Responsabilidad por el resultado</span>
-              <span class="pillar-tagline">Quien lidera resuelve problemas, aunque no los haya causado.</span>
+              <span class="pillar-tagline">El problema sigue siendo mío hasta resolverlo o entregarlo explícitamente.</span>
             </span>
             <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
           </button>
           <div class="pillar-body" id="p5">
             <div class="inner">
               <div class="pillar-content">
-                <p class="why">Asumir la responsabilidad por el resultado, y no sólo por las tareas asignadas. Los equipos de alto desempeño distribuyen la responsabilidad en lugar de esperar autorización.</p>
-                <p class="how-label">Cómo lo aplico</p>
+                <p class="why">En operaciones de marketplace, los fallos que más cuestan son los que caen entre funciones: un pedido que falla, un conductor que nunca se activa, un requisito regulatorio que cambió y que nadie mapeó. La responsabilidad por el resultado implica que la pregunta útil no es de quién es el ámbito, sino qué tiene que pasar ahora &mdash; y que una entrega solo cuenta cuando la otra parte confirmó que la tiene.</p>
+                <p class="how-label">En la práctica</p>
                 <ul>
-                  <li>Enfocarse en soluciones, no en culpables</li>
-                  <li>Asumir la responsabilidad por los resultados</li>
-                  <li>Resolver problemas fuera de mi ámbito formal cuando hace falta</li>
-                  <li>Impulsar que los equipos actúen con sentido de propiedad</li>
-                  <li>Tratar cada problema como una oportunidad de crear capacidad</li>
+                  <li>Escalar con una decisión propuesta, no con una pregunta abierta</li>
+                  <li>Cerrar el ciclo en problemas fuera de mi ámbito en vez de reenviarlos</li>
+                  <li>Convertir &ldquo;no es mi trabajo&rdquo; en &ldquo;este es el responsable, y lo confirmé&rdquo;</li>
+                  <li>Asumir la culpa en público y ceder el crédito en público</li>
+                  <li>Tratar una brecha recurrente entre dos equipos como algo a rediseñar, no a perseguir cada semana</li>
                 </ul>
                 <div class="applied">
-                  <span class="applied-label">En la práctica</span>
-                  <p class="applied-text">Opero con un fuerte sentido de responsabilidad por el resultado. No espero condiciones perfectas ni límites de competencia bien trazados. Cuando un problema afecta el objetivo, me concentro en resolverlo y en generar valor para el equipo.</p>
+                  <span class="applied-label">Cómo se manifiesta en mi trabajo</span>
+                  <p class="applied-text">Reconstruir el funnel de activación de conductores en Bolt significó hacerme cargo de pasos que no controlaba &mdash; documentos, revisiones de vehículo, dependencias de terceros &mdash; porque a la tasa de activación le era indiferente dónde estaban los límites organizacionales.</p>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Principio de trabajo</span>
+                  <p>&ldquo;La responsabilidad se mide por el resultado, no por el límite de la descripción del puesto.&rdquo;</p>
                 </div>
               </div>
             </div>
@@ -940,6 +974,8 @@
         </article>
 
       </div>
+
+      <p class="attrib-note reveal">Los cinco principios de liderazgo anteriores están basados en el framework de liderazgo de Leila Hormozi, adaptados aquí a través de experiencia operativa en ecosistemas marketplace (Bliq, Bolt, Wolt) y trabajo en infraestructura compliance-first (Nexio Fleet, Salas UG). Las descripciones y aplicaciones reflejan mi propia interpretación y práctica.</p>
     </section>
 
     <section class="lang-note reveal">
