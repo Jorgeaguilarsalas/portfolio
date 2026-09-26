@@ -725,6 +725,12 @@
     .aflow li{grid-template-columns:minmax(0,1fr);gap:12px}
     .aflow li::before{display:none}
   }
+  /* Enlace de pagina en el nav interior (mismo tratamiento que el back-link). */
+  .nav-pagelink{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;white-space:nowrap;transition:color .2s ease;
+  }
+  .nav-pagelink:hover{color:var(--accent);}
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -738,6 +744,7 @@
   <div class="nav-inner">
     <a href="/de/" class="back-link"><span>&larr;</span> Portfolio</a>
     <div class="nav-actions">
+      <a href="/de/about/" class="nav-pagelink">Über</a>
       <div class="lang-switch" role="group" aria-label="Sprache">
         <a href="/leadership-framework/" hreflang="en">EN</a>
         <a href="/de/leadership-framework/" hreflang="de" class="is-current" aria-current="page">DE</a>
@@ -767,6 +774,7 @@
       </div>
     </div>
     <div class="mobile-menu-actions">
+      <a href="/de/about/" class="mm-download">Über</a>
       <a href="/de/#contact" class="mm-cta">Kontakt aufnehmen</a>
       <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Lebenslauf &darr;</a>
     </div>
