@@ -197,6 +197,13 @@
 
   .wrap{max-width:1320px;margin:0 auto;padding:72px 32px 88px}
   .col{max-width:900px}
+  /* En la version inglesa el hero va por encima de la reticula del rail, asi
+     que puede ocupar todo el ancho: con el tope de 900 la primera pantalla
+     seguia pareciendo recortada aunque el resto de la pagina ya no lo este. */
+  .wrap > .col{max-width:none}
+  .wrap > .col h1{max-width:20ch}
+  .wrap > .col .lede{max-width:70ch}
+  .wrap > .col .attribution{max-width:80ch}
 
   .rule{width:80px;height:4px;background:var(--accent);border-radius:2px;margin-bottom:28px}
 
