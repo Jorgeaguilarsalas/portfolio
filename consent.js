@@ -455,6 +455,22 @@
     return m ? m[1] : 'unknown';
   }
 
+  /* Tipo de pagina para los eventos. Desde la arquitectura hibrida hay
+     secciones con el mismo id en el home y en /about/ (#approach, #experience,
+     #contact): sin este calificador GA4 mezcla las dos en el mismo bucket. */
+  function pageType(path) {
+    var p = normalizePath(path || location.pathname);
+    p = p.replace(/^\/(?:de|es)(?=\/|$)/, '') || '/';
+    if (p === '/') return 'home';
+    if (p.indexOf('/about') === 0) return 'about';
+    if (p.indexOf('/leadership-framework') === 0) return 'framework';
+    if (p.indexOf('/motion') === 0) return 'motion';
+    if (p.indexOf('/work') === 0) return 'work';
+    if (p.indexOf('/contact') === 0) return 'contact';
+    if (caseStudyOf(path || location.pathname)) return 'case_study';
+    return 'other';
+  }
+
   function caseStudyOf(path) {
     var m = normalizePath(path).match(/^\/(?:de\/|es\/)?([a-z-]+)\/?$/);
     if (!m) return null;
@@ -468,14 +484,27 @@
     if (!a) return;
 
     var raw = a.getAttribute('href') || '';
-    // Las anclas no son navegacion externa, pero desde el menu si dicen que
-    // buscaba la persona: se miden aparte y luego se descartan.
-    if (raw.charAt(0) === '#') {
-      if (a.closest('.nav-links, .mobile-menu, .rail-toc, nav')) {
-        track('nav_click', { section: raw.slice(1) });
-      }
-      return;
+    var enNav = !!a.closest('.nav-links, .mobile-menu, .rail-toc, nav');
+
+    /* Navegacion medida en toda la barra, no solo en las anclas. Con la
+       arquitectura hibrida la mitad del nav apunta a paginas reales, y esos
+       clics no casaban con ninguna rama: se perdian sin avisar. */
+    if (enNav) {
+      var tipo = raw.charAt(0) === '#'
+        ? 'anchor'
+        : (a.protocol === 'http:' || a.protocol === 'https:')
+            ? (isInternal(a.hostname) ? 'internal' : 'external')
+            : 'other';
+      track('nav_click', {
+        destination: raw.charAt(0) === '#' ? raw : (tipo === 'external' ? a.href : normalizePath(a.pathname) || raw),
+        nav_type: tipo,
+        source_page: location.pathname,
+        // se conserva para no romper los informes que ya agrupan por seccion
+        section: raw.charAt(0) === '#' ? raw.slice(1) : ''
+      });
     }
+    // Las anclas no son navegacion, y ya quedaron medidas arriba.
+    if (raw.charAt(0) === '#') return;
     var proto = (a.protocol || '').toLowerCase();
     if (proto === 'mailto:' || proto === 'tel:') return;
     if (proto !== 'http:' && proto !== 'https:') return;
@@ -539,7 +568,7 @@
               timers[id] = null;
               if (vistas[id]) return;
               vistas[id] = true;
-              track('section_view', { section: id });
+              track('section_view', { section: id, page_type: pageType(location.pathname) });
               io.unobserve(e.target);
             }, SECCION_MS);
           } else if (timers[id]) {

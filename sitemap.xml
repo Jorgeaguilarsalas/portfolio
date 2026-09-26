@@ -281,4 +281,34 @@
     <lastmod>2026-09-26</lastmod>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://jorgeag.com/motion/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jorgeag.com/motion/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jorgeag.com/de/motion/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jorgeag.com/es/motion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jorgeag.com/motion/"/>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jorgeag.com/de/motion/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jorgeag.com/motion/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jorgeag.com/de/motion/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jorgeag.com/es/motion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jorgeag.com/motion/"/>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jorgeag.com/es/motion/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jorgeag.com/motion/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jorgeag.com/de/motion/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jorgeag.com/es/motion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jorgeag.com/motion/"/>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
