@@ -540,6 +540,12 @@
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) .impact{line-height:var(--lh-impact)}
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) :is(.eyebrow,.tag,.kicker,.applied-label,.statement-label){letter-spacing:var(--ls-mono)}
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) figcaption{letter-spacing:.04em}
+  /* Enlace de pagina en el nav interior (mismo tratamiento que el back-link). */
+  .nav-pagelink{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;white-space:nowrap;transition:color .2s ease;
+  }
+  .nav-pagelink:hover{color:var(--accent);}
 </style><script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -552,6 +558,7 @@
   <div class="nav-inner">
     <a href="/#work" class="back-link"><span>&larr;</span> Portfolio</a>
     <div class="nav-actions">
+      <a href="/about/" class="nav-pagelink">About</a>
       <div class="lang-switch" role="group" aria-label="Language">
         <a href="/bliq/" hreflang="en" class="is-current" aria-current="page">EN</a>
         <a href="/de/bliq/" hreflang="de">DE</a>
@@ -581,6 +588,7 @@
         </div>
     </div>
     <div class="mobile-menu-actions">
+      <a href="/about/" class="mm-download">About</a>
       <a href="/#contact" class="mm-cta">Get in touch</a>
       <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Download CV &darr;</a>
     </div>

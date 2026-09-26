@@ -721,6 +721,33 @@
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) .impact{line-height:var(--lh-impact)}
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) :is(.eyebrow,.tag,.kicker,.applied-label,.statement-label){letter-spacing:var(--ls-mono)}
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) figcaption{letter-spacing:.04em}
+  /* ── HOME COMPACTADO ────────────────────────────────────────────────────
+     Approach y Experience dejan de desplegarse aqui y pasan a /about/. Lo
+     que queda es la version corta con su salida: el mismo texto que antes
+     abria cada seccion, mas los dos enlaces al detalle. */
+  .mini-links{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;margin-top:30px;}
+  .mini-links .work-link{margin:0;}
+  .mini-prose{display:flex;flex-direction:column;gap:16px;margin-top:0;}
+  .mini-prose .section-lede{margin-bottom:0;}
+  .exp-mini{
+    display:flex;flex-wrap:wrap;gap:14px 56px;margin-top:30px;
+    padding:26px 30px;background:var(--surface);border:1px solid var(--border);border-radius:16px;
+  }
+  .exp-mini-row{display:flex;flex-direction:column;gap:7px;min-width:0;}
+  .exp-mini-k{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);
+  }
+  .exp-mini-v{font-size:16px;line-height:1.5;color:var(--fg);font-weight:600;}
+  @media (max-width:640px){
+    .exp-mini{padding:22px 20px;gap:18px 0;flex-direction:column;}
+    .mini-links{gap:12px 20px;}
+  }
+  /* Item activo del nav de sitio: sin esto, en una navegacion de paginas no
+     hay forma de saber en cual se esta. */
+  .nav-links a.is-active{color:var(--accent);}
+  .mobile-menu-links a.is-active{color:var(--accent);}
+  .mobile-menu-links a.is-active .num{color:var(--accent);opacity:1;}
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -734,11 +761,11 @@
   <div class="nav-inner">
     <a href="#top" class="nav-brand">Jorge<span class="dot">.</span>Aguilar</a>
     <nav class="nav-links">
-      <a href="#snapshot">Sobre mí</a>
-      <a href="#work">Trabajo</a>
-      <a href="#motion" title="Operations in Motion — la publicación de investigación de Jorge sobre operaciones y tecnología.">Motion</a>
-      <a href="#experience">Experiencia</a>
-      <a href="#approach">Enfoque</a>
+      <a href="/es/" class="is-active" aria-current="page">Inicio</a>
+      <a href="/es/work/">Trabajo</a>
+      <a href="/es/about/">Sobre</a>
+      <a href="/es/motion/" title="Operations in Motion — la publicación de investigación de Jorge sobre operaciones y tecnología.">Motion</a>
+      <a href="/es/leadership-framework/">Framework</a>
       <div class="lang-switch" role="group" aria-label="Idioma">
         <a href="/" hreflang="en">EN</a>
         <a href="/de/" hreflang="de">DE</a>
@@ -760,16 +787,12 @@
   </div>
   <div class="mobile-menu-body">
     <nav class="mobile-menu-links">
-      <a href="#snapshot">Sobre mí<span class="num">01</span></a>
-      <a href="#impact">Impacto<span class="num">02</span></a>
-      <a href="#work">Trabajo seleccionado<span class="num">03</span></a>
-      <a href="#motion" title="Operations in Motion — la publicación de investigación de Jorge sobre operaciones y tecnología.">Motion<span class="num">04</span></a>
-      <a href="#experience">Experiencia<span class="num">05</span></a>
-      <a href="#approach">Enfoque<span class="num">06</span></a>
-      <a href="#skills">Capacidades<span class="num">07</span></a>
-      <a href="#stack">Tooling<span class="num">08</span></a>
-      <a href="#leadership">Liderazgo<span class="num">09</span></a>
-      <a href="#contact">Contacto<span class="num">10</span></a>
+      <a href="/es/" class="is-active" aria-current="page">Inicio<span class="num">01</span></a>
+      <a href="/es/work/">Trabajo<span class="num">02</span></a>
+      <a href="/es/about/">Sobre<span class="num">03</span></a>
+      <a href="/es/motion/" title="Operations in Motion — la publicación de investigación de Jorge sobre operaciones y tecnología.">Motion<span class="num">04</span></a>
+      <a href="/es/leadership-framework/">Framework<span class="num">05</span></a>
+      <a href="/es/contact/">Contacto<span class="num">06</span></a>
     </nav>
     <div class="mobile-menu-lang">
       <span class="mm-lang-label">Idioma</span>
@@ -872,25 +895,6 @@
           <span class="value">4.7×<span class="dir">↑</span></span>
           <span class="label">Crecimiento de la base de conductores en mercados de movilidad alemanes en 12 meses</span>
           <span class="tag">Bliq</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SNAPSHOT -->
-  <section class="section" id="snapshot">
-    <div class="container">
-      <div class="section-label reveal">Sobre mí</div>
-      <h2 class="reveal">De la operación de primera línea <em>a la construcción de los sistemas que la sostienen</em>.</h2>
-      <div class="about-layout">
-        <div class="about-photo-wrap reveal">
-          <img src="/photo.jpg" alt="Jorge Aguilar — retrato" class="about-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="about-photo-fallback">JA</div>
-        </div>
-        <div class="snapshot-prose reveal">
-          <p>Empecé cerca de la operación diaria en movilidad y logística — como repartidor socio, luego en Supply Operations y gestión de socios en <em>Wolt, Bolt y Bliq</em>. Con el tiempo, mi trabajo fue subiendo en la cadena: de ejecutar procesos a gestionar supply y socios, de ahí a rediseñar flujos de trabajo y, finalmente, a construir productos y automatización en torno a esos mismos problemas operativos.</p>
-          <p>Hoy soy cofundador de <em>Nexio Fleet</em> (Berlín), donde traduzco la complejidad regulatoria (LABO, PBefG) en una SaaS compliance-first para operadores regulados de Mietwagen — al servicio de <em>8 flotas operadoras y 800+ conductores activos</em>, con 60–70 % menos esfuerzo de reporte manual.</p>
-          <p>Lo que aporto es amplitud en la aplicación y precisión en la identidad: tomo la realidad operativa desordenada — regulatoria, de marketplace o de negocio — y la convierto en sistemas que escalan.</p>
         </div>
       </div>
     </div>
@@ -1062,258 +1066,39 @@
     </div>
   </section>
 
+  <!-- APPROACH (mini) — el detalle vive en /about/#approach -->
+  <section class="section" id="approach">
+    <div class="container">
+      <div class="section-label reveal">Enfoque</div>
+      <h2 class="reveal">Cómo trabajo <em>y cómo lidero</em>.</h2>
+      <div class="mini-prose reveal">
+        <p class="section-lede">Ganados operando en distintas plataformas de movilidad y afinados con trabajo analítico. Son los principios que traducen las operaciones de marketplace en pensamiento sistémico &mdash; cómo diagnostico, planifico y ejecuto.</p>
+        <p class="section-lede"><strong>Cómo lidero equipos y dirijo operaciones.</strong> Siete capas de frameworks operativos: cómo me presento, cómo construyo desempeño en el equipo, cómo convierto objetivos en ejecución, cómo mejoro el sistema mismo y cómo se dirige la entrega de servicio a través de equipos que no gestiono.</p>
+      </div>
+      <div class="mini-links reveal">
+        <a href="/es/leadership-framework/" class="work-link"><span>&rarr;</span> Ver los frameworks</a>
+        <a href="/es/about/#approach" class="work-link"><span>&rarr;</span> Los siete principios completos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE (mini) — el detalle vive en /about/#experience -->
   <section class="section" id="experience">
     <div class="container">
       <div class="section-label reveal">Experiencia</div>
       <h2 class="reveal">Operations en <em>marketplaces de movilidad</em>, SaaS y B2B.</h2>
-
-      <div class="exp-category">
-        <div class="exp-cat-label reveal">Liderazgo en producto, Operations y estrategia</div>
-
-        <div class="exp-item reveal">
-          <div class="exp-meta">
-            2025 — actualidad
-            <span class="company">Nexio Fleet GmbH</span>
-            <span class="location">Berlín, Alemania</span>
-          </div>
-          <div class="exp-content">
-            <h3>Cofundador · Estrategia, Operations y Producto</h3>
-            <p class="exp-context">Plataforma SaaS compliance-first para operadores regulados de Mietwagen en Alemania. Al servicio de 8 flotas operadoras y 800+ conductores activos.</p>
-            <ul class="exp-bullets">
-              <li>Reduje el esfuerzo de reporte manual en <span class="metric">60–70 %</span> mediante automatización en Python e integración de datos de Uber y Bolt</li>
-              <li>Traduje los requisitos regulatorios de LABO/PBefG en especificaciones de producto para la Driver App y el Fleet Dashboard</li>
-              <li>Contribuí al posicionamiento para el IBB GründungsBONUS Plus <span class="metric">(€50k)</span>; apoyé el modelo de precios de compliance por niveles y el go-to-market</li>
-            </ul>
-            <p class="exp-link"><a href="/es/nexio/" class="work-link">Ver caso de estudio <span>→</span></a></p>
-          </div>
+      <div class="exp-mini reveal">
+        <div class="exp-mini-row">
+          <span class="exp-mini-k">Actualmente</span>
+          <span class="exp-mini-v">Cofundador @ Nexio Fleet &middot; Fundador @ Salas UG Advisory</span>
         </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-meta">
-            Julio 2025 – actualidad
-            <span class="company">Salas UG (haftungsbeschränkt)</span>
-            <span class="location">Berlín</span>
-          </div>
-          <div class="exp-content">
-            <h3>Founder & Managing Director</h3>
-            <p class="exp-context">Vehículo propio para proyectos de estrategia de movilidad en la región DACH — diseño de sistemas de compliance, marcos de KPI y automatización de flujos de trabajo con IA.</p>
-            <ul class="exp-bullets">
-              <li>Proyectos de asesoría en diseño de sistemas de compliance, reporte de desempeño y optimización de procesos para operadores de movilidad</li>
-              <li>Automatización de flujos de trabajo con Python y n8n, apoyada en la Claude API para herramientas operativas</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-meta">
-            07.2024 — 07.2025
-            <span class="company">Bliq</span>
-            <span class="location">Berlín, Alemania</span>
-          </div>
-          <div class="exp-content">
-            <h3>Supply Operations Manager</h3>
-            <p class="exp-context">Supply Operations con flotas socias en mercados de movilidad de Alemania.</p>
-            <ul class="exp-bullets">
-              <li>Escalé la base de socios <span class="metric">2.6×</span> y la de conductores <span class="metric">4.7×</span> en 12 meses en mercados de movilidad alemanes</li>
-              <li>Aumenté la retención de flotas socias de <span class="metric">&lt;50 % a &gt;80 %</span> mediante intervenciones operativas y gestión de cuentas</li>
-              <li>Generé <span class="metric">€3M de ARR</span> con un piloto multidisciplinario ejecutado en cuatro meses</li>
-            </ul>
-            <p class="exp-link"><a href="/es/bliq/" class="work-link">Ver caso de estudio <span>→</span></a></p>
-          </div>
-        </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-meta">
-            06.2023 — 06.2024
-            <span class="company">Bolt</span>
-            <span class="location">Sur de Alemania</span>
-          </div>
-          <div class="exp-content">
-            <h3>Operations Specialist</h3>
-            <p class="exp-context">Operaciones de marketplace para Bolt Rides en Múnich y el sur de Alemania, enfocadas en la expansión del supply.</p>
-            <ul class="exp-bullets">
-              <li>Mejoré la activación de conductores de <span class="metric">25 % a 58 %</span> en 6 semanas mediante el rediseño del proceso de onboarding</li>
-              <li>Reduje la tasa de cancelación en <span class="metric">18 %</span> mediante intervenciones operativas con flotas socias</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="exp-item reveal">
-          <div class="exp-meta">
-            10.2020 — 02.2023
-            <span class="company">Wolt</span>
-            <span class="location">Berlín y Alemania</span>
-          </div>
-          <div class="exp-content">
-            <h3>Sustainability Operations Associate</h3>
-            <p class="exp-context">Operaciones de almacén y logística del equipo de repartidores en mercados alemanes.</p>
-            <ul class="exp-bullets">
-              <li>Reduje el costo del equipo de repartidores en <span class="metric">30 %</span> con un programa de recuperación y reacondicionamiento coordinado en más de 6 ciudades alemanas junto con la sede central de Wolt</li>
-              <li>Diseñé el flujo de logística inversa para el reciclaje y la limpieza del equipo de repartidores</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- APPROACH -->
-  <section class="section" id="approach">
-    <div class="container">
-      <div class="section-label reveal">Enfoque</div>
-      <h2 class="reveal">Siete principios que aporto a las <em>operaciones de marketplace y al SaaS B2B</em>.</h2>
-      <p class="approach-intro reveal">Ganados operando en distintas plataformas de movilidad y afinados con trabajo analítico. Son los principios que traducen las operaciones de marketplace en pensamiento sistémico &mdash; cómo diagnostico, planifico y ejecuto.</p>
-
-      <div class="approach-grid reveal">
-        <div class="approach-item">
-          <span class="approach-num">01</span>
-          <h3>Diagnosticar antes de accionar palancas</h3>
-          <p>La mayoría de los problemas operativos no son problemas de modelado &mdash; son problemas de planteamiento o de medición. El trabajo que genera valor es nombrar qué está realmente descompuesto antes de aplicar una solución.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">02</span>
-          <h3>La calidad es multidimensional</h3>
-          <p>Definir «bueno» sobre varios pilares &mdash; seguridad, confiabilidad, tranquilidad. Medir primero con telemetría operativa y después con calificaciones de clientes. Los clientes premium valoran su tiempo más que las solicitudes de calificación.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">03</span>
-          <h3>Crecer con disciplina</h3>
-          <p>Los mercados se ganan el crecimiento superando filtros explícitos &mdash; preparación, concentración, tasa de rechazo, profundidad de supply. Pasar los filtros es necesario, pero no suficiente.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">04</span>
-          <h3>Traducir el diagnóstico en hojas de ruta</h3>
-          <p>El hallazgo sin ejecución es académico. Los mejores documentos de planeación nombran supuestos, pisos estructurales y puntos de decisión explícitos donde el plan cambia de rumbo o redobla la apuesta.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">05</span>
-          <h3>Ordenar el riesgo antes de accionar las palancas</h3>
-          <p>Lo que se pospone importa tanto como lo que se hace. Sanear los mercados frágiles antes de escalarlos; diseñar para el escenario adverso, no sólo para el favorable.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">06</span>
-          <h3>ML para problemas probabilísticos; reglas para políticas</h3>
-          <p>Usar ML para clasificar en niveles añade complejidad sin valor. Usar reglas para predecir ignora la estructura probabilística. La división responde al fondo del problema, no al estilo.</p>
-        </div>
-        <div class="approach-item" style="grid-column:1/-1;">
-          <span class="approach-num">07</span>
-          <h3>La rendición de cuentas del socio es infraestructura de conversación</h3>
-          <p>Las tarjetas de desempeño por nivel convierten el rendimiento del socio en conversaciones comerciales estructuradas &mdash; Tier A condiciones estándar, Tier C plan de mejora a 90 días con metas nombradas. El marco es la conversación.</p>
+        <div class="exp-mini-row">
+          <span class="exp-mini-k">Antes</span>
+          <span class="exp-mini-v">Bliq &middot; Bolt &middot; Wolt</span>
         </div>
       </div>
-
-      <div class="approach-cta reveal">
-        <p>Estos principios se demuestran en un panel interactivo en vivo.</p>
-        <a href="https://marketplace-ops-demo-port.streamlit.app/" target="_blank" rel="noopener" class="approach-link">Abrir panel <span>↗</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section class="section" id="skills">
-    <div class="container">
-      <div class="section-label reveal">Capacidades</div>
-      <h2 class="reveal">Cuatro capacidades que aporto <em>en distintos roles e industrias</em>.</h2>
-      <div class="skills-list">
-        <div class="skills-row reveal">
-          <div class="skills-cat">Operations y escalado</div>
-          <div class="skills-items"><strong>Economía de flotas</strong> · Analítica de marketplace · Supply Operations · Diseño de procesos · Marcos de KPI · Despliegues multimercado</div>
-        </div>
-        <div class="skills-row reveal">
-          <div class="skills-cat">Proyectos y transformación</div>
-          <div class="skills-items"><strong>Program Ownership</strong> · Gestión de partes interesadas · Implementación · Rediseño de procesos · Gestión del cambio · Coordinación multidisciplinaria</div>
-        </div>
-        <div class="skills-row reveal">
-          <div class="skills-cat">Socios y clientes</div>
-          <div class="skills-items"><strong>Gestión de cuentas clave</strong> · Retención de flotas socias · Resolución de problemas comerciales · Negociación de contratos · Partner enablement · Alianzas estratégicas</div>
-        </div>
-        <div class="skills-row reveal">
-          <div class="skills-cat">Producto y datos</div>
-          <div class="skills-items"><strong>Product discovery</strong> · Ingeniería de requisitos · Especificaciones de funcionalidades · Investigación con usuarios · Testing y QA · Pipelines de datos · Paneles analíticos</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TOOLING & STACK -->
-  <section class="section" id="stack">
-    <div class="container">
-      <div class="section-label reveal">Tooling y stack</div>
-      <h2 class="reveal">Herramientas y plataformas <em>con las que entrego</em>.</h2>
-      <div class="skills-list">
-        <div class="skills-row reveal">
-          <div class="skills-cat">AI & LLM</div>
-          <div class="skills-items"><strong>Claude API</strong> (Anthropic) · Prompt engineering · Bucles agénticos · Tool calling · Sistemas RAG</div>
-        </div>
-        <div class="skills-row reveal">
-          <div class="skills-cat">Backend e infraestructura</div>
-          <div class="skills-items"><strong>Vercel</strong> · Next.js · <strong>Supabase</strong> (Postgres, Auth, RLS) · Cloudflare Workers</div>
-        </div>
-        <div class="skills-row reveal">
-          <div class="skills-cat">Automatización y comunicación</div>
-          <div class="skills-items"><strong>WhatsApp Business API</strong> (Meta) · Webhooks · Plantillas de mensajes</div>
-        </div>
-        <div class="skills-row reveal">
-          <div class="skills-cat">Producto y diseño</div>
-          <div class="skills-items"><strong>Claude Code</strong></div>
-        </div>
-        <div class="skills-row reveal">
-          <div class="skills-cat">Datos y Analytics</div>
-          <div class="skills-items"><strong>Python</strong> (pandas, numpy) · <strong>SQL</strong> · Streamlit · Plotly · Firebase (Auth, Firestore) · FastAPI · Amplitude · Looker · Tableau</div>
-        </div>
-        <div class="skills-row reveal">
-          <div class="skills-cat">Herramientas empresariales</div>
-          <div class="skills-items"><strong>Salesforce</strong> · Pipedrive</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LEADERSHIP -->
-  <section class="section" id="leadership">
-    <div class="container">
-      <div class="section-label reveal">Liderazgo y operaciones</div>
-      <h2 class="reveal">Cómo lidero equipos <em>y dirijo operaciones</em>.</h2>
-      <p class="section-lede reveal">Siete capas de frameworks operativos: cómo me presento, cómo construyo desempeño en el equipo, cómo convierto objetivos en ejecución, cómo mejoro el sistema mismo y cómo se dirige la entrega de servicio a través de equipos que no gestiono.</p>
-      <p class="reveal" style="margin-top:28px"><a href="/es/leadership-framework/" class="work-link"><span>&rarr;</span> Leer los frameworks</a></p>
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section class="section" id="education">
-    <div class="container">
-      <div class="section-label reveal">Formación</div>
-      <h2 class="reveal">Formación en Operations, <em>profundidad analítica</em>, certificación continua.</h2>
-      <div class="edu-list">
-        <div class="edu-item reveal">
-          <div class="edu-year">2025 — actualidad</div>
-          <div class="edu-body">
-            <div class="school">Berlin Professional School · HWR Berlin</div>
-            <div class="degree">MSc Business Management — <em>Digital Business Management</em></div>
-          </div>
-        </div>
-        <div class="edu-item reveal">
-          <div class="edu-year">01.2026 — 03.2026</div>
-          <div class="edu-body">
-            <div class="school">Ironhack · Berlin</div>
-            <div class="degree">Diploma, DevOps & Cloud Computing — <em>Pipelines CI/CD, Terraform, Docker, Kubernetes, AWS, Azure</em></div>
-          </div>
-        </div>
-        <div class="edu-item reveal">
-          <div class="edu-year">2019 — 2021</div>
-          <div class="edu-body">
-            <div class="school">Hochschule Rhein-Waal · Kleve</div>
-            <div class="degree">M.A. Sustainable Development Management — <em>Calificación 1.7</em></div>
-          </div>
-        </div>
-        <div class="edu-item reveal">
-          <div class="edu-year">2011 — 2015</div>
-          <div class="edu-body">
-            <div class="school">Universidad La Salle · Ciudad de México</div>
-            <div class="degree">B.Sc. International Business — <em>Intercambio Erasmus en la Hochschule Bremen</em></div>
-          </div>
-        </div>
+      <div class="mini-links reveal">
+        <a href="/es/about/#experience" class="work-link"><span>&rarr;</span> Experiencia completa, rol por rol</a>
       </div>
     </div>
   </section>
@@ -1331,31 +1116,8 @@
         <a href="https://www.linkedin.com/in/jorge-aguilar-ops/" target="_blank" rel="noopener" class="btn-secondary">Conectar en LinkedIn</a>
         <a href="https://calendly.com/aguilarjorge-fhpf/30min" target="_blank" rel="noopener" class="btn-secondary">Agendar una llamada de 30 min</a>
       </div>
-      <div class="contact-details">
-        <div class="contact-detail">
-          <span class="key">Directo</span>
-          <span class="val"><a href="mailto:hello@jorgeag.com?subject=Conversation">hello@jorgeag.com</a></span>
-        </div>
-        <div class="contact-detail">
-          <span class="key">LinkedIn</span>
-          <span class="val"><a href="https://www.linkedin.com/in/jorge-aguilar-ops/" target="_blank" rel="noopener">/in/jorge-aguilar-ops</a></span>
-        </div>
-        <div class="contact-detail">
-          <span class="key">Agenda</span>
-          <span class="val"><a href="https://calendly.com/aguilarjorge-fhpf/30min" target="_blank" rel="noopener">Agendar 30 min <span>↗</span></a></span>
-        </div>
-        <div class="contact-detail">
-          <span class="key">Credenciales</span>
-          <span class="val"><a href="https://drive.google.com/file/d/17s7xCyrMM8qRZtqPk7gZReJvZa7iSguF/view?usp=sharing" target="_blank" rel="noopener">Ver certificados <span>↗</span></a></span>
-        </div>
-        <div class="contact-detail">
-          <span class="key">Ubicación</span>
-          <span class="val">Berlín &middot; Trabajando en toda la región EMEA</span>
-        </div>
-        <div class="contact-detail">
-          <span class="key">Idiomas</span>
-          <span class="val">EN (C1) &middot; DE (C1) &middot; ES (nativo)</span>
-        </div>
+      <div class="mini-links reveal">
+        <a href="/es/about/" class="work-link"><span>&rarr;</span> Más sobre trayectoria, principios y herramientas</a>
       </div>
     </div>
   </section>

@@ -423,6 +423,12 @@
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) .impact{line-height:var(--lh-impact)}
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) :is(.eyebrow,.tag,.kicker,.applied-label,.statement-label){letter-spacing:var(--ls-mono)}
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) figcaption{letter-spacing:.04em}
+  /* Enlace de pagina en el nav interior (mismo tratamiento que el back-link). */
+  .nav-pagelink{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;white-space:nowrap;transition:color .2s ease;
+  }
+  .nav-pagelink:hover{color:var(--accent);}
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -436,6 +442,7 @@
   <div class="nav-inner">
     <a href="/es/#work" class="back-link"><span>&larr;</span> Portafolio</a>
     <div class="nav-actions">
+      <a href="/es/about/" class="nav-pagelink">Sobre</a>
       <div class="lang-switch" role="group" aria-label="Idioma">
         <a href="/work/" hreflang="en">EN</a>
         <a href="/de/work/" hreflang="de">DE</a>
@@ -465,6 +472,7 @@
         </div>
     </div>
     <div class="mobile-menu-actions">
+      <a href="/es/about/" class="mm-download">Sobre</a>
       <a href="/es/#contact" class="mm-cta">Hablemos</a>
       <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Currículum &darr;</a>
     </div>

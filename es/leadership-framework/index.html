@@ -725,6 +725,12 @@
     .aflow li{grid-template-columns:minmax(0,1fr);gap:12px}
     .aflow li::before{display:none}
   }
+  /* Enlace de pagina en el nav interior (mismo tratamiento que el back-link). */
+  .nav-pagelink{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;white-space:nowrap;transition:color .2s ease;
+  }
+  .nav-pagelink:hover{color:var(--accent);}
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -738,6 +744,7 @@
   <div class="nav-inner">
     <a href="/es/" class="back-link"><span>&larr;</span> Portafolio</a>
     <div class="nav-actions">
+      <a href="/es/about/" class="nav-pagelink">Sobre</a>
       <div class="lang-switch" role="group" aria-label="Idioma">
         <a href="/leadership-framework/" hreflang="en">EN</a>
         <a href="/de/leadership-framework/" hreflang="de">DE</a>
@@ -767,6 +774,7 @@
       </div>
     </div>
     <div class="mobile-menu-actions">
+      <a href="/es/about/" class="mm-download">Sobre</a>
       <a href="/es/#contact" class="mm-cta">Hablemos</a>
       <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Currículum &darr;</a>
     </div>
@@ -985,7 +993,7 @@
       <ul>
         <li><b>02 &mdash; People Management:</b> Direction, Support, Accountability, Development &mdash; incluyendo coaching, feedback correctivo y el diagnóstico Skill / Will / System</li>
         <li><b>03 &mdash; Execution Management:</b> Translate, Assign, Track, Act</li>
-        <li><b>04 &mdash; Operational Improvement:</b> Diagnose, Prioritize, Build, Own</li>
+        <li><b>04 &mdash; Operational Improvement:</b> Diagnose, Prioritize, Build, Own &mdash; incluyendo las lentes de priorización operativa y de negocio</li>
         <li><b>05 &mdash; Service &amp; Cross-Functional Delivery:</b> responsabilidad sobre la entrega, customer performance, liderazgo multidisciplinario, fluidez técnica, gestión de incidentes</li>
         <li><b>06 &mdash; Working Principles:</b> los doce principios de trabajo transversales</li>
         <li><b>07 &mdash; How It All Connects:</b> el modelo operativo por capas y el Applied Management Flow</li>

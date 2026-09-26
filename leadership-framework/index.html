@@ -726,6 +726,37 @@
     .aflow li{grid-template-columns:minmax(0,1fr);gap:12px}
     .aflow li::before{display:none}
   }
+  /* Enlace de pagina en el nav interior (mismo tratamiento que el back-link). */
+  .nav-pagelink{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;white-space:nowrap;transition:color .2s ease;
+  }
+  .nav-pagelink:hover{color:var(--accent);}
+  /* Progresion Problema -> impacto operativo -> impacto de negocio. Cadena
+     vertical y no .flow horizontal: los eslabones son frases, no etiquetas. */
+  .chain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+  .chain li{
+    position:relative;margin:0;padding:0 0 14px 22px;
+    font-size:14.5px;line-height:1.6;color:var(--muted);
+  }
+  .chain li:last-child{padding-bottom:0}
+  .chain li::before{
+    content:"";position:absolute;left:4px;top:8px;width:6px;height:6px;
+    border-radius:50%;background:var(--accent);opacity:.55;
+  }
+  .chain li::after{
+    content:"";position:absolute;left:6.5px;top:18px;bottom:2px;width:1px;background:var(--border);
+  }
+  .chain li:last-child::after{display:none}
+  .chain li:last-child{color:var(--fg);font-weight:600}
+  .chain li:last-child::before{opacity:1}
+  .layer .example-label,.pillar-content .example-label{
+    display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 12px;
+  }
+  .example{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px 22px;margin:0}
+  .example > *{margin:0}
+  .pillar-content > * + .example,.pillar-content .grid-2 + .example{margin-top:14px}
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -739,6 +770,7 @@
   <div class="nav-inner">
     <a href="/" class="back-link"><span>&larr;</span> Portfolio</a>
     <div class="nav-actions">
+      <a href="/about/" class="nav-pagelink">About</a>
       <div class="lang-switch" role="group" aria-label="Language">
         <a href="/leadership-framework/" hreflang="en" class="is-current" aria-current="page">EN</a>
         <a href="/de/leadership-framework/" hreflang="de">DE</a>
@@ -768,6 +800,7 @@
       </div>
     </div>
     <div class="mobile-menu-actions">
+      <a href="/about/" class="mm-download">About</a>
       <a href="/#contact" class="mm-cta">Get in touch</a>
       <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Download CV &darr;</a>
     </div>
@@ -1468,6 +1501,58 @@
                     <h4>Human effort</h4>
                     <p>Manual interventions, tickets, escalations.</p>
                   </div>
+                </div>
+                <p class="how-label">Business lens</p>
+                <p class="why">Operational movement only matters if it reaches the business. These are the outcomes the four buckets above are supposed to serve.</p>
+                <div class="grid-4">
+                  <div class="tile">
+                    <span class="tile-kicker">Retention</span>
+                    <h4>How long customers stay</h4>
+                    <p>Churn, renewal, contract length.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Customer satisfaction</span>
+                    <h4>How the experience is perceived</h4>
+                    <p>Complaints, escalations, survey signal.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Cost-to-serve</span>
+                    <h4>What each customer costs operationally</h4>
+                    <p>Support hours, manual handling, rework.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Unit economics</span>
+                    <h4>Contribution margin per unit</h4>
+                    <p>Margin per ride, per order, per account.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Scalability</span>
+                    <h4>Growing without degrading</h4>
+                    <p>Whether volume can double without the system bending.</p>
+                  </div>
+                </div>
+                <div class="example">
+                  <span class="example-label">Example 01</span>
+                  <ul class="chain">
+                    <li>Repeated manual exceptions</li>
+                    <li>Higher operational load, slower resolution</li>
+                    <li>Higher cost-to-serve</li>
+                    <li>Pressure on unit economics</li>
+                  </ul>
+                </div>
+                <div class="example">
+                  <span class="example-label">Example 02</span>
+                  <ul class="chain">
+                    <li>Poor activation process</li>
+                    <li>Lower reliability and quality</li>
+                    <li>Worse customer experience</li>
+                    <li>Potentially lower retention</li>
+                  </ul>
+                </div>
+                <p class="xref">In operations it is easy to assume that an operational fix will produce better retention or better economics. In reality that connection has to be evidenced, not assumed. We prioritise knowing we are moving an operational indicator that <b>could</b> affect a business outcome &mdash; and we say it that way until the data says otherwise.</p>
+                <div class="principle">
+                  <span class="plabel">Working principle</span>
+                  <p>&ldquo;Observe operational impact first. Investigate business impact carefully &mdash; correlation is not causation. The value of the framework is precision about what you can claim.&rdquo;</p>
                 </div>
                 <div class="principle is-ask">
                   <span class="plabel">Prioritization question</span>

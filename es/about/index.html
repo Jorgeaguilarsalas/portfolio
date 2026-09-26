@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jorge Aguilar — Marketplace operations into systems thinking · Berlin</title>
-<meta name="description" content="Jorge Aguilar — Translating marketplace operations into systems thinking. Berlin-based operator and founder with case studies from Wolt, Bolt, Bliq, Nexio Fleet.">
+<title>Sobre mí — Jorge Aguilar</title>
+<meta name="description" content="Biografía, principios de trabajo, experiencia, capacidades y formación de Jorge Aguilar — operador y fundador que traduce las operaciones de marketplace en pensamiento de sistemas.">
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Jorge Aguilar — Marketplace operations into systems thinking">
-<meta property="og:description" content="Translating marketplace operations into systems thinking. Berlin. Co-founder @ Nexio Fleet.">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Sobre mí — Jorge Aguilar">
+<meta property="og:description" content="Biografía, principios de trabajo, experiencia, capacidades y formación — Jorge Aguilar, Berlín.">
 <meta property="og:site_name" content="Jorge Aguilar Portfolio">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Jorge Aguilar — Marketplace operations into systems thinking">
-<meta name="twitter:description" content="Translating marketplace operations into systems thinking. Berlin. Co-founder @ Nexio Fleet.">
+<meta name="twitter:title" content="Sobre mí — Jorge Aguilar">
+<meta name="twitter:description" content="Biografía, principios de trabajo, experiencia, capacidades y formación — Jorge Aguilar, Berlín.">
 
-<link rel="canonical" href="https://jorgeag.com/">
-<link rel="alternate" hreflang="en" href="https://jorgeag.com/">
-<link rel="alternate" hreflang="de" href="https://jorgeag.com/de/">
-<link rel="alternate" hreflang="es" href="https://jorgeag.com/es/">
-<link rel="alternate" hreflang="x-default" href="https://jorgeag.com/">
-<meta property="og:url" content="https://jorgeag.com/">
+<link rel="canonical" href="https://jorgeag.com/es/about/">
+<link rel="alternate" hreflang="en" href="https://jorgeag.com/about/">
+<link rel="alternate" hreflang="de" href="https://jorgeag.com/de/about/">
+<link rel="alternate" hreflang="es" href="https://jorgeag.com/es/about/">
+<link rel="alternate" hreflang="x-default" href="https://jorgeag.com/about/">
+<meta property="og:url" content="https://jorgeag.com/es/about/">
 <meta property="og:image" content="https://jorgeag.com/og-card-1200x630.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:type" content="image/png">
-<meta name="twitter:url" content="https://jorgeag.com/">
+<meta name="twitter:url" content="https://jorgeag.com/es/about/">
 <meta name="twitter:image" content="https://jorgeag.com/og-card-1200x630.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -747,6 +747,105 @@
   .nav-links a.is-active{color:var(--accent);}
   .mobile-menu-links a.is-active{color:var(--accent);}
   .mobile-menu-links a.is-active .num{color:var(--accent);opacity:1;}
+
+  /* ── /about/ — HUB DE CONTENIDO SECUNDARIO ──────────────────────────────
+     Las secciones que viven aqui vienen del home tal cual, con sus clases
+     .section / .container, asi que el rail se monta alrededor sin tocarlas:
+     la rejilla la pone .hub-layout y dentro .container solo tiene que
+     dejar de centrar y de repetir el gutter, que ya lo pone la rejilla. */
+  .hub-hero{padding:72px var(--gutter) 8px;}
+  .hub-hero h1{
+    font-size:clamp(44px,7vw,92px);font-weight:900;line-height:.94;
+    letter-spacing:-.035em;text-transform:uppercase;margin:24px 0 0;
+  }
+  .hub-hero .hub-sub{
+    font-size:clamp(17px,1.9vw,22px);font-weight:600;line-height:1.4;
+    letter-spacing:-.01em;color:var(--fg);margin:20px 0 0;max-width:50ch;
+  }
+  .hub-bio{margin-top:26px;max-width:66ch;display:flex;flex-direction:column;gap:18px;}
+  .hub-bio p{font-size:17px;line-height:1.7;color:var(--muted);margin:0;}
+  .hub-bio p strong{color:var(--fg);font-weight:600;}
+
+  .hub-layout{
+    max-width:var(--max-w);margin:0 auto;padding:0 var(--gutter);
+    display:grid;grid-template-columns:260px minmax(0,1fr);gap:64px;align-items:start;
+  }
+  .hub-rail{position:sticky;top:96px;min-width:0;}
+  .hub-rail .rail-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 16px;display:block;
+  }
+  .rail-toc{display:flex;flex-direction:column;gap:0;margin:0;padding:0;list-style:none;border-top:1px solid var(--border);}
+  .rail-toc a{
+    display:flex;align-items:baseline;gap:12px;padding:11px 0;
+    border-bottom:1px solid var(--border);text-decoration:none;
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);transition:color .2s ease;
+  }
+  .rail-toc a:hover,.rail-toc a.is-active{color:var(--accent);}
+  .rail-toc .n{color:var(--accent);opacity:.65;flex:none;}
+
+  /* El primer .section del hub ya viene despues del hero: sin esto queda un
+     doble respiro de 80+72px. */
+  .hub-main > .section:first-child{padding-top:0;}
+  .hub-main > .section:last-of-type{border-bottom:0;}
+  .hub-main .container{max-width:none;margin:0;padding:0;}
+
+  /* CTA de cierre del hub */
+  .hub-cta{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius-sm,18px);padding:40px 38px;margin:0 0 8px;
+  }
+  .hub-cta h2{font-size:clamp(24px,2.6vw,34px);font-weight:800;letter-spacing:-.02em;line-height:1.15;margin:0;}
+  .hub-cta h2 em{font-style:normal;color:var(--accent);}
+  .hub-cta p{font-size:16.5px;line-height:1.7;color:var(--muted);margin:16px 0 0;max-width:60ch;}
+  .hub-cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:26px;}
+  .hub-cta-primary{
+    display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--accent-fg);
+    padding:14px 22px;border-radius:999px;font-weight:600;font-size:14px;transition:transform .2s ease;
+  }
+  .hub-cta-primary:hover{transform:translateY(-2px);color:var(--accent-fg);}
+  .hub-cta-secondary{font-size:14.5px;color:var(--muted);}
+  .hub-cta-secondary a{color:var(--muted);border-bottom:1px solid rgba(184,255,61,.3);padding-bottom:1px;transition:color .2s ease,border-color .2s ease;}
+  .hub-cta-secondary a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+  /* Puente hacia el manual completo al cierre de Approach */
+  .hub-bridge{
+    margin-top:36px;padding-top:26px;border-top:1px solid var(--border);
+    display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;
+  }
+  .hub-bridge a{
+    display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:14.5px;color:var(--accent);
+  }
+  .hub-bridge a:hover{text-decoration:underline;text-underline-offset:3px;}
+
+  /* Mobile: el rail deja de ser columna y pasa a ser un <details> plegable,
+     que es lo unico que cabe sin comerse la primera pantalla. */
+  .hub-toc-mobile{display:none;}
+  @media (max-width:980px){
+    .hub-layout{grid-template-columns:minmax(0,1fr);gap:0;}
+    .hub-rail{display:none;}
+    .hub-toc-mobile{
+      display:block;margin:28px 0 8px;border:1px solid var(--border);
+      border-radius:14px;background:var(--surface);overflow:hidden;
+    }
+    .hub-toc-mobile summary{
+      list-style:none;cursor:pointer;padding:16px 20px;
+      font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--accent);display:flex;align-items:center;justify-content:space-between;gap:12px;
+    }
+    .hub-toc-mobile summary::-webkit-details-marker{display:none;}
+    .hub-toc-mobile summary::after{content:"+";font-size:16px;line-height:1;color:var(--accent);}
+    .hub-toc-mobile[open] summary::after{content:"\2212";}
+    .hub-toc-mobile .rail-toc{border-top:1px solid var(--border);padding:0 20px 8px;}
+    .hub-toc-mobile .rail-toc a{padding:13px 0;}
+    .hub-toc-mobile .rail-toc li:last-child a{border-bottom:0;}
+    .hub-hero{padding:48px var(--gutter) 0;}
+    .hub-cta{padding:30px 24px;}
+  }
+  @media (max-width:640px){
+    .hub-bio p{font-size:16px;}
+  }
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -758,375 +857,401 @@
 
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#top" class="nav-brand">Jorge<span class="dot">.</span>Aguilar</a>
+    <a href="/es/" class="nav-brand">Jorge<span class="dot">.</span>Aguilar</a>
     <nav class="nav-links">
-      <a href="/" class="is-active" aria-current="page">Home</a>
-      <a href="/work/">Work</a>
-      <a href="/about/">About</a>
-      <a href="/motion/" title="Operations in Motion — Jorge's research publication on operations and technology.">Motion</a>
-      <a href="/leadership-framework/">Framework</a>
-      <div class="lang-switch" role="group" aria-label="Language">
-        <a href="/" hreflang="en" class="is-current" aria-current="page">EN</a>
-        <a href="/de/" hreflang="de">DE</a>
-        <a href="/es/" hreflang="es">ES</a>
+      <a href="/es/">Inicio</a>
+      <a href="/es/work/">Trabajo</a>
+      <a href="/es/about/" class="is-active" aria-current="page">Sobre</a>
+      <a href="/es/motion/" title="Operations in Motion — la publicación de investigación de Jorge sobre operaciones y tecnología.">Motion</a>
+      <a href="/es/leadership-framework/">Framework</a>
+      <div class="lang-switch" role="group" aria-label="Idioma">
+        <a href="/about/" hreflang="en">EN</a>
+        <a href="/de/about/" hreflang="de">DE</a>
+        <a href="/es/about/" hreflang="es" class="is-current" aria-current="page">ES</a>
       </div>
-      <a href="Jorge_Aguilar_CV.pdf" download class="nav-download"><span class="nav-dl-long">Download </span>CV ↓</a>
-      <a href="#contact" class="nav-cta">Get in touch</a>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download"><span class="nav-dl-long">Currículum</span><span class="nav-dl-short">CV</span> &darr;</a>
+      <a href="/es/contact/" class="nav-cta">Hablemos</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
       <span class="bars" aria-hidden="true"></span>
     </button>
   </div>
 </header>
 
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú del sitio" aria-hidden="true">
   <div class="mobile-menu-head">
-    <a href="#top" class="nav-brand">Jorge<span class="dot">.</span>Aguilar</a>
-    <button class="mobile-menu-close" id="menuClose" type="button" aria-label="Close menu">&times;</button>
+    <a href="/es/" class="nav-brand">Jorge<span class="dot">.</span>Aguilar</a>
+    <button class="mobile-menu-close" id="menuClose" type="button" aria-label="Cerrar menú">&times;</button>
   </div>
   <div class="mobile-menu-body">
     <nav class="mobile-menu-links">
-      <a href="/" class="is-active" aria-current="page">Home<span class="num">01</span></a>
-      <a href="/work/">Work<span class="num">02</span></a>
-      <a href="/about/">About<span class="num">03</span></a>
-      <a href="/motion/" title="Operations in Motion — Jorge's research publication on operations and technology.">Motion<span class="num">04</span></a>
-      <a href="/leadership-framework/">Framework<span class="num">05</span></a>
-      <a href="/contact/">Contact<span class="num">06</span></a>
+      <a href="/es/">Inicio<span class="num">01</span></a>
+      <a href="/es/work/">Trabajo<span class="num">02</span></a>
+      <a href="/es/about/" class="is-active" aria-current="page">Sobre<span class="num">03</span></a>
+      <a href="/es/motion/" title="Operations in Motion — la publicación de investigación de Jorge sobre operaciones y tecnología.">Motion<span class="num">04</span></a>
+      <a href="/es/leadership-framework/">Framework<span class="num">05</span></a>
+      <a href="/es/contact/">Contacto<span class="num">06</span></a>
     </nav>
     <div class="mobile-menu-lang">
-      <span class="mm-lang-label">Language</span>
-      <div class="lang-switch" role="group" aria-label="Language">
-        <a href="/" hreflang="en" class="is-current" aria-current="page">EN</a>
-        <a href="/de/" hreflang="de">DE</a>
-        <a href="/es/" hreflang="es">ES</a>
+      <span class="mm-lang-label">Idioma</span>
+      <div class="lang-switch" role="group" aria-label="Idioma">
+        <a href="/about/" hreflang="en">EN</a>
+        <a href="/de/about/" hreflang="de">DE</a>
+        <a href="/es/about/" hreflang="es" class="is-current" aria-current="page">ES</a>
       </div>
     </div>
     <div class="mobile-menu-actions">
-      <a href="#contact" class="mm-cta">Get in touch</a>
-      <a href="Jorge_Aguilar_CV.pdf" download class="mm-download">Download CV ↓</a>
+      <a href="/es/contact/" class="mm-cta">Hablemos</a>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Currículum &darr;</a>
     </div>
-    <div class="mobile-menu-foot">Berlin · EMEA</div>
+    <div class="mobile-menu-foot">Berlin &middot; EMEA</div>
   </div>
 </div>
 
 <main id="top">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-inner">
-      <div>
-        <div class="hero-eyebrow reveal"><span class="pulse"></span> Founder + Advisor · Berlin · EMEA</div>
-        <div class="hero-name-wrap">
-          <h1 class="hero-name reveal">
-            <span>Jorge Aguilar</span><button type="button" class="hero-cursor" id="statusTrigger" aria-label="Availability and current role" aria-expanded="false" aria-describedby="statusTip"></button>
-          </h1>
-          <span class="hero-tip" id="statusTip" role="tooltip" hidden>
-            <span class="tip-avail"><span class="tip-dot" aria-hidden="true"></span>Founder + Advisor</span>
-            <span class="tip-meta">Berlin · EMEA</span>
-            <span class="tip-now">Currently: <b>Co-founder @ Nexio Fleet</b></span>
-            <a href="/nexio/" class="tip-link">See the case study <span aria-hidden="true">→</span></a>
-          </span>
+  <div class="container hub-hero">
+    <div class="section-label reveal">Sobre mí</div>
+    <h1 class="reveal">Sobre mí</h1>
+    <p class="hub-sub reveal">De la operación de primera línea <em>a la construcción de los sistemas que la sostienen</em>.</p>
+    <div class="hub-bio reveal">
+      <div class="about-layout">
+        <div class="about-photo-wrap reveal">
+          <img src="/photo.jpg" alt="Jorge Aguilar — retrato" class="about-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="about-photo-fallback">JA</div>
         </div>
-        <p class="hero-tagline reveal">Translating marketplace operations into systems thinking.</p>
-        <p class="hero-sub reveal">Across mobility, logistics and technology — from frontline operations to strategy and execution.</p>
-        <div class="hero-actions reveal">
-          <a href="#contact" class="btn-primary">Get in touch <span>→</span></a>
-          <a href="#work" class="btn-secondary">See my work</a>
+        <div class="snapshot-prose reveal">
+          <p>Empecé cerca de la operación diaria en movilidad y logística — como repartidor socio, luego en Supply Operations y gestión de socios en <em>Wolt, Bolt y Bliq</em>. Con el tiempo, mi trabajo fue subiendo en la cadena: de ejecutar procesos a gestionar supply y socios, de ahí a rediseñar flujos de trabajo y, finalmente, a construir productos y automatización en torno a esos mismos problemas operativos.</p>
+          <p>Hoy soy cofundador de <em>Nexio Fleet</em> (Berlín), donde traduzco la complejidad regulatoria (LABO, PBefG) en una SaaS compliance-first para operadores regulados de Mietwagen — al servicio de <em>8 flotas operadoras y 800+ conductores activos</em>, con 60–70 % menos esfuerzo de reporte manual.</p>
+          <p>Lo que aporto es amplitud en la aplicación y precisión en la identidad: tomo la realidad operativa desordenada — regulatoria, de marketplace o de negocio — y la convierto en sistemas que escalan.</p>
         </div>
       </div>
     </div>
-  </section>
+    <details class="hub-toc-mobile">
+      <summary>En esta página</summary>
+      <ul class="rail-toc">
+          <li><a href="#approach"><span class="n">01</span> Enfoque</a></li>
+          <li><a href="#experience"><span class="n">02</span> Experiencia</a></li>
+          <li><a href="#capabilities"><span class="n">03</span> Capacidades</a></li>
+          <li><a href="#tooling"><span class="n">04</span> Herramientas</a></li>
+          <li><a href="#education"><span class="n">05</span> Formación</a></li>
+          <li><a href="#contact"><span class="n">06</span> Contacto</a></li>
+      </ul>
+    </details>
+  </div>
 
-  <!-- HERO METRICS -->
-  <section class="hero-metrics reveal">
-    <div class="container">
-      <div class="metrics-grid">
-        <div class="metric-big">
-          <span class="context">Product · Nexio</span>
-          <span class="value">800+</span>
-          <span class="label">Active drivers under compliance framework, across 8 fleet operators</span>
-        </div>
-        <div class="metric-big">
-          <span class="context">Product · Nexio</span>
-          <span class="value">8</span>
-          <span class="label">Regulated Mietwagen fleet operators served with compliance-first SaaS</span>
-        </div>
-        <div class="metric-big">
-          <span class="context">Commercial · Bliq</span>
-          <span class="value">€3M</span>
-          <span class="label">ARR generated from cross-functional pilot in four months</span>
-        </div>
-        <div class="metric-big">
-          <span class="context">Leadership · Bliq</span>
-          <span class="value">6</span>
-          <span class="label">Direct reports across supply operations in German mobility markets</span>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="hub-layout">
 
-  <!-- SELECTED IMPACT -->
-  <section class="section" id="impact">
-    <div class="container">
-      <div class="section-label reveal">Selected impact</div>
-      <h2 class="reveal">The measurable outcomes <em>of my work</em>.</h2>
-      <div class="metrics-grid impact-grid reveal">
-        <div class="metric-big">
-          <span class="kicker" aria-hidden="true">&nbsp;</span>
-          <span class="value">60–70%<span class="dir">↓</span></span>
-          <span class="label">Manual reporting effort through Python-based workflow automation</span>
-          <span class="tag">Nexio</span>
-        </div>
-        <div class="metric-big">
-          <span class="kicker" aria-hidden="true">&nbsp;</span>
-          <span class="value">30%<span class="dir">↓</span></span>
-          <span class="label">Courier equipment cost through gear retrieval and refurbishment program</span>
-          <span class="tag">Wolt</span>
-        </div>
-        <div class="metric-big">
-          <span class="kicker">From &lt;50%</span>
-          <span class="value">&gt;80%<span class="dir">↑</span></span>
-          <span class="label">Fleet partner retention through operational interventions</span>
-          <span class="tag">Bliq</span>
-        </div>
-        <div class="metric-big">
-          <span class="kicker">Partners 2.6×</span>
-          <span class="value">4.7×<span class="dir">↑</span></span>
-          <span class="label">Driver base growth across German mobility markets in 12 months</span>
-          <span class="tag">Bliq</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    <aside class="hub-rail">
+      <span class="rail-label">En esta página</span>
+      <ul class="rail-toc">
+          <li><a href="#approach"><span class="n">01</span> Enfoque</a></li>
+          <li><a href="#experience"><span class="n">02</span> Experiencia</a></li>
+          <li><a href="#capabilities"><span class="n">03</span> Capacidades</a></li>
+          <li><a href="#tooling"><span class="n">04</span> Herramientas</a></li>
+          <li><a href="#education"><span class="n">05</span> Formación</a></li>
+          <li><a href="#contact"><span class="n">06</span> Contacto</a></li>
+      </ul>
+    </aside>
 
-  <!-- WORK -->
-  <section class="section" id="work">
-    <div class="container">
-      <div class="section-label reveal">Selected work</div>
-      <h2 class="reveal">Case studies and <em>self-directed projects</em>.</h2>
+    <div class="hub-main">
 
-      <div class="work-grid">
-
-        <!-- 01 — NEXIO -->
-        <article class="case reveal">
-          <div class="case-text">
-            <p class="case-eyebrow">01 · Featured case study</p>
-            <h3>Nexio Fleet — Building compliance-native product for Berlin PHV fleets.</h3>
-            <p class="case-intro">Strategy, operations and product at an early-stage compliance SaaS. I translated regulatory frameworks (LABO, PBefG) into product specifications, ran field discovery with fleet operators and drivers, and built the systems that make compliance measurable.</p>
-            <ul class="case-points">
-              <li><strong>Product ownership.</strong> Specs for the Driver App and Fleet Dashboard, QA across iOS, Android and web, and structured feedback loops between operations and engineering.</li>
-              <li><strong>Compliance at scale.</strong> The framework underpins compliance for <strong>800+ active drivers across 8 fleet operators</strong> in Berlin and Brandenburg.</li>
-              <li><strong>Automation.</strong> Manual reporting effort down 60–70% via Python pipelines integrating Uber and Bolt platform data.</li>
-            </ul>
-            <p class="case-meta">2025 — Present · Co-founder · 6+ months</p>
-            <a href="/nexio/" class="case-cta">Read the case study <span class="arrow" aria-hidden="true">→</span></a>
-            <p class="case-note">Reference letter on file from Aleksander Boski, CEO and co-founder of Nexio Fleet GmbH.</p>
-          </div>
-          <div class="case-visual" id="vis-nexio">
-            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-nexio">View diagram <span class="sign" aria-hidden="true">+</span></button>
-            <figure class="case-figure" id="fig-nexio">
-              <div class="case-figure-inner">
-                <svg viewBox="0 0 480 330" role="img" aria-label="Abstract representation of the Nexio fleet dashboard: three KPI tiles reading 800+ drivers, 8 operators and 6 flagged shifts, a driver table with per-row compliance status badges, and a compliance trend chart along the bottom.">
-                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
-                  <circle cx="24" cy="24" r="3.5" fill="#3A3A42"/><circle cx="37" cy="24" r="3.5" fill="#3A3A42"/><circle cx="50" cy="24" r="3.5" fill="#3A3A42"/>
-                  <text x="70" y="28" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">FLEET DASHBOARD</text>
-                  <line x1="0" y1="42" x2="480" y2="42" stroke="#303036"/>
-
-                  <rect x="20" y="58" width="138" height="54" rx="10" fill="#141417" stroke="#2A2A30"/>
-                  <text x="34" y="76" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">DRIVERS</text>
-                  <text x="34" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="#B8FF3D">800+</text>
-                  <rect x="171" y="58" width="138" height="54" rx="10" fill="#141417" stroke="#2A2A30"/>
-                  <text x="185" y="76" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">OPERATORS</text>
-                  <text x="185" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="#B8FF3D">8</text>
-                  <rect x="322" y="58" width="138" height="54" rx="10" fill="#141417" stroke="#2A2A30"/>
-                  <text x="336" y="76" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">FLAGGED</text>
-                  <text x="336" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="#F5B23D">6</text>
-
-                  <text x="20" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">DRIVER</text>
-                  <text x="150" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">SHIFT</text>
-                  <text x="250" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">BREAK</text>
-                  <text x="372" y="139" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">STATUS</text>
-                  <line x1="20" y1="147" x2="460" y2="147" stroke="#26262C"/>
-
-                  <rect x="20" y="159" width="86" height="7" rx="3.5" fill="#3A3A42"/>
-                  <rect x="150" y="159" width="66" height="7" rx="3.5" fill="#2E2E35"/>
-                  <rect x="250" y="159" width="44" height="7" rx="3.5" fill="#2E2E35"/>
-                  <rect x="372" y="154" width="70" height="17" rx="8.5" fill="rgba(184,255,61,0.10)" stroke="rgba(184,255,61,0.35)"/>
-                  <text x="407" y="166" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#B8FF3D">Compliant</text>
-                  <line x1="20" y1="181" x2="460" y2="181" stroke="#1F1F25"/>
-
-                  <rect x="20" y="193" width="72" height="7" rx="3.5" fill="#3A3A42"/>
-                  <rect x="150" y="193" width="58" height="7" rx="3.5" fill="#2E2E35"/>
-                  <rect x="250" y="193" width="36" height="7" rx="3.5" fill="#2E2E35"/>
-                  <rect x="372" y="188" width="70" height="17" rx="8.5" fill="rgba(245,178,61,0.12)" stroke="rgba(245,178,61,0.4)"/>
-                  <text x="407" y="200" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#F5B23D">Break short</text>
-                  <line x1="20" y1="215" x2="460" y2="215" stroke="#1F1F25"/>
-
-                  <rect x="20" y="227" width="94" height="7" rx="3.5" fill="#3A3A42"/>
-                  <rect x="150" y="227" width="70" height="7" rx="3.5" fill="#2E2E35"/>
-                  <rect x="250" y="227" width="50" height="7" rx="3.5" fill="#2E2E35"/>
-                  <rect x="372" y="222" width="70" height="17" rx="8.5" fill="rgba(184,255,61,0.10)" stroke="rgba(184,255,61,0.35)"/>
-                  <text x="407" y="234" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#B8FF3D">Compliant</text>
-
-                  <line x1="20" y1="256" x2="460" y2="256" stroke="#26262C"/>
-                  <text x="20" y="274" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">COMPLIANCE RATE · 12 WEEKS</text>
-                  <path d="M20,306 L69,300 L118,302 L167,294 L216,296 L265,288 L314,284 L363,280 L412,274 L460,270" fill="none" stroke="#B8FF3D" stroke-width="1.8" stroke-linejoin="round"/>
-                  <path d="M20,306 L69,300 L118,302 L167,294 L216,296 L265,288 L314,284 L363,280 L412,274 L460,270 L460,314 L20,314 Z" fill="rgba(184,255,61,0.07)"/>
-                  <circle cx="460" cy="270" r="3" fill="#B8FF3D"/>
-                </svg>
-              </div>
-              <figcaption class="case-figcaption">Fleet dashboard — abstract representation</figcaption>
-            </figure>
-          </div>
-        </article>
-
-        <!-- 02 — BLIQ -->
-        <article class="case reveal">
-          <div class="case-text">
-            <p class="case-eyebrow">02 · Featured case study</p>
-            <h3>Bliq — Rebuilding fleet supply in a market that already had incumbents.</h3>
-            <p class="case-intro">Drivers and fleets already belonged to Uber and Bolt. Incentives bought activation and never bought retention: fleets switched on for a bonus, and switched back when it ended. I designed an Earnings-per-Hour model with a service-level agreement attached, piloted with one fleet before it went near the network.</p>
-            <ul class="case-points">
-              <li><strong>The fleet insight.</strong> Operators wanted predictability, not bigger bonuses &mdash; short campaigns made vehicle planning impossible, so the model committed to earnings across the low season.</li>
-              <li><strong>SLA as the mechanism.</strong> The guarantee was conditional: <strong>&gt;90% acceptance, &le;10% cancellations</strong> and availability at peak, so subsidised supply became actual capacity.</li>
-              <li><strong>Attribution.</strong> I owned the pilot design, the SLA, the budget and the rollout call; the <strong>4.6× driver growth</strong> over the period is a company-level result the pilot contributed to.</li>
-            </ul>
-            <p class="case-meta">Jul 2024 — Jul 2025 · Supply Operations Manager · 12 months</p>
-            <a href="/bliq/" class="case-cta">Read the case study <span class="arrow" aria-hidden="true">&rarr;</span></a>
-            <p class="case-note">Reference letter on file from Bliq, available via the Certificates section.</p>
-          </div>
-          <div class="case-visual" id="vis-bliq">
-            <button type="button" class="case-toggle" aria-expanded="false" aria-controls="fig-bliq">View diagram <span class="sign" aria-hidden="true">+</span></button>
-            <figure class="case-figure" id="fig-bliq">
-              <div class="case-figure-inner">
-                <svg viewBox="0 0 480 330" role="img" aria-label="Compact supply flywheel in seven stages: reliable supply, better ETAs, passenger experience, completed trips, driver utilisation, less bonus dependency and efficient budget, feeding back into reliable supply.">
-                  <defs>
-                    <marker id="wf-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#B8FF3D"/></marker>
-                  </defs>
-                  <rect x="0.5" y="0.5" width="479" height="329" rx="18" fill="#0F0F12" stroke="#303036"/>
-                  <text x="24" y="28" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">THE SUPPLY WHEEL</text>
-                  <rect x="174" y="47" width="132" height="34" rx="9" fill="rgba(184,255,61,0.07)" stroke="rgba(184,255,61,0.45)"/>
-                  <text x="240" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#F7F7F8">Reliable supply</text>
-                  <rect x="305" y="86" width="132" height="34" rx="9" fill="#141417" stroke="#303036"/>
-                  <text x="371" y="107" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#F7F7F8">Better ETAs</text>
-                  <rect x="338" y="174" width="132" height="34" rx="9" fill="#141417" stroke="#303036"/>
-                  <text x="404" y="195" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#F7F7F8">Passenger exp.</text>
-                  <rect x="247" y="245" width="132" height="34" rx="9" fill="#141417" stroke="#303036"/>
-                  <text x="313" y="266" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#F7F7F8">Completed trips</text>
-                  <rect x="101" y="245" width="132" height="34" rx="9" fill="#141417" stroke="#303036"/>
-                  <text x="167" y="266" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#F7F7F8">Utilisation</text>
-                  <rect x="10" y="174" width="132" height="34" rx="9" fill="#141417" stroke="#303036"/>
-                  <text x="76" y="195" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#F7F7F8">Less bonus</text>
-                  <rect x="43" y="86" width="132" height="34" rx="9" fill="#141417" stroke="#303036"/>
-                  <text x="109" y="107" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#F7F7F8">Efficient budget</text>
-                  <path d="M310,51 Q355,53 378,77" fill="none" stroke="#B8FF3D" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
-                  <path d="M434,135 Q456,147 441,162" fill="none" stroke="#B8FF3D" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
-                  <path d="M427,215 Q429,236 399,245" fill="none" stroke="#B8FF3D" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
-                  <path d="M288,289 Q240,303 192,289" fill="none" stroke="#B8FF3D" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
-                  <path d="M81,245 Q51,236 53,215" fill="none" stroke="#B8FF3D" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
-                  <path d="M39,162 Q24,147 46,135" fill="none" stroke="#B8FF3D" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
-                  <path d="M102,77 Q125,53 170,51" fill="none" stroke="#B8FF3D" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
-                  <text x="240" y="164" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#F7F7F8">Useful supply</text>
-                  <text x="240" y="181" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#B8FF3D">NOT NOMINAL SUPPLY</text>
-                </svg>
-              </div>
-              <figcaption class="case-figcaption">Supply flywheel — SLA keeps it turning</figcaption>
-            </figure>
-          </div>
-        </article>
-
-      </div>
-
-      <div class="work-all">
-        <a href="/work/" class="work-all-cta">See all case studies <span class="arrow" aria-hidden="true">&rarr;</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <!-- PUBLICATION — OPERATIONS IN MOTION -->
-  <section class="section" id="motion">
-    <div class="container">
-      <div class="section-label reveal">Publication</div>
-      <h2 class="reveal">Operations in Motion</h2>
-      <p class="motion-lede reveal">How is technology changing the way businesses actually operate?</p>
-
-      <article class="motion-card reveal">
-        <p class="motion-meta">Mobility Lab · FN01</p>
-        <h3><a href="/motion/fn01-dispatch-log-four-owners/">The dispatch log has four owners and none of them is responsible</a></h3>
-        <p class="motion-teaser">The duty has not changed since 1983. What changed is that a dispatch log written by the platform now decides whether a fleet can prove it complied.</p>
-        <div class="motion-foot">
-          <span class="motion-date">Published 2026-09-20 · 18 min read</span>
-          <a href="/motion/fn01-dispatch-log-four-owners/" class="work-link">Read the field note <span aria-hidden="true">&rarr;</span></a>
-        </div>
-      </article>
-
-      <a href="/motion/" class="work-all-cta motion-all">See all field notes <span class="arrow" aria-hidden="true">&rarr;</span></a>
-    </div>
-  </section>
-
-  <!-- APPROACH (mini) — el detalle vive en /about/#approach -->
   <section class="section" id="approach">
     <div class="container">
-      <div class="section-label reveal">Approach</div>
-      <h2 class="reveal">How I work, <em>and how I lead</em>.</h2>
-      <div class="mini-prose reveal">
-        <p class="section-lede">Earned through operating across mobility platforms, sharpened through analytical work. These are the principles that turn marketplace operations into systems thinking &mdash; how I diagnose, plan, and execute.</p>
-        <p class="section-lede"><strong>How I lead teams and run operations.</strong> Seven layers of operating frameworks: how I show up, how I build team performance, how I turn goals into execution, how I improve the system itself, and how service delivery gets driven across teams I don't manage.</p>
+      <div class="section-label reveal">Enfoque</div>
+      <h2 class="reveal">Siete principios que aporto a las <em>operaciones de marketplace y al SaaS B2B</em>.</h2>
+      <p class="approach-intro reveal">Ganados operando en distintas plataformas de movilidad y afinados con trabajo analítico. Son los principios que traducen las operaciones de marketplace en pensamiento sistémico &mdash; cómo diagnostico, planifico y ejecuto.</p>
+
+      <div class="approach-grid reveal">
+        <div class="approach-item">
+          <span class="approach-num">01</span>
+          <h3>Diagnosticar antes de accionar palancas</h3>
+          <p>La mayoría de los problemas operativos no son problemas de modelado &mdash; son problemas de planteamiento o de medición. El trabajo que genera valor es nombrar qué está realmente descompuesto antes de aplicar una solución.</p>
+        </div>
+        <div class="approach-item">
+          <span class="approach-num">02</span>
+          <h3>La calidad es multidimensional</h3>
+          <p>Definir «bueno» sobre varios pilares &mdash; seguridad, confiabilidad, tranquilidad. Medir primero con telemetría operativa y después con calificaciones de clientes. Los clientes premium valoran su tiempo más que las solicitudes de calificación.</p>
+        </div>
+        <div class="approach-item">
+          <span class="approach-num">03</span>
+          <h3>Crecer con disciplina</h3>
+          <p>Los mercados se ganan el crecimiento superando filtros explícitos &mdash; preparación, concentración, tasa de rechazo, profundidad de supply. Pasar los filtros es necesario, pero no suficiente.</p>
+        </div>
+        <div class="approach-item">
+          <span class="approach-num">04</span>
+          <h3>Traducir el diagnóstico en hojas de ruta</h3>
+          <p>El hallazgo sin ejecución es académico. Los mejores documentos de planeación nombran supuestos, pisos estructurales y puntos de decisión explícitos donde el plan cambia de rumbo o redobla la apuesta.</p>
+        </div>
+        <div class="approach-item">
+          <span class="approach-num">05</span>
+          <h3>Ordenar el riesgo antes de accionar las palancas</h3>
+          <p>Lo que se pospone importa tanto como lo que se hace. Sanear los mercados frágiles antes de escalarlos; diseñar para el escenario adverso, no sólo para el favorable.</p>
+        </div>
+        <div class="approach-item">
+          <span class="approach-num">06</span>
+          <h3>ML para problemas probabilísticos; reglas para políticas</h3>
+          <p>Usar ML para clasificar en niveles añade complejidad sin valor. Usar reglas para predecir ignora la estructura probabilística. La división responde al fondo del problema, no al estilo.</p>
+        </div>
+        <div class="approach-item" style="grid-column:1/-1;">
+          <span class="approach-num">07</span>
+          <h3>La rendición de cuentas del socio es infraestructura de conversación</h3>
+          <p>Las tarjetas de desempeño por nivel convierten el rendimiento del socio en conversaciones comerciales estructuradas &mdash; Tier A condiciones estándar, Tier C plan de mejora a 90 días con metas nombradas. El marco es la conversación.</p>
+        </div>
       </div>
-      <div class="mini-links reveal">
-        <a href="/leadership-framework/" class="work-link"><span>&rarr;</span> Read the frameworks</a>
-        <a href="/about/#approach" class="work-link"><span>&rarr;</span> Seven principles, in full</a>
+
+      <div class="approach-cta reveal">
+        <p>Estos principios se demuestran en un panel interactivo en vivo.</p>
+        <a href="https://marketplace-ops-demo-port.streamlit.app/" target="_blank" rel="noopener" class="approach-link">Abrir panel <span>↗</span></a>
+      </div>
+
+      <div class="hub-bridge reveal">
+        <p class="section-lede" style="margin:0;max-width:52ch">Los principios anteriores son la versión corta. El manual operativo completo — people management, ejecución, mejora operacional y entrega de servicio — está en los frameworks.</p>
+        <a href="/es/leadership-framework/">Ver los frameworks completos de liderazgo y operaciones <span aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
   </section>
 
-  <!-- EXPERIENCE (mini) — el detalle vive en /about/#experience -->
   <section class="section" id="experience">
     <div class="container">
-      <div class="section-label reveal">Experience</div>
-      <h2 class="reveal">Operations across <em>mobility marketplaces</em>, SaaS, and B2B.</h2>
-      <div class="exp-mini reveal">
-        <div class="exp-mini-row">
-          <span class="exp-mini-k">Currently</span>
-          <span class="exp-mini-v">Co-founder @ Nexio Fleet &middot; Founder @ Salas UG advisory</span>
+      <div class="section-label reveal">Experiencia</div>
+      <h2 class="reveal">Operations en <em>marketplaces de movilidad</em>, SaaS y B2B.</h2>
+
+      <div class="exp-category">
+        <div class="exp-cat-label reveal">Liderazgo en producto, Operations y estrategia</div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            2025 — actualidad
+            <span class="company">Nexio Fleet GmbH</span>
+            <span class="location">Berlín, Alemania</span>
+          </div>
+          <div class="exp-content">
+            <h3>Cofundador · Estrategia, Operations y Producto</h3>
+            <p class="exp-context">Plataforma SaaS compliance-first para operadores regulados de Mietwagen en Alemania. Al servicio de 8 flotas operadoras y 800+ conductores activos.</p>
+            <ul class="exp-bullets">
+              <li>Reduje el esfuerzo de reporte manual en <span class="metric">60–70 %</span> mediante automatización en Python e integración de datos de Uber y Bolt</li>
+              <li>Traduje los requisitos regulatorios de LABO/PBefG en especificaciones de producto para la Driver App y el Fleet Dashboard</li>
+              <li>Contribuí al posicionamiento para el IBB GründungsBONUS Plus <span class="metric">(€50k)</span>; apoyé el modelo de precios de compliance por niveles y el go-to-market</li>
+            </ul>
+            <p class="exp-link"><a href="/es/nexio/" class="work-link">Ver caso de estudio <span>→</span></a></p>
+          </div>
         </div>
-        <div class="exp-mini-row">
-          <span class="exp-mini-k">Previously</span>
-          <span class="exp-mini-v">Bliq &middot; Bolt &middot; Wolt</span>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            Julio 2025 – actualidad
+            <span class="company">Salas UG (haftungsbeschränkt)</span>
+            <span class="location">Berlín</span>
+          </div>
+          <div class="exp-content">
+            <h3>Founder & Managing Director</h3>
+            <p class="exp-context">Vehículo propio para proyectos de estrategia de movilidad en la región DACH — diseño de sistemas de compliance, marcos de KPI y automatización de flujos de trabajo con IA.</p>
+            <ul class="exp-bullets">
+              <li>Proyectos de asesoría en diseño de sistemas de compliance, reporte de desempeño y optimización de procesos para operadores de movilidad</li>
+              <li>Automatización de flujos de trabajo con Python y n8n, apoyada en la Claude API para herramientas operativas</li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="mini-links reveal">
-        <a href="/about/#experience" class="work-link"><span>&rarr;</span> Full experience, role by role</a>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            07.2024 — 07.2025
+            <span class="company">Bliq</span>
+            <span class="location">Berlín, Alemania</span>
+          </div>
+          <div class="exp-content">
+            <h3>Supply Operations Manager</h3>
+            <p class="exp-context">Supply Operations con flotas socias en mercados de movilidad de Alemania.</p>
+            <ul class="exp-bullets">
+              <li>Escalé la base de socios <span class="metric">2.6×</span> y la de conductores <span class="metric">4.7×</span> en 12 meses en mercados de movilidad alemanes</li>
+              <li>Aumenté la retención de flotas socias de <span class="metric">&lt;50 % a &gt;80 %</span> mediante intervenciones operativas y gestión de cuentas</li>
+              <li>Generé <span class="metric">€3M de ARR</span> con un piloto multidisciplinario ejecutado en cuatro meses</li>
+            </ul>
+            <p class="exp-link"><a href="/es/bliq/" class="work-link">Ver caso de estudio <span>→</span></a></p>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            06.2023 — 06.2024
+            <span class="company">Bolt</span>
+            <span class="location">Sur de Alemania</span>
+          </div>
+          <div class="exp-content">
+            <h3>Operations Specialist</h3>
+            <p class="exp-context">Operaciones de marketplace para Bolt Rides en Múnich y el sur de Alemania, enfocadas en la expansión del supply.</p>
+            <ul class="exp-bullets">
+              <li>Mejoré la activación de conductores de <span class="metric">25 % a 58 %</span> en 6 semanas mediante el rediseño del proceso de onboarding</li>
+              <li>Reduje la tasa de cancelación en <span class="metric">18 %</span> mediante intervenciones operativas con flotas socias</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            10.2020 — 02.2023
+            <span class="company">Wolt</span>
+            <span class="location">Berlín y Alemania</span>
+          </div>
+          <div class="exp-content">
+            <h3>Sustainability Operations Associate</h3>
+            <p class="exp-context">Operaciones de almacén y logística del equipo de repartidores en mercados alemanes.</p>
+            <ul class="exp-bullets">
+              <li>Reduje el costo del equipo de repartidores en <span class="metric">30 %</span> con un programa de recuperación y reacondicionamiento coordinado en más de 6 ciudades alemanas junto con la sede central de Wolt</li>
+              <li>Diseñé el flujo de logística inversa para el reciclaje y la limpieza del equipo de repartidores</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="section contact" id="contact">
-    <div class="container inner">
-      <div class="section-label reveal">Get in touch</div>
-      <h2 class="reveal">Building something <em>interesting</em>?</h2>
-      <p class="contact-sub reveal">Founder of Salas UG advisory. Co-founder of Nexio Fleet. Open to strategic conversations with operators, founders, and investors in mobility and logistics.</p>
-      <div class="contact-actions reveal">
-        <a href="/contact/" class="btn-primary">Start a conversation <span>→</span></a>
-        <a href="mailto:hello@jorgeag.com?subject=Conversation" class="btn-secondary">hello@jorgeag.com</a>
-        <button class="btn-copy" onclick="copyEmail(this)"><span class="copy-label">Copy</span><span class="copy-done">✓ Copied</span></button>
-        <a href="https://www.linkedin.com/in/jorge-aguilar-ops/" target="_blank" rel="noopener" class="btn-secondary">Connect on LinkedIn</a>
-        <a href="https://calendly.com/aguilarjorge-fhpf/30min" target="_blank" rel="noopener" class="btn-secondary">Book a 30-min call</a>
-      </div>
-      <div class="mini-links reveal">
-        <a href="/about/" class="work-link"><span>&rarr;</span> More about my background, principles and toolkit</a>
+  <section class="section" id="capabilities">
+    <div class="container">
+      <div class="section-label reveal">Capacidades</div>
+      <h2 class="reveal">Cuatro capacidades que aporto <em>en distintos roles e industrias</em>.</h2>
+      <div class="skills-list">
+        <div class="skills-row reveal">
+          <div class="skills-cat">Operations y escalado</div>
+          <div class="skills-items"><strong>Economía de flotas</strong> · Analítica de marketplace · Supply Operations · Diseño de procesos · Marcos de KPI · Despliegues multimercado</div>
+        </div>
+        <div class="skills-row reveal">
+          <div class="skills-cat">Proyectos y transformación</div>
+          <div class="skills-items"><strong>Program Ownership</strong> · Gestión de partes interesadas · Implementación · Rediseño de procesos · Gestión del cambio · Coordinación multidisciplinaria</div>
+        </div>
+        <div class="skills-row reveal">
+          <div class="skills-cat">Socios y clientes</div>
+          <div class="skills-items"><strong>Gestión de cuentas clave</strong> · Retención de flotas socias · Resolución de problemas comerciales · Negociación de contratos · Partner enablement · Alianzas estratégicas</div>
+        </div>
+        <div class="skills-row reveal">
+          <div class="skills-cat">Producto y datos</div>
+          <div class="skills-items"><strong>Product discovery</strong> · Ingeniería de requisitos · Especificaciones de funcionalidades · Investigación con usuarios · Testing y QA · Pipelines de datos · Paneles analíticos</div>
+        </div>
       </div>
     </div>
   </section>
 
+  <section class="section" id="tooling">
+    <div class="container">
+      <div class="section-label reveal">Tooling y stack</div>
+      <h2 class="reveal">Herramientas y plataformas <em>con las que entrego</em>.</h2>
+      <div class="skills-list">
+        <div class="skills-row reveal">
+          <div class="skills-cat">AI & LLM</div>
+          <div class="skills-items"><strong>Claude API</strong> (Anthropic) · Prompt engineering · Bucles agénticos · Tool calling · Sistemas RAG</div>
+        </div>
+        <div class="skills-row reveal">
+          <div class="skills-cat">Backend e infraestructura</div>
+          <div class="skills-items"><strong>Vercel</strong> · Next.js · <strong>Supabase</strong> (Postgres, Auth, RLS) · Cloudflare Workers</div>
+        </div>
+        <div class="skills-row reveal">
+          <div class="skills-cat">Automatización y comunicación</div>
+          <div class="skills-items"><strong>WhatsApp Business API</strong> (Meta) · Webhooks · Plantillas de mensajes</div>
+        </div>
+        <div class="skills-row reveal">
+          <div class="skills-cat">Producto y diseño</div>
+          <div class="skills-items"><strong>Claude Code</strong></div>
+        </div>
+        <div class="skills-row reveal">
+          <div class="skills-cat">Datos y Analytics</div>
+          <div class="skills-items"><strong>Python</strong> (pandas, numpy) · <strong>SQL</strong> · Streamlit · Plotly · Firebase (Auth, Firestore) · FastAPI · Amplitude · Looker · Tableau</div>
+        </div>
+        <div class="skills-row reveal">
+          <div class="skills-cat">Herramientas empresariales</div>
+          <div class="skills-items"><strong>Salesforce</strong> · Pipedrive</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="education">
+    <div class="container">
+      <div class="section-label reveal">Formación</div>
+      <h2 class="reveal">Formación en Operations, <em>profundidad analítica</em>, certificación continua.</h2>
+      <div class="edu-list">
+        <div class="edu-item reveal">
+          <div class="edu-year">2025 — actualidad</div>
+          <div class="edu-body">
+            <div class="school">Berlin Professional School · HWR Berlin</div>
+            <div class="degree">MSc Business Management — <em>Digital Business Management</em></div>
+          </div>
+        </div>
+        <div class="edu-item reveal">
+          <div class="edu-year">01.2026 — 03.2026</div>
+          <div class="edu-body">
+            <div class="school">Ironhack · Berlin</div>
+            <div class="degree">Diploma, DevOps & Cloud Computing — <em>Pipelines CI/CD, Terraform, Docker, Kubernetes, AWS, Azure</em></div>
+          </div>
+        </div>
+        <div class="edu-item reveal">
+          <div class="edu-year">2019 — 2021</div>
+          <div class="edu-body">
+            <div class="school">Hochschule Rhein-Waal · Kleve</div>
+            <div class="degree">M.A. Sustainable Development Management — <em>Calificación 1.7</em></div>
+          </div>
+        </div>
+        <div class="edu-item reveal">
+          <div class="edu-year">2011 — 2015</div>
+          <div class="edu-body">
+            <div class="school">Universidad La Salle · Ciudad de México</div>
+            <div class="degree">B.Sc. International Business — <em>Intercambio Erasmus en la Hochschule Bremen</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="section contact" id="contact">
+      <div class="container inner">
+        <div class="section-label reveal">Contacto</div>
+        <h2 class="reveal">¿Te interesa <em>trabajar juntos</em>?</h2>
+        <p class="contact-sub reveal">Founder de Salas UG Advisory. Co-founder de Nexio Fleet. Abierto a conversaciones estratégicas con operadores, fundadores e inversores en movilidad y logística.</p>
+        <div class="contact-actions reveal">
+          <a href="/es/contact/" class="btn-primary">Iniciar una conversación <span>→</span></a>
+          <a href="mailto:hello@jorgeag.com?subject=Conversation" class="btn-secondary">hello@jorgeag.com</a>
+          <button class="btn-copy" onclick="copyEmail(this)"><span class="copy-label">Copiar</span><span class="copy-done">✓ Copiado</span></button>
+          <a href="https://www.linkedin.com/in/jorge-aguilar-ops/" target="_blank" rel="noopener" class="btn-secondary">Conectar en LinkedIn</a>
+          <a href="https://calendly.com/aguilarjorge-fhpf/30min" target="_blank" rel="noopener" class="btn-secondary">Agendar una llamada de 30 min</a>
+        </div>
+        <div class="contact-details">
+          <div class="contact-detail">
+            <span class="key">Directo</span>
+            <span class="val"><a href="mailto:hello@jorgeag.com?subject=Conversation">hello@jorgeag.com</a></span>
+          </div>
+          <div class="contact-detail">
+            <span class="key">LinkedIn</span>
+            <span class="val"><a href="https://www.linkedin.com/in/jorge-aguilar-ops/" target="_blank" rel="noopener">/in/jorge-aguilar-ops</a></span>
+          </div>
+          <div class="contact-detail">
+            <span class="key">Agenda</span>
+            <span class="val"><a href="https://calendly.com/aguilarjorge-fhpf/30min" target="_blank" rel="noopener">Agendar 30 min <span>↗</span></a></span>
+          </div>
+          <div class="contact-detail">
+            <span class="key">Credenciales</span>
+            <span class="val"><a href="https://drive.google.com/file/d/17s7xCyrMM8qRZtqPk7gZReJvZa7iSguF/view?usp=sharing" target="_blank" rel="noopener">Ver certificados <span>↗</span></a></span>
+          </div>
+          <div class="contact-detail">
+            <span class="key">Ubicación</span>
+            <span class="val">Berlín &middot; Trabajando en toda la región EMEA</span>
+          </div>
+          <div class="contact-detail">
+            <span class="key">Idiomas</span>
+            <span class="val">EN (C1) &middot; DE (C1) &middot; ES (nativo)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    </div>
+  </div>
 </main>
 
 <footer>
   <div class="container inner">
     <span>&copy; 2026 Jorge Aguilar</span>
-    <span>Berlin · EMEA &middot; <a href="/impressum/">Impressum</a> &middot; <a href="/datenschutz/">Datenschutz</a></span>
+    <span>Berlín · EMEA &middot; <a href="/impressum/">Impressum</a> &middot; <a href="/datenschutz/">Datenschutz</a></span>
   </div>
 </footer>
 
@@ -1308,6 +1433,34 @@
       setTimeout(() => btn.classList.remove('copied'), 2000);
     });
   }
+</script>
+
+
+<script>
+  /* Scrollspy del rail. Marca la seccion cuyo inicio ya paso bajo el nav
+     pegajoso; sin el, en una pagina de seis bloques largos el indice no dice
+     nunca donde esta la persona. */
+  (function () {
+    var links = [].slice.call(document.querySelectorAll('.hub-rail .rail-toc a'));
+    if (!links.length) return;
+    var targets = links.map(function (a) {
+      return document.getElementById(a.getAttribute('href').slice(1));
+    });
+    var ticking = false;
+    function sync() {
+      ticking = false;
+      var y = window.scrollY + 140, best = 0;
+      for (var i = 0; i < targets.length; i++) {
+        if (targets[i] && targets[i].offsetTop <= y) best = i;
+      }
+      links.forEach(function (a, i) { a.classList.toggle('is-active', i === best); });
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(sync); }
+    }, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+  })();
 </script>
 
 </body>
