@@ -360,7 +360,11 @@
     var title = el('h2', 'cc-title', T.title);
     var desc = el('p', 'cc-desc', T.desc);
     var link = el('a', 'cc-link', T.more);
-    link.href = '/datenschutz/#analytics';
+    /* El banner habla el idioma del visitante, asi que el enlace de detalles
+       lleva a la traduccion correspondiente. El aleman es el texto operativo
+       y las otras dos lo dicen en su primera linea. */
+    var POLICY = { en: '/privacy/#analytics', de: '/datenschutz/#analytics', es: '/es/privacidad/#analytics' };
+    link.href = POLICY[pickLang()] || POLICY.de;
     text.appendChild(title);
     text.appendChild(desc);
     text.appendChild(link);

@@ -224,7 +224,11 @@
   </url>
   <url>
     <loc>https://jorgeag.com/datenschutz/</loc>
-    <lastmod>2026-09-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jorgeag.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jorgeag.com/datenschutz/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jorgeag.com/es/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jorgeag.com/datenschutz/"/>
+    <lastmod>2026-09-27</lastmod>
     <priority>0.3</priority>
   </url>
   <url>
@@ -310,5 +314,23 @@
     <lastmod>2026-09-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jorgeag.com/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jorgeag.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jorgeag.com/datenschutz/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jorgeag.com/es/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jorgeag.com/datenschutz/"/>
+    <lastmod>2026-09-27</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://jorgeag.com/es/privacidad/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jorgeag.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jorgeag.com/datenschutz/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://jorgeag.com/es/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://jorgeag.com/datenschutz/"/>
+    <lastmod>2026-09-27</lastmod>
+    <priority>0.3</priority>
   </url>
 </urlset>
