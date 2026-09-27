@@ -643,21 +643,7 @@
   .layer .aflow .ab p{font-size:14.5px;line-height:1.7;color:var(--muted);margin-top:7px}
 
   /* Aviso de idioma en las versiones DE/ES mientras no esten traducidas */
-  .lang-note{
-    background:var(--surface-2);border:1px dashed var(--border);
-    border-radius:var(--radius);padding:32px 36px;
-  }
-  .lang-note > *{margin:0}
-  .lang-note-label{
-    display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--accent);
-  }
   .layer .lang-note h3,.lang-note h3{font-size:clamp(20px,2.2vw,26px);font-weight:800;letter-spacing:-.02em;margin-top:16px}
-  .lang-note p{font-size:15.5px;line-height:1.7;color:var(--muted);margin-top:14px;max-width:60ch}
-  .lang-note ul{margin:18px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
-  .lang-note li{position:relative;padding-left:24px;font-size:15px;line-height:1.6;color:var(--muted)}
-  .lang-note li::before{content:"—";position:absolute;left:0;top:0;color:var(--accent)}
-  .lang-note .btn-back{margin-top:26px}
 
   /* Los bloques nuevos viven tambien DENTRO de los acordeones, donde ya
      mandaban .pillar-content ul (flex en columna) y .pillar-content li
@@ -755,7 +741,61 @@
   }
   /* DE y ES solo tienen la capa 01 y ningun indice: sin rail que llene el
      hueco derecho, la columna se centra en vez de quedarse pegada al margen. */
-  .col,.stack{margin-left:auto;margin-right:auto}
+
+  /* La barra interior crece a cuatro destinos: por debajo de 1100px el
+     back-link mas los enlaces mas las acciones ya no caben en una linea, y
+     ahi el menu de hamburguesa toma el relevo. */
+  @media (max-width:1100px){ .nav-pagelink{display:none;} }
+  .nav-pagelink.is-active{color:var(--accent);}
+  /* ── AREAS TACTILES ─────────────────────────────────────────────────────
+     44x44 es el minimo de iOS HIG y de WCAG 2.5.8. Se amplia la zona de
+     toque sin tocar el tamano visible: min-height mas centrado vertical, y
+     en el cursor del hero un pseudoelemento que extiende el area. */
+  .nav-toggle{width:44px;height:44px;}
+  .back-link,.nav-brand{min-height:44px;display:inline-flex;align-items:center;}
+  .nav-pagelink{min-height:44px;display:inline-flex;align-items:center;}
+  .nav-pagelink{min-width:44px;justify-content:center;}
+  .work-link{min-height:44px;display:inline-flex;align-items:center;}
+  .lang-switch a{min-height:36px;display:inline-flex;align-items:center;}
+  .site-footer a,footer a{min-height:44px;display:inline-flex;align-items:center;}
+  /* El cursor parpadeante mide 4x10 a proposito; solo crece su zona de toque. */
+  .hero-cursor{position:relative;}
+  .hero-cursor::after{content:"";position:absolute;top:50%;left:50%;
+    width:44px;height:44px;transform:translate(-50%,-50%);}
+  @media (max-width:980px){
+    .hub-toc-mobile .rail-toc a{min-height:44px;}
+  }
+  .contact-detail .val a{min-height:44px;display:inline-flex;align-items:center;}
+  /* En un dispositivo tactil las pildoras de idioma llegan a 44; con raton se
+     quedan compactas, que es donde el diseno las quiere. */
+  @media (pointer:coarse){
+    .lang-switch a{min-width:44px;min-height:44px;justify-content:center;}
+  }
+
+  /* Retícula del manual: indice fijo a la izquierda, capas a la derecha.
+     Misma estructura que /about/ y que los case studies. */
+  .lf-layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:64px;align-items:start;margin-top:56px}
+  .lf-rail{position:sticky;top:96px;min-width:0}
+  .lf-rail .rail-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);margin:0 0 16px;display:block;
+  }
+  .rail-toc{display:flex;flex-direction:column;gap:0;margin:0;padding:0;list-style:none;border-top:1px solid var(--border)}
+  .rail-toc a{
+    display:flex;align-items:baseline;gap:12px;padding:11px 0;
+    border-bottom:1px solid var(--border);text-decoration:none;
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);transition:color .2s ease;
+  }
+  .rail-toc a:hover,.rail-toc a.is-active{color:var(--accent)}
+  .rail-toc .n{color:var(--accent);opacity:.65;flex:none}
+  .lf-layout .stack{max-width:none;margin-top:0}
+  /* El indice en linea sigue existiendo para movil, donde no hay rail. */
+  @media (min-width:981px){ .toc-wrap{display:none} }
+  @media (max-width:980px){
+    .lf-layout{grid-template-columns:minmax(0,1fr);gap:0;margin-top:40px}
+    .lf-rail{display:none}
+  }
   /* La barra interior crece a cuatro destinos: por debajo de 1100px el
      back-link mas los enlaces mas las acciones ya no caben en una linea, y
      ahi el menu de hamburguesa toma el relevo. */
@@ -856,7 +896,21 @@
     <p class="attribution reveal">La capa 01 adapta el trabajo de <a href="https://www.acquisition.com/team/bio-leila-2" target="_blank" rel="noopener">Leila Hormozi</a> &mdash; operating partner y CEO cuya obra sobre liderazgo es la que más se acerca a mi propia forma de entender cómo se conduce a las personas en contextos de ambigüedad. Las capas 02 a 07 son propias, construidas dirigiendo equipos de service delivery y operaciones.</p>
   </header>
 
-  <div class="stack">
+  <div class="lf-layout">
+    <aside class="lf-rail">
+      <span class="rail-label">Las siete capas</span>
+      <ul class="rail-toc">
+        <li><a href="#layer-01"><span class="n">01</span> Leadership Principles</a></li>
+        <li><a href="#layer-02"><span class="n">02</span> People Management</a></li>
+        <li><a href="#layer-03"><span class="n">03</span> Execution Management</a></li>
+        <li><a href="#layer-04"><span class="n">04</span> Operational Improvement</a></li>
+        <li><a href="#layer-05"><span class="n">05</span> Service &amp; Cross-Functional Delivery</a></li>
+        <li><a href="#layer-06"><span class="n">06</span> Working Principles</a></li>
+        <li><a href="#layer-07"><span class="n">07</span> How It All Connects</a></li>
+      </ul>
+    </aside>
+
+    <div class="stack">
 
     <section class="card statement reveal">
       <p class="statement-label">Filosofía central</p>
@@ -1048,19 +1102,969 @@
       <p class="attrib-note reveal">Los cinco principios de liderazgo anteriores están basados en el framework de liderazgo de Leila Hormozi, adaptados aquí a través de experiencia operativa en ecosistemas marketplace (Bliq, Bolt, Wolt) y trabajo en infraestructura compliance-first (Nexio Fleet, Salas UG). Las descripciones y aplicaciones reflejan mi propia interpretación y práctica.</p>
     </section>
 
-    <section class="lang-note reveal">
-      <span class="lang-note-label">Capas 02 &ndash; 07</span>
-      <h3>Available in English &mdash; traducción próximamente</h3>
-      <p>Las seis capas restantes de este manual están disponibles por ahora solo en inglés. La versión en español llegará pronto.</p>
-      <ul>
-        <li><b>02 &mdash; People Management:</b> Direction, Support, Accountability, Development &mdash; incluyendo coaching, feedback correctivo y el diagnóstico Skill / Will / System</li>
-        <li><b>03 &mdash; Execution Management:</b> Translate, Assign, Track, Act</li>
-        <li><b>04 &mdash; Operational Improvement:</b> Diagnose, Prioritize, Build, Own &mdash; incluyendo las lentes de priorización operativa y de negocio</li>
-        <li><b>05 &mdash; Service &amp; Cross-Functional Delivery:</b> responsabilidad sobre la entrega, customer performance, liderazgo multidisciplinario, fluidez técnica, gestión de incidentes</li>
-        <li><b>06 &mdash; Working Principles:</b> los doce principios de trabajo transversales</li>
-        <li><b>07 &mdash; How It All Connects:</b> el modelo operativo por capas y el Applied Management Flow</li>
+<!-- ══ 02 — PEOPLE MANAGEMENT ══════════════════════════════════════ -->
+    <section class="layer" id="layer-02">
+      <div class="layer-head reveal">
+        <p class="layer-num">02 &mdash; People Management</p>
+        <h2>Cómo construyo el desempeño del equipo</h2>
+        <p class="layer-sub">Direction, Support, Accountability, Development.</p>
+        <p class="layer-intro">El desempeño no es un rasgo de carácter. Es el producto de cuatro condiciones que controla quien dirige: si las expectativas estaban claras, si la persona tenía lo que necesitaba, si se dio seguimiento a los compromisos y si se permitió que la capacidad creciera. Cuando el desempeño cae, suele faltar una de las cuatro.</p>
+      </div>
+
+      <ul class="flow reveal">
+        <li><span class="step">Direction</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Support</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Accountability</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Development</span><span class="arrow">&#9656;</span></li>
       </ul>
-      <a href="/leadership-framework/" class="btn-back" hreflang="en">Leer en inglés <span>&rarr;</span></a>
+
+      <div class="pillars">
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="pm1">
+            <span class="pillar-num">01</span>
+            <span>
+              <span class="pillar-name">Direction</span>
+              <span class="pillar-tagline">Dar claridad antes de juzgar el desempeño.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="pm1">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Definir expectativas, prioridades, responsabilidades y cómo se medirá el éxito &mdash; antes de que empiece el trabajo, no cuando ya salió mal.</p>
+                <p class="how-label">En la práctica</p>
+                <ul>
+                  <li>Fijar objetivos claros y resultados esperados</li>
+                  <li>Definir KPIs o criterios de éxito observables</li>
+                  <li>Aclarar derechos de decisión y responsabilidades</li>
+                  <li>Conectar el trabajo individual con los objetivos del equipo</li>
+                </ul>
+                <div class="principle">
+                  <span class="plabel">Principio de trabajo</span>
+                  <p>&ldquo;No se puede exigir cuentas con justicia por una expectativa que nunca estuvo clara.&rdquo;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="pm2">
+            <span class="pillar-num">02</span>
+            <span>
+              <span class="pillar-name">Support</span>
+              <span class="pillar-tagline">Crear las condiciones para rendir.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="pm2">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Entender qué necesita la persona para tener éxito y quitar las barreras que no le corresponde resolver.</p>
+                <p class="how-label">En la práctica</p>
+                <ul>
+                  <li>1:1 periódicos</li>
+                  <li>Entender la motivación y los objetivos personales</li>
+                  <li>Quitar bloqueos</li>
+                  <li>Crear seguridad psicológica para que los problemas salgan a la luz</li>
+                  <li>Dar autonomía sobre cómo se alcanzan los resultados</li>
+                </ul>
+                <p class="xref"><b>Referencia cruzada:</b> <a href="#practices">Coaching</a> es el mecanismo central de Support &mdash; así el apoyo se convierte en capacidad y no en rescate.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="pm3">
+            <span class="pillar-num">03</span>
+            <span>
+              <span class="pillar-name">Accountability</span>
+              <span class="pillar-tagline">Convertir expectativas en compromisos.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="pm3">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">El desempeño exige seguimiento, no solo claridad y apoyo. Accountability es lo que da sentido a las dos primeras.</p>
+                <p class="how-label">En la práctica</p>
+                <ul>
+                  <li>Revisar los compromisos de forma consistente</li>
+                  <li>Reconocer cuando los compromisos se cumplen</li>
+                  <li>Abordar las brechas temprano</li>
+                  <li>Usar evidencia en lugar de suposiciones</li>
+                  <li>Acordar acciones correctivas y dar seguimiento</li>
+                </ul>
+                <p class="xref"><b>Referencia cruzada:</b> <a href="#practices">Corrective Feedback</a> estructura la conversación de seguimiento para que la brecha se convierta en un próximo paso acordado.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="pm4">
+            <span class="pillar-num">04</span>
+            <span>
+              <span class="pillar-name">Development</span>
+              <span class="pillar-tagline">Construir capacidad y autonomía.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="pm4">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Development no es simplemente &ldquo;mandar gente a capacitación&rdquo;. El objetivo es aumentar progresivamente la capacidad de la persona para resolver problemas y decidir por sí misma.</p>
+                <p class="how-label">En la práctica</p>
+                <ul>
+                  <li>Identificar brechas de capacidad</li>
+                  <li>Acompañar con coaching en problemas reales</li>
+                  <li>Entregar responsabilidad cada vez mayor</li>
+                  <li>Delegar decisiones, no solo tareas</li>
+                  <li>Revisar las decisiones y su razonamiento</li>
+                  <li>Crear oportunidades para practicar nuevas capacidades</li>
+                </ul>
+                <div class="principle">
+                  <span class="plabel">Principio de trabajo</span>
+                  <p>&ldquo;¿Puede esta persona asumir más sin que yo tenga que intervenir todo el tiempo?&rdquo;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="subhead reveal" id="practices">
+        <p class="sub-label">Management Practices</p>
+        <h3>Las herramientas dentro de People Management</h3>
+        <p>Tres instrumentos concretos que se aplican dentro del sistema anterior. Cada uno resuelve un problema específico: cómo construir criterio, cómo llevar una conversación de desempeño y cómo saber si siquiera es un problema de personas.</p>
+      </div>
+
+      <div class="pillars">
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="mp1">
+            <span class="pillar-num">A</span>
+            <span>
+              <span class="pillar-name">Coaching</span>
+              <span class="pillar-tagline">Construir criterio, no dependencia.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="mp1">
+            <div class="inner">
+              <div class="pillar-content">
+                <ul class="flow is-tight">
+                  <li><span class="step">Understand</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Question</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Challenge</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Commit</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Review</span><span class="arrow">&#9656;</span></li>
+                </ul>
+                <ul class="steps">
+                  <li><span class="sn">01</span><span><span class="st">Understand</span><span class="sd">Entender la perspectiva, el contexto y el razonamiento de la persona antes de aconsejar.</span></span></li>
+                  <li><span class="sn">02</span><span><span class="st">Question</span><span class="sd">Usar preguntas que le ayuden a examinar el problema, los supuestos, las opciones y las consecuencias. <q>¿Qué crees que está causando esto?</q> <q>¿Qué opciones ves?</q> <q>¿Qué harías si yo no estuviera disponible?</q></span></span></li>
+                  <li><span class="sn">03</span><span><span class="st">Challenge</span><span class="sd">Poner a prueba su razonamiento. Sacar a la luz puntos ciegos y cuestionar supuestos sin quitarle el problema de las manos.</span></span></li>
+                  <li><span class="sn">04</span><span><span class="st">Commit</span><span class="sd">Convertir la conversación en una decisión o en una acción concreta que la persona asume.</span></span></li>
+                  <li><span class="sn">05</span><span><span class="st">Review</span><span class="sd">Volver sobre la decisión. Evaluar el resultado y el razonamiento: qué pasó, qué aprendiste, qué harías distinto.</span></span></li>
+                </ul>
+                <div class="principle">
+                  <span class="plabel">Principio de trabajo</span>
+                  <p>&ldquo;El coaching construye criterio, no dependencia.&rdquo;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="mp2">
+            <span class="pillar-num">B</span>
+            <span>
+              <span class="pillar-name">Corrective Feedback</span>
+              <span class="pillar-tagline">Estructurar la conversación de desempeño.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="mp2">
+            <div class="inner">
+              <div class="pillar-content">
+                <ul class="flow is-tight">
+                  <li><span class="step">Observe</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Explain</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Listen</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Agree</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Follow up</span><span class="arrow">&#9656;</span></li>
+                </ul>
+                <ul class="steps">
+                  <li><span class="sn">01</span><span><span class="st">Observe</span><span class="sd">Enunciar el comportamiento o la brecha de desempeño con hechos, sin atribuir intenciones.</span></span></li>
+                  <li><span class="sn">02</span><span><span class="st">Explain</span><span class="sd">Describir el impacto y por qué el asunto importa.</span></span></li>
+                  <li><span class="sn">03</span><span><span class="st">Listen</span><span class="sd">Escuchar la perspectiva de la persona y diagnosticar la causa &mdash; el punto natural para aplicar Skill / Will / System.</span></span></li>
+                  <li><span class="sn">04</span><span><span class="st">Agree</span><span class="sd">Definir la acción correctiva, la expectativa, el apoyo necesario, quién responde y el plazo.</span></span></li>
+                  <li><span class="sn">05</span><span><span class="st">Follow up</span><span class="sd">Volver sobre el compromiso. Sin este paso la conversación fue información, no gestión.</span></span></li>
+                </ul>
+                <div class="principle">
+                  <span class="plabel">Principio de trabajo</span>
+                  <p>&ldquo;Un feedback sin próximo paso acordado está incompleto.&rdquo;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="mp3">
+            <span class="pillar-num">C</span>
+            <span>
+              <span class="pillar-name">Performance Diagnosis</span>
+              <span class="pillar-tagline">Skill, Will o System &mdash; averiguar cuál antes de actuar.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="mp3">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">El mismo síntoma &mdash; plazos incumplidos, fallas de calidad, escalaciones &mdash; tiene tres causas muy distintas, y cada una pide una respuesta diferente. Aplicar la equivocada daña a la persona y deja el problema donde estaba.</p>
+                <div class="grid-3">
+                  <div class="tile">
+                    <span class="tile-kicker">Skill</span>
+                    <h4>Todavía no puede</h4>
+                    <p>La capacidad no está. La persona lo intenta y el resultado sigue quedándose corto.</p>
+                    <p class="tile-resp"><b>Respuesta:</b> formación, coaching, metodología, apoyo temporal.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Will</span>
+                    <h4>La motivación es el límite</h4>
+                    <p>Motivación, confianza o asunción de responsabilidad son la restricción, no la capacidad.</p>
+                    <p class="tile-resp"><b>Respuesta:</b> motivación, estándares, incentivos, accountability.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">System</span>
+                    <h4>El entorno lo impide</h4>
+                    <p>Una persona capaz y motivada fracasaría igual en este proceso.</p>
+                    <p class="tile-resp"><b>Respuesta:</b> corregir el proceso, la asignación de recursos o el problema estructural.</p>
+                  </div>
+                </div>
+                <div class="principle">
+                  <span class="plabel">Principio de trabajo</span>
+                  <p>&ldquo;El bajo desempeño no es automáticamente un problema de personas. Diagnostica antes de actuar.&rdquo;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ══ 03 — EXECUTION MANAGEMENT ═══════════════════════════════════ -->
+    <section class="layer" id="layer-03">
+      <div class="layer-head reveal">
+        <p class="layer-num">03 &mdash; Execution Management</p>
+        <h2>Cómo convierto objetivos en ejecución</h2>
+        <p class="layer-sub">Translate, Assign, Track, Act.</p>
+        <p class="layer-intro">La estrategia falla en el hueco entre un objetivo y una persona con nombre haciendo algo medible al respecto un martes. Esta capa cierra ese hueco: convierte la intención en resultados, los resultados en responsabilidad, la responsabilidad en avance visible y las señales de avance en intervención.</p>
+      </div>
+
+      <ul class="flow reveal">
+        <li><span class="step">Translate</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Assign</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Track</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Act</span><span class="arrow">&#9656;</span></li>
+      </ul>
+
+      <div class="pillars">
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="ex1">
+            <span class="pillar-num">01</span>
+            <span>
+              <span class="pillar-name">Translate</span>
+              <span class="pillar-tagline">Estrategia &rarr; objetivos claros.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="ex1">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Descomponer objetivos estratégicos en resultados operativos medibles.</p>
+                <div class="principle is-ask">
+                  <span class="plabel">Pregunta</span>
+                  <p>¿Qué tiene que cambiar exactamente?</p>
+                </div>
+                <p class="how-label">En la práctica</p>
+                <ul>
+                  <li>Convertir objetivos amplios en resultados que la operación realmente entienda</li>
+                  <li>Definir una dirección medible &mdash; &ldquo;reducir el tiempo de onboarding sin perder calidad de activación&rdquo; en vez de &ldquo;mejorar el Service Delivery&rdquo;</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="ex2">
+            <span class="pillar-num">02</span>
+            <span>
+              <span class="pillar-name">Assign</span>
+              <span class="pillar-tagline">Objetivos &rarr; responsabilidad.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="ex2">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Convertir los resultados en compromisos explícitos.</p>
+                <div class="principle is-ask">
+                  <span class="plabel">Pregunta</span>
+                  <p>¿Quién responde por el resultado y qué dependencias existen?</p>
+                </div>
+                <p class="how-label">En la práctica</p>
+                <ul>
+                  <li>Todo compromiso serio necesita una persona responsable</li>
+                  <li>Aclarar qué controla y de qué depende</li>
+                  <li>La responsabilidad compartida sin responsable principal se vuelve ninguna responsabilidad</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="ex3">
+            <span class="pillar-num">03</span>
+            <span>
+              <span class="pillar-name">Track</span>
+              <span class="pillar-tagline">Responsabilidad &rarr; avance visible.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="ex3">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Crear visibilidad con hitos, KPIs, dashboards o revisiones operativas.</p>
+                <div class="principle is-ask">
+                  <span class="plabel">Pregunta</span>
+                  <p>¿Nos estamos moviendo hacia el resultado?</p>
+                </div>
+                <p class="how-label">En la práctica</p>
+                <ul>
+                  <li>Dashboards, KPIs, hitos, revisiones semanales</li>
+                  <li>El propósito es la detección temprana y la intervención informada</li>
+                  <li>No es microgestión &mdash; el seguimiento existe para permitir actuar, no para reportar estado</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="ex4">
+            <span class="pillar-num">04</span>
+            <span>
+              <span class="pillar-name">Act</span>
+              <span class="pillar-tagline">Avance &rarr; intervención.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="ex4">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">No basta con reportar la desviación. Intervenir.</p>
+                <div class="principle is-ask">
+                  <span class="plabel">Pregunta</span>
+                  <p>¿Qué tiene que pasar ahora?</p>
+                </div>
+                <p class="how-label">En la práctica</p>
+                <ul>
+                  <li>Quitar bloqueos, cambiar prioridades, reasignar recursos</li>
+                  <li>Acompañar, escalar, ajustar plazos o rediseñar el mecanismo</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="principle reveal">
+        <span class="plabel">Principio de trabajo</span>
+        <p>&ldquo;See &rarr; Own &rarr; Act.&rdquo;</p>
+      </div>
+    </section>
+
+    <!-- ══ 04 — OPERATIONAL IMPROVEMENT ════════════════════════════════ -->
+    <section class="layer" id="layer-04">
+      <div class="layer-head reveal">
+        <p class="layer-num">04 &mdash; Operational Improvement</p>
+        <h2>Cómo mejoro los sistemas</h2>
+        <p class="layer-sub">Diagnose, Prioritize, Build, Own.</p>
+        <p class="layer-intro">Execution Management hace que el sistema actual entregue. Esta capa mejora el sistema mismo, para que el mismo problema deje de llegar cada semana. Es la diferencia entre resolver excepciones y eliminar las condiciones que las producen.</p>
+      </div>
+
+      <ul class="flow reveal">
+        <li><span class="step">Diagnose</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Prioritize</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Build</span><span class="arrow">&#9656;</span></li>
+        <li><span class="step">Own</span><span class="arrow">&#9656;</span></li>
+      </ul>
+
+      <div class="pillars">
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="oi1">
+            <span class="pillar-num">01</span>
+            <span>
+              <span class="pillar-name">Diagnose</span>
+              <span class="pillar-tagline">¿Dónde se rompe?</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="oi1">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Mapear el proceso, escuchar a quienes están dentro, reunir evidencia, fijar una línea base y separar síntomas de causas raíz antes de proponer nada.</p>
+                <p class="how-label">En la práctica</p>
+                <ul>
+                  <li>Escuchar a clientes y a quienes están en primera línea</li>
+                  <li>Mapear el proceso o el funnel de punta a punta</li>
+                  <li>Reunir hechos y datos operativos</li>
+                  <li>Localizar cuellos de botella, puntos de fallo y problemas de traspaso</li>
+                  <li>Separar síntomas de causas raíz</li>
+                  <li>Fijar una línea base medible antes de cambiar el sistema</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="oi2">
+            <span class="pillar-num">02</span>
+            <span>
+              <span class="pillar-name">Prioritize</span>
+              <span class="pillar-tagline">¿Qué pesa más?</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="oi2">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Un diagnóstico suele producir más problemas que capacidad. La lente de decisión es <strong>Impact &times; Frequency &times; Urgency</strong> &mdash; cuánto mueve el resultado, con qué frecuencia ocurre el problema y con qué rapidez hay que atenderlo.</p>
+                <p class="how-label">Categorías de KPI operativos</p>
+                <div class="grid-4">
+                  <div class="tile">
+                    <span class="tile-kicker">Velocidad</span>
+                    <h4>Duración del proceso</h4>
+                    <p>Tiempo de onboarding, de respuesta, de resolución.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Fiabilidad</span>
+                    <h4>Consistencia</h4>
+                    <p>Cumplimiento de SLA, tasa de entrega, disponibilidad.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Calidad</span>
+                    <h4>Corrección</h4>
+                    <p>Tasa de error, retrabajo, first-time-right.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Carga operativa</span>
+                    <h4>Esfuerzo humano</h4>
+                    <p>Intervenciones manuales, tickets, escalaciones.</p>
+                  </div>
+                </div>
+                <p class="how-label">Lente de negocio</p>
+                <p class="why">El movimiento operativo solo cuenta si llega al negocio. Estos son los resultados a los que deberían servir las cuatro categorías anteriores.</p>
+                <div class="grid-4">
+                  <div class="tile">
+                    <span class="tile-kicker">Retención</span>
+                    <h4>Cuánto tiempo permanecen los clientes</h4>
+                    <p>Bajas, renovación, duración del contrato.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Satisfacción del cliente</span>
+                    <h4>Cómo se percibe la experiencia</h4>
+                    <p>Quejas, escalaciones, señal de encuestas.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Costo de servicio</span>
+                    <h4>Cuánto cuesta operativamente cada cliente</h4>
+                    <p>Horas de soporte, gestión manual, retrabajo.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Economía unitaria</span>
+                    <h4>Margen de contribución por unidad</h4>
+                    <p>Margen por viaje, por pedido, por cuenta.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Escalabilidad</span>
+                    <h4>Crecer sin degradar</h4>
+                    <p>Si el volumen puede duplicarse sin que el sistema ceda.</p>
+                  </div>
+                </div>
+                <div class="example">
+                  <span class="example-label">Ejemplo 01</span>
+                  <ul class="chain">
+                    <li>Excepciones manuales repetidas</li>
+                    <li>Mayor carga operativa, resolución más lenta</li>
+                    <li>Mayor costo de servicio</li>
+                    <li>Presión sobre la economía unitaria</li>
+                  </ul>
+                </div>
+                <div class="example">
+                  <span class="example-label">Ejemplo 02</span>
+                  <ul class="chain">
+                    <li>Proceso de activación deficiente</li>
+                    <li>Menor fiabilidad y calidad</li>
+                    <li>Peor experiencia del cliente</li>
+                    <li>Potencialmente menor retención</li>
+                  </ul>
+                </div>
+                <p class="xref">En operaciones es fácil suponer que un arreglo operativo producirá mejor retención o mejores números. En realidad esa conexión hay que evidenciarla, no asumirla. Priorizamos sabiendo que movemos un indicador operativo que <b>podría</b> afectar un resultado de negocio &mdash; y lo decimos así hasta que los datos digan otra cosa.</p>
+                <div class="principle">
+                  <span class="plabel">Principio de trabajo</span>
+                  <p>&ldquo;Observa primero el impacto operativo. Investiga el impacto de negocio con cuidado &mdash; la correlación no es causalidad. El valor del framework está en la precisión sobre lo que puedes afirmar.&rdquo;</p>
+                </div>
+                <div class="principle is-ask">
+                  <span class="plabel">Pregunta de priorización</span>
+                  <p>Si arreglamos esto, ¿cuánto mueve el resultado?</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="oi3">
+            <span class="pillar-num">03</span>
+            <span>
+              <span class="pillar-name">Build</span>
+              <span class="pillar-tagline">¿Qué lo arregla?</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="oi3">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Diseñar el mecanismo que cambia el resultado. Un mecanismo rara vez es solo software.</p>
+                <p class="how-label">Los mecanismos disponibles</p>
+                <ul>
+                  <li>Procesos y SOPs</li>
+                  <li>Playbooks y reglas de decisión</li>
+                  <li>Reglas de responsabilidad y escalación</li>
+                  <li>Dashboards y herramientas operativas</li>
+                  <li>Automatización</li>
+                  <li>Ritmos de reunión y revisión</li>
+                  <li>SLAs y estándares de servicio</li>
+                  <li>Formación y habilitación</li>
+                  <li>Protocolos de comunicación con el cliente</li>
+                </ul>
+                <div class="principle is-ask">
+                  <span class="plabel">Objetivo</span>
+                  <p>Transformar una intuición en un mecanismo que pueda ejecutarse de forma consistente, por alguien que no sea yo.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="oi4">
+            <span class="pillar-num">04</span>
+            <span>
+              <span class="pillar-name">Own</span>
+              <span class="pillar-tagline">¿Está funcionando?</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="oi4">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Implementar no es terminar. Un proceso no está implementado con éxito hasta que se monitorea, se adopta y alguien lo asume.</p>
+                <p class="how-label">En la práctica</p>
+                <ul>
+                  <li>Monitorear KPIs y excepciones</li>
+                  <li>Revisar el desempeño con una cadencia definida</li>
+                  <li>Hacer cumplir los estándares acordados</li>
+                  <li>Dar seguimiento a los compromisos</li>
+                  <li>Acompañar donde la ejecución sea débil</li>
+                  <li>Ajustar cuando los supuestos resulten equivocados</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="principle reveal">
+        <span class="plabel">Principio de trabajo</span>
+        <p>&ldquo;Diagnostica dónde se rompe. Prioriza lo que más pesa. Construye lo que lo arregla. Asúmelo para que siga funcionando.&rdquo;</p>
+      </div>
+    </section>
+
+    <!-- ══ 05 — SERVICE & CROSS-FUNCTIONAL DELIVERY ════════════════════ -->
+    <section class="layer" id="layer-05">
+      <div class="layer-head reveal">
+        <p class="layer-num">05 &mdash; Service &amp; Cross-Functional Delivery</p>
+        <h2>Las disciplinas aplicadas</h2>
+        <p class="layer-sub">Donde los frameworks se encuentran con un resultado real para el cliente.</p>
+        <p class="layer-intro">Aquí se vuelve visible todo lo anterior: quien firmó un contrato tiene que llegar a un servicio que funcione, a través de equipos que no gestiono, por sistemas que no son míos, con incidentes que no se agendan solos. Estas son las seis disciplinas que lo hacen repetible.</p>
+      </div>
+
+      <div class="pillars">
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="sd1">
+            <span class="pillar-num">01</span>
+            <span>
+              <span class="pillar-name">Responsabilidad sobre la entrega del servicio</span>
+              <span class="pillar-tagline">Del compromiso comercial a un servicio que de verdad funciona.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="sd1">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Service Delivery es la disciplina operativa de llevar a un cliente desde el compromiso comercial hasta el servicio entregado con éxito. Es bastante más amplio que atender tickets.</p>
+                <p class="how-label">Ciclo de vida típico</p>
+                <ul class="flow is-tight">
+                  <li><span class="step">Contrato firmado</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Onboarding</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Gestión de pedidos</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Logística</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Configuración técnica</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Activación</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Go-live</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Traspaso limpio</span><span class="arrow">&#9656;</span></li>
+                </ul>
+                <p class="why">Asumir la entrega significa asegurar que el sistema siga avanzando y que nada importante quede sin dueño entre dos de esas etapas.</p>
+                <div class="principle">
+                  <span class="plabel">Pregunta de liderazgo</span>
+                  <p>&ldquo;¿Qué tiene que pasar para que este cliente llegue a un go-live exitoso, y quién responde por cada dependencia?&rdquo;</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="sd2">
+            <span class="pillar-num">02</span>
+            <span>
+              <span class="pillar-name">Customer Performance</span>
+              <span class="pillar-tagline">La calidad del recorrido, no solo el resultado.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="sd2">
+            <div class="inner">
+              <div class="pillar-content">
+                <ul class="flow is-tight">
+                  <li><span class="step">Promise</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Measure</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Communicate</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Improve</span><span class="arrow">&#9656;</span></li>
+                </ul>
+                <ul class="steps">
+                  <li><span class="sn">01</span><span><span class="st">Promise</span><span class="sd">Fijar una línea base clara: alcance, plazos, SLA, responsabilidades.</span></span></li>
+                  <li><span class="sn">02</span><span><span class="st">Measure</span><span class="sd">Comparar la entrega real con lo prometido &mdash; no con una impresión general de cómo fue.</span></span></li>
+                  <li><span class="sn">03</span><span><span class="st">Communicate</span><span class="sd">Transparencia operativa. Los clientes no deberían tener que perseguir a nadie para saber el estado.</span></span></li>
+                  <li><span class="sn">04</span><span><span class="st">Improve</span><span class="sd">Los datos de desempeño alimentan la mejora del proceso &mdash; aquí se vuelve a Operational Improvement.</span></span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="sd3">
+            <span class="pillar-num">03</span>
+            <span>
+              <span class="pillar-name">Liderazgo multidisciplinario</span>
+              <span class="pillar-tagline">Alineación sin autoridad directa.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="sd3">
+            <div class="inner">
+              <div class="pillar-content">
+                <p class="why">Service Delivery depende de Engineering, Product, Customer Success, Support, Logística y socios externos. Quien lidera responde por el resultado sin autoridad jerárquica sobre la mayoría de los que contribuyen.</p>
+                <p class="how-label">En la práctica</p>
+                <ul>
+                  <li>Establecer un resultado compartido</li>
+                  <li>Mapear dependencias y puntos de decisión</li>
+                  <li>Aclarar la responsabilidad entre funciones</li>
+                  <li>Alinear prioridades y plazos</li>
+                  <li>Sacar a la luz los bloqueos y quitarlos</li>
+                  <li>Escalar cuando la coordinación local no alcanza</li>
+                  <li>Impulsar decisiones y cierre</li>
+                </ul>
+                <div class="grid-2">
+                  <div class="tile">
+                    <span class="tile-kicker">People Management</span>
+                    <h4>&ldquo;Yo gestiono a la persona.&rdquo;</h4>
+                    <p>Direction, Support, Accountability y Development para alguien que me reporta.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Liderazgo multidisciplinario</span>
+                    <h4>&ldquo;Yo respondo por el resultado.&rdquo;</h4>
+                    <p>Responsabilidad por un resultado que entregan personas que no gestiono.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="sd4">
+            <span class="pillar-num">04</span>
+            <span>
+              <span class="pillar-name">Fluidez técnica para quien dirige operaciones</span>
+              <span class="pillar-tagline">Profundidad suficiente para coordinar la decisión.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="sd4">
+            <div class="inner">
+              <div class="pillar-content">
+                <ul class="flow is-tight">
+                  <li><span class="step">Understand</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Discuss</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Translate</span><span class="arrow">&#9656;</span></li>
+                </ul>
+                <ul class="steps">
+                  <li><span class="sn">01</span><span><span class="st">Understand</span><span class="sd">Conocer el sistema funcionalmente: qué hace, sus componentes, sus dependencias y cómo se comporta cuando falla.</span></span></li>
+                  <li><span class="sn">02</span><span><span class="st">Discuss</span><span class="sd">Sostener conversaciones de fondo con ingeniería sobre APIs, integraciones, autenticación y dependencias.</span></span></li>
+                  <li><span class="sn">03</span><span><span class="st">Translate</span><span class="sd">Traducir restricciones técnicas en decisiones operativas sobre las que el negocio pueda actuar.</span></span></li>
+                </ul>
+                <p class="xref">No se trata de escribir código. Se trata de entender el sistema lo bastante bien como para que la realidad técnica y las decisiones operativas sigan conectadas.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="sd5">
+            <span class="pillar-num">05</span>
+            <span>
+              <span class="pillar-name">Gestión de incidentes</span>
+              <span class="pillar-tagline">Coordinación de alta severidad, y el paso de reactivo a proactivo.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="sd5">
+            <div class="inner">
+              <div class="pillar-content">
+                <ul class="flow is-tight">
+                  <li><span class="step">Detect &amp; assess</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Bring the right people</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Map responsibilities &amp; deadlines</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Communicate</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Resolve</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Learn</span><span class="arrow">&#9656;</span></li>
+                </ul>
+                <div class="principle">
+                  <span class="plabel">Principio de trabajo</span>
+                  <p>&ldquo;Durante un incidente la incertidumbre puede ser inevitable. El silencio no lo es.&rdquo;</p>
+                </div>
+                <div class="grid-2">
+                  <div class="tile">
+                    <span class="tile-kicker">Reactivo</span>
+                    <h4>Reportado por el cliente</h4>
+                    <p>Receive &rarr; Assess &rarr; Coordinate &rarr; Communicate &rarr; Resolve.</p>
+                  </div>
+                  <div class="tile">
+                    <span class="tile-kicker">Proactivo</span>
+                    <h4>Guiado por el monitoreo</h4>
+                    <p>Monitor &rarr; Detect &rarr; Act, antes de que el cliente lo note.</p>
+                  </div>
+                </div>
+                <p class="xref">Un Service Delivery maduro depende menos de que sean los clientes quienes hagan de sistema de monitoreo. Cada incidente que reporta primero un cliente es una brecha de detección, no solo una brecha del producto.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="pillar reveal">
+          <button class="pillar-trigger" aria-expanded="false" aria-controls="sd6">
+            <span class="pillar-num">06</span>
+            <span>
+              <span class="pillar-name">Gestión de configuraciones externas</span>
+              <span class="pillar-tagline">Cuando la dependencia vive fuera de la empresa.</span>
+            </span>
+            <span class="pillar-toggle"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+          </button>
+          <div class="pillar-body" id="sd6">
+            <div class="inner">
+              <div class="pillar-content">
+                <ul class="flow is-tight">
+                  <li><span class="step">Receive</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Update</span><span class="arrow">&#9656;</span></li>
+                  <li><span class="step">Verify</span><span class="arrow">&#9656;</span></li>
+                </ul>
+                <p class="why">Los servicios técnicos dependen de operadores y APIs externos. Cuando una parte externa cambia un parámetro, los sistemas internos tienen que reflejar el cambio &mdash; y alguien tiene que confirmar que lo hicieron. Saltarse el paso de verificación es la forma de crear fallos silenciosos y tardíos.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ══ 06 — WORKING PRINCIPLES ═════════════════════════════════════ -->
+    <section class="layer" id="layer-06">
+      <div class="layer-head reveal">
+        <p class="layer-num">06 &mdash; Working Principles</p>
+        <h2>Lo que se sostiene en todos los frameworks</h2>
+        <p class="layer-sub">Las reglas que no cambian cuando cambia el framework.</p>
+        <p class="layer-intro">Los frameworks son situacionales; estas reglas no. Son los principios de trabajo que atraviesan todo lo anterior, y los que conservaría si mañana se reemplazara cada framework de esta página.</p>
+      </div>
+
+      <ol class="plist reveal">
+        <li><span class="pn">01</span><span><b>Diagnostica antes de actuar.</b></span></li>
+        <li><span class="pn">02</span><span>Asumir la responsabilidad no significa hacerlo todo uno mismo; significa <b>asegurar que el resultado no tenga huecos</b>.</span></li>
+        <li><span class="pn">03</span><span>Todo compromiso serio necesita <b>una persona responsable y un seguimiento visible</b>.</span></li>
+        <li><span class="pn">04</span><span>El seguimiento existe para <b>permitir la intervención temprana</b>, no para generar reportes por sí mismos.</span></li>
+        <li><span class="pn">05</span><span>La comunicación con el cliente es <b>parte del desempeño del servicio</b>, no un añadido administrativo.</span></li>
+        <li><span class="pn">06</span><span>Las excepciones repetidas son señales de que <b>el sistema operativo necesita mejorar</b>.</span></li>
+        <li><span class="pn">07</span><span>El bajo desempeño puede ser <b>Skill, Will o System</b>; no asumas que la persona es la causa raíz.</span></li>
+        <li><span class="pn">08</span><span>Support y accountability son <b>estilos de gestión complementarios, no opuestos</b> .</span></li>
+        <li><span class="pn">09</span><span>El liderazgo multidisciplinario es la capacidad de <b>crear alineación sin apoyarse en la jerarquía</b>.</span></li>
+        <li><span class="pn">10</span><span>La fluidez técnica vale cuando <b>permite mejores decisiones operativas</b>.</span></li>
+        <li><span class="pn">11</span><span>Un proceso no está implementado con éxito hasta que se <b>monitorea, se adopta y alguien lo asume</b>.</span></li>
+        <li><span class="pn">12</span><span>El objetivo de la gestión no es la dependencia permanente de quien dirige; es <b>más capacidad y más autonomía</b>.</span></li>
+      </ol>
+    </section>
+
+    <!-- ══ 07 — HOW IT ALL CONNECTS ════════════════════════════════════ -->
+    <section class="layer" id="layer-07">
+      <div class="layer-head reveal">
+        <p class="layer-num">07 &mdash; How It All Connects</p>
+        <h2>El modelo operativo por capas</h2>
+        <p class="layer-sub">Un sistema, no una colección de herramientas sueltas.</p>
+        <p class="layer-intro">Los frameworks se conectan en dos direcciones. <strong>Verticalmente</strong>, cada capa hace posible la anterior: los principios hacen creíble la gestión, la gestión hace fiable la ejecución, la ejecución hace medible la mejora, la mejora hace repetible la entrega. <strong>Situacionalmente</strong>, se combinan &mdash; un solo problema real suele arrastrar tres o cuatro a la vez.</p>
+      </div>
+
+      <div class="model-legend reveal" aria-hidden="true">
+        <span>Capa</span><span>Qué gobierna</span><span>Qué produce</span>
+      </div>
+      <div class="model reveal">
+        <div class="model-row">
+          <span class="mn">01</span>
+          <span class="mname">Leadership Principles</span>
+          <span class="mout">Cómo me presento &rarr; <b>credibilidad y confianza</b>, sin las cuales cada mecanismo de abajo solo se tolera.</span>
+        </div>
+        <div class="model-row">
+          <span class="mn">02</span>
+          <span class="mname">People Management</span>
+          <span class="mout">Cómo rinde el equipo &rarr; <b>owners capaces y responsables</b> a quienes se les pueden dar resultados reales.</span>
+        </div>
+        <div class="model-row">
+          <span class="mn">03</span>
+          <span class="mname">Execution Management</span>
+          <span class="mout">Cómo los objetivos se vuelven trabajo &rarr; <b>resultados entregados con avance visible</b> e intervención temprana.</span>
+        </div>
+        <div class="model-row">
+          <span class="mn">04</span>
+          <span class="mname">Operational Improvement</span>
+          <span class="mout">Cómo evoluciona el sistema &rarr; <b>mecanismos que se sostienen</b> para que el mismo fallo deje de repetirse.</span>
+        </div>
+        <div class="model-row">
+          <span class="mn">05</span>
+          <span class="mname">Service &amp; Cross-Functional Delivery</span>
+          <span class="mout">Dónde se aplica &rarr; <b>un cliente que llega a un servicio que funciona</b>, a través de equipos y sistemas que no son míos.</span>
+        </div>
+      </div>
+
+      <p class="xref reveal">La capa 06 no es un paso de esta pila. Los principios de trabajo atraviesan las cinco, por eso se enuncian aparte.</p>
+
+      <div class="subhead reveal">
+        <p class="sub-label">Applied Management Flow</p>
+        <h3>Un problema recorriendo el sistema</h3>
+        <p>Las capas se juzgan mejor contra una situación real que en abstracto. Esta es la secuencia que sigo de verdad, y qué framework trabaja en cada paso.</p>
+      </div>
+
+      <div class="scenario reveal">
+        <span class="scenario-label">La situación</span>
+        <p>Las fechas de go-live se están corriendo. No es una cuenta &mdash; el mismo retraso aparece en varias, son los clientes quienes nos lo dicen, y la coordinadora responsable parece el factor común.</p>
+      </div>
+
+      <ol class="aflow reveal">
+        <li>
+          <span class="an">1</span>
+          <span class="ab">
+            <span class="atag">04 &middot; Diagnose</span>
+            <span class="atitle">Encontrar dónde se rompe de verdad</span>
+            <p>Mapear el funnel de entrega de punta a punta y fijar una línea base antes de tocar nada. El retraso se concentra en la configuración técnica, esperando un cambio de parámetros de un operador externo. La coordinadora no es la causa; es el lugar donde el retraso se hace visible.</p>
+          </span>
+        </li>
+        <li>
+          <span class="an">2</span>
+          <span class="ab">
+            <span class="atag">02 &middot; Skill / Will / System</span>
+            <span class="atitle">Separar a la persona del sistema</span>
+            <p>Antes de cualquier conversación de desempeño, nombrar la causa. Una coordinadora capaz y motivada incumpliría igual estas fechas, porque nada en el proceso garantiza que el cambio externo quede confirmado. Es un problema de System con síntoma de People &mdash; tratarlo al revés habría sido injusto e inútil.</p>
+          </span>
+        </li>
+        <li>
+          <span class="an">3</span>
+          <span class="ab">
+            <span class="atag">03 &middot; Translate &amp; Assign</span>
+            <span class="atitle">Hacer explícitos el resultado y la responsabilidad</span>
+            <p>Convertir &ldquo;los go-lives se corren&rdquo; en un resultado medible: reducir el tiempo de contrato a go-live sin degradar la calidad de activación. Después, dar a cada dependencia de la cadena una persona responsable con nombre &mdash; incluida la que está en un socio externo.</p>
+          </span>
+        </li>
+        <li>
+          <span class="an">4</span>
+          <span class="ab">
+            <span class="atag">04 &middot; Prioritize &amp; Build</span>
+            <span class="atitle">Construir el mecanismo, no el parche</span>
+            <p>Impact &times; Frequency &times; Urgency pone primero el paso de configuración externa. El mecanismo es un conjunto, no un arreglo único: un protocolo Receive &rarr; Update &rarr; Verify, una regla de escalación con plazo, un SLA acordado con el operador y una excepción en el dashboard para cualquier configuración que espere más que la ventana acordada.</p>
+          </span>
+        </li>
+        <li>
+          <span class="an">5</span>
+          <span class="ab">
+            <span class="atag">05 &middot; Liderazgo multidisciplinario</span>
+            <span class="atitle">Alinear a quienes no gestiono</span>
+            <p>Engineering, Support y el socio externo sostienen cada uno una parte de la cadena. Resultado compartido, puntos de decisión mapeados, plazos acordados y escalación cuando la coordinación local no alcanza. Sin jerarquía &mdash; la autoridad es el resultado.</p>
+          </span>
+        </li>
+        <li>
+          <span class="an">6</span>
+          <span class="ab">
+            <span class="atag">03 &middot; Track &amp; Act</span>
+            <span class="atitle">Crear visibilidad y luego intervenir sobre ella</span>
+            <p>Una revisión operativa semanal sobre la lista de excepciones, no sobre el estado. Cuando una cuenta rebasa la ventana, algo cambia esa misma semana: una reasignación, una escalación, un cambio de prioridad. Reportar una desviación sin actuar sobre ella es justo el fallo que este paso existe para evitar.</p>
+          </span>
+        </li>
+        <li>
+          <span class="an">7</span>
+          <span class="ab">
+            <span class="atag">02 &middot; Development &amp; Coaching</span>
+            <span class="atitle">Entregar la decisión</span>
+            <p>Una vez que el mecanismo se sostiene, la coordinadora asume la decisión de escalar en lugar de pedirla. Acompañar con los casos reales, revisar el razonamiento y no solo el resultado, y ampliar la responsabilidad conforme el criterio se demuestra.</p>
+          </span>
+        </li>
+        <li>
+          <span class="an">8</span>
+          <span class="ab">
+            <span class="atag">04 &middot; Own</span>
+            <span class="atitle">Mantenerlo funcionando</span>
+            <p>Monitorear el KPI contra la línea base, hacer cumplir el estándar y ajustar cuando el supuesto resulte equivocado. Implementar no era la meta; la meta es el mecanismo produciendo el resultado buscado, mes tras mes.</p>
+          </span>
+        </li>
+      </ol>
+
+      <div class="principle reveal">
+        <span class="plabel">Todo el sistema, en una línea</span>
+        <p>&ldquo;Clarificar el resultado, hacer explícita la responsabilidad, crear visibilidad, diagnosticar antes de intervenir y construir sistemas que reduzcan la dependencia de la intervención constante del management.&rdquo;</p>
+      </div>
     </section>
 
     <section class="card footer-cta reveal">
@@ -1069,6 +2073,7 @@
       <a href="/es/" class="btn-back">Volver al portafolio <span>&rarr;</span></a>
     </section>
 
+    </div>
   </div>
 </main>
 
@@ -1171,5 +2176,25 @@
   })();
 </script>
 
+<script>
+  /* Marca en el indice la capa que se esta leyendo. */
+  (function () {
+    var links = [].slice.call(document.querySelectorAll('.lf-rail .rail-toc a'));
+    if (!links.length) return;
+    var targets = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    var queued = false;
+    function sync() {
+      queued = false;
+      var y = window.scrollY + 140, best = 0;
+      for (var i = 0; i < targets.length; i++) { if (targets[i] && targets[i].offsetTop <= y) best = i; }
+      links.forEach(function (a, i) { a.classList.toggle('is-active', i === best); });
+    }
+    window.addEventListener('scroll', function () {
+      if (!queued) { queued = true; window.requestAnimationFrame(sync); }
+    }, { passive: true });
+    window.addEventListener('resize', sync, { passive: true });
+    sync();
+  })();
+</script>
 </body>
 </html>

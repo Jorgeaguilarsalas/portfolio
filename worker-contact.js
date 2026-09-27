@@ -27,8 +27,16 @@ const FROM_DEFAULT = "contact@jorgeag.com";
 /* El auto-reply sale como la direccion que la persona ya conoce del sitio, para
    que una respuesta suya caiga en la bandeja real y no en un buzon tecnico. */
 const REPLY_FROM_DEFAULT = "hello@jorgeag.com";
-const MAX_PER_WINDOW = 5;
+const MAX_PER_WINDOW = 3;
 const WINDOW_SECONDS = 3600;
+/* Por debajo de tres segundos no hay persona: nadie lee, rellena y envia este
+   formulario en ese tiempo. Entre tres y ocho es plausible pero raro, asi que
+   no se rechaza, se marca. */
+const MIN_FILL_MS = 3000;
+const GREY_FILL_MS = 8000;
+/* Un token de Turnstile emitido hace mucho suele venir de una sesion
+   automatizada que lo guardo y lo reutiliza mas tarde. */
+const STALE_TOKEN_MS = 15 * 60 * 1000;
 
 /* Fallback de rate limiting cuando no hay KV: vive en el isolate y se reinicia
    con el. No es robusto, pero encarece el abuso sin pedir configuracion. */
@@ -110,10 +118,36 @@ async function checkTurnstile(secret, token, ip) {
     if (out.success !== true) {
       console.warn("contact: turnstile rejected", JSON.stringify(out["error-codes"] || []));
     }
-    return out.success === true;
+    /* Se devuelve el objeto y no un booleano: challenge_ts y hostname son dos
+       de las pocas senales que Turnstile expone y alimentan la revision.
+       Turnstile no da una puntuacion 0-1 como reCAPTCHA v3: no existe tal
+       campo, asi que no se puede filtrar por umbral. */
+    return { ok: out.success === true, ts: out.challenge_ts || null, host: out.hostname || null };
   } catch (err) {
     console.error("contact: turnstile unreachable", err && err.message);
-    return false;
+    return { ok: false, ts: null, host: null, unreachable: true };
+  }
+}
+
+const RATE_MSG = {
+  en: "Please wait before submitting another message. If urgent, email hello@jorgeag.com directly.",
+  de: "Bitte warten Sie, bevor Sie eine weitere Nachricht senden. Bei Dringlichkeit senden Sie eine E-Mail direkt an hello@jorgeag.com.",
+  es: "Espera antes de enviar otro mensaje. Si es urgente, envía email directo a hello@jorgeag.com.",
+};
+
+/* Aviso a Telegram solo para lo que se marca para revision. Es opcional: sin
+   las dos variables el envio no se intenta y el correo sale igual. */
+async function notifyTelegram(env, lines) {
+  if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) return;
+  try {
+    await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text: lines.join("\n"),
+                             parse_mode: "HTML", disable_web_page_preview: true }),
+    });
+  } catch (err) {
+    console.error("contact: telegram failed", err && err.message);
   }
 }
 
@@ -246,7 +280,20 @@ export async function handleContactSubmit(request, env) {
   }
 
   // Honeypot: se responde 200 para no ensenarle al bot que fue detectado.
-  if (clean(d.website)) return json({ ok: true, message: "Thanks." });
+  if (clean(d.website)) {
+    console.warn("contact: honeypot filled");
+    return json({ ok: true, message: "Thanks." });
+  }
+
+  /* Tiempo entre el pintado del formulario y el envio. Solo se descarta por
+     debajo del minimo, que es donde no cabe una persona; la franja gris se
+     marca mas abajo, no se bloquea. Un reloj adelantado o un valor ausente
+     dan NaN y entonces no se juzga. */
+  const elapsed = Number(d.form_ms);
+  if (Number.isFinite(elapsed) && elapsed >= 0 && elapsed < MIN_FILL_MS) {
+    console.warn("contact: submitted in", elapsed, "ms");
+    return json({ ok: true, message: "Thanks." });
+  }
 
   const ip = request.headers.get("CF-Connecting-IP") || "unknown";
 
@@ -254,10 +301,19 @@ export async function handleContactSubmit(request, env) {
      automatizado no llega siquiera a usar el endpoint como oraculo de
      validacion. El token se consume al comprobarlo, asi que el frontend pide
      uno nuevo (turnstile.reset) despues de cada respuesta de error. */
+  let turn = { ok: true, ts: null, host: null };
   if (env.TURNSTILE_SECRET_KEY) {
     const token = clean(d["cf-turnstile-response"] || d.turnstile_token, 2048);
-    if (!token || !(await checkTurnstile(env.TURNSTILE_SECRET_KEY, token, ip))) {
-      return json({ ok: false, code: "captcha", message: "Verification failed." }, 400);
+    turn = token ? await checkTurnstile(env.TURNSTILE_SECRET_KEY, token, ip) : { ok: false };
+    if (!turn.ok) {
+      /* Se mantiene un 400 con mensaje reintentable en lugar del 429 generico:
+         una persona real tambien falla aqui (token caducado, pestana abierta
+         media hora), y decirle que espere una hora la pierde. El texto no
+         nombra a Turnstile. */
+      return json(
+        { ok: false, code: "captcha", message: "We could not verify your browser. Please try again." },
+        400
+      );
     }
   }
 
@@ -296,7 +352,7 @@ export async function handleContactSubmit(request, env) {
   }
 
   if (await rateLimited(env, ip)) {
-    return json({ ok: false, code: "rate_limited", message: "Too many submissions. Try again later." }, 429);
+    return json({ ok: false, code: "rate_limited", message: RATE_MSG[data.lang] || RATE_MSG.en }, 429);
   }
 
   const hasResend = Boolean(env.RESEND_API_KEY);
@@ -305,12 +361,41 @@ export async function handleContactSubmit(request, env) {
     return json({ ok: false, code: "not_configured", message: "Mail transport is not configured yet." }, 503);
   }
 
+  /* Revision manual. Criterio deliberadamente conservador: una sola senal
+     nunca marca nada, hacen falta dos. Y marcar no es filtrar — el correo sale
+     igual a la bandeja, solo con el prefijo y el motivo, porque perder un
+     mensaje legitimo cuesta mucho mas que revisar uno de mas. */
+  const flags = [];
+  if (Number.isFinite(elapsed) && elapsed >= MIN_FILL_MS && elapsed < GREY_FILL_MS) {
+    flags.push(`filled in ${(elapsed / 1000).toFixed(1)}s`);
+  }
+  if (turn.ts) {
+    const age = Date.now() - Date.parse(turn.ts);
+    if (Number.isFinite(age) && age > STALE_TOKEN_MS) {
+      flags.push(`verification token ${Math.round(age / 60000)} min old`);
+    }
+  }
+  const links = (data.message.match(/https?:\/\//gi) || []).length;
+  if (links >= 3) flags.push(`${links} links in the message`);
+  if (data.message.length >= 20 && !/\s/.test(data.message.trim())) {
+    flags.push("message has no spaces");
+  }
+  if (turn.host && !/(^|\.)jorgeag\.com$/.test(turn.host)) {
+    flags.push(`token issued for ${turn.host}`);
+  }
+  const suspicious = flags.length >= 2;
+  if (suspicious) console.warn("contact: flagged for review", JSON.stringify(flags));
+
   const notice = {
     to: env.CONTACT_INBOX || INBOX,
-    subject: `[Contact form ${data.lang.toUpperCase()}] ${data.inquiry_type || "general"} — ${
-      data.name || "Anonymous"
-    }`,
-    text: noticeText(data, ip),
+    subject: `${suspicious ? "[REVIEW] " : ""}[Contact form ${data.lang.toUpperCase()}] ${
+      data.inquiry_type || "general"
+    } — ${data.name || "Anonymous"}`,
+    text: suspicious
+      ? `FLAGGED FOR REVIEW — ${flags.join("; ")}\n` +
+        `This message was delivered, not blocked. Check it before replying.\n\n` +
+        noticeText(data, ip)
+      : noticeText(data, ip),
     replyTo: data.email || undefined,
   };
 
@@ -320,6 +405,15 @@ export async function handleContactSubmit(request, env) {
   } catch (err) {
     console.error("contact: notice failed", err && err.message);
     return json({ ok: false, code: "send_failed", message: "Could not send right now." }, 502);
+  }
+
+  if (suspicious) {
+    await notifyTelegram(env, [
+      "\u26A0\uFE0F <b>Contact form flagged for review</b>",
+      `From: ${data.name || "Anonymous"} &lt;${data.email || data.phone || "no contact"}&gt;`,
+      `Why: ${flags.join("; ")}`,
+      "The email was delivered to the inbox with a [REVIEW] prefix.",
+    ]);
   }
 
   // Auto-reply: solo por Resend. El binding send_email no entrega a direcciones

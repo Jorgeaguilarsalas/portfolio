@@ -65,6 +65,11 @@
     }
   }
 
+  /* Momento en que el formulario queda a la vista. El Worker mide contra el
+     para descartar envios imposiblemente rapidos. Va en memoria y no en un
+     campo oculto: un bot que rellena el DOM no lo puede adelantar. */
+  var renderedAt = Date.now();
+
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
     clearErrors();
@@ -96,7 +101,7 @@
     fetch('/contact/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(Object.assign({}, d, { lang: T.lang }))
+      body: JSON.stringify(Object.assign({}, d, { lang: T.lang, form_ms: Date.now() - renderedAt }))
     })
       .then(function (r) { return r.json().then(function (j) { return { status: r.status, body: j }; }); })
       .then(function (res) {
