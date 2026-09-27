@@ -445,11 +445,14 @@
       </p>
       <p>
         <strong>Cookies und Einwilligung.</strong> Ohne Ihre Einwilligung
-        werden keine Analyse-Cookies gesetzt, Sie werden nicht wiedererkannt,
-        und das Google-Skript wird gar nicht erst geladen: vor Ihrer
-        Zustimmung geht keine Anfrage an Google und Ihre IP-Adresse wird
-        Google nicht bekannt. Einzelheiten finden Sie in
-        <a href="#analytics">Abschnitt 13</a>. Beim ersten Aufruf der Seite
+        werden keine Analyse-Cookies gesetzt und Sie werden nicht
+        wiedererkannt. Das Google-Skript wird allerdings bereits beim Aufruf
+        geladen und sendet cookiefreie Signale an Google; dabei wird Ihre
+        IP-Adresse an Google &uuml;bermittelt. Auf Ihrem Endger&auml;t wird
+        vor Ihrer Entscheidung nichts gespeichert und nichts ausgelesen.
+        Einzelheiten und die Rechtsgrundlagen finden Sie in
+        <a href="#analytics">Abschnitt 13</a>, einschlie&szlig;lich Ihres
+        Widerspruchsrechts. Beim ersten Aufruf der Seite
         fragt ein Banner Ihre Entscheidung ab. Die in
         <a href="#web-analytics">Abschnitt 14</a> beschriebene zweite Messung
         h&auml;ngt nicht von dieser Entscheidung ab: Sie
@@ -486,7 +489,7 @@
     </section>
 
     <section class="legal">
-      <h2>3. Kontakt</h2>
+      <h2 id="kontakt">3. Kontakt</h2>
       <p>
         F&uuml;r Fragen zum Datenschutz sowie zur Aus&uuml;bung Ihrer Betroffenenrechte
         erreichen Sie uns unter:
@@ -808,16 +811,50 @@
         <span class="mono">G-4XMR36K6W9</span>.
       </p>
       <p>
-        <strong>Vor Ihrer Einwilligung geschieht nichts.</strong> Wir setzen
-        Google Analytics im einfachen Einwilligungsmodus ein (&bdquo;Basic
-        Consent Mode&ldquo;). Das bedeutet: Solange Sie nicht ausdr&uuml;cklich
-        zustimmen, wird das Google-Skript gar nicht erst geladen. Es verl&auml;sst
-        keine einzige Anfrage Ihren Browser in Richtung Google &ndash; auch
-        keine cookiefreien Messsignale &ndash;, und Ihre IP-Adresse wird Google
-        nicht bekannt. Es werden keine Cookies gesetzt, keine Kennungen
-        vergeben und keine Daten an Google &uuml;bermittelt. Vor Ihrer
-        Entscheidung findet daher &uuml;berhaupt keine Verarbeitung durch Google
-        statt, die einer Rechtsgrundlage bed&uuml;rfte.
+        <strong>Vor Ihrer Einwilligung.</strong> Wir setzen Google Analytics
+        im erweiterten Einwilligungsmodus ein (&bdquo;Advanced Consent
+        Mode&ldquo;). Das Google-Skript wird bereits beim Aufruf der Seite
+        geladen, jedoch mit auf <span class="mono">denied</span> gesetzten
+        Einwilligungssignalen: Es werden keine Analyse-Cookies gesetzt, keine
+        Kennungen vergeben und keine Informationen auf Ihrem Endger&auml;t
+        gespeichert oder ausgelesen. Eine Wiedererkennung &uuml;ber mehrere
+        Seitenaufrufe hinweg findet nicht statt.
+      </p>
+      <p>
+        In diesem Zustand &uuml;bermittelt das Skript sogenannte cookiefreie
+        Signale an Google. Diese enthalten keine Kennung Ihres Ger&auml;ts,
+        wohl aber die technischen Daten jedes Seitenaufrufs &ndash;
+        insbesondere Ihre IP-Adresse, Browser- und Ger&auml;teangaben, die
+        aufgerufene Adresse und den Zeitpunkt. Die IP-Adresse ist ein
+        personenbezogenes Datum; wir beschreiben diese Signale deshalb
+        ausdr&uuml;cklich nicht als anonym gegen&uuml;ber Google. Google
+        verwendet sie ausschlie&szlig;lich, um aus dem nicht eingewilligten
+        Anteil des Verkehrs statistische Sch&auml;tzwerte zu modellieren; ein
+        Profil zu Ihrer Person entsteht daraus nicht.
+      </p>
+      <p>
+        <strong>Rechtsgrundlage vor der Einwilligung.</strong> Da hierbei
+        weder Informationen auf Ihrem Endger&auml;t gespeichert noch von dort
+        abgerufen werden, greift &sect; 25 Abs. 1 TDDDG nicht. Die
+        &Uuml;bermittlung der genannten Verbindungsdaten st&uuml;tzen wir auf
+        unser berechtigtes Interesse nach Art. 6 Abs. 1 lit. f DSGVO, n&auml;mlich
+        die Reichweite dieser Website in ihrer Gesamtheit beurteilen zu
+        k&ouml;nnen. Ihr Interesse am Schutz dieser Daten haben wir
+        gegen&uuml;bergestellt und durch die Beschr&auml;nkung auf cookiefreie,
+        kennungslose Signale sowie die Deaktivierung s&auml;mtlicher
+        Werbefunktionen ber&uuml;cksichtigt.
+      </p>
+      <p>
+        <strong>Ihr Widerspruchsrecht.</strong> Gegen diese Verarbeitung
+        k&ouml;nnen Sie nach Art. 21 Abs. 1 DSGVO jederzeit Widerspruch
+        einlegen. Rufen Sie dazu eine beliebige Seite mit dem Zusatz
+        <span class="mono">?noga=1</span> auf (zum Beispiel
+        <span class="mono">jorgeag.com/?noga=1</span>). Damit wird das
+        Google-Skript in diesem Browser dauerhaft nicht mehr geladen, auch
+        nicht die cookiefreien Signale;
+        <span class="mono">?noga=0</span> hebt das wieder auf. Alternativ
+        gen&uuml;gt eine formlose Nachricht an die in
+        <a href="#kontakt">Abschnitt 3</a> genannte Adresse.
       </p>
       <p>
         <strong>Nach Ihrer Einwilligung.</strong> Erst wenn Sie im Banner
@@ -828,17 +865,21 @@
         Seitenaufrufe hinweg gemessen. Rechtsgrundlage ist Ihre Einwilligung
         nach Art. 6 Abs. 1 lit. a DSGVO; f&uuml;r das Speichern von Informationen
         auf Ihrem Endger&auml;t und den Zugriff darauf ist dies zugleich die
-        Einwilligung nach &sect; 25 Abs. 1 TDDDG. Lehnen Sie ab, wird das
-        Google-Skript nicht geladen und es bleibt dauerhaft bei dem oben
-        beschriebenen Zustand: keine Verbindung zu Google. Widerrufen Sie eine
-        zuvor erteilte Einwilligung, endet die Messung sofort, die gesetzten
-        Analyse-Cookies werden gel&ouml;scht, und beim n&auml;chsten Seitenaufruf wird
-        das Skript wieder nicht geladen.
+        Einwilligung nach &sect; 25 Abs. 1 TDDDG. Ab diesem Zeitpunkt werden
+        die Cookies <span class="mono">_ga</span> und
+        <span class="mono">_ga_4XMR36K6W9</span> gesetzt. Lehnen Sie ab,
+        bleibt <span class="mono">analytics_storage</span> dauerhaft auf
+        <span class="mono">denied</span>: es werden keine Cookies gesetzt und
+        Sie werden nicht wiedererkannt, die oben beschriebenen cookiefreien
+        Signale laufen jedoch weiter. Widerrufen Sie eine zuvor erteilte
+        Einwilligung, endet die cookiebasierte Messung sofort und die
+        gesetzten Analyse-Cookies werden gel&ouml;scht.
       </p>
       <p>
         <strong>Google Consent Mode v2.</strong> Die Einwilligungssignale
-        werden unabh&auml;ngig davon gesetzt, ob das Google-Skript sp&auml;ter geladen
-        wird: Sie stehen bereits fest, bevor eine Zustimmung vorliegen kann.
+        stehen in der Warteschlange, bevor das Google-Skript ausgewertet wird:
+        Die Vorgabe <span class="mono">denied</span> gilt also bereits in dem
+        Moment, in dem die Etikette startet, und nicht erst danach.
         Die Signale
         <span class="mono">ad_storage</span>,
         <span class="mono">ad_user_data</span>,

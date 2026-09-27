@@ -8,20 +8,23 @@
  * tiene bundle ni hoja compartida, y una segunda peticion solo para el banner
  * haria que apareciera sin estilos durante un instante.
  *
- * Modelo de consentimiento: Consent Mode basico. gtag.js no se carga hasta que
- * el visitante acepta. Antes de esa aceptacion no sale ni una peticion hacia
- * Google —tampoco un ping sin cookies—, de modo que su IP no llega a los
- * servidores de Google. Al aceptar, un 'consent update' pasa analytics_storage
- * a granted y solo entonces se inyecta gtag.js.
+ * Modelo de consentimiento: Consent Mode avanzado. gtag.js se carga siempre,
+ * pero los defaults quedan en denied ANTES de que la etiqueta exista, asi que
+ * arranca sin poder escribir ni leer nada en el dispositivo. Al aceptar, un
+ * 'consent update' pasa analytics_storage a granted y a partir de ahi si hay
+ * cookies y medicion completa; al rechazar se queda en denied de forma
+ * permanente.
  *
- * Los defaults en denied se siguen fijando al arrancar, antes que nada. Con el
- * modelo basico nada puede llegar a gtag.js por delante de ellos, pero dejarlos
- * cuesta cero y cubre el dia en que algo vuelva a cargar la etiqueta antes de
- * tiempo: la cola ya estaria en denied.
+ * Lo que si sale antes de la decision son senales sin cookies: no guardan ni
+ * leen nada en el equipo (por eso no entra el § 25 TDDDG), pero viajan con la
+ * IP y datos tecnicos de la peticion, y eso si es un dato personal. Se apoya
+ * en el interes legitimo del Art. 6.1.f, con derecho de oposicion del Art. 21
+ * ejercitable con ?noga=1, que corta la carga de gtag.js en ese navegador.
  *
- * Contrapartida asumida a proposito: GA4 pierde el modelado de la parte no
- * consentida del trafico, porque deja de recibir los pings sin cookies que lo
- * alimentaban. GA4 pasa a contar solo a quien acepta.
+ * A cambio GA4 recupera el modelado del trafico que rechaza. La contrapartida
+ * esta documentada en la Datenschutzerklarung, secciones 1 y 13: si el texto
+ * legal y este archivo dejan de coincidir, el consentimiento deja de ser
+ * informado. Cualquier cambio aqui obliga a revisar aquello.
  */
 (function () {
   'use strict';
@@ -76,7 +79,7 @@
   var COPY = {
     en: {
       title: 'Analytics — your choice',
-      desc: 'Nothing is loaded until you decide. If you accept, Google Analytics shows me which parts of this portfolio people actually read — no advertising, no cross-site tracking. You can change your mind any time.',
+      desc: 'Until you decide: no cookies and no recognition — only anonymous, cookieless signals to Google. Accept, and Google Analytics also shows me which parts of this portfolio get read. No advertising, no cross-site tracking; change your mind any time.',
       accept: 'Accept',
       decline: 'Decline',
       more: 'Full details →',
@@ -84,7 +87,7 @@
     },
     de: {
       title: 'Analytics — Ihre Entscheidung',
-      desc: 'Vor Ihrer Entscheidung wird nichts geladen. Wenn Sie zustimmen, zeigt mir Google Analytics, welche Teile dieses Portfolios tatsächlich gelesen werden — keine Werbung, kein seitenübergreifendes Tracking. Sie können Ihre Entscheidung jederzeit ändern.',
+      desc: 'Bis Sie entscheiden: keine Cookies und keine Wiedererkennung — nur anonyme, cookiefreie Signale an Google. Wenn Sie zustimmen, zeigt mir Google Analytics zusätzlich, welche Teile dieses Portfolios gelesen werden. Keine Werbung, kein seitenübergreifendes Tracking; jederzeit änderbar.',
       accept: 'Akzeptieren',
       decline: 'Ablehnen',
       more: 'Details →',
@@ -92,7 +95,7 @@
     },
     es: {
       title: 'Analytics — tú decides',
-      desc: 'No se carga nada hasta que decidas. Si aceptas, Google Analytics me muestra qué partes de este portafolio se leen de verdad — sin publicidad, sin seguimiento entre sitios. Puedes cambiar de opinión cuando quieras.',
+      desc: 'Hasta que decidas: sin cookies y sin reconocimiento — solo señales anónimas sin cookies hacia Google. Si aceptas, Google Analytics me muestra además qué partes de este portafolio se leen. Sin publicidad, sin seguimiento entre sitios; puedes cambiar de opinión cuando quieras.',
       accept: 'Aceptar',
       decline: 'Rechazar',
       more: 'Detalles →',
@@ -165,9 +168,10 @@
 
   var gaLoaded = false;
 
-  /* Se llama una sola vez, desde applyGrant y nunca antes. En el modelo basico
-     esta carga ES la decision: si el visitante no acepta, gtag.js no existe en
-     la pagina. */
+  /* Se llama al arrancar, no al aceptar. Los defaults en denied ya estan en la
+     cola cuando la etiqueta se evalua, asi que no hay ventana en la que pueda
+     escribir cookies. ?noga=1 sigue cortando la carga por completo: es la via
+     de oposicion del Art. 21 para las senales previas al consentimiento. */
   function loadGA() {
     if (EXCLUDED || gaLoaded) return;
     gaLoaded = true;
@@ -204,18 +208,16 @@
 
   function applyGrant() {
     granted = true;
+    // Los publicitarios no se tocan: este sitio no tiene anuncios ni remarketing.
     gtag('consent', 'update', { analytics_storage: 'granted' });
-    // El update entra en dataLayer antes de inyectar el script, asi que cuando
-    // gtag.js arranca encuentra la cola ya en granted: no hay ventana en denied.
-    loadGA();
+    loadGA();   // idempotente: si ya estaba cargada, no hace nada
   }
 
-  /* Tras un rechazo no queda nada corriendo: con el modelo basico gtag.js solo
-     se carga desde applyGrant, asi que quien rechaza de entrada nunca lo tuvo en
-     la pagina. El update a denied importa en el otro caso, el de revocar a mitad
-     de visita: ahi gtag.js ya esta cargado y hay que pararlo en el acto. Las _ga
-     que quedaran de aquel consentimiento se borran, porque revocar tiene que
-     vaciar lo ya escrito; en la siguiente pagina el script ya no se carga. */
+  /* Rechazar deja la etiqueta cargada pero en denied: sin cookies, sin
+     identificadores y sin lectura del dispositivo. Siguen saliendo las senales
+     sin cookies, que es de donde GA4 modela el trafico no consentido. Las _ga
+     de un consentimiento anterior se borran, porque revocar tiene que vaciar
+     tambien lo ya escrito. */
   function applyDeny() {
     granted = false;
     gtag('consent', 'update', { analytics_storage: 'denied' });
@@ -678,6 +680,11 @@
     var t = TOAST[pickLang()] || TOAST.en;
     aviso(noga === '1' ? t.on : t.off);
   }
+
+  /* La etiqueta se carga aqui, antes de leer la decision: con los defaults ya
+     en denied puede arrancar sin consentimiento, y asi las senales sin cookies
+     salen tambien para quien todavia no ha respondido al banner. */
+  loadGA();
 
   var decision = readDecision();
   if (decision) {
