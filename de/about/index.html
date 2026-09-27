@@ -763,7 +763,10 @@
     .hub-bio .about-photo-wrap{max-width:240px;}
   }
   @media (max-width:800px){
-    .hub-bio .about-layout{grid-template-columns:minmax(0,1fr);gap:32px;justify-items:start;}
+    /* justify-items:start dejaba el retrato pegado al margen izquierdo, 75px
+       fuera del eje del texto. Apilado, el retrato va centrado sobre la prosa. */
+    .hub-bio .about-layout{grid-template-columns:minmax(0,1fr);gap:28px;justify-items:center;}
+    .hub-bio .snapshot-prose{justify-self:stretch;}
     .hub-bio .about-photo-wrap{max-width:200px;}
     .hub-bio .snapshot-prose{max-width:100%;}
   }
@@ -892,6 +895,51 @@
   /* El hub abria pegado al hero (8px) y el resto de saltos median ~208px. */
   .hub-main > .section:first-child{padding-top:var(--sec-pad);}
   .hub-hero{padding-bottom:var(--sec-pad);}
+  /* ── PROGRESSIVE DISCLOSURE ─────────────────────────────────────────────
+     <details> nativo: el contenido entero sigue en el documento, el teclado
+     lo abre sin JS y el estado expandido lo expone el navegador. Solo cambia
+     lo que se muestra de entrada. */
+  .acc{margin:0;padding:0;border:0;}
+  .acc-head{
+    list-style:none;cursor:pointer;display:block;
+    padding-bottom:4px;outline-offset:6px;
+  }
+  .acc-head::-webkit-details-marker{display:none;}
+  .acc-head::marker{content:"";}
+  .acc-preview{
+    font-size:17px;line-height:1.65;color:var(--muted);
+    max-width:62ch;margin:0;
+  }
+  .acc-chips{
+    display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:22px 0 0;padding:0;
+  }
+  .acc-chips li{
+    border:1px solid var(--border);border-radius:0;
+    padding:9px 14px;font-size:14px;line-height:1.2;color:var(--muted);
+    white-space:nowrap;transition:border-color .2s ease,color .2s ease;
+  }
+  .acc-head:hover .acc-chips li{border-color:var(--accent);color:var(--fg);}
+  .acc-more{border-style:dashed!important;}
+  .acc-toggle{
+    display:inline-flex;align-items:center;gap:9px;margin-top:22px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);
+  }
+  .acc-toggle .arr{transition:transform .2s ease;display:inline-block;}
+  .acc[open] .acc-toggle .arr{transform:rotate(90deg);}
+  .acc-toggle .is-open{display:none;}
+  .acc[open] .acc-toggle .is-open{display:inline;}
+  .acc[open] .acc-toggle .is-closed{display:none;}
+  .acc-body{margin-top:34px;}
+  @media (prefers-reduced-motion:no-preference){
+    .acc[open] .acc-body{animation:acc-in .3s cubic-bezier(.22,.61,.36,1) both;}
+    @keyframes acc-in{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:none;}}
+  }
+  @media (max-width:640px){
+    .acc-chips{gap:7px;}
+    .acc-chips li{font-size:13px;padding:8px 12px;}
+    .acc-preview{font-size:16px;}
+  }
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -1006,9 +1054,23 @@
 
   <section class="section" id="ansatz" data-sec="approach">
     <div class="container">
-      <div class="section-label reveal">Ansatz</div>
-      <h2 class="reveal">Sieben Prinzipien, die ich in <em>Marktplatz-Operations und B2B-SaaS</em> einbringe.</h2>
-      <p class="approach-intro reveal">Erarbeitet im operativen Betrieb über mehrere Mobilitätsplattformen hinweg, geschärft durch analytische Arbeit. Diese Prinzipien übersetzen Marketplace-Operations in Systems Thinking &mdash; wie ich diagnostiziere, plane und umsetze.</p>
+      <details class="acc" data-acc="approach" open>
+        <summary class="acc-head">
+          <div class="section-label reveal">Ansatz</div>
+          <h2 class="reveal">Sieben Prinzipien, die ich in <em>Marktplatz-Operations und B2B-SaaS</em> einbringe.</h2>
+          <p class="acc-preview reveal">Sieben Prinzipien, erarbeitet über mehrere Mobilitätsplattformen und geschärft durch analytische Arbeit.</p>
+          <ul class="acc-chips reveal">
+            <li>Diagnostizieren, bevor man Hebel ansetzt</li>
+            <li>Qualität ist mehrdimensional</li>
+            <li>Diszipliniert wachsen</li>
+            <li>Diagnosen in Roadmaps übersetzen</li>
+            <li>Risiken ordnen, bevor Hebel greifen</li>
+            <li>ML für probabilistische Probleme; Regeln für Richtlinien</li>
+            <li class="acc-more">+1</li>
+          </ul>
+          <span class="acc-toggle"><span class="is-closed">Aufklappen</span><span class="is-open">Zuklappen</span> <span class="arr" aria-hidden="true">&rarr;</span></span>
+        </summary>
+        <div class="acc-body">
 
       <div class="approach-grid reveal">
         <div class="approach-item">
@@ -1057,13 +1119,28 @@
         <p class="section-lede" style="margin:0;max-width:52ch">Die Prinzipien oben sind die Kurzfassung. Das vollständige Betriebshandbuch — People Management, Execution, Operational Improvement und Service Delivery — steht in den Frameworks.</p>
         <a href="/de/leadership-framework/">Zu den vollständigen Leadership- &amp; Operations-Frameworks <span aria-hidden="true">&rarr;</span></a>
       </div>
+        </div>
+      </details>
     </div>
   </section>
 
   <section class="section" id="erfahrung" data-sec="experience">
     <div class="container">
-      <div class="section-label reveal">Erfahrung</div>
-      <h2 class="reveal">Operations über <em>Mobilitäts&shy;marktplätze</em>, SaaS und B2B hinweg.</h2>
+      <details class="acc" data-acc="experience">
+        <summary class="acc-head">
+          <div class="section-label reveal">Erfahrung</div>
+          <h2 class="reveal">Operations über <em>Mobilitäts&shy;marktplätze</em>, SaaS und B2B hinweg.</h2>
+          <p class="acc-preview reveal">Fünf Stationen zwischen Marketplace-Operations, Flotten-Compliance und eigener Beratung.</p>
+          <ul class="acc-chips reveal">
+            <li>Nexio Fleet GmbH</li>
+            <li>Salas UG (haftungsbeschränkt)</li>
+            <li>Bliq</li>
+            <li>Bolt</li>
+            <li>Wolt</li>
+          </ul>
+          <span class="acc-toggle"><span class="is-closed">Aufklappen</span><span class="is-open">Zuklappen</span> <span class="arr" aria-hidden="true">&rarr;</span></span>
+        </summary>
+        <div class="acc-body">
 
       <div class="exp-category">
         <div class="exp-cat-label reveal">Führung in Produkt, Operations & Strategie</div>
@@ -1155,13 +1232,27 @@
         </div>
 
       </div>
+        </div>
+      </details>
     </div>
   </section>
 
   <section class="section" id="faehigkeiten" data-sec="capabilities">
     <div class="container">
-      <div class="section-label reveal">Fähigkeiten</div>
-      <h2 class="reveal">Vier Fähigkeiten, <em>rollen- und branchen&shy;übergreifend</em>.</h2>
+      <details class="acc" data-acc="capabilities">
+        <summary class="acc-head">
+          <div class="section-label reveal">Fähigkeiten</div>
+          <h2 class="reveal">Vier Fähigkeiten, <em>rollen- und branchen&shy;übergreifend</em>.</h2>
+          <p class="acc-preview reveal">Vier Kompetenzfelder, die über Rollen und Branchen hinweg tragen.</p>
+          <ul class="acc-chips reveal">
+            <li>Operations & Skalierung</li>
+            <li>Projekte & Transformation</li>
+            <li>Partner & Kunden</li>
+            <li>Produkt & Daten</li>
+          </ul>
+          <span class="acc-toggle"><span class="is-closed">Aufklappen</span><span class="is-open">Zuklappen</span> <span class="arr" aria-hidden="true">&rarr;</span></span>
+        </summary>
+        <div class="acc-body">
       <div class="skills-list">
         <div class="skills-row reveal">
           <div class="skills-cat">Operations & Skalierung</div>
@@ -1180,13 +1271,29 @@
           <div class="skills-items"><strong>Product Discovery</strong> · Requirements Engineering · Feature-Spezifikationen · User Research · Testing & QA · Datenpipelines · Analytics-Dashboards</div>
         </div>
       </div>
+        </div>
+      </details>
     </div>
   </section>
 
   <section class="section" id="werkzeuge" data-sec="tooling">
     <div class="container">
-      <div class="section-label reveal">Tooling & Stack</div>
-      <h2 class="reveal">Werkzeuge und Plattformen, <em>mit denen ich liefere</em>.</h2>
+      <details class="acc" data-acc="tooling">
+        <summary class="acc-head">
+          <div class="section-label reveal">Tooling & Stack</div>
+          <h2 class="reveal">Werkzeuge und Plattformen, <em>mit denen ich liefere</em>.</h2>
+          <p class="acc-preview reveal">Der Stack, mit dem ich tatsächlich liefere — von LLM-Werkzeugen bis Enterprise-CRM.</p>
+          <ul class="acc-chips reveal">
+            <li>AI & LLM</li>
+            <li>Backend & Infrastruktur</li>
+            <li>Automatisierung & Kommunikation</li>
+            <li>Produkt & Design</li>
+            <li>Daten & Analytics</li>
+            <li>Enterprise-Tools</li>
+          </ul>
+          <span class="acc-toggle"><span class="is-closed">Aufklappen</span><span class="is-open">Zuklappen</span> <span class="arr" aria-hidden="true">&rarr;</span></span>
+        </summary>
+        <div class="acc-body">
       <div class="skills-list">
         <div class="skills-row reveal">
           <div class="skills-cat">AI & LLM</div>
@@ -1213,13 +1320,27 @@
           <div class="skills-items"><strong>Salesforce</strong> · Pipedrive</div>
         </div>
       </div>
+        </div>
+      </details>
     </div>
   </section>
 
   <section class="section" id="ausbildung" data-sec="education">
     <div class="container">
-      <div class="section-label reveal">Ausbildung</div>
-      <h2 class="reveal">Ausbildung in Operations, <em>analytische Tiefe</em>, laufende Zertifizierung.</h2>
+      <details class="acc" data-acc="education">
+        <summary class="acc-head">
+          <div class="section-label reveal">Ausbildung</div>
+          <h2 class="reveal">Ausbildung in Operations, <em>analytische Tiefe</em>, laufende Zertifizierung.</h2>
+          <p class="acc-preview reveal">Zwei Universitäten, zwei Bootcamps und eine Zertifizierung, die noch läuft.</p>
+          <ul class="acc-chips reveal">
+            <li>Berlin Professional School · HWR Berlin</li>
+            <li>Ironhack · Berlin</li>
+            <li>Hochschule Rhein-Waal · Kleve</li>
+            <li>Universidad La Salle · Mexiko-Stadt</li>
+          </ul>
+          <span class="acc-toggle"><span class="is-closed">Aufklappen</span><span class="is-open">Zuklappen</span> <span class="arr" aria-hidden="true">&rarr;</span></span>
+        </summary>
+        <div class="acc-body">
       <div class="edu-list">
         <div class="edu-item reveal">
           <div class="edu-year">2025 — heute</div>
@@ -1262,6 +1383,8 @@
           </div>
         </div>
       </div>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -1568,6 +1691,48 @@
     }, { passive: true });
     window.addEventListener('resize', sync, { passive: true });
     sync();
+  })();
+</script>
+
+<script>
+  /* Los .reveal que viven dentro de un bloque plegado nunca entran en el
+     viewport, asi que el observador no los marca: al abrir se descubren a
+     mano. De paso se manda la medicion, que consent.js filtra si no hay
+     consentimiento. */
+  (function () {
+    var accs = document.querySelectorAll('details.acc');
+    var timers = {}, counted = {};
+    if (!accs.length) return;
+    Array.prototype.forEach.call(accs, function (d) {
+      d.addEventListener('toggle', function () {
+        if (d.open) {
+          var hidden = d.querySelectorAll('.reveal:not(.visible)');
+          Array.prototype.forEach.call(hidden, function (el) { el.classList.add('visible'); });
+        }
+        var name = d.getAttribute('data-acc') || '';
+        if (window.__consent && window.__consent.track) {
+          window.__consent.track('section_expanded', {
+            section: name,
+            action: d.open ? 'expand' : 'collapse'
+          });
+        }
+        /* Abrir y cerrar de golpe no dice nada; quedarse cinco segundos si.
+           Se manda una vez por seccion y carga, para no contar un abanico de
+           aperturas como interes repetido. */
+        if (d.open) {
+          if (!timers[name] && !counted[name]) {
+            timers[name] = setTimeout(function () {
+              timers[name] = null; counted[name] = true;
+              if (window.__consent && window.__consent.track) {
+                window.__consent.track('section_time_open', { section: name, seconds: 5 });
+              }
+            }, 5000);
+          }
+        } else if (timers[name]) {
+          clearTimeout(timers[name]); timers[name] = null;
+        }
+      });
+    });
   })();
 </script>
 
