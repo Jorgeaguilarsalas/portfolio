@@ -257,7 +257,7 @@
     'line-height:1.35;color:var(--cc-fg);letter-spacing:-.01em;}',
     '.cc-desc{margin:0;font-family:inherit;font-size:13px;font-weight:400;',
     'line-height:1.6;color:var(--cc-muted);max-width:720px;letter-spacing:normal;}',
-    '.cc-link{display:inline-block;margin:8px 0 0;padding:0;font-family:inherit;',
+    '.cc-link{display:inline-flex;align-items:center;min-height:44px;margin:4px 0 0;padding:0;font-family:inherit;',
     'font-size:13px;font-weight:500;line-height:1.4;letter-spacing:normal;',
     'color:var(--cc-muted);text-decoration:none;border-bottom:0;}',
     '.cc-link:hover{text-decoration:underline;color:var(--cc-fg);}',

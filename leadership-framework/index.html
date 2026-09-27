@@ -815,6 +815,30 @@
      ahi el menu de hamburguesa toma el relevo. */
   @media (max-width:1100px){ .nav-pagelink{display:none;} }
   .nav-pagelink.is-active{color:var(--accent);}
+  /* ── AREAS TACTILES ─────────────────────────────────────────────────────
+     44x44 es el minimo de iOS HIG y de WCAG 2.5.8. Se amplia la zona de
+     toque sin tocar el tamano visible: min-height mas centrado vertical, y
+     en el cursor del hero un pseudoelemento que extiende el area. */
+  .nav-toggle{width:44px;height:44px;}
+  .back-link,.nav-brand{min-height:44px;display:inline-flex;align-items:center;}
+  .nav-pagelink{min-height:44px;display:inline-flex;align-items:center;}
+  .nav-pagelink{min-width:44px;justify-content:center;}
+  .work-link{min-height:44px;display:inline-flex;align-items:center;}
+  .lang-switch a{min-height:36px;display:inline-flex;align-items:center;}
+  .site-footer a,footer a{min-height:44px;display:inline-flex;align-items:center;}
+  /* El cursor parpadeante mide 4x10 a proposito; solo crece su zona de toque. */
+  .hero-cursor{position:relative;}
+  .hero-cursor::after{content:"";position:absolute;top:50%;left:50%;
+    width:44px;height:44px;transform:translate(-50%,-50%);}
+  @media (max-width:980px){
+    .hub-toc-mobile .rail-toc a{min-height:44px;}
+  }
+  .contact-detail .val a{min-height:44px;display:inline-flex;align-items:center;}
+  /* En un dispositivo tactil las pildoras de idioma llegan a 44; con raton se
+     quedan compactas, que es donde el diseno las quiere. */
+  @media (pointer:coarse){
+    .lang-switch a{min-width:44px;min-height:44px;justify-content:center;}
+  }
 </style>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">

@@ -168,3 +168,24 @@ footer.site a:hover{color:var(--accent);}
 a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   outline:2px solid var(--accent);outline-offset:3px;
 }
+
+/* ── AREAS TACTILES ──────────────────────────────────────────────────────
+   Mismo minimo de 44px que el resto del sitio. Las casillas nativas median
+   18x18: crecen a 24 y su etiqueta se convierte en el objetivo real. */
+.nav-toggle{width:44px;height:44px;}
+.back-link,.nav-pagelink,.nav-download{min-height:44px;display:inline-flex;align-items:center;}
+.nav-pagelink{min-width:44px;justify-content:center;}
+.lang-switch a{min-height:36px;display:inline-flex;align-items:center;}
+.submit{min-height:48px;}
+/* .consent input[type=checkbox] es (0,2,1) y ganaba a la regla generica:
+   la casilla seguia en 18px. Se sube donde de verdad esta declarada. */
+.consent input[type=checkbox]{width:24px;height:24px;margin-top:0;}
+.consent label,.consent>*{min-height:44px;}
+.consent{align-items:center;}
+.field label,.consent-row label{min-height:44px;display:flex;align-items:center;gap:12px;}
+input[type="text"],input[type="email"],input[type="tel"],select,textarea{min-height:44px;}
+footer a{min-height:44px;display:inline-flex;align-items:center;}
+
+@media (pointer:coarse){
+  .lang-switch a{min-width:44px;min-height:44px;justify-content:center;}
+}

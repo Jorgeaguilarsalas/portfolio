@@ -915,8 +915,10 @@
   }
   .acc-chips li{
     border:1px solid var(--border);border-radius:0;
-    padding:9px 14px;font-size:14px;line-height:1.2;color:var(--muted);
-    white-space:nowrap;transition:border-color .2s ease,color .2s ease;
+    padding:9px 14px;font-size:14px;line-height:1.25;color:var(--muted);
+    /* nowrap forzaba una sola linea: la ficha alemana del principio 06 medía
+       367px y empujaba el documento a 387 en una pantalla de 360. */
+    overflow-wrap:anywhere;transition:border-color .2s ease,color .2s ease;
   }
   .acc-head:hover .acc-chips li{border-color:var(--accent);color:var(--fg);}
   .acc-more{border-style:dashed!important;}
@@ -936,9 +938,97 @@
     @keyframes acc-in{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:none;}}
   }
   @media (max-width:640px){
-    .acc-chips{gap:7px;}
-    .acc-chips li{font-size:13px;padding:8px 12px;}
+    /* En movil las fichas dejan de fluir: con anchos de 49 a 218px el ajuste
+       automatico dejaba filas desiguales y huerfanas. Dos columnas iguales,
+       alto comun y 44px de alto minimo para que se toquen comodamente. */
+    .acc-chips{
+      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:8px;align-items:stretch;
+    }
+    .acc-chips li{
+      display:flex;align-items:center;justify-content:center;text-align:center;
+      min-height:44px;font-size:13px;padding:8px 10px;
+    }
     .acc-preview{font-size:16px;}
+  }
+  /* ── TARJETAS CON GIRO ──────────────────────────────────────────────────
+     perspective en el contenedor y preserve-3d en el interior: sin las dos
+     el giro se ve como un aplastamiento 2D. Las dos caras van absolutas
+     dentro de la misma caja, por eso la altura la fija la tarjeta. */
+  .flip-grid{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;
+    margin:0;padding:0;list-style:none;
+  }
+  .flip-card{
+    perspective:1000px;min-height:236px;cursor:pointer;
+    background:none;border:0;padding:0;
+  }
+  .flip-card:focus-visible{outline:2px solid var(--accent);outline-offset:4px;}
+  /* Las dos caras comparten una celda de rejilla en lugar de ir absolutas:
+     asi la tarjeta mide lo que mida la cara mas alta y no hay que fijar una
+     altura. Con una altura fija el reverso aleman a 360px (355px de texto)
+     se cortaba dentro de una caja de 246. */
+  .flip-inner{
+    display:grid;width:100%;min-height:inherit;
+    transform-style:preserve-3d;
+    transition:transform .7s cubic-bezier(.2,.7,.2,1);
+  }
+  .flip-card.is-flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-face{
+    grid-area:1/1;display:flex;flex-direction:column;
+    padding:26px 24px;background:var(--card);
+    border:1px solid var(--border);border-radius:0;
+    backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    transition:border-color .2s ease;
+  }
+  .flip-card:hover .flip-face{border-color:var(--accent);}
+  .flip-back{transform:rotateY(180deg);}
+  /* El septimo principio cerraba la rejilla a lo ancho; mantiene ese papel. */
+  .flip-card.is-wide{grid-column:1/-1;min-height:200px;}
+  .flip-num{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;font-weight:600;
+    color:var(--accent);display:block;margin-bottom:14px;
+  }
+  .flip-face h3{font-size:19px;font-weight:700;letter-spacing:-.01em;color:var(--fg);margin:0 0 12px;}
+  .flip-hook{font-size:15px;line-height:1.6;color:var(--muted);margin:0;}
+  .flip-body{font-size:14.5px;line-height:1.65;color:var(--muted);margin:0;}
+  .flip-cue{
+    margin-top:auto;padding-top:18px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);display:inline-flex;align-items:center;gap:8px;min-height:24px;
+  }
+  @media (prefers-reduced-motion:reduce){
+    .flip-inner{transition:none;}
+  }
+  /* Una columna en movil: a 390px dos columnas dejan 165px por tarjeta y el
+     texto del reverso se convierte en una tira ilegible. */
+  @media (max-width:820px){
+    .flip-grid{grid-template-columns:minmax(0,1fr);gap:14px;}
+    .flip-card{min-height:0;}
+  }
+  /* ── AREAS TACTILES ─────────────────────────────────────────────────────
+     44x44 es el minimo de iOS HIG y de WCAG 2.5.8. Se amplia la zona de
+     toque sin tocar el tamano visible: min-height mas centrado vertical, y
+     en el cursor del hero un pseudoelemento que extiende el area. */
+  .nav-toggle{width:44px;height:44px;}
+  .back-link,.nav-brand{min-height:44px;display:inline-flex;align-items:center;}
+  .nav-pagelink{min-height:44px;display:inline-flex;align-items:center;}
+  .nav-pagelink{min-width:44px;justify-content:center;}
+  .work-link{min-height:44px;display:inline-flex;align-items:center;}
+  .lang-switch a{min-height:36px;display:inline-flex;align-items:center;}
+  .site-footer a,footer a{min-height:44px;display:inline-flex;align-items:center;}
+  /* El cursor parpadeante mide 4x10 a proposito; solo crece su zona de toque. */
+  .hero-cursor{position:relative;}
+  .hero-cursor::after{content:"";position:absolute;top:50%;left:50%;
+    width:44px;height:44px;transform:translate(-50%,-50%);}
+  @media (max-width:980px){
+    .hub-toc-mobile .rail-toc a{min-height:44px;}
+  }
+  .contact-detail .val a{min-height:44px;display:inline-flex;align-items:center;}
+  /* En un dispositivo tactil las pildoras de idioma llegan a 44; con raton se
+     quedan compactas, que es donde el diseno las quiere. */
+  @media (pointer:coarse){
+    .lang-switch a{min-width:44px;min-height:44px;justify-content:center;}
   }
 </style>
 <script src="/consent.js" defer></script>
@@ -1072,43 +1162,120 @@
         </summary>
         <div class="acc-body">
 
-      <div class="approach-grid reveal">
-        <div class="approach-item">
-          <span class="approach-num">01</span>
-          <h3>Diagnosticar antes de accionar palancas</h3>
-          <p>La mayoría de los problemas operativos no son problemas de modelado &mdash; son problemas de planteamiento o de medición. El trabajo que genera valor es nombrar qué está realmente descompuesto antes de aplicar una solución.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">02</span>
-          <h3>La calidad es multidimensional</h3>
-          <p>Definir «bueno» sobre varios pilares &mdash; seguridad, confiabilidad, tranquilidad. Medir primero con telemetría operativa y después con calificaciones de clientes. Los clientes premium valoran su tiempo más que las solicitudes de calificación.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">03</span>
-          <h3>Crecer con disciplina</h3>
-          <p>Los mercados se ganan el crecimiento superando filtros explícitos &mdash; preparación, concentración, tasa de rechazo, profundidad de supply. Pasar los filtros es necesario, pero no suficiente.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">04</span>
-          <h3>Traducir el diagnóstico en hojas de ruta</h3>
-          <p>El hallazgo sin ejecución es académico. Los mejores documentos de planeación nombran supuestos, pisos estructurales y puntos de decisión explícitos donde el plan cambia de rumbo o redobla la apuesta.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">05</span>
-          <h3>Ordenar el riesgo antes de accionar las palancas</h3>
-          <p>Lo que se pospone importa tanto como lo que se hace. Sanear los mercados frágiles antes de escalarlos; diseñar para el escenario adverso, no sólo para el favorable.</p>
-        </div>
-        <div class="approach-item">
-          <span class="approach-num">06</span>
-          <h3>ML para problemas probabilísticos; reglas para políticas</h3>
-          <p>Usar ML para clasificar en niveles añade complejidad sin valor. Usar reglas para predecir ignora la estructura probabilística. La división responde al fondo del problema, no al estilo.</p>
-        </div>
-        <div class="approach-item" style="grid-column:1/-1;">
-          <span class="approach-num">07</span>
-          <h3>La rendición de cuentas del socio es infraestructura de conversación</h3>
-          <p>Las tarjetas de desempeño por nivel convierten el rendimiento del socio en conversaciones comerciales estructuradas &mdash; Tier A condiciones estándar, Tier C plan de mejora a 90 días con metas nombradas. El marco es la conversación.</p>
-        </div>
-      </div>
+      <ul class="flip-grid reveal">
+        <li class="flip-card" role="button" tabindex="0" aria-expanded="false">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="flip-num">01</span>
+              <h3>Diagnosticar antes de accionar palancas</h3>
+              <p class="flip-hook">Arreglarlo rara vez es lo difícil. Nombrar qué está roto de verdad, sí.</p>
+              <span class="flip-cue">Girar <span aria-hidden="true">&rarr;</span></span>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="flip-num">01</span>
+              <h3 aria-hidden="true">Diagnosticar antes de accionar palancas</h3>
+              <p class="flip-body">La mayoría de los problemas operativos no son problemas de modelado &mdash; son problemas de planteamiento o de medición. El trabajo que genera valor es nombrar qué está realmente descompuesto antes de aplicar una solución.</p>
+              <span class="flip-cue"><span aria-hidden="true">&larr;</span> Volver</span>
+            </div>
+          </div>
+        </li>
+        <li class="flip-card" role="button" tabindex="0" aria-expanded="false">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="flip-num">02</span>
+              <h3>La calidad es multidimensional</h3>
+              <p class="flip-hook">Las valoraciones miden el ánimo. La telemetría mide lo que prometiste.</p>
+              <span class="flip-cue">Girar <span aria-hidden="true">&rarr;</span></span>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="flip-num">02</span>
+              <h3 aria-hidden="true">La calidad es multidimensional</h3>
+              <p class="flip-body">Definir «bueno» sobre varios pilares &mdash; seguridad, confiabilidad, tranquilidad. Medir primero con telemetría operativa y después con calificaciones de clientes. Los clientes premium valoran su tiempo más que las solicitudes de calificación.</p>
+              <span class="flip-cue"><span aria-hidden="true">&larr;</span> Volver</span>
+            </div>
+          </div>
+        </li>
+        <li class="flip-card" role="button" tabindex="0" aria-expanded="false">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="flip-num">03</span>
+              <h3>Crecer con disciplina</h3>
+              <p class="flip-hook">Pasar el filtro le da a un mercado el derecho a crecer. No se lo garantiza.</p>
+              <span class="flip-cue">Girar <span aria-hidden="true">&rarr;</span></span>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="flip-num">03</span>
+              <h3 aria-hidden="true">Crecer con disciplina</h3>
+              <p class="flip-body">Los mercados se ganan el crecimiento superando filtros explícitos &mdash; preparación, concentración, tasa de rechazo, profundidad de supply. Pasar los filtros es necesario, pero no suficiente.</p>
+              <span class="flip-cue"><span aria-hidden="true">&larr;</span> Volver</span>
+            </div>
+          </div>
+        </li>
+        <li class="flip-card" role="button" tabindex="0" aria-expanded="false">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="flip-num">04</span>
+              <h3>Traducir el diagnóstico en hojas de ruta</h3>
+              <p class="flip-hook">La intuición sin ejecución es académica. ¿Dónde gira exactamente el plan?</p>
+              <span class="flip-cue">Girar <span aria-hidden="true">&rarr;</span></span>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="flip-num">04</span>
+              <h3 aria-hidden="true">Traducir el diagnóstico en hojas de ruta</h3>
+              <p class="flip-body">El hallazgo sin ejecución es académico. Los mejores documentos de planeación nombran supuestos, pisos estructurales y puntos de decisión explícitos donde el plan cambia de rumbo o redobla la apuesta.</p>
+              <span class="flip-cue"><span aria-hidden="true">&larr;</span> Volver</span>
+            </div>
+          </div>
+        </li>
+        <li class="flip-card" role="button" tabindex="0" aria-expanded="false">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="flip-num">05</span>
+              <h3>Ordenar el riesgo antes de accionar las palancas</h3>
+              <p class="flip-hook">Lo que aplazas pesa tanto como lo que decides hacer primero.</p>
+              <span class="flip-cue">Girar <span aria-hidden="true">&rarr;</span></span>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="flip-num">05</span>
+              <h3 aria-hidden="true">Ordenar el riesgo antes de accionar las palancas</h3>
+              <p class="flip-body">Lo que se pospone importa tanto como lo que se hace. Sanear los mercados frágiles antes de escalarlos; diseñar para el escenario adverso, no sólo para el favorable.</p>
+              <span class="flip-cue"><span aria-hidden="true">&larr;</span> Volver</span>
+            </div>
+          </div>
+        </li>
+        <li class="flip-card" role="button" tabindex="0" aria-expanded="false">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="flip-num">06</span>
+              <h3>ML para problemas probabilísticos; reglas para políticas</h3>
+              <p class="flip-hook">Media parte es probabilidad y la otra es norma. Saber cuál es cuál.</p>
+              <span class="flip-cue">Girar <span aria-hidden="true">&rarr;</span></span>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="flip-num">06</span>
+              <h3 aria-hidden="true">ML para problemas probabilísticos; reglas para políticas</h3>
+              <p class="flip-body">Usar ML para clasificar en niveles añade complejidad sin valor. Usar reglas para predecir ignora la estructura probabilística. La división responde al fondo del problema, no al estilo.</p>
+              <span class="flip-cue"><span aria-hidden="true">&larr;</span> Volver</span>
+            </div>
+          </div>
+        </li>
+        <li class="flip-card is-wide" role="button" tabindex="0" aria-expanded="false">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <span class="flip-num">07</span>
+              <h3>La rendición de cuentas del socio es infraestructura de conversación</h3>
+              <p class="flip-hook">Un scorecard no es un informe. Es la forma de una conversación comercial.</p>
+              <span class="flip-cue">Girar <span aria-hidden="true">&rarr;</span></span>
+            </div>
+            <div class="flip-face flip-back">
+              <span class="flip-num">07</span>
+              <h3 aria-hidden="true">La rendición de cuentas del socio es infraestructura de conversación</h3>
+              <p class="flip-body">Las tarjetas de desempeño por nivel convierten el rendimiento del socio en conversaciones comerciales estructuradas &mdash; Tier A condiciones estándar, Tier C plan de mejora a 90 días con metas nombradas. El marco es la conversación.</p>
+              <span class="flip-cue"><span aria-hidden="true">&larr;</span> Volver</span>
+            </div>
+          </div>
+        </li>
+      </ul>
 
       <div class="approach-cta reveal">
         <p>Estos principios se demuestran en un panel interactivo en vivo.</p>
@@ -1731,6 +1898,28 @@
         } else if (timers[name]) {
           clearTimeout(timers[name]); timers[name] = null;
         }
+      });
+    });
+  })();
+</script>
+
+<script>
+  /* Giro de las tarjetas. Es un control compuesto (lleva h3 y parrafo dentro,
+     que no caben en un <button>), asi que el rol y el teclado van a mano. */
+  (function () {
+    var cards = document.querySelectorAll('.flip-card');
+    if (!cards.length) return;
+    function toggle(card) {
+      var open = card.classList.toggle('is-flipped');
+      card.setAttribute('aria-expanded', String(open));
+    }
+    Array.prototype.forEach.call(cards, function (card) {
+      card.addEventListener('click', function () { toggle(card); });
+      card.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar') {
+          ev.preventDefault(); toggle(card);
+        }
+        if (ev.key === 'Escape' && card.classList.contains('is-flipped')) toggle(card);
       });
     });
   })();
