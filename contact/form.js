@@ -107,8 +107,8 @@
              acepto. consent.js decide si llega a GA4 segun el consentimiento. */
           if (window.__consent && window.__consent.track) {
             window.__consent.track('contact_form_submit', {
-              page_language: T.lang,
-              inquiry_type: d.inquiry_type || 'not_specified'
+              inquiry_type: d.inquiry_type || 'not_specified',
+              has_company: !!(d.company && d.company.trim())
             });
           }
           return;

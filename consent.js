@@ -75,27 +75,27 @@
 
   var COPY = {
     en: {
-      title: 'Cookies & Analytics',
-      desc: 'This site uses necessary cookies to function and optional analytics cookies (Google Analytics) to understand how visitors use this website. Analytics helps improve content and user experience. You can change your preference anytime via the Datenschutzerklärung.',
-      accept: 'Accept analytics',
+      title: 'Analytics — your choice',
+      desc: 'Nothing is loaded until you decide. If you accept, Google Analytics shows me which parts of this portfolio people actually read — no advertising, no cross-site tracking. You can change your mind any time.',
+      accept: 'Accept',
       decline: 'Decline',
-      more: 'Learn more →',
+      more: 'Full details →',
       label: 'Cookie preferences'
     },
     de: {
-      title: 'Cookies & Analytics',
-      desc: 'Diese Website nutzt notwendige Cookies zur Funktion und optionale Analyse-Cookies (Google Analytics), um zu verstehen, wie Besucher diese Website nutzen. Analytics hilft, Inhalte und Benutzererfahrung zu verbessern. Sie können Ihre Einstellung jederzeit über die Datenschutzerklärung ändern.',
-      accept: 'Analytics akzeptieren',
+      title: 'Analytics — Ihre Entscheidung',
+      desc: 'Vor Ihrer Entscheidung wird nichts geladen. Wenn Sie zustimmen, zeigt mir Google Analytics, welche Teile dieses Portfolios tatsächlich gelesen werden — keine Werbung, kein seitenübergreifendes Tracking. Sie können Ihre Entscheidung jederzeit ändern.',
+      accept: 'Akzeptieren',
       decline: 'Ablehnen',
-      more: 'Mehr erfahren →',
+      more: 'Details →',
       label: 'Cookie-Einstellungen'
     },
     es: {
-      title: 'Cookies y Analytics',
-      desc: 'Este sitio utiliza cookies necesarias para funcionar y cookies opcionales de analytics (Google Analytics) para entender cómo los visitantes usan este sitio web. Analytics ayuda a mejorar el contenido y la experiencia. Puedes cambiar tu preferencia en cualquier momento vía la Política de Privacidad.',
-      accept: 'Aceptar analytics',
+      title: 'Analytics — tú decides',
+      desc: 'No se carga nada hasta que decidas. Si aceptas, Google Analytics me muestra qué partes de este portafolio se leen de verdad — sin publicidad, sin seguimiento entre sitios. Puedes cambiar de opinión cuando quieras.',
+      accept: 'Aceptar',
       decline: 'Rechazar',
-      more: 'Más información →',
+      more: 'Detalles →',
       label: 'Preferencias de cookies'
     }
   };
@@ -227,14 +227,15 @@
   var CSS = [
     /* --cc-accent es el acento canonico de jorgeag.com (#B8FF3D, 262 usos).
        #C6FF00 es el lima del CV y de 343ride.de, otra marca. */
-    ':root{--cc-bg:#14141a;--cc-accent:#B8FF3D;--cc-accent-fg:#0B0B0D;--cc-fg:#FFFFFF;--cc-muted:#8A8A8F;}',
+    ':root{--cc-bg:rgba(11,11,13,.98);--cc-solid:#14141a;--cc-accent:#B8FF3D;--cc-accent-fg:#0B0B0D;--cc-fg:#FFFFFF;--cc-muted:#8A8A8F;--cc-line:#262626;}',
     /* El velo solo enfoca la atencion: no intercepta clics ni bloquea el
        scroll. Un banner que tapa el sitio hasta obtener un si seria un cookie
        wall, y el consentimiento dejaria de ser libre. */
     '.cc-veil{position:fixed;inset:0;z-index:2147483646;pointer-events:none;',
     'background:linear-gradient(to bottom,rgba(11,11,13,0) 40%,rgba(11,11,13,.55) 100%);}',
     '.cc-banner{position:fixed;left:0;right:0;bottom:0;z-index:2147483647;',
-    'background:var(--cc-bg);border-top:1px solid var(--cc-accent);',
+    'background:var(--cc-bg);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);',
+    'border-top:1px solid var(--cc-accent);',
     'font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;',
     'box-shadow:0 -18px 48px rgba(0,0,0,.45);',
     /* El foco se mueve aqui por codigo al abrir, para que un lector de
@@ -247,7 +248,8 @@
     '.cc-banner,.cc-banner *{box-sizing:border-box;text-transform:none;',
     'font-style:normal;text-shadow:none;}',
     '.cc-inner{display:flex;gap:28px;align-items:center;justify-content:space-between;',
-    'flex-wrap:wrap;padding:24px 32px;max-width:1180px;margin:0 auto;}',
+    'flex-wrap:wrap;padding:22px 32px;max-width:1180px;margin:0 auto;',
+    'padding-bottom:calc(22px + env(safe-area-inset-bottom,0px));}',
     '.cc-text{flex:1 1 420px;min-width:0;}',
     '.cc-title{margin:0 0 6px;font-family:inherit;font-size:15px;font-weight:600;',
     'line-height:1.35;color:var(--cc-fg);letter-spacing:-.01em;}',
@@ -255,18 +257,19 @@
     'line-height:1.6;color:var(--cc-muted);max-width:720px;letter-spacing:normal;}',
     '.cc-link{display:inline-block;margin:8px 0 0;padding:0;font-family:inherit;',
     'font-size:13px;font-weight:500;line-height:1.4;letter-spacing:normal;',
-    'color:var(--cc-accent);text-decoration:none;border-bottom:0;}',
-    '.cc-link:hover{text-decoration:underline;}',
+    'color:var(--cc-muted);text-decoration:none;border-bottom:0;}',
+    '.cc-link:hover{text-decoration:underline;color:var(--cc-fg);}',
     '.cc-actions{display:flex;gap:12px;flex:0 0 auto;}',
     /* Mismo tamano en ambos botones: la diferencia es de estilo, no de peso.
        Si rechazar costara mas que aceptar, el consentimiento no seria libre. */
-    '.cc-btn{font-family:inherit;font-size:13.5px;font-weight:600;line-height:1.2;',
+    '.cc-btn{font-family:inherit;font-size:14px;font-weight:500;line-height:1.2;',
     'letter-spacing:normal;border-radius:28px;margin:0;',
     'padding:12px 26px;cursor:pointer;white-space:nowrap;transition:opacity .18s ease;}',
     '.cc-btn:hover{opacity:.85;}',
     '.cc-btn:focus-visible{outline:2px solid var(--cc-accent);outline-offset:3px;}',
     '.cc-accept{background:var(--cc-accent);color:var(--cc-accent-fg);border:1.5px solid var(--cc-accent);}',
-    '.cc-decline{background:transparent;color:var(--cc-accent);border:1.5px solid var(--cc-accent);}',
+    '.cc-decline{background:transparent;color:var(--cc-fg);border:1.5px solid var(--cc-line);}',
+    '.cc-decline:hover{border-color:var(--cc-muted);}',
     '@media(max-width:720px){',
     '.cc-inner{padding:16px 20px;gap:16px;align-items:stretch;}',
     '.cc-actions{width:100%;}',
@@ -274,7 +277,7 @@
     '}',
     '.cc-toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);',
     'z-index:2147483647;max-width:calc(100vw - 32px);',
-    'background:var(--cc-bg);border:1px solid var(--cc-accent);border-radius:999px;',
+    'background:var(--cc-solid);border:1px solid var(--cc-accent);border-radius:999px;',
     'padding:10px 20px;color:var(--cc-fg);font-family:inherit;font-size:13px;',
     'font-weight:500;letter-spacing:normal;text-align:center;',
     'box-shadow:0 10px 30px rgba(0,0,0,.5);transition:opacity .4s ease;}',
@@ -428,7 +431,14 @@
      envia nada, y el resto del codigo no tiene que acordarse de comprobarlo. */
   function track(name, params) {
     if (EXCLUDED || !granted || typeof gtag !== 'function') return;
-    gtag('event', name, params || {});
+    var p = params || {};
+    /* page_language y page_type se ponen aqui y no en cada llamada: asi no
+       hay forma de anadir un evento nuevo y olvidarse de ellos, que es lo que
+       habia pasado con nav_click y section_view. Si quien llama los trae, los
+       suyos mandan. */
+    if (p.page_language === undefined) p.page_language = langFromPath();
+    if (p.page_type === undefined) p.page_type = pageType(location.pathname);
+    gtag('event', name, p);
   }
 
   var INTERNAL_HOSTS = ['jorgeag.com', 'www.jorgeag.com'];
@@ -582,6 +592,54 @@
     };
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', arranca);
     else arranca();
+  })();
+
+  /* Permanencia real en cualquier pagina, no solo en los case studies. El
+     evento de case study se conserva intacto al lado: los informes que ya
+     agrupan por el seguirian funcionando. */
+  (function engagementGlobal() {
+    var timer = setTimeout(function () {
+      track('page_engaged', { duration: ENGAGED_AFTER_MS / 1000 });
+    }, ENGAGED_AFTER_MS);
+    function cancel() { if (timer) { clearTimeout(timer); timer = null; } }
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') cancel();
+    });
+    window.addEventListener('pagehide', cancel);
+  })();
+
+  /* Profundidad de lectura. Cada umbral se manda una sola vez por carga.
+     En una pagina que apenas pasa de una pantalla el 100% se alcanza sin
+     leer nada, asi que por debajo de 1,5 pantallas no se mide. */
+  (function scrollDepth() {
+    var MIN_RATIO = 1.5;
+    var STEPS = [25, 50, 75, 100];
+    var sent = {};
+    var queued = false;
+
+    function docHeight() {
+      return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    }
+    function sync() {
+      queued = false;
+      var vh = window.innerHeight || 0;
+      var h = docHeight();
+      if (!vh || h < vh * MIN_RATIO) return;
+      var max = h - vh;
+      var pct = max > 0 ? ((window.scrollY / max) * 100) : 100;
+      for (var i = 0; i < STEPS.length; i++) {
+        var step = STEPS[i];
+        if (!sent[step] && pct >= step - 0.5) {
+          sent[step] = true;
+          track('scroll_depth', { depth_percent: step });
+        }
+      }
+    }
+    window.addEventListener('scroll', function () {
+      if (!queued) { queued = true; window.requestAnimationFrame(sync); }
+    }, { passive: true });
+    window.addEventListener('resize', sync, { passive: true });
+    sync();
   })();
 
   /* Lectura de un case study: 30 s de permanencia real. Si la pestana se
