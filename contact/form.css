@@ -175,7 +175,7 @@ body.menu-open{overflow:hidden;}
 .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;}
 h1{font-size:clamp(34px,5.5vw,52px);font-weight:900;letter-spacing:-0.03em;line-height:1.04;margin-bottom:18px;}
 .lede{color:var(--muted);font-size:clamp(15.5px,1.3vw,17px);max-width:56ch;margin-bottom:12px;}
-.direct{color:var(--label);font-size:14px;margin-bottom:44px;}
+.direct{color:var(--label);font-size:14px;margin-bottom:20px;}
 .direct a{text-decoration:underline;text-underline-offset:2px;}
 
 /* ---- campos ---- */
@@ -323,4 +323,73 @@ footer a{min-height:44px;display:inline-flex;align-items:center;}
 
 @media (pointer:coarse){
   .lang-switch a{min-width:44px;min-height:44px;justify-content:center;}
+}
+
+/* ── TARJETA DE CONTACTO (QR vCard) ─────────────────────────────────────
+   Boton en contorno, como "Download CV" de la barra: es una accion
+   secundaria y no debe competir con el envio del formulario. El modal es un
+   <dialog> nativo (ver /contact/vcard.js); el velo imita el del banner de
+   cookies: oscuro y con desenfoque. */
+.vcard-cta{margin-bottom:44px;}
+.vcard-open{
+  display:inline-flex;align-items:center;gap:10px;min-height:44px;
+  padding:10px 20px;border:1px solid var(--border);border-radius:999px;
+  font-family:var(--sans);font-size:14px;font-weight:500;color:var(--fg);text-decoration:none;
+  transition:border-color .2s ease,color .2s ease;
+}
+.vcard-open::before{
+  /* Glifo de QR en CSS: tres esquinas de busqueda, sin otra peticion. */
+  content:"";width:14px;height:14px;flex:none;
+  background:
+    linear-gradient(var(--accent),var(--accent)) 0 0/6px 6px no-repeat,
+    linear-gradient(var(--accent),var(--accent)) 100% 0/6px 6px no-repeat,
+    linear-gradient(var(--accent),var(--accent)) 0 100%/6px 6px no-repeat,
+    linear-gradient(var(--accent),var(--accent)) 100% 100%/3px 3px no-repeat;
+}
+.vcard-open:hover{border-color:var(--accent);color:var(--accent);}
+
+.vcard-lock{overflow:hidden;}
+.vcard{
+  padding:0;border:0;background:transparent;color:var(--fg);
+  width:min(420px,calc(100% - 32px));max-width:none;max-height:calc(100% - 32px);
+  margin:auto;overflow:visible;
+}
+.vcard::backdrop{background:rgba(11,11,13,.62);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);}
+.vcard-card{
+  position:relative;background:var(--field);border:1px solid var(--border);border-top:1px solid var(--accent);
+  border-radius:20px;padding:32px 28px 26px;text-align:center;
+  box-shadow:0 24px 64px rgba(0,0,0,.5);
+  max-height:calc(100vh - 32px);overflow-y:auto;
+}
+.vcard-card h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:0 36px 8px;}
+.vcard-card p{color:var(--muted);font-size:14.5px;line-height:1.5;margin:0 auto 22px;max-width:30ch;}
+.vcard-qr{background:#fff;border-radius:14px;width:min(300px,100%);margin:0 auto 20px;overflow:hidden;}
+.vcard-qr img{display:block;width:100%;height:auto;aspect-ratio:1;}
+.vcard-dl{
+  display:inline-flex;align-items:center;gap:6px;min-height:44px;
+  font-size:14px;color:var(--muted);text-decoration:underline;text-underline-offset:3px;
+}
+.vcard-dl:hover{color:var(--accent);}
+.vcard-close{
+  position:absolute;top:14px;right:14px;width:44px;height:44px;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:transparent;border:1px solid var(--border);border-radius:999px;
+  color:var(--fg);font-family:var(--sans);font-size:22px;line-height:1;cursor:pointer;
+  transition:border-color .2s ease,color .2s ease;
+}
+.vcard-close:hover{border-color:var(--accent);color:var(--accent);}
+.vcard-close:focus-visible,.vcard-dl:focus-visible,.vcard-open:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+/* En el movil el QR no se puede escanear con la misma camara que lo
+   muestra: ahi la descarga es la via principal y pasa a ser un boton. */
+@media (pointer:coarse) and (max-width:600px){
+  .vcard-card{padding:28px 20px 22px;}
+  .vcard-dl{
+    display:flex;justify-content:center;width:100%;padding:14px 20px;border-radius:999px;
+    background:var(--accent);color:var(--accent-fg);font-weight:600;text-decoration:none;
+  }
+  .vcard-dl:hover{color:var(--accent-fg);}
+}
+@media (prefers-reduced-motion:no-preference){
+  .vcard[open] .vcard-card{animation:vcard-in .22s ease-out;}
+  @keyframes vcard-in{from{opacity:0;transform:translateY(8px) scale(.98);}to{opacity:1;transform:none;}}
 }

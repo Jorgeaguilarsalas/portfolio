@@ -27,8 +27,15 @@
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 <script src="/consent.js" defer></script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/favicon.ico" sizes="48x48">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="mask-icon" href="/icon-mask.svg" color="#B8FF3D">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0B0B0D">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Jorge Aguilar">
 <script src="/tab.js" defer></script>
 <script src="/nav.js" defer></script>
 </head>
@@ -85,6 +92,7 @@
   <h1>Ein Gespräch beginnen.</h1>
   <p class="lede">Founder von Salas UG Advisory. Co-Founder von Nexio Fleet. Schreiben Sie mir, woran Sie bauen — ich melde mich.</p>
   <p class="direct">Lieber per E-Mail? Schreiben Sie direkt an <a href="mailto:hello@jorgeag.com?subject=Conversation">hello@jorgeag.com</a>.</p>
+  <p class="vcard-cta"><a href="/jorge-aguilar.vcf" download="jorge-aguilar.vcf" class="vcard-open" aria-haspopup="dialog" aria-controls="vcard-modal">Kontakt speichern</a></p>
 
   <form id="contact-form" novalidate>
     <div class="row">
@@ -199,7 +207,18 @@
 
   <script id="i18n" type="application/json">{"mailbox": "hello@jorgeag.com", "lang": "de", "sending": "Wird gesendet…", "success": "Danke für Ihre Nachricht. Ich melde mich so bald wie möglich.", "errContact": "Bitte E-Mail-Adresse oder Telefonnummer angeben.", "errEmail": "Diese E-Mail-Adresse sieht nicht richtig aus.", "errMessage": "Bitte schreiben Sie mindestens 20 Zeichen, damit ich sinnvoll antworten kann.", "errConsent": "Bitte bestätigen Sie dies, um fortzufahren.", "errFix": "Bitte prüfen Sie die markierten Felder.", "rateLimited": "Zu viele Übermittlungen aus diesem Netzwerk. Bitte später erneut versuchen.", "captcha": "Die Spam-Prüfung ist fehlgeschlagen. Bitte Seite neu laden und erneut versuchen.", "unavailable": "Das Formular konnte gerade nicht senden. {link} — Ihre Nachricht ist schon eingetragen.", "unavailableLink": "Stattdessen per E-Mail senden", "mailSubject": "Anfrage"}</script>
   <script src="/contact/form.js" defer></script>
+  <script src="/contact/vcard.js" defer></script>
 </main>
+
+<dialog id="vcard-modal" class="vcard" aria-labelledby="vcard-title" aria-describedby="vcard-desc">
+  <div class="vcard-card">
+    <button type="button" class="vcard-close" aria-label="Schließen">&times;</button>
+    <h2 id="vcard-title">Kontakt speichern</h2>
+    <p id="vcard-desc">Mit der Handykamera scannen, um mich zu Ihren Kontakten hinzuzufügen.</p>
+    <div class="vcard-qr"><img src="/contact/vcard-qr.svg" width="300" height="300" alt="QR-Code mit der Kontaktkarte von Jorge Aguilar" loading="lazy" decoding="async"></div>
+    <a class="vcard-dl" href="/jorge-aguilar.vcf" download="jorge-aguilar.vcf">Oder .vcf direkt herunterladen <span aria-hidden="true">&rarr;</span></a>
+  </div>
+</dialog>
 
 <footer class="site">
   &copy; 2026 Jorge Aguilar &middot; <a href="/impressum/">Impressum</a> &middot; <a href="/datenschutz/">Datenschutz</a>

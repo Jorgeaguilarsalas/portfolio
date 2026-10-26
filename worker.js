@@ -76,6 +76,17 @@ export default {
       return redirect(PORTFOLIO_ORIGIN, url);
     }
 
+    // La tarjeta de contacto: con text/vcard, Safari en iOS abre la ficha de
+    // "Nuevo contacto" en vez de descargar un archivo opaco. El servidor de
+    // assets no garantiza ese tipo para .vcf, asi que se fija aqui.
+    if (url.pathname.endsWith(".vcf")) {
+      const res = await env.ASSETS.fetch(request);
+      if (!res.ok) return res;
+      const headers = new Headers(res.headers);
+      headers.set("Content-Type", "text/vcard; charset=utf-8");
+      return new Response(res.body, { status: res.status, headers });
+    }
+
     return env.ASSETS.fetch(request);
   },
 };

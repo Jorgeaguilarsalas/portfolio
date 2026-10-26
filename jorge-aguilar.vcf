@@ -1,0 +1,14 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Aguilar;Jorge;;;
+FN:Jorge Aguilar
+ORG:Salas UG
+TITLE:Founder + Advisor
+EMAIL;TYPE=INTERNET,WORK:hello@jorgeag.com
+TEL;TYPE=CELL:+4915734551124
+URL;TYPE=WORK:https://jorgeag.com
+URL:https://www.linkedin.com/in/jorge-aguilar-ops
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/jorge-aguilar-ops
+ADR;TYPE=WORK:;;Jessnerstraße 6;Berlin;;10247;Germany
+NOTE:Translating marketplace operations into systems thinking. Co-founder\, Nexio Fleet GmbH. Based in Berlin.
+END:VCARD
