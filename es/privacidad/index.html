@@ -469,7 +469,8 @@
         una medici&oacute;n de audiencia con Google Analytics 4
         (secci&oacute;n 13). En todas las p&aacute;ginas existe adem&aacute;s
         una segunda medici&oacute;n, sin cookies y sin necesidad de
-        consentimiento, con Cloudflare Web Analytics (secci&oacute;n 14). No
+        consentimiento, con Cloudflare Web Analytics (secci&oacute;n 14), y un
+        recuento base sin cookies con Umami Analytics (secci&oacute;n 14a). No
         hay suscripci&oacute;n a bolet&iacute;n, ni servicios publicitarios o
         de remarketing como el Meta Pixel.
       </p>
@@ -493,7 +494,12 @@
         un banner solicita su decisi&oacute;n. La segunda medici&oacute;n
         descrita en la <a href="#web-analytics">secci&oacute;n 14</a> no depende
         de esa decisi&oacute;n: funciona sin cookies y sin reconocimiento, por
-        lo que sigue activa aunque usted rechace en el banner. Puede rechazar
+        lo que sigue activa aunque usted rechace en el banner. Lo mismo vale
+        para el recuento base con Umami de la
+        <a href="#umami">secci&oacute;n 14a</a>: tampoco establece cookies,
+        pero vincula las solicitudes mediante un identificador seud&oacute;nimo
+        que cambia cada mes; puede oponerse a &eacute;l con
+        <span class="mono">?noga=1</span>. Puede rechazar
         sin que el uso del sitio quede limitado, y puede cambiar su
         decisi&oacute;n en cualquier momento.
       </p>
@@ -902,6 +908,8 @@
         dejar&aacute; de cargarse de forma permanente en ese navegador,
         incluidas las se&ntilde;ales sin cookies;
         <span class="mono">?noga=0</span> revierte esta configuraci&oacute;n.
+        El mismo par&aacute;metro impide tambi&eacute;n la carga de Umami
+        (<a href="#umami">secci&oacute;n 14a</a>).
         Como alternativa basta un mensaje informal a la direcci&oacute;n
         indicada en la <a href="#kontakt">secci&oacute;n 3</a>.
       </p>
@@ -1037,6 +1045,94 @@
       </p>
     </section>
 
+    <section class="legal" id="umami">
+      <h2>14a. Umami Analytics (alternativa respetuosa con la privacidad)</h2>
+      <p>
+        En paralelo a Google Analytics 4 (secci&oacute;n 13), este sitio web
+        utiliza Umami Analytics en su versi&oacute;n alojada &laquo;Umami
+        Cloud&raquo;, un servicio de anal&iacute;tica web de c&oacute;digo
+        abierto de Umami Software, Inc., 28 Geary St, Suite 650 #243, San
+        Francisco, CA, EE. UU. Umami sirve como recuento base de
+        p&aacute;ginas vistas y visitas. A diferencia de Google Analytics, no
+        depende de su decisi&oacute;n en el banner de cookies, de modo que el
+        alcance sigue siendo visible aunque usted rechace all&iacute;. La
+        medici&oacute;n abarca las p&aacute;ginas de este sitio web en
+        jorgeag.com; la publicaci&oacute;n &laquo;Operations in Motion&raquo;
+        (<span class="mono">/motion/</span>) no est&aacute; incluida por ahora.
+      </p>
+      <p>
+        <strong>Sin cookies y sin identificador en su dispositivo.</strong>
+        Umami no establece cookies ni almacena ning&uacute;n identificador en
+        su dispositivo, ni en el almacenamiento del navegador (localStorage) ni
+        en ning&uacute;n otro lugar. Por ello no se solicita consentimiento.
+      </p>
+      <p>
+        <strong>Datos tratados.</strong> Al solicitar una p&aacute;gina, su
+        navegador carga un script de medici&oacute;n desde
+        <span class="mono">cloud.umami.is</span> y env&iacute;a las mediciones a
+        <span class="mono">gateway.umami.is</span>. Se transmiten en particular:
+        la direcci&oacute;n solicitada sin par&aacute;metros de URL, el
+        t&iacute;tulo de la p&aacute;gina, la p&aacute;gina visitada
+        previamente (referrer), la resoluci&oacute;n de pantalla y el idioma
+        del navegador, as&iacute; como su direcci&oacute;n IP y el user agent.
+        A partir de la direcci&oacute;n IP se deriva la ubicaci&oacute;n
+        aproximada (pa&iacute;s, regi&oacute;n, ciudad), y a partir del user
+        agent, el navegador, el sistema operativo y el tipo de dispositivo.
+      </p>
+      <p>
+        <strong>Identificador seud&oacute;nimo de visitante.</strong> La
+        direcci&oacute;n IP se trata solo de forma transitoria y no se
+        almacena en los registros anal&iacute;ticos. Para contar visitas,
+        Umami calcula en su servidor un hash a partir de la direcci&oacute;n
+        IP, el user agent y el identificador del sitio web, junto con un valor
+        aleatorio que cambia peri&oacute;dicamente (salt). El hash no permite
+        reconstruir su direcci&oacute;n IP. Sin embargo, s&iacute; permite
+        vincular entre s&iacute; solicitudes repetidas desde el mismo navegador
+        dentro del periodo del salt (por defecto, un mes natural). Tras el
+        cambio de salt, esa vinculaci&oacute;n deja de ser posible. No se
+        realiza seguimiento entre sitios ni elaboraci&oacute;n de perfiles.
+        Seg&uacute;n Umami, las direcciones IP tambi&eacute;n pueden quedar
+        registradas en los registros operativos y de seguridad de Umami y de
+        sus proveedores de infraestructura. Esos registros se mantienen
+        separados de los datos anal&iacute;ticos.
+      </p>
+      <p>
+        <strong>Base jur&iacute;dica.</strong> La base jur&iacute;dica es
+        nuestro inter&eacute;s leg&iacute;timo en un an&aacute;lisis
+        estad&iacute;stico del alcance de este sitio web que minimice los datos
+        y no dependa de la decisi&oacute;n en el banner de cookies (art. 6.1.f
+        RGPD).
+      </p>
+      <p>
+        <strong>Su derecho de oposici&oacute;n.</strong> Puede oponerse a este
+        tratamiento en cualquier momento conforme al art. 21.1 RGPD. El
+        par&aacute;metro <span class="mono">?noga=1</span> descrito en la
+        secci&oacute;n 13 (por ejemplo,
+        <span class="mono">jorgeag.com/?noga=1</span>) se aplica tambi&eacute;n
+        a Umami: el script de Umami dejar&aacute; de cargarse de forma
+        permanente en ese navegador. <span class="mono">?noga=0</span> revierte
+        esta configuraci&oacute;n. Como alternativa basta un mensaje informal a
+        la direcci&oacute;n indicada en la <a href="#kontakt">secci&oacute;n 3</a>.
+      </p>
+      <p>
+        <strong>Destinatarios, transferencias a terceros pa&iacute;ses y plazo
+        de conservaci&oacute;n.</strong> Umami Software, Inc. act&uacute;a como
+        encargado del tratamiento; existe un contrato de encargo de tratamiento
+        conforme al art. 28 RGPD. Umami tiene su sede en los Estados Unidos y
+        recurre a subencargados ubicados en su mayor&iacute;a en los Estados
+        Unidos, por lo que no puede descartarse un tratamiento all&iacute;. Las
+        transferencias se basan en las cl&aacute;usulas contractuales tipo de
+        la Comisi&oacute;n Europea incorporadas al contrato de encargo. Pese a
+        estas garant&iacute;as, no puede descartarse por completo que las
+        autoridades estadounidenses accedan a los datos. Los datos
+        anal&iacute;ticos se suprimen seg&uacute;n el plan aplicable a nuestra
+        cuenta, a m&aacute;s tardar a los dos a&ntilde;os. Encontrar&aacute;
+        m&aacute;s informaci&oacute;n en la pol&iacute;tica de privacidad de
+        Umami:
+        <a href="https://umami.is/privacy" target="_blank" rel="noopener">umami.is/privacy</a>.
+      </p>
+    </section>
+
     <section class="legal">
       <h2>15. Cifrado SSL/TLS</h2>
       <p>
@@ -1151,7 +1247,7 @@
       </p>
     </section>
 
-    <p class="legal-meta">Versi&oacute;n de esta declaraci&oacute;n: septiembre de 2026 &middot; <a href="/datenschutz/">original alem&aacute;n (jur&iacute;dicamente vinculante)</a></p>
+    <p class="legal-meta">Versi&oacute;n de esta declaraci&oacute;n: octubre de 2026 &middot; <a href="/datenschutz/">original alem&aacute;n (jur&iacute;dicamente vinculante)</a></p>
 
   </div>
 </main>

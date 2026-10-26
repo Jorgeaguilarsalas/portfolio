@@ -21,6 +21,9 @@
  * en el interes legitimo del Art. 6.1.f, con derecho de oposicion del Art. 21
  * ejercitable con ?noga=1, que corta la carga de gtag.js en ese navegador.
  *
+ * Aparte, y sin pasar por el banner, se carga Umami Cloud como linea base sin
+ * cookies (seccion 14a). ?noga=1 corta tambien esa carga.
+ *
  * A cambio GA4 recupera el modelado del trafico que rechaza. La contrapartida
  * esta documentada en la Datenschutzerklarung, secciones 1 y 13: si el texto
  * legal y este archivo dejan de coincidir, el consentimiento deja de ser
@@ -183,6 +186,34 @@
     // GA4 trunca la IP antes de almacenarla, no hace falta anonymize_ip (es un
     // parametro de Universal Analytics que GA4 ignora).
     gtag('config', GA_ID);
+  }
+
+  /* Umami Cloud: linea base sin cookies, independiente del banner (no mira
+     `granted`). Se inyecta desde aqui y no con una etiqueta fija en el HTML
+     porque una etiqueta fija no se puede frenar: ?noga=1 tiene que cortar
+     tambien esta peticion, igual que corta gtag.js. Documentado en la
+     Datenschutzerklarung, seccion 14a. El tracker lee sus data-* de
+     document.currentScript, que tambien vale para scripts inyectados. */
+  var UMAMI_ID = '509cd12d-3df5-4708-8e8c-da454098c035';
+  var umamiLoaded = false;
+
+  /* /motion/ (otro repo) carga este mismo consent.js, pero Umami todavia no
+     cubre Motion: la seccion 14a lo excluye. Cuando Motion lo adopte, se
+     quita esta condicion y se actualiza la 14a. */
+  function isMotion() {
+    return /^\/(de\/|es\/)?motion(\/|$)/.test(location.pathname);
+  }
+
+  function loadUmami() {
+    if (EXCLUDED || umamiLoaded || isMotion()) return;
+    umamiLoaded = true;
+    var s = document.createElement('script');
+    s.defer = true;
+    s.src = 'https://cloud.umami.is/script.js';
+    s.setAttribute('data-website-id', UMAMI_ID);
+    s.setAttribute('data-exclude-search', 'true');
+    s.setAttribute('data-domains', 'jorgeag.com');
+    document.head.appendChild(s);
   }
 
   /* Al revocar no basta con dejar de medir: las cookies _ga que quedaron de un
@@ -684,6 +715,9 @@
     var t = TOAST[pickLang()] || TOAST.en;
     aviso(noga === '1' ? t.on : t.off);
   }
+
+  /* Umami va primero: es la linea base, ajena al banner. */
+  loadUmami();
 
   /* La etiqueta se carga aqui, antes de leer la decision: con los defaults ya
      en denied puede arrancar sin consentimiento, y asi las senales sin cookies

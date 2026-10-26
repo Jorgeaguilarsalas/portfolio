@@ -458,7 +458,8 @@
         zus&auml;tzlich ein Kontaktformular (Abschnitt 12) und setzt eine
         Reichweitenmessung mit Google Analytics 4 ein (Abschnitt 13). Hinzu
         kommt auf allen Seiten eine zweite, cookielose und einwilligungsfreie
-        Reichweitenmessung mit Cloudflare Web Analytics (Abschnitt 14). Eine Newsletter-Anmeldung besteht nicht,
+        Reichweitenmessung mit Cloudflare Web Analytics (Abschnitt 14) und
+        eine cookielose Basisz&auml;hlung mit Umami Analytics (Abschnitt 14a). Eine Newsletter-Anmeldung besteht nicht,
         ebenso wenig Werbe- oder Remarketing-Dienste wie das Meta Pixel.
       </p>
       <p>
@@ -483,7 +484,11 @@
         <a href="#web-analytics">Abschnitt 14</a> beschriebene zweite Messung
         h&auml;ngt nicht von dieser Entscheidung ab: Sie
         kommt ohne Cookies und ohne Wiedererkennung aus und l&auml;uft deshalb auch
-        dann, wenn Sie im Banner ablehnen. Sie k&ouml;nnen ablehnen, ohne dass
+        dann, wenn Sie im Banner ablehnen. Gleiches gilt f&uuml;r die
+        Basisz&auml;hlung mit Umami nach <a href="#umami">Abschnitt 14a</a>: Sie
+        setzt ebenfalls keine Cookies, ordnet Aufrufe aber &uuml;ber eine
+        pseudonyme, monatlich wechselnde Kennung einander zu; ihr k&ouml;nnen Sie
+        mit <span class="mono">?noga=1</span> widersprechen. Sie k&ouml;nnen ablehnen, ohne dass
         die Seite dadurch eingeschr&auml;nkt nutzbar w&auml;re, und Ihre Entscheidung
         jederzeit &auml;ndern.
       </p>
@@ -882,7 +887,9 @@
         <span class="mono">jorgeag.com/?noga=1</span>). Damit wird das
         Google-Skript in diesem Browser dauerhaft nicht mehr geladen, auch
         nicht die cookiefreien Signale;
-        <span class="mono">?noga=0</span> hebt das wieder auf. Alternativ
+        <span class="mono">?noga=0</span> hebt das wieder auf. Derselbe
+        Zusatz unterbindet auch das Laden von Umami
+        (<a href="#umami">Abschnitt 14a</a>). Alternativ
         gen&uuml;gt eine formlose Nachricht an die in
         <a href="#kontakt">Abschnitt 3</a> genannte Adresse.
       </p>
@@ -1050,6 +1057,88 @@
       </p>
     </section>
 
+    <section class="legal" id="umami">
+      <h2>14a. Umami Analytics (datenschutzfreundliche Alternative)</h2>
+      <p>
+        Parallel zu Google Analytics 4 (Abschnitt 13) nutzt diese Website
+        Umami Analytics in der gehosteten Fassung &bdquo;Umami Cloud&ldquo;, einen
+        quelloffenen Webanalysedienst der Umami Software, Inc., 28 Geary St,
+        Suite 650 #243, San Francisco, CA, USA. Umami dient als Basisz&auml;hlung
+        von Seitenaufrufen und Besuchen. Anders als Google Analytics h&auml;ngt
+        es nicht von Ihrer Entscheidung im Cookie-Banner ab, sodass die
+        Reichweite auch dann sichtbar bleibt, wenn Sie dort ablehnen. Die
+        Messung umfasst die Seiten dieser Website unter jorgeag.com; die
+        Publikation &bdquo;Operations in Motion&ldquo; (<span class="mono">/motion/</span>)
+        ist derzeit nicht einbezogen.
+      </p>
+      <p>
+        <strong>Keine Cookies, keine Kennung auf Ihrem Endger&auml;t.</strong>
+        Umami setzt keine Cookies und speichert weder im Browserspeicher
+        (localStorage) noch an anderer Stelle eine Kennung auf Ihrem
+        Endger&auml;t. Eine Einwilligung wird deshalb nicht eingeholt.
+      </p>
+      <p>
+        <strong>Verarbeitete Daten.</strong> Beim Aufruf einer Seite l&auml;dt Ihr
+        Browser ein Messskript von <span class="mono">cloud.umami.is</span> und
+        &uuml;bermittelt die Messwerte an <span class="mono">gateway.umami.is</span>.
+        &Uuml;bermittelt werden insbesondere: die aufgerufene Adresse ohne
+        URL-Parameter, der Seitentitel, die zuvor besuchte Seite (Referrer),
+        Bildschirmaufl&ouml;sung und Browsersprache sowie Ihre IP-Adresse und der
+        User-Agent. Aus der IP-Adresse wird der ungef&auml;hre Standort (Land,
+        Region, Stadt) abgeleitet, aus dem User-Agent Browser, Betriebssystem
+        und Ger&auml;teart.
+      </p>
+      <p>
+        <strong>Pseudonyme Besucherkennung.</strong> Die IP-Adresse wird nur
+        vor&uuml;bergehend verarbeitet und nicht in den Analysedatens&auml;tzen
+        gespeichert. Um Besuche z&auml;hlen zu k&ouml;nnen, bildet Umami auf seinem
+        Server aus IP-Adresse, User-Agent und Website-Kennung zusammen mit einem
+        regelm&auml;&szlig;ig wechselnden Zufallswert (Salt) einen Hashwert. Dieser
+        Hashwert ist nicht auf Ihre IP-Adresse zur&uuml;ckrechenbar. Er erlaubt
+        aber, wiederholte Aufrufe aus demselben Browser innerhalb des
+        Salt-Zeitraums (standardm&auml;&szlig;ig ein Kalendermonat) einander
+        zuzuordnen. Nach dem Wechsel des Salts ist diese Zuordnung nicht mehr
+        m&ouml;glich. Ein seiten&uuml;bergreifendes Tracking oder eine Profilbildung
+        findet nicht statt. Nach den Angaben von Umami k&ouml;nnen IP-Adressen
+        au&szlig;erdem in Betriebs- und Sicherheitsprotokollen von Umami und dessen
+        Infrastrukturdienstleistern erfasst werden. Diese Protokolle sind von
+        den Analysedaten getrennt.
+      </p>
+      <p>
+        <strong>Rechtsgrundlage.</strong> Rechtsgrundlage ist unser
+        berechtigtes Interesse an einer datensparsamen statistischen Auswertung
+        der Reichweite dieser Website, die nicht von der Entscheidung im
+        Cookie-Banner abh&auml;ngt (Art. 6 Abs. 1 lit. f DSGVO).
+      </p>
+      <p>
+        <strong>Ihr Widerspruchsrecht.</strong> Sie k&ouml;nnen dieser
+        Verarbeitung nach Art. 21 Abs. 1 DSGVO jederzeit widersprechen. Der in
+        Abschnitt 13 beschriebene Zusatz <span class="mono">?noga=1</span> (zum
+        Beispiel <span class="mono">jorgeag.com/?noga=1</span>) gilt auch f&uuml;r
+        Umami: Danach wird das Umami-Skript in diesem Browser dauerhaft nicht
+        mehr geladen. <span class="mono">?noga=0</span> hebt das wieder auf.
+        Alternativ gen&uuml;gt eine formlose Nachricht an die in
+        <a href="#kontakt">Abschnitt 3</a> genannte Adresse.
+      </p>
+      <p>
+        <strong>Empf&auml;nger, Daten&uuml;bermittlung in Drittl&auml;nder und
+        Speicherdauer.</strong> Umami Software, Inc. ist als
+        Auftragsverarbeiterin t&auml;tig; es besteht ein Vertrag &uuml;ber
+        Auftragsverarbeitung nach Art. 28 DSGVO. Umami hat seinen Sitz in den
+        Vereinigten Staaten und setzt Unterauftragsverarbeiter ein, die
+        &uuml;berwiegend in den Vereinigten Staaten ans&auml;ssig sind. Eine
+        Verarbeitung dort kann daher nicht ausgeschlossen werden. Grundlage der
+        &Uuml;bermittlung sind die in den Auftragsverarbeitungsvertrag
+        einbezogenen Standardvertragsklauseln der EU-Kommission. Trotz dieser
+        Garantien kann nicht vollst&auml;ndig ausgeschlossen werden, dass
+        US-Beh&ouml;rden auf die Daten zugreifen. Die Analysedaten werden nach dem
+        f&uuml;r unser Konto geltenden Tarif gel&ouml;scht, sp&auml;testens nach zwei
+        Jahren. Weitere Informationen finden Sie in der Datenschutzerkl&auml;rung
+        von Umami:
+        <a href="https://umami.is/privacy" target="_blank" rel="noopener">umami.is/privacy</a>.
+      </p>
+    </section>
+
     <section class="legal">
       <h2>15. SSL- bzw. TLS-Verschl&uuml;sselung</h2>
       <p>
@@ -1160,7 +1249,7 @@
       </p>
     </section>
 
-    <p class="legal-meta">Stand dieser Erkl&auml;rung: September 2026</p>
+    <p class="legal-meta">Stand dieser Erkl&auml;rung: Oktober 2026</p>
 
   </div>
 </main>

@@ -468,7 +468,8 @@
         a contact form (section 12) and uses audience measurement with Google
         Analytics 4 (section 13). On every page there is also a second,
         cookieless measurement that does not require consent, Cloudflare Web
-        Analytics (section 14). There is no newsletter sign-up, and no
+        Analytics (section 14), and a cookieless baseline count with Umami
+        Analytics (section 14a). There is no newsletter sign-up, and no
         advertising or remarketing services such as the Meta Pixel.
       </p>
       <p>
@@ -489,7 +490,11 @@
         your decision when you first visit. The second measurement described in
         <a href="#web-analytics">section 14</a> does not depend on that
         decision: it works without cookies and without recognition and
-        therefore also runs if you decline in the banner. You can decline
+        therefore also runs if you decline in the banner. The same applies to
+        the baseline count with Umami under <a href="#umami">section 14a</a>:
+        it likewise sets no cookies, but links requests through a
+        pseudonymous identifier that changes monthly; you can object to it
+        with <span class="mono">?noga=1</span>. You can decline
         without any restriction on your use of the site, and you can change
         your decision at any time.
       </p>
@@ -857,7 +862,8 @@
         <span class="mono">jorgeag.com/?noga=1</span>). The Google script will
         then permanently no longer be loaded in that browser, including the
         cookieless signals; <span class="mono">?noga=0</span> reverses this.
-        Alternatively an informal message to the address named in
+        The same parameter also stops Umami from loading
+        (<a href="#umami">section 14a</a>). Alternatively an informal message to the address named in
         <a href="#kontakt">section 3</a> is sufficient.
       </p>
       <p>
@@ -976,6 +982,84 @@
       </p>
     </section>
 
+    <section class="legal" id="umami">
+      <h2>14a. Umami Analytics (privacy-friendly alternative)</h2>
+      <p>
+        Alongside Google Analytics 4 (section 13), this website uses Umami
+        Analytics in its hosted version &ldquo;Umami Cloud&rdquo;, an
+        open-source web analytics service of Umami Software, Inc., 28 Geary St,
+        Suite 650 #243, San Francisco, CA, USA. Umami serves as a baseline count
+        of page views and visits. Unlike Google Analytics, it does not depend
+        on your decision in the cookie banner, so that reach remains visible
+        even if you decline there. The measurement covers the pages of this
+        website under jorgeag.com; the publication &ldquo;Operations in
+        Motion&rdquo; (<span class="mono">/motion/</span>) is currently not
+        included.
+      </p>
+      <p>
+        <strong>No cookies, no identifier on your device.</strong> Umami sets
+        no cookies and stores no identifier on your device, neither in browser
+        storage (localStorage) nor anywhere else. Consent is therefore not
+        requested.
+      </p>
+      <p>
+        <strong>Data processed.</strong> When a page is requested, your
+        browser loads a measurement script from
+        <span class="mono">cloud.umami.is</span> and sends the measurements to
+        <span class="mono">gateway.umami.is</span>. This includes in
+        particular: the address requested without URL parameters, the page
+        title, the previously visited page (referrer), screen resolution and
+        browser language, as well as your IP address and user agent. The
+        approximate location (country, region, city) is derived from the IP
+        address, and browser, operating system and device type from the user
+        agent.
+      </p>
+      <p>
+        <strong>Pseudonymous visitor identifier.</strong> The IP address is
+        processed only transiently and is not stored in the analytics records.
+        To count visits, Umami computes a hash on its server from the IP
+        address, user agent and website identifier together with a regularly
+        changing random value (salt). The hash cannot be reversed to your IP
+        address. It does, however, allow repeated requests from the same
+        browser to be linked within the salt period (by default one calendar
+        month). Once the salt changes, this linking is no longer possible. No
+        cross-site tracking or profiling takes place. According to Umami, IP
+        addresses may also be recorded in operational and security logs of
+        Umami and its infrastructure providers. These logs are kept separate
+        from the analytics data.
+      </p>
+      <p>
+        <strong>Legal basis.</strong> The legal basis is our legitimate
+        interest in a data-minimising statistical analysis of this
+        website&rsquo;s reach that does not depend on the decision in the
+        cookie banner (Art. 6(1)(f) GDPR).
+      </p>
+      <p>
+        <strong>Your right to object.</strong> You may object to this
+        processing at any time under Art. 21(1) GDPR. The parameter
+        <span class="mono">?noga=1</span> described in section 13 (for example
+        <span class="mono">jorgeag.com/?noga=1</span>) also applies to Umami:
+        the Umami script will then permanently no longer be loaded in that
+        browser. <span class="mono">?noga=0</span> reverses this.
+        Alternatively an informal message to the address named in
+        <a href="#kontakt">section 3</a> is sufficient.
+      </p>
+      <p>
+        <strong>Recipients, transfers to third countries and retention.</strong>
+        Umami Software, Inc. acts as processor; a data processing agreement
+        under Art. 28 GDPR is in place. Umami is based in the United States and
+        uses sub-processors that are mostly located in the United States.
+        Processing there therefore cannot be excluded. Transfers are based on
+        the European Commission&rsquo;s standard contractual clauses
+        incorporated into the data processing agreement. Despite these
+        safeguards, access to the data by US authorities cannot be completely
+        excluded. The analytics data is deleted according to the plan that
+        applies to our account, at the latest after two years. Further
+        information is available in Umami&rsquo;s privacy policy:
+        <a href="https://umami.is/privacy" target="_blank" rel="noopener">umami.is/privacy</a>.
+      </p>
+    </section>
+
     <section class="legal">
       <h2>15. SSL / TLS encryption</h2>
       <p>
@@ -1081,7 +1165,7 @@
       </p>
     </section>
 
-    <p class="legal-meta">Version of this policy: September 2026 &middot; <a href="/datenschutz/">German original (legally binding)</a></p>
+    <p class="legal-meta">Version of this policy: October 2026 &middot; <a href="/datenschutz/">German original (legally binding)</a></p>
 
   </div>
 </main>

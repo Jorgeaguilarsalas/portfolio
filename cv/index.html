@@ -4,6 +4,29 @@
 <meta charset="utf-8">
 <title>Jorge Aguilar — CV</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<script>
+/* Umami (linea base sin cookies). Esta pagina no carga consent.js, asi que
+   repite aqui su regla de ?noga: 1 corta la carga, 0 la restaura, misma clave
+   de localStorage. En file:// (npm run cv) no se carga. */
+(function () {
+  if (location.protocol === 'file:') return;
+  var off = false;
+  try {
+    var q = new URLSearchParams(location.search).get('noga');
+    if (q === '1') localStorage.setItem('ga_opt_out', '1');
+    else if (q === '0') localStorage.removeItem('ga_opt_out');
+    off = localStorage.getItem('ga_opt_out') === '1';
+  } catch (e) {}
+  if (off) return;
+  var s = document.createElement('script');
+  s.defer = true;
+  s.src = 'https://cloud.umami.is/script.js';
+  s.setAttribute('data-website-id', '509cd12d-3df5-4708-8e8c-da454098c035');
+  s.setAttribute('data-exclude-search', 'true');
+  s.setAttribute('data-domains', 'jorgeag.com');
+  document.head.appendChild(s);
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap">
