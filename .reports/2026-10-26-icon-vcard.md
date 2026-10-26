@@ -4,7 +4,7 @@
 **Task:** Icono custom + Modal QR vCard
 **Session:** Claude Code
 **Status:** SHIPPED (real-device and dashboard checks pending, see §9)
-**Commit:** pending — filled in after deploy
+**Commit:** 4b7e45c (feature) · report finalized in the follow-up commit
 
 ## 1. Context
 
@@ -102,7 +102,7 @@ Replaces the previous three icon tags on every page:
 ### Desktop:
 - Favicon visible: new `favicon.svg` and `favicon.ico` are served and render correctly at 16 and 32px (icon sheet).
 - Modal responsive: at 1440×900, a 420px card centred, QR at 300px, page width unchanged. Closes with Escape, backdrop click and the × button, and focus returns to the button. Passes in EN/DE/ES. Screenshot: `modal-en-1440.png`.
-- .vcf download works: the link has `download="jorge-aguilar.vcf"`; Chrome downloads it.
+- .vcf download works: the link has `download="jorge-aguilar.vcf"`; Chrome downloads it. Production serves it as `text/vcard; charset=utf-8` (the Worker override works), identical to the repo file.
 
 ### iPhone:
 - Add to Home Screen icon correct: **not verified on a device** (no iPhone in this environment). `apple-touch-icon.png` (180×180, full bleed) and `apple-mobile-web-app-title` are in place on all pages.
@@ -161,7 +161,7 @@ Replaces the previous three icon tags on every page:
 
 ## 10. Metrics
 
-- Lines changed: pending
-- Files touched: pending
-- Time elapsed: pending
-- Deploy status: pending
+- Lines changed: +963 / −92 in site and build files (52 files, report excluded). Most of it is the 10-line icon block × 37 pages, the modal and menu markup × 3, `form.css` and `package-lock.json` (+~325, qrcode dependency tree).
+- Files touched: 52 outside `.reports/`: 37 HTML pages, 13 new files (6 icons, manifest, .vcf, QR SVG, vcard.js, build_vcard.js and others), plus form.css, worker.js, package.json and package-lock.json. Report: 1 .md + 4 .png.
+- Time elapsed: 00:08 (18:16 → 18:24)
+- Deploy status: confirmed on production (about 50s after push). `/jorge-aguilar.vcf` returns 200 with `text/vcard; charset=utf-8` and is byte-identical to the repo. `manifest.json` is valid (5 icons). All icon files return 200 with correct types, and the new `favicon.svg` is live. The manifest and meta block is present on every page sampled (EN/DE/ES, legal, real 404 responses). The modal is present on `/contact/`, `/de/contact/` and `/es/contact/`. `343ride.de` and `/motion/` are unchanged (no manifest tag).
