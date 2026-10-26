@@ -331,6 +331,7 @@
     nodes.veil.remove();
     nodes.banner.remove();
     nodes = null;
+    document.documentElement.removeAttribute('data-cc-banner');
     if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
     lastFocus = null;
   }
@@ -417,6 +418,10 @@
     document.body.appendChild(veil);
     document.body.appendChild(banner);
     nodes = { veil: veil, banner: banner };
+    /* Marca publica del estado del banner. /vcard.js oculta con ella su boton
+       flotante (misma esquina inferior) mientras el banner esta abierto; es
+       CSS puro, asi que no depende del orden de carga de los scripts. */
+    document.documentElement.setAttribute('data-cc-banner', 'open');
     banner.focus();
   }
 

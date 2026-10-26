@@ -38,6 +38,7 @@
 <meta name="apple-mobile-web-app-title" content="Jorge Aguilar">
 <script src="/tab.js" defer></script>
 <script src="/nav.js" defer></script>
+<script src="/vcard.js" defer></script>
 </head>
 <body>
 
@@ -207,18 +208,8 @@
 
   <script id="i18n" type="application/json">{"mailbox": "hello@jorgeag.com", "lang": "es", "sending": "Enviando…", "success": "Gracias por tu mensaje. Te respondo tan pronto como sea posible.", "errContact": "Añade un correo electrónico o un teléfono.", "errEmail": "Ese correo electrónico no parece correcto.", "errMessage": "Escribe al menos 20 caracteres para que pueda responderte bien.", "errConsent": "Confirma esto para continuar.", "errFix": "Revisa los campos marcados.", "rateLimited": "Demasiados envíos desde esta red. Inténtalo más tarde.", "captcha": "La comprobación antispam no pasó. Recarga la página e inténtalo de nuevo.", "unavailable": "El formulario no pudo enviarse ahora. {link} — tu mensaje ya va incluido.", "unavailableLink": "Enviar por correo en su lugar", "mailSubject": "Consulta"}</script>
   <script src="/contact/form.js" defer></script>
-  <script src="/contact/vcard.js" defer></script>
 </main>
 
-<dialog id="vcard-modal" class="vcard" aria-labelledby="vcard-title" aria-describedby="vcard-desc">
-  <div class="vcard-card">
-    <button type="button" class="vcard-close" aria-label="Cerrar">&times;</button>
-    <h2 id="vcard-title">Guardar contacto</h2>
-    <p id="vcard-desc">Escanea con la cámara de tu móvil para añadirme a tus contactos.</p>
-    <div class="vcard-qr"><img src="/contact/vcard-qr.svg" width="300" height="300" alt="Código QR con la tarjeta de contacto de Jorge Aguilar" loading="lazy" decoding="async"></div>
-    <a class="vcard-dl" href="/jorge-aguilar.vcf" download="jorge-aguilar.vcf">O descarga el .vcf directamente <span aria-hidden="true">&rarr;</span></a>
-  </div>
-</dialog>
 
 <footer class="site">
   &copy; 2026 Jorge Aguilar &middot; <a href="/impressum/">Impressum</a> &middot; <a href="/datenschutz/">Privacidad</a>

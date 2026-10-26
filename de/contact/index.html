@@ -38,6 +38,7 @@
 <meta name="apple-mobile-web-app-title" content="Jorge Aguilar">
 <script src="/tab.js" defer></script>
 <script src="/nav.js" defer></script>
+<script src="/vcard.js" defer></script>
 </head>
 <body>
 
@@ -207,18 +208,8 @@
 
   <script id="i18n" type="application/json">{"mailbox": "hello@jorgeag.com", "lang": "de", "sending": "Wird gesendet…", "success": "Danke für Ihre Nachricht. Ich melde mich so bald wie möglich.", "errContact": "Bitte E-Mail-Adresse oder Telefonnummer angeben.", "errEmail": "Diese E-Mail-Adresse sieht nicht richtig aus.", "errMessage": "Bitte schreiben Sie mindestens 20 Zeichen, damit ich sinnvoll antworten kann.", "errConsent": "Bitte bestätigen Sie dies, um fortzufahren.", "errFix": "Bitte prüfen Sie die markierten Felder.", "rateLimited": "Zu viele Übermittlungen aus diesem Netzwerk. Bitte später erneut versuchen.", "captcha": "Die Spam-Prüfung ist fehlgeschlagen. Bitte Seite neu laden und erneut versuchen.", "unavailable": "Das Formular konnte gerade nicht senden. {link} — Ihre Nachricht ist schon eingetragen.", "unavailableLink": "Stattdessen per E-Mail senden", "mailSubject": "Anfrage"}</script>
   <script src="/contact/form.js" defer></script>
-  <script src="/contact/vcard.js" defer></script>
 </main>
 
-<dialog id="vcard-modal" class="vcard" aria-labelledby="vcard-title" aria-describedby="vcard-desc">
-  <div class="vcard-card">
-    <button type="button" class="vcard-close" aria-label="Schließen">&times;</button>
-    <h2 id="vcard-title">Kontakt speichern</h2>
-    <p id="vcard-desc">Mit der Handykamera scannen, um mich zu Ihren Kontakten hinzuzufügen.</p>
-    <div class="vcard-qr"><img src="/contact/vcard-qr.svg" width="300" height="300" alt="QR-Code mit der Kontaktkarte von Jorge Aguilar" loading="lazy" decoding="async"></div>
-    <a class="vcard-dl" href="/jorge-aguilar.vcf" download="jorge-aguilar.vcf">Oder .vcf direkt herunterladen <span aria-hidden="true">&rarr;</span></a>
-  </div>
-</dialog>
 
 <footer class="site">
   &copy; 2026 Jorge Aguilar &middot; <a href="/impressum/">Impressum</a> &middot; <a href="/datenschutz/">Datenschutz</a>
