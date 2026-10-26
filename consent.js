@@ -82,7 +82,7 @@
   var COPY = {
     en: {
       title: 'Analytics — your choice',
-      desc: 'Until you decide: no cookies and no recognition — only cookieless signals to Google. Accept, and Google Analytics also shows me which parts of this portfolio get read. No advertising, no cross-site tracking; change your mind any time.',
+      desc: 'Without your consent: no cookies — only cookieless signals to Google and a cookieless visit count (Umami, which recognises a returning browser within the month). Accept, and Google Analytics also shows me which parts of this portfolio get read. No advertising, no cross-site tracking; change your mind any time.',
       accept: 'Accept',
       decline: 'Decline',
       more: 'Full details →',
@@ -90,7 +90,7 @@
     },
     de: {
       title: 'Analytics — Ihre Entscheidung',
-      desc: 'Bis Sie entscheiden: keine Cookies und keine Wiedererkennung — nur cookiefreie Signale an Google. Wenn Sie zustimmen, zeigt mir Google Analytics zusätzlich, welche Teile dieses Portfolios gelesen werden. Keine Werbung, kein seitenübergreifendes Tracking; jederzeit änderbar.',
+      desc: 'Ohne Ihre Zustimmung: keine Cookies — nur cookiefreie Signale an Google und eine cookielose Besuchszählung (Umami, erkennt einen wiederkehrenden Browser innerhalb des Monats). Wenn Sie zustimmen, zeigt mir Google Analytics zusätzlich, welche Teile dieses Portfolios gelesen werden. Keine Werbung, kein seitenübergreifendes Tracking; jederzeit änderbar.',
       accept: 'Akzeptieren',
       decline: 'Ablehnen',
       more: 'Details →',
@@ -98,7 +98,7 @@
     },
     es: {
       title: 'Analytics — tú decides',
-      desc: 'Hasta que decidas: sin cookies y sin reconocimiento — solo señales sin cookies hacia Google. Si aceptas, Google Analytics me muestra además qué partes de este portafolio se leen. Sin publicidad, sin seguimiento entre sitios; puedes cambiar de opinión cuando quieras.',
+      desc: 'Sin tu consentimiento: sin cookies — solo señales sin cookies hacia Google y un recuento de visitas sin cookies (Umami, que reconoce un navegador que vuelve dentro del mismo mes). Si aceptas, Google Analytics me muestra además qué partes de este portafolio se leen. Sin publicidad, sin seguimiento entre sitios; puedes cambiar de opinión cuando quieras.',
       accept: 'Aceptar',
       decline: 'Rechazar',
       more: 'Detalles →',
