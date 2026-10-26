@@ -47,10 +47,38 @@
         <a href="/de/contact/" hreflang="de" class="is-current" aria-current="page">DE</a>
         <a href="/es/contact/" hreflang="es">ES</a>
       </div>
-      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download">CV herunterladen &darr;</a>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download">Lebenslauf &darr;</a>
     </div>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
+      <span class="bars" aria-hidden="true"></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Seitenmenü" aria-hidden="true">
+  <div class="mobile-menu-head">
+    <a href="/de/#contact" class="back-link"><span>&larr;</span> Portfolio</a>
+    <button class="mobile-menu-close" id="menuClose" type="button" aria-label="Menü schließen">&times;</button>
+  </div>
+  <div class="mobile-menu-body">
+    <div class="mobile-menu-lang">
+      <span class="mm-lang-label">Sprache</span>
+        <div class="lang-switch" role="group" aria-label="Sprache">
+          <a href="/contact/" hreflang="en">EN</a>
+          <a href="/de/contact/" hreflang="de" class="is-current" aria-current="page">DE</a>
+          <a href="/es/contact/" hreflang="es">ES</a>
+        </div>
+    </div>
+    <div class="mobile-menu-actions">
+      <a href="/de/about/" class="mm-download">Über</a>
+      <a href="/de/work/" class="mm-download">Arbeiten</a>
+      <a href="/de/motion/" class="mm-download">Motion</a>
+      <a href="/de/leadership-framework/" class="mm-download">Framework</a>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Lebenslauf &darr;</a>
+    </div>
+    <div class="mobile-menu-foot">Berlin &middot; EMEA</div>
+  </div>
+</div>
 
 <main class="wrap">
   <p class="kicker">Kontakt</p>
@@ -176,6 +204,51 @@
 <footer class="site">
   &copy; 2026 Jorge Aguilar &middot; <a href="/impressum/">Impressum</a> &middot; <a href="/datenschutz/">Datenschutz</a>
 </footer>
+
+<script>
+  // Mobile menu
+  (function () {
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileMenu');
+    const close = document.getElementById('menuClose');
+    if (!toggle || !menu || !close) return;
+
+    function openMenu() {
+      menu.classList.add('open');
+      menu.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('menu-open');
+      close.focus();
+    }
+
+    function closeMenu(refocus) {
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      if (refocus) toggle.focus();
+    }
+
+    toggle.addEventListener('click', openMenu);
+    close.addEventListener('click', () => closeMenu(true));
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => closeMenu(false));
+    });
+
+    menu.addEventListener('click', (e) => {
+      if (e.target === menu || e.target.classList.contains('mobile-menu-body')) closeMenu(true);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu(true);
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 800 && menu.classList.contains('open')) closeMenu(false);
+    });
+  })();
+</script>
 
 </body>
 </html>

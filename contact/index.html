@@ -49,8 +49,36 @@
       </div>
       <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download">Download CV &darr;</a>
     </div>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span class="bars" aria-hidden="true"></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true">
+  <div class="mobile-menu-head">
+    <a href="/#contact" class="back-link"><span>&larr;</span> Portfolio</a>
+    <button class="mobile-menu-close" id="menuClose" type="button" aria-label="Close menu">&times;</button>
+  </div>
+  <div class="mobile-menu-body">
+    <div class="mobile-menu-lang">
+      <span class="mm-lang-label">Language</span>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <a href="/contact/" hreflang="en" class="is-current" aria-current="page">EN</a>
+          <a href="/de/contact/" hreflang="de">DE</a>
+          <a href="/es/contact/" hreflang="es">ES</a>
+        </div>
+    </div>
+    <div class="mobile-menu-actions">
+      <a href="/about/" class="mm-download">About</a>
+      <a href="/work/" class="mm-download">Work</a>
+      <a href="/motion/" class="mm-download">Motion</a>
+      <a href="/leadership-framework/" class="mm-download">Framework</a>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Download CV &darr;</a>
+    </div>
+    <div class="mobile-menu-foot">Berlin &middot; EMEA</div>
+  </div>
+</div>
 
 <main class="wrap">
   <p class="kicker">Contact</p>
@@ -176,6 +204,51 @@
 <footer class="site">
   &copy; 2026 Jorge Aguilar &middot; <a href="/impressum/">Impressum</a> &middot; <a href="/datenschutz/">Privacy</a>
 </footer>
+
+<script>
+  // Mobile menu
+  (function () {
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileMenu');
+    const close = document.getElementById('menuClose');
+    if (!toggle || !menu || !close) return;
+
+    function openMenu() {
+      menu.classList.add('open');
+      menu.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('menu-open');
+      close.focus();
+    }
+
+    function closeMenu(refocus) {
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      if (refocus) toggle.focus();
+    }
+
+    toggle.addEventListener('click', openMenu);
+    close.addEventListener('click', () => closeMenu(true));
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => closeMenu(false));
+    });
+
+    menu.addEventListener('click', (e) => {
+      if (e.target === menu || e.target.classList.contains('mobile-menu-body')) closeMenu(true);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu(true);
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 800 && menu.classList.contains('open')) closeMenu(false);
+    });
+  })();
+</script>
 
 </body>
 </html>
