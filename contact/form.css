@@ -11,7 +11,11 @@
   --label:#8A8A8F;
   --border:#303036;
   --field-border:#333338;
-  --accent:#B8FF3D;
+  --accent:#10B981;
+  --accent-hover:#0d9668;
+  --accent-dark:#047857;
+  --accent-secondary:#E8DFC7;
+  --accent-secondary-ghost:rgba(232,223,199,0.07);
   --accent-fg:#09090B;
   --err:#ff6b6b;
   --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
