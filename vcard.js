@@ -84,7 +84,7 @@
 
   var CSS = [
     ':root{--vc-bg:#14141a;--vc-fg:#F7F7F8;--vc-muted:#B4B4BB;--vc-line:#303036;',
-    '--vc-accent:#B8FF3D;--vc-accent-fg:#0B0B0D;}',
+    '--vc-accent:#10B981;--vc-accent-fg:#0B0B0D;}',
     '.vc-lock{overflow:hidden;}',
 
     /* FAB. Por debajo del menu movil (z 60) y del banner; por encima del
@@ -102,7 +102,7 @@
     '.vc-fab:active{transform:scale(.95);}',
     '.vc-fab:focus{outline:none;}',
     '.vc-fab:focus-visible{outline:2px solid var(--vc-accent);outline-offset:3px;',
-    'box-shadow:0 4px 12px rgba(0,0,0,.3),0 0 0 7px rgba(184,255,61,.28);}',
+    'box-shadow:0 4px 12px rgba(0,0,0,.3),0 0 0 7px rgba(16,185,129,.28);}',
     /* Mientras el banner de cookies o el menu movil estan abiertos, fuera. */
     'html[data-cc-banner] .vc-fab,body.menu-open .vc-fab{opacity:0;visibility:hidden;pointer-events:none;}',
     '@media (max-width:800px){.vc-fab{width:48px;height:48px;',

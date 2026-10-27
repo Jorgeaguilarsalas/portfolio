@@ -258,9 +258,10 @@
   /* ----------------------------------------------------------- estilos */
 
   var CSS = [
-    /* --cc-accent es el acento canonico de jorgeag.com (#B8FF3D, 262 usos).
-       #C6FF00 es el lima del CV y de 343ride.de, otra marca. */
-    ':root{--cc-bg:rgba(11,11,13,.98);--cc-solid:#14141a;--cc-accent:#B8FF3D;--cc-accent-fg:#0B0B0D;--cc-fg:#FFFFFF;--cc-muted:#8A8A8F;--cc-line:#262626;}',
+    /* --cc-accent es el acento canonico de jorgeag.com (#10B981). Literal y
+       no var(--accent): el banner tiene que pintarse igual aunque el CSS de
+       la pagina no haya cargado. */
+    ':root{--cc-bg:rgba(11,11,13,.98);--cc-solid:#14141a;--cc-accent:#10B981;--cc-accent-fg:#0B0B0D;--cc-fg:#FFFFFF;--cc-muted:#8A8A8F;--cc-line:#262626;}',
     /* El velo solo enfoca la atencion: no intercepta clics ni bloquea el
        scroll. Un banner que tapa el sitio hasta obtener un si seria un cookie
        wall, y el consentimiento dejaria de ser libre. */

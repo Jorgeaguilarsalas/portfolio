@@ -217,8 +217,8 @@
   .hero{padding:80px 0 60px;border-bottom:1px solid var(--border);}
   .hero-inner{display:block;}
   .hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;}
-  .hero-eyebrow .pulse{width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 0 rgba(184,255,61,0.6);animation:pulse 2s infinite;}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(184,255,61,0.6);}70%{box-shadow:0 0 0 12px rgba(184,255,61,0);}100%{box-shadow:0 0 0 0 rgba(184,255,61,0);}}
+  .hero-eyebrow .pulse{width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 0 rgba(16,185,129,0.6);animation:pulse 2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(16,185,129,0.6);}70%{box-shadow:0 0 0 12px rgba(16,185,129,0);}100%{box-shadow:0 0 0 0 rgba(16,185,129,0);}}
   .hero-name{font-size:clamp(48px,7vw,88px);font-weight:900;line-height:.9;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:28px;}
   .hero-name .last{color:var(--muted);display:block;}
   /* Blinking cursor after the name: cap-height tall, sits on the baseline, and cancels its own advance so line breaks never change */
@@ -250,7 +250,7 @@
     display:flex;flex-direction:column;gap:9px;
     width:max-content;max-width:min(320px,calc(100vw - 40px));
     padding:18px 20px;
-    background:var(--bg);border:1px solid rgba(184,255,61,0.35);border-radius:0;
+    background:var(--bg);border:1px solid rgba(16,185,129,0.35);border-radius:0;
     box-shadow:0 18px 40px rgba(0,0,0,0.55);
     font-family:var(--sans);font-size:14px;font-weight:400;
     letter-spacing:normal;text-transform:none;line-height:1.5;
@@ -262,13 +262,13 @@
   .hero-tip::before{
     content:"";position:absolute;top:-5px;right:26px;
     width:8px;height:8px;background:var(--bg);
-    border-left:1px solid rgba(184,255,61,0.35);border-top:1px solid rgba(184,255,61,0.35);
+    border-left:1px solid rgba(16,185,129,0.35);border-top:1px solid rgba(16,185,129,0.35);
     transform:rotate(45deg);
   }
   .tip-avail{display:flex;align-items:center;gap:9px;color:var(--fg);font-weight:600;font-size:14.5px;}
   .tip-dot{
     width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;
-    box-shadow:0 0 0 0 rgba(184,255,61,0.6);animation:pulse 2s infinite;
+    box-shadow:0 0 0 0 rgba(16,185,129,0.6);animation:pulse 2s infinite;
   }
   .tip-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
   .tip-now{color:var(--muted);font-size:13.5px;padding-top:9px;border-top:1px solid var(--border);}
@@ -432,7 +432,7 @@
   .exp-bullets li::before{content:"—";position:absolute;left:0;top:0;color:var(--accent);font-weight:500;}
   .exp-bullets strong{color:var(--fg);font-weight:600;}
   .exp-bullets .metric{color:var(--accent);font-weight:600;}
-  .exp-bullets a{color:var(--accent);border-bottom:1px solid rgba(184,255,61,0.3);}
+  .exp-bullets a{color:var(--accent);border-bottom:1px solid rgba(16,185,129,0.3);}
   .exp-bullets a:hover{border-bottom-color:var(--accent);}
   .exp-link{margin-top:18px;}
 
@@ -541,7 +541,7 @@
     .case-toggle{
       display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
       min-height:48px;padding:13px 20px;
-      background:transparent;border:1px dashed rgba(184,255,61,0.3);border-radius:999px;
+      background:transparent;border:1px dashed rgba(16,185,129,0.3);border-radius:999px;
       color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.14em;
       text-transform:uppercase;cursor:pointer;
       transition:border-color .2s ease,color .2s ease;
@@ -550,7 +550,7 @@
     .case-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
     .case-toggle .sign{
       display:inline-flex;align-items:center;justify-content:center;flex:none;
-      width:22px;height:22px;border-radius:50%;border:1px solid rgba(184,255,61,0.4);
+      width:22px;height:22px;border-radius:50%;border:1px solid rgba(16,185,129,0.4);
       color:var(--accent);font-family:var(--sans);font-size:14px;line-height:1;
       transition:transform .3s ease;
     }
@@ -581,11 +581,11 @@
   .work-all{display:flex;justify-content:center;margin-top:36px;}
   .work-all-cta{
     display:inline-flex;align-items:center;gap:12px;
-    padding:18px 34px;border:1px solid rgba(184,255,61,0.45);border-radius:999px;
+    padding:18px 34px;border:1px solid rgba(16,185,129,0.45);border-radius:999px;
     color:var(--accent);font-weight:600;font-size:15.5px;text-decoration:none;
     transition:background-color .2s ease,border-color .2s ease;
   }
-  .work-all-cta:hover{background:rgba(184,255,61,0.08);border-color:var(--accent);}
+  .work-all-cta:hover{background:rgba(16,185,129,0.08);border-color:var(--accent);}
   .work-all-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
   .work-all-cta .arrow{transition:transform .2s ease;}
   .work-all-cta:hover .arrow{transform:translateX(4px);}
@@ -595,7 +595,7 @@
   }
   @media (prefers-reduced-motion: reduce){.work-all-cta,.work-all-cta .arrow{transition:none;}}
 
-  .work-link{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:600;font-size:15px;border-bottom:1px solid rgba(184,255,61,0.3);padding-bottom:2px;}
+  .work-link{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:600;font-size:15px;border-bottom:1px solid rgba(16,185,129,0.3);padding-bottom:2px;}
   .work-link:hover{border-bottom-color:var(--accent);}
 
   /* SKILLS */
@@ -816,7 +816,7 @@
   }
   .hub-cta-primary:hover{transform:translateY(-2px);color:var(--accent-fg);}
   .hub-cta-secondary{font-size:14.5px;color:var(--muted);}
-  .hub-cta-secondary a{color:var(--muted);border-bottom:1px solid rgba(184,255,61,.3);padding-bottom:1px;transition:color .2s ease,border-color .2s ease;}
+  .hub-cta-secondary a{color:var(--muted);border-bottom:1px solid rgba(16,185,129,.3);padding-bottom:1px;transition:color .2s ease,border-color .2s ease;}
   .hub-cta-secondary a:hover{color:var(--accent);border-bottom-color:var(--accent);}
 
   /* Puente hacia el manual completo al cierre de Approach */

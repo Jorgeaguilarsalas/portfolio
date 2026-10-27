@@ -218,8 +218,8 @@
   .hero{padding:80px 0 60px;border-bottom:1px solid var(--border);}
   .hero-inner{display:block;}
   .hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:10px;margin-bottom:28px;}
-  .hero-eyebrow .pulse{width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 0 rgba(184,255,61,0.6);animation:pulse 2s infinite;}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(184,255,61,0.6);}70%{box-shadow:0 0 0 12px rgba(184,255,61,0);}100%{box-shadow:0 0 0 0 rgba(184,255,61,0);}}
+  .hero-eyebrow .pulse{width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 0 rgba(16,185,129,0.6);animation:pulse 2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(16,185,129,0.6);}70%{box-shadow:0 0 0 12px rgba(16,185,129,0);}100%{box-shadow:0 0 0 0 rgba(16,185,129,0);}}
   .hero-name{font-size:clamp(48px,7vw,88px);font-weight:900;line-height:.9;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:28px;}
   .hero-name .last{color:var(--muted);display:block;}
   /* Blinking cursor after the name: cap-height tall, sits on the baseline, and cancels its own advance so line breaks never change */
@@ -251,7 +251,7 @@
     display:flex;flex-direction:column;gap:9px;
     width:max-content;max-width:min(320px,calc(100vw - 40px));
     padding:18px 20px;
-    background:var(--bg);border:1px solid rgba(184,255,61,0.35);border-radius:0;
+    background:var(--bg);border:1px solid rgba(16,185,129,0.35);border-radius:0;
     box-shadow:0 18px 40px rgba(0,0,0,0.55);
     font-family:var(--sans);font-size:14px;font-weight:400;
     letter-spacing:normal;text-transform:none;line-height:1.5;
@@ -263,13 +263,13 @@
   .hero-tip::before{
     content:"";position:absolute;top:-5px;right:26px;
     width:8px;height:8px;background:var(--bg);
-    border-left:1px solid rgba(184,255,61,0.35);border-top:1px solid rgba(184,255,61,0.35);
+    border-left:1px solid rgba(16,185,129,0.35);border-top:1px solid rgba(16,185,129,0.35);
     transform:rotate(45deg);
   }
   .tip-avail{display:flex;align-items:center;gap:9px;color:var(--fg);font-weight:600;font-size:14.5px;}
   .tip-dot{
     width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;
-    box-shadow:0 0 0 0 rgba(184,255,61,0.6);animation:pulse 2s infinite;
+    box-shadow:0 0 0 0 rgba(16,185,129,0.6);animation:pulse 2s infinite;
   }
   .tip-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
   .tip-now{color:var(--muted);font-size:13.5px;padding-top:9px;border-top:1px solid var(--border);}
@@ -433,7 +433,7 @@
   .exp-bullets li::before{content:"—";position:absolute;left:0;top:0;color:var(--accent);font-weight:500;}
   .exp-bullets strong{color:var(--fg);font-weight:600;}
   .exp-bullets .metric{color:var(--accent);font-weight:600;}
-  .exp-bullets a{color:var(--accent);border-bottom:1px solid rgba(184,255,61,0.3);}
+  .exp-bullets a{color:var(--accent);border-bottom:1px solid rgba(16,185,129,0.3);}
   .exp-bullets a:hover{border-bottom-color:var(--accent);}
   .exp-link{margin-top:18px;}
 
@@ -542,7 +542,7 @@
     .case-toggle{
       display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
       min-height:48px;padding:13px 20px;
-      background:transparent;border:1px dashed rgba(184,255,61,0.3);border-radius:999px;
+      background:transparent;border:1px dashed rgba(16,185,129,0.3);border-radius:999px;
       color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.14em;
       text-transform:uppercase;cursor:pointer;
       transition:border-color .2s ease,color .2s ease;
@@ -551,7 +551,7 @@
     .case-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
     .case-toggle .sign{
       display:inline-flex;align-items:center;justify-content:center;flex:none;
-      width:22px;height:22px;border-radius:50%;border:1px solid rgba(184,255,61,0.4);
+      width:22px;height:22px;border-radius:50%;border:1px solid rgba(16,185,129,0.4);
       color:var(--accent);font-family:var(--sans);font-size:14px;line-height:1;
       transition:transform .3s ease;
     }
@@ -582,11 +582,11 @@
   .work-all{display:flex;justify-content:center;margin-top:36px;}
   .work-all-cta{
     display:inline-flex;align-items:center;gap:12px;
-    padding:18px 34px;border:1px solid rgba(184,255,61,0.45);border-radius:999px;
+    padding:18px 34px;border:1px solid rgba(16,185,129,0.45);border-radius:999px;
     color:var(--accent);font-weight:600;font-size:15.5px;text-decoration:none;
     transition:background-color .2s ease,border-color .2s ease;
   }
-  .work-all-cta:hover{background:rgba(184,255,61,0.08);border-color:var(--accent);}
+  .work-all-cta:hover{background:rgba(16,185,129,0.08);border-color:var(--accent);}
   .work-all-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
   .work-all-cta .arrow{transition:transform .2s ease;}
   .work-all-cta:hover .arrow{transform:translateX(4px);}
@@ -596,7 +596,7 @@
   }
   @media (prefers-reduced-motion: reduce){.work-all-cta,.work-all-cta .arrow{transition:none;}}
 
-  .work-link{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:600;font-size:15px;border-bottom:1px solid rgba(184,255,61,0.3);padding-bottom:2px;}
+  .work-link{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:600;font-size:15px;border-bottom:1px solid rgba(16,185,129,0.3);padding-bottom:2px;}
   .work-link:hover{border-bottom-color:var(--accent);}
 
   /* SKILLS */
@@ -975,10 +975,10 @@
 
                   <rect x="20" y="58" width="138" height="54" rx="0" fill="#141417" stroke="#2A2A30"/>
                   <text x="34" y="76" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">FAHRER</text>
-                  <text x="34" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="#B8FF3D">800+</text>
+                  <text x="34" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="var(--accent)">800+</text>
                   <rect x="171" y="58" width="138" height="54" rx="0" fill="#141417" stroke="#2A2A30"/>
                   <text x="185" y="76" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">BETREIBER</text>
-                  <text x="185" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="#B8FF3D">8</text>
+                  <text x="185" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="var(--accent)">8</text>
                   <rect x="322" y="58" width="138" height="54" rx="0" fill="#141417" stroke="#2A2A30"/>
                   <text x="336" y="76" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">MARKIERT</text>
                   <text x="336" y="99" font-family="Inter,sans-serif" font-size="19" font-weight="800" fill="#F5B23D">6</text>
@@ -992,8 +992,8 @@
                   <rect x="20" y="159" width="86" height="7" rx="3.5" fill="#3A3A42"/>
                   <rect x="150" y="159" width="66" height="7" rx="3.5" fill="#2E2E35"/>
                   <rect x="250" y="159" width="44" height="7" rx="3.5" fill="#2E2E35"/>
-                  <rect x="372" y="154" width="70" height="17" rx="8.5" fill="rgba(184,255,61,0.10)" stroke="rgba(184,255,61,0.35)"/>
-                  <text x="407" y="166" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#B8FF3D">Konform</text>
+                  <rect x="372" y="154" width="70" height="17" rx="8.5" fill="rgba(16,185,129,0.10)" stroke="rgba(16,185,129,0.35)"/>
+                  <text x="407" y="166" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="var(--accent)">Konform</text>
                   <line x1="20" y1="181" x2="460" y2="181" stroke="#1F1F25"/>
 
                   <rect x="20" y="193" width="72" height="7" rx="3.5" fill="#3A3A42"/>
@@ -1006,14 +1006,14 @@
                   <rect x="20" y="227" width="94" height="7" rx="3.5" fill="#3A3A42"/>
                   <rect x="150" y="227" width="70" height="7" rx="3.5" fill="#2E2E35"/>
                   <rect x="250" y="227" width="50" height="7" rx="3.5" fill="#2E2E35"/>
-                  <rect x="372" y="222" width="70" height="17" rx="8.5" fill="rgba(184,255,61,0.10)" stroke="rgba(184,255,61,0.35)"/>
-                  <text x="407" y="234" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#B8FF3D">Konform</text>
+                  <rect x="372" y="222" width="70" height="17" rx="8.5" fill="rgba(16,185,129,0.10)" stroke="rgba(16,185,129,0.35)"/>
+                  <text x="407" y="234" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="var(--accent)">Konform</text>
 
                   <line x1="20" y1="256" x2="460" y2="256" stroke="#26262C"/>
                   <text x="20" y="274" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#8A8A93">COMPLIANCE-QUOTE · 12 WOCHEN</text>
-                  <path d="M20,306 L69,300 L118,302 L167,294 L216,296 L265,288 L314,284 L363,280 L412,274 L460,270" fill="none" stroke="#B8FF3D" stroke-width="1.8" stroke-linejoin="round"/>
-                  <path d="M20,306 L69,300 L118,302 L167,294 L216,296 L265,288 L314,284 L363,280 L412,274 L460,270 L460,314 L20,314 Z" fill="rgba(184,255,61,0.07)"/>
-                  <circle cx="460" cy="270" r="3" fill="#B8FF3D"/>
+                  <path d="M20,306 L69,300 L118,302 L167,294 L216,296 L265,288 L314,284 L363,280 L412,274 L460,270" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linejoin="round"/>
+                  <path d="M20,306 L69,300 L118,302 L167,294 L216,296 L265,288 L314,284 L363,280 L412,274 L460,270 L460,314 L20,314 Z" fill="rgba(16,185,129,0.07)"/>
+                  <circle cx="460" cy="270" r="3" fill="var(--accent)"/>
                 </svg>
               </div>
               <figcaption class="case-figcaption">Fleet Dashboard — abstrakte Darstellung</figcaption>
@@ -1042,11 +1042,11 @@
               <div class="case-figure-inner">
                 <svg viewBox="0 0 480 330" role="img" aria-label="Kompaktes Supply-Schwungrad in sieben Stufen: verlässliches Angebot, bessere ETAs, Fahrgast-Erlebnis, abgeschlossene Fahrten, Fahrer-Auslastung, weniger Bonusbedarf und effizientes Budget, das wieder in verlässliches Angebot mündet.">
                   <defs>
-                    <marker id="wf-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#B8FF3D"/></marker>
+                    <marker id="wf-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="var(--accent)"/></marker>
                   </defs>
                   <rect x="0.5" y="0.5" width="479" height="329" rx="0" fill="#0F0F12" stroke="#303036"/>
                   <text x="24" y="28" font-family="ui-monospace,Menlo,monospace" font-size="9" letter-spacing="1.3" fill="#8A8A93">DAS SUPPLY-SCHWUNGRAD</text>
-                  <rect x="174" y="47" width="132" height="34" rx="9" fill="rgba(184,255,61,0.07)" stroke="rgba(184,255,61,0.45)"/>
+                  <rect x="174" y="47" width="132" height="34" rx="9" fill="rgba(16,185,129,0.07)" stroke="rgba(16,185,129,0.45)"/>
                   <text x="240" y="68" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#F7F7F8">Verlässliches Angebot</text>
                   <rect x="305" y="86" width="132" height="34" rx="9" fill="#141417" stroke="#303036"/>
                   <text x="371" y="107" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#F7F7F8">Bessere ETAs</text>
@@ -1060,15 +1060,15 @@
                   <text x="76" y="195" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#F7F7F8">Weniger Bonus</text>
                   <rect x="43" y="86" width="132" height="34" rx="9" fill="#141417" stroke="#303036"/>
                   <text x="109" y="107" text-anchor="middle" font-family="Inter,sans-serif" font-size="10.5" font-weight="600" fill="#F7F7F8">Effizientes Budget</text>
-                  <path d="M310,51 Q355,53 378,77" fill="none" stroke="#B8FF3D" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
-                  <path d="M434,135 Q456,147 441,162" fill="none" stroke="#B8FF3D" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
-                  <path d="M427,215 Q429,236 399,245" fill="none" stroke="#B8FF3D" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
-                  <path d="M288,289 Q240,303 192,289" fill="none" stroke="#B8FF3D" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
-                  <path d="M81,245 Q51,236 53,215" fill="none" stroke="#B8FF3D" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
-                  <path d="M39,162 Q24,147 46,135" fill="none" stroke="#B8FF3D" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
-                  <path d="M102,77 Q125,53 170,51" fill="none" stroke="#B8FF3D" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
+                  <path d="M310,51 Q355,53 378,77" fill="none" stroke="var(--accent)" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
+                  <path d="M434,135 Q456,147 441,162" fill="none" stroke="var(--accent)" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
+                  <path d="M427,215 Q429,236 399,245" fill="none" stroke="var(--accent)" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
+                  <path d="M288,289 Q240,303 192,289" fill="none" stroke="var(--accent)" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
+                  <path d="M81,245 Q51,236 53,215" fill="none" stroke="var(--accent)" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
+                  <path d="M39,162 Q24,147 46,135" fill="none" stroke="var(--accent)" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
+                  <path d="M102,77 Q125,53 170,51" fill="none" stroke="var(--accent)" stroke-width="1.4" marker-end="url(#wf-arrow)"/>
                   <text x="240" y="164" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#F7F7F8">Nützliches Angebot</text>
-                  <text x="240" y="181" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="#B8FF3D">NICHT NOMINELLES ANGEBOT</text>
+                  <text x="240" y="181" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="8" letter-spacing="1.2" fill="var(--accent)">NICHT NOMINELLES ANGEBOT</text>
                 </svg>
               </div>
               <figcaption class="case-figcaption">Supply-Schwungrad — das SLA hält es in Bewegung</figcaption>
