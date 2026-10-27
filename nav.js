@@ -21,7 +21,10 @@
      vez incluyera este archivo, no deberia gobernarsela desde aqui. */
   if (/^\/(?:de\/|es\/)?motion(\/|$)/.test(location.pathname)) return;
 
-  var nav = document.querySelector('header.nav, nav.nav');
+  /* Un solo selector desde la unificacion: todas las paginas abren la barra
+     con <header class="nav" id="nav">. Antes hacia falta tambien nav.nav, que
+     era el envoltorio de la variante con flecha de volver; ya no existe. */
+  var nav = document.querySelector('header.nav');
   if (!nav) return;
 
   var TOP_ZONE = 90;    // franja superior en la que el puntero revela la barra

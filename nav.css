@@ -11,6 +11,12 @@
  * Lo que NO vive aqui, y sigue en cada pagina: color de fondo, desenfoque,
  * tipografia, y el menu movil desplegable. Eso es apariencia, no posicion.
  *
+ * La estructura tambien es una sola desde la unificacion: marca
+ * "Jorge Aguilar" a la izquierda enlazando a la raiz de su idioma, los cinco
+ * enlaces de sitio en .nav-links, y la misma hamburguesa en todas las
+ * paginas. Ya no hay variante con flecha de volver; la vuelta atras es el
+ * boton del navegador y la marca.
+ *
  * Regla para quien edite esto: si una pagina necesita cambiar la altura o la
  * posicion de su barra, el cambio va aqui, no en la pagina. Un override por
  * pagina es exactamente lo que estamos arreglando.
@@ -33,7 +39,7 @@
 /* La altura de la barra no puede depender del largo de sus propias etiquetas.
    Sin esto, "Jorge Aguilar" parte en dos lineas cuando la fila va justa y la
    barra crece 3px en esa pagina y solo en esa. */
-.nav-brand,.back-link{white-space:nowrap;}
+.nav-brand{white-space:nowrap;}
 
 /* Etiqueta larga/corta del CV. Se encoge antes de que la fila se quede sin
    sitio: a 1000px y no a 900px, porque entre 900 y 1000 el "Download CV"
@@ -51,16 +57,11 @@
    selector de idioma empujaban el boton fuera del borde derecho, y como el
    body recorta el desbordamiento el CTA aparecia cortado en vez de con
    scroll. A partir de 901px la fila cabe en los tres idiomas. Este corte
-   tiene que moverse junto con el de .nav-toggle/.nav-links/.nav-actions en
-   cada pagina: padding compacto y hamburguesa van siempre a la par. */
+   tiene que moverse junto con el de .nav-toggle/.nav-links en cada pagina y
+   con el de .mobile-menu (min-width:901px) y el guardia de resize del script
+   del menu: padding compacto, hamburguesa y overlay van siempre a la par. */
 @media (max-width:900px){
   .nav{padding:14px var(--nav-x-sm,20px);}
-  /* El 404 es la unica pagina que deja el selector de idioma dentro de la
-     barra en movil, porque no tiene hamburguesa donde guardarlo. En pantalla
-     tactil sus pildoras crecen a 44px y, sumandole el borde y el relleno de
-     la capsula, la barra medía 81px ahi y 73px en el resto del sitio. Sin la
-     capsula el area de toque sigue siendo 44px y la altura ya cuadra. */
-  .nav .lang-switch{padding:0;border:0;}
 }
 
 /* Auto-ocultar al bajar. El estado lo pone /nav.js; aqui solo la transicion.

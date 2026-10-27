@@ -204,7 +204,7 @@
     font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);opacity:.6;
   }
   body.menu-open{overflow:hidden;}
-  @media (min-width:801px){.mobile-menu{display:none;}}
+  @media (min-width:901px){.mobile-menu{display:none;}}
   @media (prefers-reduced-motion: reduce){
     .mobile-menu,.mobile-menu-links a,.mobile-menu-actions{transition-duration:.01ms;}
     .mobile-menu-close:hover{transform:none;}
@@ -751,9 +751,7 @@
      toque sin tocar el tamano visible: min-height mas centrado vertical, y
      en el cursor del hero un pseudoelemento que extiende el area. */
   .nav-toggle{width:44px;height:44px;}
-  .back-link,.nav-brand{min-height:44px;display:inline-flex;align-items:center;}
-  .nav-pagelink{min-height:44px;display:inline-flex;align-items:center;}
-  .nav-pagelink{min-width:44px;justify-content:center;}
+  .nav-brand{min-height:44px;display:inline-flex;align-items:center;}
   .work-link{min-height:44px;display:inline-flex;align-items:center;}
   .lang-switch a{min-height:36px;display:inline-flex;align-items:center;}
   .site-footer a,footer a{min-height:44px;display:inline-flex;align-items:center;}
@@ -803,7 +801,7 @@
         <a href="/de/" hreflang="de">DE</a>
         <a href="/es/" hreflang="es">ES</a>
       </div>
-      <a href="Jorge_Aguilar_CV.pdf" download class="nav-download"><span class="nav-dl-long">Download </span>CV ↓</a>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download"><span class="nav-dl-long">Download </span>CV ↓</a>
       <a href="#contact" class="nav-cta">Get in touch</a>
     </nav>
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -836,7 +834,7 @@
     </div>
     <div class="mobile-menu-actions">
       <a href="#contact" class="mm-cta">Get in touch</a>
-      <a href="Jorge_Aguilar_CV.pdf" download class="mm-download">Download CV ↓</a>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Download CV ↓</a>
     </div>
     <div class="mobile-menu-foot">Berlin · EMEA</div>
   </div>
@@ -1222,7 +1220,7 @@
 
     // Never leave the overlay stuck open when the desktop nav comes back
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 800 && menu.classList.contains('open')) closeMenu(false);
+      if (window.innerWidth > 900 && menu.classList.contains('open')) closeMenu(false);
     });
   })();
 
