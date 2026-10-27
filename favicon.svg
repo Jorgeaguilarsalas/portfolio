@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Jorge Aguilar">
   <!-- Tres nodos conectados: sistemas. Geometria pura, sin texto, para que se
-       lea igual a 16px. Cuadro oscuro propio y aro lima tenue, como el icono
-       anterior, para que no se funda con una pestana oscura.
+       lea igual a 16px. Cuadro oscuro propio y aro esmeralda tenue, como el
+       icono anterior, para que no se funda con una pestana oscura.
        Fuente: .reports/2026-10-26-icon-vcard.md -->
   <rect width="64" height="64" rx="15" fill="#0B0B0D"/>
-  <rect x="1.25" y="1.25" width="61.5" height="61.5" rx="13.75" fill="none" stroke="#B8FF3D" stroke-opacity=".38" stroke-width="2.5"/>
-  <g fill="none" stroke="#B8FF3D" stroke-width="5.00" stroke-linejoin="round" stroke-opacity=".55"><path d="M32.00 15.00 L14.50 46.00 L49.50 46.00 Z"/></g><g fill="#B8FF3D"><circle cx="32.00" cy="15.00" r="7.50"/><circle cx="14.50" cy="46.00" r="7.50"/><circle cx="49.50" cy="46.00" r="7.50"/></g>
+  <rect x="1.25" y="1.25" width="61.5" height="61.5" rx="13.75" fill="none" stroke="#10B981" stroke-opacity=".38" stroke-width="2.5"/>
+  <g fill="none" stroke="#10B981" stroke-width="5.00" stroke-linejoin="round" stroke-opacity=".55"><path d="M32.00 15.00 L14.50 46.00 L49.50 46.00 Z"/></g><g fill="#10B981"><circle cx="32.00" cy="15.00" r="7.50"/><circle cx="14.50" cy="46.00" r="7.50"/><circle cx="49.50" cy="46.00" r="7.50"/></g>
 </svg>
