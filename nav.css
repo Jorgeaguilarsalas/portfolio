@@ -1,0 +1,59 @@
+/**
+ * Contrato de posicion de la barra de navegacion.
+ *
+ * Vive aparte y lo cargan TODAS las paginas con barra, al final del <head>,
+ * despues del <style> de la pagina: lo que se declara aqui gana. El motivo es
+ * el bug que lo trajo. La barra estaba copiada unas treinta y siete veces en
+ * los <style> de cada pagina, cada copia derivo por su lado, y la altura de la
+ * barra acabo dependiendo de en que pagina estabas. Las reglas que deciden
+ * donde se dibuja la barra y cuanto mide ahora estan solo aqui.
+ *
+ * Lo que NO vive aqui, y sigue en cada pagina: color de fondo, desenfoque,
+ * tipografia, y el menu movil desplegable. Eso es apariencia, no posicion.
+ *
+ * Regla para quien edite esto: si una pagina necesita cambiar la altura o la
+ * posicion de su barra, el cambio va aqui, no en la pagina. Un override por
+ * pagina es exactamente lo que estamos arreglando.
+ */
+
+/* --nav-x es el margen lateral; cada pagina puede fijarlo, pero el relleno
+   vertical (20px) no se negocia: es lo que hace que la barra mida 85px en
+   todas partes. */
+.nav{
+  position:sticky;top:0;z-index:20;
+  padding:20px var(--nav-x,32px);
+  border-bottom:1px solid var(--border);
+}
+
+.nav-inner{
+  max-width:1320px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+}
+
+/* La altura de la barra no puede depender del largo de sus propias etiquetas.
+   Sin esto, "Jorge Aguilar" parte en dos lineas cuando la fila va justa y la
+   barra crece 3px en esa pagina y solo en esa. */
+.nav-brand,.back-link{white-space:nowrap;}
+
+/* Etiqueta larga/corta del CV. Se encoge antes de que la fila se quede sin
+   sitio: a 1000px y no a 900px, porque entre 900 y 1000 el "Download CV"
+   largo mas los cinco enlaces ya no caben, y en DE/ES el CTA es mas ancho
+   todavia ("Kontakt aufnehmen"). */
+.nav-dl-short{display:none;}
+@media (max-width:1000px){
+  .nav-links{gap:16px;}
+  .nav-dl-long{display:none;}
+  .nav-dl-short{display:inline;}
+}
+
+@media (max-width:800px){
+  .nav{padding:14px var(--nav-x-sm,20px);}
+}
+
+/* Auto-ocultar al bajar. El estado lo pone /nav.js; aqui solo la transicion.
+   transform y no top, para no recalcular layout en cada fotograma. */
+.nav{transition:transform .2s ease;will-change:transform;}
+.nav.nav-hidden{transform:translateY(-100%);}
+@media (prefers-reduced-motion:reduce){
+  .nav{transition:none;}
+}

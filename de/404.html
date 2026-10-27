@@ -34,15 +34,7 @@
   a{color:inherit;text-decoration:none;transition:color .2s ease}
   a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
-  .nav{
-    padding:20px 32px;border-bottom:1px solid var(--border);
-    background:rgba(11,11,13,0.85);backdrop-filter:blur(8px);flex:none;
-    position:sticky;top:0;z-index:20;
-  }
-  .nav-inner{
-    max-width:1320px;margin:0 auto;
-    display:flex;justify-content:space-between;align-items:center;gap:16px;
-  }
+  .nav{background:rgba(11,11,13,0.85);backdrop-filter:blur(8px);flex:none;}
   .nav-brand{font-weight:800;font-size:15px;letter-spacing:-.01em}
   .nav-brand .dot{color:var(--accent)}
 
@@ -96,7 +88,7 @@
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
   }
   @media (max-width:800px){
-    .nav{padding:14px 20px}
+    
     main{padding:56px 20px}
     footer{padding:20px}
   }
@@ -169,11 +161,6 @@
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) figcaption{letter-spacing:.04em}
   /* Auto-ocultar la barra: el estado lo pone /nav.js y aqui solo vive la
      transicion. transform y no top, para que no recalcule layout al animar. */
-  .nav{transition:transform .2s ease;will-change:transform;}
-  .nav.nav-hidden{transform:translateY(-100%);}
-  @media (prefers-reduced-motion:reduce){
-    .nav{transition:none;}
-  }
   /* ── AREAS TACTILES ─────────────────────────────────────────────────────
      44x44 es el minimo de iOS HIG y de WCAG 2.5.8. Se amplia la zona de
      toque sin tocar el tamano visible: min-height mas centrado vertical, y
@@ -213,6 +200,7 @@
 <script src="/tab.js" defer></script>
 <script src="/nav.js" defer></script>
 <script src="/vcard.js" defer></script>
+<link rel="stylesheet" href="/nav.css">
 </head>
 <body>
 

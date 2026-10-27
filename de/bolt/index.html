@@ -64,12 +64,7 @@
   }
 
   /* NAV */
-  .nav{
-    padding:20px 32px;border-bottom:1px solid var(--border);
-    background:rgba(11,11,13,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-    position:sticky;top:0;z-index:20;
-  }
-  .nav-inner{max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  .nav{background:rgba(11,11,13,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
   .back-link{
     font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
     color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:10px;
@@ -143,7 +138,7 @@
   .nav-toggle:hover .bars,.nav-toggle:hover .bars::before,.nav-toggle:hover .bars::after{background:var(--accent);}
 
   @media (max-width:800px){
-    .nav{padding:14px 20px;}
+    
     .nav-actions{display:none;}
     .nav-toggle{display:inline-flex;}
   }
@@ -573,11 +568,6 @@
   }
   /* Auto-ocultar la barra: el estado lo pone /nav.js y aqui solo vive la
      transicion. transform y no top, para que no recalcule layout al animar. */
-  .nav{transition:transform .2s ease;will-change:transform;}
-  .nav.nav-hidden{transform:translateY(-100%);}
-  @media (prefers-reduced-motion:reduce){
-    .nav{transition:none;}
-  }
   /* La barra interior crece a cuatro destinos: por debajo de 1100px el
      back-link mas los enlaces mas las acciones ya no caben en una linea, y
      ahi el menu de hamburguesa toma el relevo. */
@@ -622,6 +612,7 @@
 <script src="/tab.js" defer></script>
 <script src="/nav.js" defer></script>
 <script src="/vcard.js" defer></script>
+<link rel="stylesheet" href="/nav.css">
 </head>
 <body>
 <div class="scroll-progress" aria-hidden="true"><span></span></div>

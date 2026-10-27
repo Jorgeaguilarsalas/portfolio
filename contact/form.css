@@ -27,17 +27,16 @@ body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.
 a{color:var(--accent);}
 
 /* ---- chrome ----
-   Copia literal de la barra de los case studies (wolt/index.html, bloque NAV):
-   misma altura, mismo padding y mismo menu movil. Antes esta pagina tenia
-   una barra propia sin padding vertical ni hamburguesa, que en movil se
-   partia en tres lineas (199px). Si cambia la barra alli, cambia aqui. */
-/* NAV */
+   Apariencia de la barra de los case studies (wolt/index.html, bloque NAV):
+   mismo fondo y mismo menu movil. Antes esta pagina tenia una barra propia
+   sin padding vertical ni hamburguesa, que en movil se partia en tres lineas
+   (199px). La altura y la posicion ya no se copian: las fija /nav.css para
+   todas las paginas, asi que ese tipo de deriva no puede repetirse. */
+/* NAV — posicion y altura vienen de /nav.css, que se carga despues de este
+   archivo. Aqui solo queda la apariencia. */
 .nav{
-  padding:20px 32px;border-bottom:1px solid var(--border);
   background:rgba(11,11,13,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  position:sticky;top:0;z-index:20;
 }
-.nav-inner{max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;}
 .back-link{
   font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:10px;
@@ -111,7 +110,6 @@ a{color:var(--accent);}
 .nav-toggle:hover .bars,.nav-toggle:hover .bars::before,.nav-toggle:hover .bars::after{background:var(--accent);}
 
 @media (max-width:800px){
-  .nav{padding:14px 20px;}
   .nav-actions{display:none;}
   .nav-toggle{display:inline-flex;}
 }
@@ -297,9 +295,6 @@ footer.site a:hover{color:var(--accent);}
 /* Auto-ocultar la barra: el estado lo pone /nav.js, aqui solo la transicion.
    Estas tres paginas cargan su CSS desde este archivo y no inline, asi que la
    regla vive aqui y no en cada documento. */
-.nav{transition:transform .2s ease;will-change:transform;}
-.nav.nav-hidden{transform:translateY(-100%);}
-@media (prefers-reduced-motion:reduce){ .nav{transition:none;} }
 
 /* Foco visible generico. El formulario ya lo tenia; los enlaces de la barra
    y el pie no. */
