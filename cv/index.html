@@ -47,6 +47,10 @@
     --muted:#8A8A8F;
     --accent:#10B981;
     --line:rgba(255,255,255,0.12);
+    /* /nav.css dibuja el borde inferior de la barra con var(--border); este
+       fichero nombra esa linea --line, y sin el alias el borde no se pintaba
+       y la barra medía 84px aqui y 85px en el resto del sitio. */
+    --border:rgba(255,255,255,0.12);
     --sans:"Inter",system-ui,-apple-system,"Helvetica Neue",sans-serif;
     --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     /* Ancho de la columna de meta (fechas + ubicacion) */
@@ -244,15 +248,176 @@
   }
   .skill .val{ font-size:10.5px; color:var(--body); }
 
-  /* Pantalla: encuadre del A4 para revisar antes de generar el PDF */
+
+  /* ---------------------------------------------------------------------------
+     Barra de navegacion del sitio. Es la misma de las demas paginas, pero aqui
+     va envuelta en una guarda de impresion: este fichero es la fuente del PDF
+     (`npm run cv`) y la barra no puede aparecer en el documento. La
+     geometria sigue viniendo de /nav.css; esto es solo apariencia, con los
+     tokens de este fichero (--line en vez de --border).
+     Nota: /cv/ esta en .assetsignore, asi que esta barra solo se ve sirviendo
+     el repo en local, no en jorgeag.com.
+  --------------------------------------------------------------------------- */
+  @media print{
+    .nav,.mobile-menu,.nav-toggle{display:none!important;}
+  }
+  .nav{background:rgba(11,11,13,0.85);backdrop-filter:blur(8px);}
+  .nav a{color:inherit;text-decoration:none;}
+  .nav-brand{font-family:var(--sans);font-weight:800;font-size:15px;letter-spacing:-.01em;color:var(--fg);}
+  .nav-links{display:flex;gap:28px;align-items:center;}
+  .nav-links a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .2s ease;}
+  .nav-links a:hover{color:var(--accent);}
+  .nav-links a{white-space:nowrap;}
+  .nav-cta{background:var(--accent);color:#09090B!important;padding:10px 18px;border-radius:999px;font-family:var(--sans)!important;font-weight:600!important;font-size:12.5px!important;letter-spacing:normal!important;text-transform:none!important;transition:transform .2s ease;}
+  .nav-cta:hover{transform:translateX(3px);}
+  .nav-download{padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-family:var(--sans)!important;font-weight:500!important;font-size:12.5px!important;letter-spacing:normal!important;text-transform:none!important;color:var(--fg)!important;transition:border-color .2s ease,color .2s ease;}
+  .nav-download:hover{border-color:var(--accent);color:var(--accent)!important;}
+  .nav-brand{min-height:44px;display:inline-flex;align-items:center;}
+
+  .nav-toggle{
+    display:none;align-items:center;justify-content:center;
+    width:44px;height:44px;flex:none;
+    background:none;border:1px solid var(--line);border-radius:10px;
+    cursor:pointer;transition:border-color .2s ease;
+  }
+  .nav-toggle:hover{border-color:var(--accent);}
+  .nav-toggle .bars,.nav-toggle .bars::before,.nav-toggle .bars::after{
+    display:block;width:16px;height:1.5px;background:var(--fg);transition:background-color .2s ease;
+  }
+  .nav-toggle .bars{position:relative;}
+  .nav-toggle .bars::before,.nav-toggle .bars::after{content:"";position:absolute;left:0;}
+  .nav-toggle .bars::before{top:-5.5px;}
+  .nav-toggle .bars::after{top:5.5px;}
+  .nav-toggle:hover .bars,.nav-toggle:hover .bars::before,.nav-toggle:hover .bars::after{background:var(--accent);}
+
+  @media (max-width:900px){
+    .nav-brand{font-size:14px;}
+    .nav-links{display:none;}
+    .nav-toggle{display:inline-flex;}
+  }
+
+  .mobile-menu{
+    position:fixed;inset:0;z-index:60;background:var(--bg);
+    display:flex;flex-direction:column;
+    opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease;
+  }
+  .mobile-menu.open{opacity:1;visibility:visible;}
+  .mobile-menu a{text-decoration:none;}
+  .mobile-menu-head{
+    flex:none;display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;border-bottom:1px solid var(--line);
+  }
+  .mobile-menu-close{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:40px;height:40px;flex:none;background:none;
+    border:1px solid var(--line);border-radius:10px;
+    color:var(--fg);font-size:22px;line-height:1;cursor:pointer;
+    transition:border-color .2s ease,color .2s ease,transform .2s ease;
+  }
+  .mobile-menu-close:hover{border-color:var(--accent);color:var(--accent);transform:rotate(90deg);}
+  .mobile-menu-body{
+    flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:32px 20px 40px;display:flex;flex-direction:column;
+  }
+  .mobile-menu-links{display:flex;flex-direction:column;border-top:1px solid var(--line);}
+  .mobile-menu-links a{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:17px 2px;border-bottom:1px solid var(--line);
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--fg);opacity:0;transform:translateY(10px);
+    transition:color .2s ease,opacity .45s ease,transform .45s ease;
+  }
+  .mobile-menu-links a .num{font-size:10px;letter-spacing:.1em;color:var(--muted);opacity:.55;transition:color .2s ease,opacity .2s ease;}
+  .mobile-menu-links a:hover,.mobile-menu-links a:active{color:var(--accent);}
+  .mobile-menu-links a:hover .num,.mobile-menu-links a:active .num{color:var(--accent);opacity:1;}
+  .mobile-menu.open .mobile-menu-links a{opacity:1;transform:translateY(0);}
+  .mobile-menu.open .mobile-menu-links a:nth-child(1){transition-delay:.05s;}
+  .mobile-menu.open .mobile-menu-links a:nth-child(2){transition-delay:.09s;}
+  .mobile-menu.open .mobile-menu-links a:nth-child(3){transition-delay:.13s;}
+  .mobile-menu.open .mobile-menu-links a:nth-child(4){transition-delay:.17s;}
+  .mobile-menu.open .mobile-menu-links a:nth-child(5){transition-delay:.21s;}
+  .mobile-menu.open .mobile-menu-links a:nth-child(6){transition-delay:.25s;}
+  .mobile-menu-actions{
+    margin-top:22px;display:flex;flex-direction:column;gap:12px;
+    opacity:0;transform:translateY(10px);
+    transition:opacity .45s ease,transform .45s ease;
+  }
+  .mobile-menu.open .mobile-menu-actions{opacity:1;transform:translateY(0);transition-delay:.40s;}
+  .mobile-menu-actions a{
+    display:block;text-align:center;padding:15px 22px;border-radius:999px;
+    font-family:var(--sans);font-weight:600;font-size:14px;
+  }
+  .mm-cta{background:var(--accent);color:#09090B;}
+  .mm-download{border:1px solid var(--line);color:var(--fg);font-weight:500;transition:border-color .2s ease,color .2s ease;}
+  .mm-download:hover{border-color:var(--accent);color:var(--accent);}
+  .mobile-menu-foot{
+    margin-top:auto;padding-top:32px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);opacity:.6;
+  }
+  body.menu-open{overflow:hidden;}
+  @media (min-width:901px){.mobile-menu{display:none;}}
+  @media (prefers-reduced-motion:reduce){
+    .mobile-menu,.mobile-menu-links a,.mobile-menu-actions{transition-duration:.01ms;}
+    .mobile-menu-close:hover{transform:none;}
+  }
+
+  /* Pantalla: encuadre del A4 para revisar antes de generar el PDF.
+     El margen superior va en la primera hoja y no en el <body>: con relleno
+     en el body la barra arrancaba 24px por debajo del borde y su top medido
+     no era 0 como en el resto del sitio. Y :last-of-type en vez de
+     :last-child porque despues de la ultima hoja va el <script> del menu. */
   @media screen{
-    body{ padding:24px 0; }
+    body{ padding:0; }
     .sheet{ box-shadow:0 0 0 1px var(--line); margin-bottom:24px; }
-    .sheet:last-child{ margin-bottom:0; }
+    .sheet:first-of-type{ margin-top:24px; }
+    .sheet:last-of-type{ margin-bottom:0; }
   }
 </style>
+<script src="/nav.js" defer></script>
+<link rel="stylesheet" href="/nav.css">
 </head>
 <body>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">Jorge Aguilar</a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/work/">Work</a>
+      <a href="/about/">About</a>
+      <a href="/motion/" title="Operations in Motion — Jorge's research publication on operations and technology.">Motion</a>
+      <a href="/leadership-framework/">Framework</a>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download"><span class="nav-dl-long">Download </span>CV &darr;</a>
+      <a href="/contact/" class="nav-cta">Get in touch</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span class="bars" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true">
+  <div class="mobile-menu-head">
+    <a href="/" class="nav-brand">Jorge Aguilar</a>
+    <button class="mobile-menu-close" id="menuClose" type="button" aria-label="Close menu">&times;</button>
+  </div>
+  <div class="mobile-menu-body">
+    <nav class="mobile-menu-links">
+      <a href="/">Home<span class="num">01</span></a>
+      <a href="/work/">Work<span class="num">02</span></a>
+      <a href="/about/">About<span class="num">03</span></a>
+      <a href="/motion/" title="Operations in Motion — Jorge's research publication on operations and technology.">Motion<span class="num">04</span></a>
+      <a href="/leadership-framework/">Framework<span class="num">05</span></a>
+      <a href="/contact/">Contact<span class="num">06</span></a>
+    </nav>
+    <div class="mobile-menu-actions">
+      <a href="/contact/" class="mm-cta">Get in touch</a>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Download CV &darr;</a>
+    </div>
+    <div class="mobile-menu-foot">Berlin &middot; EMEA</div>
+  </div>
+</div>
+
 <div class="sheet">
 
   <header class="head">
@@ -465,5 +630,46 @@
   </section>
 
 </div><!-- /sheet 2 -->
+
+<script>
+  // Mobile menu
+  (function () {
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileMenu');
+    const close = document.getElementById('menuClose');
+    if (!toggle || !menu || !close) return;
+
+    function openMenu() {
+      menu.classList.add('open');
+      menu.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('menu-open');
+      close.focus();
+    }
+
+    function closeMenu(refocus) {
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      if (refocus) toggle.focus();
+    }
+
+    toggle.addEventListener('click', openMenu);
+    close.addEventListener('click', () => closeMenu(true));
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => closeMenu(false));
+    });
+    menu.addEventListener('click', (e) => {
+      if (e.target === menu || e.target.classList.contains('mobile-menu-body')) closeMenu(true);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu(true);
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900 && menu.classList.contains('open')) closeMenu(false);
+    });
+  })();
+</script>
 </body>
 </html>
