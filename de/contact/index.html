@@ -43,46 +43,51 @@
 </head>
 <body>
 
-<nav class="nav">
+<header class="nav" id="nav">
   <div class="nav-inner">
-    <a href="/de/#contact" class="back-link"><span>&larr;</span> Portfolio</a>
-    <div class="nav-actions">
-      <a href="/de/work/" class="nav-pagelink">Arbeiten</a>
-      <a href="/de/about/" class="nav-pagelink">Über</a>
-      <a href="/de/motion/" class="nav-pagelink" title="Operations in Motion — Jorges Rechercheveröffentlichung über Operations und Technologie.">Motion</a>
-      <a href="/de/leadership-framework/" class="nav-pagelink">Framework</a>
+    <a href="/de/" class="nav-brand">Jorge Aguilar</a>
+    <nav class="nav-links">
+      <a href="/de/">Start</a>
+      <a href="/de/work/">Arbeiten</a>
+      <a href="/de/about/">Über</a>
+      <a href="/de/motion/" title="Operations in Motion — Jorges Rechercheveröffentlichung über Operations und Technologie.">Motion</a>
+      <a href="/de/leadership-framework/">Framework</a>
       <div class="lang-switch" role="group" aria-label="Sprache">
         <a href="/contact/" hreflang="en">EN</a>
         <a href="/de/contact/" hreflang="de" class="is-current" aria-current="page">DE</a>
         <a href="/es/contact/" hreflang="es">ES</a>
       </div>
-      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download">Lebenslauf &darr;</a>
-    </div>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download"><span class="nav-dl-long">Lebenslauf</span><span class="nav-dl-short">CV</span> &darr;</a>
+    </nav>
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
       <span class="bars" aria-hidden="true"></span>
     </button>
   </div>
-</nav>
+</header>
 
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Seitenmenü" aria-hidden="true">
   <div class="mobile-menu-head">
-    <a href="/de/#contact" class="back-link"><span>&larr;</span> Portfolio</a>
+    <a href="/de/" class="nav-brand">Jorge Aguilar</a>
     <button class="mobile-menu-close" id="menuClose" type="button" aria-label="Menü schließen">&times;</button>
   </div>
   <div class="mobile-menu-body">
+    <nav class="mobile-menu-links">
+      <a href="/de/">Start<span class="num">01</span></a>
+      <a href="/de/work/">Arbeiten<span class="num">02</span></a>
+      <a href="/de/about/">Über<span class="num">03</span></a>
+      <a href="/de/motion/" title="Operations in Motion — Jorges Rechercheveröffentlichung über Operations und Technologie.">Motion<span class="num">04</span></a>
+      <a href="/de/leadership-framework/">Framework<span class="num">05</span></a>
+      <a href="/de/contact/" class="is-active" aria-current="page">Kontakt<span class="num">06</span></a>
+    </nav>
     <div class="mobile-menu-lang">
       <span class="mm-lang-label">Sprache</span>
-        <div class="lang-switch" role="group" aria-label="Sprache">
-          <a href="/contact/" hreflang="en">EN</a>
-          <a href="/de/contact/" hreflang="de" class="is-current" aria-current="page">DE</a>
-          <a href="/es/contact/" hreflang="es">ES</a>
-        </div>
+      <div class="lang-switch" role="group" aria-label="Sprache">
+        <a href="/contact/" hreflang="en">EN</a>
+        <a href="/de/contact/" hreflang="de" class="is-current" aria-current="page">DE</a>
+        <a href="/es/contact/" hreflang="es">ES</a>
+      </div>
     </div>
     <div class="mobile-menu-actions">
-      <a href="/de/work/" class="mm-download">Arbeiten</a>
-      <a href="/de/about/" class="mm-download">Über</a>
-      <a href="/de/motion/" class="mm-download">Motion</a>
-      <a href="/de/leadership-framework/" class="mm-download">Framework</a>
       <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Lebenslauf &darr;</a>
     </div>
     <div class="mobile-menu-foot">Berlin &middot; EMEA</div>
@@ -256,7 +261,7 @@
     });
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 800 && menu.classList.contains('open')) closeMenu(false);
+      if (window.innerWidth > 900 && menu.classList.contains('open')) closeMenu(false);
     });
   })();
 </script>

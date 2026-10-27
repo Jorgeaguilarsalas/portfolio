@@ -43,46 +43,51 @@
 </head>
 <body>
 
-<nav class="nav">
+<header class="nav" id="nav">
   <div class="nav-inner">
-    <a href="/es/#contact" class="back-link"><span>&larr;</span> Portafolio</a>
-    <div class="nav-actions">
-      <a href="/es/work/" class="nav-pagelink">Trabajo</a>
-      <a href="/es/about/" class="nav-pagelink">Sobre</a>
-      <a href="/es/motion/" class="nav-pagelink" title="Operations in Motion — la publicación de investigación de Jorge sobre operaciones y tecnología.">Motion</a>
-      <a href="/es/leadership-framework/" class="nav-pagelink">Framework</a>
+    <a href="/es/" class="nav-brand">Jorge Aguilar</a>
+    <nav class="nav-links">
+      <a href="/es/">Inicio</a>
+      <a href="/es/work/">Trabajo</a>
+      <a href="/es/about/">Sobre</a>
+      <a href="/es/motion/" title="Operations in Motion — la publicación de investigación de Jorge sobre operaciones y tecnología.">Motion</a>
+      <a href="/es/leadership-framework/">Framework</a>
       <div class="lang-switch" role="group" aria-label="Idioma">
         <a href="/contact/" hreflang="en">EN</a>
         <a href="/de/contact/" hreflang="de">DE</a>
         <a href="/es/contact/" hreflang="es" class="is-current" aria-current="page">ES</a>
       </div>
-      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download">Currículum &darr;</a>
-    </div>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download"><span class="nav-dl-long">Currículum</span><span class="nav-dl-short">CV</span> &darr;</a>
+    </nav>
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
       <span class="bars" aria-hidden="true"></span>
     </button>
   </div>
-</nav>
+</header>
 
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú del sitio" aria-hidden="true">
   <div class="mobile-menu-head">
-    <a href="/es/#contact" class="back-link"><span>&larr;</span> Portafolio</a>
+    <a href="/es/" class="nav-brand">Jorge Aguilar</a>
     <button class="mobile-menu-close" id="menuClose" type="button" aria-label="Cerrar menú">&times;</button>
   </div>
   <div class="mobile-menu-body">
+    <nav class="mobile-menu-links">
+      <a href="/es/">Inicio<span class="num">01</span></a>
+      <a href="/es/work/">Trabajo<span class="num">02</span></a>
+      <a href="/es/about/">Sobre<span class="num">03</span></a>
+      <a href="/es/motion/" title="Operations in Motion — la publicación de investigación de Jorge sobre operaciones y tecnología.">Motion<span class="num">04</span></a>
+      <a href="/es/leadership-framework/">Framework<span class="num">05</span></a>
+      <a href="/es/contact/" class="is-active" aria-current="page">Contacto<span class="num">06</span></a>
+    </nav>
     <div class="mobile-menu-lang">
       <span class="mm-lang-label">Idioma</span>
-        <div class="lang-switch" role="group" aria-label="Idioma">
-          <a href="/contact/" hreflang="en">EN</a>
-          <a href="/de/contact/" hreflang="de">DE</a>
-          <a href="/es/contact/" hreflang="es" class="is-current" aria-current="page">ES</a>
-        </div>
+      <div class="lang-switch" role="group" aria-label="Idioma">
+        <a href="/contact/" hreflang="en">EN</a>
+        <a href="/de/contact/" hreflang="de">DE</a>
+        <a href="/es/contact/" hreflang="es" class="is-current" aria-current="page">ES</a>
+      </div>
     </div>
     <div class="mobile-menu-actions">
-      <a href="/es/work/" class="mm-download">Trabajo</a>
-      <a href="/es/about/" class="mm-download">Sobre</a>
-      <a href="/es/motion/" class="mm-download">Motion</a>
-      <a href="/es/leadership-framework/" class="mm-download">Framework</a>
       <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Currículum &darr;</a>
     </div>
     <div class="mobile-menu-foot">Berlin &middot; EMEA</div>
@@ -256,7 +261,7 @@
     });
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 800 && menu.classList.contains('open')) closeMenu(false);
+      if (window.innerWidth > 900 && menu.classList.contains('open')) closeMenu(false);
     });
   })();
 </script>

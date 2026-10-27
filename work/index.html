@@ -65,27 +65,16 @@
 
   /* NAV */
   .nav{background:rgba(11,11,13,0.85);backdrop-filter:blur(8px);}
-  .back-link{
-    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--muted);text-decoration:none;display:inline-flex;align-items:center;gap:10px;
-    white-space:nowrap;transition:color .2s ease;
-  }
-  .back-link:hover{color:var(--accent);}
-  .nav-actions{display:flex;align-items:center;gap:14px;}
-  .nav-actions a{white-space:nowrap;text-decoration:none;}
-  .nav-download{
-    padding:8px 16px;border:1px solid var(--border);border-radius:999px;
-    font-family:var(--sans);font-weight:500;font-size:12.5px;color:var(--fg);
-    transition:border-color .2s ease,color .2s ease;
-  }
-  .nav-download:hover{border-color:var(--accent);color:var(--accent);}
-  .nav-cta{
-    background:var(--accent);color:var(--accent-fg);
-    padding:10px 18px;border-radius:999px;
-    font-family:var(--sans);font-weight:600;font-size:12.5px;
-    transition:transform .2s ease;
-  }
-  .nav-cta:hover{transform:translateY(-2px);color:var(--accent-fg);}
+  .nav-brand{font-family:var(--sans);font-weight:800;font-size:15px;letter-spacing:-.01em;color:var(--fg);}
+  .nav-brand .dot{color:var(--accent);}
+  .nav-links{display:flex;gap:28px;align-items:center;}
+  .nav-links a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+  .nav-links a:hover{color:var(--accent);}
+  .nav-cta{background:var(--accent);color:var(--accent-fg)!important;padding:10px 18px;border-radius:999px;font-family:var(--sans)!important;font-weight:600!important;font-size:12.5px!important;letter-spacing:normal!important;text-transform:none!important;}
+  .nav-cta:hover{color:var(--accent-fg)!important;transform:translateX(3px);}
+  .nav-download{padding:8px 16px;border:1px solid var(--border);border-radius:999px;font-family:var(--sans)!important;font-weight:500!important;font-size:12.5px!important;letter-spacing:normal!important;text-transform:none!important;color:var(--fg)!important;}
+  .nav-download:hover{border-color:var(--accent);color:var(--accent)!important;}
+  .nav-links a{white-space:nowrap;}
 
   /* LANGUAGE SWITCHER */
   .lang-switch{
@@ -109,7 +98,7 @@
     opacity:0;transform:translateY(10px);
     transition:opacity .45s ease,transform .45s ease;
   }
-  .mobile-menu.open .mobile-menu-lang{opacity:1;transform:translateY(0);transition-delay:.34s;}
+  .mobile-menu.open .mobile-menu-lang{opacity:1;transform:translateY(0);transition-delay:.38s;}
   .mobile-menu-lang .mm-lang-label{
     font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
     text-transform:uppercase;color:var(--muted);
@@ -139,7 +128,8 @@
 
   @media (max-width:900px){
     
-    .nav-actions{display:none;}
+    .nav-brand{font-size:14px;}
+    .nav-links{display:none;}
     .nav-toggle{display:inline-flex;}
   }
 
@@ -169,12 +159,34 @@
     padding:32px 20px 40px;
     display:flex;flex-direction:column;
   }
+  .mobile-menu-links{display:flex;flex-direction:column;border-top:1px solid var(--border);}
+  .mobile-menu-links a{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:17px 2px;border-bottom:1px solid var(--border);
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--fg);
+    opacity:0;transform:translateY(10px);
+    transition:color .2s ease,opacity .45s ease,transform .45s ease;
+  }
+  .mobile-menu-links a .num{font-size:10px;letter-spacing:.1em;color:var(--muted);opacity:.55;transition:color .2s ease,opacity .2s ease;}
+  .mobile-menu-links a:hover,.mobile-menu-links a:active{color:var(--accent);}
+  .mobile-menu-links a:hover .num,.mobile-menu-links a:active .num{color:var(--accent);opacity:1;}
+  .mobile-menu.open .mobile-menu-links a{opacity:1;transform:translateY(0);}
+  .mobile-menu.open .mobile-menu-links a:nth-child(1){transition-delay:.05s;}
+  .mobile-menu.open .mobile-menu-links a:nth-child(2){transition-delay:.09s;}
+  .mobile-menu.open .mobile-menu-links a:nth-child(3){transition-delay:.13s;}
+  .mobile-menu.open .mobile-menu-links a:nth-child(4){transition-delay:.17s;}
+  .mobile-menu.open .mobile-menu-links a:nth-child(5){transition-delay:.21s;}
+  .mobile-menu.open .mobile-menu-links a:nth-child(6){transition-delay:.25s;}
+  .mobile-menu.open .mobile-menu-links a:nth-child(7){transition-delay:.29s;}
+  .mobile-menu.open .mobile-menu-links a:nth-child(8){transition-delay:.33s;}
+  .mobile-menu.open .mobile-menu-links a:nth-child(9){transition-delay:.37s;}
   .mobile-menu-actions{
     display:flex;flex-direction:column;gap:12px;
     opacity:0;transform:translateY(10px);
     transition:opacity .45s ease,transform .45s ease;
   }
-  .mobile-menu.open .mobile-menu-actions{opacity:1;transform:translateY(0);transition-delay:.08s;}
+  .mobile-menu.open .mobile-menu-actions{opacity:1;transform:translateY(0);transition-delay:.40s;}
   .mobile-menu-actions a{
     display:block;text-align:center;padding:15px 22px;border-radius:999px;
     font-family:var(--sans);font-weight:600;font-size:14px;text-decoration:none;
@@ -187,9 +199,9 @@
     font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);opacity:.6;
   }
   body.menu-open{overflow:hidden;}
-  @media (min-width:801px){.mobile-menu{display:none;}}
+  @media (min-width:901px){.mobile-menu{display:none;}}
   @media (prefers-reduced-motion: reduce){
-    .mobile-menu,.mobile-menu-actions{transition-duration:.01ms;}
+    .mobile-menu,.mobile-menu-links a,.mobile-menu-actions{transition-duration:.01ms;}
     .mobile-menu-close:hover{transform:none;}
   }
 
@@ -417,27 +429,19 @@
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) .impact{line-height:var(--lh-impact)}
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) :is(.eyebrow,.tag,.kicker,.applied-label,.statement-label){letter-spacing:var(--ls-mono)}
   :is(.card,.sub,.note,.section-head,.pillar-content,.dd,.statement,section) figcaption{letter-spacing:.04em}
-  /* Enlace de pagina en el nav interior (mismo tratamiento que el back-link). */
-  .nav-pagelink{
-    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--muted);text-decoration:none;white-space:nowrap;transition:color .2s ease;
-  }
-  .nav-pagelink:hover{color:var(--accent);}
   /* Auto-ocultar la barra: el estado lo pone /nav.js y aqui solo vive la
      transicion. transform y no top, para que no recalcule layout al animar. */
-  /* La barra interior crece a cuatro destinos: por debajo de 1100px el
-     back-link mas los enlaces mas las acciones ya no caben en una linea, y
-     ahi el menu de hamburguesa toma el relevo. */
-  @media (max-width:1100px){ .nav-pagelink{display:none;} }
-  .nav-pagelink.is-active{color:var(--accent);}
+  /* Item activo del nav de sitio: sin esto, en una navegacion de paginas no
+     hay forma de saber en cual se esta. */
+  .nav-links a.is-active{color:var(--accent);}
+  .mobile-menu-links a.is-active{color:var(--accent);}
+  .mobile-menu-links a.is-active .num{color:var(--accent);opacity:1;}
   /* ── AREAS TACTILES ─────────────────────────────────────────────────────
      44x44 es el minimo de iOS HIG y de WCAG 2.5.8. Se amplia la zona de
      toque sin tocar el tamano visible: min-height mas centrado vertical, y
      en el cursor del hero un pseudoelemento que extiende el area. */
   .nav-toggle{width:44px;height:44px;}
-  .back-link,.nav-brand{min-height:44px;display:inline-flex;align-items:center;}
-  .nav-pagelink{min-height:44px;display:inline-flex;align-items:center;}
-  .nav-pagelink{min-width:44px;justify-content:center;}
+  .nav-brand{min-height:44px;display:inline-flex;align-items:center;}
   .work-link{min-height:44px;display:inline-flex;align-items:center;}
   .lang-switch a{min-height:36px;display:inline-flex;align-items:center;}
   .site-footer a,footer a{min-height:44px;display:inline-flex;align-items:center;}
@@ -473,48 +477,53 @@
 </head>
 <body>
 
-<nav class="nav">
+<header class="nav" id="nav">
   <div class="nav-inner">
-    <a href="/#work" class="back-link"><span>&larr;</span> Portfolio</a>
-    <div class="nav-actions">
-      <a href="/work/" class="nav-pagelink is-active" aria-current="page">Work</a>
-      <a href="/about/" class="nav-pagelink">About</a>
-      <a href="/motion/" class="nav-pagelink" title="Operations in Motion — Jorge's research publication on operations and technology.">Motion</a>
-      <a href="/leadership-framework/" class="nav-pagelink">Framework</a>
+    <a href="/" class="nav-brand">Jorge Aguilar</a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/work/" class="is-active" aria-current="page">Work</a>
+      <a href="/about/">About</a>
+      <a href="/motion/" title="Operations in Motion — Jorge's research publication on operations and technology.">Motion</a>
+      <a href="/leadership-framework/">Framework</a>
       <div class="lang-switch" role="group" aria-label="Language">
         <a href="/work/" hreflang="en" class="is-current" aria-current="page">EN</a>
         <a href="/de/work/" hreflang="de">DE</a>
         <a href="/es/work/" hreflang="es">ES</a>
       </div>
-      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download">Download CV &darr;</a>
-      <a href="/#contact" class="nav-cta">Get in touch</a>
-    </div>
+      <a href="/Jorge_Aguilar_CV.pdf" download class="nav-download"><span class="nav-dl-long">Download </span>CV &darr;</a>
+      <a href="/contact/" class="nav-cta">Get in touch</a>
+    </nav>
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
       <span class="bars" aria-hidden="true"></span>
     </button>
   </div>
-</nav>
+</header>
 
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true">
   <div class="mobile-menu-head">
-    <a href="/#work" class="back-link"><span>&larr;</span> Portfolio</a>
+    <a href="/" class="nav-brand">Jorge Aguilar</a>
     <button class="mobile-menu-close" id="menuClose" type="button" aria-label="Close menu">&times;</button>
   </div>
   <div class="mobile-menu-body">
+    <nav class="mobile-menu-links">
+      <a href="/">Home<span class="num">01</span></a>
+      <a href="/work/" class="is-active" aria-current="page">Work<span class="num">02</span></a>
+      <a href="/about/">About<span class="num">03</span></a>
+      <a href="/motion/" title="Operations in Motion — Jorge's research publication on operations and technology.">Motion<span class="num">04</span></a>
+      <a href="/leadership-framework/">Framework<span class="num">05</span></a>
+      <a href="/contact/">Contact<span class="num">06</span></a>
+    </nav>
     <div class="mobile-menu-lang">
       <span class="mm-lang-label">Language</span>
-        <div class="lang-switch" role="group" aria-label="Language">
-          <a href="/work/" hreflang="en" class="is-current" aria-current="page">EN</a>
-          <a href="/de/work/" hreflang="de">DE</a>
-          <a href="/es/work/" hreflang="es">ES</a>
-        </div>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a href="/work/" hreflang="en" class="is-current" aria-current="page">EN</a>
+        <a href="/de/work/" hreflang="de">DE</a>
+        <a href="/es/work/" hreflang="es">ES</a>
+      </div>
     </div>
     <div class="mobile-menu-actions">
-      <a href="/work/" class="mm-download">Work</a>
-      <a href="/about/" class="mm-download">About</a>
-      <a href="/motion/" class="mm-download">Motion</a>
-      <a href="/leadership-framework/" class="mm-download">Framework</a>
-      <a href="/#contact" class="mm-cta">Get in touch</a>
+      <a href="/contact/" class="mm-cta">Get in touch</a>
       <a href="/Jorge_Aguilar_CV.pdf" download class="mm-download">Download CV &darr;</a>
     </div>
     <div class="mobile-menu-foot">Berlin &middot; EMEA</div>
@@ -949,7 +958,7 @@
     });
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 800 && menu.classList.contains('open')) closeMenu(false);
+      if (window.innerWidth > 900 && menu.classList.contains('open')) closeMenu(false);
     });
   })();
 </script>
