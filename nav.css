@@ -17,6 +17,14 @@
  * paginas. Ya no hay variante con flecha de volver; la vuelta atras es el
  * boton del navegador y la marca.
  *
+ * La derecha de la fila son dos piezas y solo dos: selector de idioma y CTA
+ * de contacto. Llevo un boton de descarga del CV y se quito: la publicacion
+ * sirve su propia barra y nunca lo tuvo, asi que al cruzar a /motion/ la
+ * barra cambiaba de contenido, y su etiqueta media distinto en cada idioma
+ * ("Download CV" / "Lebenslauf" / "Curriculum"), asi que sumada al CTA hacia
+ * que este extremo creciera y se encogiera al cambiar de idioma. El CV se
+ * descarga desde /about/#cv. Si vuelve aqui, vuelven las dos cosas.
+ *
  * Regla para quien edite esto: si una pagina necesita cambiar la altura o la
  * posicion de su barra, el cambio va aqui, no en la pagina. Un override por
  * pagina es exactamente lo que estamos arreglando.
@@ -41,25 +49,26 @@
    barra crece 3px en esa pagina y solo en esa. */
 .nav-brand{white-space:nowrap;}
 
-/* Etiqueta larga/corta del CV. Se encoge antes de que la fila se quede sin
-   sitio: a 1000px y no a 900px, porque entre 900 y 1000 el "Download CV"
-   largo mas los cinco enlaces ya no caben, y en DE/ES el CTA es mas ancho
-   todavia ("Kontakt aufnehmen"). */
-.nav-dl-short{display:none;}
+/* Holgura de la fila antes del corte a hamburguesa. Entre 900 y 1000px los
+   cinco enlaces, el selector de idioma y el CTA caben, pero con el gap de 28px
+   van justos, y en DE/ES el CTA es mas ancho ("Kontakt aufnehmen"). El corte
+   estaba en 1000px porque tambien era donde la etiqueta del CV pasaba de
+   "Download CV" a "CV"; ese boton ya no existe, pero el gap reducido sigue
+   siendo lo que evita que la fila se parta. */
 @media (max-width:1000px){
   .nav-links{gap:16px;}
-  .nav-dl-long{display:none;}
-  .nav-dl-short{display:inline;}
 }
 
 /* Barra compacta + hamburguesa. El corte esta en 900px y no en 800px porque
-   entre 800 y 870 la fila no cabe: en DE el CTA "Kontakt aufnehmen" y el
-   selector de idioma empujaban el boton fuera del borde derecho, y como el
-   body recorta el desbordamiento el CTA aparecia cortado en vez de con
-   scroll. A partir de 901px la fila cabe en los tres idiomas. Este corte
-   tiene que moverse junto con el de .nav-toggle/.nav-links en cada pagina y
-   con el de .mobile-menu (min-width:901px) y el guardia de resize del script
-   del menu: padding compacto, hamburguesa y overlay van siempre a la par. */
+   entre 800 y 870 la fila no cabia: en DE el CTA "Kontakt aufnehmen" y el
+   selector de idioma se salian del borde derecho, y como el body recorta el
+   desbordamiento el CTA aparecia cortado en vez de con scroll. Eso se midio
+   con el boton del CV todavia en la fila, asi que hoy sobra sitio; el corte
+   se queda donde esta igualmente, porque no es solo suyo: tiene que moverse
+   junto con el de .nav-toggle/.nav-links en cada pagina, el de .mobile-menu
+   (min-width:901px) y el guardia de resize del script del menu. Padding
+   compacto, hamburguesa y overlay van siempre a la par, y bajarlo es tocar
+   las 38 paginas. A partir de 901px la fila cabe en los tres idiomas. */
 @media (max-width:900px){
   .nav{padding:14px var(--nav-x-sm,20px);}
 }

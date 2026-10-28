@@ -78,8 +78,6 @@
   .nav-links a:hover{color:var(--accent);}
   .nav-cta{background:var(--accent);color:var(--accent-fg)!important;padding:10px 18px;border-radius:999px;font-family:var(--sans)!important;font-weight:600!important;font-size:12.5px!important;letter-spacing:normal!important;text-transform:none!important;}
   .nav-cta:hover{color:var(--accent-fg)!important;transform:translateX(3px);}
-  .nav-download{padding:8px 16px;border:1px solid var(--border);border-radius:999px;font-family:var(--sans)!important;font-weight:500!important;font-size:12.5px!important;letter-spacing:normal!important;text-transform:none!important;color:var(--fg)!important;}
-  .nav-download:hover{border-color:var(--accent);color:var(--accent)!important;}
   .nav-links a{white-space:nowrap;}
 
   /* LANGUAGE SWITCHER */
@@ -197,8 +195,6 @@
     font-family:var(--sans);font-weight:600;font-size:14px;
   }
   .mm-cta{background:var(--accent);color:var(--accent-fg);}
-  .mm-download{border:1px solid var(--border);color:var(--fg);font-weight:500;transition:border-color .2s ease,color .2s ease;}
-  .mm-download:hover{border-color:var(--accent);color:var(--accent);}
   .mobile-menu-foot{
     margin-top:auto;padding-top:32px;
     font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);opacity:.6;
@@ -858,9 +854,6 @@
   .edu-points{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:5px;}
   .edu-points li{position:relative;padding-left:16px;font-size:14px;line-height:1.55;color:var(--muted);}
   .edu-points li::before{content:"—";position:absolute;left:0;top:0;color:var(--accent);}
-  /* Boton de CV: etiqueta larga en escritorio, "CV" a secas cuando el nav
-     se aprieta. Sin esto se pintan las dos a la vez. */
-  @media (max-width:900px){.nav-dl-long{display:none;} .nav-dl-short{display:inline;}}
   /* Avance de lectura. Riel de 3px a la derecha en escritorio y barra de 2px
      arriba en movil; el <span> es el relleno y su eje lo fija el media query,
      no el script. */
