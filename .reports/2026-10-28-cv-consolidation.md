@@ -298,6 +298,143 @@ Sin cambios respecto al informe del 27 oct: está en `.assetsignore`, así que
 Es la fuente del PDF, no un destino. Se le quitó el botón del CV como a las
 demás, por coherencia del componente.
 
+---
+
+## 8 bis. Addendum — subrayado de la barra (28 oct, posterior)
+
+### 8bis.1 La causa no era la que decía el parte
+El parte pedía "quitar el `text-decoration: underline` general de `nav a`" de
+`/nav.css`. Ese `underline` no existe: `/nav.css` no tenía **ninguna**
+declaración `text-decoration` antes de este cambio, y las páginas tampoco la
+ponen sobre `.nav-links a`. El subrayado que Console veía en los cinco enlaces
+no lo pintaba nuestra hoja, lo pintaba el navegador — es el estilo de user-agent
+de `<a href>`, que nadie estaba reseteando.
+
+Eso explica el otro dato del parte: `.lang-switch a` era el único con
+`text-decoration: none` porque es el único sitio del componente donde alguien lo
+escribió. No era un override contra una regla nuestra; era el único reset que
+había.
+
+Consecuencia práctica: el paso 1 de la instrucción quedó en nada (no había nada
+que quitar) y el arreglo es el reset que faltaba, no una retirada.
+
+### 8bis.2 El selector de idioma también lleva `aria-current="page"`
+La regla pedida — `nav a[aria-current="page"] { text-decoration: underline; }` —
+tal cual **rompe** el chip de idioma, y hay que anotarlo porque no es evidente
+leyendo el parte. Dos hechos del marcado se juntan:
+
+- el chip de la lengua activa lleva `class="is-current"` **y**
+  `aria-current="page"` (`work/index.html:486`), igual que el enlace de la
+  página;
+- `.lang-switch` vive **dentro** de `nav.nav-links`, no al lado.
+
+Así que `nav a[aria-current="page"]` (0,2,1) alcanza al chip EN y le gana por
+especificidad al `.lang-switch a{text-decoration:none}` de la página (0,1,1):
+el EN saldría subrayado dentro de su pastilla de acento. Por eso la regla final
+excluye el selector de idioma con una tercera declaración de la misma
+especificidad (0,2,1) puesta después, que gana por orden. El punto 4 de la
+instrucción ("mantener el override de `.lang-switch`") solo se cumple si se
+añade esa línea.
+
+### 8bis.3 El diff
+
+`/nav.css`, 33 líneas añadidas al final, ningún borrado:
+
+```css
+.nav a,
+.mobile-menu a{text-decoration:none;}
+
+.nav-links a[aria-current="page"],
+.mobile-menu-links a[aria-current="page"]{
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+
+.lang-switch a[aria-current="page"]{text-decoration:none;}
+```
+
+Tres decisiones, cada una comentada en la hoja:
+
+- **El reset va sobre `.nav` y `.mobile-menu` enteros**, no sobre `.nav-links`:
+  la marca y el CTA también son `<a>` y también llevaban el subrayado del UA.
+- **Vive en `/nav.css` aunque sea apariencia**, contra la regla del encabezado
+  del fichero. El motivo es el mismo que trajo la hoja: el reset en una página
+  deja el bug en las otras 37, y esta hoja la cargan todas al final del `<head>`.
+  Es el único sitio donde se apaga una vez.
+- **El marcador es `aria-current`, no `.is-active`**, aunque el marcado lleve
+  los dos. Lo visible y lo anunciado salen del mismo atributo y no pueden
+  derivar uno del otro.
+
+### 8bis.4 Verificación
+No hubo Chrome disponible en esta sesión, así que se corrió el snippet del parte
+tal cual en Chromium real vía el puppeteer que ya es devDependency del repo
+(`node_modules/puppeteer`, 1440×900), sobre el repo servido en local. Salida por
+página, `nav a` → `textDecorationLine`:
+
+| Página | `nav a` | subrayados | cuáles | violaciones |
+|---|---|---|---|---|
+| `/work/` | 15 | 2 | Work (desktop), Work02 (móvil) | 0 |
+| `/` | 15 | 2 | Home, Home01 | 0 |
+| `/about/` | 15 | 2 | About, About03 | 0 |
+| `/leadership-framework/` | 22 | 2 | Framework, Framework05 | 0 |
+| `/contact/` | 14 | 1 | Contact06 (móvil) | 0 |
+| `/de/work/` | 15 | 2 | Arbeiten, Arbeiten02 | 0 |
+| `/es/about/` | 15 | 2 | Sobre, Sobre03 | 0 |
+| `/de/` | 15 | 2 | Start, Start01 | 0 |
+
+"Violaciones" = enlaces subrayados **sin** `aria-current="page"`, más cualquier
+chip de idioma subrayado. Cero en las ocho páginas. Los tres chips EN/DE/ES
+devuelven `none` en todas, incluido el EN que lleva `aria-current="page"`.
+
+Detalle de `/work/`, que es la página del parte:
+
+```
+desktop Home         -> none      | aria-current: null
+desktop Work         -> underline | aria-current: page
+desktop About        -> none      | aria-current: null
+desktop Motion       -> none      | aria-current: null
+desktop Framework    -> none      | aria-current: null
+desktop EN           -> none      | aria-current: page [lang-switch]
+desktop DE           -> none      | aria-current: null [lang-switch]
+desktop ES           -> none      | aria-current: null [lang-switch]
+desktop Get in touch -> none      | aria-current: null
+mobile  Home01       -> none      | aria-current: null
+mobile  Work02       -> underline | aria-current: page
+mobile  About03      -> none      | aria-current: null
+mobile  Motion04     -> none      | aria-current: null
+mobile  Framework05  -> none      | aria-current: null
+mobile  Contact06    -> none      | aria-current: null
+```
+
+### 8bis.5 Son dos subrayados por página, no uno
+El parte esperaba "exactamente UNO". Salen dos y es correcto: las dos barras
+—la fila de escritorio y el menú móvil— están en el DOM a la vez en todas las
+páginas, y cada una lleva su propio enlace con `aria-current="page"`. El punto 3
+de la instrucción pedía precisamente que la regla cubriera las dos. Visible solo
+hay uno a cualquier ancho: por encima de 901px el menú móvil es
+`display:none`, y por debajo de 900px lo es `.nav-links`. Si se quiere contar
+uno solo, el snippet tiene que filtrar por visibilidad (`offsetParent`), no
+cambiar el CSS.
+
+### 8bis.6 `/contact/` no marca la página en la barra de escritorio
+Cae de la tabla de §8bis.4: `/contact/` devuelve **un** subrayado, el del menú
+móvil. En escritorio, Contact no es un enlace de `.nav-links` sino el CTA
+`.nav-cta`, y no lleva `aria-current="page"` — de hecho ninguno de los enlaces
+de escritorio lo lleva en esa página. Es un hueco del marcado anterior a este
+cambio, no algo que haya causado: con el CSS de antes tampoco se distinguía,
+porque los cinco salían subrayados igual. No se tocó, está fuera del alcance del
+parte. Si se quiere marcar, es `aria-current="page"` en el `.nav-cta` de
+`/contact/` × 3 idiomas, y entonces hay que decidir si el CTA (fondo de acento,
+pastilla) debe además subrayarse o quedar fuera como el selector de idioma.
+
+### 8bis.7 `/motion/` no se pudo verificar y no se tocó
+No está en este repo (`ls motion` → no existe), es la publicación aparte. Según
+la nota del parte, este cambio de `/nav.css` llega a su `site/nav.css` por el
+canary siguiente o por sync manual; no se entró a su repo. Queda por comprobar
+allí, cuando propague, que su marcado cumple las dos condiciones de las que
+depende la regla: que el enlace activo lleve `aria-current="page"` y que su chip
+de idioma activo no quede subrayado si también lo lleva.
+
 ## 9. Qué conviene mirar a mano
 
 Todo lo de §5 son medidas del DOM y capturas de Chromium headless. Lo que no

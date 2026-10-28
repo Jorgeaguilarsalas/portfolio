@@ -80,3 +80,36 @@
 @media (prefers-reduced-motion:reduce){
   .nav{transition:none;}
 }
+
+/* Subrayado del enlace activo. Esto es apariencia y por regla general iria en
+   cada pagina, pero vive aqui a proposito: ninguna pagina ponia
+   text-decoration en sus enlaces de barra, asi que el subrayado que se veia en
+   los cinco no lo pintaba nadie, lo pintaba el navegador (el estilo de UA de
+   <a href>). Con el reset en una pagina sola el bug sigue en las otras 37, y
+   esta hoja la cargan todas al final del <head>: es el unico sitio donde se
+   apaga una vez.
+
+   El reset va sobre .nav y .mobile-menu completos, no sobre .nav-links, porque
+   la marca y el CTA tambien son enlaces y tambien lo llevaban. */
+.nav a,
+.mobile-menu a{text-decoration:none;}
+
+/* Y se devuelve solo al enlace de la pagina en que estas. El marcador es
+   aria-current y no .is-active porque es el que ya lee el lector de pantalla;
+   que lo visible y lo anunciado salgan del mismo atributo evita que uno derive
+   del otro. La misma regla sirve para la fila de escritorio y para el menu
+   movil. */
+.nav-links a[aria-current="page"],
+.mobile-menu-links a[aria-current="page"]{
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+
+/* El selector de idioma queda fuera. Su chip activo tambien lleva
+   aria-current="page", y .lang-switch va dentro de .nav-links, asi que la regla
+   de arriba lo alcanzaba y le ganaba por especificidad al text-decoration:none
+   de la pagina: el chip EN salia subrayado dentro de su pastilla. Es un control
+   segmentado, no un enlace de sitio; lo activo ya se marca con el fondo de
+   acento. Misma especificidad que la regla de arriba (0,2,1) y declarado
+   despues, asi que gana por orden. */
+.lang-switch a[aria-current="page"]{text-decoration:none;}
