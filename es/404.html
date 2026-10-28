@@ -65,13 +65,22 @@
     letter-spacing:-.03em;margin:0 0 22px;
   }
   .lede{font-size:17px;line-height:1.6;color:var(--muted);margin:0 0 36px}
-  .actions{display:flex;flex-wrap:wrap;gap:12px}
+  .actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
   .btn{
     display:inline-flex;align-items:center;gap:10px;
     padding:14px 22px;border-radius:999px;font-weight:600;font-size:14px;
   }
   .btn-primary{background:var(--accent);color:var(--accent-fg);transition:transform .2s ease}
   .btn-primary:hover{transform:translateX(3px);color:var(--accent-fg)}
+
+  /* CTA secundario: el mismo .hub-cta-secondary de /about/ (consolidacion del
+     CV), copiado byte a byte. Es texto con enlace subrayado, no una segunda
+     pildora: la jerarquia la marca la forma, no el color, y dos pildoras
+     juntas compiten. Enlaza a la seccion del CV en /about/ y NO descarga: la
+     descarga vive solo en /about/, que es la decision que cerro 52de2ff. */
+  .hub-cta-secondary{font-size:14.5px;color:var(--muted);}
+  .hub-cta-secondary a{color:var(--muted);border-bottom:1px solid rgba(16,185,129,.3);padding-bottom:1px;transition:color .2s ease,border-color .2s ease;}
+  .hub-cta-secondary a:hover{color:var(--accent);border-bottom-color:var(--accent);}
 
   footer{
     flex:none;border-top:1px solid var(--border);padding:22px 32px;
@@ -285,6 +294,18 @@
     .hub-toc-mobile .rail-toc a{min-height:44px;}
   }
   .contact-detail .val a{min-height:44px;display:inline-flex;align-items:center;}
+  /* El CTA secundario del 404 es un enlace de texto de 19px de alto al lado de
+     una pildora de 45px: se queda en 19 y WCAG 2.5.8 pide 24 (y la casa pide
+     44). Mismo truco que el cursor del hero --- un pseudoelemento extiende la
+     zona de toque sin mover el subrayado ni el texto --- y no min-height con
+     inline-flex, que separaria el borde inferior de la linea base y romperia
+     el subrayado, que es justo lo que marca que esto es un enlace.
+     Solo crece a lo alto: left/right a 0 lo dejan en el ancho del enlace, asi
+     que no invade la pildora que tiene al lado. En /about/ el mismo patron va
+     dentro de una frase y no lleva esto; aqui es un CTA suelto y si le toca. */
+  .hub-cta-secondary a{position:relative;}
+  .hub-cta-secondary a::after{content:"";position:absolute;left:0;right:0;
+    top:50%;transform:translateY(-50%);height:44px;}
   /* En un dispositivo tactil las pildoras de idioma llegan a 44; con raton se
      quedan compactas, que es donde el diseno las quiere. */
   @media (pointer:coarse){
@@ -368,6 +389,7 @@
     <p class="lede">La página que busca no existe o fue movida.</p>
     <div class="actions">
       <a href="/es/" class="btn btn-primary">Volver al portafolio <span>&rarr;</span></a>
+      <span class="hub-cta-secondary"><a href="/es/about/#cv">Ver mi CV <span aria-hidden="true">&rarr;</span></a></span>
     </div>
   </div>
 </main>
