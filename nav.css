@@ -113,3 +113,30 @@
    acento. Misma especificidad que la regla de arriba (0,2,1) y declarado
    despues, asi que gana por orden. */
 .lang-switch a[aria-current="page"]{text-decoration:none;}
+
+/* Contraste de los numerales del menu movil (01, 02, 03...).
+ *
+ * Esto es apariencia y por la regla de arriba iria en cada pagina, pero vive
+ * aqui por el mismo motivo que el reset del subrayado: la declaracion esta
+ * copiada 36 veces (35 paginas en su <style> y /contact/form.css para las tres
+ * de contacto) y con 4.5:1 de por medio no sirve arreglar una.
+ *
+ * Estaban en color:var(--muted) con opacity:.55. Sobre el fondo del overlay
+ * --- rgba(9,9,11,.97) compuesto sobre --bg #0B0B0D, o sea #09090B --- eso da
+ * un #67676C efectivo y 3.54:1: suspende AA de texto normal (4.5:1), y son
+ * texto de 10px, asi que no les vale el 3:1 de texto grande.
+ *
+ *   opacity   efectivo   ratio
+ *   .55       #67676C    3.54:1   <- lo que habia
+ *   .65       #78787D    4.54:1      justo, sin margen
+ *   .72       #84848A    5.36:1   <- esto
+ *   .75       #89898F    5.74:1
+ *
+ * .72 y no .65 para tener margen si --muted o el fondo se mueven, y no .75 ni
+ * mas arriba porque el numeral tiene que seguir por debajo de su etiqueta
+ * (--fg a 18.58:1): es una referencia, no contenido.
+ *
+ * Solo opacity. El color se queda en --muted, y las reglas de hover y de
+ * enlace activo que suben el numeral a opacity:1 llevan (0,3,1) frente a los
+ * (0,2,1) de esta, asi que siguen ganando y el estado activo no se aplana. */
+.mobile-menu-links a .num{opacity:.72;}
