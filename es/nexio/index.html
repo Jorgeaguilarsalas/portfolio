@@ -931,7 +931,7 @@
       menu.setAttribute('aria-hidden', 'false');
       toggle.setAttribute('aria-expanded', 'true');
       document.body.classList.add('menu-open');
-      close.focus();
+      // Focus enters the dialog from /nav.js, once the overlay transition ends.
     }
 
     function closeMenu(refocus) {

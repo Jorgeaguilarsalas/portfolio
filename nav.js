@@ -83,3 +83,117 @@
   window.addEventListener('resize', sync, { passive: true });
   sync();
 })();
+
+/**
+ * Foco del menu movil desplegable.
+ *
+ * El abrir/cerrar sigue en el <script> de cada pagina; lo que vive aqui es solo
+ * el foco, y vive aqui porque estaba roto en las 38 copias a la vez.
+ *
+ * El bug: openMenu() llamaba a closeBtn.focus() en la misma vuelta en que
+ * anade .open, y en ese instante el overlay sigue en visibility:hidden (la
+ * transicion de .3s no ha empezado a avanzar), asi que el navegador ignora el
+ * focus() sin avisar. El foco se quedaba detras del dialogo: tabular despues de
+ * abrir recorria la pagina de debajo. Medido con sondas a 0/50/350/600ms: a 0ms
+ * no entra, a 350ms si.
+ *
+ * Asi que el foco no se pide una vez y a ver si cuela: se reintenta fotograma
+ * a fotograma hasta que entra de verdad. El unico momento correcto es "cuando
+ * el overlay ya acepta foco", y eso no lo dice bien ningun reloj. transitionend
+ * se adelanta --- con prefers-reduced-motion la transicion dura .01ms y el
+ * evento llega antes de que visibility haya resuelto, asi que el focus() se
+ * pierde igual que antes --- y un temporizador fijo o se queda corto o hace
+ * esperar de mas. Comprobar document.activeElement despues de cada intento es
+ * la unica senal que no miente, y ademas mete el foco en el primer fotograma en
+ * que es posible, no al final de la animacion.
+ *
+ * El limite lo marca la duracion leida del CSS computado, no un 300 a mano que
+ * se desincroniza en cuanto alguien toca la hoja.
+ *
+ * Y una vez dentro, se queda dentro: aria-modal="true" se lo promete al lector
+ * de pantalla, pero Tab no lo cumple solo. Escape no esta aqui: el handler de
+ * cada pagina ya cierra y devuelve el foco a la hamburguesa.
+ */
+(function () {
+  if (/^\/(?:de\/|es\/)?motion(\/|$)/.test(location.pathname)) return;
+
+  var menu = document.getElementById('mobileMenu');
+  var close = document.getElementById('menuClose');
+  if (!menu || !close) return;
+
+  var raf = 0;
+  var deadline = 0;
+
+  function isOpen() { return menu.classList.contains('open'); }
+
+  /* Los enlaces del overlay entran con opacity/transform, que no cambian el
+     layout, asi que el filtro de visibilidad solo descarta lo que de verdad no
+     esta ahi (el selector de idioma falta en alguna pagina). */
+  function focusables() {
+    return Array.prototype.filter.call(
+      menu.querySelectorAll('a[href], button:not([disabled])'),
+      function (el) { return el.offsetWidth || el.offsetHeight || el.getClientRects().length; }
+    );
+  }
+
+  /* La duracion efectiva sale del CSS computado, no de una constante: la hoja
+     declara dos propiedades (opacity y visibility) y las reduce a .01ms con
+     prefers-reduced-motion. Manda la mas larga, delay incluido. */
+  function transitionMs(el) {
+    var cs = getComputedStyle(el);
+    var dur = (cs.transitionDuration || '0s').split(',');
+    var delay = (cs.transitionDelay || '0s').split(',');
+    var max = 0;
+    for (var i = 0; i < dur.length; i++) {
+      max = Math.max(max, (parseFloat(dur[i]) || 0) + (parseFloat(delay[i]) || 0));
+    }
+    return max * 1000;
+  }
+
+  function cancel() {
+    if (raf) cancelAnimationFrame(raf);
+    raf = 0;
+  }
+
+  function settle() {
+    raf = 0;
+    if (!isOpen()) return;
+
+    /* Si el foco ya esta dentro no se toca: puede haberlo movido quien navega,
+       y robarselo de vuelta al boton de cerrar seria peor que el bug. */
+    if (menu.contains(document.activeElement)) return;
+
+    close.focus();
+    if (document.activeElement === close) return;   // entro
+
+    /* No era enfocable todavia. Se reintenta mientras quede plazo; pasado el
+       plazo se deja estar, que la trampa de Tab de abajo recoge el caso. */
+    if (Date.now() < deadline) raf = requestAnimationFrame(settle);
+  }
+
+  /* Se observa la clase en vez de engancharse al click de la hamburguesa: el
+     estado abierto es .open, y asi da igual quien lo haya puesto. */
+  new MutationObserver(function () {
+    if (!isOpen()) { cancel(); return; }
+    deadline = Date.now() + transitionMs(menu) + 400;
+    if (!raf) raf = requestAnimationFrame(settle);
+  }).observe(menu, { attributes: true, attributeFilter: ['class'] });
+
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key !== 'Tab' || !isOpen()) return;
+    var items = focusables();
+    if (!items.length) return;
+    var first = items[0];
+    var last = items[items.length - 1];
+    var active = document.activeElement;
+
+    // Si el foco se quedo fuera (transicion a medias, click en el fondo), entra.
+    if (!menu.contains(active)) {
+      ev.preventDefault();
+      (ev.shiftKey ? last : first).focus();
+      return;
+    }
+    if (ev.shiftKey && active === first) { ev.preventDefault(); last.focus(); }
+    else if (!ev.shiftKey && active === last) { ev.preventDefault(); first.focus(); }
+  });
+})();
