@@ -1121,7 +1121,8 @@
           <li><a href="#faehigkeiten"><span class="n">03</span> Fähigkeiten</a></li>
           <li><a href="#werkzeuge"><span class="n">04</span> Werkzeuge</a></li>
           <li><a href="#ausbildung"><span class="n">05</span> Ausbildung</a></li>
-          <li><a href="#kontakt"><span class="n">06</span> Kontakt</a></li>
+          <li><a href="#cv"><span class="n">06</span> Lebenslauf</a></li>
+          <li><a href="#kontakt"><span class="n">07</span> Kontakt</a></li>
       </ul>
     </details>
   </div>
@@ -1136,7 +1137,8 @@
           <li><a href="#faehigkeiten"><span class="n">03</span> Fähigkeiten</a></li>
           <li><a href="#werkzeuge"><span class="n">04</span> Werkzeuge</a></li>
           <li><a href="#ausbildung"><span class="n">05</span> Ausbildung</a></li>
-          <li><a href="#kontakt"><span class="n">06</span> Kontakt</a></li>
+          <li><a href="#cv"><span class="n">06</span> Lebenslauf</a></li>
+          <li><a href="#kontakt"><span class="n">07</span> Kontakt</a></li>
       </ul>
     </aside>
 
@@ -1555,6 +1557,24 @@
     </div>
   </section>
 
+  <!-- CV. Unico punto de descarga del PDF que queda en el sitio: la barra de
+       navegacion llevaba el boton y se lo quitamos, asi que si esta seccion
+       se cae, el PDF se queda sin entrada. Reusa .hub-cta, el patron de CTA
+       de cierre que ya estaba definido en esta pagina. -->
+  <section class="section" id="cv" data-sec="cv">
+    <div class="container">
+      <div class="section-label reveal">Lebenslauf</div>
+      <div class="hub-cta reveal">
+        <h2>Alles von oben, <em>als PDF</em>.</h2>
+        <p>Derselbe Verlauf, den diese Seite durchgeht &mdash; Erfahrung, F&auml;higkeiten, Ausbildung &mdash; in dem zweiseitigen Dokument, nach dem Hiring-Teams und Partner normalerweise fragen.</p>
+        <div class="hub-cta-row">
+          <a href="/Jorge_Aguilar_CV.pdf" download class="hub-cta-primary">Lebenslauf herunterladen <span aria-hidden="true">&darr;</span></a>
+          <span class="hub-cta-secondary">PDF &middot; 2 Seiten &middot; A4 &middot; oder <a href="https://www.linkedin.com/in/jorge-aguilar-ops/" target="_blank" rel="noopener">das Profil auf LinkedIn ansehen</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
     <section class="section contact" id="kontakt" data-sec="contact">
       <div class="container inner">
         <div class="section-label reveal">Kontakt</div>
@@ -1790,7 +1810,7 @@
 
 <script>
   /* Scrollspy del rail. Marca la seccion cuyo inicio ya paso bajo el nav
-     pegajoso; sin el, en una pagina de seis bloques largos el indice no dice
+     pegajoso; sin el, en una pagina de siete bloques largos el indice no dice
      nunca donde esta la persona. */
   (function () {
     var links = [].slice.call(document.querySelectorAll('.hub-rail .rail-toc a'));
