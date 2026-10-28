@@ -140,3 +140,29 @@
  * enlace activo que suben el numeral a opacity:1 llevan (0,3,1) frente a los
  * (0,2,1) de esta, asi que siguen ganando y el estado activo no se aplana. */
 .mobile-menu-links a .num{opacity:.72;}
+
+/* Contraste del pie del menu movil ("Berlin · EMEA"). Misma patologia que los
+ * numerales de arriba, mismo componente y las mismas 36 copias: lo detecto la
+ * auditoria del overlay completo (§6.2 del parte del 28-10) y se arregla aqui
+ * por el mismo motivo --- con 4.5:1 de por medio no sirve arreglar una pagina.
+ *
+ * Estaba en color:var(--muted) con opacity:.6, y a 10.5px no le vale el 3:1 de
+ * texto grande:
+ *
+ *   opacity   efectivo   sobre #09090B   sobre #0B0B0D
+ *   .6        #707075    4.04:1  FAIL    3.99:1  FAIL   <- lo que habia
+ *   .65       #78787D    4.53:1          4.54:1            justo, sin margen
+ *   .72       #84858A    5.35:1          5.36:1         <- esto
+ *
+ * Dos fondos porque el overlay diverge en cuatro paginas (§6.3): 32 usan
+ * rgba(9,9,11,.97) sobre --bg --- #09090B efectivo --- y 404.html, de/404.html,
+ * es/404.html y cv/index.html usan var(--bg) opaco, #0B0B0D. Pasa AA en ambos.
+ *
+ * .72 y no .65 por la misma razon que el numeral: margen si --muted o el fondo
+ * se mueven. Es el mismo valor, y eso es intencionado --- numeral y pie son los
+ * dos texto de referencia del mismo componente, al mismo tamano.
+ *
+ * Solo opacity; el color se queda en --muted. Especificidad (0,1,0), igual que
+ * la declaracion de cada pagina, pero esta hoja la cargan todas al FINAL del
+ * <head> (comprobado en las 36), asi que gana por orden. */
+.mobile-menu-foot{opacity:.72;}
