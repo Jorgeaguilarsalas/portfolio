@@ -39,6 +39,35 @@
   border-bottom:1px solid var(--border);
 }
 
+/* ── LA PILA DE APILADO, Y POR QUE EL BANNER DE COOKIES VA ENCIMA ───────────
+ *
+ * Este es el unico z-index que declara esta hoja; los otros dos viven fuera y
+ * se documentan aqui porque es donde se mira cuando algo tapa a algo:
+ *
+ *   20           .nav          <- aqui, arriba
+ *   60           .mobile-menu  <- en el <style> de cada pagina (36 copias)
+ *   2147483646   .cc-veil      <- consent.js:268
+ *   2147483647   .cc-banner    <- consent.js:270
+ *
+ * Con el menu hamburguesa abierto, el banner de consentimiento se pinta ENCIMA
+ * del overlay (2147483647 contra 60) pero queda FUERA de la trampa de foco del
+ * dialogo, asi que se ve y con el teclado no se puede llegar. Lo levanto la
+ * auditoria del 28-10 (§5.4 del parte; el parte de este lote lo cita como
+ * §6.3, que es otra cosa --- la divergencia del fondo del overlay).
+ *
+ * SE DEJA ASI A PROPOSITO. Es el patron modal estandar: un dialogo abierto
+ * retiene el foco hasta que se cierra, y Escape --- la convencion universal
+ * para cancelar un modal --- lo cierra y da acceso al banner en una tecla.
+ * Solo muerde en la primera visita, antes de decidir sobre las cookies.
+ *
+ * Lo que se descarto: bajar .cc-banner por debajo de 60. El banner usa z-max a
+ * proposito para seguir visible sobre cualquier cosa que pinte una pagina, y
+ * tocarlo deja la jerarquia incoherente --- y puede esconder otros avisos que
+ * dependen de ese mismo techo. Si algun dia hay que resolverlo de verdad, lo
+ * correcto no es el z-index: es que la trampa de foco de /nav.js incluya el
+ * banner mientras exista, o que el menu no se pueda abrir con el banner en
+ * pantalla. Ninguna de las dos entraba en este lote. */
+
 .nav-inner{
   max-width:1320px;margin:0 auto;
   display:flex;justify-content:space-between;align-items:center;gap:16px;
