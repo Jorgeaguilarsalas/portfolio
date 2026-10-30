@@ -1,0 +1,30 @@
+<!doctype html>
+<!-- Plantilla de la imagen para compartir (og:image). La renderiza
+     scripts/build_og_image.js a /og-image.png (1200x630). No se sirve:
+     scripts/ esta en .assetsignore. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face{font-family:'Inter';font-style:normal;font-weight:400 900;src:url(../fonts/inter-latin.woff2) format('woff2');}
+  html,body{margin:0;padding:0;}
+  body{
+    width:1200px;height:630px;box-sizing:border-box;
+    background:#000000;
+    /* Centrado y con mucho margen: WhatsApp y algunas vistas de LinkedIn
+       recortan la imagen a un cuadrado central. */
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:96px 120px;
+    font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;
+  }
+  .rule{width:64px;height:4px;border-radius:2px;background:#10B981;margin-bottom:40px;}
+  .name{margin:0;font-size:96px;font-weight:800;line-height:1;letter-spacing:-0.03em;color:#FFFFFF;white-space:nowrap;}
+  .role{margin:28px 0 0;font-size:40px;font-weight:500;line-height:1.2;letter-spacing:-0.01em;color:#E8DFC7;}
+</style>
+</head>
+<body>
+  <div class="rule" aria-hidden="true"></div>
+  <h1 class="name">Jorge Aguilar</h1>
+  <p class="role">Senior operations leader</p>
+</body>
+</html>
