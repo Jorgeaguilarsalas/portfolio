@@ -1,0 +1,62 @@
+/* Cierre comun de los cinco casos de estudio (x3 idiomas): "siguiente caso"
+ * + una linea de contacto en contexto. Antes los casos acababan en el pie
+ * legal sin ningun paso siguiente.
+ *
+ * Vive en un fichero compartido y no en el <style> de cada pagina para que
+ * las 15 copias del marcado no puedan derivar en estilo. Usa los tokens que
+ * ya declaran las 15 paginas (--card, --border, --accent, --fg, --muted,
+ * --mono, --sans). No toca el nav ni nada que comparta Motion. */
+
+.case-end{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  margin-top:64px;
+}
+.case-end-contact,
+.case-end-next{
+  background:var(--card);border:1px solid var(--border);
+  padding:28px;min-width:0;
+}
+.case-end-eyebrow{
+  display:block;margin:0 0 12px;
+  font-family:var(--mono);font-size:11px;line-height:1.4;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent);
+}
+.case-end-q{
+  margin:0 0 18px;
+  font-family:var(--sans);font-size:20px;font-weight:600;line-height:1.35;
+  color:var(--fg);
+}
+.case-end-mail{
+  font-family:var(--sans);font-size:15px;font-weight:600;
+  color:var(--accent);text-decoration:none;
+  border-bottom:1px solid transparent;padding:4px 0 2px;
+  transition:border-color .2s ease;
+}
+.case-end-mail:hover{border-color:var(--accent);}
+.case-end-next{
+  display:flex;flex-direction:column;
+  color:var(--fg);text-decoration:none;
+  transition:border-color .2s ease;
+}
+.case-end-next:hover{border-color:var(--accent);}
+.case-end-title{
+  font-family:var(--sans);font-size:20px;font-weight:600;line-height:1.35;
+}
+.case-end-arrow{
+  margin-top:auto;padding-top:18px;
+  font-size:20px;line-height:1;color:var(--accent);
+  transition:transform .2s ease;
+}
+.case-end-next:hover .case-end-arrow{transform:translateX(4px);}
+.case-end-mail:focus-visible,
+.case-end-next:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+@media (max-width:760px){
+  .case-end{grid-template-columns:1fr;margin-top:48px;}
+  .case-end-contact,.case-end-next{padding:22px;}
+  .case-end-q,.case-end-title{font-size:18px;}
+}
+@media (prefers-reduced-motion:reduce){
+  .case-end-mail,.case-end-next,.case-end-arrow{transition:none;}
+  .case-end-next:hover .case-end-arrow{transform:none;}
+}
