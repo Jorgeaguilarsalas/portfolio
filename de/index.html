@@ -287,7 +287,13 @@
   }
 
   .hero-tagline{font-size:clamp(22px,2.4vw,32px);font-weight:600;color:var(--fg);line-height:1.3;letter-spacing:-.015em;max-width:34ch;margin-bottom:18px;}
-  .hero-sub{font-size:clamp(16px,1.3vw,18px);color:var(--muted);line-height:1.6;max-width:60ch;margin-bottom:36px;}
+  .hero-sub{font-size:clamp(16px,1.3vw,18px);color:var(--muted);line-height:1.6;max-width:60ch;margin-bottom:20px;}
+  /* Linea de credenciales: empleadores previos en texto, cada uno enlazado a su caso. */
+  .hero-prev{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted);margin-bottom:36px;}
+  .hero-prev a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--border);padding:4px 0 2px;transition:color .2s ease,border-color .2s ease;}
+  .hero-prev a:hover{color:var(--accent);border-color:var(--accent);}
+  .hero-prev a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){.hero-prev a{transition:none;}}
   .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
   .btn-primary{background:var(--accent);color:var(--accent-fg);padding:14px 24px;border-radius:999px;font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:8px;transition:transform .2s ease;}
   .btn-primary:hover{transform:translateX(3px);}
@@ -639,7 +645,8 @@
     .hero-eyebrow{font-size:10.5px;letter-spacing:.12em;margin-bottom:20px;}
     .hero-name{line-height:.92;margin-bottom:20px;}
     .hero-tagline{font-size:21px;margin-bottom:14px;}
-    .hero-sub{font-size:15.5px;margin-bottom:28px;}
+    .hero-sub{font-size:15.5px;margin-bottom:16px;}
+    .hero-prev{font-size:11.5px;margin-bottom:28px;}
     .hero-actions{gap:10px;}
   }
 
@@ -840,20 +847,21 @@
   <section class="hero">
     <div class="container hero-inner">
       <div>
-        <div class="hero-eyebrow reveal"><span class="pulse"></span> Founder + Advisor · Berlin · EMEA</div>
+        <div class="hero-eyebrow reveal"><span class="pulse"></span> Senior Operations · Berlin · EMEA</div>
         <div class="hero-name-wrap">
           <h1 class="hero-name reveal">
             <span>Jorge Aguilar</span><button type="button" class="hero-cursor" id="statusTrigger" aria-label="Verfügbarkeit und aktuelle Rolle" aria-expanded="false" aria-describedby="statusTip"></button>
           </h1>
           <span class="hero-tip" id="statusTip" role="tooltip" hidden>
-            <span class="tip-avail"><span class="tip-dot" aria-hidden="true"></span>Founder + Advisor</span>
+            <span class="tip-avail"><span class="tip-dot" aria-hidden="true"></span>Senior Operations</span>
             <span class="tip-meta">Berlin · EMEA</span>
             <span class="tip-now">Aktuell: <b>Co-Founder @ Nexio Fleet</b></span>
             <a href="/de/nexio/" class="tip-link">Fallstudie lesen <span aria-hidden="true">→</span></a>
           </span>
         </div>
-        <p class="hero-tagline reveal">Marketplace-Operations in Systems Thinking übersetzen.</p>
-        <p class="hero-sub reveal">Von Mobilität über Logistik bis Technologie — vom operativen Tagesgeschäft bis zu Strategie und Umsetzung.</p>
+        <p class="hero-tagline reveal">Senior Operations Leader für Marktplätze und Mobilität.</p>
+        <p class="hero-sub reveal">Mitgründer von Nexio Fleet, dessen Compliance-Plattform 800+ Fahrer bei 8 Flottenbetreibern in Berlin und Brandenburg abdeckt.</p>
+        <p class="hero-prev reveal">Zuvor: <a href="/de/bliq/">Bliq</a> · <a href="/de/bolt/">Bolt</a> · <a href="/de/wolt/">Wolt</a></p>
         <div class="hero-actions reveal">
           <a href="#contact" class="btn-primary">Kontakt aufnehmen <span>→</span></a>
           <a href="#work" class="btn-secondary">Meine Arbeit ansehen</a>
