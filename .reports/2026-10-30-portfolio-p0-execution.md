@@ -416,3 +416,124 @@ Inter cargada y 0 peticiones a Google Fonts.
 7. `TITLE` del vCard.
 8. `npm run cv` necesita `cv:setup` o `PUPPETEER_EXECUTABLE_PATH`, que se usó
    aquí.
+
+---
+
+# Anexo: correcciones previas al push (2026-10-30)
+
+**Commits:** `4ee1e76`, `7aabc9b`, `fd6f7ac` (sobre `d10b462`)
+
+Este anexo cierra los dos pendientes que tenían que salir con el lote P0: los
+restos del posicionamiento anterior y la tarjeta de Bliq que faltaba en
+/de/work/ y /es/work/. No se tocó nada más; lo demás que salió en el barrido
+está listado en §A.4 para un lote posterior.
+
+## A.1 Metadatos de la home: `4ee1e76`
+
+| Campo | Antes | Después |
+|---|---|---|
+| **EN** `<title>` | Jorge Aguilar — Marketplace operations into systems thinking · Berlin | Jorge Aguilar — Senior Operations Leader · Berlin |
+| EN description | … Translating marketplace operations into systems thinking. Berlin-based operator and founder with case studies from … | Jorge Aguilar — senior operations leader for marketplaces and mobility, based in Berlin. Co-founder of Nexio Fleet; previously Bliq, Bolt and Wolt. Case studies with measured outcomes. |
+| EN og:/twitter:title | … Marketplace operations into systems thinking | Jorge Aguilar — Senior Operations Leader, Marketplaces &amp; Mobility |
+| EN og:/twitter:description | Translating marketplace operations into systems thinking. Berlin. Co-founder @ Nexio Fleet. | Senior operations leader for marketplaces and mobility. Co-founder @ Nexio Fleet. Previously Bliq, Bolt, Wolt. Berlin. |
+| **DE** `<title>` | … Marketplace-Operations in Systems Thinking · Berlin | Jorge Aguilar — Senior Operations Leader · Berlin |
+| DE description | … in Systems Thinking übersetzen. Operator und Gründer in Berlin … | Jorge Aguilar — Senior Operations Leader für Marktplätze und Mobilität in Berlin. Mitgründer von Nexio Fleet, zuvor bei Bliq, Bolt und Wolt. Fallstudien mit messbaren Ergebnissen. |
+| DE og:/twitter:title | … Marketplace-Operations in Systems Thinking | Jorge Aguilar — Senior Operations Leader für Marktplätze &amp; Mobilität |
+| DE og:/twitter:description | … in Systems Thinking übersetzen. Berlin. Mitgründer @ Nexio Fleet. | Senior Operations Leader für Marktplätze und Mobilität. Mitgründer @ Nexio Fleet. Zuvor Bliq, Bolt, Wolt. Berlin. |
+| **ES** `<title>` | … Operaciones de marketplace en pensamiento sistémico · Berlín | Jorge Aguilar — Líder sénior de operaciones · Berlín |
+| ES description | … Traduciendo operaciones de marketplace en pensamiento sistémico. Operador y fundador … | Jorge Aguilar — líder sénior de operaciones para marketplaces y movilidad, con base en Berlín. Cofundador de Nexio Fleet; antes en Bliq, Bolt y Wolt. Casos de estudio con resultados medibles. |
+| ES og:/twitter:title | … Operaciones de marketplace en pensamiento sistémico | Jorge Aguilar — Líder sénior de operaciones, marketplaces y movilidad |
+| ES og:/twitter:description | Traduciendo … pensamiento sistémico. Berlín. Cofundador @ Nexio Fleet. | Líder sénior de operaciones para marketplaces y movilidad. Cofundador @ Nexio Fleet. Antes en Bliq, Bolt y Wolt. Berlín. |
+
+- Los `<title>` se acortaron a nombre + rol + ciudad (unos 50 caracteres)
+  para que Google no los corte. La frase larga va en og:title, que no tiene
+  ese límite.
+- **og:image:** `og-card-1200x630.png` no tiene texto, así que no lleva ningún
+  lema desfasado. Sigue dibujada con el **acento lima** de antes del cambio a
+  esmeralda; queda como pendiente visual (§A.5).
+
+## A.2 vCard y cierre de la home: `7aabc9b`
+
+- **vCard** (`scripts/build_vcard.js` → `npm run vcard`): `TITLE:Founder +
+  Advisor` → `TITLE:Senior Operations Leader`. La `NOTE` decía también
+  "Translating marketplace operations into systems thinking" y ahora dice
+  "Senior operations leader for marketplaces and mobility. Co-founder, Nexio
+  Fleet GmbH. Based in Berlin." Se regeneraron `jorge-aguilar.vcf` y
+  `contact/vcard-qr.svg` (524 bytes, QR versión 15, nivel L).
+- **Párrafo de cierre de la home**: se mantienen el titular y el CTA único.
+
+| | Antes | Después |
+|---|---|---|
+| EN | Founder of Salas UG advisory. Co-founder of Nexio Fleet. Open to strategic conversations with operators, founders, and investors in mobility and logistics. | Looking for a senior operations leader for a marketplace or mobility business? I'm based in Berlin and work across EMEA — tell me about the team and where operations needs to go next. |
+| DE | Founder von Salas UG Advisory. Co-Founder von Nexio Fleet. Offen für strategische Gespräche mit Operators, Gründern und Investoren … | Sie suchen eine Senior-Operations-Führungskraft für einen Marktplatz oder ein Mobilitätsunternehmen? Ich sitze in Berlin und arbeite EMEA-weit — erzählen Sie mir vom Team und davon, wohin sich Ihre Operations entwickeln sollen. |
+| ES | Founder de Salas UG Advisory. Co-founder de Nexio Fleet. Abierto a conversaciones estratégicas con operadores, fundadores e inversores … | ¿Busca un líder sénior de operaciones para un marketplace o una empresa de movilidad? Estoy en Berlín y trabajo en toda EMEA: cuénteme sobre el equipo y hacia dónde necesitan llegar sus operaciones. |
+
+## A.3 Tarjeta de Bliq en /de/work/ y /es/work/: `fd6f7ac`
+
+- La tarjeta (copia, diagrama del flywheel traducido y botón "Diagramm
+  ansehen" / "Ver diagrama") es **la misma que ya estaba en la home DE/ES**,
+  así que no hay una tercera traducción. La versión EN de home y /work/ es
+  idéntica salvo por la codificación de entidades, lo que confirma que la
+  tarjeta de /work/ es la de la home.
+- Va como **02**, detrás de Nexio y como en EN. Las demás se renumeran 03–06.
+- Los ledes ahora cuentan **seis** proyectos ("Zwei wurden gebaut, vier
+  repariert" / "Dos se construyeron, cuatro se arreglaron"). En la meta
+  description, og y twitter, "fünf/cinco" pasa a "sechs/seis" y se añade Bliq
+  a la lista de proyectos.
+- **Coherencia:** la tarjeta "Next case study" de /de/bolt/ y /es/bolt/
+  (lote anterior) usaba un título de Bliq inventado por mí. Ahora usa el
+  mismo título que la home y /work/.
+
+**Verificación:**
+
+```
+work:    6 cards | 01 02 03 04 05 06 | bliq-cta: /bliq/
+de/work: 6 cards | 01 02 03 04 05 06 | bliq-cta: /de/bliq/
+es/work: 6 cards | 01 02 03 04 05 06 | bliq-cta: /es/bliq/
+order EN: /nexio/ /bliq/ (solo) /wolt/ /bolt/ /alcorte/      same order in DE/ES: true
+/de/work/ link /de/bliq/ -> 200 "Fleet Supply bei Bliq neu aufbauen — Jorge Aguilar"
+/es/work/ link /es/bliq/ -> 200 "Reconstruir la oferta de flotas en Bliq — Jorge Aguilar"
+toggle móvil: none/0 -> block/240 (DE), block/257 (ES); aria-expanded=true
+etiquetas del SVG sin desbordar; 0 errores de JS
+```
+
+## A.4 Barrido de cadenas desfasadas (después de estos commits)
+
+`git grep` sobre todo el repo, sin `.reports/` ni `node_modules/`.
+
+**"systems thinking" / "Systems Thinking" / "pensamiento sistémico":**
+
+| Dónde | Qué | Valoración |
+|---|---|---|
+| `manifest.json` | `"description": "Founder + Advisor, Berlin. Translating marketplace operations into systems thinking."` | **Desfasado.** Metadato de la PWA; es lo único que queda con "Founder + Advisor" |
+| `work/`, `de/work/`, `es/work/` meta description + og + twitter (×3 cada uno) | "Translating marketplace operations into systems thinking — six projects …" | **Desfasado.** Mismo patrón que tenía la home |
+| `about/` ×3 meta description | "… operator and founder translating marketplace operations into systems thinking" | **Desfasado** (y dice "founder") |
+| `cv/index.html` tagline | "Translating marketplace operations into systems thinking — Berlin." | **Desfasado** en el PDF del CV. El parte excluía tocar /cv/ más allá de cifras |
+| Home ×3, lede de "How I work" | "the principles that turn marketplace operations into systems thinking" | **Legítimo.** Describe el método, no el rol |
+
+**"Founder + Advisor":** solo queda `manifest.json`.
+
+**"advisor / advisory / Beratung / asesoría":**
+
+| Dónde | Qué | Valoración |
+|---|---|---|
+| `contact/` ×3 meta + og + twitter | "advisory, investment, speaking or collaboration …" / "Beratung, Investment, Vortrag …" / "asesoría, inversión, conferencias …" | **Desfasado** frente al foco de contratación |
+| `contact/` ×3 lede | "Founder of Salas UG advisory. Co-founder of Nexio Fleet. …" | **Desfasado.** Es el mismo texto que se cambió en la home |
+| `about/` ×3, párrafo de cierre | "Founder of Salas UG advisory … investors …" | **Desfasado.** Copia del antiguo cierre de la home |
+| `contact/` ×3, opción del formulario | `<option value="advisory">Advisory / Consulting</option>` | **Discutible.** Es un tipo de consulta que alguien puede seguir queriendo hacer |
+| `about/` ×3, experiencia | "independent advisory", "Advisory engagements in compliance system design …" | **Legítimo.** Describe Salas UG con exactitud |
+| `cv/index.html` | "Advisory vehicle for fleet operations …" (Salas UG) | **Legítimo** |
+| Datenschutz / Privacidad / alcorte / nexio (DE/ES) | "steuerliche … Beratung", "asesoramiento jurídico", "Steuerberater" | **Legítimo.** Otro sentido de la palabra |
+
+## A.5 Pendientes que deja este anexo
+
+1. Alinear los restos de §A.4: `manifest.json`, los metadatos de /work/,
+   /about/ y /contact/ (×3), el lede de /contact/ (×3), el párrafo de cierre de
+   /about/ (×3) y, si Jorge lo decide, el tagline del CV.
+2. `og-card-1200x630.png` sigue con el acento lima.
+3. **Fallo previo**, detectado al verificar: en /de/work/ y /es/work/, el
+   script del botón del diagrama cambia la etiqueta a inglés al pulsarlo
+   ("Hide diagram" / "View diagram"). Afecta a todas las tarjetas, no solo a la
+   nueva.
+4. Siguen en pie los de la ejecución P0: espejo de `/nav.css` a Motion
+   (`7ba8965`) y revisión legal de la §10 de Datenschutz.
