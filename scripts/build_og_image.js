@@ -3,10 +3,13 @@
  *
  *   npm run og
  *
- * Renderiza scripts/og-image.html a 1200x630 (estandar Open Graph) a densidad 2x
- * (archivo de 2400x1260) para que el texto se vea nitido en pantallas retina, con el
+ * Renderiza scripts/og-image.html a 1200x630 (estandar Open Graph) con el
  * Chrome de Puppeteer, igual que `npm run cv`. Para cambiar la imagen se
  * edita la plantilla, no el PNG.
+ *
+ * Densidad 1x a proposito: LinkedIn reescala la imagen y la recomprime a JPG,
+ * asi que un archivo 2x no gana nitidez. Lo que la mantiene es texto grande
+ * sobre fondo negro puro.
  */
 const puppeteer = require('puppeteer');
 const path = require('path');
@@ -19,10 +22,10 @@ const OUT = path.resolve(__dirname, '../og-image.png');
   const browser = await puppeteer.launch({ headless: true });
   try {
     const page = await browser.newPage();
-    await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
+    await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
     await page.goto(`file://${TEMPLATE}`, { waitUntil: 'networkidle0' });
     await page.evaluate(() => document.fonts.ready);
-    const ok = await page.evaluate(() => document.fonts.check('800 96px Inter'));
+    const ok = await page.evaluate(() => document.fonts.check('600 140px Inter'));
     if (!ok) throw new Error('Inter no cargo: la imagen saldria con la fuente de sistema');
     await page.screenshot({ path: OUT, type: 'png', clip: { x: 0, y: 0, width: 1200, height: 630 } });
   } finally {
