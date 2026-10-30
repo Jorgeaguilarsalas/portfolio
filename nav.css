@@ -41,11 +41,12 @@
 
 /* ── LA PILA DE APILADO, Y POR QUE EL BANNER DE COOKIES VA ENCIMA ───────────
  *
- * Este es el unico z-index que declara esta hoja; los otros dos viven fuera y
+ * Esta hoja declara dos z-index (.nav y .skip-link); los demas viven fuera y
  * se documentan aqui porque es donde se mira cuando algo tapa a algo:
  *
  *   20           .nav          <- aqui, arriba
  *   60           .mobile-menu  <- en el <style> de cada pagina (36 copias)
+ *   100          .skip-link    <- aqui, al final; solo visible con foco
  *   2147483646   .cc-veil      <- consent.js:268
  *   2147483647   .cc-banner    <- consent.js:270
  *
@@ -195,3 +196,22 @@
  * la declaracion de cada pagina, pero esta hoja la cargan todas al FINAL del
  * <head> (comprobado en las 36), asi que gana por orden. */
 .mobile-menu-foot{opacity:.72;}
+
+/* ── SALTAR AL CONTENIDO (WCAG 2.4.1) ──────────────────────────────────────
+ * Primer hijo del <body> en las 37 paginas servidas, apuntando a
+ * <main id="main" tabindex="-1">. Fuera de pantalla hasta que recibe foco con
+ * el teclado; entonces aparece arriba a la izquierda, por encima de la barra
+ * (20) y del menu movil (60), y por debajo del banner de cookies, que vive
+ * abajo y no se solapa. El tabindex="-1" de <main> es para que el foco entre
+ * de verdad en el contenido al activarlo (y el siguiente Tab siga desde ahi);
+ * ese foco programatico no dibuja contorno. Vive aqui porque es la unica hoja
+ * que cargan todas las paginas. */
+.skip-link{
+  position:fixed;left:16px;top:-120px;z-index:100;
+  padding:12px 18px;border-radius:999px;
+  background:var(--accent,#10B981);color:#09090B;
+  font-family:var(--sans,system-ui,sans-serif);font-size:14px;font-weight:600;line-height:1.2;
+  text-decoration:none;
+}
+.skip-link:focus{top:16px;outline:2px solid var(--fg,#FFFFFF);outline-offset:2px;}
+main[tabindex="-1"]:focus{outline:none;}
