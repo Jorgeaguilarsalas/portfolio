@@ -6,7 +6,8 @@
   "scripts": {
     "cv": "node scripts/build_cv.js",
     "cv:setup": "puppeteer browsers install chrome",
-    "vcard": "node scripts/build_vcard.js"
+    "vcard": "node scripts/build_vcard.js",
+    "jsonld": "node scripts/build_jsonld.js"
   },
   "devDependencies": {
     "puppeteer": "^25.11.0",
