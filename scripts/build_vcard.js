@@ -32,7 +32,7 @@ const LINES = [
   // Un solo ORG: en 3.0 es una propiedad unica y las agendas ignoran el
   // segundo. Nexio Fleet va en la nota.
   'ORG:Salas UG',
-  'TITLE:Founder + Advisor',
+  'TITLE:Senior Operations Leader',
   'EMAIL;TYPE=INTERNET,WORK:hello@jorgeag.com',
   'TEL;TYPE=CELL:+4915734551124',
   'URL;TYPE=WORK:https://jorgeag.com',
@@ -41,7 +41,7 @@ const LINES = [
   'URL:https://www.linkedin.com/in/jorge-aguilar-ops',
   'X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/jorge-aguilar-ops',
   'ADR;TYPE=WORK:;;Jessnerstraße 6;Berlin;;10247;Germany',
-  'NOTE:Translating marketplace operations into systems thinking. Co-founder\\, Nexio Fleet GmbH. Based in Berlin.',
+  'NOTE:Senior operations leader for marketplaces and mobility. Co-founder\\, Nexio Fleet GmbH. Based in Berlin.',
   'END:VCARD',
 ];
 
