@@ -728,3 +728,25 @@ todavía no existe en producción. Después del push y del despliegue:
    del diagrama pasa a inglés al pulsarlo.
 4. Del lote P0 siguen en pie: espejo de `/nav.css` a Motion (`7ba8965`) y
    revisión legal de la §10 de Datenschutz.
+
+## B.10 Cierre de la home con dos CTA: `7523780`
+
+En `/`, `/de/` y `/es/`, el cierre pasa de un solo botón más tres enlaces de
+texto a dos botones del mismo ancho y alto: "Send me a message" (relleno
+esmeralda, a /contact/) y "or Book a 30-minute call" (contorno esmeralda,
+texto crema `#E8DFC7`, a Calendly). Debajo, en más pequeño, queda
+"Prefer email? hello@jorgeag.com". En móvil (<640px) se apilan.
+
+- DE: el segundo botón dice "oder ein 30-Minuten-Gespräch buchen" en lugar
+  de la propuesta "oder buchen Sie ein 30-minütiges Gespräch", que a 375px
+  partía el botón en dos líneas. ES: "¿Prefiere escribir por email?".
+- LinkedIn sale del cierre y pasa al footer de las 37 páginas, delante de
+  Impressum y con el mismo estilo que los enlaces legales. Antes no estaba
+  en ningún footer.
+- El email queda alineado a la izquierda, como el resto del bloque, y no
+  centrado.
+
+**Verificación:** contraste crema sobre `#0F0F12` 14,4:1; negro sobre
+esmeralda 8,3:1 (6,2:1 en hover). Con Tab se llega a los dos botones y el
+foco se ve. En los tres idiomas, a 1280px y a 375px, ambos botones miden
+52px de alto y no hay scroll horizontal.
