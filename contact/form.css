@@ -180,6 +180,9 @@ body.menu-open{overflow:hidden;}
 .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;}
 h1{font-size:clamp(34px,5.5vw,52px);font-weight:900;letter-spacing:-0.03em;line-height:1.04;margin-bottom:18px;}
 .lede{color:var(--muted);font-size:clamp(15.5px,1.3vw,17px);max-width:56ch;margin-bottom:12px;}
+/* Segundo parrafo, rebajado a proposito: el contacto principal es para roles
+   senior de operaciones; asesoria, inversion y charlas quedan como secundarias. */
+.lede-aside{color:var(--label);font-size:14.5px;line-height:1.6;max-width:56ch;margin-bottom:12px;}
 .direct{color:var(--label);font-size:14px;margin-bottom:20px;}
 .direct a{text-decoration:underline;text-underline-offset:2px;}
 
