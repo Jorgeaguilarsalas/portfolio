@@ -2,6 +2,9 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
+<!-- Marca "hay JS" antes del primer pintado: los .reveal solo se ocultan con
+     html.js, asi que si el script falla el contenido se ve igualmente. -->
+<script>document.documentElement.classList.add('js');</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Leadership- &amp; Operations-Frameworks — Jorge Aguilar</title>
 <meta name="description" content="Sieben Ebenen aus Führungs- und Operations-Frameworks: Führungsprinzipien, People Management, Execution Management, Operational Improvement sowie Service &amp; Cross-Functional Delivery.">
@@ -359,11 +362,11 @@
   }
 
   /* REVEAL */
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
-  .reveal.visible{opacity:1;transform:none}
+  .js .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+  .js .reveal.visible{opacity:1;transform:none}
 
   @media (prefers-reduced-motion:reduce){
-    .reveal{opacity:1;transform:none;transition:none}
+    .js .reveal{opacity:1;transform:none;transition:none}
     .pillar-body{transition:none}
     .pillar-toggle{transition:none}
   }
@@ -893,7 +896,7 @@
   <header class="col">
     <div class="rule reveal"></div>
     <p class="eyebrow reveal">Leadership &amp; Operations</p>
-    <h1 class="reveal">Leadership- &amp; Operations-Frameworks</h1>
+    <h1>Leadership- &amp; Operations-Frameworks</h1>
     <p class="lede reveal"><strong>Wie ich auftrete, wie ich Menschen entwickle, wie ich aus Zielen Umsetzung mache.</strong></p>
     <p class="lede reveal">Dieses Handbuch bündelt die Methoden, die ich für die Führung von Service, Operations und Teams in technisch komplexen Umfeldern entwickelt habe. Die Frameworks sind Arbeitswerkzeuge, keine Schlagworte &mdash; jedes löst ein bestimmtes Management-Problem und ist dafür gedacht, genau dann herangezogen zu werden, wenn dieses Problem auftritt.</p>
     <p class="lede reveal">Sie bauen aufeinander auf. Führungsprinzipien bestimmen, wie ich auftrete. People Management bestimmt, wie ich Leistung aufbaue. Execution Management macht aus Zielen gelieferte Ergebnisse. Operational Improvement verbessert das System selbst. Service &amp; Cross-Functional Delivery ist der Ort, an dem all das auf ein Kundenergebnis trifft.</p>

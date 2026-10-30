@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- Marca "hay JS" antes del primer pintado: los .reveal solo se ocultan con
+     html.js, asi que si el script falla el contenido se ve igualmente. -->
+<script>document.documentElement.classList.add('js');</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Leadership & Operations frameworks — Jorge Aguilar</title>
 <meta name="description" content="Seven layers of leadership and operations frameworks: leadership principles, people management, execution management, operational improvement, and service &amp; cross-functional delivery.">
@@ -366,11 +369,11 @@
   }
 
   /* REVEAL */
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
-  .reveal.visible{opacity:1;transform:none}
+  .js .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+  .js .reveal.visible{opacity:1;transform:none}
 
   @media (prefers-reduced-motion:reduce){
-    .reveal{opacity:1;transform:none;transition:none}
+    .js .reveal{opacity:1;transform:none;transition:none}
     .pillar-body{transition:none}
     .pillar-toggle{transition:none}
   }
@@ -909,7 +912,7 @@
   <header class="col">
     <div class="rule reveal"></div>
     <p class="eyebrow reveal">Leadership &amp; operations</p>
-    <h1 class="reveal">Leadership &amp; Operations frameworks</h1>
+    <h1>Leadership &amp; Operations frameworks</h1>
     <p class="lede reveal"><strong>How I show up, how I develop people, how I turn goals into execution.</strong></p>
     <p class="lede reveal">This manual consolidates the methods I have developed to lead service, operations, and teams in technically complex environments. The frameworks are operating tools, not slogans &mdash; each one exists to resolve a specific management problem, and each one is meant to be picked up when that problem appears.</p>
     <p class="lede reveal">They are layered. Leadership principles define how I show up. People management defines how I build performance. Execution management converts goals into delivered outcomes. Operational improvement makes the system itself better. Service and cross-functional delivery is where all of it is applied against a customer outcome.</p>

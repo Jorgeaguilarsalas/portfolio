@@ -2,6 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<!-- Marca "hay JS" antes del primer pintado: los .reveal solo se ocultan con
+     html.js, asi que si el script falla el contenido se ve igualmente. -->
+<script>document.documentElement.classList.add('js');</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Frameworks de liderazgo y operaciones — Jorge Aguilar</title>
 <meta name="description" content="Siete capas de frameworks de liderazgo y operaciones: principios de liderazgo, people management, execution management, operational improvement y service &amp; cross-functional delivery.">
@@ -359,11 +362,11 @@
   }
 
   /* REVEAL */
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
-  .reveal.visible{opacity:1;transform:none}
+  .js .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+  .js .reveal.visible{opacity:1;transform:none}
 
   @media (prefers-reduced-motion:reduce){
-    .reveal{opacity:1;transform:none;transition:none}
+    .js .reveal{opacity:1;transform:none;transition:none}
     .pillar-body{transition:none}
     .pillar-toggle{transition:none}
   }
@@ -893,7 +896,7 @@
   <header class="col">
     <div class="rule reveal"></div>
     <p class="eyebrow reveal">Liderazgo y operaciones</p>
-    <h1 class="reveal">Frameworks de liderazgo y operaciones</h1>
+    <h1>Frameworks de liderazgo y operaciones</h1>
     <p class="lede reveal"><strong>Cómo me presento, cómo desarrollo a las personas, cómo convierto objetivos en ejecución.</strong></p>
     <p class="lede reveal">Este manual consolida los métodos que he desarrollado para dirigir servicio, operaciones y equipos en entornos técnicamente complejos. Los frameworks son herramientas operativas, no consignas: cada uno resuelve un problema de management concreto y está pensado para usarse cuando ese problema aparece.</p>
     <p class="lede reveal">Están organizados por capas. Los principios de liderazgo definen cómo me presento. People Management define cómo construyo desempeño. Execution Management convierte objetivos en resultados entregados. Operational Improvement mejora el sistema mismo. Service &amp; Cross-Functional Delivery es donde todo eso se aplica sobre un resultado para el cliente.</p>

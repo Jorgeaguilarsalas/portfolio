@@ -2,6 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<!-- Marca "hay JS" antes del primer pintado: los .reveal solo se ocultan con
+     html.js, asi que si el script falla el contenido se ve igualmente. -->
+<script>document.documentElement.classList.add('js');</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Trabajo seleccionado &mdash; Jorge Aguilar</title>
 <meta name="description" content="Traduciendo operaciones de marketplace en pensamiento sistémico — cinco proyectos en movilidad, SaaS crítico en compliance y producto nativo de IA: Nexio Fleet, Wolt, Bolt, Alcorte Alemán y un análisis propio de marketplace.">
@@ -200,9 +203,9 @@
     .mobile-menu-close:hover{transform:none;}
   }
 
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease;}
-  .reveal.visible{opacity:1;transform:translateY(0);}
-  @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none;}}
+  .js .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease;}
+  .js .reveal.visible{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){.js .reveal{opacity:1;transform:none;transition:none;}}
 
   /* Contenedor y cabecera propios de la pagina */
   .container{max-width:1320px;margin:0 auto;padding:0 32px;}

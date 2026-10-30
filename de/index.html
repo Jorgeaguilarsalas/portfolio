@@ -2,6 +2,9 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<!-- Marca "hay JS" antes del primer pintado: los .reveal solo se ocultan con
+     html.js, asi que si el script falla el contenido se ve igualmente. -->
+<script>document.documentElement.classList.add('js');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jorge Aguilar — Marketplace-Operations in Systems Thinking · Berlin</title>
 <meta name="description" content="Jorge Aguilar — Marketplace-Operations in Systems Thinking übersetzen. Operator und Gründer in Berlin, mit Fallstudien von Wolt, Bolt, Bliq, Nexio Fleet.">
@@ -650,9 +653,9 @@
   }
 
   /* REVEAL */
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease;}
-  .reveal.visible{opacity:1;transform:translateY(0);}
-  @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none;} html{scroll-behavior:auto;} .hero-eyebrow .pulse{animation:none;} .hero-cursor{animation:none;}}
+  .js .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease;}
+  .js .reveal.visible{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){.js .reveal{opacity:1;transform:none;transition:none;} html{scroll-behavior:auto;} .hero-eyebrow .pulse{animation:none;} .hero-cursor{animation:none;}}
 
   /* Enlaces legales (Impressum, Datenschutz): heredan el gris del footer;
      en lima competirian con el CTA del nav. */

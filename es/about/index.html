@@ -2,6 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<!-- Marca "hay JS" antes del primer pintado: los .reveal solo se ocultan con
+     html.js, asi que si el script falla el contenido se ve igualmente. -->
+<script>document.documentElement.classList.add('js');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sobre mí — Jorge Aguilar</title>
 <meta name="description" content="Biografía, principios de trabajo, experiencia, capacidades y formación de Jorge Aguilar — operador y fundador que traduce las operaciones de marketplace en pensamiento de sistemas.">
@@ -643,9 +646,9 @@
   }
 
   /* REVEAL */
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease;}
-  .reveal.visible{opacity:1;transform:translateY(0);}
-  @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none;} html{scroll-behavior:auto;} .hero-eyebrow .pulse{animation:none;} .hero-cursor{animation:none;}}
+  .js .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease;}
+  .js .reveal.visible{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){.js .reveal{opacity:1;transform:none;transition:none;} html{scroll-behavior:auto;} .hero-eyebrow .pulse{animation:none;} .hero-cursor{animation:none;}}
 
   /* Enlaces legales (Impressum, Datenschutz): heredan el gris del footer;
      en lima competirian con el CTA del nav. */
@@ -1091,7 +1094,7 @@
 
   <div class="container hub-hero">
     <div class="section-label reveal">Sobre mí</div>
-    <h1 class="reveal">Sobre mí</h1>
+    <h1>Sobre mí</h1>
     <p class="hub-sub reveal">De la operación de primera línea <em>a la construcción de los sistemas que la sostienen</em>.</p>
     <div class="hub-bio reveal">
       <div class="about-layout">
