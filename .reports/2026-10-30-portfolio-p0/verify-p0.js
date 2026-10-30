@@ -7,7 +7,7 @@
 const puppeteer = require(process.cwd() + '/node_modules/puppeteer');
 const fs = require('fs'); const { execSync } = require('child_process');
 const served = execSync("git ls-files '*.html'").toString().trim().split('\n')
-  .filter(f => !/^(cv\/|\.reports\/|343ride-landing\.html$)/.test(f));
+  .filter(f => !/^(cv\/|scripts\/|\.reports\/|343ride-landing\.html$)/.test(f));
 (async () => {
   const b = await puppeteer.launch({ executablePath: process.env.PUPPETEER_EXECUTABLE_PATH });
   let problems = 0;

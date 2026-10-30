@@ -537,3 +537,194 @@ etiquetas del SVG sin desbordar; 0 errores de JS
    nueva.
 4. Siguen en pie los de la ejecución P0: espejo de `/nav.css` a Motion
    (`7ba8965`) y revisión legal de la §10 de Datenschutz.
+
+---
+
+# Anexo 2: limpieza final antes del push (2026-10-30)
+
+**Commits:** `056be06`, `6d9ef07`, `426196d`, `4cf337d`, `89c131e`,
+`2f6a8ae` (sobre `60cbe98`)
+
+Cierra los restos del posicionamiento anterior (§A.4 y §A.5 del anexo 1) y
+crea la imagen para compartir.
+
+## B.1 `manifest.json`: `056be06`
+
+| Campo | Antes | Después |
+|---|---|---|
+| `name` | Jorge Aguilar | Jorge Aguilar — Senior Operations Leader |
+| `short_name` | Jorge Aguilar | Jorge Aguilar (sin cambio) |
+| `description` | Founder + Advisor, Berlin. Translating marketplace operations into systems thinking. | Senior operations leader. Systems thinker scaling operations across industries. Berlin. |
+
+`short_name` es la etiqueta bajo el icono instalado y se corta a unos 12
+caracteres. Meter ahí el rol no se lee, así que se queda el nombre. El JSON
+sigue siendo válido.
+
+## B.2 Descripciones de /work/ y /about/: `6d9ef07`
+
+Mismo texto en `description`, `og:description` y `twitter:description`.
+
+| Página | Antes | Después | Long. |
+|---|---|---|---|
+| /work/ | Translating marketplace operations into systems thinking — six projects … | Case studies in operations across marketplaces, mobility and compliance: Nexio Fleet, Bliq, Wolt, Bolt and Alcorte Alemán. What changed, and what I owned. | 154 |
+| /de/work/ | Marketplace-Operations in Systems Thinking übersetzen — sechs Projekte … | Fallstudien aus Operations in Marktplätzen, Mobilität und Compliance: Nexio Fleet, Bliq, Wolt, Bolt und Alcorte Alemán. Was sich änderte – und was meins war. | 157 |
+| /es/work/ | Traduciendo operaciones de marketplace en pensamiento sistémico — seis proyectos … | Casos de estudio de operaciones en marketplaces, movilidad y compliance: Nexio Fleet, Bliq, Wolt, Bolt y Alcorte Alemán. Qué cambió y qué fue mío. | 146 |
+| /about/ | Bio, working principles … — operator and founder translating marketplace operations into systems thinking. | Jorge Aguilar — senior operations leader and systems thinker in Berlin. Bio, working principles, experience at Bliq, Bolt, Wolt and Nexio Fleet, and CV. | 152 |
+| /de/about/ | … Operator und Gründer, der Marketplace-Operations in Systemdenken übersetzt. | Jorge Aguilar — Senior Operations Leader und Systemdenker in Berlin. Werdegang, Arbeitsprinzipien, Stationen bei Bliq, Bolt, Wolt, Nexio Fleet und CV. | 150 |
+| /es/about/ | … operador y fundador que traduce las operaciones de marketplace en pensamiento de sistemas. | Jorge Aguilar — líder sénior de operaciones y pensador sistémico en Berlín. Trayectoria, principios, experiencia en Bliq, Bolt, Wolt y Nexio Fleet, y CV. | 153 |
+
+El script que las escribió falla si alguna pasa de 160 caracteres.
+
+## B.3 /contact/, con lo senior primero y lo demás rebajado: `426196d`
+
+**Metadatos** (description, og y twitter):
+
+| | Antes | Después | Long. |
+|---|---|---|---|
+| EN | Start a conversation with Jorge Aguilar — advisory, investment, speaking or collaboration in mobility and logistics. | Contact Jorge Aguilar about senior operations roles in marketplaces and mobility. Also open to selective advisory, investment and speaking enquiries. | 149 |
+| DE | Ein Gespräch mit Jorge Aguilar beginnen — Beratung, Investment, Vortrag oder Zusammenarbeit … | Kontakt zu Jorge Aguilar für Senior-Operations-Rollen in Marktplätzen und Mobilität. Ausgewählte Anfragen zu Beratung, Investment und Vorträgen ebenfalls. | 154 |
+| ES | Inicia una conversación con Jorge Aguilar — asesoría, inversión, conferencias o colaboración … | Contacte a Jorge Aguilar para roles sénior de operaciones en marketplaces y movilidad. También abierto a consultas de asesoría, inversión y conferencias. | 153 |
+
+**Entradilla:**
+
+| | Lede (antes → después) | Párrafo nuevo, rebajado (`.lede-aside`) |
+|---|---|---|
+| EN | Founder of Salas UG advisory. Co-founder of Nexio Fleet. Tell me what you are building … → *Hiring for a senior operations role in a marketplace or mobility business? Tell me about the team and the problem, and I will come back to you.* | I also run Salas UG and co-founded Nexio Fleet, and I stay open to a few advisory, investment or speaking conversations. |
+| DE | Founder von Salas UG Advisory … → *Sie besetzen eine Senior-Operations-Rolle in einem Marktplatz- oder Mobilitätsunternehmen? Erzählen Sie mir vom Team und vom Problem — ich melde mich.* | Daneben führe ich Salas UG, bin Mitgründer von Nexio Fleet und bleibe offen für ausgewählte Gespräche zu Beratung, Investment oder Vorträgen. |
+| ES | Founder de Salas UG Advisory … Cuéntame … → *¿Busca a alguien para un rol sénior de operaciones en un marketplace o una empresa de movilidad? Cuénteme sobre el equipo y el problema, y le respondo.* | Además dirijo Salas UG, soy cofundador de Nexio Fleet y sigo abierto a algunas conversaciones de asesoría, inversión o conferencias. |
+
+- **Jerarquía.** `.lede-aside` va en 14.5 px y gris `--label` (#8A8A8F,
+  5.72:1 sobre el fondo, pasa AA), por debajo del lede (17 px, `--muted`).
+  Revisado en captura.
+- **Lo que no cambió.** Email directo, guardar vCard, formulario y la opción
+  "Advisory / Consulting" del selector.
+- **Registro en ES.** /es/contact/ estaba en "tú"; la convención del sitio es
+  "usted". Se pasó a usted la entradilla, la línea "¿Prefiere correo?
+  Escriba…" y tres mensajes del formulario (éxito, envío no disponible y
+  mínimo de caracteres), para no mezclar registros en la misma página. El
+  JSON de i18n sigue siendo válido.
+
+## B.4 Cierre de /about/: `4cf337d`
+
+| | Después |
+|---|---|
+| EN (literal) | Three things I think about most: driver economics, operational leverage, and whether a team is actually learning. If that’s where your head is, we’d probably have a good conversation. |
+| DE | Drei Dinge beschäftigen mich am meisten: Fahrer-Ökonomie, operativer Hebel und die Frage, ob ein Team wirklich lernt. Wenn genau das Sie gerade umtreibt, hätten wir vermutlich ein gutes Gespräch. |
+| ES | Las tres cosas en las que más pienso: la economía del driver, el apalancamiento operativo y si un equipo de verdad está aprendiendo. Si usted anda pensando en lo mismo, probablemente tendríamos una buena conversación. |
+
+Antes era la copia del antiguo cierre de la home ("Founder of Salas UG
+advisory … investors"). "Fahrer-Ökonomie" y "economía del driver" se dejan
+literales, como pidió Jorge. La segunda frase busca el mismo remate en dos
+tiempos en lugar de traducir palabra por palabra.
+
+## B.5 Tagline del CV: `89c131e`
+
+| Antes | Después |
+|---|---|
+| **Translating marketplace operations into systems thinking** — Berlin. | **Senior operations leader.** Systems thinker scaling operations across industries — Berlin. |
+
+El CV solo existe en inglés (`cv/index.html`). El PDF se genera con
+`npm run cv` y se regeneró: sigue teniendo 2 páginas, y el tagline ocupa dos
+líneas en la cabecera sin empujar nada.
+
+## B.6 Imagen para compartir: `2f6a8ae`
+
+**Diagnóstico de "hoy no sale nada".** El sitio en producción **sí** sirve
+`og:image` a los bots de vista previa. Comprobado con los user-agents de
+Facebook, LinkedIn, WhatsApp y Twitter: HTML 200 con la etiqueta, imagen 200
+`image/png` de 342 KB. Lo más probable es una de estas dos cosas, o las dos:
+
+- La imagen anterior (`og-card-1200x630.png`) es casi negra, con líneas
+  finas y **sin texto**. En una miniatura parece que "no sale nada".
+- La plataforma guardó en caché una vista previa vieja.
+
+La imagen nueva resuelve lo primero. Lo segundo exige forzar el refresco
+**después del despliegue** (§B.8).
+
+**La imagen.** `/og-image.png`, 1200×630 y 24.8 KB:
+
+- Fondo `#000000`, como pide el parte. El fondo del sitio es `#0B0B0D`; en
+  pantalla no se distinguen.
+- "Jorge Aguilar" en Inter 800 de 96 px, blanco.
+- "Senior operations leader" en Inter 500 de 40 px, crema `#E8DFC7`.
+- Una raya esmeralda `#10B981` de 64×4 px encima del nombre.
+- **Centrada** y con margen amplio: WhatsApp y algunas vistas de LinkedIn
+  recortan un cuadrado central, y con el texto alineado a la izquierda se
+  cortaría "Jorge".
+
+Se genera desde `scripts/og-image.html` con `npm run og`
+(`scripts/build_og_image.js`). Se usó **Puppeteer**, ya instalado, en lugar
+de Playwright; el Chrome headless es el mismo. El script falla si Inter no
+carga. Dimensiones comprobadas: `pixelWidth: 1200`, `pixelHeight: 630`.
+
+**Dónde va.** Por decisión de Jorge (pregunta durante el lote), **Bliq, Bolt y
+Wolt (×3) conservan su imagen propia**, que muestra el caso, las cifras y la
+foto. Las otras **28 páginas** llevan un bloque idéntico:
+
+```
+og:image = https://jorgeag.com/og-image.png
+og:image:width 1200 · og:image:height 630 · og:image:type image/png
+og:image:alt "Jorge Aguilar — Senior operations leader"
+twitter:card summary_large_image · twitter:image = https://jorgeag.com/og-image.png
+```
+
+```
+28 (('https://jorgeag.com/og-image.png',), complete=True)
+ 3 (('https://jorgeag.com/bliq/og-bliq-1200x630.png',), complete=True)
+ 3 (('https://jorgeag.com/bolt/og-bolt-1200x630.png',), complete=True)
+ 3 (('https://jorgeag.com/wolt/images/og-wolt-1200x630.jpg',), complete=True)
+cada og:image resuelve en local: 200 image/png | image/jpeg
+```
+
+Los tres 404 no tenían ninguna etiqueta para compartir; ahora tienen el
+bloque. `og-card-1200x630.png` ya no se referencia en ningún sitio; se dejó en
+el repo.
+
+## B.7 Barrido final
+
+```
+"Founder + Advisor" (todas las variantes): 0 coincidencias
+Tagline anterior ("systems thinking", "translating marketplace operations",
+"pensamiento sistémico", "in Systems Thinking", "Systemdenken übersetzt"):
+  index.html / de / es, línea 1158, lede de "How I work":
+  "…the principles that turn marketplace operations into systems thinking"
+advisory/Beratung/asesoría en metadatos: solo /contact/ ×3, en segundo
+  plano ("Also open to selective advisory, investment and speaking")
+```
+
+- **Lo que queda es intencionado.** El lede de "How I work" describe el
+  método, no el rol, y ya se clasificó como legítimo en §A.4. /contact/ es la
+  opción C decidida. "Systems thinker" se mantiene a propósito en el
+  manifest, /about/ y el CV.
+- **Se conservan las menciones legítimas a la asesoría** en la experiencia de
+  /about/ y en el cuerpo del CV (Salas UG).
+
+**Regresión** (`verify-p0.js`, ahora excluyendo `scripts/`, que no se sirve):
+las 9 comprobaciones de coherencia dan `ok`. Las 37 páginas tienen skip link,
+`main#main` e Inter, y 0 peticiones a Google Fonts. Los únicos errores son
+los 3 de Turnstile en /contact/ en `localhost`, ya explicados.
+
+## B.8 Prueba de vista previa en redes: pendiente del despliegue
+
+No se puede probar en opengraph.xyz ni en los depuradores de las
+plataformas antes del push, porque leen la URL pública y `og-image.png`
+todavía no existe en producción. Después del push y del despliegue:
+
+1. Abrir `https://jorgeag.com/og-image.png`: tiene que verse la imagen nueva.
+2. **LinkedIn Post Inspector** (linkedin.com/post-inspector) con
+   `https://jorgeag.com/`. Además de mostrar la vista previa, **fuerza el
+   refresco de la caché** de LinkedIn.
+3. **Facebook Sharing Debugger** (developers.facebook.com/tools/debug) →
+   "Scrape Again". Refresca también la caché de WhatsApp, que usa el mismo
+   rastreador.
+4. Opcional: opengraph.xyz para ver todas las plataformas a la vez.
+
+## B.9 Pendientes
+
+1. Las imágenes de Bliq, Bolt y Wolt siguen con el acento lima. Se pueden
+   rehacer en esmeralda con la misma técnica que `npm run og`.
+2. Borrar `og-card-1200x630.png` si nadie más (Motion) lo usa.
+3. Fallo previo del anexo 1: en /de/work/ y /es/work/, la etiqueta del botón
+   del diagrama pasa a inglés al pulsarlo.
+4. Del lote P0 siguen en pie: espejo de `/nav.css` a Motion (`7ba8965`) y
+   revisión legal de la §10 de Datenschutz.
