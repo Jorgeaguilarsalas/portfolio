@@ -624,13 +624,22 @@
   .contact .inner{position:relative;z-index:1;}
   .contact h2{color:var(--fg);}
   .contact-sub{font-size:18px;color:var(--muted);max-width:56ch;line-height:1.6;margin-bottom:44px;}
-  .contact-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:22px;align-items:center;}
-  /* Un solo CTA principal; email, LinkedIn y llamada quedan como enlaces de texto. */
-  .contact-alt{font-size:15px;color:var(--muted);line-height:1.8;margin:0 0 56px;}
-  .contact-alt a{white-space:nowrap;color:var(--fg);text-decoration:none;border-bottom:1px solid var(--border);padding:4px 0 2px;transition:color .2s ease,border-color .2s ease;}
+  /* Cierre: dos CTA del mismo tamano (mensaje relleno, llamada en contorno)
+     y el email como alternativa discreta debajo. inline-grid con columnas
+     1fr iguala el ancho de ambos al del texto mas largo. */
+  .contact-actions{display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:14px;margin-bottom:22px;}
+  .cta-btn{display:flex;align-items:center;justify-content:center;text-align:center;min-height:52px;padding:14px 28px;border-radius:999px;border:1px solid #10B981;font-weight:600;font-size:15px;line-height:1.3;transition:background-color .2s ease,border-color .2s ease,color .2s ease;}
+  .cta-primary{background:#10B981;color:#000000;}
+  .cta-primary:hover{background:#0E9F6E;border-color:#0E9F6E;}
+  .cta-outline{background:transparent;color:#E8DFC7;}
+  .cta-outline:hover{background:#10B981;color:#000000;}
+  .cta-btn:focus-visible{outline:2px solid #E8DFC7;outline-offset:3px;}
+  @media (max-width:639px){.contact-actions{display:grid;grid-auto-flow:row;grid-auto-rows:1fr;width:100%;}.cta-btn{padding:14px 16px;}}
+  .contact-alt{font-size:14px;color:var(--muted);line-height:1.8;margin:0 0 56px;}
+  .contact-alt a{white-space:nowrap;color:#E8DFC7;text-decoration:none;border-bottom:1px solid var(--border);padding:4px 0 2px;transition:color .2s ease,border-color .2s ease;}
   .contact-alt a:hover{color:var(--accent);border-color:var(--accent);}
   .contact-alt a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
-  @media (prefers-reduced-motion: reduce){.contact-alt a{transition:none;}}
+  @media (prefers-reduced-motion: reduce){.contact-alt a,.cta-btn{transition:none;}}
   .contact-details{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding-top:40px;border-top:1px solid var(--border);}
   @media (max-width:900px){.contact-details{grid-template-columns:repeat(2,1fr);gap:24px;}}
   @media (max-width:600px){.contact-details{grid-template-columns:1fr;gap:24px;}}
@@ -1184,9 +1193,10 @@
       <h2 class="reveal">Building something <em>interesting</em>?</h2>
       <p class="contact-sub reveal">Looking for a senior operations leader for a marketplace or mobility business? I’m based in Berlin and work across EMEA — tell me about the team and where operations needs to go next.</p>
       <div class="contact-actions reveal">
-        <a href="/contact/" class="btn-primary">Start a conversation <span>→</span></a>
+        <a href="/contact/" class="cta-btn cta-primary">Send me a message</a>
+        <a href="https://calendly.com/aguilarjorge-fhpf/30min" class="cta-btn cta-outline" target="_blank" rel="noopener">or Book a 30-minute call</a>
       </div>
-      <p class="contact-alt reveal">Or directly: <a href="mailto:hello@jorgeag.com?subject=Conversation">hello@jorgeag.com</a> &middot; <a href="https://www.linkedin.com/in/jorge-aguilar-ops/" target="_blank" rel="noopener">LinkedIn</a> &middot; <a href="https://calendly.com/aguilarjorge-fhpf/30min" target="_blank" rel="noopener">Book a 30-min call</a></p>
+      <p class="contact-alt reveal">Prefer email? <a href="mailto:hello@jorgeag.com?subject=Conversation">hello@jorgeag.com</a></p>
       <div class="mini-links reveal">
         <a href="/about/" class="work-link"><span>&rarr;</span> More about my background, principles and toolkit</a>
       </div>
@@ -1198,7 +1208,7 @@
 <footer>
   <div class="container inner">
     <span>&copy; 2026 Jorge Aguilar</span>
-    <span>Berlin · EMEA &middot; <a href="/impressum/">Impressum</a> &middot; <a href="/privacy/">Privacy</a></span>
+    <span>Berlin · EMEA &middot; <a href="https://www.linkedin.com/in/jorge-aguilar-ops/" target="_blank" rel="noopener">LinkedIn</a> &middot; <a href="/impressum/">Impressum</a> &middot; <a href="/privacy/">Privacy</a></span>
   </div>
 </footer>
 
