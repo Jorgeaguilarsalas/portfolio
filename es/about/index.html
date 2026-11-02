@@ -403,6 +403,23 @@
   @media (max-width:800px){.about-layout{grid-template-columns:1fr;gap:32px;justify-items:center;text-align:left;} .about-photo-wrap{max-width:200px;} .snapshot-prose{max-width:100%;}}
 
   /* EXPERIENCE */
+  /* CURRENTLY — bloque de estado. No es una lista: son frases sueltas que se
+     leen de un vistazo, asi que van como parrafos apilados y no como <ul>.
+     Compacto a proposito; el peso tipografico lo lleva la primera linea. */
+  .now{max-width:62ch;}
+  .now p{margin:0;}
+  .now .section-label{margin-bottom:16px;}
+  .now-lead{font-size:clamp(18px,1.7vw,22px);font-weight:600;color:var(--fg);letter-spacing:-.012em;line-height:1.35;margin-bottom:10px;}
+  .now-line{font-size:15px;line-height:1.75;color:var(--muted);}
+  .now-avail{color:var(--accent);font-weight:600;}
+  @media (max-width:700px){
+    .now-lead{font-size:18px;}
+    .now-line{font-size:14.5px;line-height:1.7;}
+  }
+  /* Dentro del acordeon de experiencia: separa del primer rol sin abrir
+     otra seccion. */
+  .now-exp{margin-bottom:48px;padding-bottom:40px;border-bottom:1px solid var(--border);}
+  @media (max-width:700px){.now-exp{margin-bottom:36px;padding-bottom:30px;}}
   .exp-category{margin-bottom:56px;}
   .exp-category:last-child{margin-bottom:0;}
   .exp-cat-label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;padding-bottom:14px;border-bottom:1px solid var(--border);}
@@ -1348,6 +1365,15 @@
           <span class="acc-toggle"><span class="is-closed">Desplegar</span><span class="is-open">Plegar</span> <span class="arr" aria-hidden="true">&rarr;</span></span>
         </summary>
         <div class="acc-body">
+
+      <div class="now now-exp reveal">
+        <p class="section-label">Actualmente</p>
+        <p class="now-lead">Abierto a roles de Senior Operations Manager.</p>
+        <p class="now-line">Marketplace y movilidad preferidos · abierto a cualquier scale-up.</p>
+        <p class="now-line">Berlin · remote EU · abierto a reubicación.</p>
+        <p class="now-line">Tiempo completo o contrato senior.</p>
+        <p class="now-line now-avail">Disponible inmediatamente.</p>
+      </div>
 
       <div class="exp-category">
         <div class="exp-cat-label reveal">Liderazgo en producto, Operations y estrategia</div>

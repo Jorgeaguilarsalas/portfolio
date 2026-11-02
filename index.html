@@ -680,6 +680,22 @@
     .hero-eyebrow,.hero-name,.hero-tagline,.hero-prev,.hero-actions{animation:none;}
   }
 
+  /* CURRENTLY — bloque de estado. No es una lista: son frases sueltas que se
+     leen de un vistazo, asi que van como parrafos apilados y no como <ul>.
+     Compacto a proposito; el peso tipografico lo lleva la primera linea. */
+  .now{max-width:62ch;}
+  .now p{margin:0;}
+  .now .section-label{margin-bottom:16px;}
+  .now-lead{font-size:clamp(18px,1.7vw,22px);font-weight:600;color:var(--fg);letter-spacing:-.012em;line-height:1.35;margin-bottom:10px;}
+  .now-line{font-size:15px;line-height:1.75;color:var(--muted);}
+  .now-avail{color:var(--accent);font-weight:600;}
+  @media (max-width:700px){
+    .now-lead{font-size:18px;}
+    .now-line{font-size:14.5px;line-height:1.7;}
+  }
+  .now-section{padding:44px 0;border-bottom:1px solid var(--border);}
+  @media (max-width:700px){.now-section{padding:34px 0;}}
+
   /* REVEAL */
   .js .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease;}
   .js .reveal.visible{opacity:1;transform:translateY(0);}
@@ -943,6 +959,19 @@
   </section>
 
   <!-- HERO METRICS -->
+  <section class="now-section">
+    <div class="container">
+      <div class="now reveal">
+        <p class="section-label">Currently</p>
+        <p class="now-lead">Open to Senior Operations Manager roles.</p>
+        <p class="now-line">Marketplace &amp; mobility preferred · open to any scale-up.</p>
+        <p class="now-line">Berlin · remote EU · open to relocation.</p>
+        <p class="now-line">Full-time or senior contract.</p>
+        <p class="now-line now-avail">Available immediately.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="hero-metrics reveal">
     <div class="container">
       <div class="metrics-grid">
