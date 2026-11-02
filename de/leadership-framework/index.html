@@ -515,17 +515,6 @@
   .subhead > .sub-label + h3{margin-top:var(--sp-label)}
   .subhead > h3 + p{margin-top:var(--sp-title)}
 
-  /* Cadena de pasos de un framework: Translate -> Assign -> Track -> Act */
-  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:0;padding:0;list-style:none}
-  .flow li{display:flex;align-items:center;gap:9px;margin:0}
-  .flow .step{
-    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--fg);background:var(--surface-2);border:1px solid var(--border);
-    border-radius:999px;padding:8px 15px;line-height:1;white-space:nowrap;
-  }
-  .flow .arrow{color:var(--accent);font-size:12px;line-height:1}
-  .flow li:last-child .arrow{display:none}
-  .flow.is-tight .step{font-size:10.5px;padding:7px 12px}
 
   /* Principio operativo / pregunta guia */
   .principle{
@@ -658,14 +647,12 @@
   /* Los bloques nuevos viven tambien DENTRO de los acordeones, donde ya
      mandaban .pillar-content ul (flex en columna) y .pillar-content li
      (guion lima y sangria de 24px). Ambas son (0,2,0), asi que no bastaba
-     con declarar .flow o .steps: hay que neutralizarlas con la misma
+     con declarar .steps: hay que neutralizarlas con la misma
      especificidad y mas abajo. Se limita a los contenedores nuevos para
      que la lista normal de "In practice" conserve su guion. */
-  .pillar-content .flow{display:flex;flex-direction:row;flex-wrap:wrap;gap:9px}
   .pillar-content .steps{display:block}
-  .pillar-content :is(.flow,.steps) > li{position:static;padding-left:0}
-  .pillar-content :is(.flow,.steps) > li::before{content:none}
-  .pillar-content .flow > li{display:flex;align-items:center;gap:9px}
+  .pillar-content .steps > li{position:static;padding-left:0}
+  .pillar-content .steps > li::before{content:none}
   .pillar-content .steps > li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;padding:15px 0}
   .pillar-content .steps > li:first-child{padding-top:0}
   .pillar-content .steps > li:last-child{padding-bottom:0}
@@ -690,12 +677,11 @@
   .pillar-content > * + *,
   .toc > * + *,
   .scenario > * + *{margin-top:var(--sp-text)}
-  .layer > * + :is(.flow,.pillars,.plist,.model,.model-legend,.aflow,.scenario,.grid-2,.grid-3,.grid-4,.principle,.steps),
-  .pillar-content > * + :is(.flow,.grid-2,.grid-3,.grid-4,.principle,.steps,.xref,.model){margin-top:var(--sp-media)}
+  .layer > * + :is(.pillars,.plist,.model,.model-legend,.aflow,.scenario,.grid-2,.grid-3,.grid-4,.principle,.steps),
+  .pillar-content > * + :is(.grid-2,.grid-3,.grid-4,.principle,.steps,.xref,.model){margin-top:var(--sp-media)}
   .layer > * + .subhead{margin-top:56px}
   .layer > * + .attrib-note{margin-top:44px}
   .layer > * + .pillars{margin-top:32px}
-  .layer > .layer-head + .flow{margin-top:28px}
 
   @media (max-width:900px){
     .toc-list{grid-template-columns:minmax(0,1fr);gap:0}
@@ -1119,13 +1105,6 @@
         <p class="layer-intro">Leistung ist keine Charaktereigenschaft. Sie ist das Ergebnis von vier Bedingungen, die eine Führungskraft steuert: ob die Erwartungen klar waren, ob die Person hatte, was sie brauchte, ob Zusagen nachgehalten wurden und ob Fähigkeiten wachsen durften. Fällt die Leistung ab, fehlt meist eine der vier.</p>
       </div>
 
-      <ul class="flow reveal">
-        <li><span class="step">Direction</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Support</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Accountability</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Development</span><span class="arrow">&#9656;</span></li>
-      </ul>
-
       <div class="pillars">
 
         <article class="pillar reveal">
@@ -1264,13 +1243,6 @@
           <div class="pillar-body" id="mp1">
             <div class="inner">
               <div class="pillar-content">
-                <ul class="flow is-tight">
-                  <li><span class="step">Understand</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Question</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Challenge</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Commit</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Review</span><span class="arrow">&#9656;</span></li>
-                </ul>
                 <ul class="steps">
                   <li><span class="sn">01</span><span><span class="st">Understand</span><span class="sd">Die Sicht, den Kontext und die Überlegungen der Person verstehen, bevor man rät.</span></span></li>
                   <li><span class="sn">02</span><span><span class="st">Question</span><span class="sd">Mit Fragen dabei helfen, Problem, Annahmen, Optionen und Folgen zu prüfen. <q>Was glauben Sie, verursacht das?</q> <q>Welche Optionen sehen Sie?</q> <q>Was würden Sie tun, wenn ich nicht erreichbar wäre?</q></span></span></li>
@@ -1299,13 +1271,6 @@
           <div class="pillar-body" id="mp2">
             <div class="inner">
               <div class="pillar-content">
-                <ul class="flow is-tight">
-                  <li><span class="step">Observe</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Explain</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Listen</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Agree</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Follow up</span><span class="arrow">&#9656;</span></li>
-                </ul>
                 <ul class="steps">
                   <li><span class="sn">01</span><span><span class="st">Observe</span><span class="sd">Das Verhalten oder die Leistungslücke sachlich benennen, ohne ein Motiv zu unterstellen.</span></span></li>
                   <li><span class="sn">02</span><span><span class="st">Explain</span><span class="sd">Die Auswirkung beschreiben und warum die Sache zählt.</span></span></li>
@@ -1375,13 +1340,6 @@
         <p class="layer-sub">Translate, Assign, Track, Act.</p>
         <p class="layer-intro">Strategie scheitert in der Lücke zwischen einem Ziel und einer namentlich benannten Person, die an einem Dienstag etwas Messbares dafür tut. Diese Ebene schließt sie: Sie macht aus Absicht Ergebnisse, aus Ergebnissen Verantwortung, aus Verantwortung sichtbaren Fortschritt und aus Fortschrittssignalen Eingreifen.</p>
       </div>
-
-      <ul class="flow reveal">
-        <li><span class="step">Translate</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Assign</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Track</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Act</span><span class="arrow">&#9656;</span></li>
-      </ul>
 
       <div class="pillars">
 
@@ -1511,13 +1469,6 @@
         <p class="layer-sub">Diagnose, Prioritize, Build, Own.</p>
         <p class="layer-intro">Execution Management bringt das bestehende System zum Liefern. Diese Ebene macht das System selbst besser, damit dasselbe Problem nicht jede Woche wiederkommt. Das ist der Unterschied zwischen Ausnahmen abarbeiten und die Bedingungen beseitigen, die sie erzeugen.</p>
       </div>
-
-      <ul class="flow reveal">
-        <li><span class="step">Diagnose</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Prioritize</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Build</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Own</span><span class="arrow">&#9656;</span></li>
-      </ul>
 
       <div class="pillars">
 
@@ -1739,16 +1690,7 @@
               <div class="pillar-content">
                 <p class="why">Service Delivery ist die operative Disziplin, eine Kundin oder einen Kunden von der kommerziellen Zusage zum erfolgreich erbrachten Service zu bringen. Das ist deutlich mehr als Ticketbearbeitung.</p>
                 <p class="how-label">Typischer Lebenszyklus</p>
-                <ul class="flow is-tight">
-                  <li><span class="step">Vertrag unterschrieben</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Onboarding</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Auftragsmanagement</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Logistik</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Technische Einrichtung</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Aktivierung</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Go-live</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Saubere Übergabe</span><span class="arrow">&#9656;</span></li>
-                </ul>
+                <p class="why">Vertrag unterschrieben, Onboarding, Auftragsmanagement, Logistik, technische Einrichtung, Aktivierung, Go-live, saubere Übergabe.</p>
                 <p class="why">Verantwortung heißt dafür zu sorgen, dass das System in Bewegung bleibt und nichts Wichtiges zwischen zwei dieser Stationen herrenlos wird.</p>
                 <div class="principle">
                   <span class="plabel">Führungsfrage</span>
@@ -1771,12 +1713,6 @@
           <div class="pillar-body" id="sd2">
             <div class="inner">
               <div class="pillar-content">
-                <ul class="flow is-tight">
-                  <li><span class="step">Promise</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Measure</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Communicate</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Improve</span><span class="arrow">&#9656;</span></li>
-                </ul>
                 <ul class="steps">
                   <li><span class="sn">01</span><span><span class="st">Promise</span><span class="sd">Eine klare Ausgangslage festlegen: Umfang, Zeitplan, SLA, Zuständigkeiten.</span></span></li>
                   <li><span class="sn">02</span><span><span class="st">Measure</span><span class="sd">Die tatsächliche Leistung mit der Zusage vergleichen &mdash; nicht mit einem allgemeinen Eindruck davon, wie es lief.</span></span></li>
@@ -1840,11 +1776,6 @@
           <div class="pillar-body" id="sd4">
             <div class="inner">
               <div class="pillar-content">
-                <ul class="flow is-tight">
-                  <li><span class="step">Understand</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Discuss</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Translate</span><span class="arrow">&#9656;</span></li>
-                </ul>
                 <ul class="steps">
                   <li><span class="sn">01</span><span><span class="st">Understand</span><span class="sd">Das System funktional kennen: was es tut, seine Bestandteile, seine Abhängigkeiten und wie es sich verhält, wenn es ausfällt.</span></span></li>
                   <li><span class="sn">02</span><span><span class="st">Discuss</span><span class="sd">Mit Entwicklerinnen und Entwicklern inhaltlich über APIs, Integrationen, Authentifizierung und Abhängigkeiten sprechen.</span></span></li>
@@ -1868,14 +1799,6 @@
           <div class="pillar-body" id="sd5">
             <div class="inner">
               <div class="pillar-content">
-                <ul class="flow is-tight">
-                  <li><span class="step">Detect &amp; assess</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Bring the right people</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Map responsibilities &amp; deadlines</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Communicate</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Resolve</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Learn</span><span class="arrow">&#9656;</span></li>
-                </ul>
                 <div class="principle">
                   <span class="plabel">Arbeitsprinzip</span>
                   <p>&bdquo;Während einer Störung lässt sich Unsicherheit vielleicht nicht vermeiden. Schweigen schon.&ldquo;</p>
@@ -1910,11 +1833,7 @@
           <div class="pillar-body" id="sd6">
             <div class="inner">
               <div class="pillar-content">
-                <ul class="flow is-tight">
-                  <li><span class="step">Receive</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Update</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Verify</span><span class="arrow">&#9656;</span></li>
-                </ul>
+                <p class="why">Empfangen, aktualisieren, verifizieren.</p>
                 <p class="why">Technische Services hängen von externen Betreibern und APIs ab. Ändert eine externe Stelle einen Parameter, müssen die internen Systeme das nachvollziehen &mdash; und jemand muss bestätigen, dass sie es getan haben. Den Prüfschritt zu überspringen ist der Weg zu stillen, verzögerten Ausfällen.</p>
               </div>
             </div>

@@ -523,17 +523,6 @@
   .subhead > .sub-label + h3{margin-top:var(--sp-label)}
   .subhead > h3 + p{margin-top:var(--sp-title)}
 
-  /* Cadena de pasos de un framework: Translate -> Assign -> Track -> Act */
-  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:0;padding:0;list-style:none}
-  .flow li{display:flex;align-items:center;gap:9px;margin:0}
-  .flow .step{
-    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--fg);background:var(--surface-2);border:1px solid var(--border);
-    border-radius:999px;padding:8px 15px;line-height:1;white-space:nowrap;
-  }
-  .flow .arrow{color:var(--accent);font-size:12px;line-height:1}
-  .flow li:last-child .arrow{display:none}
-  .flow.is-tight .step{font-size:10.5px;padding:7px 12px}
 
   /* Principio operativo / pregunta guia */
   .principle{
@@ -680,14 +669,12 @@
   /* Los bloques nuevos viven tambien DENTRO de los acordeones, donde ya
      mandaban .pillar-content ul (flex en columna) y .pillar-content li
      (guion lima y sangria de 24px). Ambas son (0,2,0), asi que no bastaba
-     con declarar .flow o .steps: hay que neutralizarlas con la misma
+     con declarar .steps: hay que neutralizarlas con la misma
      especificidad y mas abajo. Se limita a los contenedores nuevos para
      que la lista normal de "In practice" conserve su guion. */
-  .pillar-content .flow{display:flex;flex-direction:row;flex-wrap:wrap;gap:9px}
   .pillar-content .steps{display:block}
-  .pillar-content :is(.flow,.steps) > li{position:static;padding-left:0}
-  .pillar-content :is(.flow,.steps) > li::before{content:none}
-  .pillar-content .flow > li{display:flex;align-items:center;gap:9px}
+  .pillar-content .steps > li{position:static;padding-left:0}
+  .pillar-content .steps > li::before{content:none}
   .pillar-content .steps > li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;padding:15px 0}
   .pillar-content .steps > li:first-child{padding-top:0}
   .pillar-content .steps > li:last-child{padding-bottom:0}
@@ -712,12 +699,11 @@
   .pillar-content > * + *,
   .toc > * + *,
   .scenario > * + *{margin-top:var(--sp-text)}
-  .layer > * + :is(.flow,.pillars,.plist,.model,.model-legend,.aflow,.scenario,.grid-2,.grid-3,.grid-4,.principle,.steps),
-  .pillar-content > * + :is(.flow,.grid-2,.grid-3,.grid-4,.principle,.steps,.xref,.model){margin-top:var(--sp-media)}
+  .layer > * + :is(.pillars,.plist,.model,.model-legend,.aflow,.scenario,.grid-2,.grid-3,.grid-4,.principle,.steps),
+  .pillar-content > * + :is(.grid-2,.grid-3,.grid-4,.principle,.steps,.xref,.model){margin-top:var(--sp-media)}
   .layer > * + .subhead{margin-top:56px}
   .layer > * + .attrib-note{margin-top:44px}
   .layer > * + .pillars{margin-top:32px}
-  .layer > .layer-head + .flow{margin-top:28px}
 
   @media (max-width:900px){
     .toc-list{grid-template-columns:minmax(0,1fr);gap:0}
@@ -741,7 +727,7 @@
     .aflow li::before{display:none}
   }
   /* Progresion Problema -> impacto operativo -> impacto de negocio. Cadena
-     vertical y no .flow horizontal: los eslabones son frases, no etiquetas. */
+     vertical: los eslabones son frases, no etiquetas. */
   .chain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
   .chain li{
     position:relative;margin:0;padding:0 0 14px 22px;
@@ -1151,13 +1137,6 @@
         <p class="layer-intro">Performance is not a personality trait. It is the product of four conditions a manager controls: whether expectations were clear, whether the person had what they needed, whether commitments were followed up, and whether capability was allowed to grow. When performance drops, one of the four is usually missing.</p>
       </div>
 
-      <ul class="flow reveal">
-        <li><span class="step">Direction</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Support</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Accountability</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Development</span><span class="arrow">&#9656;</span></li>
-      </ul>
-
       <div class="pillars">
 
         <article class="pillar reveal">
@@ -1296,13 +1275,6 @@
           <div class="pillar-body" id="mp1">
             <div class="inner">
               <div class="pillar-content">
-                <ul class="flow is-tight">
-                  <li><span class="step">Understand</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Question</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Challenge</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Commit</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Review</span><span class="arrow">&#9656;</span></li>
-                </ul>
                 <ul class="steps">
                   <li><span class="sn">01</span><span><span class="st">Understand</span><span class="sd">Understand the person&rsquo;s perspective, context, and reasoning before giving advice.</span></span></li>
                   <li><span class="sn">02</span><span><span class="st">Question</span><span class="sd">Use questions to help them examine the problem, assumptions, options, and consequences. <q>What do you think is causing this?</q> <q>What options do you see?</q> <q>What would you do if I weren&rsquo;t available?</q></span></span></li>
@@ -1331,13 +1303,6 @@
           <div class="pillar-body" id="mp2">
             <div class="inner">
               <div class="pillar-content">
-                <ul class="flow is-tight">
-                  <li><span class="step">Observe</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Explain</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Listen</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Agree</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Follow up</span><span class="arrow">&#9656;</span></li>
-                </ul>
                 <ul class="steps">
                   <li><span class="sn">01</span><span><span class="st">Observe</span><span class="sd">State the factual behavior or performance gap without assigning motive.</span></span></li>
                   <li><span class="sn">02</span><span><span class="st">Explain</span><span class="sd">Describe the impact and why the issue matters.</span></span></li>
@@ -1407,13 +1372,6 @@
         <p class="layer-sub">Translate, Assign, Track, Act.</p>
         <p class="layer-intro">Strategy fails in the gap between an objective and a named person doing something measurable about it on a Tuesday. This layer closes that gap: it converts intent into outcomes, outcomes into ownership, ownership into visible progress, and progress signals into intervention.</p>
       </div>
-
-      <ul class="flow reveal">
-        <li><span class="step">Translate</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Assign</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Track</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Act</span><span class="arrow">&#9656;</span></li>
-      </ul>
 
       <div class="pillars">
 
@@ -1543,13 +1501,6 @@
         <p class="layer-sub">Diagnose, Prioritize, Build, Own.</p>
         <p class="layer-intro">Execution management makes the current system deliver. This layer makes the system itself better, so the same problem stops arriving every week. It is the difference between resolving exceptions and removing the conditions that produce them.</p>
       </div>
-
-      <ul class="flow reveal">
-        <li><span class="step">Diagnose</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Prioritize</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Build</span><span class="arrow">&#9656;</span></li>
-        <li><span class="step">Own</span><span class="arrow">&#9656;</span></li>
-      </ul>
 
       <div class="pillars">
 
@@ -1771,16 +1722,7 @@
               <div class="pillar-content">
                 <p class="why">Service Delivery is the operational discipline of moving a customer from commercial commitment to successfully delivered service. It is considerably broader than ticket handling.</p>
                 <p class="how-label">Typical lifecycle</p>
-                <ul class="flow is-tight">
-                  <li><span class="step">Contract signed</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Onboarding</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Order management</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Logistics</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Technical setup</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Activation</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Go-live</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Clean handover</span><span class="arrow">&#9656;</span></li>
-                </ul>
+                <p class="why">Contract signed, onboarding, order management, logistics, technical setup, activation, go-live, clean handover.</p>
                 <p class="why">Ownership means ensuring the system keeps moving and that nothing important becomes ownerless between two of those stages.</p>
                 <div class="principle">
                   <span class="plabel">Leadership question</span>
@@ -1803,12 +1745,6 @@
           <div class="pillar-body" id="sd2">
             <div class="inner">
               <div class="pillar-content">
-                <ul class="flow is-tight">
-                  <li><span class="step">Promise</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Measure</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Communicate</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Improve</span><span class="arrow">&#9656;</span></li>
-                </ul>
                 <ul class="steps">
                   <li><span class="sn">01</span><span><span class="st">Promise</span><span class="sd">Establish a clear baseline: scope, timeline, SLA, responsibilities.</span></span></li>
                   <li><span class="sn">02</span><span><span class="st">Measure</span><span class="sd">Compare actual delivery with the promise &mdash; not with a general impression of how it went.</span></span></li>
@@ -1872,11 +1808,6 @@
           <div class="pillar-body" id="sd4">
             <div class="inner">
               <div class="pillar-content">
-                <ul class="flow is-tight">
-                  <li><span class="step">Understand</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Discuss</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Translate</span><span class="arrow">&#9656;</span></li>
-                </ul>
                 <ul class="steps">
                   <li><span class="sn">01</span><span><span class="st">Understand</span><span class="sd">Know the system functionally: what it does, its components, its dependencies, and how it behaves when it fails.</span></span></li>
                   <li><span class="sn">02</span><span><span class="st">Discuss</span><span class="sd">Hold substantive conversations with engineers about APIs, integrations, authentication, and dependencies.</span></span></li>
@@ -1900,14 +1831,6 @@
           <div class="pillar-body" id="sd5">
             <div class="inner">
               <div class="pillar-content">
-                <ul class="flow is-tight">
-                  <li><span class="step">Detect &amp; assess</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Bring the right people</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Map responsibilities &amp; deadlines</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Communicate</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Resolve</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Learn</span><span class="arrow">&#9656;</span></li>
-                </ul>
                 <div class="principle">
                   <span class="plabel">Working principle</span>
                   <p>&ldquo;During an incident, uncertainty may be unavoidable. Silence is avoidable.&rdquo;</p>
@@ -1942,11 +1865,7 @@
           <div class="pillar-body" id="sd6">
             <div class="inner">
               <div class="pillar-content">
-                <ul class="flow is-tight">
-                  <li><span class="step">Receive</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Update</span><span class="arrow">&#9656;</span></li>
-                  <li><span class="step">Verify</span><span class="arrow">&#9656;</span></li>
-                </ul>
+                <p class="why">Receive, update, verify.</p>
                 <p class="why">Technical services depend on external operators and APIs. When an external party changes a parameter, internal systems must reflect the change &mdash; and somebody has to confirm that they did. Skipping the verification step is how silent, delayed failures are created.</p>
               </div>
             </div>
