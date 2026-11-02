@@ -476,16 +476,65 @@ widens the function list to the four the roles actually cover.
 Verified the count still matches reality: 4 `.exp-item` entries and 4
 company chips (Nexio Fleet GmbH, Bliq, Bolt, Wolt) in all three languages.
 
+### 3. /contact/ Budget range field — removed ✅
+
+The item flagged as still open above. Hiring managers do not have budgets;
+advisory clients do, so the bracket list
+(`Not sure yet · Under €5k · €5k–25k · €25k–100k · €100k+`) was the
+last residual advisory signal on the form. Removed in full.
+
+| File | Change |
+|---|---|
+| `contact/index.html` | Budget `<select>` + label removed |
+| `de/contact/index.html` | Same (`Budgetrahmen`) |
+| `es/contact/index.html` | Same (`Rango de presupuesto`) |
+| `contact/form.js` | `'budget'` dropped from the `mailtoFallback` field list |
+| `worker-contact.js` | `Budget:` line removed from the email body; `budget: clean(d.budget, 40)` removed from the sanitised payload |
+
+**Layout.** Budget shared a two-column `.row` with "Timeline"
+(`.row{grid-template-columns:1fr 1fr}` in `contact/form.css`). Leaving
+Timeline alone in that grid would have rendered it half-width against dead
+space, so the row wrapper was dropped and Timeline promoted to a
+full-width `.field`, matching "Role / Title", "Inquiry type" and "How did
+you find me?" around it. Two `.row` wrappers remain per page
+(name/company, email/phone).
+
+**No validation or reveal logic was attached to the field.** `budget` had
+no entry in the validators and no `hidden`-toggle behaviour — the
+"Not sure yet" option triggered nothing. Only `inquiry_type` drives a
+reveal (`#other-wrap`), and that is untouched.
+
+**No orphan CSS.** `contact/form.css` never carried a budget-specific
+rule; the field was styled entirely by `.field` / `.row`.
+
+**Privacy notices — beyond the stated scope, done for accuracy.** All three
+privacy policies enumerate the contact-form fields verbatim, each listing
+the budget range among the data processed. Leaving them would have left the
+GDPR notice describing a field the form no longer has, so the enumeration
+was corrected in `privacy/index.html` ("budget range"),
+`datenschutz/index.html` ("Budgetrahmen") and
+`es/privacidad/index.html` ("rango presupuestario"). No other clause changed.
+
+**Verification.**
+
+- `<div>` open/close balanced inside `<form id="contact-form">` in all
+  three languages (15/15); no `<label for>` without a matching control.
+- Field lists now identical across EN/DE/ES: `name, company, email, phone,
+  role, inquiry_type, other_specify, timeline, how_found, message,
+  website, cf-turnstile-response, consent`.
+- `node --check contact/form.js` passes; `worker-contact.js` imports
+  without error.
+- `noticeText()` rendered for a full and a minimal submission: "Timeline"
+  now runs straight into "How found", no stray label and no blank line
+  where Budget used to sit.
+- Repo-wide sweep for `budget range`, `Budgetrahmen`, `rango de
+  presupuesto`, `presupuestari`, `id="budget"`, `name="budget"` — no hits.
+  Remaining "budget" matches are Bliq case-study prose about the incentive
+  budget, which is unrelated.
+
 ### Still open
 
-**"Budget range" field on /contact/.** Not in scope for this pass, flagged
-for a decision. The form still asks for a budget bracket
-(`Not sure yet · Under €5k · €5k–25k · €25k–100k · €100k+`) alongside
-"Timeline". Those brackets describe advisory and consulting engagements —
-arguably a stronger advisory signal than the dropdown options just removed,
-and an odd question to put to a hiring manager now that "Job opportunity"
-leads the form. Removing the field would touch `contact/index.html` ×3,
-the Worker's email body and the `form.js` field list.
+Nothing outstanding from the repositioning review.
 
-No social preview refresh needed for this pass — no meta descriptions,
+No social preview refresh needed for either pass — no meta descriptions,
 titles or og tags were touched.

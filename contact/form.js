@@ -41,7 +41,7 @@
      ya redactado con lo que la persona escribio. */
   function mailtoFallback(d) {
     var lines = [];
-    ['name', 'email', 'phone', 'company', 'role', 'inquiry_type', 'other_specify', 'timeline', 'budget', 'how_found']
+    ['name', 'email', 'phone', 'company', 'role', 'inquiry_type', 'other_specify', 'timeline', 'how_found']
       .forEach(function (k) { if (d[k]) lines.push(k + ': ' + d[k]); });
     lines.push('', d.message || '');
     return 'mailto:' + T.mailbox + '?subject=' + encodeURIComponent(T.mailSubject) +
