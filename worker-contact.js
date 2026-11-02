@@ -84,7 +84,7 @@ const AUTOREPLY = {
   },
 };
 
-const SIGNATURE = ["Jorge Aguilar", "Co-founder @ Nexio Fleet", INBOX];
+const SIGNATURE = ["Jorge Aguilar", "Senior Strategy & Operations Manager @ Nexio Fleet", INBOX];
 
 const CTRL = new RegExp("[\\u0000-\\u001f\\u007f]", "g");
 const PRINTABLE_ASCII = new RegExp("^[\\u0020-\\u007e]*$");
