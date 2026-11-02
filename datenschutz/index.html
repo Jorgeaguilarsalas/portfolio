@@ -230,6 +230,14 @@
     color:var(--fg);margin:0 0 14px;max-width:38ch;
   }
   .legal p{font-size:16.5px;line-height:1.8;color:var(--muted);margin:0;max-width:60ch}
+  .legal h3{
+    font-size:17px;font-weight:700;letter-spacing:-.005em;
+    color:var(--fg);margin:30px 0 10px;max-width:46ch;
+  }
+  /* Una lista seguida de un parrafo quedaba pegada: .legal ul solo trae
+     margen superior y .legal p + p no alcanza cuando el hermano es un <ul>.
+     Afecta tambien a los apartados 4 y 8, que ya tenian el hueco a 0. */
+  .legal ul + p{margin-top:16px}
   .legal p + p{margin-top:16px}
   .legal a{
     color:var(--accent);text-decoration:none;
@@ -831,6 +839,91 @@
       </p>
     </section>
 
+    <section class="legal" id="whatsapp">
+      <h2>12a. Gesch&auml;ftskommunikation &uuml;ber WhatsApp</h2>
+      <p>
+        Salas UG nutzt die WhatsApp Business Platform (Cloud API) der Meta
+        Platforms Ireland Ltd. f&uuml;r die gesch&auml;ftliche Kommunikation. Schreiben
+        Sie uns &uuml;ber WhatsApp, verarbeiten wir die dabei anfallenden Daten, um
+        Ihre Anfrage zu beantworten.
+      </p>
+      <p><strong>Verarbeitete Daten:</strong></p>
+      <ul>
+        <li>Ihre Rufnummer bzw. Ihre WhatsApp-Kennung</li>
+        <li>Ihr bei WhatsApp hinterlegter Anzeigename</li>
+        <li>Inhalt und Zeitpunkt der gesendeten und empfangenen Nachrichten</li>
+        <li>mitgesendete Dateien, Bilder oder Dokumente</li>
+        <li>Zustellungs- und Lesestatus der von uns gesendeten Nachrichten</li>
+      </ul>
+      <p>
+        <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO bei
+        vorvertraglicher oder vertraglicher Kommunikation, im &Uuml;brigen
+        Art. 6 Abs. 1 lit. f DSGVO aufgrund unseres berechtigten Interesses an
+        einer effizienten Bearbeitung von Anfragen.
+      </p>
+      <p>
+        Die Nutzung von WhatsApp ist freiwillig. Sie k&ouml;nnen uns jederzeit
+        stattdessen per E-Mail oder Telefon erreichen.
+      </p>
+
+      <h3>Einsatz eines KI-gest&uuml;tzten Assistenzsystems</h3>
+      <p>
+        Zur Vorbereitung von Antworten setzen wir ein KI-gest&uuml;tztes
+        Assistenzsystem ein. Dieses System fasst eingehende Nachrichten
+        zusammen und erstellt Antwortvorschl&auml;ge.
+      </p>
+      <p>
+        Jede ausgehende Nachricht wird vor dem Versand von einem Menschen
+        gepr&uuml;ft und ausdr&uuml;cklich freigegeben. Es findet keine ausschlie&szlig;lich
+        automatisierte Entscheidungsfindung im Sinne des Art. 22 DSGVO statt.
+      </p>
+      <p>
+        F&uuml;r die Sprachverarbeitung nutzen wir Amazon Bedrock der Amazon Web
+        Services EMEA SARL. Die Verarbeitung erfolgt ausschlie&szlig;lich innerhalb
+        der Europ&auml;ischen Union. Die &uuml;bermittelten Inhalte werden vom Anbieter
+        nicht zum Training von Modellen verwendet und nicht dauerhaft
+        gespeichert.
+      </p>
+
+      <h3>Hosting und Speicherort (WhatsApp-Daten)</h3>
+      <p>
+        Unsere Anwendung und s&auml;mtliche gespeicherten Nachrichtenverl&auml;ufe werden
+        bei der Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, in
+        einem Rechenzentrum in Deutschland gehostet. Mit Hetzner besteht ein
+        Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO.
+      </p>
+
+      <h3>Empf&auml;nger und Auftragsverarbeiter</h3>
+      <ul>
+        <li>Meta Platforms Ireland Ltd. &mdash; Betrieb der WhatsApp Business Platform</li>
+        <li>Amazon Web Services EMEA SARL &mdash; Sprachverarbeitung innerhalb der EU</li>
+        <li>Hetzner Online GmbH &mdash; Hosting in Deutschland</li>
+      </ul>
+      <p>
+        Eine Weitergabe Ihrer Daten zu Werbezwecken oder ein Verkauf an Dritte
+        findet nicht statt.
+      </p>
+
+      <h3>Speicherdauer (WhatsApp-Nachrichten)</h3>
+      <p>
+        Nachrichtenverl&auml;ufe speichern wir so lange, wie es f&uuml;r die Bearbeitung
+        Ihres Anliegens und die Pflege der Gesch&auml;ftsbeziehung erforderlich ist.
+        Soweit handels- oder steuerrechtliche Aufbewahrungspflichten bestehen,
+        bewahren wir die betroffenen Daten f&uuml;r die gesetzlich vorgeschriebene
+        Dauer auf. Danach werden die Daten gel&ouml;scht.
+      </p>
+
+      <h3>Ihre Rechte</h3>
+      <p>
+        F&uuml;r die &uuml;ber WhatsApp verarbeiteten Daten gelten dieselben
+        Betroffenenrechte wie f&uuml;r jede andere Verarbeitung durch uns: Auskunft,
+        Berichtigung, L&ouml;schung, Einschr&auml;nkung der Verarbeitung,
+        Daten&uuml;bertragbarkeit und Widerspruch nach Art. 15&ndash;21 DSGVO. Siehe
+        Abschnitt 4 &mdash; Ihre Rechte als betroffene Person. Zum
+        Beschwerderecht bei der zust&auml;ndigen Aufsichtsbeh&ouml;rde siehe Abschnitt 6.
+      </p>
+    </section>
+
     <section class="legal" id="analytics">
       <h2>13. Reichweitenmessung mit Google Analytics 4</h2>
       <p>
@@ -1254,7 +1347,7 @@
       </p>
     </section>
 
-    <p class="legal-meta">Stand dieser Erkl&auml;rung: Oktober 2026</p>
+    <p class="legal-meta">Stand dieser Erkl&auml;rung: November 2026</p>
 
   </div>
 </main>
