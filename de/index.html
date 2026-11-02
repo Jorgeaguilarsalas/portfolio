@@ -663,6 +663,23 @@
     .hero-actions{gap:10px;}
   }
 
+  /* INTRO — escalonado del hero en la primera pintura. Solo CSS: cada
+     animacion arranca en opacity:0 dentro de su propia regla y termina en el
+     estado normal, asi que si el CSS no carga el hero se ve completo. No
+     depende de html.js ni del IntersectionObserver — por eso estos cuatro
+     elementos salieron de .reveal: encima del pliegue no hay nada que
+     revelar al hacer scroll, y el gate de JS solo retrasaba el primer pintado. */
+  @keyframes hero-rise-sm{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes hero-rise-lg{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes hero-fade{from{opacity:0;}to{opacity:1;}}
+  .hero-eyebrow{animation:hero-rise-sm 400ms cubic-bezier(.4,0,.2,1) 200ms both;}
+  .hero-name{animation:hero-rise-lg 500ms cubic-bezier(.4,0,.2,1) 400ms both;}
+  .hero-tagline{animation:hero-rise-sm 400ms cubic-bezier(.4,0,.2,1) 700ms both;}
+  .hero-prev,.hero-actions{animation:hero-fade 400ms cubic-bezier(.4,0,.2,1) 1000ms both;}
+  @media (prefers-reduced-motion: reduce){
+    .hero-eyebrow,.hero-name,.hero-tagline,.hero-prev,.hero-actions{animation:none;}
+  }
+
   /* REVEAL */
   .js .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease;}
   .js .reveal.visible{opacity:1;transform:translateY(0);}
@@ -903,9 +920,9 @@
   <section class="hero">
     <div class="container hero-inner">
       <div>
-        <div class="hero-eyebrow reveal"><span class="pulse"></span> Senior Operations · Berlin · EMEA</div>
+        <div class="hero-eyebrow"><span class="pulse"></span> Senior Operations · Berlin · EMEA</div>
         <div class="hero-name-wrap">
-          <h1 class="hero-name reveal">
+          <h1 class="hero-name">
             <span>Jorge Aguilar</span><button type="button" class="hero-cursor" id="statusTrigger" aria-label="Verfügbarkeit und aktuelle Rolle" aria-expanded="false" aria-describedby="statusTip"></button>
           </h1>
           <span class="hero-tip" id="statusTip" role="tooltip" hidden>
@@ -915,9 +932,9 @@
             <a href="/de/nexio/" class="tip-link">Fallstudie lesen <span aria-hidden="true">→</span></a>
           </span>
         </div>
-        <p class="hero-tagline reveal">Senior Operations Leader für Marktplätze und Mobilität.</p>
-        <p class="hero-prev reveal">Zuvor: <a href="/de/bliq/">Bliq</a> · <a href="/de/bolt/">Bolt</a> · <a href="/de/wolt/">Wolt</a></p>
-        <div class="hero-actions reveal">
+        <p class="hero-tagline">Senior Operations Leader für Marktplätze und Mobilität.</p>
+        <p class="hero-prev">Zuvor: <a href="/de/bliq/">Bliq</a> · <a href="/de/bolt/">Bolt</a> · <a href="/de/wolt/">Wolt</a></p>
+        <div class="hero-actions">
           <a href="#contact" class="btn-primary">Kontakt aufnehmen <span>→</span></a>
           <a href="#work" class="btn-secondary">Meine Arbeit ansehen</a>
         </div>
