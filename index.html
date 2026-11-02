@@ -696,6 +696,23 @@
   .now-section{padding:44px 0;border-bottom:1px solid var(--border);}
   @media (max-width:700px){.now-section{padding:34px 0;}}
 
+  /* WHAT I DO DIFFERENTLY — cita destacada. Mas aire que una seccion normal y
+     un cuerpo mayor que el texto corrido, pero por debajo de un h2: debe frenar
+     la lectura, no competir con los titulares. La barra lima ya la pone el
+     borde izquierdo, asi que el ::before de .section-label se apaga aqui para
+     no doblar el acento. */
+  .diff-section{padding:76px 0;border-bottom:1px solid var(--border);}
+  .diff{max-width:54ch;border-left:2px solid var(--accent);padding-left:28px;}
+  .diff p{margin:0;}
+  .diff .section-label{margin-bottom:18px;}
+  .diff .section-label::before{display:none;}
+  .diff-quote{font-size:clamp(20px,2.1vw,28px);font-weight:500;line-height:1.5;letter-spacing:-.018em;color:var(--fg);}
+  @media (max-width:700px){
+    .diff-section{padding:54px 0;}
+    .diff{padding-left:20px;}
+    .diff-quote{font-size:19.5px;line-height:1.55;}
+  }
+
   /* REVEAL */
   .js .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease;}
   .js .reveal.visible{opacity:1;transform:translateY(0);}
@@ -968,6 +985,15 @@
         <p class="now-line">Berlin · remote EU · open to relocation.</p>
         <p class="now-line">Full-time or senior contract.</p>
         <p class="now-line now-avail">Available immediately.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="diff-section">
+    <div class="container">
+      <div class="diff reveal">
+        <p class="section-label">What I do differently</p>
+        <p class="diff-quote">Every operations problem I&rsquo;ve worked on looks the same from a distance: a supply bottleneck, a demand gap, or a loop that&rsquo;s too slow. The work is pattern recognition, not applying frameworks.</p>
       </div>
     </div>
   </section>
