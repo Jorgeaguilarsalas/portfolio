@@ -902,6 +902,15 @@
   // Diagramas on-demand (solo en movil: arriba de 900px el CSS los muestra
   // siempre y el boton no existe)
   (function () {
+    // La etiqueta se lee de <html lang>. Antes estaba fija en el string del
+    // archivo, asi que en /de/work/ y /es/work/ el boton saltaba al ingles en
+    // cuanto se abria el diagrama.
+    const LABELS = {
+      en: { view: 'View diagram ', hide: 'Hide diagram ' },
+      de: { view: 'Diagramm ansehen ', hide: 'Diagramm ausblenden ' },
+      es: { view: 'Ver diagrama ', hide: 'Ocultar diagrama ' },
+    };
+    const T = LABELS[document.documentElement.lang] || LABELS.en;
     document.querySelectorAll('.case-toggle').forEach((btn) => {
       const visual = btn.closest('.case-visual');
       const fig = document.getElementById(btn.getAttribute('aria-controls'));
@@ -910,7 +919,7 @@
       btn.addEventListener('click', () => {
         const open = visual.classList.toggle('is-open');
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        if (label) label.nodeValue = open ? 'Hide diagram ' : 'View diagram ';
+        if (label) label.nodeValue = open ? T.hide : T.view;
       });
     });
   })();

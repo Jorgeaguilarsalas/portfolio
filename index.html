@@ -1432,6 +1432,15 @@
   // Diagramas on-demand de Selected Work (solo en movil: arriba de 900px el
   // CSS los muestra siempre y el boton no existe).
   (function () {
+    // La etiqueta se lee de <html lang>. Antes estaba fija en el string del
+    // archivo, asi que en /de/work/ y /es/work/ el boton saltaba al ingles en
+    // cuanto se abria el diagrama.
+    const LABELS = {
+      en: { view: 'View diagram ', hide: 'Hide diagram ' },
+      de: { view: 'Diagramm ansehen ', hide: 'Diagramm ausblenden ' },
+      es: { view: 'Ver diagrama ', hide: 'Ocultar diagrama ' },
+    };
+    const T = LABELS[document.documentElement.lang] || LABELS.en;
     const toggles = document.querySelectorAll('.case-toggle');
     if (!toggles.length) return;
 
@@ -1445,7 +1454,7 @@
         const open = visual.classList.toggle('is-open');
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
         // Solo cambia la etiqueta: el signo + gira a x por CSS
-        if (label) label.nodeValue = open ? 'Hide diagram ' : 'View diagram ';
+        if (label) label.nodeValue = open ? T.hide : T.view;
       });
     });
   })();
