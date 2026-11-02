@@ -31,7 +31,7 @@ const LINES = [
   'FN:Jorge Aguilar',
   // Un solo ORG: en 3.0 es una propiedad unica y las agendas ignoran el
   // segundo. Nexio Fleet va en la nota.
-  'ORG:Salas UG',
+  'ORG:Nexio Fleet GmbH',
   'TITLE:Senior Operations Leader',
   'EMAIL;TYPE=INTERNET,WORK:hello@jorgeag.com',
   'TEL;TYPE=CELL:+4915734551124',
