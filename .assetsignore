@@ -23,7 +23,6 @@ scripts/
 # directory="./" se publicaria en jorgeag.com.
 *.mjs
 cv/
-343ride-landing.html
 worker-contact.js
 # Informes de sesion (.reports/): se leen desde GitHub, no se sirven en
 # jorgeag.com. Con directory="./" se publicarian como assets del sitio.

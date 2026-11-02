@@ -6,9 +6,8 @@ Builds en cada push a `main`.
 
 `jorgeag.com` es el dominio canonico. `343ride.de`, `www.*` y la URL de
 `workers.dev` responden 301 al mismo path en `jorgeag.com` (ver `worker.js`).
-El redirect de `343ride.de` es temporal: ese dominio se retomara como proyecto
-propio. `fleet@343ride.de` sigue siendo el contacto legal de Salas UG en
-Impressum y Datenschutz.
+`fleet@343ride.de` sigue siendo el contacto legal en Impressum y Datenschutz:
+es una direccion de correo, independiente de lo que sirva el dominio.
 
 ## CV
 
