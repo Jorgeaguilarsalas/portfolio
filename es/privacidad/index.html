@@ -230,6 +230,14 @@
     color:var(--fg);margin:0 0 14px;max-width:38ch;
   }
   .legal p{font-size:16.5px;line-height:1.8;color:var(--muted);margin:0;max-width:60ch}
+  .legal h3{
+    font-size:17px;font-weight:700;letter-spacing:-.005em;
+    color:var(--fg);margin:30px 0 10px;max-width:46ch;
+  }
+  /* Una lista seguida de un parrafo quedaba pegada: .legal ul solo trae
+     margen superior y .legal p + p no alcanza cuando el hermano es un <ul>.
+     Afecta tambien a los apartados 4 y 8, que ya tenian el hueco a 0. */
+  .legal ul + p{margin-top:16px}
   .legal p + p{margin-top:16px}
   .legal a{
     color:var(--accent);text-decoration:none;
@@ -848,6 +856,91 @@
       </p>
     </section>
 
+    <section class="legal" id="whatsapp">
+      <h2>12a. Comunicaci&oacute;n de negocio por WhatsApp</h2>
+      <p>
+        Salas UG utiliza la WhatsApp Business Platform (Cloud API) de Meta
+        Platforms Ireland Ltd. para la comunicaci&oacute;n comercial. Si nos escribe
+        por WhatsApp, tratamos los datos que se generan en ese intercambio para
+        responder a su consulta.
+      </p>
+      <p><strong>Datos tratados:</strong></p>
+      <ul>
+        <li>su n&uacute;mero de tel&eacute;fono o su identificador de WhatsApp</li>
+        <li>el nombre para mostrar que tiene configurado en WhatsApp</li>
+        <li>el contenido y el momento de los mensajes enviados y recibidos</li>
+        <li>los archivos, im&aacute;genes o documentos que se env&iacute;en con ellos</li>
+        <li>el estado de entrega y de lectura de los mensajes que enviamos</li>
+      </ul>
+      <p>
+        <strong>Base jur&iacute;dica:</strong> Art. 6 Abs. 1 lit. b DSGVO en la
+        comunicaci&oacute;n precontractual o contractual y, en los dem&aacute;s casos,
+        Art. 6 Abs. 1 lit. f DSGVO por nuestro inter&eacute;s leg&iacute;timo en tramitar las
+        consultas de forma eficiente.
+      </p>
+      <p>
+        El uso de WhatsApp es voluntario. Puede comunicarse con nosotros por
+        correo electr&oacute;nico o por tel&eacute;fono en cualquier momento.
+      </p>
+
+      <h3>Uso de un sistema de asistencia basado en IA</h3>
+      <p>
+        Para preparar las respuestas utilizamos un sistema de asistencia basado
+        en IA. Este sistema resume los mensajes entrantes y elabora propuestas
+        de respuesta.
+      </p>
+      <p>
+        Todo mensaje saliente es revisado por una persona y aprobado
+        expresamente antes de enviarse. No se produce ninguna decisi&oacute;n basada
+        &uacute;nicamente en el tratamiento automatizado en el sentido del
+        Art. 22 DSGVO.
+      </p>
+      <p>
+        Para el procesamiento del lenguaje utilizamos Amazon Bedrock de Amazon
+        Web Services EMEA SARL. El tratamiento se realiza exclusivamente dentro
+        de la Uni&oacute;n Europea. El proveedor no utiliza los contenidos transmitidos
+        para entrenar modelos ni los almacena de forma permanente.
+      </p>
+
+      <h3>Alojamiento y lugar de almacenamiento (datos de WhatsApp)</h3>
+      <p>
+        Nuestra aplicaci&oacute;n y todos los historiales de mensajes almacenados se
+        alojan en Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, en
+        un centro de datos en Alemania. Con Hetzner existe un contrato de
+        Auftragsverarbeitung (tratamiento por encargo) conforme al
+        Art. 28 DSGVO.
+      </p>
+
+      <h3>Destinatarios y encargados del tratamiento</h3>
+      <ul>
+        <li>Meta Platforms Ireland Ltd. &mdash; explotaci&oacute;n de la WhatsApp Business Platform</li>
+        <li>Amazon Web Services EMEA SARL &mdash; procesamiento del lenguaje dentro de la UE</li>
+        <li>Hetzner Online GmbH &mdash; alojamiento en Alemania</li>
+      </ul>
+      <p>
+        No se ceden sus datos con fines publicitarios ni se venden a terceros.
+      </p>
+
+      <h3>Plazo de conservaci&oacute;n (mensajes de WhatsApp)</h3>
+      <p>
+        Conservamos los historiales de mensajes durante el tiempo necesario para
+        tramitar su solicitud y mantener la relaci&oacute;n comercial. Cuando existan
+        obligaciones de conservaci&oacute;n mercantiles o fiscales, conservamos los
+        datos afectados durante el plazo legalmente establecido. Transcurrido
+        ese plazo, los datos se suprimen.
+      </p>
+
+      <h3>Sus derechos</h3>
+      <p>
+        A los datos tratados a trav&eacute;s de WhatsApp les asisten los mismos
+        derechos que a cualquier otro tratamiento que realicemos: acceso,
+        rectificaci&oacute;n, supresi&oacute;n, limitaci&oacute;n del tratamiento, portabilidad y
+        oposici&oacute;n conforme a los Art. 15&ndash;21 DSGVO. V&eacute;ase la secci&oacute;n 4
+        &mdash; Sus derechos como interesado. Para el derecho a reclamar ante la
+        autoridad de control competente, v&eacute;ase la secci&oacute;n 6.
+      </p>
+    </section>
+
     <section class="legal">
       <h2 id="analytics">13. Medici&oacute;n de audiencia con Google Analytics 4</h2>
       <p>
@@ -1251,7 +1344,7 @@
       </p>
     </section>
 
-    <p class="legal-meta">Versi&oacute;n de esta declaraci&oacute;n: octubre de 2026 &middot; <a href="/datenschutz/">original alem&aacute;n (jur&iacute;dicamente vinculante)</a></p>
+    <p class="legal-meta">Versi&oacute;n de esta declaraci&oacute;n: noviembre de 2026 &middot; <a href="/datenschutz/">original alem&aacute;n (jur&iacute;dicamente vinculante)</a></p>
 
   </div>
 </main>
