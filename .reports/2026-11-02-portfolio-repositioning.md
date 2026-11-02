@@ -403,3 +403,89 @@ pass. Safe to delete once this is confirmed good:
       and `/contact/` in all three languages:
       LinkedIn Post Inspector + Facebook Sharing Debugger
 - [ ] Jorge updates LinkedIn separately
+
+---
+
+## Open items resolved — follow-up pass (2026-11-02)
+
+Review of `b500189..e871709` returned two refinements. Both are now closed.
+
+### 1. /contact/ enquiry-type dropdown — simplified ✅
+
+Closes **Open item 1**. "Advisory / Consulting" and "Investment /
+Partnership" are gone, "General inquiry" takes over as the catch-all, and
+"Job opportunity" now leads.
+
+| | Before | After |
+|---|---|---|
+| EN | Advisory / Consulting · Investment / Partnership · Speaking / Media · Job opportunity · Other | **Job opportunity · General inquiry · Speaking / Media · Other** |
+| DE | Beratung · Investment / Partnerschaft · Vortrag / Medien · Stellenangebot · Sonstiges | **Stellenangebot · Allgemeine Anfrage · Vorträge / Medien · Sonstiges** |
+| ES | Asesoría / Consultoría · Inversión / Alianza · Conferencias / Medios · Oportunidad laboral · Otro | **Oportunidad laboral · Consulta general · Charlas / Medios · Otro** |
+
+Values: `job · general · speaking · other`.
+
+**Worker subject change, one line.** `worker-contact.js` built the
+notification subject as `data.inquiry_type || "general"`. Since the new
+option's value is literally `general`, a deliberate "General inquiry" and a
+blank dropdown would have produced the identical subject, so the fallback
+is now `"unspecified"` — matching the "not specified" wording the email body
+already used for that case.
+
+Verification:
+
+- The Worker does **not** whitelist `inquiry_type`; it sanitises via
+  `clean(d.inquiry_type, 40)`, so the new values pass through unchanged.
+  All four are well inside the 40-char cap.
+- Subjects rendered from the Worker's own template for every value:
+
+```
+job              → [Contact form EN] job — Ada Lovelace
+general          → [Contact form EN] general — Ada Lovelace
+speaking         → [Contact form EN] speaking — Ada Lovelace
+other            → [Contact form EN] other — Ada Lovelace
+(none selected)  → [Contact form EN] unspecified — Ada Lovelace
+```
+
+  Identical shape for DE and ES. Body line still reads
+  `Inquiry type: other (Press enquiry)` when "Other" is specified.
+- `contact/form.js` reveals the "Other (specify)" field on
+  `value === 'other'`, so the `other` value was kept as-is. Tested
+  in-browser in all three languages: hidden initially, shown on **other**,
+  hidden again on **general** and **job** — PASS.
+- No `value="advisory"` or `value="investment"` remains anywhere.
+
+**Testing note:** the dropdown first appeared broken under `file://`.
+That was the harness, not the code — `/contact/form.js` is an absolute
+path, which `file://` resolves to `file:///contact/form.js` and 404s, so
+the script never ran. The same failure reproduces on the unmodified
+previous commit. Re-tested over a local HTTP server, where it passes.
+**Contact-page JS cannot be verified from `file://`.**
+
+### 2. /about/ experience preview phrase — broadened ✅
+
+| | Before | After |
+|---|---|---|
+| EN | Four roles across marketplace operations, fleet compliance and product. | Four roles across marketplace and mobility — operations, partnerships, compliance, and product. |
+| DE | Vier Stationen zwischen Marketplace-Operations, Flotten-Compliance und Produkt. | Vier Positionen in Marktplatz und Mobilität — Operations, Partnerschaften, Compliance und Produkt. |
+| ES | Cuatro etapas entre operaciones de marketplace, compliance de flotas y producto. | Cuatro posiciones en marketplace y movilidad — operaciones, partnerships, compliance y producto. |
+
+Naming "fleet compliance" as a category read as a narrow industry claim.
+The replacement keeps marketplace and mobility as the experience area and
+widens the function list to the four the roles actually cover.
+
+Verified the count still matches reality: 4 `.exp-item` entries and 4
+company chips (Nexio Fleet GmbH, Bliq, Bolt, Wolt) in all three languages.
+
+### Still open
+
+**"Budget range" field on /contact/.** Not in scope for this pass, flagged
+for a decision. The form still asks for a budget bracket
+(`Not sure yet · Under €5k · €5k–25k · €25k–100k · €100k+`) alongside
+"Timeline". Those brackets describe advisory and consulting engagements —
+arguably a stronger advisory signal than the dropdown options just removed,
+and an odd question to put to a hiring manager now that "Job opportunity"
+leads the form. Removing the field would touch `contact/index.html` ×3,
+the Worker's email body and the `form.js` field list.
+
+No social preview refresh needed for this pass — no meta descriptions,
+titles or og tags were touched.
