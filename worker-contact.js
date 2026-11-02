@@ -389,7 +389,7 @@ export async function handleContactSubmit(request, env) {
   const notice = {
     to: env.CONTACT_INBOX || INBOX,
     subject: `${suspicious ? "[REVIEW] " : ""}[Contact form ${data.lang.toUpperCase()}] ${
-      data.inquiry_type || "general"
+      data.inquiry_type || "unspecified"
     } — ${data.name || "Anonymous"}`,
     text: suspicious
       ? `FLAGGED FOR REVIEW — ${flags.join("; ")}\n` +
