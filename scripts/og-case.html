@@ -1,0 +1,34 @@
+<!doctype html>
+<!-- Plantilla de la imagen para compartir de cada caso. La renderiza
+     scripts/build_og_cases.js a los nueve PNG (3 casos x 3 idiomas), 1200x630,
+     densidad 1x. Mismo patron que scripts/og-image.html: fondo negro, regla
+     esmeralda, titular blanco y bajada crema. No se sirve: scripts/ esta en
+     .assetsignore. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face{font-family:'Inter';font-style:normal;font-weight:400 900;src:url(../fonts/inter-latin.woff2) format('woff2');}
+  html,body{margin:0;padding:0;}
+  body{
+    width:1200px;height:630px;box-sizing:border-box;
+    background:#000000;
+    /* Centrado y con mucho margen, como la principal: WhatsApp y algunas
+       vistas de LinkedIn recortan la imagen a un cuadrado central. */
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:72px 72px;text-align:center;
+    font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;
+  }
+  .rule{width:80px;height:5px;border-radius:3px;background:#10B981;margin-bottom:40px;}
+  .name{margin:0;font-size:128px;font-weight:600;line-height:1;letter-spacing:-0.03em;color:#FFFFFF;}
+  .sub{margin:28px 0 0;font-size:38px;font-weight:400;line-height:1.34;letter-spacing:-0.01em;color:#E8DFC7;max-width:800px;}
+  .by{margin:44px 0 0;font-size:24px;font-weight:500;letter-spacing:0.02em;color:#8A8A93;}
+</style>
+</head>
+<body>
+  <div class="rule" aria-hidden="true"></div>
+  <h1 class="name" id="name">Bliq</h1>
+  <p class="sub" id="sub">Case study</p>
+  <p class="by" id="by">Jorge Aguilar</p>
+</body>
+</html>
