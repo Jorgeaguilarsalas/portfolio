@@ -230,6 +230,14 @@
     color:var(--fg);margin:0 0 14px;max-width:38ch;
   }
   .legal p{font-size:16.5px;line-height:1.8;color:var(--muted);margin:0;max-width:60ch}
+  .legal h3{
+    font-size:17px;font-weight:700;letter-spacing:-.005em;
+    color:var(--fg);margin:30px 0 10px;max-width:46ch;
+  }
+  /* Una lista seguida de un parrafo quedaba pegada: .legal ul solo trae
+     margen superior y .legal p + p no alcanza cuando el hermano es un <ul>.
+     Afecta tambien a los apartados 4 y 8, que ya tenian el hueco a 0. */
+  .legal ul + p{margin-top:16px}
   .legal p + p{margin-top:16px}
   .legal a{
     color:var(--accent);text-decoration:none;
@@ -814,6 +822,88 @@
       </p>
     </section>
 
+    <section class="legal" id="whatsapp">
+      <h2>12a. Business communication via WhatsApp</h2>
+      <p>
+        Salas UG uses the WhatsApp Business Platform (Cloud API) provided by
+        Meta Platforms Ireland Ltd. for business communication. If you write to
+        us via WhatsApp, we process the data arising from that exchange in
+        order to answer your enquiry.
+      </p>
+      <p><strong>Data processed:</strong></p>
+      <ul>
+        <li>your telephone number or WhatsApp identifier</li>
+        <li>the display name stored in your WhatsApp profile</li>
+        <li>the content and time of the messages sent and received</li>
+        <li>any files, images or documents sent with them</li>
+        <li>the delivery and read status of the messages we send</li>
+      </ul>
+      <p>
+        <strong>Legal basis:</strong> Art. 6 Abs. 1 lit. b DSGVO for
+        pre-contractual or contractual communication, otherwise
+        Art. 6 Abs. 1 lit. f DSGVO on the basis of our legitimate interest in
+        handling enquiries efficiently.
+      </p>
+      <p>
+        Using WhatsApp is voluntary. You can reach us by email or telephone
+        instead at any time.
+      </p>
+
+      <h3>Use of an AI-assisted system</h3>
+      <p>
+        To prepare replies we use an AI-assisted system. It summarises incoming
+        messages and drafts suggested replies.
+      </p>
+      <p>
+        Every outgoing message is reviewed by a person and expressly approved
+        before it is sent. No decision is taken on a solely automated basis
+        within the meaning of Art. 22 DSGVO.
+      </p>
+      <p>
+        For language processing we use Amazon Bedrock provided by Amazon Web
+        Services EMEA SARL. Processing takes place exclusively within the
+        European Union. The content transmitted is not used by the provider to
+        train models and is not stored permanently.
+      </p>
+
+      <h3>Hosting and storage location (WhatsApp data)</h3>
+      <p>
+        Our application and all stored message histories are hosted with
+        Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, in a data
+        centre in Germany. A contract for Auftragsverarbeitung (processing on
+        behalf of a controller) under Art. 28 DSGVO is in place with Hetzner.
+      </p>
+
+      <h3>Recipients and processors</h3>
+      <ul>
+        <li>Meta Platforms Ireland Ltd. &mdash; operation of the WhatsApp Business Platform</li>
+        <li>Amazon Web Services EMEA SARL &mdash; language processing within the EU</li>
+        <li>Hetzner Online GmbH &mdash; hosting in Germany</li>
+      </ul>
+      <p>
+        Your data is not passed on for advertising purposes and is not sold to
+        third parties.
+      </p>
+
+      <h3>Retention period (WhatsApp messages)</h3>
+      <p>
+        We store message histories for as long as is necessary to handle your
+        request and to maintain the business relationship. Where commercial or
+        tax law retention obligations apply, we retain the data concerned for
+        the period prescribed by law. The data is deleted thereafter.
+      </p>
+
+      <h3>Your rights</h3>
+      <p>
+        The same data subject rights apply to data processed via WhatsApp as to
+        any other processing we carry out: access, rectification, erasure,
+        restriction of processing, data portability and objection under
+        Art. 15&ndash;21 DSGVO. See section 4 &mdash; Your rights as a data
+        subject. For the right to lodge a complaint with the competent
+        supervisory authority, see section 6.
+      </p>
+    </section>
+
     <section class="legal">
       <h2 id="analytics">13. Audience measurement with Google Analytics 4</h2>
       <p>
@@ -1170,7 +1260,7 @@
       </p>
     </section>
 
-    <p class="legal-meta">Version of this policy: October 2026 &middot; <a href="/datenschutz/">German original (legally binding)</a></p>
+    <p class="legal-meta">Version of this policy: November 2026 &middot; <a href="/datenschutz/">German original (legally binding)</a></p>
 
   </div>
 </main>
