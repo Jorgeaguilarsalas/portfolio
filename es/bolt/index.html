@@ -613,6 +613,7 @@
 <script src="/vcard.js" defer></script>
 <link rel="stylesheet" href="/nav.css">
 <link rel="stylesheet" href="/case-end.css">
+<link rel="stylesheet" href="/case-tldr.css">
 </head>
 <body>
 <a href="#main" class="skip-link">Saltar al contenido</a>
@@ -707,6 +708,18 @@
         <p class="lede">Diagnóstico y reconstrucción de un funnel de activación de conductores &mdash; de 25% a 58% en el sur de Alemania. <strong>El número no era el proyecto.</strong> El proyecto consistió en descubrir por dónde se fugaba el funnel, lo que exigió construir la instrumentación para poder verlo.</p>
 
         <p class="tags"><span class="tag">Análisis de funnel</span><span class="tag">Instrumentación</span><span class="tag">Supply Operations</span><span class="tag">Diseño de procesos</span></p>
+      </section>
+      <!-- TL;DR: mismo bloque en los 15 casos; estilos en /case-tldr.css -->
+      <section class="case-tldr" aria-label="Resumen">
+        <p class="case-tldr-label">TL;DR</p>
+        <dl class="case-tldr-list">
+          <dt>Reto</dt>
+          <dd>La activación de conductores se situaba en 25% y era un único número reportado cada semana, sin instrumentación que mostrara por qué etapa se fugaba el funnel.</dd>
+          <dt>Lo que hice</dt>
+          <dd>Construí analítica dentro de la aplicación para las cinco etapas del funnel y luego eliminé seis fricciones concretas: revisión manual de documentos, notificaciones genéricas, cuentas duplicadas, idioma, flotas de long tail y el circuito de feedback con Support.</dd>
+          <dt>Resultado</dt>
+          <dd>Activación de 25% a 58% en seis semanas (agosto&ndash;septiembre de 2023), con 18% menos cancelaciones sobre más de 1.000 registros.</dd>
+        </dl>
       </section>
 
       <!-- ============ 01 — THE NUMBER ============ -->

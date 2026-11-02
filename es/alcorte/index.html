@@ -590,6 +590,7 @@
 <script src="/vcard.js" defer></script>
 <link rel="stylesheet" href="/nav.css">
 <link rel="stylesheet" href="/case-end.css">
+<link rel="stylesheet" href="/case-tldr.css">
 </head>
 <body>
 <a href="#main" class="skip-link">Saltar al contenido</a>
@@ -676,6 +677,18 @@
         <p class="status"><span class="dot"></span> Fase 0 cerrada, Fase A1 en curso</p>
 
         <p class="lede"><strong>Un sistema de gestión de pedidos con IA diseñado en torno a una sola restricción: el operador nunca abrirá un panel.</strong></p>
+      </section>
+      <!-- TL;DR: mismo bloque en los 15 casos; estilos en /case-tldr.css -->
+      <section class="case-tldr" aria-label="Resumen">
+        <p class="case-tldr-label">TL;DR</p>
+        <dl class="case-tldr-list">
+          <dt>Reto</dt>
+          <dd>Una carnicería de cincuenta años funcionaba con pedidos por teléfono, listas de precios a mano y la memoria de una sola persona &mdash; y el operador nunca abrirá un panel.</dd>
+          <dt>Lo que hice</dt>
+          <dd>Convertí WhatsApp en toda la superficie del producto: un bucle agéntico sobre seis herramientas con permisos verificados, de modo que precios y disponibilidad cambian por mensaje de chat y cada edición escribe su propio registro de auditoría.</dd>
+          <dt>Resultado</dt>
+          <dd>Fase 0 cerrada con el pipeline en producción (WhatsApp &rarr; Meta &rarr; Vercel &rarr; Claude &rarr; Supabase); el conjunto de herramientas del operador de la Fase A1 validado contra infraestructura real, no contra mocks.</dd>
+        </dl>
       </section>
 
       <!-- ============ AT A GLANCE ============ -->

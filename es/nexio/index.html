@@ -529,6 +529,7 @@
 <script src="/vcard.js" defer></script>
 <link rel="stylesheet" href="/nav.css">
 <link rel="stylesheet" href="/case-end.css">
+<link rel="stylesheet" href="/case-tldr.css">
 </head>
 <body>
 <a href="#main" class="skip-link">Saltar al contenido</a>
@@ -613,6 +614,18 @@
         </div>
 
         <p class="lede">Las empresas alemanas de Mietwagen (transporte con conductor bajo licencia) son auditadas por la LABO (la autoridad de licencias de Berlín) sobre los Lenk- und Ruhezeiten (tiempos de conducción y descanso). La mayoría cumple esa obligación con hojas de cálculo y memoria, conciliando a mano las exportaciones de turnos de las plataformas en las que trabajan sus conductores. <strong>Quien no entrega la reconstrucción no recibe una multa: pierde la Konzession.</strong> Nexio convierte la obligación en un flujo de trabajo: extraer los datos de turnos automáticamente, marcar los huecos que no superarían una auditoría y generar el paquete que pide un auditor.</p>
+      </section>
+      <!-- TL;DR: mismo bloque en los 15 casos; estilos en /case-tldr.css -->
+      <section class="case-tldr" aria-label="Resumen">
+        <p class="case-tldr-label">TL;DR</p>
+        <dl class="case-tldr-list">
+          <dt>Reto</dt>
+          <dd>Las empresas alemanas de Mietwagen reconstruyen en hojas de cálculo su auditoría de la LABO sobre tiempos de conducción y descanso. Quien no entrega la reconstrucción no recibe una multa: pierde la Konzession.</dd>
+          <dt>Lo que hice</dt>
+          <dd>Desglosé la obligación de auditoría a partir de lo que la LABO realmente exige en un pipeline de cinco etapas, especifiqué una capa de ingesta que normaliza cada plataforma (incluida la que no tiene API) y moví el pitch de las multas al riesgo de licencia.</dd>
+          <dt>Resultado</dt>
+          <dd>Más de 800 conductores monitoreados en 8 flotas reguladas, con operadores que reportan 60&ndash;70% menos tiempo administrativo por ciclo de compliance.</dd>
+        </dl>
       </section>
 
       <!-- ============ BLOCK 1 — PIPELINE ============ -->

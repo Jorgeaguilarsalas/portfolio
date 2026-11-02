@@ -613,6 +613,7 @@
 <script src="/vcard.js" defer></script>
 <link rel="stylesheet" href="/nav.css">
 <link rel="stylesheet" href="/case-end.css">
+<link rel="stylesheet" href="/case-tldr.css">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to content</a>
@@ -707,6 +708,18 @@
         <p class="lede">Diagnosing and rebuilding a driver activation funnel &mdash; from 25% to 58% in Southern Germany. <strong>The number wasn't the project.</strong> The project was finding out where the funnel leaked, which required building the instrumentation to see it at all.</p>
 
         <p class="tags"><span class="tag">Funnel analysis</span><span class="tag">Instrumentation</span><span class="tag">Supply ops</span><span class="tag">Process design</span></p>
+      </section>
+      <!-- TL;DR: mismo bloque en los 15 casos; estilos en /case-tldr.css -->
+      <section class="case-tldr" aria-label="Summary">
+        <p class="case-tldr-label">TL;DR</p>
+        <dl class="case-tldr-list">
+          <dt>Challenge</dt>
+          <dd>Driver activation sat at 25% and was reported as a single weekly number, with no instrumentation to show which funnel stage leaked.</dd>
+          <dt>What I did</dt>
+          <dd>Built in-app analytics for the five funnel stages, then removed six specific frictions: manual document review, vague notifications, duplicate accounts, language, long-tail fleets and the feedback loop with Support.</dd>
+          <dt>Result</dt>
+          <dd>Activation 25% &rarr; 58% in six weeks (August&ndash;September 2023), with cancellations down 18% across 1,000+ registrations.</dd>
+        </dl>
       </section>
 
       <!-- ============ 01 — THE NUMBER ============ -->

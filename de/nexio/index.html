@@ -529,6 +529,7 @@
 <script src="/vcard.js" defer></script>
 <link rel="stylesheet" href="/nav.css">
 <link rel="stylesheet" href="/case-end.css">
+<link rel="stylesheet" href="/case-tldr.css">
 </head>
 <body>
 <a href="#main" class="skip-link">Zum Inhalt springen</a>
@@ -613,6 +614,18 @@
         </div>
 
         <p class="lede">Deutsche Mietwagenunternehmen werden von der LABO auf Lenk- und Ruhezeiten geprüft. Die meisten erfüllen diese Pflicht mit Tabellen und Gedächtnis und gleichen Schichtexporte der Plattformen, auf denen ihre Fahrer arbeiten, von Hand ab. <strong>Wer die Rekonstruktion nicht liefert, zahlt kein Bußgeld &mdash; er verliert die Konzession.</strong> Nexio macht aus der Pflicht einen Workflow: Schichtdaten automatisch abrufen, die Lücken markieren, die eine Prüfung nicht bestehen würden, und das Paket erzeugen, das ein Prüfer verlangt.</p>
+      </section>
+      <!-- TL;DR: mismo bloque en los 15 casos; estilos en /case-tldr.css -->
+      <section class="case-tldr" aria-label="Zusammenfassung">
+        <p class="case-tldr-label">TL;DR</p>
+        <dl class="case-tldr-list">
+          <dt>Herausforderung</dt>
+          <dd>Deutsche Mietwagenunternehmen rekonstruieren ihre LABO-Prüfung der Lenk- und Ruhezeiten in Tabellen. Wer die Rekonstruktion nicht liefert, zahlt kein Bußgeld &mdash; er verliert die Konzession.</dd>
+          <dt>Was ich getan habe</dt>
+          <dd>Die Prüfpflicht von dem her aufgeschlüsselt, was die LABO tatsächlich verlangt, in eine fünfstufige Pipeline zerlegt, eine Ingestion-Schicht spezifiziert, die jede Plattform normalisiert (auch die ohne API), und den Pitch von Bußgeldern auf Konzessionsrisiko verlagert.</dd>
+          <dt>Ergebnis</dt>
+          <dd>800+ überwachte Fahrer bei 8 regulierten Flottenbetreibern; die Betreiber berichten von 60&ndash;70% weniger Verwaltungsaufwand pro Compliance-Zyklus.</dd>
+        </dl>
       </section>
 
       <!-- ============ BLOCK 1 — PIPELINE ============ -->

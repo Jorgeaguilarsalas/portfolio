@@ -1,0 +1,75 @@
+/* TL;DR de los cinco casos de estudio (x3 idiomas): tres lineas al principio
+ * -reto, que hice, resultado- para quien no va a leer 8.000 px de caso.
+ * /wolt/ mide 13k px en escritorio y 17.7k en movil; la auditoria del 30-10
+ * pedia precisamente esto (N5).
+ *
+ * Vive en un fichero compartido y no en el <style> de cada pagina por el mismo
+ * motivo que /case-end.css: son 15 copias del mismo marcado y la deriva entre
+ * copias es el bug que ya pago el nav. Usa solo tokens que declaran las 15
+ * paginas (--surface, --border, --accent, --fg, --mono, --sans) y no toca el
+ * nav ni nada que comparta Motion.
+ *
+ * Va DESPUES de la tarjeta de cabecera y ANTES de la seccion 01. La cabecera
+ * es parte del hero del caso -fecha, rol, sitio, metricas-: el resumen se lee
+ * una vez sabes de quien y de cuando hablamos, y justo encima del cuerpo.
+ *
+ * No lleva margenes: .stack es flex column con gap, asi que el aire lo pone
+ * el contenedor, como con las demas tarjetas. */
+
+.case-tldr{
+  background:var(--surface);
+  border:1px solid var(--border);
+  /* El acento lo lleva el borde izquierdo, como en .diff de la home. Por eso
+     la etiqueta de abajo no repite la barrita de .section-label: el acento se
+     pondria dos veces en 40 px. */
+  border-left:2px solid var(--accent);
+  padding:28px 32px;
+  min-width:0;
+  /* Sobre el rail sticky, igual que .card. */
+  position:relative;z-index:1;
+}
+
+.case-tldr-label{
+  margin:0 0 18px;
+  font-family:var(--mono);font-size:11px;line-height:1.4;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent);
+}
+
+/* Lista de definiciones y no parrafos: cada fila es termino -> descripcion,
+   que es exactamente lo que es. La rejilla alinea los tres terminos en su
+   propia columna; con la etiqueta en linea los inicios quedaban en bandera
+   ("Herausforderung" frente a "Ergebnis") y se perdia justo lo que este
+   bloque viene a dar, que es poder escanearlo. */
+.case-tldr-list{
+  display:grid;grid-template-columns:max-content minmax(0,1fr);
+  gap:12px 24px;margin:0;
+}
+.case-tldr-list dt{
+  align-self:start;padding-top:5px;  /* cuadra la linea base del mono 11px con la del texto de 15.5px */
+  font-family:var(--mono);font-size:11px;line-height:1.4;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent);white-space:nowrap;
+}
+.case-tldr-list dd{
+  margin:0;
+  font-family:var(--sans);font-size:15.5px;line-height:1.65;color:var(--fg);
+}
+
+/* Apilado antes de que la columna del termino empiece a estrangular el texto.
+   El corte esta en 640px y no en los 480 de .card porque el termino mas largo
+   es el aleman ("Herausforderung", ~132px de mono): por debajo de ~640 la
+   descripcion se queda en menos de 40 caracteres por linea. */
+@media (max-width:640px){
+  .case-tldr{padding:24px 22px;}
+  .case-tldr-label{margin-bottom:14px;}
+  .case-tldr-list{grid-template-columns:minmax(0,1fr);gap:0;}
+  .case-tldr-list dt{padding-top:16px;}
+  .case-tldr-list dt:first-of-type{padding-top:0;}
+  .case-tldr-list dd{margin-top:5px;font-size:15px;}
+}
+
+/* Movil estrecho: .card pierde el radio y se pega al borde (regla C de las
+   paginas de caso). El TL;DR acompana, o queda flotando 16px por dentro de
+   unas tarjetas que ya no tienen margen. */
+@media (max-width:480px){
+  .case-tldr{padding:22px 16px;}
+}

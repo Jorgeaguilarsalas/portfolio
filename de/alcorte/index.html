@@ -590,6 +590,7 @@
 <script src="/vcard.js" defer></script>
 <link rel="stylesheet" href="/nav.css">
 <link rel="stylesheet" href="/case-end.css">
+<link rel="stylesheet" href="/case-tldr.css">
 </head>
 <body>
 <a href="#main" class="skip-link">Zum Inhalt springen</a>
@@ -676,6 +677,18 @@
         <p class="status"><span class="dot"></span> Phase 0 abgeschlossen, Phase A1 in Arbeit</p>
 
         <p class="lede"><strong>Ein KI-gestütztes Bestellmanagementsystem, entworfen um eine einzige Randbedingung: Der Betreiber wird nie ein Dashboard öffnen.</strong></p>
+      </section>
+      <!-- TL;DR: mismo bloque en los 15 casos; estilos en /case-tldr.css -->
+      <section class="case-tldr" aria-label="Zusammenfassung">
+        <p class="case-tldr-label">TL;DR</p>
+        <dl class="case-tldr-list">
+          <dt>Herausforderung</dt>
+          <dd>Eine seit fünfzig Jahren bestehende Metzgerei lief über Telefonbestellungen, handgeschriebene Preislisten und das Gedächtnis einer einzigen Person &mdash; und der Betreiber wird nie ein Dashboard öffnen.</dd>
+          <dt>Was ich getan habe</dt>
+          <dd>WhatsApp zur gesamten Produktoberfläche gemacht: eine agentische Schleife über sechs rechtegeprüfte Tools, sodass Preise und Verfügbarkeit per Chatnachricht geändert werden und jede Änderung ihren eigenen Audit-Trail schreibt.</dd>
+          <dt>Ergebnis</dt>
+          <dd>Phase 0 abgeschlossen, Pipeline in Produktion live (WhatsApp &rarr; Meta &rarr; Vercel &rarr; Claude &rarr; Supabase); das Betreiber-Toolset der Phase A1 gegen echte Infrastruktur validiert, nicht gegen Mocks.</dd>
+        </dl>
       </section>
 
       <!-- ============ AT A GLANCE ============ -->
