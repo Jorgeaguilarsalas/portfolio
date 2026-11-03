@@ -423,13 +423,24 @@ $ cmp motion/site/nav.css portfolio/nav.css
 ```
 
 **Pendiente, y deliberadamente fuera de alcance:** el CSS del `.skip-link`
-queda **inerte** en Motion. No hay ningún elemento `.skip-link` ni
-`<main id="main" tabindex="-1">` en `site/templates/`, así que las reglas no
-tienen sujeto. Son inofensivas —no pintan nada sin su marcado— y se espejan
-igual, porque lo que este fichero no puede tener es una copia que derive en
-silencio. **Añadir el marcado del skip link a las plantillas de Motion queda
-para una sesión futura** (ampliación de alcance a Motion); hasta entonces
-Motion no tiene skip link funcional, igual que antes de este commit.
+queda **inerte** en Motion. Son reglas sin sujeto: inofensivas —no pintan nada
+sin su marcado— y se espejan igual, porque lo que este fichero no puede tener
+es una copia que derive en silencio.
+
+Lo que falta en `site/templates/shell.html`, comprobado:
+
+```
+$ grep -c 'skip-link' site/templates/shell.html            0   falta el enlace
+$ sed -n '55p'  site/templates/shell.html
+  <main id="main"><div class="col">                            falta tabindex="-1"
+```
+
+Es decir, son **dos retoques y no una plantilla nueva**: el `<a class="skip-link">`
+como primer hijo del `<body>`, y `tabindex="-1"` sobre el `<main id="main">`
+que ya existe —sin él, activar el enlace mueve el scroll pero no el foco, y el
+siguiente Tab sigue desde la barra—. **Queda para una sesión futura**
+(ampliación de alcance a Motion); hasta entonces Motion no tiene skip link
+funcional, igual que antes de este commit.
 
 **Estado del test.** `python3 scripts/test_nav_mirror.py` sigue en **rojo**, y
 tiene que seguirlo: compara contra el `/nav.css` **vivo** de jorgeag.com, y
@@ -510,9 +521,10 @@ nuevo, así que conviene que el portfolio vaya primero o a la vez.
 
 ## Pendientes que deja esta sesión
 
-- **Marcado del skip link en Motion** (§3). El CSS ya está espejado e inerte;
-  faltan el elemento y el `<main id="main" tabindex="-1">` en
-  `site/templates/`. Es ampliación de alcance a Motion.
+- **Marcado del skip link en Motion** (§3). El CSS ya está espejado e inerte.
+  Faltan dos cosas en `site/templates/shell.html`: el `<a class="skip-link">`
+  como primer hijo del `<body>`, y `tabindex="-1"` sobre el `<main id="main">`
+  que ya existe (línea 55). Es ampliación de alcance a Motion.
 - **`At a glance` de Alcorte** (§1). Ahora hay dos resúmenes seguidos en esa
   página. Candidato a recorte en una pasada futura.
 - **`/cv/` a 390px** desborda 404px, de antes del P1b.
